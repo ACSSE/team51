@@ -1497,7 +1497,14 @@
             $scope.StudentP.AverageMark = null;
             $scope.StudentP.StudentNumber = $scope.Student.StudentNumber;
             $scope.StudentP.IDNumber = $scope.Student.IdNumber;
-            $scope.StudentP.Age = null;
+
+            var today = new Date();
+            var age = today.getFullYear() - $scope.Student.DateOfBirth.getFullYear();
+            var m = today.getMonth() - $scope.Student.DateOfBirth.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < $scope.Student.DateOfBirth.getDate())) {
+                age--;
+            }
+            $scope.StudentP.Age = age;
             if ($scope.SelectedDisabilityY) {
                 $scope.Student.HasDisability = true;
                 $scope.StudentP.DisabilityDescription = $scope.Student.DisabilityDescription;
