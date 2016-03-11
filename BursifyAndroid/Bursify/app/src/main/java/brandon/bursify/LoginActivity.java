@@ -28,8 +28,11 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +68,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private TextView txtRegister;
     private View mProgressView;
     private View mLoginFormView;
+    private RelativeLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -403,7 +407,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success)
             {
-                finish();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
             else
             {
