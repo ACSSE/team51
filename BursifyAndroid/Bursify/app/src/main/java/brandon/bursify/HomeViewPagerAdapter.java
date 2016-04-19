@@ -32,7 +32,6 @@ public class HomeViewPagerAdapter extends FragmentStatePagerAdapter
         fragmentArrayList = new ArrayList<>();
         fragmentArrayList.add(new FragmentOne());
         fragmentArrayList.add(new FragmentTwo());
-        fragmentArrayList.add(new FragmentThree());
 
     }
 
@@ -67,11 +66,6 @@ public class HomeViewPagerAdapter extends FragmentStatePagerAdapter
 
                 break;
 
-            case 2:
-
-                title = "Section Three";
-
-                break;
         }
 
         return title;

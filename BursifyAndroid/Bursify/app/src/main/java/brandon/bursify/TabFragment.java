@@ -71,7 +71,7 @@ public class TabFragment extends Fragment
         }
         else
         {
-            pagerTabs.setShouldExpand(false);
+            pagerTabs.setShouldExpand(true);
         }
 
         pagerTabs.setViewPager(pager);

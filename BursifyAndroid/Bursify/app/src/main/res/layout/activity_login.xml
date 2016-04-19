@@ -17,7 +17,8 @@
         android:layout_marginTop="90dp"
         android:textStyle="normal"
         android:textAlignment="center"
-        android:singleLine="false"/>
+        android:singleLine="false"
+        android:id="@+id/textView2"/>
 
     <!-- Login progress -->
     <ProgressBar
@@ -80,7 +81,7 @@
 
         <Button
             android:id="@+id/email_sign_in_button"
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/action_sign_in"
