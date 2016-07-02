@@ -34,10 +34,12 @@ namespace Bursify.App_Start
         {
             //Api's
             container.Register<UserApi>();
+            container.Register<ContactApi>();
 
             //Persistence
             container.Register(typeof(Repository<>));
-            container.Register<IUnitOfWorkFactory, UnitOfWorkFactory>(Lifestyle.Singleton);
+            //just changed this now
+            container.Register<IUnitOfWorkFactory, UnitOfWorkFactory>(new WebRequestLifestyle(true));
             container.Register<DataSession>(new WebRequestLifestyle(true));
 
             //Other

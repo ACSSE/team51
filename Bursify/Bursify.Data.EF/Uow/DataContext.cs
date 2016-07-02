@@ -2,7 +2,7 @@
 using System.Data.Common;
 using System.Data.Entity;
 using System.Reflection;
-using Bursify.Data.EntityMappings;
+using Bursify.Data.EF.EntityMappings;
 
 namespace Bursify.Data.EF.Uow
 {
@@ -12,7 +12,7 @@ namespace Bursify.Data.EF.Uow
         private const string defaultProvider = "System.Data.SqlClient";
 
         protected DataContext(DbConnection connection)
-            : base(connection.ConnectionString) 
+            : base(connection.ConnectionString)
         {
             this.Configuration.AutoDetectChangesEnabled = true;
         }
@@ -42,7 +42,7 @@ namespace Bursify.Data.EF.Uow
             DbProviderFactory factory = DbProviderFactories.GetFactory(providerInvariantName);
             DbConnection connection = factory.CreateConnection();
 
-            if(connection != null)
+            if (connection != null)
             {
                 connection.ConnectionString = connectionString;
             }
@@ -54,6 +54,7 @@ namespace Bursify.Data.EF.Uow
         {
             Type mappingType = typeof(BursifyUserMapping);
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetAssembly(mappingType));
+            
         }
     }
 }

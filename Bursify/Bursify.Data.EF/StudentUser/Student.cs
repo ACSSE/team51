@@ -1,27 +1,32 @@
 ﻿using Bursify.Data.CampaignUser;
 using Bursify.Data.EF;
+using Bursify.Data.EF.User;
 using Bursify.Data.User;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace Bursify.Data.StudentUser
 {
-    public class Student
+    public class Student : IEntity
     {
+        public Student()
+        {
+            Campaigns = new List<Campaign>();
+            Institutions = new List<Institution>();
+        }
+
         public int StudentId { get; set; }
-        public string IdNumber { get; set; }
-        public string Surname { get; set; }
-        public int Age { get; set; }
-        public string Gender { get; set; }
-        public string Race { get; set; }
-        public string ProfilePicPath { get; set; }
-        public double MarkAverage { get; set; }
-        [Key, ForeignKey("Campaigns")]
-        public int CampaignId { get; set; }
-        [Key, ForeignKey("Subjects")]
-        public int SubjectId { get; set; }
-        
-        public virtual Campaign Campaigns { get; set; }
-        public virtual Subject  Subjects { get; set; }
+        public string EducationLevel { get; set; }
+        public int AverageMark { get; set; }
+        public string ProfilePicturePath { get; set; }
+        public int BursifyUserId { get; set; }
+        public virtual BursifyUser StudentUser { get; set; }
+
+        public int Id
+        {
+            get { return StudentId; }
+        }
+
+        public virtual ICollection<Campaign> Campaigns { get; set; }
+        public virtual ICollection<Institution> Institutions { get; set; }
     }
 }

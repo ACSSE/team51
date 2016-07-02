@@ -7,18 +7,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bursify.Data.SponsorUser
 {
-    public class Sponsorship 
+    public class Sponsorship : IEntity
     {
-        public int BursifyUserId { get; set; }
+        public int SponsorshipId { get; set; }
         public string Name { get; set; }
-        public SponsorshipType SponsorshipType { get; set; }
         public string Description { get; set; }
         public DateTime ClosingDate { get; set; }
         public bool EssayRequired { get; set; }
-        public double EstimatedValue { get; set; }
-        [Key, ForeignKey("Requirements")]
-        public int RequirementId { get; set; }
-
-        public virtual Requirement Requirements { get; set; }
+        public double EstimatedCost { get; set; }
+        public string StudyFields { get; set; }
+        public string Province { get; set; }
+        public int AverageMarkRequired { get; set; }
+        public int SponsorId { get; set; }
+        public virtual Sponsor Sponsorships { get; set; }
+        public int Id
+        {
+            get { return SponsorshipId; }
+        }
     }
 }
