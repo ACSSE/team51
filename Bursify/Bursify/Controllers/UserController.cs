@@ -6,12 +6,10 @@ namespace Bursify.Controllers
     public class UserController  : Controller
     {
         private readonly UserApi _userApi;
-        private readonly ContactApi _contactApi;
-
-        public UserController(UserApi userApi, ContactApi contactApi)
+        
+        public UserController(UserApi userApi)
         {
             _userApi = userApi;
-            _contactApi = contactApi;
         }
 
 
@@ -19,8 +17,7 @@ namespace Bursify.Controllers
         public ActionResult Index()
         {
             _userApi.CreateUser("hello");
-            _contactApi.CreateUser("1234567899");
-
+            
             return this.View();
         }
     }

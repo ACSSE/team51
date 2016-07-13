@@ -1,12 +1,8 @@
-﻿using Bursify.Data.EF;
-using Bursify.Data.User;
-
-namespace Bursify.Data.CampaignUser
+﻿namespace Bursify.Data.EF.CampaignUser
 {
     public class Account : IEntity 
     {
         public int CampaignId { get; set; }
-        public Campaign CampaignAcc { get; set; }
         public string AccountName { get; set; }
         public string AccountNumber { get; set; }
         public string BankName { get; set; }
@@ -18,5 +14,7 @@ namespace Bursify.Data.CampaignUser
         {
             get { return CampaignId; }
         }
+
+        public virtual Campaign Campaign { get; set; }
     }
 }

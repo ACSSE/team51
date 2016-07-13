@@ -34,8 +34,7 @@ namespace Bursify.App_Start
         {
             //Api's
             container.Register<UserApi>();
-            container.Register<ContactApi>();
-
+            
             //Persistence
             container.Register(typeof(Repository<>));
             //just changed this now

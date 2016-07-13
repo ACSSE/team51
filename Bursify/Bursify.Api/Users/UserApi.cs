@@ -1,5 +1,6 @@
 ﻿using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
+using Bursify.Data.EF.User;
 using Bursify.Data.User;
 using System;
 
@@ -9,8 +10,7 @@ namespace Bursify.Api.Users
     {
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly Repository<BursifyUser> _userRepository;
-        private readonly Repository<BursifyUser> _contact;
-
+        
         public UserApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository)
         {
             _unitOfWorkFactory = unitOfWorkFactory;

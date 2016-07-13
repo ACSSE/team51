@@ -1,10 +1,7 @@
-﻿using Bursify.Data.EF;
-using Bursify.Data.User;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using Bursify.Data.EF.User;
 
-namespace Bursify.Data.SponsorUser
+namespace Bursify.Data.EF.SponsorUser
 {
     public class Sponsor : IEntity
     {
@@ -13,16 +10,20 @@ namespace Bursify.Data.SponsorUser
             Sponsorhips = new List<Sponsorship>();
         }
 
-        public int SponsorId { get; set; }
+        public int BursifyUserId { get; set; }
         public int NumberOfStudentsSponsored { get; set; }
         public int NumberOfSponsorships { get; set; }
-        public int BursifyUserId { get; set; }
-        public virtual BursifyUser SponsorUser { get; set; }
+        public int NumberOfApplicants { get; set; }
+        public int BursifyRank { get; set; }
+        public int BursifyScore { get; set; }
+
         public int Id
         {
-            get { return SponsorId; }
+            get { return BursifyUserId; }
         }
 
+        public virtual BursifyUser BursifyUser { get; set; }
         public ICollection<Sponsorship> Sponsorhips { get; set; }
+        public virtual ICollection<CampaignSponsor> CampaignSponsors { get; set; }
     }
 }

@@ -1,19 +1,17 @@
-﻿using Bursify.Data.EF;
-using Bursify.Data.Enums;
-using Bursify.Data.SponsorUser;
-using Bursify.Data.StudentUser;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Bursify.Data.EF.SponsorUser;
+using Bursify.Data.EF.StudentUser;
 
-namespace Bursify.Data.User
+namespace Bursify.Data.EF.User
 {
     public class BursifyUser : IEntity
     {
         public BursifyUser()
         {
-            Contacts = new List<Contact>();
-            Sponsors = new List<Sponsor>();
-            Students = new List<Student>();
+            //Student = new Student();
+            Addresses = new List<UserAddress>();
+            //Sponsors = new List<Sponsor>();
         }
 
         public int BursifyUserId { get; set; }
@@ -25,14 +23,17 @@ namespace Bursify.Data.User
         public string UserType { get; set; }
         public DateTime RegistrationDate { get; set; }
         public string Biography { get; set; }
+        public string CellphoneNumber { get; set; }
+        public string TelephoneNumber { get; set; }
+        public string ProfilePicturePath { get; set; }
 
         public int Id
         {
             get { return BursifyUserId; }
         }
 
-        public virtual ICollection<Contact> Contacts { get; set; }
-        public virtual ICollection<Sponsor> Sponsors { get; set; }
-        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<UserAddress> Addresses { get; set; }
+        public virtual Sponsor Sponsor { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

@@ -1,28 +1,41 @@
-﻿using Bursify.Data.EF;
-using Bursify.Data.Enums;
-using Bursify.Data.User;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using Bursify.Data.EF.StudentUser;
+using Bursify.Data.EF.User;
+using Bursify.Data.StudentUser;
 
-namespace Bursify.Data.SponsorUser
+namespace Bursify.Data.EF.SponsorUser
 {
     public class Sponsorship : IEntity
     {
+        public Sponsorship()
+        {
+            Students = new List<Student>();
+        }
+
         public int SponsorshipId { get; set; }
+        public int SponsorId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime ClosingDate { get; set; }
         public bool EssayRequired { get; set; }
-        public double EstimatedCost { get; set; }
+        public double SponsorshipValue { get; set; }
         public string StudyFields { get; set; }
         public string Province { get; set; }
         public int AverageMarkRequired { get; set; }
-        public int SponsorId { get; set; }
-        public virtual Sponsor Sponsorships { get; set; }
-        public int Id
+        public string EducationLevel { get; set; }
+        public string PreferredInstitutions { get; set; }
+        public string ExpensesCovered { get; set; }
+        public string TermsAndConditions { get; set; }
+
+    public int Id
         {
             get { return SponsorshipId; }
         }
+
+        public virtual Sponsor Sponsor { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
+        public ICollection<StudentSponsorship> StudentSponsorships { get; set; }
+        public ICollection<SponsorshipRequirement> Requirements { get; set; } 
     }
 }

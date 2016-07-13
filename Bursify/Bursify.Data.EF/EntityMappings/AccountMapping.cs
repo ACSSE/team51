@@ -1,10 +1,6 @@
-﻿using Bursify.Data.CampaignUser;
-using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Bursify.Data.EF.CampaignUser;
 
 namespace Bursify.Data.EF.EntityMappings
 {
@@ -15,7 +11,7 @@ namespace Bursify.Data.EF.EntityMappings
             this.ToTable("Account", "dbo");
 
             this.HasKey(x => x.CampaignId);
-
+            
             this.Property(x => x.AccountName)
                 .HasMaxLength(200)
                 .IsRequired();
@@ -35,7 +31,10 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.BranchCode)
                 .HasMaxLength(50)
                 .IsOptional();
-            
+
+            this.HasRequired(x => x.Campaign)
+                .WithRequiredDependent(a => a.Account);
+
         }
     }
 }

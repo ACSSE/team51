@@ -55,23 +55,28 @@
     <Compile Include="EntityMappings\AccountMapping.cs" />
     <Compile Include="EntityMappings\BursifyUserMapping.cs" />
     <Compile Include="EntityMappings\CampaignMapping.cs" />
-    <Compile Include="EntityMappings\ContactMapping.cs" />
+    <Compile Include="EntityMappings\CampaignSponsorMapping.cs" />
     <Compile Include="EntityMappings\InstitutionMapping.cs" />
     <Compile Include="EntityMappings\SponsorMapping.cs" />
     <Compile Include="EntityMappings\SponsorshipMapping.cs" />
+    <Compile Include="EntityMappings\SponsorshipRequirementMapping.cs" />
     <Compile Include="EntityMappings\StudentMapping.cs" />
+    <Compile Include="EntityMappings\StudentSponsorshipMapping.cs" />
+    <Compile Include="EntityMappings\StudentSubjectMapping.cs" />
+    <Compile Include="EntityMappings\SubjectMapping.cs" />
+    <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="Enums\CampaignType.cs" />
     <Compile Include="Enums\SponsorshipType.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="SponsorUser\Requirement.cs" />
     <Compile Include="SponsorUser\Sponsor.cs" />
     <Compile Include="SponsorUser\Sponsorship.cs" />
+    <Compile Include="SponsorUser\SponsorshipRequirement.cs" />
     <Compile Include="StudentUser\SchoolType.cs" />
     <Compile Include="StudentUser\Student.cs" />
-    <Compile Include="StudentUser\StudentSponsorship.cs" />
+    <Compile Include="StudentUser\StudentSubject.cs" />
     <Compile Include="Uow\DatabaseConfiguration.cs" />
     <Compile Include="Uow\DataContext.cs" />
     <Compile Include="Uow\DataSession.cs" />
@@ -81,10 +86,12 @@
     <Compile Include="Uow\UnitOfWork.cs" />
     <Compile Include="Uow\UnitOfWorkFactory.cs" />
     <Compile Include="User\BursifyUser.cs" />
-    <Compile Include="User\Contact.cs" />
     <Compile Include="IEntity.cs" />
+    <Compile Include="User\CampaignSponsor.cs" />
     <Compile Include="User\Institution.cs" />
+    <Compile Include="User\StudentSponsorship.cs" />
     <Compile Include="User\Subject.cs" />
+    <Compile Include="User\UserAddress.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

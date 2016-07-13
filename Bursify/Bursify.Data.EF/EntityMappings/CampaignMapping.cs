@@ -1,10 +1,6 @@
-﻿using Bursify.Data.CampaignUser;
-using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Bursify.Data.EF.CampaignUser;
 
 namespace Bursify.Data.EF.EntityMappings
 {
@@ -15,6 +11,11 @@ namespace Bursify.Data.EF.EntityMappings
             this.ToTable("Campaign", "dbo");
 
             this.HasKey(x => x.CampaignId);
+
+            this.Property(x => x.CampaignId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            this.Property(x => x.StudentId)
+                .IsRequired();
 
             this.Property(x => x.CampaignName)
                 .HasMaxLength(200)
@@ -31,7 +32,7 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.Description)
                 .IsRequired();
 
-            this.Property(x => x.AmountContributed)
+            this.Property(x => x.AmountRequired)
                 .IsRequired();
 
             this.Property(x => x.CampaignType)
@@ -46,14 +47,29 @@ namespace Bursify.Data.EF.EntityMappings
                 .HasMaxLength(200)
                 .IsOptional();
 
-            this.Property(x => x.Deadline)
+            this.Property(x => x.StartDate)
+                .IsRequired();
+
+            this.Property(x => x.EndDate)
                 .IsRequired();
 
             this.Property(x => x.AmountContributed)
                 .IsRequired();
 
-            this.Property(x => x.StudentId)
+            this.Property(x => x.FundUsage)
                 .IsRequired();
+
+            this.Property(x => x.ReasonsToSupport)
+                .IsOptional();
+
+            this.HasMany(x => x.CampaignSponsors);
+
+            this.HasRequired(x => x.Student)
+                .WithMany(c => c.Campaigns)
+                .HasForeignKey(s => s.StudentId);
+
+            this.HasRequired(x => x.Account)
+                .WithRequiredPrincipal(x => x.Campaign);
         }
     }
 }

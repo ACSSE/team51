@@ -1,5 +1,4 @@
-﻿using Bursify.Data.SponsorUser;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Bursify.Data.EF.SponsorUser;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Bursify.Data.EF.EntityMappings
@@ -10,13 +9,25 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("Sponsor", "dbo");
 
-            this.HasKey(x => x.SponsorId);
+            this.HasKey(x => x.BursifyUserId);
 
             this.Property(x => x.NumberOfStudentsSponsored);
 
             this.Property(x => x.NumberOfSponsorships);
 
-            this.Property(x => x.BursifyUserId).IsRequired();
+            this.Property(x => x.NumberOfApplicants);
+
+            this.Property(x => x.BursifyRank)
+                .IsOptional();
+
+            this.Property(x => x.BursifyScore)
+                .IsOptional();
+
+            this.HasMany(x => x.Sponsorhips);
+
+            this.HasMany(x => x.CampaignSponsors);
+
+            this.HasRequired(x => x.BursifyUser);
         }
     }
 }

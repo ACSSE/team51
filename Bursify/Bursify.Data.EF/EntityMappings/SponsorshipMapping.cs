@@ -1,10 +1,6 @@
-﻿using Bursify.Data.SponsorUser;
-using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Bursify.Data.EF.SponsorUser;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bursify.Data.EF.EntityMappings
 {
@@ -15,6 +11,11 @@ namespace Bursify.Data.EF.EntityMappings
             this.ToTable("Sponsorship", "dbo");
 
             this.HasKey(x => x.SponsorshipId);
+
+            this.Property(x => x.SponsorshipId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            this.Property(x => x.SponsorId)
+               .IsRequired();
 
             this.Property(x => x.Name)
                 .HasMaxLength(500)
@@ -29,19 +30,41 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.EssayRequired)
                 .IsRequired();
 
+            this.Property(x => x.SponsorshipValue)
+                .IsRequired();
+
             this.Property(x => x.StudyFields)
-                .HasMaxLength(500)
                 .IsRequired();
 
             this.Property(x => x.Province)
-                .HasMaxLength(50)
+                .HasMaxLength(100)
                 .IsRequired();
 
             this.Property(x => x.AverageMarkRequired)
                 .IsOptional();
 
-            this.Property(x => x.SponsorId)
+            this.Property(x => x.EducationLevel)
+                .HasMaxLength(200)
+                .IsOptional();
+
+            this.Property(x => x.PreferredInstitutions)
+                .HasMaxLength(500)
+                .IsOptional();
+
+            this.Property(x => x.ExpensesCovered)
+                .HasMaxLength(500)
                 .IsRequired();
+
+            this.Property(x => x.TermsAndConditions)
+                .IsRequired();
+
+            this.HasRequired(x => x.Sponsor)
+                .WithMany(s => s.Sponsorhips)
+                .HasForeignKey(f => f.SponsorId);
+
+            this.HasMany(x => x.StudentSponsorships);
+
+            this.HasMany(x => x.Requirements);
         }
     }
 }

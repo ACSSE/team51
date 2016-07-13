@@ -1,4 +1,7 @@
-﻿using Bursify.Data.User;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Cryptography.X509Certificates;
+using Bursify.Data.EF.User;
+using Bursify.Data.User;
 using System.Data.Entity.ModelConfiguration;
 
 
@@ -11,6 +14,8 @@ namespace Bursify.Data.EF.EntityMappings
             this.ToTable("BursifyUser", "dbo");
 
             this.HasKey(x => x.BursifyUserId);
+
+            this.Property(x => x.BursifyUserId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(x => x.Name)
                 .HasMaxLength(100)
@@ -38,7 +43,24 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.Biography)
                 .IsOptional();
-           
+
+            this.Property(x => x.CellphoneNumber)
+                .HasMaxLength(50)
+                .IsOptional();
+
+            this.Property(x => x.TelephoneNumber)
+                .HasMaxLength(50)
+                .IsOptional();
+
+            this.Property(x => x.ProfilePicturePath)
+                .HasMaxLength(200)
+                .IsOptional();
+
+            this.HasMany(x => x.Addresses);
+
+            this.HasOptional(x => x.Student);
+
+            this.HasOptional(x => x.Sponsor);
         }                                     
     }
 }
