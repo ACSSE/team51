@@ -1,4 +1,7 @@
-﻿using Bursify.Web.Mappings;
+﻿using AutoMapper;
+using Bursify.Entities.UserEntities;
+using Bursify.Web.Mappings;
+using Bursify.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +18,11 @@ namespace Bursify.Web.App_Start
             AutofacWebapiConfig.Initialize(GlobalConfiguration.Configuration);
             //Configure AutoMapper
             AutoMapperConfiguration.Configure();
+            //var config = new MapperConfiguration(cfg => {
+            //    cfg.CreateMap<BursifyUser, BursifyUserViewModel>();
+            //});
+
+            //IMapper mapper = config.CreateMapper();
         }
     }
 }

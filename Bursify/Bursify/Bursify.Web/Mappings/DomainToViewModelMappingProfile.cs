@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using Bursify.Entities;
+﻿
+using AutoMapper;
+using Bursify.Entities.UserEntities;
 using Bursify.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Bursify.Web.Mappings
 {
@@ -29,7 +26,8 @@ namespace Bursify.Web.Mappings
             //// code omitted
             //Mapper.CreateMap<Customer, CustomerViewModel>();
 
-            //Mapper.CreateMap<Stock, StockViewModel>();
+    
+         
 
             //Mapper.CreateMap<Rental, RentalViewModel>();
         }

@@ -18,8 +18,15 @@
             if (result.data.success) {
                 membershipService.saveCredentials($scope.user);
                 notificationService.displaySuccess('Hello ' + $scope.user.username);
-                $scope.userData.displayUserInfo();
-                $location.path('/');
+                
+                notificationService.displaySuccess('Type ' + $scope.user.usertype);
+
+                if ($scope.user.usertype == "Sponsor") {
+                    $location.path('/bursify/sponsor/home');
+                }
+                
+              
+               
             }
             else {
                 notificationService.displayError('Registration failed. Try again.');

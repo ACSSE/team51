@@ -22,6 +22,12 @@
             }).when("/bursify/student/home", {
                 templateUrl: "scripts/spa/bursify/student/home/index.html",
                 controller: "studentCtrl"
+            }).when("/bursify/sponsor/home", {
+                templateUrl: "scripts/spa/bursify/sponsor/home/index.html",
+                controller: "studentCtrl"
+            }).when("/bursify/admin/home", {
+                templateUrl: "scripts/spa/bursify/admin/home/index.html",
+                controller: "studentCtrl"
             }).otherwise({ redirectTo: "/" });
     }
 

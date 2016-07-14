@@ -17,10 +17,9 @@
         function loginCompleted(result) {
             if (result.data.success) {
                 membershipService.saveCredentials($scope.user);
-                notificationService.displaySuccess('Hello ' + $scope.user.username);
-                $scope.userData.displayUserInfo();
-               
-                $location.path('/bursify/student/home');
+                notificationService.displaySuccess('Hello ' + $scope.user.useremail);
+                
+          
             }
             else {
                 notificationService.displayError('Login failed. Try again.');

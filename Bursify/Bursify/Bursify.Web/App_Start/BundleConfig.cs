@@ -48,8 +48,10 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/spa/account/registerCtrl.js",
                 "~/Scripts/spa/home/rootCtrl.js",
                 "~/Scripts/spa/home/indexCtrl.js",
-                "~/Scripts/spa/bursify/student/home/studentCtrl.js"
-       
+                "~/Scripts/spa/bursify/student/home/studentCtrl.js",
+                 "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
+                  "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js"
+
 
                 ));
             

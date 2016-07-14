@@ -19,6 +19,8 @@
             apiService.post('/api/account/authenticate', user,
             completed,
             loginFailed);
+
+            return user;
         }
 
         function register(user, completed) {
@@ -28,7 +30,7 @@
         }
 
         function saveCredentials(user) {
-            var membershipData = $base64.encode(user.useremail + ':' + user.password);
+            var membershipData = $base64.encode(user.useremail + ':' + user.password );
 
             $rootScope.repository = {
                 loggedUser: {
