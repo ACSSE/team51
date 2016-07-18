@@ -583,6 +583,10 @@
     <Content Include="scripts\spa\app.js" />
     <Content Include="scripts\spa\bursify\admin\home\index.html" />
     <Content Include="scripts\spa\bursify\admin\home\adminCtrl.js" />
+    <Content Include="scripts\spa\bursify\campaigns\addCampaign.html" />
+    <Content Include="scripts\spa\bursify\campaigns\campaignsCtrl.js" />
+    <Content Include="scripts\spa\bursify\campaigns\editCampaign.html" />
+    <Content Include="scripts\spa\bursify\campaigns\viewCampaigns.html" />
     <Content Include="scripts\spa\bursify\sponsor\home\index.html" />
     <Content Include="scripts\spa\bursify\sponsor\home\sponsorCtrl.js" />
     <Content Include="scripts\spa\bursify\student\home\index.html" />
