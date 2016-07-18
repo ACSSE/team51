@@ -50,7 +50,8 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/spa/home/indexCtrl.js",
                 "~/Scripts/spa/bursify/student/home/studentCtrl.js",
                 "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
-                "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js"
+                "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js",
+                 "~/Scripts/spa/layout/topBar.directive.js"
 
 
                 ));
@@ -61,13 +62,16 @@ namespace Bursify.Web.App_Start
             bundles.Add(new StyleBundle("~/Content/css").Include(
                
                 "~/content/css/bootstrap.css",
-                "~/content/css/bootstrap-theme.css",
+               
                  "~/content/css/font-awesome.css",
                 "~/content/css/morris.css",
                 "~/content/css/toastr.css",
                 "~/content/css/jquery.fancybox.css",
                 "~/content/css/loading-bar.css",
-                "~/content/dist/css/AdminLTE.min.css"));
+                "~/content/assets/css/style.css",
+                "~/content/dist/css/AdminLTE.min.css"
+                
+                ));
 
 
 
