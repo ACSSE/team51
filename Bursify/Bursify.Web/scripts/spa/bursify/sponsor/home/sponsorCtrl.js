@@ -3,9 +3,9 @@
 
     app.controller('sponsorCtrl', sponsorCtrl);
 
-    studentCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
+    sponsorCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
 
-    function studentCtrl($scope, apiService, notificationService) {
+    function sponsorCtrl($scope, apiService, notificationService) {
         $scope.pageClass = 'page-home-sponsor';
 
     }

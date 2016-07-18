@@ -14,7 +14,7 @@ namespace Bursify.Web.Models
         public string Password { get; set; }
         public string UserEmail { get; set; }
         public string UserType { get; set; }
-
+  
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

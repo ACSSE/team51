@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Bursify.Entities;
+using Bursify.Entities.UserEntities;
 using Bursify.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,7 @@ namespace Bursify.Web.Mappings
 
         protected override void Configure()
         {
-            //Mapper.CreateMap<MovieViewModel, Movie>()
-            //    //.ForMember(m => m.Image, map => map.Ignore())
-            //    .ForMember(m => m.Genre, map => map.Ignore());
+           //
         }
     }
 }

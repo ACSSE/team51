@@ -24,11 +24,11 @@
                 controller: "studentCtrl"
             }).when("/bursify/sponsor/home", {
                 templateUrl: "scripts/spa/bursify/sponsor/home/index.html",
-                controller: "studentCtrl"
+                controller: "sponsorCtrl"
             }).when("/bursify/admin/home", {
                 templateUrl: "scripts/spa/bursify/admin/home/index.html",
-                controller: "studentCtrl"
-            }).otherwise({ redirectTo: "/" });
+                controller: "adminCtrl"
+            }).otherwise({ redirectTo: "http://localhost:50000/index.html" });
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];

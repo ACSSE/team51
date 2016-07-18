@@ -30,17 +30,17 @@ namespace Bursify.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("user")]
-        public HttpResponseMessage Get(HttpRequestMessage request)
+        [Route("user/{email:string}")]
+        public HttpResponseMessage Get(HttpRequestMessage request, string email)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                var users = _bursifyUserRepository.GetAll();
+                var user = _bursifyUserRepository.GetAUserByEmail(email);
 
-                IEnumerable<BursifyUserViewModel> usersVM = Mapper.Map<IEnumerable<BursifyUser>, IEnumerable<BursifyUserViewModel>>(users);
+                BursifyUserViewModel userVM = Mapper.Map<BursifyUser, BursifyUserViewModel>(user);
 
-                response = request.CreateResponse<IEnumerable<BursifyUserViewModel>>(HttpStatusCode.OK, usersVM);
+                response = request.CreateResponse<BursifyUserViewModel>(HttpStatusCode.OK, userVM);
 
                 return response;
             });

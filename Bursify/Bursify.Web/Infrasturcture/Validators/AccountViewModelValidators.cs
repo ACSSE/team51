@@ -16,10 +16,6 @@ namespace Bursify.Web.Infrastructure.Validators
             RuleFor(r => r.Password).NotEmpty()
                 .WithMessage("Invalid password");
 
-       
-          
-
-
         }
     }
 

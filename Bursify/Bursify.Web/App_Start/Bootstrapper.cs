@@ -18,11 +18,7 @@ namespace Bursify.Web.App_Start
             AutofacWebapiConfig.Initialize(GlobalConfiguration.Configuration);
             //Configure AutoMapper
             AutoMapperConfiguration.Configure();
-            //var config = new MapperConfiguration(cfg => {
-            //    cfg.CreateMap<BursifyUser, BursifyUserViewModel>();
-            //});
-
-            //IMapper mapper = config.CreateMapper();
+            
         }
     }
 }

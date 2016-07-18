@@ -3,9 +3,9 @@
 
     app.controller('adminCtrl', adminCtrl);
 
-    studentCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
+    adminCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
 
-    function studentCtrl($scope, apiService, notificationService) {
+    function adminCtrl($scope, apiService, notificationService) {
         $scope.pageClass = 'page-home-admin';
        
 
