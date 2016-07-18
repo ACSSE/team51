@@ -552,9 +552,7 @@
     <Content Include="Content\images\raty\star-off.png" />
     <Content Include="Content\images\raty\star-on-big.png" />
     <Content Include="Content\images\raty\star-on.png" />
-    <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BACKUP_8544.svg">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BACKUP_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BASE_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_LOCAL_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_REMOTE_8544.svg" />
@@ -585,6 +583,10 @@
     <Content Include="scripts\spa\app.js" />
     <Content Include="scripts\spa\bursify\admin\home\index.html" />
     <Content Include="scripts\spa\bursify\admin\home\adminCtrl.js" />
+    <Content Include="scripts\spa\bursify\campaigns\addCampaign.html" />
+    <Content Include="scripts\spa\bursify\campaigns\campaignsCtrl.js" />
+    <Content Include="scripts\spa\bursify\campaigns\editCampaign.html" />
+    <Content Include="scripts\spa\bursify\campaigns\viewCampaigns.html" />
     <Content Include="scripts\spa\bursify\sponsor\home\index.html" />
     <Content Include="scripts\spa\bursify\sponsor\home\sponsorCtrl.js" />
     <Content Include="scripts\spa\bursify\student\home\index.html" />
@@ -592,8 +594,8 @@
     <Content Include="scripts\spa\home\index.html" />
     <Content Include="scripts\spa\home\indexCtrl.js" />
     <Content Include="scripts\spa\home\rootCtrl.js" />
-    <Content Include="scripts\spa\layout\navBar.directive.js" />
-    <Content Include="scripts\spa\layout\navBar.html" />
+    <Content Include="scripts\spa\layout\topBar.directive.js" />
+    <Content Include="scripts\spa\layout\topBar.html" />
     <Content Include="scripts\spa\modules\common.core.js" />
     <Content Include="scripts\spa\modules\common.ui.js" />
     <Content Include="scripts\spa\services\apiService.js" />
@@ -727,6 +729,7 @@
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\systemv" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\yearistype.sh" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\zone.tab" />
+    <Content Include="campaigns.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -7,10 +7,6 @@
 
     function studentCtrl($scope, apiService, notificationService) {
         $scope.pageClass = 'page-home-student';
-       
-
-    
-
 
     }
 

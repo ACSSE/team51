@@ -1,16 +1,13 @@
 ﻿(function (app) {
     'use strict';
 
-    app.controller('campaigns', campaigns);
+    app.controller('campaignsCtrl', campaignsCtrl);
 
-    /*studentCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
+    campaignsCtrl.$inject = ['$scope', '$http', 'apiService', 'notificationService'];
 
-    function studentCtrl($scope, apiService, notificationService) {
-        $scope.pageClass = 'page-home-student';
-
-    }*/
-
-    function campaignsCtrl($scope) {
+    
+    function campaignsCtrl($scope, $http, apiService, notificationService) {
+        $scope.pageClass = 'page-home-campaign';
 
         $scope.campaigns = []; // stores campaigns
 
@@ -20,7 +17,15 @@
         {
             //Get all Campaigns on bursify database
 
+
         }
+        
+        //Get all the campaigns from the Json file 
+        $http.get('campaigns.json').success(function (data) {
+
+            $scope.campaigns = data;
+        });
+
 
 
 /* METHODS RELATING TO A SINGLE USER **/
@@ -36,6 +41,7 @@
         $scope.addCampaign = function ()
         {
             //Add campaign  i.e http post 
+
 
         }
 
