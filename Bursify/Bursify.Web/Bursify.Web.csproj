@@ -584,9 +584,12 @@
     <Content Include="scripts\spa\bursify\admin\home\index.html" />
     <Content Include="scripts\spa\bursify\admin\home\adminCtrl.js" />
     <Content Include="scripts\spa\bursify\campaigns\addCampaign.html" />
+    <Content Include="scripts\spa\bursify\campaigns\addCampaignCtrl.js" />
     <Content Include="scripts\spa\bursify\campaigns\campaignsCtrl.js" />
     <Content Include="scripts\spa\bursify\campaigns\editCampaign.html" />
+    <Content Include="scripts\spa\bursify\campaigns\editCampaignCtrl.js" />
     <Content Include="scripts\spa\bursify\campaigns\viewCampaigns.html" />
+    <Content Include="scripts\spa\bursify\campaigns\campaignDetailsCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\home\index.html" />
     <Content Include="scripts\spa\bursify\sponsor\home\sponsorCtrl.js" />
     <Content Include="scripts\spa\bursify\student\home\index.html" />
@@ -635,6 +638,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BursifyUserController.cs" />
+    <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -655,6 +659,7 @@
     <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Models\BursifyUserViewModel.cs" />
+    <Compile Include="Models\CampaignViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

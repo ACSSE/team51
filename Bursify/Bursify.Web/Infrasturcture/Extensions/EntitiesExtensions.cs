@@ -1,21 +1,11 @@
-﻿using System;
+﻿using Bursify.Entities.CampaignEntities;
+using Bursify.Web.Models;
+using System;
 
 namespace Bursify.Web.Infrastructure.Extensions
 {
     public static class EntitiesExtensions
     {
-        //public static void UpdateMovie(this Movie movie, MovieViewModel movieVm)
-        //{
-        //    movie.Title = movieVm.Title;
-        //    movie.Description = movieVm.Description;
-        //    movie.GenreId = movieVm.GenreId;
-        //    movie.Director = movieVm.Director;
-        //    movie.Writer = movieVm.Writer;
-        //    movie.Producer = movieVm.Producer;
-        //    movie.Rating = movieVm.Rating;
-        //    movie.TrailerURI = movieVm.TrailerURI;
-        //    movie.ReleaseDate = movieVm.ReleaseDate;
-        //}
 
         //public static void UpdateCustomer(this Customer customer, CustomerViewModel customerVm)
         //{

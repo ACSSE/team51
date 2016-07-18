@@ -44,23 +44,21 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/spa/services/membershipService.js",
                 "~/Scripts/spa/services/fileUploadService.js",
                 "~/Scripts/spa/account/loginCtrl.js",
-
                 "~/Scripts/spa/account/registerCtrl.js",
                 "~/Scripts/spa/home/rootCtrl.js",
                 "~/Scripts/spa/home/indexCtrl.js",
                 "~/Scripts/spa/bursify/campaigns/campaignsCtrl.js",
+                "~/Scripts/spa/bursify/campaigns/addCampaignCtrl.js",
+                "~/Scripts/spa/bursify/campaigns/campaignDetailsCtrl.js",
+                "~/Scripts/spa/bursify/campaigns/editCampaignCrl.js",
                 "~/Scripts/spa/bursify/student/home/studentCtrl.js",
                 "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js",
                  "~/Scripts/spa/layout/topBar.directive.js"
-
-
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-               
                 "~/content/css/bootstrap.css",
-               
                  "~/content/css/font-awesome.css",
                 "~/content/css/morris.css",
                 "~/content/css/toastr.css",
@@ -68,11 +66,7 @@ namespace Bursify.Web.App_Start
                 "~/content/css/loading-bar.css",
                 "~/content/assets/css/style.css",
                 "~/content/dist/css/AdminLTE.min.css"
-                
                 ));
-
-
-
        
             BundleTable.EnableOptimizations = false;
         }

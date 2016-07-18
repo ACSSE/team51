@@ -33,11 +33,11 @@
                 controller: "campaignsCtrl"
             }).when("/bursify/student/campaign-add", {
                 templateUrl: "scripts/spa/bursify/campaigns/addCampaign.html",
-                controller: "campaignsCtrl"
+                controller: "addCampaignCtrl"
             })
             .when("/bursify/student/campaign-edit", {
                 templateUrl: "scripts/spa/bursify/campaigns/editCampaign.html",
-                controller: "campaignsCtrl"
+                controller: "editCampaignCtrl"
             }).otherwise({ redirectTo: "http://localhost:50000/index.html" });
     }
 
