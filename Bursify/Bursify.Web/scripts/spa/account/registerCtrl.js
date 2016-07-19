@@ -11,9 +11,12 @@
         $scope.user = {};
         $scope.bTypes = ["Student", "Sponsor"];
 
+        
+
         function register() {
             if (!$scope.user.terms) {
                 notificationService.displayInfo('Please agree to the terms.');
+                alert("Hello");
                 return; 
             }
 

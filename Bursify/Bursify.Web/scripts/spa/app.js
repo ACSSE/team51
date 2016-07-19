@@ -28,10 +28,12 @@
             }).when("/bursify/admin/home", {
                 templateUrl: "scripts/spa/bursify/admin/home/index.html",
                 controller: "adminCtrl"
-            }).when("/bursify/student/campaigns-view", {
+            })
+            .when("/bursify/student/campaigns-view", {
                 templateUrl: "scripts/spa/bursify/campaigns/viewCampaigns.html",
                 controller: "campaignsCtrl"
-            }).when("/bursify/student/campaign-add", {
+            })
+            .when("/bursify/student/campaign-add", {
                 templateUrl: "scripts/spa/bursify/campaigns/addCampaign.html",
                 controller: "addCampaignCtrl"
             })

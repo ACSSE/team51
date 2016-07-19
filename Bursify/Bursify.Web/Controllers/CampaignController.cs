@@ -13,12 +13,11 @@ using System.Web.Mvc;
 
 namespace Bursify.Web.Controllers
 {
-    [RoutePrefix("api/campaign")]
+    [RoutePrefix("api/campaigns")]
     public class CampaignController : ApiControllerBase
     {
 
         private readonly IEntityBaseRepository<Campaign> _CampaignRepository;
-
 
         public CampaignController(IEntityBaseRepository<Campaign> CampaignRepository,
           IEntityBaseRepository<Error> _errorsRepository, IUnitOfWork _unitOfWork)
@@ -45,6 +44,7 @@ namespace Bursify.Web.Controllers
         }
 
         //Post a campaign
+        [AllowAnonymous]
         [HttpPost]
         [Route("add")]
         public HttpResponseMessage Add(HttpRequestMessage request, CampaignViewModel campaign)
@@ -63,5 +63,8 @@ namespace Bursify.Web.Controllers
                 return response;
             });
         }
+
+
+
     }
 }

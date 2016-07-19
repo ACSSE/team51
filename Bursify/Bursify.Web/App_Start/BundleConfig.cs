@@ -50,7 +50,7 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/spa/bursify/campaigns/campaignsCtrl.js",
                 "~/Scripts/spa/bursify/campaigns/addCampaignCtrl.js",
                 "~/Scripts/spa/bursify/campaigns/campaignDetailsCtrl.js",
-                "~/Scripts/spa/bursify/campaigns/editCampaignCrl.js",
+                "~/Scripts/spa/bursify/campaigns/editCampaignCtrl.js",
                 "~/Scripts/spa/bursify/student/home/studentCtrl.js",
                 "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js",
