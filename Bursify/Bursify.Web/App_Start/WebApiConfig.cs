@@ -1,9 +1,4 @@
-﻿
-using Bursify.Web.Infrastructure.MessageHandlers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace Bursify.Web
 {
@@ -12,7 +7,7 @@ namespace Bursify.Web
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            config.MessageHandlers.Add(new BursifyAuthHandler());
+            //config.MessageHandlers.Add(new BursifyAuthHandler());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

@@ -1,49 +1,42 @@
-﻿using AutoMapper;
-using Bursify.Data.Extensions;
-using Bursify.Data.Repositories;
-using Bursify.Data.UoW;
-using Bursify.Entities;
-using Bursify.Entities.UserEntities;
-using Bursify.Web.Infrastructure.Core;
-using Bursify.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Bursify.Web.Models;
 using System.Net;
 using System.Net.Http;
-using System.Web;
+using System.Web.Helpers;
+using System.Web.Http;
 using System.Web.Mvc;
+using Bursify.Api.Users;
+using Bursify.Data.EF.User;
+using Microsoft.Ajax.Utilities;
 
 namespace Bursify.Web.Controllers
 {
-    [RoutePrefix("api/BursifyUser")]
-    public class BursifyUserController : ApiControllerBase
+    [System.Web.Mvc.RoutePrefix("api/BursifyUser")]
+    public class BursifyUserController : ApiController
     {
-        private readonly IEntityBaseRepository<BursifyUser> _bursifyUserRepository;
+        private readonly UserApi _userApi;
 
-
-        public BursifyUserController(IEntityBaseRepository<BursifyUser> bursifyUserRepository,
-          IEntityBaseRepository<Error> _errorsRepository, IUnitOfWork _unitOfWork)
-            : base(_errorsRepository, _unitOfWork)
+        public BursifyUserController(UserApi userApi)
         {
-            _bursifyUserRepository = bursifyUserRepository;
+            _userApi = userApi;
         }
 
-        [AllowAnonymous]
-        [Route("user/{email:string}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, string email)
+        public JsonResult Get()
         {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-                var user = _bursifyUserRepository.GetAUserByEmail(email);
-
-                BursifyUserViewModel userVM = Mapper.Map<BursifyUser, BursifyUserViewModel>(user);
-
-                response = request.CreateResponse<BursifyUserViewModel>(HttpStatusCode.OK, userVM);
-
-                return response;
-            });
+            return new JsonResult { Data = new BursifyUserViewModel(new BursifyUser()) {Name="Yo mamma"} };
         }
+
+
+        //[System.Web.Mvc.AllowAnonymous]
+        ////[System.Web.Mvc.Route("user/{email:string}")]
+        //public HttpResponseMessage Get(HttpRequestMessage request, string email)
+        //{
+        //    var user = _userApi.GetUserByEmail(email);
+
+        //    BursifyUserViewModel model = new BursifyUserViewModel(user);
+
+        //    HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, model);
+
+        //    return response;
+        //}
     }
 }
