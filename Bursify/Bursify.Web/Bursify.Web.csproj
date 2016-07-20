@@ -644,6 +644,11 @@
     <Compile Include="Models\SponsorshipRequirementViewModel.cs" />
     <Compile Include="Models\SponsorshipViewModel.cs" />
     <Compile Include="Models\SponsorViewModel.cs" />
+    <Compile Include="Models\StudentSponsorshipViewModel.cs" />
+    <Compile Include="Models\StudentSubjectViewModel.cs" />
+    <Compile Include="Models\StudentViewModel.cs" />
+    <Compile Include="Models\SubjectViewModel.cs" />
+    <Compile Include="Models\UserAddressViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
