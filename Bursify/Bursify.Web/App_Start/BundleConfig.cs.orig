@@ -11,13 +11,12 @@ namespace Bursify.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                "~/Content/assets/js/jquery-1.11.1.min.js"));
-
-
+                "~/Content/assets/js/jquery-1.11.1.min.js",
+               "~/Content/assets/js/jquery.steps.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/vendors").Include(
-                "~/Scripts/Vendors/jquery.js",
-                "~/Scripts/Vendors/bootstrap.js",
+                "~/Content/assets/js/jquery.ui.min.js",
+                "~/Content/assets/js/bootstrap.min.js",
                 "~/Scripts/Vendors/toastr.js",
                 "~/Scripts/Vendors/jquery.raty.js",
                 "~/Scripts/Vendors/respond.src.js",
@@ -34,9 +33,7 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/Vendors/morris.js",
                 "~/Scripts/Vendors/jquery.fancybox.js",
                 "~/Scripts/Vendors/jquery.fancybox-media.js",
-                "~/Scripts/Vendors/loading-bar.js",
-                "~/Content/assets/js/jquery.ui.min.js",
-                   "~/ Content/assets/js/main.js"
+                "~/Scripts/Vendors/loading-bar.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
@@ -48,42 +45,40 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/spa/services/membershipService.js",
                 "~/Scripts/spa/services/fileUploadService.js",
                 "~/Scripts/spa/account/loginCtrl.js",
-
                 "~/Scripts/spa/account/registerCtrl.js",
                 "~/Scripts/spa/home/rootCtrl.js",
                 "~/Scripts/spa/home/indexCtrl.js",
+                "~/Scripts/spa/bursify/campaigns/campaignsCtrl.js",
+                "~/Scripts/spa/bursify/campaigns/addCampaignCtrl.js",
+                "~/Scripts/spa/bursify/campaigns/campaignDetailsCtrl.js",
+                "~/Scripts/spa/bursify/campaigns/editCampaignCtrl.js",
                 "~/Scripts/spa/bursify/student/home/studentCtrl.js",
                 "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js",
-                 "~/Scripts/spa/layout/navBar.directive.js"
+<<<<<<< HEAD
+                 "~/Scripts/spa/layout/navBar.directive.js",
+                 "~/Scripts/spa/layout/rightBar.directive.js",
+                  "~/Scripts/spa/layout/mobileBar.directive.js"
 
-        
-                
+
+=======
+                 "~/Scripts/spa/layout/topBar.directive.js"
+>>>>>>> a9f479d9f4c09f81284309687493e168f8cc045f
                 ));
-            
-
-      
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-               
                 "~/content/css/bootstrap.css",
-               
                  "~/content/css/font-awesome.css",
                 "~/content/css/morris.css",
                 "~/content/css/toastr.css",
                 "~/content/css/jquery.fancybox.css",
                 "~/content/css/loading-bar.css",
+                "~/Content/assets/css/plugins/animate.min.css",
                 "~/content/assets/css/style.css",
-                "~/content/dist/css/AdminLTE.min.css",
-                "~/Content/assets/css/jquery.steps.css"
-
+                "~/content/dist/css/AdminLTE.min.css"
                 ));
-
-
-
        
             BundleTable.EnableOptimizations = false;
         }
     }
 }
- 
