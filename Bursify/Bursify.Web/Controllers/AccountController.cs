@@ -27,7 +27,7 @@ namespace Bursify.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var loginSuccess = _membershipApi.Login(user.UserEmail, user.Password);
+                var loginSuccess = _membershipApi.ValidateUser(user.UserEmail, user.Password);
 
                 if (loginSuccess)
                 {

@@ -42,6 +42,7 @@ namespace Bursify.App_Start
             //Persistence
             container.Register(typeof(Repository<>));
             container.Register<SponsorRepository>();
+            container.Register<BursifyUserRepository>();
             container.Register<IUnitOfWorkFactory, UnitOfWorkFactory>(Lifestyle.Scoped);
             container.Register<DataSession>(new WebRequestLifestyle(true));
 

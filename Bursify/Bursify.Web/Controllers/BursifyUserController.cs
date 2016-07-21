@@ -27,7 +27,7 @@ namespace Bursify.Web.Controllers
 
 
         //[System.Web.Mvc.AllowAnonymous]
-        ////[System.Web.Mvc.Route("user/{email:string}")]
+        //[System.Web.Mvc.Route("user/{email:string}")]
         //public HttpResponseMessage Get(HttpRequestMessage request, string email)
         //{
         //    var user = _userApi.GetUserByEmail(email);
