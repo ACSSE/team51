@@ -11,6 +11,11 @@ namespace Bursify.Data.EF.Repositories
         {
         }
 
+        public Sponsor GetSponsor(int id)
+        {
+            return FindSingle(sponsorId => sponsorId.BursifyUserId == id);
+        }
+         
         public List<Sponsor> GetTop10Sponsors()
         {
             var topSponsors = (from sponsor in DbContext.Set<Sponsor>()

@@ -26,17 +26,17 @@ namespace Bursify.Web.Controllers
         }
 
 
-        //[System.Web.Mvc.AllowAnonymous]
-        ////[System.Web.Mvc.Route("user/{email:string}")]
-        //public HttpResponseMessage Get(HttpRequestMessage request, string email)
-        //{
-        //    var user = _userApi.GetUserByEmail(email);
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("user/{email:string}")]
+        public HttpResponseMessage Get(HttpRequestMessage request, string email)
+        {
+            var user = _userApi.GetUserByEmail(email);
 
-        //    BursifyUserViewModel model = new BursifyUserViewModel(user);
+            BursifyUserViewModel model = new BursifyUserViewModel(user);
 
-        //    HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, model);
+            HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, model);
 
-        //    return response;
-        //}
+            return response;
+        }
     }
 }
