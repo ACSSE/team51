@@ -35,18 +35,49 @@ namespace Bursify.Api.Students
             _campaignRepository.Save(campaign);
         }
 
-        //done
-        public Campaign GetSIngleCampaign(int id)
+        /// <summary>
+        /// Get a single camapign
+        /// </summary>
+        /// <param name="campaignId"> Id for the campaign </param>
+        /// <returns> A single campaign </returns>
+        public Campaign GetSingleCampaign(int campaignId)
         {
-            return _campaignRepository.GetCampaign(id);
+            return _campaignRepository.GetCampaign(campaignId);
         }
 
         //done
+        /// <summary>
+        /// Get a single campaign
+        /// </summary>
+        /// <param name="campaignId"> Id of campaign to retrieve </param>
+        /// <param name="userId"> Id of student </param>
+        /// <returns></returns>
+        public Campaign GetSIngleCampaign(int campaignId, int userId)
+        {
+            return _campaignRepository.GetCampaign(campaignId, userId);
+        }
+
+        //done
+        /// <summary>
+        /// Gets all active the campaigns
+        /// </summary>
+        /// <returns> All active campaigns</returns>
         public List<Campaign> GetAllCampaigns()
         {
             var campaigns = _campaignRepository.LoadAll();
 
             return campaigns;
+        }
+
+        //done
+        /// <summary>
+        /// Gets all campaigns belonging to a specific student
+        /// </summary>
+        /// <param name="userId"> unique id for the student </param>
+        /// <returns> List of campaigns created by a student </returns>
+        public List<Campaign> GetAllCampaigns(int userId)
+        {
+            return _campaignRepository.GetUserCampaigns(userId).ToList();
         }
 
         //for later

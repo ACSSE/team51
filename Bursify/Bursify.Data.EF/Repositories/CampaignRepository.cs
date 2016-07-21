@@ -10,9 +10,17 @@ namespace Bursify.Data.EF.Repositories
         {
         }
 
-        public Campaign GetCampaign(int id)
+        public Campaign GetCampaign(int campaignId)
         {
-            return FindSingle(campaignId => campaignId.CampaignId == id);
+            return FindSingle(campaign =>
+                campaign.CampaignId == campaignId);
+        }
+
+        public Campaign GetCampaign(int campaignId, int userId)
+        {
+            return FindSingle(id => 
+                    id.CampaignId == campaignId
+                 && id.StudentId == userId);
         }
 
         public IEnumerable<Campaign> FindCampaigns(string criteria)
@@ -24,6 +32,14 @@ namespace Bursify.Data.EF.Repositories
                                || campaign.CampaignType.ToUpper().Contains(criteria));
            
             return filteredCampaigns;
+        }
+
+        public IEnumerable<Campaign> GetUserCampaigns(int userId)
+        {
+            var userCampaigns = FindMany(campaign =>
+                                campaign.StudentId == userId);
+
+            return userCampaigns;
         }
     }
 }
