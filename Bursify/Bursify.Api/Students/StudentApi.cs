@@ -5,6 +5,7 @@ using Bursify.Data.EF.CampaignUser;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.SponsorUser;
 using Bursify.Data.EF.StudentUser;
+using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.User;
 
 namespace Bursify.Api.Students
@@ -13,39 +14,54 @@ namespace Bursify.Api.Students
     {
         #region Variables
 
-        private readonly Repository<Account> _accountRepository;
-        private readonly Repository<Campaign> _campaignRepository;
-        private readonly Repository<Sponsorship> _sponsorshipRepository;
-        private readonly SponsorRepository _sponsorRepository;
-        private readonly Repository<Student> _studentRepository;
-        private readonly Repository<Institution> _institutionRepository;
+        private readonly AccountRepository _accountRepository = new AccountRepository(new DataSession());
+        private readonly CampaignRepository _campaignRepository = new CampaignRepository(new DataSession());
+        private readonly SponsorshipRepository _sponsorshipRepository = new SponsorshipRepository(new DataSession());
+        private readonly SponsorRepository _sponsorRepository = new SponsorRepository(new DataSession());
+        //private readonly StudentRepository _studentRepository = new StudentRepository(new DataSession());
+        private readonly InstitutionRepository _institutionRepository = new InstitutionRepository(new DataSession());
 
         #endregion
 
+        //done
         public Account GetAccount(int id)
         {
-            var account = _accountRepository.LoadById(id);
-
-            return account;
+            return _accountRepository.GetAccount(id);
         }
 
-        public void AddCampaign(Campaign campaign)
+        //done
+        public void SaveCampaign(Campaign campaign)
         {
             _campaignRepository.Save(campaign);
         }
 
-        public void UpdateCampaign(Campaign campaign)
+        /// <summary>
+        /// Get a single camapign
+        /// </summary>
+        /// <param name="campaignId"> Id for the campaign </param>
+        /// <returns> A single campaign </returns>
+        public Campaign GetSingleCampaign(int campaignId)
         {
-            throw new NotImplementedException();
+            return _campaignRepository.GetCampaign(campaignId);
         }
 
-        public Campaign GetSIngleCampaign(int id)
+        //done
+        /// <summary>
+        /// Get a single campaign
+        /// </summary>
+        /// <param name="campaignId"> Id of campaign to retrieve </param>
+        /// <param name="userId"> Id of student </param>
+        /// <returns></returns>
+        public Campaign GetSIngleCampaign(int campaignId, int userId)
         {
-            var campaign = _campaignRepository.LoadById(id);
-
-            return campaign;
+            return _campaignRepository.GetCampaign(campaignId, userId);
         }
 
+        //done
+        /// <summary>
+        /// Gets all active the campaigns
+        /// </summary>
+        /// <returns> All active campaigns</returns>
         public List<Campaign> GetAllCampaigns()
         {
             var campaigns = _campaignRepository.LoadAll();
@@ -53,21 +69,36 @@ namespace Bursify.Api.Students
             return campaigns;
         }
 
+        //done
+        /// <summary>
+        /// Gets all campaigns belonging to a specific student
+        /// </summary>
+        /// <param name="userId"> unique id for the student </param>
+        /// <returns> List of campaigns created by a student </returns>
+        public List<Campaign> GetAllCampaigns(int userId)
+        {
+            return _campaignRepository.GetUserCampaigns(userId).ToList();
+        }
+
+        //for later
         public void ShareCampaign(int id)
         {
             throw new NotImplementedException();
         }
 
+        //for later
         public void EndorseCampaign(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Campaign> FindCampaigns(/*questions*/)
+        //done
+        public List<Campaign> SearchCampaigns(string criteria)
         {
-            throw new NotImplementedException();
+            return _campaignRepository.FindCampaigns(criteria.ToUpper()).ToList();
         }
 
+        //done
         public List<Sponsor> GetAllSponsors()
         {
             var sponsors = _sponsorRepository.LoadAll();
@@ -75,54 +106,59 @@ namespace Bursify.Api.Students
             return sponsors;
         }
 
+        //done
         public List<Sponsor> GetTopTenSponsors()
         {
             return _sponsorRepository.GetTop10Sponsors();
         }
 
+        //done
         public Sponsor GetSponsor(int id)
         {
-            throw new NotImplementedException();
+            return _sponsorRepository.GetSponsor(id);
         }
 
+        //done
         public List<Sponsorship> GetAllSponsorships()
         {
-            throw new NotImplementedException();
+            return _sponsorshipRepository.LoadAll();
         }
 
-        public Sponsorship GetSponsorship(int id)
+        //done
+        public Sponsorship GetSponsorship(int id, int userId)
         {
-            throw new NotImplementedException();
+            return _sponsorshipRepository.GetSponsorship(id, userId);
         }
 
-        public List<Sponsorship> FindSponsorships()
+        //done
+        public List<Sponsorship> SearchSponsorships(string criteria)
         {
-            throw new NotImplementedException();
+            return _sponsorshipRepository.FindSponsorships(criteria.ToUpper()).ToList();
         }
 
+        //for later
         public void RateSponsorship()
         {
             throw new NotImplementedException();
         }
 
+        //for later
         public void ShareSponsorship()
         {
             throw new NotImplementedException();
         }
 
+        //done
         public Institution GetInstitution(int id)
         {
-            throw new NotImplementedException();
+            return _institutionRepository.GetInstitution(id);
         }
 
-        public void UpdateInstitution(Institution institution)
+        //done
+        public void SaveInstitution(Institution institution)
         {
-            throw new NotImplementedException();
+            _institutionRepository.Save(institution);
         }
 
-        public void AddInstitution(Institution institution)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

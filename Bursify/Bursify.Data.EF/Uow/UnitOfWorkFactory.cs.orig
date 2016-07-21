@@ -11,7 +11,11 @@
 
         public IUnitOfWork CreateUnitOfWork()
         {
+<<<<<<< HEAD
+            DataContext context = DataContext.Create(@"Data Source=(localDb)\v11.0;Initial Catalog=BursifyDB;Integrated Security=SSPI;");
+=======
             DataContext context = DataContext.Create(@"Data Source=.\SQL2012;Initial Catalog=BursifyDB;Integrated Security=SSPI;");
+>>>>>>> 94f5493f0d95d31fdf0e80a90da192a09db9abd1
             IUnitOfWork unitOfWork = new UnitOfWork(context);
 
             _dataSession.UnitOfWork = unitOfWork;

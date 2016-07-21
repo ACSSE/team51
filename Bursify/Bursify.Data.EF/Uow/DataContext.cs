@@ -17,6 +17,8 @@ namespace Bursify.Data.EF.Uow
             this.Configuration.AutoDetectChangesEnabled = true;
         }
 
+        
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             AddDBModelConfigurations(modelBuilder);

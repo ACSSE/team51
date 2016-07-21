@@ -9,13 +9,21 @@ namespace Bursify.Web.Models
         public string UserEmail { get; set; }
         public string UserType { get; set; }
 
+<<<<<<< HEAD
+        public RegistrationViewModel(BursifyUser user)
+=======
 /*        public RegistrationViewModel(BursifyUser user)
+>>>>>>> 94f5493f0d95d31fdf0e80a90da192a09db9abd1
         {
             Username = user.Name;
             Password = user.PasswordHash;
             UserEmail = user.Email;
             UserType = user.UserType;
+<<<<<<< HEAD
+        }
+=======
         }*/
 
+>>>>>>> 94f5493f0d95d31fdf0e80a90da192a09db9abd1
     }
 }
