@@ -8,11 +8,11 @@ namespace Bursify.Web.Models
         public string Password { get; set; }
         public string UserType { get; set; }
 
-        public LoginViewModel(BursifyUser user)
+        /*public LoginViewModel(BursifyUser user)
         {
             UserEmail = user.Email;
             Password = user.PasswordHash;
             UserType = user.UserType;
-        }
+        }*/
     }
 }

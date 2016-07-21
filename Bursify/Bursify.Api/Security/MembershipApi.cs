@@ -1,5 +1,6 @@
 ﻿using System;
 using Bursify.Data.EF.Repositories;
+using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.User;
 using Bursify.Services;
 
@@ -9,11 +10,13 @@ namespace Bursify.Api.Security
     {
         private readonly Repository<BursifyUser> userRepository;
         private readonly ICryptoService cryptoService ;
+        private IUnitOfWorkFactory unityOfWorkFactory;
 
-        public MembershipApi(Repository<BursifyUser> userRepository, ICryptoService cryptoService)
+        public MembershipApi(Repository<BursifyUser> userRepository, ICryptoService cryptoService, IUnitOfWorkFactory unitOfWorkFactory)
         {
             this.userRepository = userRepository;
             this.cryptoService = cryptoService;
+            this.unityOfWorkFactory = unitOfWorkFactory;
         }
 
         public bool Login(string userName, string password)
@@ -34,18 +37,24 @@ namespace Bursify.Api.Security
 
         public BursifyUser RegisterUser(string username, string userEmail, string password, string userType)
         {
-            var salt = cryptoService.CreateSalt();
+            BursifyUser user = null;
 
-            var user = new BursifyUser();
+            using (IUnitOfWork uow = unityOfWorkFactory.CreateUnitOfWork())
+            {
+                var salt = cryptoService.CreateSalt();
 
-            user.Email = userEmail;
-            user.Name = username;
-            user.PasswordHash = cryptoService.HashPassword(password, salt);
-            user.PasswordSalt = salt;
-            user.UserType = userType;
-            user.RegistrationDate = DateTime.UtcNow;
+                user = new BursifyUser();
 
-            userRepository.Save(user);
+                user.Email = userEmail;
+                user.Name = username;
+                user.PasswordHash = cryptoService.HashPassword(password, salt);
+                user.PasswordSalt = salt;
+                user.UserType = userType;
+                user.RegistrationDate = DateTime.UtcNow;
+
+                userRepository.Save(user);
+                uow.Commit();
+            }
 
             return user;
         }
