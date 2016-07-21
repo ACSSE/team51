@@ -25,7 +25,7 @@ namespace Bursify.Web.Models
             Email = user.Email;
             PasswordHash = user.PasswordHash;
             PasswordSalt = user.PasswordSalt;
-            AccountStatus = user.AccountStatus ? "Active" : "InActive";
+            AccountStatus = user.AccountStatus;
             UserType = user.UserType;
             RegistrationDate = user.RegistrationDate;
             Biography = user.Biography;

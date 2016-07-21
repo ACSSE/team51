@@ -27,7 +27,7 @@ namespace Bursify.Tests
             user.Email = "brandon@gmail.com";
             user.PasswordHash = "password123";
             user.PasswordSalt = "passwordSalt";
-            user.AccountStatus = true;
+            user.AccountStatus = "Active";
             user.UserType = "Sponsor";
             user.RegistrationDate = DateTime.Today;
             user.Biography = "Bio stuff";
