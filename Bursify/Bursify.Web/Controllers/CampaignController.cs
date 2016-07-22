@@ -39,13 +39,64 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
+        //get all campaigns for a user
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetAllCampaigns")]
+        public HttpResponseMessage GetAllCampaigns(HttpRequestMessage request, int userId)
+        {
+            var campaigns = _studentApi.GetAllCampaigns(userId);
+
+            var model = new CampaignViewModel();
+
+            var campaignVm = model.MultipleCampaignsMap(campaigns);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
+        //get all campaigns meeting user's search criteria
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetAllCampaigns")]
+        public HttpResponseMessage GetAllCampaigns(HttpRequestMessage request, string searchCriteria)
+        {
+            var campaigns = _studentApi.SearchCampaigns(searchCriteria);
+
+            var model = new CampaignViewModel();
+
+            var campaignVm = model.MultipleCampaignsMap(campaigns);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
         //get a single campaign
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetCampaign")]
-        public HttpResponseMessage GetCampaign(HttpRequestMessage request)
+        public HttpResponseMessage GetCampaign(HttpRequestMessage request, int campaignId)
         {
-            var campaign = _studentApi.GetSingleCampaign(5);
+            var campaign = _studentApi.GetSingleCampaign(campaignId);
+
+            var model = new CampaignViewModel();
+
+            var campaignVm = model.SingleCampaignMap(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
+        //get a single campaign for a user
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetCampaign")]
+        public HttpResponseMessage GetCampaign(HttpRequestMessage request, int campaignId, int userId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId, userId);
 
             var model = new CampaignViewModel();
 
@@ -90,6 +141,15 @@ namespace Bursify.Web.Controllers
             var response = request.CreateResponse(HttpStatusCode.Created, campaignVm);
 
             return response;
+        }
+
+        //later and thinking
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SponsorCampaign")]
+        public HttpResponseMessage SponsorCampaign(HttpRequestMessage request)
+        {
+            return null;
         }
     }
 }
