@@ -12,10 +12,18 @@ namespace Bursify.Api.Students
 {
     public class StudentApi
     {
+        private readonly IUnitOfWorkFactory unitOfWorkFactory;
+
+        public StudentApi(CampaignRepository campaignRepository, IUnitOfWorkFactory unitOfWorkFactory)
+        {
+            _campaignRepository = campaignRepository;
+            this.unitOfWorkFactory = unitOfWorkFactory;
+        }
+
         #region Variables
 
         private readonly AccountRepository _accountRepository = new AccountRepository(new DataSession());
-        private readonly CampaignRepository _campaignRepository = new CampaignRepository(new DataSession());
+        private readonly CampaignRepository _campaignRepository;// = new CampaignRepository(new DataSession());
         private readonly SponsorshipRepository _sponsorshipRepository = new SponsorshipRepository(new DataSession());
         private readonly SponsorRepository _sponsorRepository = new SponsorRepository(new DataSession());
         //private readonly StudentRepository _studentRepository = new StudentRepository(new DataSession());
@@ -32,7 +40,11 @@ namespace Bursify.Api.Students
         //done
         public void SaveCampaign(Campaign campaign)
         {
-            _campaignRepository.Save(campaign);
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _campaignRepository.Save(campaign);
+                uow.Commit();
+            }
         }
 
         /// <summary>
@@ -42,7 +54,10 @@ namespace Bursify.Api.Students
         /// <returns> A single campaign </returns>
         public Campaign GetSingleCampaign(int campaignId)
         {
-            return _campaignRepository.GetCampaign(campaignId);
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _campaignRepository.GetCampaign(campaignId);
+            }
         }
 
         //done
@@ -64,7 +79,11 @@ namespace Bursify.Api.Students
         /// <returns> All active campaigns</returns>
         public List<Campaign> GetAllCampaigns()
         {
-            var campaigns = _campaignRepository.LoadAll();
+            List<Campaign> campaigns = null;
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                campaigns = _campaignRepository.GetAllCampaigns();
+            }
 
             return campaigns;
         }
@@ -101,7 +120,7 @@ namespace Bursify.Api.Students
         //done
         public List<Sponsor> GetAllSponsors()
         {
-            var sponsors = _sponsorRepository.LoadAll();
+            var sponsors = _sponsorRepository.LoadAll().ToList();
 
             return sponsors;
         }
@@ -121,7 +140,7 @@ namespace Bursify.Api.Students
         //done
         public List<Sponsorship> GetAllSponsorships()
         {
-            return _sponsorshipRepository.LoadAll();
+            return _sponsorshipRepository.LoadAll().ToList();
         }
 
         //done

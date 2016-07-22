@@ -10,6 +10,11 @@ namespace Bursify.Data.EF.Repositories
         {
         }
 
+        public List<Campaign> GetAllCampaigns()
+        {
+            return LoadAll();
+        }
+
         public Campaign GetCampaign(int campaignId)
         {
             return FindSingle(campaign =>

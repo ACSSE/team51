@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Bursify.Data.EF.CampaignUser;
 
 namespace Bursify.Web.Models
@@ -21,23 +23,31 @@ namespace Bursify.Web.Models
         public string FundUsage { get; set; }
         public string ReasonsToSupport { get; set; }
         
-        public CampaignViewModel(Campaign campaign)
+        public Campaign SingleCampaignMap(Campaign campaign)
         {
-            CampaignId = campaign.CampaignId;
-            StudentId = campaign.StudentId;
-            CampaignName = campaign.CampaignName;
-            Tagline = campaign.Tagline;
-            Location = campaign.Location;
-            Description = campaign.Description;
-            AmountRequired = campaign.AmountRequired;
-            CampaignType = campaign.CampaignType;
-            VideoPath = campaign.VideoPath;
-            PicturePath = campaign.PicturePath;
-            StartDate = campaign.StartDate;
-            EndDate = campaign.EndDate;
-            AmountContributed = campaign.AmountContributed;
-            FundUsage = campaign.FundUsage;
-            ReasonsToSupport = campaign.ReasonsToSupport;
+            return new Campaign()
+            {
+                CampaignId = campaign.CampaignId,
+                StudentId = campaign.StudentId,
+                CampaignName = campaign.CampaignName,
+                Tagline = campaign.Tagline,
+                Location = campaign.Location,
+                Description = campaign.Description,
+                AmountRequired = campaign.AmountRequired,
+                CampaignType = campaign.CampaignType,
+                VideoPath = campaign.VideoPath,
+                PicturePath = campaign.PicturePath,
+                StartDate = campaign.StartDate,
+                EndDate = campaign.EndDate,
+                AmountContributed = campaign.AmountContributed,
+                FundUsage = campaign.FundUsage,
+                ReasonsToSupport = campaign.ReasonsToSupport
+            };
+        }
+
+        public List<Campaign> MultipleCampaignsMap(List<Campaign> campaigns)
+        {
+            return (from campaign in campaigns select SingleCampaignMap(campaign)).ToList();
         }
     }
 }

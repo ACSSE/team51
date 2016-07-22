@@ -28,7 +28,7 @@ namespace Bursify.Tests
             user.PasswordHash = "password123";
             user.PasswordSalt = "passwordSalt";
             user.AccountStatus = "Active";
-            user.UserType = "Sponsor";
+            user.UserType = "Student";
             user.RegistrationDate = DateTime.Today;
             user.Biography = "Bio stuff";
             user.CellphoneNumber = "0840924299";

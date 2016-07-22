@@ -5,7 +5,6 @@ namespace Bursify.Web.Models
 {
     public class BursifyUserViewModel
     {
-
         public int BursifyUserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -21,6 +20,7 @@ namespace Bursify.Web.Models
 
         public BursifyUserViewModel(BursifyUser user)
         {
+            BursifyUserId = user.BursifyUserId;
             Name = user.Name;
             Email = user.Email;
             PasswordHash = user.PasswordHash;

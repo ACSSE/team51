@@ -27,7 +27,6 @@ namespace Bursify.Web.Controllers
             return new JsonResult { Data = new BursifyUserViewModel(/*new BursifyUser()#1#) {Name="Yo mamma"} };
         }*/
 
-
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.Route("user/{email:string}")]
         public HttpResponseMessage Get(HttpRequestMessage request, string email)
