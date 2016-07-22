@@ -22,15 +22,16 @@ namespace Bursify.Api.Students
 
         #region Variables
 
-        private readonly AccountRepository _accountRepository;        
-        private readonly CampaignRepository _campaignRepository;  
+        private readonly AccountRepository _accountRepository;
+        private readonly CampaignRepository _campaignRepository;
         private readonly SponsorshipRepository _sponsorshipRepository;
-        private readonly SponsorRepository _sponsorRepository;       
+        private readonly SponsorRepository _sponsorRepository;
         //private readonly StudentRepository _studentRepository;
         private readonly InstitutionRepository _institutionRepository;
 
         #endregion
 
+        #region Campaign
         //not done
         public Account GetAccount(int id)
         {
@@ -125,6 +126,9 @@ namespace Bursify.Api.Students
             }
         }
 
+        #endregion
+
+        #region Sponsor
         //not done
         public List<Sponsor> GetAllSponsors()
         {
@@ -145,22 +149,72 @@ namespace Bursify.Api.Students
             return _sponsorRepository.GetSponsor(id);
         }
 
-        //not done
+        #endregion
+
+        #region Sponsorship
+        //done
+        public void SaveSponsorship(Sponsorship sponsorship)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _sponsorshipRepository.Save(sponsorship);
+
+                uow.Commit();
+            }
+        }
+
+        //done
         public List<Sponsorship> GetAllSponsorships()
         {
-            return _sponsorshipRepository.LoadAll().ToList();
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorshipRepository.GetAllSponsorships();
+            }
         }
 
-        //not done
+        //done
+        public List<Sponsorship> GetAllSponsorships(int userId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorshipRepository.GetAllSponsorships(userId);
+            }
+        }
+
+        //done
+        public List<Sponsorship> GetAllSponsorships(string type)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorshipRepository.GetAllSponsorships(type);
+            }
+        }
+
+        //done
         public Sponsorship GetSponsorship(int id, int userId)
         {
-            return _sponsorshipRepository.GetSponsorship(id, userId);
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorshipRepository.GetSponsorship(id, userId);
+            }
         }
 
-        //not done
+        //done
+        public Sponsorship GetSponsorship(int id)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorshipRepository.GetSponsorship(id);
+            }
+        }
+
+        //done
         public List<Sponsorship> SearchSponsorships(string criteria)
         {
-            return _sponsorshipRepository.FindSponsorships(criteria.ToUpper()).ToList();
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorshipRepository.FindSponsorships(criteria.ToUpper()).ToList();
+            }
         }
 
         //for later
@@ -175,16 +229,28 @@ namespace Bursify.Api.Students
             throw new NotImplementedException();
         }
 
-        //not done
-        public Institution GetInstitution(int id)
+        #endregion
+
+        #region School
+        //done
+        public Institution GetInstitution(int userId)
         {
-            return _institutionRepository.GetInstitution(id);
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _institutionRepository.GetInstitution(userId);
+            }
         }
 
-        //not done
+        //done
         public void SaveInstitution(Institution institution)
         {
-            _institutionRepository.Save(institution);
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _institutionRepository.Save(institution);
+                uow.Commit();
+            }
         }
+
+        #endregion
     }
 }
