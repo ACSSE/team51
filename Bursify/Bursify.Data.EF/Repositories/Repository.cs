@@ -38,7 +38,7 @@ namespace Bursify.Data.EF.Repositories
 
         public List<TEntity> LoadAll()
         {
-            List<TEntity> entities = DbContext.Set<TEntity>().ToList();
+            var entities = DbContext.Set<TEntity>().ToList();
 
             return entities;
         }

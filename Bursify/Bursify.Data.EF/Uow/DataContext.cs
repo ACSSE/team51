@@ -11,6 +11,11 @@ namespace Bursify.Data.EF.Uow
     {
         private const string defaultProvider = "System.Data.SqlClient";
 
+        public DataContext() : base("BursifyDB")
+        {
+            Database.SetInitializer<DataContext>(null);
+        }
+
         protected DataContext(DbConnection connection)
             : base(connection.ConnectionString)
         {

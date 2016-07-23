@@ -27,7 +27,7 @@ namespace Bursify.Api.Users
                 user.Email = email;
                 user.PasswordHash = passwordhash;
                 user.PasswordSalt = passwordSalt;
-                user.AccountStatus = true;
+                user.AccountStatus = "Active";
 
                 user.UserType = userType;
                 user.RegistrationDate = DateTime.Today;

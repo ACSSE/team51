@@ -19,7 +19,7 @@ namespace Bursify.Data.EF.User
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
-        public bool AccountStatus { get; set; }
+        public string AccountStatus { get; set; }
         public string UserType { get; set; }
         public DateTime RegistrationDate { get; set; }
         public string Biography { get; set; }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Bursify.Data.EF.SponsorUser;
 
 namespace Bursify.Web.Models
@@ -20,22 +22,30 @@ namespace Bursify.Web.Models
         public string ExpensesCovered { get; set; }
         public string TermsAndConditions { get; set; }
 
-        public SponsorshipViewModel(Sponsorship sponsorship)
+        public Sponsorship SingleSponsorshipMap(Sponsorship sponsorship)
         {
-            SponsorshipId = sponsorship.SponsorshipId;
-            SponsorId = sponsorship.SponsorId;
-            Name = sponsorship.Name;
-            Description = sponsorship.Description;
-            ClosingDate = sponsorship.ClosingDate;
-            EssayRequired = sponsorship.EssayRequired;
-            SponsorshipValue = sponsorship.SponsorshipValue;
-            StudyFields = sponsorship.StudyFields;
-            Province = sponsorship.Province;
-            AverageMarkRequired = sponsorship.AverageMarkRequired;
-            EducationLevel = sponsorship.EducationLevel;
-            PreferredInstitutions = sponsorship.PreferredInstitutions;
-            ExpensesCovered = sponsorship.ExpensesCovered;
-            TermsAndConditions = sponsorship.TermsAndConditions;
+            return new Sponsorship()
+            {
+                SponsorshipId = sponsorship.SponsorshipId,
+                SponsorId = sponsorship.SponsorId,
+                Name = sponsorship.Name,
+                Description = sponsorship.Description,
+                ClosingDate = sponsorship.ClosingDate,
+                EssayRequired = sponsorship.EssayRequired,
+                SponsorshipValue = sponsorship.SponsorshipValue,
+                StudyFields = sponsorship.StudyFields,
+                Province = sponsorship.Province,
+                AverageMarkRequired = sponsorship.AverageMarkRequired,
+                EducationLevel = sponsorship.EducationLevel,
+                PreferredInstitutions = sponsorship.PreferredInstitutions,
+                ExpensesCovered = sponsorship.ExpensesCovered,
+                TermsAndConditions = sponsorship.TermsAndConditions
+            };
+        }
+
+        public List<Sponsorship> MultipleSponsorshipsMap(List<Sponsorship> sponsorships)
+        {
+            return (from sponsorship in sponsorships select SingleSponsorshipMap(sponsorship)).ToList();
         }
     }
 }

@@ -11,12 +11,32 @@ namespace Bursify.Data.EF.Repositories
         {
         }
 
+        public List<Sponsorship> GetAllSponsorships()
+        {
+            return LoadAll();
+        }
+
+        public List<Sponsorship> GetAllSponsorships(string type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Sponsorship> GetAllSponsorships(int sponsorId)
+        {
+            return FindMany(sponsorship => sponsorship.SponsorId == sponsorId);
+        }
+
         public Sponsorship GetSponsorship(int id, int sponsorId)
         {
             return FindSingle(sponsorship => sponsorship.SponsorshipId == id && sponsorship.SponsorId == sponsorId);
         }
 
-        public IEnumerable<Sponsorship> FindSponsorships(string criteria)
+        public Sponsorship GetSponsorship(int id)
+        {
+            return FindSingle(sponsorship => sponsorship.SponsorshipId == id);
+        }
+
+        public List<Sponsorship> FindSponsorships(string criteria)
         {
             //IEnumerable<Sponsorship> filteredSponsorships = null;
 
@@ -29,5 +49,6 @@ namespace Bursify.Data.EF.Repositories
            
             return filteredSponsorships;
         }
+        
     }
 }

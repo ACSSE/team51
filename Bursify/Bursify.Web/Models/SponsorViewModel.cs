@@ -1,4 +1,6 @@
-﻿using Bursify.Data.EF.SponsorUser;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Bursify.Data.EF.SponsorUser;
 
 namespace Bursify.Web.Models
 {
@@ -11,14 +13,22 @@ namespace Bursify.Web.Models
         public int BursifyRank { get; set; }
         public int BursifyScore { get; set; }
 
-        public SponsorViewModel(Sponsor sponsor)
+        public Sponsor SingleSponsorMap(Sponsor sponsor)
         {
-            BursifyUserId = sponsor.BursifyUserId;
-            NumberOfStudentsSponsored = sponsor.NumberOfStudentsSponsored;
-            NumberOfSponsorships = sponsor.NumberOfSponsorships;
-            NumberOfApplicants = sponsor.NumberOfApplicants;
-            BursifyRank = sponsor.BursifyRank;
-            BursifyScore = sponsor.BursifyScore;
+            return new Sponsor()
+            {
+                BursifyUserId = sponsor.BursifyUserId,
+                NumberOfStudentsSponsored = sponsor.NumberOfStudentsSponsored,
+                NumberOfSponsorships = sponsor.NumberOfSponsorships,
+                NumberOfApplicants = sponsor.NumberOfApplicants,
+                BursifyRank = sponsor.BursifyRank,
+                BursifyScore = sponsor.BursifyScore
+            };
+        }
+
+        public List<Sponsor> MultipleSponsorsMap(List<Sponsor> sponsors)
+        {
+            return (from sponsor in sponsors select SingleSponsorMap(sponsor)).ToList();
         }
     }
 }

@@ -10,6 +10,11 @@ namespace Bursify.Data.EF.Repositories
         {
         }
 
+        public List<Campaign> GetAllCampaigns()
+        {
+            return LoadAll();
+        }
+
         public Campaign GetCampaign(int campaignId)
         {
             return FindSingle(campaign =>
@@ -29,7 +34,9 @@ namespace Bursify.Data.EF.Repositories
                                   campaign.Location.ToUpper().Contains(criteria)
                                || campaign.Description.ToUpper().Contains(criteria)
                                || campaign.CampaignName.ToUpper().Contains(criteria)
-                               || campaign.CampaignType.ToUpper().Contains(criteria));
+                               || campaign.CampaignType.ToUpper().Contains(criteria)
+                               || campaign.FundUsage.ToUpper().Contains(criteria)
+                               || campaign.ReasonsToSupport.ToUpper().Contains(criteria));
            
             return filteredCampaigns;
         }

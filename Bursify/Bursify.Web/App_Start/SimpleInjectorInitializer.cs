@@ -43,6 +43,10 @@ namespace Bursify.App_Start
             container.Register(typeof(Repository<>));
             container.Register<SponsorRepository>();
             container.Register<BursifyUserRepository>();
+            container.Register<CampaignRepository>();
+            container.Register<SponsorshipRepository>();
+            container.Register<AccountRepository>();
+            container.Register<InstitutionRepository>();
             container.Register<IUnitOfWorkFactory, UnitOfWorkFactory>(Lifestyle.Scoped);
             container.Register<DataSession>(new WebRequestLifestyle(true));
 

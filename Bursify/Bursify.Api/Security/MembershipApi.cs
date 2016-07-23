@@ -11,6 +11,7 @@ namespace Bursify.Api.Security
         private readonly BursifyUserRepository userRepository;
         private readonly IUnitOfWorkFactory unitOfWorkFactory;
         private readonly ICryptoService cryptoService ;
+        private IUnitOfWorkFactory unityOfWorkFactory;
 
         public MembershipApi(BursifyUserRepository userRepository, ICryptoService cryptoService, IUnitOfWorkFactory unitOfWorkFactory)
         {
@@ -19,17 +20,21 @@ namespace Bursify.Api.Security
             this.unitOfWorkFactory = unitOfWorkFactory;
         }
 
-        public bool ValidateUser(string email, string password)
+       
+        public bool Login(string userName, string password)
         {
-            var bursifyUser = userRepository.GetUserByEmail(email);
-            if (bursifyUser == null)
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return false;
-            }
+                var bursifyUser = userRepository.GetUserByEmail(userName);
+                if (bursifyUser == null)
+                {
+                    return false;
+                }
 
-            if (isPasswordValid(bursifyUser, password))
-            {
-                return true;
+                if (isPasswordValid(bursifyUser, password))
+                {
+                    return true;
+                }
             }
 
             return false;
@@ -37,18 +42,18 @@ namespace Bursify.Api.Security
 
         public BursifyUser RegisterUser(string username, string userEmail, string password, string userType)
         {
+            BursifyUser user = null;
 
-            var existingUser = userRepository.GetUserByEmail(userEmail);
-
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var existingUser = userRepository.GetUserByEmail(userEmail);
             if (existingUser != null)
             {
                 throw new Exception("Email is already in use");
             }
+               
 
-            BursifyUser user = null;
 
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            { 
                 var salt = cryptoService.CreateSalt();
 
                 user = new BursifyUser
@@ -71,6 +76,18 @@ namespace Bursify.Api.Security
         private bool isPasswordValid(BursifyUser user, string password)
         {
             return cryptoService.HashPassword(password, user.PasswordSalt) == user.PasswordHash;
+        }
+
+        public BursifyUser GetUserByEmail(string email)
+        {
+            BursifyUser user = null;
+
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                user = userRepository.GetUserByEmail(email);
+            }
+
+            return user;
         }
     }
 
