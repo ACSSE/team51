@@ -14,10 +14,14 @@ namespace Bursify.Api.Students
     {
         private readonly IUnitOfWorkFactory unitOfWorkFactory;
 
-        public StudentApi(CampaignRepository campaignRepository, IUnitOfWorkFactory unitOfWorkFactory)
+        public StudentApi(IUnitOfWorkFactory unitOfWorkFactory, AccountRepository accountRepository, CampaignRepository campaignRepository, SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository, InstitutionRepository institutionRepository)
         {
-            _campaignRepository = campaignRepository;
             this.unitOfWorkFactory = unitOfWorkFactory;
+            _accountRepository = accountRepository;
+            _campaignRepository = campaignRepository;
+            _sponsorshipRepository = sponsorshipRepository;
+            _sponsorRepository = sponsorRepository;
+            _institutionRepository = institutionRepository;
         }
 
         #region Variables
@@ -129,24 +133,32 @@ namespace Bursify.Api.Students
         #endregion
 
         #region Sponsor
-        //not done
+        
+        //done
         public List<Sponsor> GetAllSponsors()
         {
-            var sponsors = _sponsorRepository.LoadAll().ToList();
-
-            return sponsors;
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorRepository.GetAllSponsors();
+            }
         }
 
-        //not done
+        //done
         public List<Sponsor> GetTopTenSponsors()
         {
-            return _sponsorRepository.GetTop10Sponsors();
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorRepository.GetTop10Sponsors();
+            }
         }
 
-        //not done
-        public Sponsor GetSponsor(int id)
+        //done
+        public Sponsor GetSponsor(int sponsorId)
         {
-            return _sponsorRepository.GetSponsor(id);
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorRepository.GetSponsor(sponsorId);
+            }
         }
 
         #endregion

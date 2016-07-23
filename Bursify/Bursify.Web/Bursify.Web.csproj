@@ -633,6 +633,8 @@
     <Compile Include="Controllers\BursifyUserController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SponsorController.cs" />
+    <Compile Include="Controllers\SponsorshipController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -767,6 +769,7 @@
     <Folder Include="Content\landing\wp-content\plugins\wp-product-review\images\" />
     <Folder Include="Content\landing\wp-content\plugins\wp-rocket\inc\front\js\" />
     <Folder Include="Content\plugins\" />
+    <Folder Include="Views\Sponsor\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bursify.Api\Bursify.Api.csproj">

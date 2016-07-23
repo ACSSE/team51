@@ -132,6 +132,8 @@ namespace Bursify.Web.Controllers
                 ReasonsToSupport = campaign.ReasonsToSupport
             };
 
+            _studentApi.SaveCampaign(newCampaign);
+
             var model = new CampaignViewModel();
 
             var campaignVm = model.SingleCampaignMap(newCampaign);
