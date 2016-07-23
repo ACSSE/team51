@@ -16,15 +16,9 @@ namespace Bursify.Data.EF.Repositories
         {
         }
 
-        public void addSubject(int bUserID, Subject subject, int mark)
+        public void addSubject(StudentSubject sb) 
         {
-            var student = FindSingle(x => x.BursifyUserId == bUserID);
-            student.StudentSubjects.Add(new StudentSubject
-            {
-                MarkAcquired = mark,
-                StudentId = student.Id,
-                
-            });
+            save(sb);
         }
     }
 }
