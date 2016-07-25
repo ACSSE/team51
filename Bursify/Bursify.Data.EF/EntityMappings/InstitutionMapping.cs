@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Bursify.Data.EF.User;
+﻿using Bursify.Data.EF.User;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Bursify.Data.EF.EntityMappings
@@ -10,9 +9,9 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("Institution", "dbo");
 
-            this.HasKey(x => x.StudentId);
+            this.HasKey(x => x.ID);
 
-            this.Property(x => x.StudentId)
+            this.Property(x => x.ID)
                 .IsRequired();
            
             this.Property(x => x.Name)

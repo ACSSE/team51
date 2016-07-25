@@ -18,7 +18,7 @@ namespace Bursify.Data.EF.Repositories
 
         public List<Sponsorship> GetAllSponsorships(string type)
         {
-            throw new NotImplementedException();
+            return FindMany(sponsorship => sponsorship.SponsorshipType.ToUpper().Equals(type.ToUpper()));
         }
 
         public List<Sponsorship> GetAllSponsorships(int sponsorId)
@@ -28,12 +28,12 @@ namespace Bursify.Data.EF.Repositories
 
         public Sponsorship GetSponsorship(int id, int sponsorId)
         {
-            return FindSingle(sponsorship => sponsorship.SponsorshipId == id && sponsorship.SponsorId == sponsorId);
+            return FindSingle(sponsorship => sponsorship.ID == id && sponsorship.SponsorId == sponsorId);
         }
 
         public Sponsorship GetSponsorship(int id)
         {
-            return FindSingle(sponsorship => sponsorship.SponsorshipId == id);
+            return FindSingle(sponsorship => sponsorship.ID == id);
         }
 
         public List<Sponsorship> FindSponsorships(string criteria)

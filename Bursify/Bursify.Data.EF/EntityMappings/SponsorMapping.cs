@@ -9,7 +9,7 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("Sponsor", "dbo");
 
-            this.HasKey(x => x.BursifyUserId);
+            this.HasKey(x => x.ID);
 
             this.Property(x => x.NumberOfStudentsSponsored);
 

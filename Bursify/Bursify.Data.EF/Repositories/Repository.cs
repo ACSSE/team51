@@ -59,7 +59,7 @@ namespace Bursify.Data.EF.Repositories
 
         public void Save(TEntity entity)
         {
-            TEntity existing = LoadById(entity.Id);
+            TEntity existing = LoadById(entity.ID);
 
             if (existing == null)
             {

@@ -4,8 +4,6 @@ using Bursify.Data.EF.SponsorUser;
 using Bursify.Data.EF.StudentUser;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.User;
-using Bursify.Data.StudentUser;
-using Bursify.Data.User;
 using NUnit.Framework;
 using System;
 
@@ -37,7 +35,7 @@ namespace Bursify.Tests
 
             var address = new UserAddress
             {
-                BursifyUserId = user.BursifyUserId,
+                BursifyUserId = user.ID,
                 AddressType = "Postal",
                 PreferredAddress = true,
                 HouseNumber = "",

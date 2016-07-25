@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 using Bursify.Data.EF.CampaignUser;
 
 namespace Bursify.Data.EF.EntityMappings
@@ -10,7 +9,7 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("Account", "dbo");
 
-            this.HasKey(x => x.CampaignId);
+            this.HasKey(x => x.ID);
             
             this.Property(x => x.AccountName)
                 .HasMaxLength(200)

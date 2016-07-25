@@ -88,9 +88,13 @@
     <Compile Include="Enums\CampaignType.cs" />
     <Compile Include="Enums\SponsorshipType.cs" />
     <Compile Include="Enums\UserType.cs" />
-    <Compile Include="Migrations\201607211653127_initial.cs" />
-    <Compile Include="Migrations\201607211653127_initial.Designer.cs">
-      <DependentUpon>201607211653127_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201607242157292_initial.cs" />
+    <Compile Include="Migrations\201607242157292_initial.Designer.cs">
+      <DependentUpon>201607242157292_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607242305105_initial1.cs" />
+    <Compile Include="Migrations\201607242305105_initial1.Designer.cs">
+      <DependentUpon>201607242305105_initial1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,10 +106,11 @@
     <Compile Include="Repositories\SponsorRepository.cs" />
     <Compile Include="Repositories\SponsorshipRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
+    <Compile Include="Repositories\StudentSponsorshipRepository.cs" />
+    <Compile Include="Repositories\StudentSubjectRepository.cs" />
     <Compile Include="SponsorUser\Sponsor.cs" />
     <Compile Include="SponsorUser\Sponsorship.cs" />
     <Compile Include="SponsorUser\SponsorshipRequirement.cs" />
-    <Compile Include="StudentUser\SchoolType.cs" />
     <Compile Include="StudentUser\Student.cs" />
     <Compile Include="StudentUser\StudentSubject.cs" />
     <Compile Include="Uow\DatabaseConfiguration.cs" />
@@ -129,8 +134,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201607211653127_initial.resx">
-      <DependentUpon>201607211653127_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607242157292_initial.resx">
+      <DependentUpon>201607242157292_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607242305105_initial1.resx">
+      <DependentUpon>201607242305105_initial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

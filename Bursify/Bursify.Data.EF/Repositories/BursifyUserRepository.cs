@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bursify.Data.EF.Uow;
+﻿using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.User;
 
 namespace Bursify.Data.EF.Repositories
@@ -33,7 +28,7 @@ namespace Bursify.Data.EF.Repositories
 
         public void UpdateUser(BursifyUser user)
         {
-            var oldUser = FindSingle(x => x.BursifyUserId == user.BursifyUserId);
+            var oldUser = FindSingle(x => x.ID == user.ID);
             if (oldUser != null)
             {
                 oldUser = user;

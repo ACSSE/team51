@@ -27,7 +27,7 @@ namespace Bursify.Web.Models
         {
             return new Campaign()
             {
-                CampaignId = campaign.CampaignId,
+                ID = campaign.ID,
                 StudentId = campaign.StudentId,
                 CampaignName = campaign.CampaignName,
                 Tagline = campaign.Tagline,

@@ -26,7 +26,7 @@ namespace Bursify.Web.Models
         {
             return new Sponsorship()
             {
-                SponsorshipId = sponsorship.SponsorshipId,
+                ID = sponsorship.ID,
                 SponsorId = sponsorship.SponsorId,
                 Name = sponsorship.Name,
                 Description = sponsorship.Description,

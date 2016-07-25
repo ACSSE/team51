@@ -10,17 +10,14 @@ namespace Bursify.Data.EF.SponsorUser
             Sponsorhips = new List<Sponsorship>();
         }
 
-        public int BursifyUserId { get; set; }
+        //Unique identifier
+        //foreign key
+        public int ID { get; set; }
         public int NumberOfStudentsSponsored { get; set; }
         public int NumberOfSponsorships { get; set; }
         public int NumberOfApplicants { get; set; }
         public int BursifyRank { get; set; }
         public int BursifyScore { get; set; }
-
-        public int Id
-        {
-            get { return BursifyUserId; }
-        }
 
         public virtual BursifyUser BursifyUser { get; set; }
         public ICollection<Sponsorship> Sponsorhips { get; set; }

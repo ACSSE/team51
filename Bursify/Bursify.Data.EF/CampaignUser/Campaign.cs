@@ -7,7 +7,7 @@ namespace Bursify.Data.EF.CampaignUser
 {
     public class Campaign : IEntity
     {
-        public int CampaignId { get; set; }
+        public int ID { get; set; }
         public int StudentId { get; set; }
         public string CampaignName { get; set; }
         public string Tagline { get; set; }
@@ -22,11 +22,7 @@ namespace Bursify.Data.EF.CampaignUser
         public double AmountContributed { get; set; }
         public string FundUsage { get; set; }
         public string ReasonsToSupport { get; set; }
-
-        public int Id
-        {
-            get { return CampaignId; }
-        }
+        public int NumberOfUpVotes { get; set; }
 
         public virtual Account Account { get; set; }
         public virtual Student Student { get; set; }

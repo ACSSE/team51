@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Bursify.Data.EF.User;
+﻿using Bursify.Data.EF.User;
 
 namespace Bursify.Web.Models
 {
@@ -22,7 +18,7 @@ namespace Bursify.Web.Models
 
         public UserAddressViewModel(UserAddress userAddress)
         {
-            AddressId = userAddress.AddressId;
+            AddressId = userAddress.ID;
             BursifyUserId = userAddress.BursifyUserId;
             AddressType = userAddress.AddressType;
             PreferredAddress = userAddress.PreferredAddress;

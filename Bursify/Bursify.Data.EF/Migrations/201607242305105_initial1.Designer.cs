@@ -7,13 +7,13 @@ namespace Bursify.Data.EF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initial : IMigrationMetadata
+    public sealed partial class initial1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201607211653127_initial"; }
+            get { return "201607242305105_initial1"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bursify.Data.EF.StudentUser;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.User;
+using Bursify.Data.EF.User;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -16,15 +12,9 @@ namespace Bursify.Data.EF.Repositories
         {
         }
 
-        public void addSubject(int bUserID, Subject subject, int mark)
+        public Student GetStudent(int userId)
         {
-            var student = FindSingle(x => x.BursifyUserId == bUserID);
-            student.StudentSubjects.Add(new StudentSubject
-            {
-                MarkAcquired = mark,
-                StudentId = student.Id,
-                
-            });
+            return FindSingle(student => student.ID == userId);
         }
     }
 }

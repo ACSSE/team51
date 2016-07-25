@@ -1,6 +1,4 @@
-﻿using Bursify.Data.EF.User;
-
-namespace Bursify.Web.Models
+﻿namespace Bursify.Web.Models
 {
     public class RegistrationViewModel
     {

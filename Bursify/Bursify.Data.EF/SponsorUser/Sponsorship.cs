@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Bursify.Data.EF.StudentUser;
 using Bursify.Data.EF.User;
-using Bursify.Data.StudentUser;
 
 namespace Bursify.Data.EF.SponsorUser
 {
@@ -13,9 +12,10 @@ namespace Bursify.Data.EF.SponsorUser
             Students = new List<Student>();
         }
 
-        public int SponsorshipId { get; set; }
+        public int ID { get; set; }
         public int SponsorId { get; set; }
         public string Name { get; set; }
+        public string SponsorshipType { get; set; }
         public string Description { get; set; }
         public DateTime ClosingDate { get; set; }
         public bool EssayRequired { get; set; }
@@ -27,11 +27,7 @@ namespace Bursify.Data.EF.SponsorUser
         public string PreferredInstitutions { get; set; }
         public string ExpensesCovered { get; set; }
         public string TermsAndConditions { get; set; }
-
-    public int Id
-        {
-            get { return SponsorshipId; }
-        }
+        public int NumberOfViews { get; set; }
 
         public virtual Sponsor Sponsor { get; set; }
         public virtual ICollection<Student> Students { get; set; }

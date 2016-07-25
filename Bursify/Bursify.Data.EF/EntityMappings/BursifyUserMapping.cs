@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Cryptography.X509Certificates;
 using Bursify.Data.EF.User;
-using Bursify.Data.User;
 using System.Data.Entity.ModelConfiguration;
 
 
@@ -13,9 +11,9 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("BursifyUser", "dbo");
 
-            this.HasKey(x => x.BursifyUserId);
+            this.HasKey(x => x.ID);
 
-            this.Property(x => x.BursifyUserId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(x => x.Name)
                 .HasMaxLength(100)

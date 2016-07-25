@@ -49,7 +49,8 @@ namespace Bursify.Api.Security
                 var existingUser = userRepository.GetUserByEmail(userEmail);
             if (existingUser != null)
             {
-                throw new Exception("Email is already in use");
+                return null;
+                //throw new Exception("Email is already in use");
             }
                
 
@@ -63,6 +64,7 @@ namespace Bursify.Api.Security
                     PasswordHash = cryptoService.HashPassword(password, salt),
                     PasswordSalt = salt,
                     UserType = userType,
+                    AccountStatus = "Active",
                     RegistrationDate = DateTime.UtcNow
                 };
 
