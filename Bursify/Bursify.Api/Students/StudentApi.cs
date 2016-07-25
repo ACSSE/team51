@@ -123,10 +123,17 @@ namespace Bursify.Api.Students
             throw new NotImplementedException();
         }
 
-        //for later
+        //done
         public void EndorseCampaign(int id)
         {
-            throw new NotImplementedException();
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var campaign = _campaignRepository.EndorseCampaign(id);
+
+                _campaignRepository.Save(campaign);
+
+                uow.Commit();
+            }
         }
 
         //done

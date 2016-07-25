@@ -16,5 +16,6 @@ namespace Bursify.Data.EF.Repositories
         {
             return FindSingle(student => student.ID == userId);
         }
+
     }
 }
