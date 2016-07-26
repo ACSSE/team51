@@ -11,12 +11,16 @@
     @Scripts.Render("~/bundles/js")
    
 </head>
-<body ng-controller="rootCtrl" id="mimin" class="dashboard topnav">
-   
-   <div class="page {{ pageClass }}" ng-view></div>
-          
-    
+<body ng-controller="rootCtrl" id="mimin" class="dashboard">
+
+
+    <div class="page {{ pageClass }}" ng-view></div>
+
+
+
     @Scripts.Render("~/bundles/vendors")
     @Scripts.Render("~/bundles/spa")
+
+
 </body>
 </html>
