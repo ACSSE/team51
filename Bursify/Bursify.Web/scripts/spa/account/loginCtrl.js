@@ -23,8 +23,10 @@
         }
 
         function loginCompleted(result) {
-            if (result.data.success) {
 
+       
+            if (result.data.success) {
+                membershipService.saveCredentials($scope.user);
                 apiService.get('/api/bursifyuser/user/?email=' + $scope.user.useremail, null, loginUserCompleted, null);
                 if ($rootScope.previousState)
                     $location.path($rootScope.previousState);
@@ -56,9 +58,7 @@
                 $location.path('/bursify/sponsor/home');
                 $rootScope.cssLink = "/Content/Sponsor/css";
                 $rootScope.User = $scope.user.Name;
-               
-              
-                
+
             } else if ($scope.user.UserType == "Admin") {
                 $location.path('/bursify/admin/home');
                 $rootScope.cssLink = "/Content/Student/css";
