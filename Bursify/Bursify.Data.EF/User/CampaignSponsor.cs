@@ -8,7 +8,7 @@ using Bursify.Data.EF.SponsorUser;
 
 namespace Bursify.Data.EF.User
 {
-    public class CampaignSponsor
+    public class CampaignSponsor : IBridgeEntity
     {
         public int CampaignId { get; set; }
         public int SponsorId { get; set; }
@@ -17,5 +17,15 @@ namespace Bursify.Data.EF.User
 
         public virtual Campaign Campaign { get; set; }
         public virtual Sponsor Sponsor { get; set; }
+
+        public int leftId
+        {
+            get { return CampaignId; }
+        }
+
+        public int rightId
+        {
+            get { return SponsorId; }
+        }
     }
 }

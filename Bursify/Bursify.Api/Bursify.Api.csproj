@@ -74,6 +74,7 @@
     <Compile Include="Security\CryptoService.cs" />
     <Compile Include="Security\ICryptoService.cs" />
     <Compile Include="Security\MembershipApi.cs" />
+    <Compile Include="Sponsors\SponsorApi.cs" />
     <Compile Include="Students\StudentApi.cs" />
     <Compile Include="Users\UserApi.cs" />
   </ItemGroup>

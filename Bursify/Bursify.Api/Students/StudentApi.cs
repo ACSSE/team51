@@ -7,6 +7,7 @@ using Bursify.Data.EF.SponsorUser;
 using Bursify.Data.EF.StudentUser;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.User;
+using Bursify.Data.User;
 
 namespace Bursify.Api.Students
 {
@@ -14,7 +15,7 @@ namespace Bursify.Api.Students
     {
         private readonly IUnitOfWorkFactory unitOfWorkFactory;
 
-        public StudentApi(IUnitOfWorkFactory unitOfWorkFactory, AccountRepository accountRepository, CampaignRepository campaignRepository, SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository, InstitutionRepository institutionRepository)
+        public StudentApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<Subject> subjectRepository, AccountRepository accountRepository, CampaignRepository campaignRepository, SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository, InstitutionRepository institutionRepository, StudentRepository studentRepository)
         {
             this.unitOfWorkFactory = unitOfWorkFactory;
             _accountRepository = accountRepository;
@@ -22,6 +23,8 @@ namespace Bursify.Api.Students
             _sponsorshipRepository = sponsorshipRepository;
             _sponsorRepository = sponsorRepository;
             _institutionRepository = institutionRepository;
+            _subjectRepository = subjectRepository;
+            _studentRepository = studentRepository;
         }
 
         #region Variables
@@ -30,8 +33,9 @@ namespace Bursify.Api.Students
         private readonly CampaignRepository _campaignRepository;
         private readonly SponsorshipRepository _sponsorshipRepository;
         private readonly SponsorRepository _sponsorRepository;
-        //private readonly StudentRepository _studentRepository;
+        private readonly StudentRepository _studentRepository;
         private readonly InstitutionRepository _institutionRepository;
+        private Repository<Subject> _subjectRepository;
 
         #endregion
 
@@ -264,5 +268,29 @@ namespace Bursify.Api.Students
         }
 
         #endregion
+
+
+        public List<Subject> GetSubjects()
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _subjectRepository.LoadAll();
+            }
+        }
+
+        public void AddSubjectToStudent(int userId, int subjectId, int mark)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _studentRepository.addSubject(new StudentSubject()
+                {
+                    SubjectId = subjectId,
+                    MarkAcquired = mark,
+                    StudentId = userId,
+                });
+
+                uow.Commit();
+            }
+        }
     }
 }

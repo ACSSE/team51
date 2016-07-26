@@ -10,16 +10,13 @@ namespace Bursify.Data.EF.Repositories
 {
     public class BursifyUserRepository : Repository<BursifyUser>
     {
-        private IUnitOfWorkFactory unitOfWorkFactory;
-        public BursifyUserRepository(DataSession dataSession, IUnitOfWorkFactory unitOfWorkFactory) : base(dataSession)
+        public BursifyUserRepository(DataSession dataSession) : base(dataSession)
         {
-            this.unitOfWorkFactory = unitOfWorkFactory;
         }
 
         public BursifyUser GetUserByEmail(string email)
         {
             var user = FindSingle(x => x.Email.Equals(email));
-
             return user;
         }
 
@@ -29,20 +26,5 @@ namespace Bursify.Data.EF.Repositories
             var user = FindSingle(x => x.Name == userName);
             return user;
         }
-
-
-        public void UpdateUser(BursifyUser user)
-        {
-            var oldUser = FindSingle(x => x.BursifyUserId == user.BursifyUserId);
-            if (oldUser != null)
-            {
-                oldUser = user;
-                Save(oldUser);
-            }
-			
-			
-        }
-
-
     }
 }

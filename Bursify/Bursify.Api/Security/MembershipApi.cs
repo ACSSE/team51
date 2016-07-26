@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Bursify.Data.EF.CampaignUser;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.User;
@@ -9,18 +11,20 @@ namespace Bursify.Api.Security
     public class MembershipApi
     {
         private readonly BursifyUserRepository userRepository;
+        private readonly CampaignRepository campaignRepository;
         private readonly IUnitOfWorkFactory unitOfWorkFactory;
-        private readonly ICryptoService cryptoService ;
-        private IUnitOfWorkFactory unityOfWorkFactory;
+        private readonly ICryptoService cryptoService;
 
-        public MembershipApi(BursifyUserRepository userRepository, ICryptoService cryptoService, IUnitOfWorkFactory unitOfWorkFactory)
+        public MembershipApi(BursifyUserRepository userRepository, ICryptoService cryptoService,
+            IUnitOfWorkFactory unitOfWorkFactory, CampaignRepository campaignRepository)
         {
             this.userRepository = userRepository;
             this.cryptoService = cryptoService;
             this.unitOfWorkFactory = unitOfWorkFactory;
+            this.campaignRepository = campaignRepository;
         }
 
-       
+
         public bool Login(string userName, string password)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
@@ -47,12 +51,10 @@ namespace Bursify.Api.Security
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 var existingUser = userRepository.GetUserByEmail(userEmail);
-            if (existingUser != null)
-            {
-                throw new Exception("Email is already in use");
-            }
-               
-
+                if (existingUser != null)
+                {
+                    throw new Exception("Email is already in use");
+                }
 
                 var salt = cryptoService.CreateSalt();
 
@@ -63,6 +65,7 @@ namespace Bursify.Api.Security
                     PasswordHash = cryptoService.HashPassword(password, salt),
                     PasswordSalt = salt,
                     UserType = userType,
+                    AccountStatus = "InActive",
                     RegistrationDate = DateTime.UtcNow
                 };
 
@@ -89,6 +92,71 @@ namespace Bursify.Api.Security
 
             return user;
         }
-    }
 
+
+        public List<BursifyUser> ShowAllUsers()
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return userRepository.LoadAll();
+            }
+        }
+
+        public BursifyUser GetUserInfo(int Id)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return userRepository.LoadById(Id);
+            }
+        }
+
+        public void UpdateUser(BursifyUser user)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                userRepository.Save(user);
+                uow.Commit();
+            }
+        }
+
+        public void UpdateUser(int Id, string accountStatus, ICollection<UserAddress> address, string bio, string cellno, string email, string name, string picPath, string telno)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var user = userRepository.LoadById(Id);
+                user.AccountStatus = accountStatus;
+                user.Addresses = address;
+                user.Biography = bio;
+                user.CellphoneNumber = cellno;
+                user.Email = email;
+                user.Name = name;
+                user.ProfilePicturePath = picPath;
+                user.TelephoneNumber = telno;
+                UpdateUser(user);
+            }
+        }
+
+        public void DeleteUser(BursifyUser user)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                userRepository.Delete(user);
+                uow.Commit();
+            }
+        }
+
+        public void DeleteUserById(int Id)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                userRepository.Delete(Id);
+                uow.Commit();
+            }
+        }
+
+        public List<Campaign> GetCampaigns()
+        {
+            return campaignRepository.GetAllCampaigns();
+        }
+    }
 }

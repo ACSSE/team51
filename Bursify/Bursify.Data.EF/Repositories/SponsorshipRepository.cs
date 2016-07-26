@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Bursify.Data.EF.SponsorUser;
+using Bursify.Data.EF.StudentUser;
 using Bursify.Data.EF.Uow;
+using Bursify.Data.EF.User;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -49,6 +52,11 @@ namespace Bursify.Data.EF.Repositories
            
             return filteredSponsorships;
         }
-        
+
+        public List<Student> GetStudents(int sponsorshipId)
+        {
+            var students = (from s in DbContext.Set<StudentSponsorship>() where s.SponsorshipId == sponsorshipId select s.Student).ToList();
+            return students;
+        }
     }
 }
