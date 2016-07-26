@@ -7,6 +7,7 @@ using Bursify.Data.EF.SponsorUser;
 using Bursify.Data.EF.StudentUser;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.User;
+using Bursify.Data.User;
 
 namespace Bursify.Api.Students
 {
@@ -36,6 +37,7 @@ namespace Bursify.Api.Students
         private readonly SponsorRepository _sponsorRepository;
         private readonly StudentRepository _studentRepository;
         private readonly InstitutionRepository _institutionRepository;
+        private readonly SubjectRepository _subjectRepository;
 
         //bridging entities
         private readonly StudentSponsorshipRepository _studentSponsorshipRepository;
@@ -298,11 +300,6 @@ namespace Bursify.Api.Students
             }
         }
 
-        public void AddStudentSubject(List<StudentSubject> studentSubjects)
-        {
-            _studentSubjectRepository.Save(studentSubjects);
-        }
-
         #endregion
 
         #region School
@@ -322,6 +319,64 @@ namespace Bursify.Api.Students
             {
                 _institutionRepository.Save(institution);
                 uow.Commit();
+            }
+        }
+
+        #endregion
+
+        #region Subject
+
+        public void AddSubject(List<Subject> subjects)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _subjectRepository.Save(subjects);
+
+                uow.Commit();
+            }
+        }
+
+        public void AddSubject(Subject subject)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _subjectRepository.Save(subject);
+
+                uow.Commit();
+            }
+        }
+
+        public void AddStudentSubject(List<StudentSubject> studentSubjects)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _studentSubjectRepository.Save(studentSubjects);
+
+                uow.Commit();
+            }
+        }
+
+        public Subject GetSubject(int subjectId)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _subjectRepository.GetSubject(subjectId);
+            }
+        }
+
+        public List<Subject> GetSubjects()
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _subjectRepository.GetSubjects();
+            }
+        }
+
+        public List<Subject> GetSubjects(string educationLevel)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _subjectRepository.GetSubjects(educationLevel);
             }
         }
 

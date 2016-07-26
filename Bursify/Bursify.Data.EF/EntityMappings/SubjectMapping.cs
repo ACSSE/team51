@@ -19,6 +19,9 @@ namespace Bursify.Data.EF.EntityMappings
                 .HasMaxLength(200)
                 .IsRequired();
 
+            this.Property(x => x.SubjectLevel)
+                .IsRequired();
+
             this.HasMany(x => x.StudentSubjects);
 
             this.HasMany(x => x.Requirements);

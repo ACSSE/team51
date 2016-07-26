@@ -38,17 +38,39 @@ namespace Bursify.Data.EF.Repositories
 
         public List<Sponsorship> FindSponsorships(string criteria)
         {
-            //IEnumerable<Sponsorship> filteredSponsorships = null;
+            List<Sponsorship> filteredSponsorships = null;
 
-             var filteredSponsorships = FindMany(sponsorship =>
-                    sponsorship.Name.ToUpper().Contains(criteria)
-                 || sponsorship.Description.ToUpper().Contains(criteria)
-                 || sponsorship.StudyFields.ToUpper().Contains(criteria)
-                 || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
-                 || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
-           
+            if (criteria.Contains("BURSARY") || criteria.Contains("BURSARIES"))
+            {
+                filteredSponsorships = FindMany(sponsorship =>
+                                        sponsorship.SponsorshipType.ToUpper() == "BURSARY"
+                                     || sponsorship.Name.ToUpper().Contains(criteria)
+                                     || sponsorship.Description.ToUpper().Contains(criteria)
+                                     || sponsorship.StudyFields.ToUpper().Contains(criteria)
+                                     || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
+                                     || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+            }
+            else if (criteria.Contains("SCHOLARSHIP") || criteria.Contains("SCHOLARSHIPS"))
+            {
+                filteredSponsorships = FindMany(sponsorship =>
+                                        sponsorship.SponsorshipType.ToUpper() == "SCHOLARSHIP"
+                                    ||  sponsorship.Name.ToUpper().Contains(criteria)
+                                    ||  sponsorship.Description.ToUpper().Contains(criteria)
+                                    ||  sponsorship.StudyFields.ToUpper().Contains(criteria)
+                                    ||  sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
+                                    ||  sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+            }
+            else
+            {
+                filteredSponsorships = FindMany(sponsorship =>
+                                         sponsorship.Name.ToUpper().Contains(criteria)
+                                     || sponsorship.Description.ToUpper().Contains(criteria)
+                                     || sponsorship.StudyFields.ToUpper().Contains(criteria)
+                                     || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
+                                     || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+            }
+
             return filteredSponsorships;
         }
-        
     }
 }
