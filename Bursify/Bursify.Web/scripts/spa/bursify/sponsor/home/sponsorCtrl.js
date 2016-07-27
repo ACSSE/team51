@@ -7,11 +7,7 @@
 
     function sponsorCtrl($scope, apiService, notificationService) {
         $scope.pageClass = 'page-home-sponsor';
-        $scope.test = test;
-        alert("ey");
-        function test() {
-            alert("ey");
-        }
+        
 
     }
 

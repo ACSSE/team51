@@ -39,10 +39,9 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/Vendors/raphael.js",
                 "~/Scripts/Vendors/morris.js",
                   
-                "~/Scripts/Vendors/jquery.fancybox.js",
-                "~/Scripts/Vendors/jquery.fancybox-media.js",
+           
                 "~/Scripts/Vendors/loading-bar.js",
-              "~/Content/assets/js/jquery.ui.min.js",
+           
                  "~/ Content/assets/js/main.js"
                 ));
 
@@ -94,6 +93,7 @@ namespace Bursify.Web.App_Start
          "~/content/assets/css/style.css",
           "~/content/dist/css/AdminLTE.min.css",
            "~/Content/assets/css/jquery.steps.css",
+            
                  "~/Scripts/Vendors/angular-material.min.css"
            
                 ));

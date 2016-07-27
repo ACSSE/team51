@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('BursifyApp', ['common.core', 'common.ui', 'ngMaterial', 'ngHamburger'])
+    angular.module('BursifyApp', ['common.core', 'common.ui', 'ngMaterial', 'ngHamburger', 'acute.select'])
         .config(config)
         .controller('MainCtrl', function($scope) {
             $scope.tgState = false;
