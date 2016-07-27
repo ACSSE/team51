@@ -17,14 +17,12 @@ namespace Bursify.Data.EF.Repositories
 
             return user;
         }
-
-
+        
         public BursifyUser GetUserByUsername(string userName)
         {
             var user = FindSingle(x => x.Name == userName);
             return user;
         }
-
 
         public void UpdateUser(BursifyUser user)
         {
@@ -35,7 +33,5 @@ namespace Bursify.Data.EF.Repositories
                 Save(oldUser);
             }
         }
-
-
     }
 }

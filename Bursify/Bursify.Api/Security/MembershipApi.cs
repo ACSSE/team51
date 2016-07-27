@@ -8,30 +8,29 @@ namespace Bursify.Api.Security
 {
     public class MembershipApi
     {
-        private readonly BursifyUserRepository userRepository;
-        private readonly IUnitOfWorkFactory unitOfWorkFactory;
-        private readonly ICryptoService cryptoService ;
-        private IUnitOfWorkFactory unityOfWorkFactory;
+        private readonly BursifyUserRepository _userRepository;
+        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        private readonly ICryptoService _cryptoService;
 
         public MembershipApi(BursifyUserRepository userRepository, ICryptoService cryptoService, IUnitOfWorkFactory unitOfWorkFactory)
         {
-            this.userRepository = userRepository;
-            this.cryptoService = cryptoService;
-            this.unitOfWorkFactory = unitOfWorkFactory;
+            this._userRepository = userRepository;
+            this._cryptoService = cryptoService;
+            this._unitOfWorkFactory = unitOfWorkFactory;
         }
 
-       
+
         public bool Login(string userName, string password)
         {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
             {
-                var bursifyUser = userRepository.GetUserByEmail(userName);
+                var bursifyUser = _userRepository.GetUserByEmail(userName);
                 if (bursifyUser == null)
                 {
                     return false;
                 }
 
-                if (isPasswordValid(bursifyUser, password))
+                if (IsPasswordValid(bursifyUser, password))
                 {
                     return true;
                 }
@@ -44,53 +43,48 @@ namespace Bursify.Api.Security
         {
             BursifyUser user = null;
 
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
             {
-                var existingUser = userRepository.GetUserByEmail(userEmail);
-            if (existingUser != null)
-            {
-                return null;
-                //throw new Exception("Email is already in use");
-            }
-               
-
-
-                var salt = cryptoService.CreateSalt();
+                var existingUser = _userRepository.GetUserByEmail(userEmail);
+                if (existingUser != null)
+                {
+                    return null;
+                    //throw new Exception("Email is already in use");
+                }
+                
+                var salt = _cryptoService.CreateSalt();
 
                 user = new BursifyUser
                 {
                     Email = userEmail,
                     Name = username,
-                    PasswordHash = cryptoService.HashPassword(password, salt),
+                    PasswordHash = _cryptoService.HashPassword(password, salt),
                     PasswordSalt = salt,
                     UserType = userType,
                     AccountStatus = "Active",
                     RegistrationDate = DateTime.UtcNow
                 };
 
-                userRepository.Save(user);
+                _userRepository.Save(user);
+
                 uow.Commit();
             }
             return user;
         }
 
 
-        private bool isPasswordValid(BursifyUser user, string password)
+        private bool IsPasswordValid(BursifyUser user, string password)
         {
-            return cryptoService.HashPassword(password, user.PasswordSalt) == user.PasswordHash;
+            return _cryptoService.HashPassword(password, user.PasswordSalt) == user.PasswordHash;
         }
 
         public BursifyUser GetUserByEmail(string email)
         {
-            BursifyUser user = null;
-
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
             {
-                user = userRepository.GetUserByEmail(email);
+                return _userRepository.GetUserByEmail(email);
             }
-
-            return user;
-        }
+       }
     }
 
 }

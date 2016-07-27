@@ -15,7 +15,7 @@ namespace Bursify.Api.Students
     {
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
 
-        public StudentApi(IUnitOfWorkFactory unitOfWorkFactory, AccountRepository accountRepository, CampaignRepository campaignRepository, SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository, StudentRepository studentRepository, InstitutionRepository institutionRepository, StudentSponsorshipRepository studentSponsorshipRepository)
+        public StudentApi(IUnitOfWorkFactory unitOfWorkFactory, AccountRepository accountRepository, CampaignRepository campaignRepository, SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository, StudentRepository studentRepository, InstitutionRepository institutionRepository, StudentSponsorshipRepository studentSponsorshipRepository, SubjectRepository subjectRepository)
         {
             this._unitOfWorkFactory = unitOfWorkFactory;
             _accountRepository = accountRepository;
@@ -24,6 +24,7 @@ namespace Bursify.Api.Students
             _sponsorRepository = sponsorRepository;
             _studentRepository = studentRepository;
             _institutionRepository = institutionRepository;
+            _subjectRepository = subjectRepository;
 
             _studentSponsorshipRepository = studentSponsorshipRepository;
         }
