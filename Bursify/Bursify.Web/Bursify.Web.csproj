@@ -592,8 +592,6 @@
     <Content Include="scripts\spa\services\fileUploadService.js" />
     <Content Include="scripts\spa\services\membershipService.js" />
     <Content Include="scripts\spa\services\notificationService.js" />
-    <Content Include="scripts\vendors\acute.select.css" />
-    <Content Include="scripts\vendors\acute.select.js" />
     <Content Include="scripts\vendors\angucomplete-alt.min.js" />
     <Content Include="scripts\vendors\angular-animate.min.js" />
     <Content Include="scripts\vendors\angular-aria.js" />

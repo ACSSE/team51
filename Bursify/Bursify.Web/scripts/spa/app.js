@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('BursifyApp', ['common.core', 'common.ui', 'ngMaterial', 'ngHamburger', 'acute.select'])
+    angular.module('BursifyApp', ['common.core', 'common.ui', 'ngMaterial', 'ngHamburger'])
         .config(config)
         .controller('MainCtrl', function($scope) {
             $scope.tgState = false;
@@ -58,25 +58,6 @@
         if ($rootScope.repository.loggedUser) {
             $http.defaults.headers.common['Authorization'] = $rootScope.repository.loggedUser.authdata;
         }
-
-        $(document).ready(function () {
-            $(".fancybox").fancybox({
-                openEffect: 'none',
-                closeEffect: 'none'
-            });
-
-            $('.fancybox-media').fancybox({
-                openEffect: 'none',
-                closeEffect: 'none',
-                helpers: {
-                    media: {}
-                }
-            });
-
-            $('[data-toggle=offcanvas]').click(function () {
-                $('.row-offcanvas').toggleClass('active');
-            });
-        });
     }
 
     isAuthenticated.$inject = ['membershipService', '$rootScope', '$location'];

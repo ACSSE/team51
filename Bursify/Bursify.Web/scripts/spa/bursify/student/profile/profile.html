@@ -589,7 +589,6 @@
                                                     <div class="form-group">
                                                         <label>Highest Academic Level Achieved</label>
                                                         <select class="form-control ">
-                                                            <option>Grade 9</option>
                                                             <option>Grade 10</option>
                                                             <option>Grade 11</option>
                                                             <option>Grade 12</option>
@@ -599,26 +598,16 @@
                                                             <option>4th Year</option>
                                                             <option>5th Year</option>
                                                             <option>6th Year</option>
-                                                            <option>Final Year</option>
-                                                            <option>Postgraduate</option>
+                                                            <option>7th Year</option>
+                                                            <option>Postgrad</option>
+                                                            <option>Honours</option>
+                                                            <option>Masters</option>
+
                                                         </select>
 
                                                     </div><!-- /.form-group -->
                                                 </div>
-                                                <div class="col-md-6">
-
-                                                    <label>Where ?</label>
-                                                    <select class="form-control ">
-                                                        <option>UJ</option>
-                                                        <option>Wits</option>
-                                                        <option>UP</option>
-                                                        <option>NMMU</option>
-                                                        <option>NWU</option>
-                                                        <option>UCT</option>
-                                                        <option>UWC</option>
-                                                    </select>
-
-                                                </div>
+                                                
                                                 <div class="col-md-2">
                                                     <label>Year Achieved</label>
                                                     <input type="number" class="form-control" id="exampleInputEmail1" placeholder="20..">
@@ -738,15 +727,14 @@
                                                 </div>
                                             </div>
 
+                                          
 
-
-                                            <div class="row">
-                                                <div class="col-md-9">
-
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <label style="padding-right: 25px;">Add More Subjects</label><span class="fa fa-plus-circle fa-2x"></span>
-                                                </div>
+                                            <div id="space-for-buttons"></div>
+                                            <addbuttonsbutton></addbuttonsbutton>
+                                           
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">Upload copy of the results entered above.</label>
+                                                <input type="file" id="exampleInputFile">
                                             </div>
 
                                             <label>Essay About You</label>
@@ -778,26 +766,25 @@
                                                 <label for="exampleInputFile">Copy of South African ID</label>
                                                 <input type="file" id="exampleInputFile">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputFile">Grade 11 Results (optional)</label>
-                                                <input type="file" id="exampleInputFile">
-                                            </div>
+                                           
                                             <div class="form-group">
                                                 <label for="exampleInputFile">Matric certificate (optional)</label>
                                                 <input type="file" id="exampleInputFile">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputFile">June results (optional)</label>
-                                                <input type="file" id="exampleInputFile">
-                                            </div>
+                                          
                                             <div class="form-group">
                                                 <label for="exampleInputFile">CV (optional)</label>
                                                 <input type="file" id="exampleInputFile">
                                             </div>
 
 
-
-                                            <button type="submit" class="btn btn-success">Save</button>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-animate-checkbox">
+                                                    <input type="checkbox" class="checkbox">
+                                                    <label>I agree to the terms &amp; conditions</label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Submit</button>
 
                                         </div>
 
