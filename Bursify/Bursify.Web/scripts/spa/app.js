@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('BursifyApp', ['common.core', 'common.ui', 'ngMaterial', 'ngHamburger'])
+    angular.module('BursifyApp', ['common.core', 'common.ui', 'ngMaterial', 'ngHamburger', 'md.data.table'])
         .config(config)
         .controller('MainCtrl', function($scope) {
             $scope.tgState = false;
@@ -46,6 +46,10 @@
             }).when("/student/campaigns", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",
                 controller: "campaignsCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
+            }).when("/student/applications", {
+                templateUrl: "scripts/spa/bursify/student/applications/myApplications.html",
+                controller: "myApplicationsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             }).when("/sponsor/chart", {
                 templateUrl: "scripts/spa/bursify/sponsor/chart/leaderboard.html",

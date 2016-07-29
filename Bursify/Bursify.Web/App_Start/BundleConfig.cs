@@ -38,8 +38,9 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/Vendors/underscore.js",
                 "~/Scripts/Vendors/raphael.js",
                 "~/Scripts/Vendors/morris.js",
-                  
-           
+                "~/Scripts/Vendors/md-table.min.js",
+
+
                 "~/Scripts/Vendors/loading-bar.js",
            
                  "~/ Content/assets/js/main.js"
@@ -68,6 +69,7 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/chart/leaderboardCtrl.js",
                 "~/Scripts/spa/bursify/student/sponsorship/sponsorshipCtrl.js",
+                 "~/Scripts/spa/bursify/student/applications/myApplicationsCtrl.js",
                  "~/Scripts/spa/layout/navBar.directive.js",
                    "~/Scripts/spa/layout/spnavBar.directive.js"
 
@@ -90,6 +92,7 @@ namespace Bursify.Web.App_Start
                 "~/content/css/loading-bar.css",
                   "~/Scripts/Vendors/angular-hamburger-toggle.css",
                    "~/Scripts/Vendors/angular-aside.css",
+                    "~/Scripts/Vendors/md-table.min.css",
          "~/content/assets/css/style.css",
           "~/content/dist/css/AdminLTE.min.css",
            "~/Content/assets/css/jquery.steps.css",

@@ -567,6 +567,8 @@
     <Content Include="scripts\spa\bursify\admin\home\adminCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\chart\leaderboard.html" />
     <Content Include="scripts\spa\bursify\sponsor\chart\leaderboardCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\applications\myApplications.html" />
+    <Content Include="scripts\spa\bursify\student\applications\myApplicationsCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\addCampaign.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\addCampaignCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignDetailsCtrl.js" />
@@ -613,6 +615,8 @@
     <Content Include="scripts\vendors\jquery.js" />
     <Content Include="scripts\vendors\jquery.raty.js" />
     <Content Include="scripts\vendors\loading-bar.js" />
+    <Content Include="scripts\vendors\md-table.min.css" />
+    <Content Include="scripts\vendors\md-table.min.js" />
     <Content Include="scripts\vendors\modernizr.js" />
     <Content Include="scripts\vendors\morris.js" />
     <Content Include="scripts\vendors\raphael.js" />

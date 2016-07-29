@@ -1,0 +1,44 @@
+﻿<nav-bar></nav-bar>
+<div id="content">
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <span>My Applications</span>
+        </div>
+    </md-toolbar>
+
+    <!-- exact table from live demo -->
+    <md-table-container>
+        <table md-table multiple ng-model="selected" md-progress="promise">
+            <thead md-head md-order="query.order" md-on-reorder="getApplications">
+                <tr md-row>
+                    <th md-column md-order-by="nameToLower"><span>Sponsorship</span></th>
+                    <th md-column md-numeric md-order-by="nameToLowerC"><span>Company</span></th>
+                    <th md-column md-numeric>Closing Date</th>
+                    <th md-column md-numeric>Date Applied</th>
+                    <th md-column md-numeric>Status</th>
+              
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="application in applications">
+                    <td md-cell>{{application.name}}</td>
+                    <td md-cell>{{application.sponsor}}</td>
+                    <td md-cell>{{application.closing}}</td>
+                    <td md-cell>{{aplication.date}}</td>
+                    <td md-cell>{{application.status}}</td>
+               
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <style>
+        .label {
+            color: black;
+        }
+    </style>
+
+    <md-table-pagination class="md-default" style="font-size: 20px; color: black;" md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+
+
+</div>
