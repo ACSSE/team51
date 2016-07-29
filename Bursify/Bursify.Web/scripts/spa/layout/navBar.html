@@ -51,10 +51,10 @@
                         <hamburger-toggle state="tgState" class="hamburger-toggle" style="color: white;"></hamburger-toggle>
                     </div>
                         <a class="navbar-brand" style="margin-left: 15px; margin-top: 5px">
-                           Bursify
+                           Bursify {{ $rootScope.repository.loggedUser.UserBID}}
                         </a>
                     <ul class="nav navbar-nav navbar-right user-nav">
-                        <li class="user-name"><span>{{User}} <md-icon md-font-icon="fa-user" class="fa md-primary"></md-icon></span></li>
+                        <li class="user-name"><span>{{username}}  <md-icon md-font-icon="fa-user" class="fa md-primary"></md-icon></span></li>
                     
                         
                     </ul>
@@ -75,7 +75,7 @@
                 <li role="presentation"><a href="#">My Report Card <i class="fa fa-university" style="padding-left: 5px; color: crimson"></i></a></li>
                 <li role="presentation"><a href="#/student/campaigns">Campaigns<i class="fa fa-user-plus" style="padding-left: 5px; color: crimson"></i></a></li>
                 <li role="presentation"><a href="#">Sponsors Chart<i class="fa fa-line-chart" style="padding-left: 5px; color: crimson"></i></a></li>
-                <li role="presentation"><a href="#">Sign Out<i class="fa fa-power-off" style="padding-left: 5px; color: crimson"></i></a></li>
+                <li role="presentation"><a href="#/login">Sign Out<i class="fa fa-power-off" style="padding-left: 5px; color: crimson"></i></a></li>
             </ul>
         </div>
 </div>

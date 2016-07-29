@@ -30,11 +30,12 @@
         }
 
         function saveCredentials(user) {
-            var membershipData = $base64.encode(user.useremail + ':' + user.password );
+            var membershipData = $base64.encode(user.Name + ':' + user.password );
             
             $rootScope.repository = {
                 loggedUser: {
-                    useremail: user.useremail,
+                    username: user.Name,
+                    userBID: user.BursifyUserId,
                     authdata: membershipData
                 }
             };
@@ -44,6 +45,7 @@
         }
 
         function removeCredentials() {
+         
             $rootScope.repository = {};
             $cookieStore.remove('repository');
             $http.defaults.headers.common.Authorization = '';

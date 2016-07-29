@@ -7,6 +7,11 @@
 
     function loginCtrl($scope, membershipService, notificationService, $rootScope, $location, apiService) {
         $scope.pageClass = 'page-login';
+        
+        $scope.$watch('viewContentLoaded', function () {
+            membershipService.removeCredentials();
+        });
+
         $scope.login = login;
         $scope.user = {};
 
@@ -26,12 +31,8 @@
 
        
             if (result.data.success) {
-                membershipService.saveCredentials($scope.user);
+              
                 apiService.get('/api/bursifyuser/user/?email=' + $scope.user.useremail, null, loginUserCompleted, null);
-                if ($rootScope.previousState)
-                    $location.path($rootScope.previousState);
-                else
-                    $location.path('/');
 
             }
             else {
@@ -49,19 +50,18 @@
                 $scope.userData.displayUserInfo();
                 notificationService.displaySuccess('Hello ' + $scope.user.Name);
 
-                $rootScope.cssLink = "/Content/Student/css";
                 $rootScope.User = $scope.user.Name;
              
              
 
             } else if ($scope.user.UserType == "Sponsor") {
                 $location.path('/bursify/sponsor/home');
-                $rootScope.cssLink = "/Content/Sponsor/css";
+              
                 $rootScope.User = $scope.user.Name;
 
             } else if ($scope.user.UserType == "Admin") {
                 $location.path('/bursify/admin/home');
-                $rootScope.cssLink = "/Content/Student/css";
+           
                 $rootScope.User = $scope.user.Name;
           
             }

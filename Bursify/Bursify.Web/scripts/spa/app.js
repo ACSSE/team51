@@ -16,7 +16,7 @@
         .defaultIconSet('Content/img/icons/sets/core-icons.svg', 24);
 
         $routeProvider
-            .when("/", {
+            .when("/login", {
                 templateUrl: "scripts/spa/account/login.html",
                 controller: "loginCtrl"
             })
@@ -25,25 +25,32 @@
                 controller: "registerCtrl"
             }).when("/bursify/student/home", {
                 templateUrl: "scripts/spa/bursify/student/home/index.html",
-                controller: "studentCtrl"
+                controller: "studentCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             }).when("/bursify/sponsor/home", {
                 templateUrl: "scripts/spa/bursify/sponsor/home/index.html",
-                controller: "sponsorCtrl"
+                controller: "sponsorCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             }).when("/bursify/admin/home", {
                 templateUrl: "scripts/spa/bursify/admin/home/index.html",
-                controller: "adminCtrl"
+                controller: "adminCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             }).when("/sponsorship/view", {
                 templateUrl: "scripts/spa/bursify/student/sponsorship/index.html",
-                controller: "sponsorshipCtrl"
+                controller: "sponsorshipCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             }).when("/student/profile", {
                 templateUrl: "scripts/spa/bursify/student/profile/profile.html",
-                controller: "studentProfileCtrl"
+                controller: "studentProfileCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             }).when("/student/campaigns", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",
-                controller: "campaignsCtrl"
+                controller: "campaignsCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             }).when("/sponsor/chart", {
                 templateUrl: "scripts/spa/bursify/sponsor/chart/leaderboard.html",
-                controller: "leaderboardCtrl"
+                controller: "leaderboardCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             }).otherwise({ redirectTo: "/" });
 
 
