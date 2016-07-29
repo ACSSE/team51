@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
+using Bursify.Data.EF.StudentUser;
 using Bursify.Data.User;
 using Bursify.Web.Models;
 
@@ -19,6 +20,8 @@ namespace Bursify.Web.Controllers
         {
             _studentApi = studentApi;
         }
+
+        #region Subject
 
         //get all subjects
         [System.Web.Mvc.AllowAnonymous]
@@ -90,8 +93,55 @@ namespace Bursify.Web.Controllers
             var subjectVm = model.MapSingleSubject(newSubject);
 
             var response = request.CreateResponse(HttpStatusCode.Created, subjectVm);
-             
+
             return response;
         }
+
+        #endregion
+
+        #region StudentSubject
+
+        //get all subjects for a student
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetAllStudentSubjects")]
+        public HttpResponseMessage GetAllStudentSubjects(HttpRequestMessage request, int studentId)
+        {
+            var subjects = _studentApi.GetAllSubjects(studentId);
+
+            var model = new SubjectViewModel();
+
+            var subjectVm = model.MapMultipleStudentSubjects(subjects);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, subjectVm);
+
+            return response;
+        }
+
+        //add a subject for a student
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("PostStudentSubject")]
+        public HttpResponseMessage PostStudentSubject(HttpRequestMessage request, SubjectViewModel studentSubject)
+        {
+            var newStudentSubject = new StudentSubject()
+            {
+                StudentId = studentSubject.StudentId,
+                SubjectId = studentSubject.SubjectId,
+                MarkAcquired = studentSubject.MarkAcquired
+            };
+
+            _studentApi.AddStudentSubject(newStudentSubject);
+
+            var model = new SubjectViewModel();
+
+            var subjectVm = model.MapSingleStudentSubject(newStudentSubject);
+
+            var response = request.CreateResponse(HttpStatusCode.Created, subjectVm);
+
+            return response;
+        }
+
+        #endregion
     }
 }

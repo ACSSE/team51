@@ -26,6 +26,7 @@ namespace Bursify.Data.EF.StudentUser
         public string Race { get; set; }
         public string Gender { get; set; }
         public string CurrentOccupation { get; set; }
+        public string StudyField { get; set; }
         public string HighestAcademicAchievement { get; set; }
         public long YearOfAcademicAchievement { get; set; }
         public DateTime DateOfBirth { get; set; }

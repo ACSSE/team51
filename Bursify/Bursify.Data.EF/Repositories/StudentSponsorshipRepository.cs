@@ -15,30 +15,13 @@ namespace Bursify.Data.EF.Repositories
             _dataSession = dataSession;
         }
 
-        public void ApplyForSponsorship(int userId, int sponsorshipId)
+        
+
+        public StudentSponsorship GetStudentSponsorship(int studentId, int sponsorshipId)
         {
-            var newApplication = new StudentSponsorship()
-            {
-                StudentId = userId,
-                SponsorshipId = sponsorshipId,
-                ApplicationDate = DateTime.UtcNow,
-                SponsorshipConfirmed = "No"
-            };
-
-            Save(newApplication);
-        }
-
-        public bool ConfirmSponsorship(int userId, int sponsorshipId, string confirmationMessage)
-        {
-            var application = FindSingle(sponsorship => sponsorship.ID == sponsorshipId);
-
-            if (application == null) { return false; }
-
-            application.SponsorshipConfirmed = confirmationMessage;
-
-            Save(application);
-
-            return true;
+            return
+                FindSingle(
+                    sponsorship => sponsorship.StudentId == studentId && sponsorship.SponsorshipId == sponsorshipId);
         }
 
         public List<StudentSponsorship> GetApplications(int userId)

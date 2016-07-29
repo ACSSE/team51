@@ -47,6 +47,9 @@ namespace Bursify.Data.EF.EntityMappings
                 .HasMaxLength(100)
                 .IsOptional();
 
+            this.Property(x => x.StudyField)
+                .IsOptional();
+
             this.Property(x => x.HighestAcademicAchievement)
                 .HasMaxLength(50)
                 .IsOptional();

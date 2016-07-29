@@ -9,15 +9,18 @@ namespace Bursify.Web.Models
     {
         #region Variables
 
-        //Subject model
+        //entry Id
         public int ID { get; set; }
+
+        //subject model plus the ID
         public string Name { get; set; }
         public string SubjectLevel { get; set; }
 
-        //StudentSubject model
-        public int EntryID { get; set; }
+        //StudentSubject model plus the ID
+        //public int EntryID { get; set; }
         public int StudentId { get; set; }
         public int SubjectId { get; set; }
+        public int MarkAcquired { get; set; }
 
         #endregion
 

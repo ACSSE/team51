@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.User;
@@ -9,16 +10,17 @@ namespace Bursify.Api.Security
     public class MembershipApi
     {
         private readonly BursifyUserRepository _userRepository;
+        private readonly UserAddressRepository _addressRepository;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly ICryptoService _cryptoService;
 
-        public MembershipApi(BursifyUserRepository userRepository, ICryptoService cryptoService, IUnitOfWorkFactory unitOfWorkFactory)
+        public MembershipApi(BursifyUserRepository userRepository, UserAddressRepository addressRepository, ICryptoService cryptoService, IUnitOfWorkFactory unitOfWorkFactory)
         {
-            this._userRepository = userRepository;
-            this._cryptoService = cryptoService;
-            this._unitOfWorkFactory = unitOfWorkFactory;
+            _userRepository = userRepository;
+            _addressRepository = addressRepository;
+            _cryptoService = cryptoService;
+            _unitOfWorkFactory = unitOfWorkFactory;
         }
-
 
         public bool Login(string userName, string password)
         {
@@ -51,7 +53,7 @@ namespace Bursify.Api.Security
                     return null;
                     //throw new Exception("Email is already in use");
                 }
-                
+
                 var salt = _cryptoService.CreateSalt();
 
                 user = new BursifyUser
@@ -72,7 +74,6 @@ namespace Bursify.Api.Security
             return user;
         }
 
-
         private bool IsPasswordValid(BursifyUser user, string password)
         {
             return _cryptoService.HashPassword(password, user.PasswordSalt) == user.PasswordHash;
@@ -84,7 +85,42 @@ namespace Bursify.Api.Security
             {
                 return _userRepository.GetUserByEmail(email);
             }
-       }
-    }
+        }
 
+        public void UpdateUser(BursifyUser user)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _userRepository.Save(user);
+
+                uow.Commit();
+            }
+        }
+
+        public void SaveUserAddress(UserAddress address)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _addressRepository.Save(address);
+
+                uow.Commit();
+            }
+        }
+
+        public UserAddress GetUserAddress(int userId, string addressType)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _addressRepository.GetUserAddress(userId, addressType);
+            }
+        }
+
+        public List<UserAddress> GetUserAddresses(int userId)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _addressRepository.GetAllUserAddress(userId);
+            }
+        }
+    }
 }

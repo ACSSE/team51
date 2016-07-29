@@ -1,4 +1,5 @@
-﻿using Bursify.Data.EF.CampaignUser;
+﻿using System.Collections.Generic;
+using Bursify.Data.EF.CampaignUser;
 using Bursify.Data.EF.Uow;
 
 namespace Bursify.Data.EF.Repositories
@@ -12,6 +13,11 @@ namespace Bursify.Data.EF.Repositories
         public Account GetAccount(int id)
         {
             return FindSingle(account => account.ID == id);
+        }
+
+        public List<Account> GetAllAccounts()
+        {
+            return LoadAll();
         }
     }
 }
