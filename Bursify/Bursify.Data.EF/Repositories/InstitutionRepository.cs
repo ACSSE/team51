@@ -11,7 +11,7 @@ namespace Bursify.Data.EF.Repositories
 
         public Institution GetInstitution(int id)
         {
-            return FindSingle(institution => institution.StudentId == id);
+            return FindSingle(institution => institution.ID == id);
         }
     }
 }

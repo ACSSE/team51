@@ -10,9 +10,9 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("Campaign", "dbo");
 
-            this.HasKey(x => x.CampaignId);
+            this.HasKey(x => x.ID);
 
-            this.Property(x => x.CampaignId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(x => x.StudentId)
                 .IsRequired();
@@ -60,6 +60,9 @@ namespace Bursify.Data.EF.EntityMappings
                 .IsRequired();
 
             this.Property(x => x.ReasonsToSupport)
+                .IsOptional();
+
+            this.Property(x => x.NumberOfUpVotes)
                 .IsOptional();
 
             this.HasMany(x => x.CampaignSponsors);

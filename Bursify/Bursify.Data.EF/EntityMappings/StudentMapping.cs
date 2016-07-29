@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Bursify.Data.EF.StudentUser;
-using Bursify.Data.StudentUser;
+﻿using Bursify.Data.EF.StudentUser;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Bursify.Data.EF.EntityMappings
@@ -11,9 +9,9 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("Student", "dbo");
 
-            this.HasKey(x => x.BursifyUserId);
+            this.HasKey(x => x.ID);
 
-            this.Property(x => x.BursifyUserId)
+            this.Property(x => x.ID)
                 .HasDatabaseGeneratedOption(0);
 
             this.Property(x => x.Surname)
@@ -57,6 +55,9 @@ namespace Bursify.Data.EF.EntityMappings
                 .IsOptional();
 
             this.Property(x => x.DateOfBirth)
+                .IsOptional();
+
+            this.Property(x => x.NumberOfViews)
                 .IsOptional();
 
             this.HasRequired(x => x.BursifyUser);

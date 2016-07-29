@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bursify.Data.EF.User;
 
 namespace Bursify.Data.EF.EntityMappings
@@ -14,7 +10,7 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("CampaignSponsor", "dbo");
 
-            this.HasKey(x => new {x.CampaignId, x.SponsorId});
+            this.HasKey(x => new { x.CampaignId, x.SponsorId });
 
             this.Property(x => x.CampaignId)
                 .IsRequired();

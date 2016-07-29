@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Bursify.Data.EF.CampaignUser;
 using Bursify.Data.EF.SponsorUser;
 using Bursify.Data.EF.User;
-using Bursify.Data.User;
 
 namespace Bursify.Data.EF.StudentUser
 {
@@ -12,10 +11,12 @@ namespace Bursify.Data.EF.StudentUser
         public Student()
         {
             Campaigns = new List<Campaign>();
-            Sponsorships = new List<Sponsorship>();
+            //Sponsorships = new List<Sponsorship>();
         }
 
-        public int BursifyUserId { get; set; }
+        //unique identifier
+        //foreign key
+        public int ID { get; set; }
         public string Surname { get; set; }
         public string EducationLevel { get; set; }
         public int AverageMark { get; set; }
@@ -28,16 +29,12 @@ namespace Bursify.Data.EF.StudentUser
         public string HighestAcademicAchievement { get; set; }
         public long YearOfAcademicAchievement { get; set; }
         public DateTime DateOfBirth { get; set; }
-        
-        public int Id
-        {
-            get { return BursifyUserId; }
-        }
+        public int NumberOfViews { get; set; }
 
         public virtual BursifyUser BursifyUser { get; set; }    //required
         public virtual ICollection<Campaign> Campaigns { get; set; }
         public virtual Institution Institution { get; set; }
-        public virtual ICollection<Sponsorship> Sponsorships { get; set; }
+        //public virtual ICollection<Sponsorship> Sponsorships { get; set; }
         public ICollection<StudentSubject> StudentSubjects { get; set; } 
         public ICollection<StudentSponsorship> StudentSponsorships { get; set; } 
     }

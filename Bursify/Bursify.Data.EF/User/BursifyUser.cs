@@ -14,7 +14,7 @@ namespace Bursify.Data.EF.User
             //Sponsors = new List<Sponsor>();
         }
 
-        public int BursifyUserId { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
@@ -26,11 +26,6 @@ namespace Bursify.Data.EF.User
         public string CellphoneNumber { get; set; }
         public string TelephoneNumber { get; set; }
         public string ProfilePicturePath { get; set; }
-
-        public int Id
-        {
-            get { return BursifyUserId; }
-        }
 
         public virtual ICollection<UserAddress> Addresses { get; set; }
         public virtual Sponsor Sponsor { get; set; }

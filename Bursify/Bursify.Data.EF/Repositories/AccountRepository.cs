@@ -11,7 +11,7 @@ namespace Bursify.Data.EF.Repositories
 
         public Account GetAccount(int id)
         {
-            return FindSingle(accId => accId.CampaignId == id);
+            return FindSingle(account => account.ID == id);
         }
     }
 }

@@ -10,15 +10,18 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("Sponsorship", "dbo");
 
-            this.HasKey(x => x.SponsorshipId);
+            this.HasKey(x => x.ID);
 
-            this.Property(x => x.SponsorshipId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(x => x.SponsorId)
                .IsRequired();
 
             this.Property(x => x.Name)
                 .HasMaxLength(500)
+                .IsRequired();
+
+            this.Property(x => x.SponsorshipType)
                 .IsRequired();
 
             this.Property(x => x.Description)
@@ -57,6 +60,9 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.TermsAndConditions)
                 .IsRequired();
+
+            this.Property(x => x.NumberOfViews)
+                .IsOptional();
 
             this.HasRequired(x => x.Sponsor)
                 .WithMany(s => s.Sponsorhips)

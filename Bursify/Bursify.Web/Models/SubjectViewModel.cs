@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Bursify.Data.User;
+﻿using Bursify.Data.User;
 
 namespace Bursify.Web.Models
 {
@@ -13,7 +9,7 @@ namespace Bursify.Web.Models
 
         public SubjectViewModel(Subject subject)
         {
-            SubjectId = subject.SubjectId;
+            SubjectId = subject.ID;
             Name = subject.Name;
         }
     }

@@ -18,13 +18,13 @@ namespace Bursify.Data.EF.Repositories
         public Campaign GetCampaign(int campaignId)
         {
             return FindSingle(campaign =>
-                campaign.CampaignId == campaignId);
+                campaign.ID == campaignId);
         }
 
         public Campaign GetCampaign(int campaignId, int userId)
         {
             return FindSingle(id => 
-                    id.CampaignId == campaignId
+                    id.ID == campaignId
                  && id.StudentId == userId);
         }
 
@@ -47,6 +47,15 @@ namespace Bursify.Data.EF.Repositories
                                 campaign.StudentId == userId);
 
             return userCampaigns;
+        }
+
+        public Campaign EndorseCampaign(int id)
+        {
+            var campaignEndorsement = FindSingle(campaign => campaign.ID == id);
+
+            campaignEndorsement.NumberOfUpVotes += 1;
+
+            return campaignEndorsement;
         }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Bursify.Data.EF.StudentUser;
 
 namespace Bursify.Web.Models
@@ -25,7 +22,7 @@ namespace Bursify.Web.Models
 
         public StudentViewModel(Student student)
         {
-            BursifyUserId = student.BursifyUserId;
+            BursifyUserId = student.ID;
             Surname = student.Surname;
             EducationLevel = student.EducationLevel;
             AverageMark = student.AverageMark;

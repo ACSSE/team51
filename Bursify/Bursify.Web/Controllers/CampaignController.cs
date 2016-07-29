@@ -1,14 +1,9 @@
-﻿using System;
-using Bursify.Web.Models;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Bursify.Web.Models;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
 using Bursify.Api.Students;
 using Bursify.Data.EF.CampaignUser;
-using Bursify.Data.EF.Uow;
 
 namespace Bursify.Web.Controllers
 {
@@ -115,7 +110,7 @@ namespace Bursify.Web.Controllers
         {
             var newCampaign = new Campaign
             {
-                CampaignId = campaign.CampaignId,
+                ID = campaign.CampaignId,
                 StudentId = campaign.StudentId,
                 CampaignName = campaign.CampaignName,
                 Tagline = campaign.Tagline,
@@ -137,8 +132,6 @@ namespace Bursify.Web.Controllers
             var model = new CampaignViewModel();
 
             var campaignVm = model.SingleCampaignMap(newCampaign);
-
-            _studentApi.SaveCampaign(campaignVm);
 
             var response = request.CreateResponse(HttpStatusCode.Created, campaignVm);
 

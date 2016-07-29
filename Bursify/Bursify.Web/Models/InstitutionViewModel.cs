@@ -11,7 +11,7 @@ namespace Bursify.Web.Models
 
         public InstitutionViewModel(Institution institution)
         {
-            StudentId = institution.StudentId;
+            StudentId = institution.ID;
             Name = institution.Name;
             Type = institution.Type;
             Website = institution.Website;

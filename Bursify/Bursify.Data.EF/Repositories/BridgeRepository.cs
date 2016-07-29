@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using Bursify.Data.EF.Uow;
 
 //not sure if works but used to handle bridging table queries
@@ -44,9 +46,16 @@ namespace Bursify.Data.EF.Repositories
             ObjectContext.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
         }
 
-        private TEntity LoadByIds(int leftId, int rightId)
+        public TEntity LoadByIds(int leftId, int rightId)
         {
             TEntity entity = DbContext.Set<TEntity>().Find(leftId, rightId);
+            return entity;
+        }
+
+        //try this one if other doesnt works
+        public TEntity LoadByCompositeIds(int leftId, int rightId)
+        {
+            TEntity entity = DbContext.Set<TEntity>().Where(x => x.leftId == leftId && x.rightId == rightId);
             return entity;
         }
 
@@ -79,6 +88,20 @@ namespace Bursify.Data.EF.Repositories
             {
                 Delete(entity);
             }
+        }
+
+        public TEntity FindSingle(Expression<Func<TEntity, bool>> predicate)
+        {
+            TEntity entity = DbContext.Set<TEntity>().FirstOrDefault(predicate);
+
+            return entity;
+        }
+
+        public List<TEntity> FindMany(Expression<Func<TEntity, bool>> predicate)
+        {
+            List<TEntity> entities = DbContext.Set<TEntity>().Where(predicate).ToList();
+
+            return entities;
         }
 
         protected string GetEntitySetName<T>()

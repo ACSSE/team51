@@ -88,25 +88,46 @@
     <Compile Include="Enums\CampaignType.cs" />
     <Compile Include="Enums\SponsorshipType.cs" />
     <Compile Include="Enums\UserType.cs" />
+<<<<<<< HEAD
+    <Compile Include="IBridgeEntity.cs" />
+    <Compile Include="Migrations\201607211653127_initial.cs" />
+    <Compile Include="Migrations\201607211653127_initial.Designer.cs">
+      <DependentUpon>201607211653127_initial.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\201607242157292_initial.cs" />
+    <Compile Include="Migrations\201607242157292_initial.Designer.cs">
+      <DependentUpon>201607242157292_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607242305105_initial1.cs" />
+    <Compile Include="Migrations\201607242305105_initial1.Designer.cs">
+      <DependentUpon>201607242305105_initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607251437298_initial2.cs" />
+    <Compile Include="Migrations\201607251437298_initial2.Designer.cs">
+      <DependentUpon>201607251437298_initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607252148281_initial3.cs" />
+    <Compile Include="Migrations\201607252148281_initial3.Designer.cs">
+      <DependentUpon>201607252148281_initial3.cs</DependentUpon>
+>>>>>>> 0adc05ba7460155f50bffbe73de088011b7e8552
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
-    <Compile Include="Repositories\BursifyUserRepository.cs" />
-    <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Repositories\SponsorRepository.cs" />
-=======
     <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\BridgeRepository.cs" />
+    <Compile Include="Repositories\BursifyUserRepository.cs" />
     <Compile Include="Repositories\CampaignRepository.cs" />
     <Compile Include="Repositories\InstitutionRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SponsorRepository.cs" />
     <Compile Include="Repositories\SponsorshipRepository.cs" />
->>>>>>> 94f5493f0d95d31fdf0e80a90da192a09db9abd1
     <Compile Include="Repositories\StudentRepository.cs" />
+    <Compile Include="Repositories\StudentSponsorshipRepository.cs" />
+    <Compile Include="Repositories\StudentSubjectRepository.cs" />
+    <Compile Include="Repositories\SubjectRepository.cs" />
     <Compile Include="SponsorUser\Sponsor.cs" />
     <Compile Include="SponsorUser\Sponsorship.cs" />
     <Compile Include="SponsorUser\SponsorshipRequirement.cs" />
-    <Compile Include="StudentUser\SchoolType.cs" />
     <Compile Include="StudentUser\Student.cs" />
     <Compile Include="StudentUser\StudentSubject.cs" />
     <Compile Include="Uow\DatabaseConfiguration.cs" />
@@ -129,7 +150,20 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201607242157292_initial.resx">
+      <DependentUpon>201607242157292_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607242305105_initial1.resx">
+      <DependentUpon>201607242305105_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607251437298_initial2.resx">
+      <DependentUpon>201607251437298_initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607252148281_initial3.resx">
+      <DependentUpon>201607252148281_initial3.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

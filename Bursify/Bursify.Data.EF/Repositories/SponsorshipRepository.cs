@@ -21,7 +21,7 @@ namespace Bursify.Data.EF.Repositories
 
         public List<Sponsorship> GetAllSponsorships(string type)
         {
-            throw new NotImplementedException();
+            return FindMany(sponsorship => sponsorship.SponsorshipType.ToUpper().Equals(type.ToUpper()));
         }
 
         public List<Sponsorship> GetAllSponsorships(int sponsorId)
@@ -31,32 +31,56 @@ namespace Bursify.Data.EF.Repositories
 
         public Sponsorship GetSponsorship(int id, int sponsorId)
         {
-            return FindSingle(sponsorship => sponsorship.SponsorshipId == id && sponsorship.SponsorId == sponsorId);
+            return FindSingle(sponsorship => sponsorship.ID == id && sponsorship.SponsorId == sponsorId);
         }
 
         public Sponsorship GetSponsorship(int id)
         {
-            return FindSingle(sponsorship => sponsorship.SponsorshipId == id);
+            return FindSingle(sponsorship => sponsorship.ID == id);
         }
 
         public List<Sponsorship> FindSponsorships(string criteria)
         {
-            //IEnumerable<Sponsorship> filteredSponsorships = null;
+            List<Sponsorship> filteredSponsorships = null;
 
-             var filteredSponsorships = FindMany(sponsorship =>
-                    sponsorship.Name.ToUpper().Contains(criteria)
-                 || sponsorship.Description.ToUpper().Contains(criteria)
-                 || sponsorship.StudyFields.ToUpper().Contains(criteria)
-                 || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
-                 || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
-           
+            if (criteria.Contains("BURSARY") || criteria.Contains("BURSARIES"))
+            {
+                filteredSponsorships = FindMany(sponsorship =>
+                                        sponsorship.SponsorshipType.ToUpper() == "BURSARY"
+                                     || sponsorship.Name.ToUpper().Contains(criteria)
+                                     || sponsorship.Description.ToUpper().Contains(criteria)
+                                     || sponsorship.StudyFields.ToUpper().Contains(criteria)
+                                     || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
+                                     || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+            }
+            else if (criteria.Contains("SCHOLARSHIP") || criteria.Contains("SCHOLARSHIPS"))
+            {
+                filteredSponsorships = FindMany(sponsorship =>
+                                        sponsorship.SponsorshipType.ToUpper() == "SCHOLARSHIP"
+                                    ||  sponsorship.Name.ToUpper().Contains(criteria)
+                                    ||  sponsorship.Description.ToUpper().Contains(criteria)
+                                    ||  sponsorship.StudyFields.ToUpper().Contains(criteria)
+                                    ||  sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
+                                    ||  sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+            }
+            else
+            {
+                filteredSponsorships = FindMany(sponsorship =>
+                                         sponsorship.Name.ToUpper().Contains(criteria)
+                                     || sponsorship.Description.ToUpper().Contains(criteria)
+                                     || sponsorship.StudyFields.ToUpper().Contains(criteria)
+                                     || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
+                                     || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+            }
+
             return filteredSponsorships;
         }
 
-        public List<Student> GetStudents(int sponsorshipId)
-        {
-            var students = (from s in DbContext.Set<StudentSponsorship>() where s.SponsorshipId == sponsorshipId select s.Student).ToList();
-            return students;
-        }
+        //moved to studentSponsor repo
+        //public List<Student> GetStudents(int sponsorshipId)
+        //{
+        //    var students = (from s in DbContext.Set<StudentSponsorship>() where s.SponsorshipId == sponsorshipId select s.Student).ToList();
+        //    return students;
+        //}
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Bursify.Data.EF.StudentUser;
+﻿using Bursify.Data.EF.StudentUser;
 
 namespace Bursify.Web.Models
 {

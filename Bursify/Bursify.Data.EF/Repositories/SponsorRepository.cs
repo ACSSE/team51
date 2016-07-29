@@ -20,7 +20,7 @@ namespace Bursify.Data.EF.Repositories
 
         public Sponsor GetSponsor(int id)
         {
-            return FindSingle(sponsorId => sponsorId.BursifyUserId == id);
+            return FindSingle(sponsorId => sponsorId.ID == id);
         }
          
         public List<Sponsor> GetTop10Sponsors()

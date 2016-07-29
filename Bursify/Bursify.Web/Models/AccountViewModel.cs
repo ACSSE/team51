@@ -13,7 +13,7 @@ namespace Bursify.Web.Models
 
         public AccountViewModel(Account account)
         {
-            CampaignId = account.CampaignId;
+            CampaignId = account.ID;
             AccountName = account.AccountName;
             AccountNumber = account.AccountNumber;
             BankName = account.BankName;
