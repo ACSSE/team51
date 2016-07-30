@@ -116,7 +116,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("SaveSponsorship")]
-        public HttpResponseMessage SaveCampaign(HttpRequestMessage request, SponsorshipViewModel sponsorship)
+        public HttpResponseMessage SaveSponsorship(HttpRequestMessage request, SponsorshipViewModel sponsorship)
         {
             var newSponsorship = new Sponsorship()
             {

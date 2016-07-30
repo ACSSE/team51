@@ -15,13 +15,12 @@ namespace Bursify.Data.EF.Repositories
             _dataSession = dataSession;
         }
 
-        
-
         public StudentSponsorship GetStudentSponsorship(int studentId, int sponsorshipId)
         {
             return
-                FindSingle(
-                    sponsorship => sponsorship.StudentId == studentId && sponsorship.SponsorshipId == sponsorshipId);
+                FindSingle(sponsorship => 
+                    sponsorship.StudentId == studentId 
+                &&  sponsorship.SponsorshipId == sponsorshipId);
         }
 
         public List<StudentSponsorship> GetApplications(int userId)

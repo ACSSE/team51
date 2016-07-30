@@ -82,15 +82,17 @@ namespace Bursify.Data.EF.Repositories
             var sponsorshipList = FindMany(sponsorship =>
                (sponsorship.EducationLevel == student.EducationLevel));
 
+            //get sponsorships with the student's study field
             var studyFieldList = sponsorshipList.Where(sponsorship => sponsorship.StudyFields.ToUpper().Contains(student.StudyField.ToUpper())).ToList();
 
+            //from sponsorships with the student's study field
+            //get sponsorships whereby the student qualifies with the average mark
             var averageMarkList = studyFieldList.Where(sponsorship => sponsorship.AverageMarkRequired > 0).ToList();
             
             //utility
             var studentSubjects = student.StudentSubjects.ToList();
-            var subjectQualifies = false;
 
-            //hope there is a better way
+
             //utility
             var subjectList = studyFieldList.Where(sponsorship => !averageMarkList.Contains(sponsorship)).ToList();
             
@@ -102,22 +104,28 @@ namespace Bursify.Data.EF.Repositories
 
                 foreach (var sponsorshipSubject in sponsorshipSubjects)
                 {
+                    var subjectCounter = 0;
+
                     foreach (var studentSubject in studentSubjects)
                     {
                         if (sponsorshipSubject.SubjectId != studentSubject.SubjectId) continue;
 
-                        subjectQualifies = studentSubject.MarkAcquired >= sponsorshipSubject.RequiredMark;
+                        var subjectQualifies = studentSubject.MarkAcquired >= sponsorshipSubject.RequiredMark;
+
+                        if (subjectQualifies)
+                        {
+                            subjectCounter++;
+                        }
                     }
 
-                    if (subjectQualifies)
-                    {
+                    if (subjectCounter == studentSubjects.Count)
+                    {    
                         filteredSubjectlist.Add(sponsorship);   
                     }
                 }
             }
 
             var finalList = (averageMarkList.ToList().Concat(filteredSubjectlist.ToList())).ToList();
-
 
             return finalList;
         }
