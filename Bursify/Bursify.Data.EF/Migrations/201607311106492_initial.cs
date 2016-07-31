@@ -68,9 +68,14 @@ namespace Bursify.Data.EF.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false),
-                        NumberOfStudentsSponsored = c.Int(nullable: false),
-                        NumberOfSponsorships = c.Int(nullable: false),
-                        NumberOfApplicants = c.Int(nullable: false),
+                        Type = c.String(nullable: false),
+                        OrganisationSize = c.String(nullable: false),
+                        Website = c.String(),
+                        YearFounded = c.String(nullable: false),
+                        Location = c.String(nullable: false),
+                        NumberOfStudentsSponsored = c.Int(),
+                        NumberOfSponsorships = c.Int(),
+                        NumberOfApplicants = c.Int(),
                         BursifyRank = c.Int(),
                         BursifyScore = c.Int(),
                     })
@@ -131,6 +136,7 @@ namespace Bursify.Data.EF.Migrations
                         Race = c.String(maxLength: 50),
                         Gender = c.String(maxLength: 50),
                         CurrentOccupation = c.String(maxLength: 100),
+                        StudyField = c.String(),
                         HighestAcademicAchievement = c.String(maxLength: 50),
                         YearOfAcademicAchievement = c.Long(),
                         DateOfBirth = c.DateTime(),
@@ -199,6 +205,7 @@ namespace Bursify.Data.EF.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 200),
+                        SubjectLevel = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -225,6 +232,8 @@ namespace Bursify.Data.EF.Migrations
                         StudentId = c.Int(nullable: false),
                         SponsorshipId = c.Int(nullable: false),
                         ApplicationDate = c.DateTime(nullable: false),
+                        IsSponsorshipOfferd = c.Boolean(nullable: false),
+                        SponsorshipConfirmed = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Sponsorship", t => t.SponsorshipId, cascadeDelete: true)

@@ -10,6 +10,7 @@ namespace Bursify.Data.EF.User
         public int StudentId { get; set; }
         public int SponsorshipId { get; set; }
         public DateTime ApplicationDate { get; set; }
+        public bool IsSponsorshipOfferd { get; set; } 
         public string SponsorshipConfirmed { get; set; }
 
         public virtual Student Student { get; set; }

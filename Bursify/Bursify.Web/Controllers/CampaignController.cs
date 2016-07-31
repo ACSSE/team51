@@ -146,5 +146,59 @@ namespace Bursify.Web.Controllers
         {
             return null;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetCampaignAccount")]
+        public HttpResponseMessage GetCampaignAccount(HttpRequestMessage request, int campaignId)
+        {
+            var account = _studentApi.GetCampaignAccount(campaignId);
+
+            var model = new AccountViewModel();
+
+            var accountVm = model.MapCamapignAccount(account);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, accountVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SaveCampaignAccount")]
+        public HttpResponseMessage SaveCampaignAccount(HttpRequestMessage request, AccountViewModel account)
+        {
+            var newAccount = new Account()
+            {
+                ID = account.ID,
+                AccountName = account.AccountName,
+                AccountNumber = account.AccountNumber,
+                BankName = account.BankName,
+                BranchName = account.BranchName,
+                BranchCode = account.BranchCode
+            };
+
+            _studentApi.SaveCampaignAccount(newAccount);
+
+            var model = new AccountViewModel();
+
+            var accountVm = model.MapCamapignAccount(newAccount);
+
+            var response = request.CreateResponse(HttpStatusCode.Created, accountVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("EndorseCampaign")]
+        public HttpResponseMessage EndorseCampaign(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.EndorseCampaign(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaign);
+
+            return response;
+        }
     }
 }

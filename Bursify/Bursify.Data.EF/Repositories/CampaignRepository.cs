@@ -49,9 +49,9 @@ namespace Bursify.Data.EF.Repositories
             return userCampaigns;
         }
 
-        public Campaign EndorseCampaign(int id)
+        public Campaign EndorseCampaign(int campaignId)
         {
-            var campaignEndorsement = FindSingle(campaign => campaign.ID == id);
+            var campaignEndorsement = FindSingle(campaign => campaign.ID == campaignId);
 
             campaignEndorsement.NumberOfUpVotes += 1;
 

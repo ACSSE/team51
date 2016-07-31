@@ -15,9 +15,7 @@ namespace Bursify.Web.Models
         //subject model plus the ID
         public string Name { get; set; }
         public string SubjectLevel { get; set; }
-
-        //StudentSubject model plus the ID
-        //public int EntryID { get; set; }
+        
         public int StudentId { get; set; }
         public int SubjectId { get; set; }
         public int MarkAcquired { get; set; }
@@ -49,7 +47,7 @@ namespace Bursify.Web.Models
         {
             return new StudentSubject()
             {
-                ID = studentSubject.StudentId,
+                ID = studentSubject.ID,
                 StudentId = studentSubject.StudentId,
                 SubjectId = studentSubject.SubjectId,
                 MarkAcquired = studentSubject.MarkAcquired

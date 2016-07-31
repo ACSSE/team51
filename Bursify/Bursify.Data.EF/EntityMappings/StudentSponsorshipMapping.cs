@@ -24,6 +24,9 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.ApplicationDate)
                 .IsRequired();
 
+            this.Property(x => x.IsSponsorshipOfferd)
+                .IsRequired();
+
             this.Property(x => x.SponsorshipConfirmed)
                 .IsRequired();
 

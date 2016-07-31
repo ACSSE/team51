@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Bursify.Data.EF.User;
 
 namespace Bursify.Web.Models
@@ -18,20 +20,28 @@ namespace Bursify.Web.Models
         public string TelephoneNumber { get; set; }
         public string ProfilePicturePath { get; set; }
 
-        public BursifyUserViewModel(BursifyUser user)
+        public BursifyUser MapSingleBursifyUser(BursifyUser user)
         {
-            BursifyUserId = user.ID;
-            Name = user.Name;
-            Email = user.Email;
-            PasswordHash = user.PasswordHash;
-            PasswordSalt = user.PasswordSalt;
-            AccountStatus = user.AccountStatus;
-            UserType = user.UserType;
-            RegistrationDate = user.RegistrationDate;
-            Biography = user.Biography;
-            CellphoneNumber = user.CellphoneNumber;
-            TelephoneNumber = user.TelephoneNumber;
-            ProfilePicturePath = user.ProfilePicturePath;
+            return new BursifyUser()
+            {
+                ID = user.ID,
+                Name = user.Name,
+                Email = user.Email,
+                PasswordHash = user.PasswordHash,
+                PasswordSalt = user.PasswordSalt,
+                AccountStatus = user.AccountStatus,
+                UserType = user.UserType,
+                RegistrationDate = user.RegistrationDate,
+                Biography = user.Biography,
+                CellphoneNumber = user.CellphoneNumber,
+                TelephoneNumber = user.TelephoneNumber,
+                ProfilePicturePath = user.ProfilePicturePath
+            };
+        }
+
+        public List<BursifyUser> MapMultipleBursifyUsers(List<BursifyUser> bursifyUsers)
+        {
+            return (from user in bursifyUsers select MapSingleBursifyUser(user)).ToList();
         }
     }
 }

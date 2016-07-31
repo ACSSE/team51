@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Bursify.Data.EF.StudentUser;
 
 namespace Bursify.Web.Models
@@ -43,6 +45,9 @@ namespace Bursify.Web.Models
             };
         }
 
-        
+        public List<Student> MapMultipleStudents(List<Student> students)
+        {
+            return (from student in students select MapSingleStudent(student)).ToList();
+        }
     }
 }

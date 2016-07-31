@@ -48,11 +48,6 @@ namespace Bursify.Api.Students
         #endregion
 
         #region Campaign
-        //not done
-        public Account GetAccount(int id)
-        {
-            return _accountRepository.GetAccount(id);
-        }
 
         //done
         public void SaveCampaign(Campaign campaign)
@@ -128,15 +123,17 @@ namespace Bursify.Api.Students
         }
 
         //done
-        public void EndorseCampaign(int id)
+        public Campaign EndorseCampaign(int campaignId)
         {
             using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
             {
-                var campaign = _campaignRepository.EndorseCampaign(id);
+                var campaign = _campaignRepository.EndorseCampaign(campaignId);
 
                 _campaignRepository.Save(campaign);
 
                 uow.Commit();
+
+                return campaign;
             }
         }
 
@@ -203,6 +200,7 @@ namespace Bursify.Api.Students
         #endregion
 
         #region Sponsorship
+
         //done
         public void SaveSponsorship(Sponsorship sponsorship)
         {
@@ -268,6 +266,17 @@ namespace Bursify.Api.Students
             }
         }
 
+        //done
+        public List<Sponsorship> LoadSponsorshipSuggestions(int studentId)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var student = GetStudent(studentId);
+
+                return _sponsorshipRepository.LoadSponsorshipSuggestions(student);
+            }
+        }
+
         //for later
         public void RateSponsorship()
         {
@@ -281,7 +290,7 @@ namespace Bursify.Api.Students
         }
 
         #endregion
-
+ 
         #region Student
 
         public void SaveStudent(Student student)
@@ -343,6 +352,8 @@ namespace Bursify.Api.Students
 
                 _studentSponsorshipRepository.Save(application);
 
+                uow.Commit();
+
                 return true;
             }
         }
@@ -350,6 +361,7 @@ namespace Bursify.Api.Students
         #endregion
 
         #region School
+
         //done
         public Institution GetInstitution(int userId)
         {

@@ -16,21 +16,17 @@ namespace Bursify.Web.Controllers
             _membershipApi = membershipApi;
         }
 
-        /*public JsonResult Get()
-        {
-            return new JsonResult { Data = new BursifyUserViewModel(/*new BursifyUser()#1#) {Name="Yo mamma"} };
-        }*/
-
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.Route("user/{email:string}")]
         public HttpResponseMessage Get(HttpRequestMessage request, string email)
         {
-            //var user = _userApi.GetUserByEmail(email);
             var user = _membershipApi.GetUserByEmail(email);
 
-            BursifyUserViewModel model = new BursifyUserViewModel(user);
+            var model = new BursifyUserViewModel();
 
-            HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, model);
+            var userVm = model.MapSingleBursifyUser(user);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, userVm);
 
             return response;
         }
