@@ -34,10 +34,18 @@
                 $scope.userData.displayUserInfo();
                 if ($scope.user.usertype == "Student") {
                     $location.path('/bursify/student/home');
+                    membershipService.saveCredentials($scope.user);
+                    $scope.userData.displayUserInfo();
                     notificationService.displaySuccess('Hello ' + $scope.user.Name);
+
+                    $rootScope.User = $scope.user.Name;
                 } else if ($scope.user.usertype == "Sponsor") {
                     $location.path('/bursify/sponsor/home');
-                    notificationService.displaySuccess('Hello ' + $scope.user.username);
+                    membershipService.saveCredentials($scope.user);
+                    $scope.userData.displayUserInfo();
+                    notificationService.displaySuccess('Hello ' + $scope.user.Name);
+
+                    $rootScope.User = $scope.user.Name;
                 }
                
             }

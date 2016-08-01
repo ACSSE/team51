@@ -67,7 +67,6 @@
                     { "grade": "Grade 12" }
                 ],
                 "places": [
-              {"place": "Institution_Name" },
 {"place": "AB PHOKOMPE SECONDARY SCHOOL" },
 {"place": "ABBOTTS COLLEGE-CENTURION" },
 {"place": "ABBOTTS COLLEGE-JOHANNESBURG SOUTH" },

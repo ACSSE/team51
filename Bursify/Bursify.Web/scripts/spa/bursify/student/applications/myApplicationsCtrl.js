@@ -8,26 +8,51 @@
     function myApplicationsCtrl($scope, apiService, notificationService) {
         $scope.pageClass = 'page-student-myApplications';
 
-        $scope.applications = [{
-            "name": "Entelect",
+        $scope.applications = [
+        {
+            "name": "Entelect Foundation",
             "sponsor": "Entelect",
-            "closing": "10/09/2345",
-            "Date": "10/09/2345",
-            "Status": "Pending"
+            "closing": "10/09/2346",
+            "applied": "nu",
+            "status": "Pending"
         },
        {
            "name": "Entelect",
            "sponsor": "Entelect",
            "closing": "10/09/2345",
-           "Date": "10/09/2345",
-           "Status": "Pending"
+           "applied": "nu",
+           "status": "Approved"
        },
        {
            "name": "Entelect",
            "sponsor": "Entelect",
            "closing": "10/09/2345",
-           "Date": "10/09/2345",
-           "Status": "Pending"
+           "applied": "nu",
+           "status": "Pending"
+
+       },
+       {
+           "name": "Entelect",
+           "sponsor": "Entelect",
+           "closing": "10/09/2345",
+           "applied": "nu",
+           "status": "Pending"
+
+       },
+       {
+           "name": "Entelect",
+           "sponsor": "Entelect",
+           "closing": "10/09/2345",
+           "applied": "nu",
+           "status": "Pending"
+
+       },
+       {
+           "name": "Entelect",
+           "sponsor": "Entelect",
+           "closing": "10/09/2345",
+           "applied": "nu",
+           "status": "Pending"
 
        }];
 
@@ -35,7 +60,7 @@
 
         $scope.query = {
             order: 'name',
-            limit: 5,
+            limit: 4,
             page: 1
         };
 

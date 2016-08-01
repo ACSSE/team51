@@ -23,6 +23,7 @@
             .when("/register", {
                 templateUrl: "scripts/spa/account/register.html",
                 controller: "registerCtrl"
+
             }).when("/bursify/student/home", {
                 templateUrl: "scripts/spa/bursify/student/home/index.html",
                 controller: "studentCtrl",
