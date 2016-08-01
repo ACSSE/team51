@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Bursify.Data.EF.SponsorUser;
 using Bursify.Data.EF.StudentUser;
+using Bursify.Data.EF.CampaignUser;
 
 namespace Bursify.Data.EF.User
 {
@@ -28,6 +29,8 @@ namespace Bursify.Data.EF.User
         public string ProfilePicturePath { get; set; }
 
         public virtual ICollection<UserAddress> Addresses { get; set; }
+        public virtual ICollection<CampaignReport> CampaignReports { get; set; }
+        public virtual ICollection<Campaign> Upvotes { get; set; }
         public virtual Sponsor Sponsor { get; set; }
         public virtual Student Student { get; set; }
     }
