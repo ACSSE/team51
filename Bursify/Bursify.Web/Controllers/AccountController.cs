@@ -1,58 +1,50 @@
-﻿using Bursify.Data.UoW;
-using Bursify.Data.Repositories;
-using Bursify.Web.Infrastructure.Core;
+﻿using System;
 using Bursify.Web.Models;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Bursify.Services.Abstract;
-using Bursify.Services.Utilitities;
-using Bursify.Entities;
+using Bursify.Api.Security;
+using Bursify.Api.Students;
+using Bursify.Data.EF.StudentUser;
+using Bursify.Data.EF.User;
 
 namespace Bursify.Web.Controllers
 {
-    
+
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiControllerBase
+    public class AccountController : ApiController
     {
-        private readonly IMembershipService _membershipService;
+        private readonly MembershipApi _membershipApi;
+        private readonly StudentApi _studentApi;
 
-        public AccountController(IMembershipService membershipService,
-            IEntityBaseRepository<Error> _errorsRepository, IUnitOfWork _unitOfWork)
-            : base(_errorsRepository, _unitOfWork)
+        public AccountController(MembershipApi membershipApi, StudentApi studentApi)
         {
-            _membershipService = membershipService;
+            _membershipApi = membershipApi;
+            _studentApi = studentApi;
         }
-
-
 
         [AllowAnonymous]
         [Route("authenticate")]
         [HttpPost]
         public HttpResponseMessage Login(HttpRequestMessage request, LoginViewModel user)
         {
-            return CreateHttpResponse(request, () =>
+            HttpResponseMessage response = null;
+
+            if (ModelState.IsValid)
             {
-                HttpResponseMessage response = null;
+                var loginSuccess = _membershipApi.Login(user.UserEmail, user.Password);
 
-                if (ModelState.IsValid)
+                if (loginSuccess)
                 {
-                    MembershipContext _userContext = _membershipService.ValidateUser(user.UserEmail, user.Password);
-
-                    if (_userContext.User != null)
-                    {
-                        response = request.CreateResponse(HttpStatusCode.OK, new { success = true });
-                    }
-                    else
-                    {
-                        response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
-                    }
+                    response = request.CreateResponse(HttpStatusCode.OK, new { success = true });
                 }
                 else
+                {
                     response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
-                
-                return response;
-            });
+                }
+            }
+
+            return response;
         }
 
         [AllowAnonymous]
@@ -60,30 +52,27 @@ namespace Bursify.Web.Controllers
         [HttpPost]
         public HttpResponseMessage Register(HttpRequestMessage request, RegistrationViewModel user)
         {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
+            HttpResponseMessage response = null;
 
-                if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                response = request.CreateResponse(HttpStatusCode.BadRequest, new { success = false });
+            }
+            else
+            {
+                BursifyUser _user = _membershipApi.RegisterUser(user.Username, user.UserEmail, user.Password, user.UserType);
+
+                if (_user != null)
                 {
-                    response = request.CreateResponse(HttpStatusCode.BadRequest, new { success = false });
+                    response = request.CreateResponse(HttpStatusCode.OK, new { success = true });                   
                 }
                 else
                 {
-                    Bursify.Entities.UserEntities.BursifyUser _user = _membershipService.CreateUser(user.Username, user.UserEmail, user.Password, user.UserType);
-
-                    if (_user != null)
-                    {
-                        response = request.CreateResponse(HttpStatusCode.OK, new { success = true });
-                    }
-                    else
-                    {
-                        response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
-                    }
+                    response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
                 }
+            }
 
-                return response;
-            });
+            return response;
         }
     }
 }

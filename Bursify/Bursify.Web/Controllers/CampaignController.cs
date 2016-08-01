@@ -1,70 +1,204 @@
-﻿using AutoMapper;
-using Bursify.Data.Repositories;
-using Bursify.Data.UoW;
-using Bursify.Entities;
-using Bursify.Entities.CampaignEntities;
-using Bursify.Web.Infrastructure.Core;
-using Bursify.Web.Models;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Bursify.Web.Models;
 using System.Net;
 using System.Net.Http;
-using System.Web.Mvc;
+using System.Web.Http;
+using Bursify.Api.Students;
+using Bursify.Data.EF.CampaignUser;
 
 namespace Bursify.Web.Controllers
 {
-    [RoutePrefix("api/campaigns")]
-    public class CampaignController : ApiControllerBase
+    [System.Web.Mvc.RoutePrefix("api/Campaign")]
+    public class CampaignController : ApiController
     {
+        private readonly StudentApi _studentApi;
 
-        private readonly IEntityBaseRepository<Campaign> _CampaignRepository;
-
-        public CampaignController(IEntityBaseRepository<Campaign> CampaignRepository,
-          IEntityBaseRepository<Error> _errorsRepository, IUnitOfWork _unitOfWork)
-            : base(_errorsRepository, _unitOfWork)
+        public CampaignController(StudentApi studentApi)
         {
-            _CampaignRepository = CampaignRepository;
+            _studentApi = studentApi;
+        }
+        
+        //get all campaigns
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetAllCampaigns")]
+        public HttpResponseMessage GetAllCampaigns(HttpRequestMessage request) //Get all campaigns
+        {
+            var campaigns = _studentApi.GetAllCampaigns();
+
+            var model = new CampaignViewModel();
+
+            var campaignVm = model.MultipleCampaignsMap(campaigns);
+            
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
         }
 
-        [AllowAnonymous]
-        [Route("viewCampaigns")]
-        public HttpResponseMessage Get(HttpRequestMessage request) //Get all campaigns
+        //get all campaigns for a user
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetAllCampaigns")]
+        public HttpResponseMessage GetAllCampaigns(HttpRequestMessage request, int userId)
         {
-            return CreateHttpResponse(request, () =>
+            var campaigns = _studentApi.GetAllCampaigns(userId);
+
+            var model = new CampaignViewModel();
+
+            var campaignVm = model.MultipleCampaignsMap(campaigns);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
+        //get all campaigns meeting user's search criteria
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetAllCampaigns")]
+        public HttpResponseMessage GetAllCampaigns(HttpRequestMessage request, string searchCriteria)
+        {
+            var campaigns = _studentApi.SearchCampaigns(searchCriteria);
+
+            var model = new CampaignViewModel();
+
+            var campaignVm = model.MultipleCampaignsMap(campaigns);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
+        //get a single campaign
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetCampaign")]
+        public HttpResponseMessage GetCampaign(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId);
+
+            var model = new CampaignViewModel();
+
+            var campaignVm = model.SingleCampaignMap(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
+        //get a single campaign for a user
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetCampaign")]
+        public HttpResponseMessage GetCampaign(HttpRequestMessage request, int campaignId, int userId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId, userId);
+
+            var model = new CampaignViewModel();
+
+            var campaignVm = model.SingleCampaignMap(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
+        // add a new campaign or update an already existing one
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SaveCampaign")]
+        public HttpResponseMessage SaveCampaign(HttpRequestMessage request, CampaignViewModel campaign)
+        {
+            var newCampaign = new Campaign
             {
-                HttpResponseMessage response = null;
-                var campaings = _CampaignRepository.GetAll().OrderByDescending(c => c.StartDate).Take(6).ToList();
+                ID = campaign.CampaignId,
+                StudentId = campaign.StudentId,
+                CampaignName = campaign.CampaignName,
+                Tagline = campaign.Tagline,
+                Location = campaign.Location,
+                Description = campaign.Description,
+                AmountRequired = campaign.AmountRequired,
+                CampaignType = campaign.CampaignType,
+                VideoPath = campaign.VideoPath,
+                PicturePath = campaign.PicturePath,
+                StartDate = campaign.StartDate,
+                EndDate = campaign.EndDate,
+                AmountContributed = campaign.AmountContributed,
+                FundUsage = campaign.FundUsage,
+                ReasonsToSupport = campaign.ReasonsToSupport
+            };
 
-                IEnumerable<CampaignViewModel> campaingsVM = Mapper.Map<IEnumerable<Campaign>, IEnumerable<CampaignViewModel>>(campaings);
+            _studentApi.SaveCampaign(newCampaign);
 
-                response = request.CreateResponse<IEnumerable<CampaignViewModel>>(HttpStatusCode.OK, campaingsVM);
+            var model = new CampaignViewModel();
 
-                return response;
-            });
+            var campaignVm = model.SingleCampaignMap(newCampaign);
+
+            var response = request.CreateResponse(HttpStatusCode.Created, campaignVm);
+
+            return response;
         }
 
-        //Post a campaign
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("add")]
-        public HttpResponseMessage Add(HttpRequestMessage request, CampaignViewModel campaign)
+        //later and thinking
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SponsorCampaign")]
+        public HttpResponseMessage SponsorCampaign(HttpRequestMessage request)
         {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-                Campaign newCampaign = new Campaign();
-
-                _CampaignRepository.Add(newCampaign);
-                _unitOfWork.Commit();
-
-                // Update view model
-                campaign = Mapper.Map<Campaign, CampaignViewModel>(newCampaign);
-                response = request.CreateResponse<CampaignViewModel>(HttpStatusCode.Created, campaign);
-                return response;
-            });
+            return null;
         }
 
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetCampaignAccount")]
+        public HttpResponseMessage GetCampaignAccount(HttpRequestMessage request, int campaignId)
+        {
+            var account = _studentApi.GetCampaignAccount(campaignId);
 
+            var model = new AccountViewModel();
 
+            var accountVm = model.MapCamapignAccount(account);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, accountVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SaveCampaignAccount")]
+        public HttpResponseMessage SaveCampaignAccount(HttpRequestMessage request, AccountViewModel account)
+        {
+            var newAccount = new Account()
+            {
+                ID = account.ID,
+                AccountName = account.AccountName,
+                AccountNumber = account.AccountNumber,
+                BankName = account.BankName,
+                BranchName = account.BranchName,
+                BranchCode = account.BranchCode
+            };
+
+            _studentApi.SaveCampaignAccount(newAccount);
+
+            var model = new AccountViewModel();
+
+            var accountVm = model.MapCamapignAccount(newAccount);
+
+            var response = request.CreateResponse(HttpStatusCode.Created, accountVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("EndorseCampaign")]
+        public HttpResponseMessage EndorseCampaign(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.EndorseCampaign(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaign);
+
+            return response;
+        }
     }
 }

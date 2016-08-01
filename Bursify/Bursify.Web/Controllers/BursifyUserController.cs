@@ -1,49 +1,38 @@
-﻿using AutoMapper;
-using Bursify.Data.Extensions;
-using Bursify.Data.Repositories;
-using Bursify.Data.UoW;
-using Bursify.Entities;
-using Bursify.Entities.UserEntities;
-using Bursify.Web.Infrastructure.Core;
-using Bursify.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Bursify.Web.Models;
 using System.Net;
 using System.Net.Http;
-using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
+using Bursify.Api.Security;
+using Bursify.Data.EF.User;
 
 namespace Bursify.Web.Controllers
 {
-    [RoutePrefix("api/BursifyUser")]
-    public class BursifyUserController : ApiControllerBase
+    [System.Web.Mvc.RoutePrefix("api/BursifyUser")]
+    public class BursifyUserController : ApiController
     {
-        private readonly IEntityBaseRepository<BursifyUser> _bursifyUserRepository;
+        private readonly MembershipApi _membershipApi;
 
-
-        public BursifyUserController(IEntityBaseRepository<BursifyUser> bursifyUserRepository,
-          IEntityBaseRepository<Error> _errorsRepository, IUnitOfWork _unitOfWork)
-            : base(_errorsRepository, _unitOfWork)
+        public BursifyUserController(MembershipApi membershipApi)
         {
-            _bursifyUserRepository = bursifyUserRepository;
+            _membershipApi = membershipApi;
         }
 
-        [AllowAnonymous]
-        [Route("user/{email:string}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, string email)
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("GetUser")]
+        public HttpResponseMessage GetUser(HttpRequestMessage request, string email)
         {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-                var user = _bursifyUserRepository.GetAUserByEmail(email);
+            var user = _membershipApi.GetUserByEmail(email);
 
-                BursifyUserViewModel userVM = Mapper.Map<BursifyUser, BursifyUserViewModel>(user);
+            var model = new BursifyUserViewModel();
 
-                response = request.CreateResponse<BursifyUserViewModel>(HttpStatusCode.OK, userVM);
+            var userVm = model.MapSingleBursifyUser(user);
 
-                return response;
-            });
+            userVm.PasswordHash = null;
+            userVm.PasswordSalt = null;
+
+            var response = request.CreateResponse(HttpStatusCode.OK, userVm);
+
+            return response;
         }
     }
 }

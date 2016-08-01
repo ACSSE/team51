@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="BursifyDB-Web.config Connection String" description="BursifyDB Connection String used in web.config by the application to access the database." defaultValue="Data Source=DESKTOP-819LTBB\SQLEXPRESS;Initial Catalog=BursifyDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Brandon\\Documents\\Informatics\\Genesys\\team51\\Bursify\\Bursify\.Web\\obj\\Release\\Package\\PackageTmp\\Views\\web\.config$" match="/configuration/connectionStrings/add[@name='BursifyDB']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Brandon\\Documents\\Informatics\\Genesys\\team51\\Bursify\\Bursify\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BursifyDB']/@connectionString" />
+  </parameter>
+  <parameter name="BursifyDB_DatabasePublish-Web.config Connection String" description="BursifyDB_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="BursifyDB_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Brandon\\Documents\\Informatics\\Genesys\\team51\\Bursify\\Bursify\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BursifyDB_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>
