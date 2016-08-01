@@ -22,8 +22,6 @@
             selectedDirection: 'right'
         };
 
-        notificationService.displaySuccess('Hello ');
-
         function login() {
             membershipService.removeCredentials();
             membershipService.login($scope.user, loginCompleted)
@@ -54,18 +52,19 @@
 
                 $rootScope.User = $scope.user.Name;
              
-             
-
             } else if ($scope.user.UserType == "Sponsor") {
                 $location.path('/bursify/sponsor/home');
-              
+                membershipService.saveCredentials($scope.user);
+                $scope.userData.displayUserInfo();
+                notificationService.displaySuccess('Hello ' + $scope.user.Name);
                 $rootScope.User = $scope.user.Name;
 
             } else if ($scope.user.UserType == "Admin") {
                 $location.path('/bursify/admin/home');
-           
-                $rootScope.User = $scope.user.Name;
-          
+                membershipService.saveCredentials($scope.user);
+                $scope.userData.displayUserInfo();
+                notificationService.displaySuccess('Hello ' + $scope.user.Name);
+                $rootScope.User = $scope.user.Name;          
             }
         }
     }

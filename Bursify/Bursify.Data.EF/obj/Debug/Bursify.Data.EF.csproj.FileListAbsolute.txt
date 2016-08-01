@@ -28,3 +28,4 @@ C:\Users\Brandon\Documents\Informatics\Genesys\team51\Bursify\Bursify.Data.EF\ob
 C:\Users\Brandon\Documents\Informatics\Genesys\team51\Bursify\Bursify.Data.EF\obj\Debug\Bursify.Data.EF.pdb
 C:\Users\Brandon\Documents\Informatics\Genesys\team51\Bursify\Bursify.Data.EF\bin\Debug\Bursify.Data.EF.dll
 C:\Users\Brandon\Documents\Informatics\Genesys\team51\Bursify\Bursify.Data.EF\bin\Debug\Bursify.Data.EF.pdb
+C:\Users\Brandon\Documents\Informatics\Genesys\team51\Bursify\Bursify.Data.EF\obj\Debug\Bursify.Data.EF.csprojResolveAssemblyReference.cache
