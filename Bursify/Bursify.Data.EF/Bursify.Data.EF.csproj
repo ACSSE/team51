@@ -88,9 +88,13 @@
     <Compile Include="Enums\CampaignType.cs" />
     <Compile Include="Enums\SponsorshipType.cs" />
     <Compile Include="Enums\UserType.cs" />
-    <Compile Include="Migrations\201608011657477_initial.cs" />
-    <Compile Include="Migrations\201608011657477_initial.Designer.cs">
-      <DependentUpon>201608011657477_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201607311106492_initial.cs" />
+    <Compile Include="Migrations\201607311106492_initial.Designer.cs">
+      <DependentUpon>201607311106492_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608011218047_initial1.cs" />
+    <Compile Include="Migrations\201608011218047_initial1.Designer.cs">
+      <DependentUpon>201608011218047_initial1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,8 +135,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608011657477_initial.resx">
-      <DependentUpon>201608011657477_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607311106492_initial.resx">
+      <DependentUpon>201607311106492_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608011218047_initial1.resx">
+      <DependentUpon>201608011218047_initial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
