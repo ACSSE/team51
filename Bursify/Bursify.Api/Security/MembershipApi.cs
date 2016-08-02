@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bursify.Data.EF.CampaignUser;
+using System.Linq;
+using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.User;
 using Bursify.Services;
 
 namespace Bursify.Api.Security
@@ -156,7 +157,47 @@ namespace Bursify.Api.Security
 
         public List<Campaign> GetCampaigns()
         {
-            return campaignRepository.GetAllCampaigns();
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignRepository.GetAllCampaigns();
+            }
         }
+
+        public Campaign EndorseCampaign(int userId, int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var user = userRepository.LoadById(userId);
+                var campaign = user.Upvotes.FirstOrDefault(x => x.ID == campaignId);
+
+                if (campaign == null)
+                {
+                    campaign = campaignRepository.LoadById(campaignId);
+                    user.Upvotes.Add(campaign);
+                    uow.Commit();
+                }
+
+                return campaign;
+            }
+        }
+
+        public bool IsEndorsed(int userId, int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var user = userRepository.LoadById(userId);
+                var campaign = user.Upvotes.FirstOrDefault(x => x.ID == campaignId);
+
+                if (campaign == null)
+                {
+                    return false;
+                }
+
+            }
+            return false;
+        }
+
+
+
     }
 }

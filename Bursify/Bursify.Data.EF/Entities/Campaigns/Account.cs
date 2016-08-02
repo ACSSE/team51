@@ -1,4 +1,4 @@
-﻿namespace Bursify.Data.EF.CampaignUser
+﻿namespace Bursify.Data.EF.Entities.Campaigns
 {
     public class Account : IEntity 
     {

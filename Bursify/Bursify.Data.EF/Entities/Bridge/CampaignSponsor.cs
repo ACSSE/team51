@@ -1,8 +1,8 @@
 ﻿using System;
-using Bursify.Data.EF.CampaignUser;
-using Bursify.Data.EF.SponsorUser;
+using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.SponsorUser;
 
-namespace Bursify.Data.EF.User
+namespace Bursify.Data.EF.Entities.Bridge
 {
     public class CampaignSponsor : IBridgeEntity
     {

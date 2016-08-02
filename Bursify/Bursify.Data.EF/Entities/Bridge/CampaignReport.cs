@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.User;
 
-namespace Bursify.Data.EF.CampaignUser
+namespace Bursify.Data.EF.Entities.Bridge
 {
     public class CampaignReport : IBridgeEntity
     {

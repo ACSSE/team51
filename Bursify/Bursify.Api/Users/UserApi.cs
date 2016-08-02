@@ -1,7 +1,7 @@
 ﻿using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.User;
 using System;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Api.Users
 {

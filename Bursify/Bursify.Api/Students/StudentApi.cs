@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bursify.Data.EF.CampaignUser;
+using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Repositories;
-using Bursify.Data.EF.SponsorUser;
-using Bursify.Data.EF.StudentUser;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.User;
-using Bursify.Data.User;
 
 namespace Bursify.Api.Students
 {
@@ -125,18 +125,18 @@ namespace Bursify.Api.Students
             throw new NotImplementedException();
         }
 
-        //done
-        public void EndorseCampaign(int id)
-        {
-            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
-            {
-                var campaign = _campaignRepository.EndorseCampaign(id);
+        //use function in membershipApi
+        //public void EndorseCampaign(int id)
+        //{
+        //    using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+        //    {
+        //        var campaign = _campaignRepository.EndorseCampaign(id);
 
-                _campaignRepository.Save(campaign);
+        //        _campaignRepository.Save(campaign);
 
-                uow.Commit();
-            }
-        }
+        //        uow.Commit();
+        //    }
+        //}
 
         //done
         public List<Campaign> SearchCampaigns(string criteria)  //done

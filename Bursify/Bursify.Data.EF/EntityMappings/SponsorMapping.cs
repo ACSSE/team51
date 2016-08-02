@@ -1,5 +1,5 @@
-﻿using Bursify.Data.EF.SponsorUser;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
+using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Data.EF.EntityMappings
 {

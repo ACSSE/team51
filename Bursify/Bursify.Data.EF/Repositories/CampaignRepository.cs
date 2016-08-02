@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Bursify.Data.EF.CampaignUser;
+using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Uow;
 
 namespace Bursify.Data.EF.Repositories
@@ -49,13 +49,14 @@ namespace Bursify.Data.EF.Repositories
             return userCampaigns;
         }
 
-        public Campaign EndorseCampaign(int id)
-        {
-            var campaignEndorsement = FindSingle(campaign => campaign.ID == id);
+        //user method in membershipApi
+        //public Campaign EndorseCampaign(int id)
+        //{
+        //    var campaignEndorsement = FindSingle(campaign => campaign.ID == id);
 
-            campaignEndorsement.NumberOfUpVotes += 1;
+        //    campaignEndorsement.NumberOfUpVotes += 1;
 
-            return campaignEndorsement;
-        }
+        //    return campaignEndorsement;
+        //}
     }
 }

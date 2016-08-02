@@ -52,13 +52,6 @@ namespace Bursify.Data.EF.Repositories
             return entity;
         }
 
-        //try this one if other doesnt works
-        public TEntity LoadByCompositeIds(int leftId, int rightId)
-        {
-            TEntity entity = DbContext.Set<TEntity>().Where(x => x.leftId == leftId && x.rightId == rightId);
-            return entity;
-        }
-
         public void Save(IEnumerable<TEntity> entities)
         {
             foreach (TEntity entity in entities)

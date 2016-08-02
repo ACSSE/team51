@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Security;
-using Bursify.Data.EF.User;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Web.Controllers
 {

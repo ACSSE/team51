@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Bursify.Data.User;
+﻿using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
 
-namespace Bursify.Data.EF.StudentUser
+namespace Bursify.Data.EF.Entities.Bridge
 {
     //public class StudentSubject : IEntity
     public class StudentSubject : IBridgeEntity

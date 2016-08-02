@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using Bursify.Data.EF.SponsorUser;
 using Bursify.Data.EF.Uow;
 using System.Linq;
-using Bursify.Data.EF.StudentUser;
-using Bursify.Data.EF.User;
+using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Data.EF.Repositories
 {

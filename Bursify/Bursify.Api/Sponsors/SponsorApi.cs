@@ -3,38 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bursify.Data.EF.CampaignUser;
+using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.SponsorUser;
-using Bursify.Data.EF.StudentUser;
-using Bursify.Data.EF.User;
 
 namespace Bursify.Api.Sponsors
 {
     class SponsorApi
     {
         private IUnitOfWorkFactory unitOfWorkFactory;
-        private SponsorRepository sponsorRepository;
         private SponsorshipRepository sponsorshipRepository;
         private StudentSponsorshipRepository studentSponsorshipRepository;
         private BridgeRepository<SponsorshipRequirement> requirementBridgeRepository;
         private Repository<Student> studentRepository;
         private CampaignSponsorRepository campaignSponsorRepository;
         private CampaignRepository campaignRepository;
+        private BridgeRepository<CampaignReport> campaignReportBridgeRepository;
 
-        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, SponsorRepository sponsorRepository, SponsorshipRepository sponsorshipRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository , BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, StudentSponsorshipRepository studentSponsorshipRepository)
+        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, CampaignSponsorRepository campaignSponsorRepository, CampaignRepository campaignRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository)
         {
             this.unitOfWorkFactory = unitOfWorkFactory;
-            this.sponsorRepository = sponsorRepository;
             this.sponsorshipRepository = sponsorshipRepository;
+            this.studentSponsorshipRepository = studentSponsorshipRepository;
             this.requirementBridgeRepository = requirementBridgeRepository;
             this.studentRepository = studentRepository;
-            this.studentSponsorshipRepository = studentSponsorshipRepository;
             this.campaignSponsorRepository = campaignSponsorRepository;
             this.campaignRepository = campaignRepository;
+            this.campaignReportBridgeRepository = campaignReportBridgeRepository;
         }
-
 
         public void AddSponsorship(int sponsorshipId, int sponsorId, string name, string description,
             DateTime closingDate, bool essayRequired, double sponsorshipValue, string studyFields, string province,
@@ -70,6 +70,7 @@ namespace Bursify.Api.Sponsors
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 AddSponsorship(sponsorship.ID, sponsorship.SponsorId, sponsorship.Name, sponsorship.Description, sponsorship.ClosingDate, sponsorship.EssayRequired, sponsorship.SponsorshipValue, sponsorship.StudyFields, sponsorship.Province, sponsorship.AverageMarkRequired, sponsorship.EducationLevel, sponsorship.PreferredInstitutions, sponsorship.ExpensesCovered, sponsorship.TermsAndConditions);
+                uow.Commit();
             }
         }
 
@@ -104,6 +105,8 @@ namespace Bursify.Api.Sponsors
                     SponsorshipId = sponsorId,
                     RequiredMark = requiredMark
                 });
+
+                uow.Commit();
             }
         }
 
@@ -115,6 +118,8 @@ namespace Bursify.Api.Sponsors
                 {
                     AddRequirement(r);
                 }
+
+                uow.Commit();
             }
         }
 
@@ -131,7 +136,7 @@ namespace Bursify.Api.Sponsors
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                studentSponsorshipRepository.ApplyForSponsorship(studentId, sponsorshipId);
+                studentSponsorshipRepository.OfferSponsorship(studentId, sponsorshipId);
                 uow.Commit();
             }
         }
@@ -140,7 +145,7 @@ namespace Bursify.Api.Sponsors
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return studentSponsorshipRepository.GetStudentsEndorsed(sponsorshipId);
+                return studentSponsorshipRepository.GetStudentsSponsored(sponsorshipId);
             }
         }
 
@@ -156,7 +161,9 @@ namespace Bursify.Api.Sponsors
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return studentSponsorshipRepository.ConfirmSponsorship(userId, sponsorshipId, confirmationMessage);
+                bool status = studentSponsorshipRepository.ConfirmSponsorship(userId, sponsorshipId, confirmationMessage);
+                uow.Commit();
+                return status;
             }
         }
 
@@ -176,20 +183,6 @@ namespace Bursify.Api.Sponsors
             }
         }
 
-        public Campaign EndorseCampaign(int id)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                var campaignEndorsement = campaignRepository.LoadById(id);
-
-                campaignEndorsement.NumberOfUpVotes += 1;
-
-                return campaignEndorsement;
-
-                uow.Commit();
-            }
-        }
-
         public List<Campaign> GetCampaigns()
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
@@ -203,6 +196,21 @@ namespace Bursify.Api.Sponsors
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 return campaignSponsorRepository.GetSupportedCamapigns(sponsorID);
+            }
+        }
+
+        public void ReportCampaign(int userId, int campaignId, string reason)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                campaignReportBridgeRepository.Save(new CampaignReport()
+                {
+                    BursifyUserId = userId,
+                    CampaignId = campaignId,
+                    Reason = reason
+                });
+
+                uow.Commit();
             }
         }
 

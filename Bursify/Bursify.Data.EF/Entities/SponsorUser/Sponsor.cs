@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using Bursify.Data.EF.User;
+using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.User;
 
-namespace Bursify.Data.EF.SponsorUser
+namespace Bursify.Data.EF.Entities.SponsorUser
 {
     public class Sponsor : IEntity
     {

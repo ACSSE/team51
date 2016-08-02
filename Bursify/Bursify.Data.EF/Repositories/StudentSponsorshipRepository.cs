@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
-using Bursify.Data.EF.SponsorUser;
-using Bursify.Data.EF.StudentUser;
+using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.User;
 
 namespace Bursify.Data.EF.Repositories
 {
+    //some of these methods dont need to be created
     public class StudentSponsorshipRepository : BridgeRepository<StudentSponsorship>
     {
         private readonly DataSession _dataSession;
@@ -18,6 +20,7 @@ namespace Bursify.Data.EF.Repositories
             _dataSession = dataSession;
         }
 
+        //for student
         public void ApplyForSponsorship(int userId, int sponsorshipId)
         {
             var newApplication = new StudentSponsorship()
@@ -25,12 +28,14 @@ namespace Bursify.Data.EF.Repositories
                 StudentId = userId,
                 SponsorshipId = sponsorshipId,
                 ApplicationDate = DateTime.UtcNow,
-                SponsorshipConfirmed = "No"
+                SponsorshipConfirmed = "No",
+                SponsorshipOffered = "No"
             };
 
             Save(newApplication);
         }
 
+        //for sponsor
         public bool ConfirmSponsorship(int userId, int sponsorshipId, string confirmationMessage)
         {
             var application = LoadByIds(userId, sponsorshipId);
@@ -42,6 +47,21 @@ namespace Bursify.Data.EF.Repositories
             Save(application);
 
             return true;
+        }
+
+        //for sponsor
+        public void OfferSponsorship(int userId, int sponsorshipId)
+        {
+            var newApplication = new StudentSponsorship()
+            {
+                StudentId = userId,
+                SponsorshipId = sponsorshipId,
+                ApplicationDate = DateTime.UtcNow,
+                SponsorshipConfirmed = "No",
+                SponsorshipOffered = "Yes"
+            };
+
+            Save(newApplication);
         }
 
         public List<StudentSponsorship> GetStudentsApplications(int userId)
@@ -74,7 +94,7 @@ namespace Bursify.Data.EF.Repositories
             return students;
         }
 
-        public List<Student> GetStudentsEndorsed(int sponsorshipId)
+        public List<Student> GetStudentsSponsored(int sponsorshipId)
         {
             //var students = (from s in DbContext.Set<StudentSponsorship>() where s.SponsorshipId == sponsorshipId select s.Student).ToList()
             //this query thanx to resharper!

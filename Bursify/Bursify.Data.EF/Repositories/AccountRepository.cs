@@ -1,4 +1,4 @@
-﻿using Bursify.Data.EF.CampaignUser;
+﻿using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Uow;
 
 namespace Bursify.Data.EF.Repositories

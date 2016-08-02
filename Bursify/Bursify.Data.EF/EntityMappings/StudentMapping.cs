@@ -1,5 +1,5 @@
-﻿using Bursify.Data.EF.StudentUser;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
+using Bursify.Data.EF.Entities.StudentUser;
 
 namespace Bursify.Data.EF.EntityMappings
 {

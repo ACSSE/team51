@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using Bursify.Data.EF.CampaignUser;
+using Bursify.Data.EF.Entities.Campaigns;
 
 namespace Bursify.Data.EF.EntityMappings
 {

@@ -1,4 +1,4 @@
-﻿namespace Bursify.Data.EF.User
+﻿namespace Bursify.Data.EF.Entities.User
 {
     public class UserAddress : IEntity
     {

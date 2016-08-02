@@ -1,5 +1,6 @@
-﻿using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.User;
+﻿using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
+using Bursify.Data.EF.Uow;
 
 namespace Bursify.Data.EF.Repositories
 {

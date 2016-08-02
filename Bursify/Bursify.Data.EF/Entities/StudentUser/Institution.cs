@@ -1,6 +1,4 @@
-﻿using Bursify.Data.EF.StudentUser;
-
-namespace Bursify.Data.EF.User
+﻿namespace Bursify.Data.EF.Entities.StudentUser
 {
     public class Institution : IEntity
     {

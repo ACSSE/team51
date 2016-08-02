@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bursify.Data.EF.CampaignUser;
-using Bursify.Data.EF.SponsorUser;
-using Bursify.Data.EF.User;
+using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.User;
 
-namespace Bursify.Data.EF.StudentUser
+namespace Bursify.Data.EF.Entities.StudentUser
 {
     public class Student : IEntity
     {

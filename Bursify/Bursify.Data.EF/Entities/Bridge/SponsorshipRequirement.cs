@@ -1,6 +1,7 @@
-﻿using Bursify.Data.User;
+﻿using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.User;
 
-namespace Bursify.Data.EF.SponsorUser
+namespace Bursify.Data.EF.Entities.Bridge
 {
     //public class SponsorshipRequirement : IEntity
     public class SponsorshipRequirement : IBridgeEntity

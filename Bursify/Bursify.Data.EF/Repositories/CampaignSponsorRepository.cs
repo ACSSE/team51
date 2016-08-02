@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bursify.Data.EF.CampaignUser;
+using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.User;
 
 namespace Bursify.Data.EF.Repositories
 {

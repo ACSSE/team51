@@ -1,4 +1,4 @@
-﻿using Bursify.Data.EF.User;
+﻿using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Web.Models
 {

@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
-using Bursify.Data.EF.SponsorUser;
+using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Web.Models;
 
 namespace Bursify.Web.Controllers

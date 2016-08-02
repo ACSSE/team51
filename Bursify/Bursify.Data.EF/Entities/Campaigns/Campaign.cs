@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bursify.Data.EF.StudentUser;
-using Bursify.Data.EF.User;
-using Bursify.Data.EF.CampaignUser;
+using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
 
-namespace Bursify.Data.EF.CampaignUser
+namespace Bursify.Data.EF.Entities.Campaigns
 {
     public class Campaign : IEntity
     {
@@ -27,7 +27,6 @@ namespace Bursify.Data.EF.CampaignUser
 
         public virtual Account Account { get; set; }
         public virtual Student Student { get; set; }
-        public virtual CampaignType CampaignType { get; set; }
         public virtual ICollection<CampaignSponsor> CampaignSponsors { get; set; }
         public virtual ICollection<CampaignReport> CampaignReports { get; set; }
         public virtual ICollection<BursifyUser> Upvotes { get; set; }
