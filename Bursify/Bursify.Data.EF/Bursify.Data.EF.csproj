@@ -99,13 +99,9 @@
     <Compile Include="EntityMappings\SubjectMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
-    <Compile Include="Migrations\201607281742345_initial.cs" />
-    <Compile Include="Migrations\201607281742345_initial.Designer.cs">
-      <DependentUpon>201607281742345_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608011925250_AddFields.cs" />
-    <Compile Include="Migrations\201608011925250_AddFields.Designer.cs">
-      <DependentUpon>201608011925250_AddFields.cs</DependentUpon>
+    <Compile Include="Migrations\201608031859137_initial.cs" />
+    <Compile Include="Migrations\201608031859137_initial.Designer.cs">
+      <DependentUpon>201608031859137_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,14 +133,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201607281742345_initial.resx">
-      <DependentUpon>201607281742345_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608011925250_AddFields.resx">
-      <DependentUpon>201608011925250_AddFields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608031859137_initial.resx">
+      <DependentUpon>201608031859137_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

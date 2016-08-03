@@ -12,13 +12,14 @@ namespace Bursify.Web.Controllers
     public class CampaignController : ApiController
     {
         private readonly StudentApi _studentApi;
-        MembershipApi _membershipApi;
+        private readonly MembershipApi _membershipApi;
 
-        public CampaignController(StudentApi studentApi)
+        public CampaignController(StudentApi studentApi, MembershipApi membershipApi)
         {
             _studentApi = studentApi;
+            _membershipApi = membershipApi;
         }
-        
+
         //get all campaigns
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
@@ -198,7 +199,10 @@ namespace Bursify.Web.Controllers
         {
             var campaign = _membershipApi.EndorseCampaign(userId, campaignId);
 
-            var response = request.CreateResponse(HttpStatusCode.OK, campaign);
+            CampaignViewModel campaignVM = new CampaignViewModel();
+            campaignVM.SingleCampaignMap(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVM);
 
             return response;
         }

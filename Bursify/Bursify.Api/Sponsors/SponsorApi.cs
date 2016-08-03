@@ -13,7 +13,7 @@ using Bursify.Data.EF.Uow;
 
 namespace Bursify.Api.Sponsors
 {
-    class SponsorApi
+    public class SponsorApi
     {
         private IUnitOfWorkFactory unitOfWorkFactory;
         private SponsorshipRepository sponsorshipRepository;

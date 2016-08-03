@@ -21,6 +21,7 @@ namespace Bursify.Web.Models
         public string PreferredInstitutions { get; set; }
         public string ExpensesCovered { get; set; }
         public string TermsAndConditions { get; set; }
+        public string SponsorshipType { get; set; }
 
         public Sponsorship SingleSponsorshipMap(Sponsorship sponsorship)
         {
@@ -39,7 +40,8 @@ namespace Bursify.Web.Models
                 EducationLevel = sponsorship.EducationLevel,
                 PreferredInstitutions = sponsorship.PreferredInstitutions,
                 ExpensesCovered = sponsorship.ExpensesCovered,
-                TermsAndConditions = sponsorship.TermsAndConditions
+                TermsAndConditions = sponsorship.TermsAndConditions,
+                SponsorshipType = SponsorshipType
             };
         }
 

@@ -294,30 +294,6 @@
     <Content Include="Content\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\assets\fonts\Simple-Line-Icons.svg" />
     <Content Include="Content\assets\img.jpg" />
-    <Content Include="Content\assets\img\404.png" />
-    <Content Include="Content\assets\img\500.png" />
-    <Content Include="Content\assets\img\avatar.jpg" />
-    <Content Include="Content\assets\img\avatar2.png" />
-    <Content Include="Content\assets\img\avatar3.png" />
-    <Content Include="Content\assets\img\bg.svg" />
-    <Content Include="Content\assets\img\bg1.jpg" />
-    <Content Include="Content\assets\img\bg2.jpg" />
-    <Content Include="Content\assets\img\bg3.jpg" />
-    <Content Include="Content\assets\img\bg4.jpg" />
-    <Content Include="Content\assets\img\bigplay.svg" />
-    <Content Include="Content\assets\img\controls.png" />
-    <Content Include="Content\assets\img\controls.svg" />
-    <Content Include="Content\assets\img\demo-video.png" />
-    <Content Include="Content\assets\img\g3986.png" />
-    <Content Include="Content\assets\img\left-bg.png" />
-    <Content Include="Content\assets\img\left-bg2.png" />
-    <Content Include="Content\assets\img\logomi.png" />
-    <Content Include="Content\assets\img\mike.jpg" />
-    <Content Include="Content\assets\img\sprite-skin-flat.png" />
-    <Content Include="Content\assets\img\sprite-skin-modern.png" />
-    <Content Include="Content\assets\img\sprite-skin-nice.png" />
-    <Content Include="Content\assets\img\sprite-skin-simple.png" />
-    <Content Include="Content\assets\img\ss.png" />
     <Content Include="Content\assets\js\bootstrap.min.js" />
     <Content Include="Content\assets\js\jquery-1.11.1.min.js" />
     <Content Include="Content\assets\js\jquery.min.js" />
@@ -475,32 +451,6 @@
     <Content Include="Content\css\toastr.css" />
     <Content Include="Content\dist\css\AdminLTE.css" />
     <Content Include="Content\dist\css\AdminLTE.min.css" />
-    <Content Include="Content\dist\css\skins\skin-black-light.css" />
-    <Content Include="Content\dist\css\skins\skin-black-light.min.css" />
-    <Content Include="Content\dist\css\skins\skin-black.css" />
-    <Content Include="Content\dist\css\skins\skin-black.min.css" />
-    <Content Include="Content\dist\css\skins\skin-blue-light.css" />
-    <Content Include="Content\dist\css\skins\skin-blue-light.min.css" />
-    <Content Include="Content\dist\css\skins\skin-blue.css" />
-    <Content Include="Content\dist\css\skins\skin-blue.min.css" />
-    <Content Include="Content\dist\css\skins\skin-green-light.css" />
-    <Content Include="Content\dist\css\skins\skin-green-light.min.css" />
-    <Content Include="Content\dist\css\skins\skin-green.css" />
-    <Content Include="Content\dist\css\skins\skin-green.min.css" />
-    <Content Include="Content\dist\css\skins\skin-purple-light.css" />
-    <Content Include="Content\dist\css\skins\skin-purple-light.min.css" />
-    <Content Include="Content\dist\css\skins\skin-purple.css" />
-    <Content Include="Content\dist\css\skins\skin-purple.min.css" />
-    <Content Include="Content\dist\css\skins\skin-red-light.css" />
-    <Content Include="Content\dist\css\skins\skin-red-light.min.css" />
-    <Content Include="Content\dist\css\skins\skin-red.css" />
-    <Content Include="Content\dist\css\skins\skin-red.min.css" />
-    <Content Include="Content\dist\css\skins\skin-yellow-light.css" />
-    <Content Include="Content\dist\css\skins\skin-yellow-light.min.css" />
-    <Content Include="Content\dist\css\skins\skin-yellow.css" />
-    <Content Include="Content\dist\css\skins\skin-yellow.min.css" />
-    <Content Include="Content\dist\css\skins\_all-skins.css" />
-    <Content Include="Content\dist\css\skins\_all-skins.min.css" />
     <Content Include="Content\dist\img\credit\american-express.png" />
     <Content Include="Content\dist\img\credit\cirrus.png" />
     <Content Include="Content\dist\img\credit\mastercard.png" />
@@ -508,11 +458,6 @@
     <Content Include="Content\dist\img\credit\paypal.png" />
     <Content Include="Content\dist\img\credit\paypal2.png" />
     <Content Include="Content\dist\img\credit\visa.png" />
-    <Content Include="Content\dist\js\app.js" />
-    <Content Include="Content\dist\js\app.min.js" />
-    <Content Include="Content\dist\js\demo.js" />
-    <Content Include="Content\dist\js\pages\dashboard.js" />
-    <Content Include="Content\dist\js\pages\dashboard2.js" />
     <Content Include="Content\fonts\fontawesome-webfont.svg">
       <SubType>Designer</SubType>
     </Content>
@@ -522,33 +467,7 @@
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\campaign.jpeg" />
     <Content Include="Content\images\campaign.jpg" />
-    <Content Include="Content\images\movies\antman.jpg" />
-    <Content Include="Content\images\movies\background.jpg" />
-    <Content Include="Content\images\movies\batmanvssuperman.jpg" />
-    <Content Include="Content\images\movies\betafish.jpg" />
-    <Content Include="Content\images\movies\edgeoftomorrow.jpg" />
-    <Content Include="Content\images\movies\fantasticfour.jpg" />
-    <Content Include="Content\images\movies\home.jpg" />
-    <Content Include="Content\images\movies\insideout.jpg" />
-    <Content Include="Content\images\movies\jurassicworld.jpg" />
-    <Content Include="Content\images\movies\madmax.jpg" />
-    <Content Include="Content\images\movies\minions.jpg" />
-    <Content Include="Content\images\movies\southpaw.jpg" />
-    <Content Include="Content\images\movies\spectre.jpg" />
-    <Content Include="Content\images\movies\ted2.jpg" />
-    <Content Include="Content\images\movies\thelongestride.jpg" />
-    <Content Include="Content\images\movies\thewalkingdead.jpg" />
-    <Content Include="Content\images\movies\trainwreck.jpg" />
-    <Content Include="Content\images\movies\truedetective.jpg" />
-    <Content Include="Content\images\movies\unknown.jpg" />
-    <Content Include="Content\images\movies\Wallpaper 8.png" />
     <Content Include="Content\images\p1.jpeg" />
-    <Content Include="Content\images\raty\star-half-big.png" />
-    <Content Include="Content\images\raty\star-half.png" />
-    <Content Include="Content\images\raty\star-off-big.png" />
-    <Content Include="Content\images\raty\star-off.png" />
-    <Content Include="Content\images\raty\star-on-big.png" />
-    <Content Include="Content\images\raty\star-on.png" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BACKUP_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BASE_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_LOCAL_8544.svg" />
@@ -580,14 +499,25 @@
     <Content Include="scripts\spa\app.js" />
     <Content Include="scripts\spa\bursify\admin\home\index.html" />
     <Content Include="scripts\spa\bursify\admin\home\adminCtrl.js" />
-    <Content Include="scripts\spa\bursify\campaigns\addCampaign.html" />
-    <Content Include="scripts\spa\bursify\campaigns\campaignsCtrl.js" />
-    <Content Include="scripts\spa\bursify\campaigns\editCampaign.html" />
-    <Content Include="scripts\spa\bursify\campaigns\viewCampaigns.html" />
+    <Content Include="scripts\spa\bursify\sponsor\chart\leaderboard.html" />
+    <Content Include="scripts\spa\bursify\sponsor\chart\leaderboardCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\home\index.html" />
     <Content Include="scripts\spa\bursify\sponsor\home\sponsorCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\applications\myApplications.html" />
+    <Content Include="scripts\spa\bursify\student\applications\myApplicationsCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\campaigns\addCampaign.html" />
+    <Content Include="scripts\spa\bursify\student\campaigns\addCampaignCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\campaigns\campaignDetailsCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\campaigns\campaignsCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\campaigns\editCampaign.html" />
+    <Content Include="scripts\spa\bursify\student\campaigns\editCampaignCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\campaigns\viewCampaigns.html" />
     <Content Include="scripts\spa\bursify\student\home\index.html" />
     <Content Include="scripts\spa\bursify\student\home\studentCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\profile\profile.html" />
+    <Content Include="scripts\spa\bursify\student\profile\studentProfileCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\sponsorship\index.html" />
+    <Content Include="scripts\spa\bursify\student\sponsorship\sponsorshipCtrl.js" />
     <Content Include="scripts\spa\home\index.html" />
     <Content Include="scripts\spa\home\indexCtrl.js" />
     <Content Include="scripts\spa\home\rootCtrl.js" />
@@ -600,9 +530,17 @@
     <Content Include="scripts\spa\services\membershipService.js" />
     <Content Include="scripts\spa\services\notificationService.js" />
     <Content Include="scripts\vendors\angucomplete-alt.min.js" />
+    <Content Include="scripts\vendors\angular-animate.min.js" />
+    <Content Include="scripts\vendors\angular-aria.js" />
+    <Content Include="scripts\vendors\angular-aside.css" />
     <Content Include="scripts\vendors\angular-base64.js" />
     <Content Include="scripts\vendors\angular-cookies.js" />
     <Content Include="scripts\vendors\angular-file-upload.js" />
+    <Content Include="scripts\vendors\angular-hamburger-toggle.css" />
+    <Content Include="scripts\vendors\angular-hamburger-toggle.js" />
+    <Content Include="scripts\vendors\angular-material.min.css" />
+    <Content Include="scripts\vendors\angular-material.min.js" />
+    <Content Include="scripts\vendors\angular-messages.js" />
     <Content Include="scripts\vendors\angular-route.js" />
     <Content Include="scripts\vendors\angular-validator.js" />
     <Content Include="scripts\vendors\angular.js" />
@@ -612,6 +550,8 @@
     <Content Include="scripts\vendors\jquery.js" />
     <Content Include="scripts\vendors\jquery.raty.js" />
     <Content Include="scripts\vendors\loading-bar.js" />
+    <Content Include="scripts\vendors\md-table.min.css" />
+    <Content Include="scripts\vendors\md-table.min.js" />
     <Content Include="scripts\vendors\modernizr.js" />
     <Content Include="scripts\vendors\morris.js" />
     <Content Include="scripts\vendors\raphael.js" />
@@ -635,17 +575,21 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SponsorController.cs" />
     <Compile Include="Controllers\SponsorshipController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\ApproveSponsorshipViewModel.cs" />
     <Compile Include="Models\BursifyUserViewModel.cs" />
     <Compile Include="Models\CampaignSponsorViewModel.cs" />
     <Compile Include="Models\CampaignViewModel.cs" />
     <Compile Include="Models\InstitutionViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
+    <Compile Include="Models\ReportCampaignModel.cs" />
+    <Compile Include="Models\SponsorCampaignViewModel.cs" />
     <Compile Include="Models\SponsorshipRequirementViewModel.cs" />
     <Compile Include="Models\SponsorshipViewModel.cs" />
     <Compile Include="Models\SponsorViewModel.cs" />
@@ -661,13 +605,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_LoginLayout.cshtml" />
-    <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Shared\_SponsorLayout.cshtml" />
-    <Content Include="Views\Shared\_StudentLayout.cshtml" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
@@ -678,13 +616,9 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\images\Thumbs.db" />
-    <Content Include="Content\landing\wp-content\.DS_Store" />
-    <Content Include="Content\landing\wp-content\themes\.DS_Store" />
-    <Content Include="Content\landing\wp-content\themes\Parallax-One\.DS_Store" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\fonts\stamp-icons.ttf" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\fonts\stamp-icons.woff" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\images\Thumbs.db" />
-    <Content Include="Content\assets\.DS_Store" />
     <Content Include="Content\assets\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\assets\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\assets\fonts\fontawesome-webfont.woff" />
@@ -698,7 +632,6 @@
     <Content Include="Content\assets\fonts\Simple-Line-Icons.ttf" />
     <Content Include="Content\assets\fonts\Simple-Line-Icons.woff" />
     <Content Include="Content\assets\fonts\Simple-Line-Icons.woff2" />
-    <Content Include="Content\assets\js\plugins\flot\examples\.DS_Store" />
     <Content Include="Content\assets\js\plugins\flot\examples\ajax\data-eu-gdp-growth-1.json" />
     <Content Include="Content\assets\js\plugins\flot\examples\ajax\data-eu-gdp-growth-2.json" />
     <Content Include="Content\assets\js\plugins\flot\examples\ajax\data-eu-gdp-growth-3.json" />
@@ -726,7 +659,15 @@
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\systemv" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\yearistype.sh" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\zone.tab" />
-    <Content Include="campaigns.json" />
+    <None Include="Properties\PublishProfiles\bursify - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\bursify - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bursify - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\bursify - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\bursifywebapp - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\bursifywebapp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bursifywebapp - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\bursifywebapp - Web Deploy.pubxml" />
+    <Content Include="scripts\vendors\bower.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -736,8 +677,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\assets\img\" />
+    <Folder Include="Content\dist\js\pages\" />
     <Folder Include="Content\images\campaign\" />
     <Folder Include="Content\images\company\" />
+    <Folder Include="Content\images\raty\" />
     <Folder Include="Content\images\student\" />
     <Folder Include="Content\images\system\" />
     <Folder Include="Content\images\user\" />
@@ -770,7 +714,7 @@
     <Folder Include="Content\landing\wp-content\plugins\wp-product-review\images\" />
     <Folder Include="Content\landing\wp-content\plugins\wp-rocket\inc\front\js\" />
     <Folder Include="Content\plugins\" />
-    <Folder Include="Views\Sponsor\" />
+    <Folder Include="scripts\spa\bursify\campaigns\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bursify.Api\Bursify.Api.csproj">

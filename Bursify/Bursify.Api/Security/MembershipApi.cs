@@ -180,17 +180,10 @@ namespace Bursify.Api.Security
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 var user = userRepository.LoadById(userId);
-                var campaign = campaignRepository.IsEndorsed(user, campaignId);
-
-                if (campaign == null)
-                {
-                    return false;
-                }
+                return campaignRepository.IsEndorsed(user, campaignId);
             }
-            return true;
+
         }
-
-
 
     }
 }
