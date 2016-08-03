@@ -1,0 +1,75 @@
+﻿<spnav-bar></spnav-bar>
+
+
+            <div id="content">
+                <div class="panel">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="Sponsor Account">
+                            <md-content class="md-padding">
+
+                                <p>Sponsor Accounts offer bursaries and campaign support to students on Bursify. To add a Sponsor Account, please enter the company name and your email address at this company. Only current employees are eligible to create a Sponsor Account Page.</p>
+                
+                                    <div class="box-body">
+                                        <md-input-container class="md-icon-float md-block">
+                                            <!-- Use floating label instead of placeholder -->
+                                            <label style="font-size: 18px;">Company Name</label>
+                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                            <input value="" id="sponsorName" type="text" ng-model="sponsor.CompanyName"/>
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block">
+                                            <label style="font-size: 18px;">Your email address at company</label>
+                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                            <input value="" id="sponsorEmail" type="text"></>
+                                        </md-input-container>
+                                        <div class="form-group form-animate-checkbox">
+                                            <input type="checkbox" class="checkbox">
+                                            <label> I verify that I am the official representative of this company and have the right to act on behalf of my company in the creation of this page.</label>
+                                        </div>
+
+
+                                    </div><!-- /.box-body -->
+
+                                    <div>
+
+                                        <button type="submit" class="btn btn-warning">Proceed</button>
+                                    </div>
+                               
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Sponsor Details">
+                            <md-content class="md-padding">
+
+                                <div class="box-body">
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label style="font-size: 18px;">Description</label>
+                                        <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                        <textarea placeholder="Tell us about your company..." id="sponsorName" type="text" ng-model="sponsor.CompanyName" />
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block">
+                                        <label style="font-size: 18px;">Your email address at company</label>
+                                        <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                        <input value="" id="sponsorEmail" type="text"></>
+                                    </md-input-container>
+                                    <div class="form-group form-animate-checkbox">
+                                        <input type="checkbox" class="checkbox">
+                                        <label> I verify that I am the official representative of this company and have the right to act on behalf of my company in the creation of this page.</label>
+                                    </div>
+
+
+                                </div><!-- /.box-body -->
+
+                                <div>
+
+                                    <button type="submit" class="btn btn-success">Create</button>
+                                </div>
+
+                            </md-content>
+                        </md-tab>
+                   
+                    </md-tabs>
+                </div>
+
+            </div>

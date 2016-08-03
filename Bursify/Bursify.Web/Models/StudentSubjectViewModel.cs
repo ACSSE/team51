@@ -1,4 +1,5 @@
-﻿using Bursify.Data.EF.StudentUser;
+
+﻿using Bursify.Data.EF.Entities.Bridge;
 
 namespace Bursify.Web.Models
 {

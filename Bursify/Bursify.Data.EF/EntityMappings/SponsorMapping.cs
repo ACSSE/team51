@@ -1,5 +1,5 @@
-﻿using Bursify.Data.EF.SponsorUser;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
+using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Data.EF.EntityMappings
 {
@@ -16,14 +16,8 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.Type)
                 .IsRequired();
 
-            this.Property(x => x.OrganisationSize)
-                .IsRequired();
-
             this.Property(x => x.Website)
                 .IsOptional();
-
-            this.Property(x => x.YearFounded)
-                .IsRequired();
 
             this.Property(x => x.Location)
                 .IsRequired();

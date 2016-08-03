@@ -47,6 +47,17 @@
                 templateUrl: "scripts/spa/bursify/student/profile/profile.html",
                 controller: "studentProfileCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
+<<<<<<< HEAD
+            }).when("/sponsor/profile", {
+                templateUrl: "scripts/spa/bursify/sponsor/profile/profile.html",
+                controller: "sponsorProfileCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
+            }).when("/sponsor/registration", {
+                templateUrl: "scripts/spa/bursify/sponsor/registration/form.html",
+                controller: "registrationCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
+=======
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
             }).when("/student/campaigns", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",
                 controller: "campaignsCtrl",

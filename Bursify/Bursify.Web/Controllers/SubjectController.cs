@@ -5,9 +5,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
-using Bursify.Data.EF.StudentUser;
-using Bursify.Data.User;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Web.Models;
+using Bursify.Data.EF.Entities.Bridge;
 
 namespace Bursify.Web.Controllers
 {

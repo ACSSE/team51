@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using Bursify.Data.EF.Entities.User;
 using System.Linq;
-using Bursify.Data.EF.User;
+using System.Collections.Generic;
 
 namespace Bursify.Web.Models
 {

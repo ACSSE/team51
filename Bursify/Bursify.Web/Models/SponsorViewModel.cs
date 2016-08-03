@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bursify.Data.EF.SponsorUser;
+using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Web.Models
 {

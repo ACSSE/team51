@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using Bursify.Data.EF.SponsorUser;
+using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Data.EF.EntityMappings
 {
@@ -10,10 +11,7 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("SponsorshipRequirement", "dbo");
 
-            this.HasKey(x => x.ID);
-
-            this.Property(x => x.ID)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.HasKey(x => new { x.SponsorshipId, x.SubjectId });
 
             this.Property(x => x.SponsorshipId)
                 .IsRequired();

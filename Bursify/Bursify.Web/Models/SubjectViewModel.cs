@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bursify.Data.EF.StudentUser;
-using Bursify.Data.User;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
+using Bursify.Data.EF.Entities.Bridge;
 
 namespace Bursify.Web.Models
 {
@@ -47,7 +48,6 @@ namespace Bursify.Web.Models
         {
             return new StudentSubject()
             {
-                ID = studentSubject.ID,
                 StudentId = studentSubject.StudentId,
                 SubjectId = studentSubject.SubjectId,
                 MarkAcquired = studentSubject.MarkAcquired

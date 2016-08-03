@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Bursify.Data.EF.CampaignUser;
-using Bursify.Data.EF.SponsorUser;
-using Bursify.Data.EF.StudentUser;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.User;
 using NUnit.Framework;
 using System;
+using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Tests
 {

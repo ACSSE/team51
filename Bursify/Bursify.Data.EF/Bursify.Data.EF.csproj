@@ -70,8 +70,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CampaignUser\Account.cs" />
-    <Compile Include="CampaignUser\Campaign.cs" />
+    <Compile Include="Entities\Bridge\CampaignReport.cs" />
+    <Compile Include="Entities\Bridge\CampaignSponsor.cs" />
+    <Compile Include="Entities\Bridge\SponsorshipRequirement.cs" />
+    <Compile Include="Entities\Bridge\StudentSponsorship.cs" />
+    <Compile Include="Entities\Bridge\StudentSubject.cs" />
+    <Compile Include="Entities\Campaigns\Account.cs" />
+    <Compile Include="Entities\Campaigns\Campaign.cs" />
+    <Compile Include="Entities\SponsorUser\Sponsor.cs" />
+    <Compile Include="Entities\SponsorUser\Sponsorship.cs" />
+    <Compile Include="Entities\StudentUser\Institution.cs" />
+    <Compile Include="Entities\StudentUser\Student.cs" />
+    <Compile Include="Entities\User\BursifyUser.cs" />
+    <Compile Include="Entities\User\Subject.cs" />
+    <Compile Include="Entities\User\UserAddress.cs" />
     <Compile Include="EntityMappings\AccountMapping.cs" />
     <Compile Include="EntityMappings\BursifyUserMapping.cs" />
     <Compile Include="EntityMappings\CampaignMapping.cs" />
@@ -85,22 +97,14 @@
     <Compile Include="EntityMappings\StudentSubjectMapping.cs" />
     <Compile Include="EntityMappings\SubjectMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
-    <Compile Include="Enums\CampaignType.cs" />
-    <Compile Include="Enums\SponsorshipType.cs" />
-    <Compile Include="Enums\UserType.cs" />
-    <Compile Include="Migrations\201607311106492_initial.cs" />
-    <Compile Include="Migrations\201607311106492_initial.Designer.cs">
-      <DependentUpon>201607311106492_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608011218047_initial1.cs" />
-    <Compile Include="Migrations\201608011218047_initial1.Designer.cs">
-      <DependentUpon>201608011218047_initial1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="IBridgeEntity.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\BridgeRepository.cs" />
     <Compile Include="Repositories\BursifyUserRepository.cs" />
     <Compile Include="Repositories\CampaignRepository.cs" />
+    <Compile Include="Repositories\CampaignSponsorRepository.cs" />
     <Compile Include="Repositories\InstitutionRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SponsorRepository.cs" />
@@ -109,11 +113,6 @@
     <Compile Include="Repositories\StudentSponsorshipRepository.cs" />
     <Compile Include="Repositories\StudentSubjectRepository.cs" />
     <Compile Include="Repositories\SubjectRepository.cs" />
-    <Compile Include="SponsorUser\Sponsor.cs" />
-    <Compile Include="SponsorUser\Sponsorship.cs" />
-    <Compile Include="SponsorUser\SponsorshipRequirement.cs" />
-    <Compile Include="StudentUser\Student.cs" />
-    <Compile Include="StudentUser\StudentSubject.cs" />
     <Compile Include="Uow\DatabaseConfiguration.cs" />
     <Compile Include="Uow\DataContext.cs" />
     <Compile Include="Uow\DataSession.cs" />
@@ -122,25 +121,11 @@
     <Compile Include="Uow\IUnitOfWorkFactory.cs" />
     <Compile Include="Uow\UnitOfWork.cs" />
     <Compile Include="Uow\UnitOfWorkFactory.cs" />
-    <Compile Include="User\BursifyUser.cs" />
     <Compile Include="IEntity.cs" />
-    <Compile Include="User\CampaignSponsor.cs" />
-    <Compile Include="User\Institution.cs" />
-    <Compile Include="User\StudentSponsorship.cs" />
-    <Compile Include="User\Subject.cs" />
-    <Compile Include="User\UserAddress.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201607311106492_initial.resx">
-      <DependentUpon>201607311106492_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608011218047_initial1.resx">
-      <DependentUpon>201608011218047_initial1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

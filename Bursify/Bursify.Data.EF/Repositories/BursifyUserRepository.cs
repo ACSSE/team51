@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.User;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -13,33 +14,14 @@ namespace Bursify.Data.EF.Repositories
         public BursifyUser GetUserByEmail(string email)
         {
             var user = FindSingle(x => x.Email.Equals(email));
-
             return user;
         }
+
 
         public BursifyUser GetUserByUsername(string userName)
         {
             var user = FindSingle(x => x.Name == userName);
             return user;
-        }
-    }
-
-    public class UserAddressRepository : Repository<UserAddress>
-    {
-        public UserAddressRepository(DataSession dataSession) : base(dataSession)
-        {
-        }
-
-        public List<UserAddress> GetAllUserAddress(int userId)
-        {
-            return FindMany(address => address.BursifyUserId == userId);
-        }
-
-        public UserAddress GetUserAddress(int userId, string addressType)
-        {
-            return FindSingle(address =>
-                        address.BursifyUserId == userId
-                     && address.AddressType.ToUpper().Equals(addressType.ToUpper()));
         }
     }
 }

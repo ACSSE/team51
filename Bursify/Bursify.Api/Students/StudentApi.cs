@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bursify.Data.EF.CampaignUser;
 using Bursify.Data.EF.Repositories;
-using Bursify.Data.EF.SponsorUser;
-using Bursify.Data.EF.StudentUser;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.User;
-using Bursify.Data.User;
+using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Api.Students
 {
@@ -122,20 +122,20 @@ namespace Bursify.Api.Students
             throw new NotImplementedException();
         }
 
-        //done
-        public Campaign EndorseCampaign(int campaignId)
-        {
-            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
-            {
-                var campaign = _campaignRepository.EndorseCampaign(campaignId);
+        ////done use one in membership api
+        //public Campaign EndorseCampaign(int campaignId)
+        //{
+        //    using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+        //    {
+        //        var campaign = _campaignRepository.EndorseCampaign(campaignId);
 
-                _campaignRepository.Save(campaign);
+        //        _campaignRepository.Save(campaign);
 
-                uow.Commit();
+        //        uow.Commit();
 
-                return campaign;
-            }
-        }
+        //        return campaign;
+        //    }
+        //}
 
         //done
         public List<Campaign> SearchCampaigns(string criteria)  //done
@@ -290,7 +290,7 @@ namespace Bursify.Api.Students
         }
 
         #endregion
- 
+
         #region Student
 
         public void SaveStudent(Student student)
@@ -307,7 +307,7 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
             {
-                return _studentRepository.GetStudents();
+                return _studentRepository.LoadAll();
             }
         }
 
@@ -315,7 +315,7 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
             {
-                return _studentRepository.GetStudent(studentId);
+                return _studentRepository.LoadById(studentId);
             }
         }
 
@@ -323,7 +323,7 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
             {
-                return _studentSponsorshipRepository.GetApplicant(userId);
+                return _studentRepository.LoadById(userId);
             }
         }
 
@@ -348,7 +348,7 @@ namespace Bursify.Api.Students
                     return false;
                 }
 
-                application.SponsorshipConfirmed = confirmationMessage;
+                application.Status = confirmationMessage;
 
                 _studentSponsorshipRepository.Save(application);
 

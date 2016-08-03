@@ -5,8 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
-using Bursify.Data.EF.StudentUser;
-using Bursify.Data.EF.User;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
+using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Web.Models;
 
 namespace Bursify.Web.Controllers
@@ -96,12 +97,11 @@ namespace Bursify.Web.Controllers
         {
             var newApplication = new StudentSponsorship()
             {
-                ID = application.ID,
                 StudentId = application.StudentId,
                 SponsorshipId = application.SponsorshipId,
                 ApplicationDate = application.ApplicationDate,
-                IsSponsorshipOfferd = application.IsSponsorshipOffered,
-                SponsorshipConfirmed = application.SponsorshipConfirmed
+                SponsorshipOffered = application.SponsorshipOffered,
+                Status = application.Status
             };
 
             _studentApi.ApplyForSponsorship(newApplication);

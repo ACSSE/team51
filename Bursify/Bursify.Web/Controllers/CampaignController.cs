@@ -3,7 +3,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
-using Bursify.Data.EF.CampaignUser;
+using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Api.Security;
 
 namespace Bursify.Web.Controllers
 {
@@ -11,6 +12,7 @@ namespace Bursify.Web.Controllers
     public class CampaignController : ApiController
     {
         private readonly StudentApi _studentApi;
+        MembershipApi _membershipApi;
 
         public CampaignController(StudentApi studentApi)
         {
@@ -192,13 +194,15 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("EndorseCampaign")]
-        public HttpResponseMessage EndorseCampaign(HttpRequestMessage request, int campaignId)
+        public HttpResponseMessage EndorseCampaign(HttpRequestMessage request,int userId, int campaignId)
         {
-            var campaign = _studentApi.EndorseCampaign(campaignId);
+            var campaign = _membershipApi.EndorseCampaign(userId, campaignId);
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaign);
 
             return response;
         }
+
+
     }
 }

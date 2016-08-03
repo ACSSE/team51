@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using Bursify.Data.EF.SponsorUser;
-using Bursify.Data.EF.StudentUser;
+using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Uow;
+using Bursify.Data.EF.Entities.StudentUser;
 
 namespace Bursify.Data.EF.Repositories
 {

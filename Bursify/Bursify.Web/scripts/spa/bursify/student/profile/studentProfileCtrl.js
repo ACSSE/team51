@@ -33,6 +33,8 @@
         };
     });
 
+<<<<<<< HEAD
+=======
 
     //app.directive("addsubjectsbutton", function () {
     //    return {
@@ -51,6 +53,7 @@
     //    };
     //});
 
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
     function studentProfileCtrl($scope, apiService, notificationService) {
         $scope.pageClass = 'page-view-profile';
         $scope.markselect = {};
