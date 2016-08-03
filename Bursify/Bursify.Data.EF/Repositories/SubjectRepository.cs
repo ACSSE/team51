@@ -12,6 +12,16 @@ namespace Bursify.Data.EF.Repositories
         {
         }
 
+        public Subject GetSubject(int id)
+        {
+            return FindSingle(subject => subject.ID == id);
+        }
+
+        public List<Subject> GetSubjects()
+        {
+            return LoadAll();
+        }
+
         public List<Subject> GetSubjects(string subjectLevel)
         {
             var subjects = FindMany(subject => subject.SubjectLevel.Equals(subjectLevel, StringComparison.OrdinalIgnoreCase));

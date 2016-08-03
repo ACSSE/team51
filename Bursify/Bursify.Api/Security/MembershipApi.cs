@@ -168,15 +168,9 @@ namespace Bursify.Api.Security
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 var user = userRepository.LoadById(userId);
-                var campaign = user.Upvotes.FirstOrDefault(x => x.ID == campaignId);
+                var campaign = campaignRepository.EndorseCampaign(user, campaignId);
 
-                if (campaign == null)
-                {
-                    campaign = campaignRepository.LoadById(campaignId);
-                    user.Upvotes.Add(campaign);
-                    uow.Commit();
-                }
-
+                uow.Commit();
                 return campaign;
             }
         }
@@ -186,15 +180,14 @@ namespace Bursify.Api.Security
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 var user = userRepository.LoadById(userId);
-                var campaign = user.Upvotes.FirstOrDefault(x => x.ID == campaignId);
+                var campaign = campaignRepository.IsEndorsed(user, campaignId);
 
                 if (campaign == null)
                 {
                     return false;
                 }
-
             }
-            return false;
+            return true;
         }
 
 

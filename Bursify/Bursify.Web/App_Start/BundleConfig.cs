@@ -1,4 +1,8 @@
-﻿using System.Web.Optimization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Optimization;
 
 namespace Bursify.Web.App_Start
 {
@@ -6,12 +10,14 @@ namespace Bursify.Web.App_Start
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                "~/Scripts/Vendors/modernizr.js"));
+            bundles.Add(new ScriptBundle("~/bundles/j").Include(
+                "~/Content/assets/js/jquery-1.11.1.min.js"));
+
+
 
             bundles.Add(new ScriptBundle("~/bundles/vendors").Include(
-                "~/Scripts/Vendors/jquery.js",
-                "~/Scripts/Vendors/bootstrap.js",
+
+             //  "~/Scripts/Vendors/jquery.js",
                 "~/Scripts/Vendors/toastr.js",
                 "~/Scripts/Vendors/jquery.raty.js",
                 "~/Scripts/Vendors/respond.src.js",
@@ -21,14 +27,23 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/Vendors/angular-validator.js",
                 "~/Scripts/Vendors/angular-base64.js",
                 "~/Scripts/Vendors/angular-file-upload.js",
+                 
+                 "~/Scripts/Vendors/angular-animate.min.js",
+                 "~/Scripts/Vendors/angular-aria.js",
+                 "~/Scripts/Vendors/angular-messages.min.js",
+                 "~/Scripts/Vendors/angular-material.min.js",
+                "~/Scripts/Vendors/angular-hamburger-toggle.js",
                 "~/Scripts/Vendors/angucomplete-alt.min.js",
                 "~/Scripts/Vendors/ui-bootstrap-tpls-0.13.1.js",
                 "~/Scripts/Vendors/underscore.js",
                 "~/Scripts/Vendors/raphael.js",
                 "~/Scripts/Vendors/morris.js",
-                "~/Scripts/Vendors/jquery.fancybox.js",
-                "~/Scripts/Vendors/jquery.fancybox-media.js",
-                "~/Scripts/Vendors/loading-bar.js"
+                "~/Scripts/Vendors/md-table.min.js",
+
+
+                "~/Scripts/Vendors/loading-bar.js",
+           
+                 "~/ Content/assets/js/main.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
@@ -44,16 +59,31 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/spa/account/registerCtrl.js",
                 "~/Scripts/spa/home/rootCtrl.js",
                 "~/Scripts/spa/home/indexCtrl.js",
-                "~/Scripts/spa/bursify/campaigns/campaignsCtrl.js",
                 "~/Scripts/spa/bursify/student/home/studentCtrl.js",
+                 "~/Scripts/spa/bursify/student/profile/studentProfileCtrl.js",
+                   "~/Scripts/spa/bursify/sponsor/profile/sponsorProfileCtrl.js",
+                    "~/Scripts/spa/bursify/sponsor/registration/registrationCtrl.js",
+                 "~/Scripts/spa/bursify/student/campaigns/campaignsCtrl.js",
+                  "~/Scripts/spa/bursify/student/campaigns/campaignDetailsCtrl.js",
+                  "~/Scripts/spa/bursify/student/campaigns/addCampaignCtrl.js",
+                  "~/Scripts/spa/bursify/student/campaigns/editCampaignCtrl.js",
                 "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js",
-                 "~/Scripts/spa/layout/topBar.directive.js"
+                "~/Scripts/spa/bursify/sponsor/chart/leaderboardCtrl.js",
+                "~/Scripts/spa/bursify/student/sponsorship/sponsorshipCtrl.js",
+                 "~/Scripts/spa/bursify/student/applications/myApplicationsCtrl.js",
+                 "~/Scripts/spa/layout/navBar.directive.js",
+                   "~/Scripts/spa/layout/spnavBar.directive.js"
+
 
 
                 ));
+            
+
+      
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+
                
                 "~/content/css/bootstrap.css",
                
@@ -62,15 +92,19 @@ namespace Bursify.Web.App_Start
                 "~/content/css/toastr.css",
                 "~/content/css/jquery.fancybox.css",
                 "~/content/css/loading-bar.css",
-                "~/content/assets/css/style.css",
-                "~/content/dist/css/AdminLTE.min.css"
-                
+                  "~/Scripts/Vendors/angular-hamburger-toggle.css",
+                   "~/Scripts/Vendors/angular-aside.css",
+                    "~/Scripts/Vendors/md-table.min.css",
+         "~/content/assets/css/style.css",
+          "~/content/dist/css/AdminLTE.min.css",
+           "~/Content/assets/css/jquery.steps.css",
+            
+                 "~/Scripts/Vendors/angular-material.min.css"
+           
                 ));
 
-
-
-       
             BundleTable.EnableOptimizations = false;
         }
     }
 }
+ 

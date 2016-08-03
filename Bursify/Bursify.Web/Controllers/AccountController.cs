@@ -1,8 +1,11 @@
-﻿using Bursify.Web.Models;
+﻿using System;
+using Bursify.Web.Models;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Security;
+using Bursify.Api.Students;
+using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Web.Controllers
@@ -12,10 +15,12 @@ namespace Bursify.Web.Controllers
     public class AccountController : ApiController
     {
         private readonly MembershipApi _membershipApi;
+        private readonly StudentApi _studentApi;
 
-        public AccountController(MembershipApi membershipApi)
+        public AccountController(MembershipApi membershipApi, StudentApi studentApi)
         {
             _membershipApi = membershipApi;
+            _studentApi = studentApi;
         }
 
         [AllowAnonymous]
@@ -59,7 +64,7 @@ namespace Bursify.Web.Controllers
 
                 if (_user != null)
                 {
-                    response = request.CreateResponse(HttpStatusCode.OK, new { success = true });
+                    response = request.CreateResponse(HttpStatusCode.OK, new { success = true });                   
                 }
                 else
                 {

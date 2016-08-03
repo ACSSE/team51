@@ -11,5 +11,9 @@ namespace Bursify.Data.EF.Repositories
         {
         }
 
+        public List<StudentSubject> GetStudentSubjects(int studentId)
+        {
+            return FindMany(subjects => subjects.StudentId == studentId);
+        }
     }
 }

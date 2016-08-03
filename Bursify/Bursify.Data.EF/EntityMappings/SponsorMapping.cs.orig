@@ -1,0 +1,64 @@
+<<<<<<< HEAD
+﻿using System.Data.Entity.ModelConfiguration;
+using Bursify.Data.EF.Entities.SponsorUser;
+=======
+﻿using Bursify.Data.EF.SponsorUser;
+using System.Data.Entity.ModelConfiguration;
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
+
+namespace Bursify.Data.EF.EntityMappings
+{
+    public class SponsorMapping : EntityTypeConfiguration<Sponsor>
+    {
+        public SponsorMapping()
+        {
+            this.ToTable("Sponsor", "dbo");
+
+            this.HasKey(x => x.ID);
+
+            this.Property(x => x.ID);
+
+            this.Property(x => x.Type)
+                .IsRequired();
+
+<<<<<<< HEAD
+            this.Property(x => x.Website)
+                .IsOptional();
+
+=======
+            this.Property(x => x.OrganisationSize)
+                .IsRequired();
+
+            this.Property(x => x.Website)
+                .IsOptional();
+
+            this.Property(x => x.YearFounded)
+                .IsRequired();
+
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
+            this.Property(x => x.Location)
+                .IsRequired();
+
+            this.Property(x => x.NumberOfStudentsSponsored)
+                .IsOptional();
+
+            this.Property(x => x.NumberOfSponsorships)
+                .IsOptional();
+
+            this.Property(x => x.NumberOfApplicants)
+                .IsOptional();
+
+            this.Property(x => x.BursifyRank)
+                .IsOptional();
+
+            this.Property(x => x.BursifyScore)
+                .IsOptional();
+
+            this.HasMany(x => x.Sponsorhips);
+
+            this.HasMany(x => x.CampaignSponsors);
+
+            this.HasRequired(x => x.BursifyUser);
+        }
+    }
+}

@@ -16,10 +16,13 @@ namespace Bursify.Data.EF.Uow
             Database.SetInitializer<DataContext>(null);
         }
 
-        protected DataContext(DbConnection connection) : base(connection.ConnectionString)
+        protected DataContext(DbConnection connection)
+            : base(connection.ConnectionString)
         {
             this.Configuration.AutoDetectChangesEnabled = true;
-        }  
+        }
+
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -58,6 +61,7 @@ namespace Bursify.Data.EF.Uow
         {
             Type mappingType = typeof(BursifyUserMapping);
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetAssembly(mappingType));
+            
         }
     }
 }

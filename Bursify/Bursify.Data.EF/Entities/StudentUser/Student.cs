@@ -26,6 +26,7 @@ namespace Bursify.Data.EF.Entities.StudentUser
         public string Race { get; set; }
         public string Gender { get; set; }
         public string CurrentOccupation { get; set; }
+        public string StudyField { get; set; }
         public string HighestAcademicAchievement { get; set; }
         public long YearOfAcademicAchievement { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -35,7 +36,7 @@ namespace Bursify.Data.EF.Entities.StudentUser
         public virtual ICollection<Campaign> Campaigns { get; set; }
         public virtual Institution Institution { get; set; }
         //public virtual ICollection<Sponsorship> Sponsorships { get; set; }
-        public ICollection<StudentSubject> StudentSubjects { get; set; } 
-        public ICollection<StudentSponsorship> StudentSponsorships { get; set; } 
+        public ICollection<StudentSubject> StudentSubjects { get; set; }
+        public ICollection<StudentSponsorship> StudentSponsorships { get; set; }
     }
 }

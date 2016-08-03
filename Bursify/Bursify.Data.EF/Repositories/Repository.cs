@@ -18,7 +18,6 @@ namespace Bursify.Data.EF.Repositories
 
         protected DataContext DbContext
         {
-            /*DataContext.Create(@"Data Source=.\SQL2012;Initial Catalog=BursifyDB;Integrated Security=SSPI;");*/
             get {  return Session.UnitOfWork.Context; }
         }
 

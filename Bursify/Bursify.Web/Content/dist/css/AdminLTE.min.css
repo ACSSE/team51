@@ -1,3 +1,6 @@
+
+
+
 login-logo, .register-logo {
     font-size: 35px;
     text-align: center;
@@ -10,7 +13,7 @@ login-logo, .register-logo {
     }
 
 .login-page, .register-page {
-    background: #fff;
+ 
 }
 
 .login-box, .register-box {
@@ -26,7 +29,7 @@ login-logo, .register-logo {
 }
 
 .login-box-body, .register-box-body {
-    background: #fff;
+  
     padding: 20px;
     border-top: 0;
     color: #666;

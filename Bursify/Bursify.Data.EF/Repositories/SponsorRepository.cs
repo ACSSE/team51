@@ -23,14 +23,14 @@ namespace Bursify.Data.EF.Repositories
          
         public List<Sponsor> GetTop10Sponsors()
         {
-            var topSponsors = (from sponsor in DbContext.Set<Sponsor>() orderby sponsor.BursifyRank
-                                select sponsor)
-                                .Distinct()
+            var topSponsors = (from sponsor in DbContext.Set<Sponsor>()
+                                orderby sponsor.BursifyRank
+                                select sponsor
+                                ).Distinct()
                                 .Take(10)
                                 .ToList();
 
             return topSponsors;
         }
-
     }
 }

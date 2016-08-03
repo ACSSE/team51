@@ -2,8 +2,9 @@
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
-using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Web.Models;
+using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Web.Controllers
 {
@@ -116,7 +117,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("SaveSponsorship")]
-        public HttpResponseMessage SaveCampaign(HttpRequestMessage request, SponsorshipViewModel sponsorship)
+        public HttpResponseMessage SaveSponsorship(HttpRequestMessage request, SponsorshipViewModel sponsorship)
         {
             var newSponsorship = new Sponsorship()
             {

@@ -15,7 +15,8 @@ namespace Bursify.Data.EF.Repositories
     {
         private readonly DataSession _dataSession;
 
-        public StudentSponsorshipRepository(DataSession dataSession) : base(dataSession)
+        public StudentSponsorshipRepository(DataSession dataSession)
+            : base(dataSession)
         {
             _dataSession = dataSession;
         }
@@ -28,21 +29,21 @@ namespace Bursify.Data.EF.Repositories
                 StudentId = userId,
                 SponsorshipId = sponsorshipId,
                 ApplicationDate = DateTime.UtcNow,
-                SponsorshipConfirmed = "No",
-                SponsorshipOffered = "No"
+                Status = "Pending",
+                SponsorshipOffered = false
             };
 
             Save(newApplication);
         }
 
         //for sponsor
-        public bool ConfirmSponsorship(int userId, int sponsorshipId, string confirmationMessage)
+        public bool ConfirmSponsorship(int userId, int sponsorshipId, string statusMessage)
         {
             var application = LoadByIds(userId, sponsorshipId);
 
             if (application == null) { return false; }
 
-            application.SponsorshipConfirmed = confirmationMessage;
+            application.Status = statusMessage;
 
             Save(application);
 
@@ -57,8 +58,8 @@ namespace Bursify.Data.EF.Repositories
                 StudentId = userId,
                 SponsorshipId = sponsorshipId,
                 ApplicationDate = DateTime.UtcNow,
-                SponsorshipConfirmed = "No",
-                SponsorshipOffered = "Yes"
+                Status = "Pending",
+                SponsorshipOffered = true
             };
 
             Save(newApplication);
@@ -66,19 +67,19 @@ namespace Bursify.Data.EF.Repositories
 
         public List<StudentSponsorship> GetStudentsApplications(int userId)
         {
-            return FindMany(application => application.leftId == userId).Where(x => x.SponsorshipConfirmed == "No").ToList();
+            return FindMany(application => application.leftId == userId).Where(x => x.Status == "Pending").ToList();
         }
 
         public List<StudentSponsorship> GetSponsorApplicants(int sponsorshipId)
         {
-            return FindMany(applicant => applicant.rightId == sponsorshipId).Where(x => x.SponsorshipConfirmed == "No").ToList();
+            return FindMany(applicant => applicant.rightId == sponsorshipId).Where(x => x.Status == "Pending").ToList();
         }
 
         public List<Sponsorship> GetStudentsAppliedSponsorships(int userId)
         {
             var sponsorships =
                 FindMany(x => x.leftId == userId)
-                    .Where(x => x.SponsorshipConfirmed == "No")
+                    .Where(x => x.Status == "Pending")
                     .Select(s => s.Sponsorship)
                     .ToList();
             return sponsorships;
@@ -88,7 +89,7 @@ namespace Bursify.Data.EF.Repositories
         {
             var students =
                 FindMany(x => x.SponsorshipId == sponsorshipId)
-                    .Where(x => x.SponsorshipConfirmed == "No")
+                    .Where(x => x.Status == "Pending")
                     .Select(s => s.Student)
                     .ToList();
             return students;
@@ -100,13 +101,19 @@ namespace Bursify.Data.EF.Repositories
             //this query thanx to resharper!
             var students =
                 FindMany(x => x.SponsorshipId == sponsorshipId)
-                    .Where(x => x.SponsorshipConfirmed != "No")
+                    .Where(x => x.Status != "Pending" && x.Status != "Declined")
                     .Select(s => s.Student)
                     .ToList();
             return students;
         }
 
-
+        public StudentSponsorship GetStudentSponsorship(int studentId, int sponsorshipId)
+        {
+            return
+                FindSingle(sponsorship =>
+                    sponsorship.leftId == studentId
+                && sponsorship.rightId == sponsorshipId);
+        }
 
         //done in api using generic repo
         //public Student GetApplicant(int userId)

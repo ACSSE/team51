@@ -7,7 +7,10 @@
 
     function sponsorCtrl($scope, apiService, notificationService) {
         $scope.pageClass = 'page-home-sponsor';
+        
 
     }
+
+ 
 
 })(angular.module('BursifyApp'));

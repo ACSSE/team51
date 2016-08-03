@@ -1,0 +1,45 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
+<<<<<<< HEAD
+using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.SponsorUser;
+=======
+using Bursify.Data.EF.SponsorUser;
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
+
+namespace Bursify.Data.EF.EntityMappings
+{
+    public class SponsorshipRequirementMapping : EntityTypeConfiguration<SponsorshipRequirement>
+    {
+        public SponsorshipRequirementMapping()
+        {
+            this.ToTable("SponsorshipRequirement", "dbo");
+
+<<<<<<< HEAD
+            this.HasKey(x => new { x.SponsorshipId, x.SubjectId });
+=======
+            this.HasKey(x => x.ID);
+
+            this.Property(x => x.ID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
+
+            this.Property(x => x.SponsorshipId)
+                .IsRequired();
+
+            this.Property(x => x.SubjectId)
+                .IsRequired();
+
+            this.Property(x => x.RequiredMark)
+                .IsOptional();
+
+            this.HasRequired(x => x.Sponsorship)
+                .WithMany(s => s.Requirements)
+                .HasForeignKey(f => f.SponsorshipId);
+
+            this.HasRequired(x => x.Subject)
+                .WithMany(s => s.Requirements)
+                .HasForeignKey(f => f.SubjectId);
+        }
+    }
+}

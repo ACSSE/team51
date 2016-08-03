@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
 using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Api.Security;
 
 namespace Bursify.Web.Controllers
 {
@@ -11,6 +12,7 @@ namespace Bursify.Web.Controllers
     public class CampaignController : ApiController
     {
         private readonly StudentApi _studentApi;
+        MembershipApi _membershipApi;
 
         public CampaignController(StudentApi studentApi)
         {
@@ -146,5 +148,61 @@ namespace Bursify.Web.Controllers
         {
             return null;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetCampaignAccount")]
+        public HttpResponseMessage GetCampaignAccount(HttpRequestMessage request, int campaignId)
+        {
+            var account = _studentApi.GetCampaignAccount(campaignId);
+
+            var model = new AccountViewModel();
+
+            var accountVm = model.MapCamapignAccount(account);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, accountVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SaveCampaignAccount")]
+        public HttpResponseMessage SaveCampaignAccount(HttpRequestMessage request, AccountViewModel account)
+        {
+            var newAccount = new Account()
+            {
+                ID = account.ID,
+                AccountName = account.AccountName,
+                AccountNumber = account.AccountNumber,
+                BankName = account.BankName,
+                BranchName = account.BranchName,
+                BranchCode = account.BranchCode
+            };
+
+            _studentApi.SaveCampaignAccount(newAccount);
+
+            var model = new AccountViewModel();
+
+            var accountVm = model.MapCamapignAccount(newAccount);
+
+            var response = request.CreateResponse(HttpStatusCode.Created, accountVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("EndorseCampaign")]
+        public HttpResponseMessage EndorseCampaign(HttpRequestMessage request,int userId, int campaignId)
+        {
+            var campaign = _membershipApi.EndorseCampaign(userId, campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaign);
+
+            return response;
+        }
+
+
     }
 }

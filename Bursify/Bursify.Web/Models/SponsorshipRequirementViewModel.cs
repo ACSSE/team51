@@ -1,3 +1,4 @@
+
 ﻿using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.SponsorUser;
 

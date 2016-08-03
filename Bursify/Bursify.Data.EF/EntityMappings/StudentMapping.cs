@@ -11,8 +11,7 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.HasKey(x => x.ID);
 
-            this.Property(x => x.ID)
-                .HasDatabaseGeneratedOption(0);
+            this.Property(x => x.ID);
 
             this.Property(x => x.Surname)
                 .HasMaxLength(200)
@@ -45,6 +44,9 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.CurrentOccupation)
                 .HasMaxLength(100)
+                .IsOptional();
+
+            this.Property(x => x.StudyField)
                 .IsOptional();
 
             this.Property(x => x.HighestAcademicAchievement)

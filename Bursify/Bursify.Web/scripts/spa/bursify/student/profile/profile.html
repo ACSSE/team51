@@ -1,0 +1,835 @@
+﻿<nav-bar></nav-bar>
+<br />
+<br />
+<div id="content">
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" src=@Url.Content("~/Content/assets/img/mike.jpg") alt="User profile picture">
+<<<<<<< HEAD
+                        <h3 class="profile-username text-center">{{user.Name}}</h3>
+                        <p class="text-muted text-center">University Student</p>
+=======
+                        <h3 class="profile-username text-center">Mike Ross</h3>
+                        <p class="text-muted text-center">Student</p>
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
+
+                        <!-- About Me Box -->
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="box-title" style="text-align: center">About Me</h3>
+                            </div><!-- /.box-header -->
+                            <div class="box-body">
+                                <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
+                                <p class="text-muted">
+<<<<<<< HEAD
+                                    Bsc I.T student at Univeristy of Johannesburg
+=======
+                                    <span>Level</span> - University <br />
+                                    <span>Instituition</span> - University of Johannesburg <br />
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
+                                </p>
+
+                                <hr>
+
+                                <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+                                <p class="text-muted">Johannesburg, Gauteng</p>
+
+                                <hr>
+
+<<<<<<< HEAD
+                                <strong><i class="fa fa-file-text-o margin-r-5"></i>Headline</strong>
+                                <p>I am young ambitious and ready to take on the world. </p>
+                               
+=======
+                                <strong><i class="fa fa-file-text-o margin-r-5"></i>About Me</strong>
+                                <p>I am young ambitious and ready to take on the world. </p>
+                                <strong><i class="fa fa-pencil margin-r-5"></i> Interests</strong>
+                                <p>
+                                    <span class="label label-danger">UI Design</span>
+                                    <span class="label label-success">Coding</span>
+                                    <span class="label label-info">Javascript</span>
+                                    <span class="label label-warning">Java</span>
+                                    <span class="label label-primary">Swift</span>
+                                </p>
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+
+
+                    </div><!-- /.box-body -->
+                </md-card>
+
+
+            </div><!-- /.col -->
+            <div class="col-md-9">
+                <div class="panel">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="Personal Details">
+                            <md-content class="md-padding">
+                                <form role="form" novalidate angular-validator name="userRegistrationForm" angular-validator-submit="register()">
+                                    <div class="box-body">
+                                        <md-input-container class="md-icon-float md-block">
+                                            <!-- Use floating label instead of placeholder -->
+                                            <label>Name</label>
+                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+<<<<<<< HEAD
+                                            <input value="{{user.Name}}" type="text"></>
+=======
+                                            <input ng-model="user.name" value="Mike Ross" type="text">
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
+                                        </md-input-container>
+
+                                        <md-input-container class="md-icon-float md-block">
+                                            <!-- Use floating label instead of placeholder -->
+                                            <label>Status</label>
+                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+<<<<<<< HEAD
+                                            <input ng-model="user.Status" type="text">
+                                        </md-input-container>
+                                      
+                                        <md-input-container class="md-block">
+                                            <label>Biography</label>
+                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                            <textarea ng-model="user.Biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+=======
+                                            <input ng-model="user.name" type="text">
+                                        </md-input-container>
+                                        <md-input-container class="md-icon-float md-block">
+                                            <!-- Use floating label instead of placeholder -->
+                                            <label>Interests</label>
+                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                            <input ng-model="user.name" type="text" maxlength="50">
+                                        </md-input-container>
+                                        <md-input-container class="md-block">
+                                            <label>Biography</label>
+                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                            <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
+                                        </md-input-container>
+
+
+                                    </div><!-- /.box-body -->
+
+                                    <div>
+
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </form>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Contact Details">
+                            <md-content class="md-padding">
+
+                                <div class="box-body">
+                                    <label>My Contact Details</label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email Address">
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Gaurdain</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Phone">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Relationship</label>
+                                                <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                    <option>Mother</option>
+                                                    <option>Father</option>
+                                                    <option>Aunt</option>
+                                                    <option>Uncle</option>
+                                                    <option>Myself</option>
+                                                    <option>Gaurdain</option>
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                                    </div>
+                                    <label>Address</label>
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Street Address">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Postal Code">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Province</label>
+                                                <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                    <option>Gauteng</option>
+                                                    <option>North West</option>
+                                                    <option>Limpopo</option>
+                                                    <option>Western Cape</option>
+                                                    <option>eastern cape</option>
+                                                    <option>Free State</option>
+                                                    <option>Port Elizabeth</option>
+                                                </select>
+
+                                            </div><!-- /.form-group -->
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <label>City</label>
+                                            <select class="form-control " style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                <option>Alabama</option>
+                                                <option>Alaska</option>
+                                                <option>California</option>
+                                                <option>Delaware</option>
+                                                <option>Tennessee</option>
+                                                <option>Texas</option>
+                                                <option>Washington</option>
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div>
+
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Academic Record">
+                            <md-content class="md-padding">
+                                <div class="box-body">
+
+                                    <label>Enter your most recent results below.</label>
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <label>Subject</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Mark Achieved</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+
+                                                <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                    <option>Maths</option>
+                                                    <option>English</option>
+                                                    <option>Afrikaans</option>
+                                                    <option>Life Orientation</option>
+                                                    <option>Geography</option>
+                                                    <option>Business</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="%">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+
+                                                <select class="form-control " style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                    <option>English</option>
+                                                    <option>Maths</option>
+
+                                                    <option>Afrikaans</option>
+                                                    <option>Life Orientation</option>
+                                                    <option>Geography</option>
+                                                    <option>Business</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="%">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+
+                                                <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                    <option>Geography</option>
+                                                    <option>Maths</option>
+                                                    <option>English</option>
+                                                    <option>Afrikaans</option>
+                                                    <option>Life Orientation</option>
+
+                                                    <option>Business</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="%">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+
+                                                <select class="form-control " style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                    <option>Physical Science</option>
+                                                    <option>Maths</option>
+                                                    <option>English</option>
+                                                    <option>Afrikaans</option>
+                                                    <option>Life Orientation</option>
+                                                    <option>Geography</option>
+                                                    <option>Business</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="%">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-9">
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label style="padding-right: 25px;">Add More Subjects</label><span class="fa fa-plus-circle fa-2x"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Upload A Certified Copy</label>
+                                        <input type="file" id="exampleInputFile">
+                                    </div>
+
+
+
+                                    <button type="submit" class="btn btn-success">Save</button>
+
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Application Form">
+                            <md-content class="md-padding">
+                                <div id="content">
+                                    <form role="form">
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-6 form-group">
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>Firstname</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>Surname</label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 form-group">
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>South African ID Number</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>Student Number (if applicable)</label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Gender</label>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group form-animate-checkbox">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <label>Male</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group form-animate-checkbox">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <label>Female</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <label>Date of Birth</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                                        <input class="form-text mask-placeholder" required="" type="date" placeholder="YYYY/MM/DD">
+                                                        <span class="bar"></span>
+                                                        <label></label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <label>Do you have an disability?</label>
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group form-animate-checkbox">
+                                                            <input type="checkbox" class="checkbox">
+                                                            <label>Yes</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group form-animate-checkbox">
+                                                            <input type="checkbox" class="checkbox">
+                                                            <label>No</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+<<<<<<< HEAD
+                                                        <label>Please specify disability</label>
+=======
+                                                        <label>If yes, Please specify disability</label>
+>>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <label>Population group</label>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>African</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>Asain</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>Coloured</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>Indian</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>White</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <label>Address Details</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>Street Address</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>City</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-9">
+
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>Province</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>Postal Code</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <label>Postal Address</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>Same as above</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>P.O Box</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>Surburb</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>City</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>Province</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                                        <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                                        <span class="bar"></span>
+                                                        <label>Postal Code</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+                                            <label>What are you doing this year</label>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>High School</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>Matric</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>Full-time Tertaiary</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>Full-time working</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group form-animate-checkbox">
+                                                        <input type="checkbox" class="checkbox">
+                                                        <label>Part-time student</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Highest Academic Level Achieved</label>
+                                                        <select class="form-control ">
+                                                            <option>Grade 10</option>
+                                                            <option>Grade 11</option>
+                                                            <option>Grade 12</option>
+                                                            <option>1st Year</option>
+                                                            <option>2nd Year</option>
+                                                            <option>3rd Year</option>
+                                                            <option>4th Year</option>
+                                                            <option>5th Year</option>
+                                                            <option>6th Year</option>
+                                                            <option>7th Year</option>
+                                                            <option>Postgrad</option>
+                                                            <option>Honours</option>
+                                                            <option>Masters</option>
+
+                                                        </select>
+
+                                                    </div><!-- /.form-group -->
+                                                </div>
+                                                
+                                                <div class="col-md-2">
+                                                    <label>Year Achieved</label>
+                                                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="20..">
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div><!-- /.box-body -->
+
+                                    </form>
+                                    <form role="form">
+                                        <div class="box-body">
+                                            <label>Guardian Details</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Phone">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email Address">
+                                            </div>
+
+                                            <div class="row">
+                                                <label>Gaurdain Contact Details</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Relationship</label>
+                                                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                            <option>Mother</option>
+                                                            <option>Father</option>
+                                                            <option>Aunt</option>
+                                                            <option>Uncle</option>
+                                                            <option>Myself</option>
+                                                            <option>Gaurdain</option>
+
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Phone">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                    <form role="form">
+                                        <div class="box-body">
+
+                                            <label>Enter your most recent results below.</label>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                        <option value="">-- Year Attained --</option>
+                                                        <option>2016</option>
+                                                        <option>2015</option>
+                                                        <option>2014</option>
+                                                        <option>2013</option>
+                                                        <option>2012</option>
+                                                        <option>2011</option>
+                                                        <option>2010</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="markselect.level" ng-options="s.level for s in data">
+                                                        <option value="">-- Instituition Type --</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="markselect.place" ng-options="p.place for p in markselect.level.places">
+                                                        <option value="" style="text-align: center;">-- Instituition --</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="markselect.grade" ng-options="g.grade for g in markselect.level.grades">
+                                                        <option value="">-- Level --</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                           
+
+                                            <div class="row">
+                                              
+                                                <div class="col-md-9">
+                                                    <label>Subject</label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label>Mark Achieved</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row" id="markInput">
+
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+
+                                                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="markselect.subject" ng-options="s.subject for s in markselect.level.subjects">
+                                                            <option value="" style="text-align: center;">-- Subject --</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+
+                                                        <input type="number" class="form-control" id="exampleInputEmail1" placeholder="%">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                          
+
+                                            <div id="space-for-buttons"></div>
+                                            <addbuttonsbutton></addbuttonsbutton>
+                                           
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">Upload copy of the results entered above.</label>
+                                                <input type="file" id="exampleInputFile">
+                                            </div>
+
+                                            <label>Essay About You</label>
+                                            <p>
+                                                1. Tell us about your family, including your parents’ current circumstances.<br />
+                                                2. Tell us about yourself:<br />
+                                                2.1 Describe yourself in three words<br />
+                                                2.2 How would your friends describe you?<br />
+                                                2.3 What is your greatest passion?<br />
+                                                2.4 What are your major strengths?<br />
+                                                2.5 What are your major weaknesses?<br />
+                                                3. Give a short overview of your school (and post-Matric/ tertiary) achievements thus far.<br />
+                                                4. What leadership position(s) have you served in and what impact has that had?<br />
+                                                5. Mention the committees/ organisations you belong(ed) to and any community service projects you have been involved with.<br />
+                                                6. Briefly tell us why you have chosen your field of study.<br />
+                                                7. Tell us about your further study plans and ideals for the future.<br />
+                                                8. If you have not been studying tell us how you have spent the time.<br />
+                                                9. Mention any books you read that have impressed you.<br />
+                                                10. Tell us about one event or person that influenced you deeply.<br />
+                                                11. Describe the South Africa you want to see in the next 10 years.
+                                            </p>
+                                            <div class="panel">
+                                                <textarea cols="120" rows="50" id="essay"></textarea>
+                                            </div>
+
+                                            <label>File Upload</label>
+                                            <p>Your application will not be considered without the relevant documentary proof, as applicable. Please only upload jpeg, jpg, png or PDF format.</p>
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">Copy of South African ID</label>
+                                                <input type="file" id="exampleInputFile">
+                                            </div>
+                                           
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">Matric certificate (optional)</label>
+                                                <input type="file" id="exampleInputFile">
+                                            </div>
+                                          
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">CV (optional)</label>
+                                                <input type="file" id="exampleInputFile">
+                                            </div>
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-group form-animate-checkbox">
+                                                    <input type="checkbox" class="checkbox">
+                                                    <label>I agree to the terms &amp; conditions</label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Submit</button>
+
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

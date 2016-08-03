@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Security;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Web.Controllers
 {
@@ -16,20 +17,20 @@ namespace Bursify.Web.Controllers
             _membershipApi = membershipApi;
         }
 
-        /*public JsonResult Get()
-        {
-            return new JsonResult { Data = new BursifyUserViewModel(/*new BursifyUser()#1#) {Name="Yo mamma"} };
-        }*/
-
         [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.Route("user/{email:string}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, string email)
+        [System.Web.Mvc.Route("GetUser")]
+        public HttpResponseMessage GetUser(HttpRequestMessage request, string email)
         {
             var user = _membershipApi.GetUserByEmail(email);
-            
-            BursifyUserViewModel model = new BursifyUserViewModel(user);
 
-            HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, model);
+            var model = new BursifyUserViewModel();
+
+            var userVm = model.MapSingleBursifyUser(user);
+
+            userVm.PasswordHash = null;
+            userVm.PasswordSalt = null;
+
+            var response = request.CreateResponse(HttpStatusCode.OK, userVm);
 
             return response;
         }
