@@ -19,7 +19,8 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
-bin
+bin\
+obj\
 [Bb]in
 [Dd]ebug*/
 *.lib
