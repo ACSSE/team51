@@ -12,12 +12,10 @@ namespace Bursify.Web.Controllers
     public class CampaignController : ApiController
     {
         private readonly StudentApi _studentApi;
-        private readonly MembershipApi _membershipApi;
 
-        public CampaignController(StudentApi studentApi, MembershipApi membershipApi)
+        public CampaignController(StudentApi studentApi)
         {
             _studentApi = studentApi;
-            _membershipApi = membershipApi;
         }
 
         //get all campaigns
@@ -28,9 +26,7 @@ namespace Bursify.Web.Controllers
         {
             var campaigns = _studentApi.GetAllCampaigns();
 
-            var model = new CampaignViewModel();
-
-            var campaignVm = model.MultipleCampaignsMap(campaigns);
+            var campaignVm = CampaignViewModel.MultipleCampaignsMap(campaigns);
             
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
 
@@ -45,9 +41,7 @@ namespace Bursify.Web.Controllers
         {
             var campaigns = _studentApi.GetAllCampaigns(userId);
 
-            var model = new CampaignViewModel();
-
-            var campaignVm = model.MultipleCampaignsMap(campaigns);
+            var campaignVm = CampaignViewModel.MultipleCampaignsMap(campaigns);
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
 
@@ -62,9 +56,13 @@ namespace Bursify.Web.Controllers
         {
             var campaigns = _studentApi.SearchCampaigns(searchCriteria);
 
-            var model = new CampaignViewModel();
+            var campaignVm = CampaignViewModel.MultipleCampaignsMap(campaigns);
 
-            var campaignVm = model.MultipleCampaignsMap(campaigns);
+            foreach (var c in campaignVm)
+            {
+                c.Name = _studentApi.GetUserInfo(c.StudentId).Name;
+                c.Surname = _studentApi.GetStudent(c.StudentId).Surname;
+            }
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
 
@@ -80,6 +78,9 @@ namespace Bursify.Web.Controllers
             var campaign = _studentApi.GetSingleCampaign(campaignId);
 
             var model = new CampaignViewModel();
+
+            model.Name = _studentApi.GetUserInfo(model.StudentId).Name;
+            model.Surname = _studentApi.GetStudent(model.StudentId).Surname;
 
             var campaignVm = model.SingleCampaignMap(campaign);
 
@@ -98,9 +99,12 @@ namespace Bursify.Web.Controllers
 
             var model = new CampaignViewModel();
 
-            var campaignVm = model.SingleCampaignMap(campaign);
+            model.Name = _studentApi.GetUserInfo(model.StudentId).Name;
+            model.Surname = _studentApi.GetStudent(model.StudentId).Surname;
 
-            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+            model.SingleCampaignMap(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, model);
 
             return response;
         }
@@ -111,43 +115,13 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("SaveCampaign")]
         public HttpResponseMessage SaveCampaign(HttpRequestMessage request, CampaignViewModel campaign)
         {
-            var newCampaign = new Campaign
-            {
-                ID = campaign.CampaignId,
-                StudentId = campaign.StudentId,
-                CampaignName = campaign.CampaignName,
-                Tagline = campaign.Tagline,
-                Location = campaign.Location,
-                Description = campaign.Description,
-                AmountRequired = campaign.AmountRequired,
-                CampaignType = campaign.CampaignType,
-                VideoPath = campaign.VideoPath,
-                PicturePath = campaign.PicturePath,
-                StartDate = campaign.StartDate,
-                EndDate = campaign.EndDate,
-                AmountContributed = campaign.AmountContributed,
-                FundUsage = campaign.FundUsage,
-                ReasonsToSupport = campaign.ReasonsToSupport
-            };
+            var newCampaign = campaign.ReverseMap();
 
             _studentApi.SaveCampaign(newCampaign);
 
-            var model = new CampaignViewModel();
-
-            var campaignVm = model.SingleCampaignMap(newCampaign);
-
-            var response = request.CreateResponse(HttpStatusCode.Created, campaignVm);
+            var response = request.CreateResponse(HttpStatusCode.Created, campaign);
 
             return response;
-        }
-
-        //later and thinking
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("SponsorCampaign")]
-        public HttpResponseMessage SponsorCampaign(HttpRequestMessage request)
-        {
-            return null;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -157,9 +131,7 @@ namespace Bursify.Web.Controllers
         {
             var account = _studentApi.GetCampaignAccount(campaignId);
 
-            var model = new AccountViewModel();
-
-            var accountVm = model.MapCamapignAccount(account);
+            var accountVm = new AccountViewModel(account);
 
             var response = request.CreateResponse(HttpStatusCode.OK, accountVm);
 
@@ -171,23 +143,11 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("SaveCampaignAccount")]
         public HttpResponseMessage SaveCampaignAccount(HttpRequestMessage request, AccountViewModel account)
         {
-            var newAccount = new Account()
-            {
-                ID = account.ID,
-                AccountName = account.AccountName,
-                AccountNumber = account.AccountNumber,
-                BankName = account.BankName,
-                BranchName = account.BranchName,
-                BranchCode = account.BranchCode
-            };
+            var newAccount = account.ReverseMap();
 
             _studentApi.SaveCampaignAccount(newAccount);
 
-            var model = new AccountViewModel();
-
-            var accountVm = model.MapCamapignAccount(newAccount);
-
-            var response = request.CreateResponse(HttpStatusCode.Created, accountVm);
+            var response = request.CreateResponse(HttpStatusCode.Created, account);
 
             return response;
         }
@@ -197,7 +157,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("EndorseCampaign")]
         public HttpResponseMessage EndorseCampaign(HttpRequestMessage request,int userId, int campaignId)
         {
-            var campaign = _membershipApi.EndorseCampaign(userId, campaignId);
+            var campaign = _studentApi.EndorseCampaign(userId, campaignId);
 
             CampaignViewModel campaignVM = new CampaignViewModel();
             campaignVM.SingleCampaignMap(campaign);

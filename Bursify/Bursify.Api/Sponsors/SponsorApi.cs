@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bursify.Api.Users;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Entities.SponsorUser;
@@ -13,26 +14,22 @@ using Bursify.Data.EF.Uow;
 
 namespace Bursify.Api.Sponsors
 {
-    public class SponsorApi
+    public class SponsorApi : UserApi
     {
-        private IUnitOfWorkFactory unitOfWorkFactory;
         private SponsorshipRepository sponsorshipRepository;
         private StudentSponsorshipRepository studentSponsorshipRepository;
         private BridgeRepository<SponsorshipRequirement> requirementBridgeRepository;
         private Repository<Student> studentRepository;
         private CampaignSponsorRepository campaignSponsorRepository;
-        private CampaignRepository campaignRepository;
         private BridgeRepository<CampaignReport> campaignReportBridgeRepository;
 
-        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, CampaignSponsorRepository campaignSponsorRepository, CampaignRepository campaignRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository)
+        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, CampaignRepository campaignRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, CampaignSponsorRepository campaignSponsorRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository) : base(unitOfWorkFactory, userRepository, campaignRepository)
         {
-            this.unitOfWorkFactory = unitOfWorkFactory;
             this.sponsorshipRepository = sponsorshipRepository;
             this.studentSponsorshipRepository = studentSponsorshipRepository;
             this.requirementBridgeRepository = requirementBridgeRepository;
             this.studentRepository = studentRepository;
             this.campaignSponsorRepository = campaignSponsorRepository;
-            this.campaignRepository = campaignRepository;
             this.campaignReportBridgeRepository = campaignReportBridgeRepository;
         }
 

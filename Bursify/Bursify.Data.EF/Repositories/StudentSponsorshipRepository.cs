@@ -67,18 +67,18 @@ namespace Bursify.Data.EF.Repositories
 
         public List<StudentSponsorship> GetStudentsApplications(int userId)
         {
-            return FindMany(application => application.leftId == userId).Where(x => x.Status == "Pending").ToList();
+            return FindMany(application => application.StudentId == userId).Where(x => x.Status == "Pending").ToList();
         }
 
         public List<StudentSponsorship> GetSponsorApplicants(int sponsorshipId)
         {
-            return FindMany(applicant => applicant.rightId == sponsorshipId).Where(x => x.Status == "Pending").ToList();
+            return FindMany(applicant => applicant.SponsorshipId == sponsorshipId).Where(x => x.Status == "Pending").ToList();
         }
 
         public List<Sponsorship> GetStudentsAppliedSponsorships(int userId)
         {
             var sponsorships =
-                FindMany(x => x.leftId == userId)
+                FindMany(x => x.StudentId == userId)
                     .Where(x => x.Status == "Pending")
                     .Select(s => s.Sponsorship)
                     .ToList();
@@ -89,9 +89,8 @@ namespace Bursify.Data.EF.Repositories
         {
             var students =
                 FindMany(x => x.SponsorshipId == sponsorshipId)
-                    .Where(x => x.Status == "Pending")
-                    .Select(s => s.Student)
-                    .ToList();
+                    .Where(x => x.Status == "Pending").Select(s => s.Student).ToList();
+
             return students;
         }
 
@@ -101,9 +100,8 @@ namespace Bursify.Data.EF.Repositories
             //this query thanx to resharper!
             var students =
                 FindMany(x => x.SponsorshipId == sponsorshipId)
-                    .Where(x => x.Status != "Pending" && x.Status != "Declined")
-                    .Select(s => s.Student)
-                    .ToList();
+                    .Where(x => x.Status != "Pending" && x.Status != "Declined").Select(s => s.Student).ToList();
+
             return students;
         }
 

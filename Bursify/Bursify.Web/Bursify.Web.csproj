@@ -468,6 +468,11 @@
     <Content Include="Content\images\campaign.jpeg" />
     <Content Include="Content\images\campaign.jpg" />
     <Content Include="Content\images\p1.jpeg" />
+    <Content Include="Content\images\system\Double Down-64.png" />
+    <Content Include="Content\images\system\entelect.png" />
+    <Content Include="Content\images\user\1.jpg" />
+    <Content Include="Content\images\user\Circled User Male.png" />
+    <Content Include="Content\images\user\elogo.jpg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BACKUP_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BASE_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_LOCAL_8544.svg" />
@@ -615,7 +620,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\images\Thumbs.db" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\fonts\stamp-icons.ttf" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\fonts\stamp-icons.woff" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\images\Thumbs.db" />
@@ -659,6 +663,7 @@
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\systemv" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\yearistype.sh" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\zone.tab" />
+    <Content Include="Content\images\system\Thumbs.db" />
     <None Include="Properties\PublishProfiles\bursify - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\bursify - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bursify - Web Deploy %282%29.pubxml" />
@@ -683,8 +688,6 @@
     <Folder Include="Content\images\company\" />
     <Folder Include="Content\images\raty\" />
     <Folder Include="Content\images\student\" />
-    <Folder Include="Content\images\system\" />
-    <Folder Include="Content\images\user\" />
     <Folder Include="Content\landing\wp-content\plugins\contact-form-7\includes\css\" />
     <Folder Include="Content\landing\wp-content\plugins\contact-form-7\includes\js\" />
     <Folder Include="Content\landing\wp-content\plugins\easy-digital-downloads\assets\js\" />

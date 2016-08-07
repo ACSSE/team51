@@ -29,9 +29,7 @@ namespace Bursify.Web.Controllers
         {
             var students = _studentApi.GetAllStudents();
 
-            var model = new StudentViewModel();
-
-            var studentsVm = model.MapMultipleStudents(students);
+            var studentsVm = StudentViewModel.MapMultipleStudents(students);
 
             var response = request.CreateResponse(HttpStatusCode.OK, studentsVm);
 
@@ -147,11 +145,9 @@ namespace Bursify.Web.Controllers
         {
             var suggestions = _studentApi.LoadSponsorshipSuggestions(studentId);
 
-            var model = new SponsorshipViewModel();
+            var sponsorshipsVm = SponsorshipViewModel.MultipleSponsorshipsMap(suggestions);
 
-            var sponsorshipVm = model.MultipleSponsorshipsMap(suggestions);
-
-            var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
+            var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipsVm);
 
             return response;
         }

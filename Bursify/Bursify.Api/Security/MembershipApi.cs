@@ -12,17 +12,15 @@ namespace Bursify.Api.Security
     public class MembershipApi
     {
         private readonly BursifyUserRepository userRepository;
-        private readonly CampaignRepository campaignRepository;
         private readonly IUnitOfWorkFactory unitOfWorkFactory;
         private readonly ICryptoService cryptoService;
 
         public MembershipApi(BursifyUserRepository userRepository, ICryptoService cryptoService,
-            IUnitOfWorkFactory unitOfWorkFactory, CampaignRepository campaignRepository)
+            IUnitOfWorkFactory unitOfWorkFactory)
         {
             this.userRepository = userRepository;
             this.cryptoService = cryptoService;
             this.unitOfWorkFactory = unitOfWorkFactory;
-            this.campaignRepository = campaignRepository;
         }
 
 
@@ -92,97 +90,6 @@ namespace Bursify.Api.Security
             }
 
             return user;
-        }
-
-
-        public List<BursifyUser> ShowAllUsers()
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                return userRepository.LoadAll();
-            }
-        }
-
-        public BursifyUser GetUserInfo(int Id)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                return userRepository.LoadById(Id);
-            }
-        }
-
-        public void UpdateUser(BursifyUser user)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                userRepository.Save(user);
-                uow.Commit();
-            }
-        }
-
-        public void UpdateUser(int Id, string accountStatus, ICollection<UserAddress> address, string bio, string cellno, string email, string name, string picPath, string telno)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                var user = userRepository.LoadById(Id);
-                user.AccountStatus = accountStatus;
-                user.Addresses = address;
-                user.Biography = bio;
-                user.CellphoneNumber = cellno;
-                user.Email = email;
-                user.Name = name;
-                user.ProfilePicturePath = picPath;
-                user.TelephoneNumber = telno;
-                UpdateUser(user);
-            }
-        }
-
-        public void DeleteUser(BursifyUser user)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                userRepository.Delete(user);
-                uow.Commit();
-            }
-        }
-
-        public void DeleteUserById(int Id)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                userRepository.Delete(Id);
-                uow.Commit();
-            }
-        }
-
-        public List<Campaign> GetCampaigns()
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                return campaignRepository.GetAllCampaigns();
-            }
-        }
-
-        public Campaign EndorseCampaign(int userId, int campaignId)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                var user = userRepository.LoadById(userId);
-                var campaign = campaignRepository.EndorseCampaign(user, campaignId);
-
-                uow.Commit();
-                return campaign;
-            }
-        }
-
-        public bool IsEndorsed(int userId, int campaignId)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                var user = userRepository.LoadById(userId);
-                return campaignRepository.IsEndorsed(user, campaignId);
-            }
-
         }
 
     }

@@ -16,9 +16,10 @@ namespace Bursify.Web.Controllers
         private readonly StudentApi _studentApi;
         private SponsorApi sponsorApi;
 
-        public SponsorController(StudentApi studentApi)
+        public SponsorController(StudentApi studentApi, SponsorApi sponsorApi)
         {
             _studentApi = studentApi;
+            this.sponsorApi = sponsorApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -72,25 +73,9 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("AddSponsorship")]
-        public HttpResponseMessage AddSponsorship(HttpRequestMessage request, SponsorshipViewModel sponsorshipVM, List<SponsorshipRequirement> requirementsVM)
+        public HttpResponseMessage AddSponsorship(HttpRequestMessage request, SponsorshipViewModel sponsorshipVM, List<SponsorshipRequirementViewModel> requirementsVM)
         {
-            var sponsorship = new Sponsorship
-            {
-                Name = sponsorshipVM.Name,
-                EducationLevel = sponsorshipVM.EducationLevel,
-                ClosingDate = sponsorshipVM.ClosingDate,
-                SponsorshipValue = sponsorshipVM.SponsorshipValue,
-                AverageMarkRequired = sponsorshipVM.AverageMarkRequired,
-                Description = sponsorshipVM.Description,
-                EssayRequired = sponsorshipVM.EssayRequired,
-                ExpensesCovered = sponsorshipVM.ExpensesCovered,
-                PreferredInstitutions = sponsorshipVM.PreferredInstitutions,
-                Province = sponsorshipVM.Province,
-                SponsorId = sponsorshipVM.SponsorId,
-                SponsorshipType = sponsorshipVM.SponsorshipType,
-                StudyFields = sponsorshipVM.StudyFields,
-                TermsAndConditions = sponsorshipVM.TermsAndConditions
-            };
+            var sponsorship = sponsorshipVM.ReverseMap();
 
             sponsorApi.AddSponsorship(sponsorship);
 
@@ -98,12 +83,7 @@ namespace Bursify.Web.Controllers
 
             foreach (var r in requirementsVM)
             {
-                requirements.Add(new SponsorshipRequirement
-                {
-                    SubjectId = r.SubjectId,
-                    RequiredMark = r.RequiredMark,
-                    SponsorshipId = r.SubjectId,
-                });
+                requirements.Add(r.ReverseMap());
             }
 
             if (requirements.Count != 0)
@@ -111,7 +91,7 @@ namespace Bursify.Web.Controllers
                 sponsorApi.AddRequirements(requirements);
             }
             
-            var response = request.CreateResponse(HttpStatusCode.OK, sponsorship);
+            var response = request.CreateResponse(HttpStatusCode.OK);
 
             return response;
         }
@@ -119,17 +99,12 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("AddRequirements")]
-        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<SponsorshipRequirement> requirementsVM)
+        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<SponsorshipRequirementViewModel> requirementsVM)
         {
             List<SponsorshipRequirement> requirements = new List<SponsorshipRequirement>();
             foreach (var r in requirementsVM)
             {
-                requirements.Add(new SponsorshipRequirement
-                {
-                    SubjectId = r.SubjectId,
-                    RequiredMark = r.RequiredMark,
-                    SponsorshipId = r.SubjectId,
-                });
+                requirements.Add(r.ReverseMap());
             }
 
             if (requirements.Count != 0)
@@ -171,24 +146,28 @@ namespace Bursify.Web.Controllers
 
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
-        [System.Web.Mvc.Route("GetStudentSponsored")]
+        [System.Web.Mvc.Route("GetStudentsSponsored")]
         public HttpResponseMessage GetStudentsSponsored(HttpRequestMessage request, int sponsorshipId)
         {
             var students = sponsorApi.GetStudentsSponsored(sponsorshipId);
 
-            var response = request.CreateResponse(HttpStatusCode.OK, students);
+            var s = StudentViewModel.MapMultipleStudents(students);
+            
+            var response = request.CreateResponse(HttpStatusCode.OK, s);
 
             return response;
         }
 
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
-        [System.Web.Mvc.Route("GetStudentApplying")]
+        [System.Web.Mvc.Route("GetStudentsApplying")]
         public HttpResponseMessage GetStudentsApplying(HttpRequestMessage request, int sponsorshipId)
         {
             var students = sponsorApi.GetStudentsApplying(sponsorshipId);
 
-            var response = request.CreateResponse(HttpStatusCode.OK, students);
+            var s = StudentViewModel.MapMultipleStudents(students);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, s);
 
             return response;
         }
@@ -236,8 +215,15 @@ namespace Bursify.Web.Controllers
             int sponsorId)
         {
             var campaigns = sponsorApi.GetSupportedCampaigns(sponsorId);
+            var campaignsVM = CampaignViewModel.MultipleCampaignsMap(campaigns);
 
-            var response = request.CreateResponse(HttpStatusCode.OK, campaigns);
+            foreach (var c in campaignsVM)
+            {
+                c.Name = sponsorApi.GetUserInfo(c.StudentId).Name;
+                c.Surname = sponsorApi.GetStudent(c.StudentId).Surname;
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignsVM);
 
             return response;
         }

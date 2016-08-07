@@ -65,6 +65,9 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.NumberOfUpVotes)
                 .IsOptional();
 
+            this.Property(x => x.Status)
+                .IsRequired();
+
             this.HasMany(x => x.CampaignSponsors);
 
             this.HasRequired(x => x.Student)

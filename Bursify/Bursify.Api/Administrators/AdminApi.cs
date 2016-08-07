@@ -10,7 +10,7 @@ using Bursify.Data.EF.Uow;
 
 namespace Bursify.Api.Administrators
 {
-    class AdminApi
+    public class AdminApi
     {
         private Repository<Institution> institutionRepository;
         private Repository<Subject> subjectRepository;

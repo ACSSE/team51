@@ -22,10 +22,6 @@
             selectedDirection: 'right'
         };
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
         function login() {
             membershipService.removeCredentials();
             membershipService.login($scope.user, loginCompleted)
@@ -56,20 +52,11 @@
 
                 $rootScope.User = $scope.user.Name;
              
-<<<<<<< HEAD
-             
-
-=======
->>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
             } else if ($scope.user.UserType == "Sponsor") {
                 $location.path('/bursify/sponsor/home');
                 membershipService.saveCredentials($scope.user);
                 $scope.userData.displayUserInfo();
                 notificationService.displaySuccess('Hello ' + $scope.user.Name);
-<<<<<<< HEAD
-
-=======
->>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
                 $rootScope.User = $scope.user.Name;
 
             } else if ($scope.user.UserType == "Admin") {
@@ -77,13 +64,7 @@
                 membershipService.saveCredentials($scope.user);
                 $scope.userData.displayUserInfo();
                 notificationService.displaySuccess('Hello ' + $scope.user.Name);
-<<<<<<< HEAD
-
-                $rootScope.User = $scope.user.Name;
-          
-=======
                 $rootScope.User = $scope.user.Name;          
->>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
             }
         }
     }

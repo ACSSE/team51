@@ -4,6 +4,7 @@ using Bursify.Data.EF.Entities.StudentUser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Web.Models
 {
@@ -25,31 +26,46 @@ namespace Bursify.Web.Models
         public DateTime DateOfBirth { get; set; }
         public int NumberOfViews { get; set; }
 
-        public Student MapSingleStudent(Student student)
+        public StudentViewModel()
         {
-            return new Student()
-            {
-                ID = student.ID,
-                Surname = student.Surname,
-                EducationLevel = student.EducationLevel,
-                AverageMark = student.AverageMark,
-                StudentNumber = student.StudentNumber,
-                Age = student.Age,
-                HasDisability = student.HasDisability,
-                Race = student.Race,
-                Gender = student.Gender,
-                CurrentOccupation = student.CurrentOccupation,
-                StudyField = student.StudyField,
-                HighestAcademicAchievement = student.HighestAcademicAchievement,
-                YearOfAcademicAchievement = student.YearOfAcademicAchievement,
-                DateOfBirth = student.DateOfBirth,
-                NumberOfViews = student.NumberOfViews
-            };
+            //default
         }
 
-        public List<Student> MapMultipleStudents(List<Student> students)
+        public StudentViewModel(Student s)
         {
-            return (from student in students select MapSingleStudent(student)).ToList();
+            MapSingleStudent(s);
+        }
+
+        public StudentViewModel MapSingleStudent(Student student)
+        {
+            ID = student.ID;
+            Surname = student.Surname;
+            EducationLevel = student.EducationLevel;
+            AverageMark = student.AverageMark;
+            StudentNumber = student.StudentNumber;
+
+            Age = student.Age;
+            HasDisability = student.HasDisability;
+            Race = student.Race;
+            Gender = student.Gender;
+            CurrentOccupation = student.CurrentOccupation;
+            StudyField = student.StudyField;
+            HighestAcademicAchievement = student.HighestAcademicAchievement;
+            YearOfAcademicAchievement = student.YearOfAcademicAchievement;
+            DateOfBirth = student.DateOfBirth;
+            NumberOfViews = student.NumberOfViews;
+            return this;
+        }
+
+        public static List<StudentViewModel> MapMultipleStudents(List<Student> students)
+        {
+            List<StudentViewModel> studentsVM = new List<StudentViewModel>();
+            foreach (var s in students)
+            {
+                StudentViewModel sVm = new StudentViewModel(s);
+                studentsVM.Add(sVm);
+            }
+            return studentsVM;
         }
     }
 }
