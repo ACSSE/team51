@@ -13,17 +13,26 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.ID);
 
+<<<<<<< HEAD
+            this.Property(x => x.Type)
+                .IsRequired();
+=======
             this.Property(x => x.Industry)
                 .IsOptional();
+>>>>>>> origin/Backend
 
             this.Property(x => x.Website)
                 .IsOptional();
 
             this.Property(x => x.Location)
+<<<<<<< HEAD
+                .IsRequired();
+=======
                 .IsOptional();
 
             this.Property(x => x.CompanyEmail)
             .IsOptional();
+>>>>>>> origin/Backend
 
             this.Property(x => x.NumberOfStudentsSponsored)
                 .IsOptional();

@@ -21,15 +21,22 @@ namespace Bursify.Api.Sponsors
         private BridgeRepository<SponsorshipRequirement> requirementBridgeRepository;
         private Repository<Student> studentRepository;
         private BridgeRepository<CampaignReport> campaignReportBridgeRepository;
+<<<<<<< HEAD
+
+        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository) : base(unitOfWorkFactory, userRepository, campaignRepository, campaignSponsorRepository)
+=======
         private SponsorRepository sponsorRepository;
 
         public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, SponsorRepository sponsorRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository) : base(unitOfWorkFactory, userRepository, campaignRepository, campaignSponsorRepository)
+>>>>>>> origin/Backend
         {
             this.sponsorshipRepository = sponsorshipRepository;
             this.studentSponsorshipRepository = studentSponsorshipRepository;
             this.requirementBridgeRepository = requirementBridgeRepository;
             this.studentRepository = studentRepository;
             this.campaignReportBridgeRepository = campaignReportBridgeRepository;
+<<<<<<< HEAD
+=======
             this.sponsorRepository = sponsorRepository;
         }
 
@@ -40,6 +47,7 @@ namespace Bursify.Api.Sponsors
                 sponsorRepository.Save(s);
                 uow.Commit();
             }
+>>>>>>> origin/Backend
         }
 
         public void AddSponsorship(int sponsorshipId, int sponsorId, string name, string description,

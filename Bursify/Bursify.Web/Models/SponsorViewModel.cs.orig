@@ -6,13 +6,36 @@ namespace Bursify.Web.Models
 {
     public class SponsorViewModel
     {
+<<<<<<< HEAD
+        public int BursifyUserId { get; set; }
+=======
         public int ID { get; set; }
+>>>>>>> origin/Backend
         public int NumberOfStudentsSponsored { get; set; }
         public int NumberOfSponsorships { get; set; }
         public int NumberOfApplicants { get; set; }
         public int BursifyRank { get; set; }
         public int BursifyScore { get; set; }
 
+<<<<<<< HEAD
+        public Sponsor SingleSponsorMap(Sponsor sponsor)
+        {
+            return new Sponsor()
+            {
+                ID = sponsor.ID,
+                NumberOfStudentsSponsored = sponsor.NumberOfStudentsSponsored,
+                NumberOfSponsorships = sponsor.NumberOfSponsorships,
+                NumberOfApplicants = sponsor.NumberOfApplicants,
+                BursifyRank = sponsor.BursifyRank,
+                BursifyScore = sponsor.BursifyScore
+            };
+        }
+
+        public List<Sponsor> MultipleSponsorsMap(List<Sponsor> sponsors)
+        {
+            return (from sponsor in sponsors select SingleSponsorMap(sponsor)).ToList();
+        }
+=======
         public SponsorViewModel()
         {
         }
@@ -57,5 +80,6 @@ namespace Bursify.Web.Models
             return sponsorsVm;
         }
 
+>>>>>>> origin/Backend
     }
 }
