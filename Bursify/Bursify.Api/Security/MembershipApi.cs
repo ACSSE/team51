@@ -52,7 +52,7 @@ namespace Bursify.Api.Security
                 var existingUser = userRepository.GetUserByEmail(userEmail);
                 if (existingUser != null)
                 {
-                    throw new Exception("Email is already in use");
+                    return null;
                 }
 
                 var salt = cryptoService.CreateSalt();

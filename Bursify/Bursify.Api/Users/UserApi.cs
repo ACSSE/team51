@@ -12,12 +12,14 @@ namespace Bursify.Api.Users
         protected readonly IUnitOfWorkFactory unitOfWorkFactory;
         protected readonly Repository<BursifyUser> userRepository;
         protected readonly CampaignRepository campaignRepository;
+        protected readonly CampaignSponsorRepository campaignSponsorRepository;
 
-        public UserApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, CampaignRepository campaignRepository)
+        public UserApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository)
         {
             this.unitOfWorkFactory = unitOfWorkFactory;
             this.userRepository = userRepository;
             this.campaignRepository = campaignRepository;
+            this.campaignSponsorRepository = campaignSponsorRepository;
         }
 
         public List<BursifyUser> ShowAllUsers()
@@ -108,6 +110,14 @@ namespace Bursify.Api.Users
                 return campaignRepository.IsEndorsed(user, campaignId);
             }
 
+        }
+
+        public int GetNumberOfCampaignSupporters(int Id)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetNumberOfSupportersOfCampaign(Id);
+            }
         }
     }
 }

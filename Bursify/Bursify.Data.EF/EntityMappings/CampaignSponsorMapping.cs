@@ -11,7 +11,9 @@ namespace Bursify.Data.EF.EntityMappings
         {
             this.ToTable("CampaignSponsor", "dbo");
 
-            this.HasKey(x => new { x.CampaignId, x.SponsorId });
+            this.HasKey(x => x.ID);
+
+            this.Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(x => x.CampaignId)
                 .IsRequired();

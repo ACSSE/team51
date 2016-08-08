@@ -191,5 +191,18 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetNumberSupportedCampaign")]
+        public HttpResponseMessage GetNumberSupportedCampaign(HttpRequestMessage request, int campaignId)
+        {
+            int number = _studentApi.GetNumberOfCampaignSupporters(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, number);
+
+            return response;
+        }
     }
 }

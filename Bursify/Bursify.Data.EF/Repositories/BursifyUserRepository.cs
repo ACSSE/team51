@@ -23,5 +23,23 @@ namespace Bursify.Data.EF.Repositories
             var user = FindSingle(x => x.Name == userName);
             return user;
         }
+
+        public int GetNumberOfUsersRegistered()
+        {
+            return FindMany(x => x.AccountStatus != "InActive").Count;
+        }
+
+        public int GetNumberOfUserRegisteredByType(string type)
+        {
+            return FindMany(x => x.AccountStatus != "InActive" && x.AccountStatus.ToUpper().Equals(type.ToUpper())).Count;
+        }
+
+
+        public int GetNumberOfUsersByStatus(string status)
+        {
+            return FindMany(x => x.AccountStatus.ToUpper().Equals(status.ToUpper())).Count;
+        }
+
+
     }
 }

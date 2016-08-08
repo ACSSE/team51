@@ -13,20 +13,44 @@ namespace Bursify.Web.Models
         public string Type { get; set; }
         public string Website { get; set; }
 
-        public Institution MapSingleInstitution(Institution institution)
+        public InstitutionViewModel()
+        {
+        }
+
+        public InstitutionViewModel(Institution i)
+        {
+            MapSingleInstitution(i);
+        }
+
+        public InstitutionViewModel MapSingleInstitution(Institution institution)
+        {
+            ID = institution.ID;
+            Name = institution.Name;
+            Type = institution.Type;
+            Website = institution.Website;
+            return this;
+        }
+
+        public Institution ReverseMap()
         {
             return new Institution()
             {
-                ID = institution.ID,
-                Name = institution.Name,
-                Type = institution.Type,
-                Website = institution.Website
+                ID = this.ID,
+                Name = this.Name,
+                Type = this.Type,
+                Website = this.Website
             };
         }
 
-        public List<Institution> MapMultipleInstitutions(List<Institution> institutions)
+        public List<InstitutionViewModel> MapMultipleInstitutions(List<Institution> institutions)
         {
-            return (from institution in institutions select MapSingleInstitution(institution)).ToList();
+            List<InstitutionViewModel> institutionVm = new List<InstitutionViewModel>();
+            foreach (var i in institutions)
+            {
+                InstitutionViewModel sVm = new InstitutionViewModel(i);
+                institutionVm.Add(sVm);
+            }
+            return institutionVm;
         }
     }
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

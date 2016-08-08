@@ -97,6 +97,13 @@ namespace Bursify.Data.EF.Repositories
             return entities;
         }
 
+        public List<TEntity> LoadAll()
+        {
+            var entities = DbContext.Set<TEntity>().ToList();
+
+            return entities;
+        }
+
         protected string GetEntitySetName<T>()
         {
             string entityTypeName = typeof(T).Name;

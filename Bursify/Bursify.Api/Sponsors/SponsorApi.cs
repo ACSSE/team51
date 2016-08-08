@@ -20,16 +20,14 @@ namespace Bursify.Api.Sponsors
         private StudentSponsorshipRepository studentSponsorshipRepository;
         private BridgeRepository<SponsorshipRequirement> requirementBridgeRepository;
         private Repository<Student> studentRepository;
-        private CampaignSponsorRepository campaignSponsorRepository;
         private BridgeRepository<CampaignReport> campaignReportBridgeRepository;
 
-        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, CampaignRepository campaignRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, CampaignSponsorRepository campaignSponsorRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository) : base(unitOfWorkFactory, userRepository, campaignRepository)
+        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository) : base(unitOfWorkFactory, userRepository, campaignRepository, campaignSponsorRepository)
         {
             this.sponsorshipRepository = sponsorshipRepository;
             this.studentSponsorshipRepository = studentSponsorshipRepository;
             this.requirementBridgeRepository = requirementBridgeRepository;
             this.studentRepository = studentRepository;
-            this.campaignSponsorRepository = campaignSponsorRepository;
             this.campaignReportBridgeRepository = campaignReportBridgeRepository;
         }
 
