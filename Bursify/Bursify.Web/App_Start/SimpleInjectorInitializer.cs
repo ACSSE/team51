@@ -1,5 +1,7 @@
 using System.Web.Http;
+using Bursify.Api.Administrators;
 using Bursify.Api.Security;
+using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Api.Users;
 using Bursify.App_Start;
@@ -38,6 +40,8 @@ namespace Bursify.App_Start
             container.Register<UserApi>();
             container.Register<MembershipApi>();
             container.Register<StudentApi>();
+            container.Register<SponsorApi>();
+            container.Register<AdminApi>();
 
             //Persistence
             container.Register(typeof(Repository<>));
@@ -50,6 +54,10 @@ namespace Bursify.App_Start
             container.Register<SubjectRepository>();
             container.Register<StudentSubjectRepository>();
             container.Register<StudentRepository>();
+            container.Register<CampaignReportRepository>();
+            container.Register(typeof(BridgeRepository<>));
+            container.Register<CampaignSponsorRepository>();
+            container.Register<StudentSponsorshipRepository>();
             container.Register<IUnitOfWorkFactory, UnitOfWorkFactory>(Lifestyle.Scoped);
             container.Register<DataSession>(new WebRequestLifestyle(true));
 

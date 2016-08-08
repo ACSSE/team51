@@ -33,27 +33,6 @@
         };
     });
 
-<<<<<<< HEAD
-=======
-
-    //app.directive("addsubjectsbutton", function () {
-    //    return {
-    //        restrict: "E",
-    //        template: " <div class=\"row\"><div class=\"col-md-9\"></div><div class=\"col-md-3\"><label addbuttons style=\"padding-right: 25px;\">Add More Subjects</label><span class=\"fa fa-plus-circle fa-2x\"></span></div></div>"
-    //    }
-    //});
-
-    ////Directive for adding buttons on click that show an alert on click
-    //app.directive("addsubjects", function ($compile) {
-    //    return function (scope, element, attrs) {
-    //        element.bind("click", function () {
-    //            scope.subjectCount++;
-    //            angular.element(document.getElementById('space-for-buttons')).append($compile("<div class=\"row\" id=\"markInput\"><div class=\"col-md-9\"><div class=\"form-group\"><select class=\"form-control\" style=\"width: 100%;\" tabindex=\"-1\" aria-hidden=\"true\" ng-model=\"markselect.subject\" ng-options=\"s.subject for s in markselect.level.subjects\"><option value=\"\" style=\"text-align: center;\">-- Subject --</option></select></div></div><div class=\"col-md-3\"><div class=\"form-group\"><input type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"%\"></div></div></div>")(scope));
-    //        });
-    //    };
-    //});
-
->>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
     function studentProfileCtrl($scope, apiService, notificationService) {
         $scope.pageClass = 'page-view-profile';
         $scope.markselect = {};

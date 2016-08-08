@@ -27,53 +27,73 @@
             .when("/register", {
                 templateUrl: "scripts/spa/account/register.html",
                 controller: "registerCtrl"
-            }).when("/bursify/student/home", {
+            })
+            .when("/bursify/student/home", {
                 templateUrl: "scripts/spa/bursify/student/home/index.html",
                 controller: "studentCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
-            }).when("/bursify/sponsor/home", {
+            })
+            .when("/bursify/sponsor/home", {
                 templateUrl: "scripts/spa/bursify/sponsor/home/index.html",
                 controller: "sponsorCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
-            }).when("/bursify/admin/home", {
+            })
+            .when("/bursify/admin/home", {
                 templateUrl: "scripts/spa/bursify/admin/home/index.html",
                 controller: "adminCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
-            }).when("/sponsorship/view", {
+            })
+            .when("/sponsorship/view", {
                 templateUrl: "scripts/spa/bursify/student/sponsorship/index.html",
                 controller: "sponsorshipCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
-            }).when("/student/profile", {
+            })
+            .when("/student/profile", {
                 templateUrl: "scripts/spa/bursify/student/profile/profile.html",
                 controller: "studentProfileCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
-<<<<<<< HEAD
-            }).when("/sponsor/profile", {
+            })
+            .when("/student/messages", {
+                templateUrl: "scripts/spa/bursify/student/messages/messages.html",
+                controller: "messagesCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
+            })
+            .when("/sponsor/profile", {
                 templateUrl: "scripts/spa/bursify/sponsor/profile/profile.html",
                 controller: "sponsorProfileCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
-            }).when("/sponsor/registration", {
+            })
+            .when("/sponsor/registration", {
                 templateUrl: "scripts/spa/bursify/sponsor/registration/form.html",
                 controller: "registrationCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
-=======
->>>>>>> 64c3c32a16b391f83495a50a99aa05d0733809b2
-            }).when("/student/campaigns", {
+            })
+            .when("/sponsor/sponsorships", {
+                templateUrl: "scripts/spa/bursify/sponsor/sponsorship/sponsorshipIndex.html",
+                controller: "sponsorshipIndexCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
+            })
+            .when("/sponsor/sponsorships/add", {
+                templateUrl: "scripts/spa/bursify/sponsor/sponsorship/addSponsorship/add.html",
+                controller: "addSponsorshipCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
+            })
+            .when("/student/campaigns", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",
                 controller: "campaignsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
-            }).when("/student/applications", {
+            })
+            .when("/student/applications", {
                 templateUrl: "scripts/spa/bursify/student/applications/myApplications.html",
                 controller: "myApplicationsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
-            }).when("/sponsor/chart", {
+            })
+            .when("/sponsor/chart", {
                 templateUrl: "scripts/spa/bursify/sponsor/chart/leaderboard.html",
                 controller: "leaderboardCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
-            }).otherwise({ redirectTo: "/" });
-
-
-
+                resolve: { isAuthenticated: isAuthenticated}
+            })
+            .otherwise({ redirectTo: "/" });
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];

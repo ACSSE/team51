@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
-using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Web.Models;
 using Bursify.Data.EF.Entities.SponsorUser;
 
@@ -25,9 +24,7 @@ namespace Bursify.Web.Controllers
         {
             var sponsorships = _studentApi.GetAllSponsorships();
 
-            var model = new SponsorshipViewModel();
-
-            var sponsorshipVm = model.MultipleSponsorshipsMap(sponsorships);
+            var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
@@ -41,9 +38,7 @@ namespace Bursify.Web.Controllers
         {
             var sponsorships = _studentApi.GetAllSponsorships(userId);
 
-            var model = new SponsorshipViewModel();
-
-            var sponsorshipVm = model.MultipleSponsorshipsMap(sponsorships);
+            var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
@@ -57,9 +52,7 @@ namespace Bursify.Web.Controllers
         {
             var sponsorships = _studentApi.GetAllSponsorships(type);
 
-            var model = new SponsorshipViewModel();
-
-            var sponsorshipVm = model.MultipleSponsorshipsMap(sponsorships);
+            var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
@@ -73,9 +66,7 @@ namespace Bursify.Web.Controllers
         {
             var sponsorships = _studentApi.SearchSponsorships(criteria);
 
-            var model = new SponsorshipViewModel();
-
-            var sponsorshipVm = model.MultipleSponsorshipsMap(sponsorships);
+            var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
@@ -119,23 +110,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("SaveSponsorship")]
         public HttpResponseMessage SaveSponsorship(HttpRequestMessage request, SponsorshipViewModel sponsorship)
         {
-            var newSponsorship = new Sponsorship()
-            {
-                ID = sponsorship.SponsorshipId,
-                SponsorId = sponsorship.SponsorId,
-                Name = sponsorship.Name,
-                Description = sponsorship.Description,
-                ClosingDate = sponsorship.ClosingDate,
-                EssayRequired = sponsorship.EssayRequired,
-                SponsorshipValue = sponsorship.SponsorshipValue,
-                StudyFields = sponsorship.StudyFields,
-                Province = sponsorship.Province,
-                AverageMarkRequired = sponsorship.AverageMarkRequired,
-                EducationLevel = sponsorship.EducationLevel,
-                PreferredInstitutions = sponsorship.PreferredInstitutions,
-                ExpensesCovered = sponsorship.ExpensesCovered,
-                TermsAndConditions = sponsorship.TermsAndConditions
-            };
+            var newSponsorship = sponsorship.ReverseMap();
 
             _studentApi.SaveSponsorship(newSponsorship);
 

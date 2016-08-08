@@ -14,6 +14,7 @@ namespace Bursify.Data.EF.Uow
         public DataContext() : base("BursifyDB")
         {
             Database.SetInitializer<DataContext>(null);
+            //Configuration.LazyLoadingEnabled = true;
         }
 
         protected DataContext(DbConnection connection)

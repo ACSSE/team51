@@ -24,7 +24,7 @@ namespace Bursify.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("authenticate")]
+        [Route("Login")]
         [HttpPost]
         public HttpResponseMessage Login(HttpRequestMessage request, LoginViewModel user)
         {
@@ -48,7 +48,7 @@ namespace Bursify.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("register")]
+        [Route("Register")]
         [HttpPost]
         public HttpResponseMessage Register(HttpRequestMessage request, RegistrationViewModel user)
         {

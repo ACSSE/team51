@@ -17,6 +17,12 @@ namespace Bursify.Data.EF.Repositories
             return LoadAll();
         }
 
+
+        public List<Campaign> GetActiveCampaigns()
+        {
+            return LoadAll().Where(x => x.Status == "Active").ToList();
+        }
+
         public Campaign GetCampaign(int campaignId)
         {
             return FindSingle(campaign =>
@@ -75,15 +81,10 @@ namespace Bursify.Data.EF.Repositories
                 }
                 return true;
          }
-            
-        //user method in membershipApi
-        //public Campaign EndorseCampaign(int id)
-        //{
-        //    var campaignEndorsement = FindSingle(campaign => campaign.ID == id);
 
-        //    campaignEndorsement.NumberOfUpVotes += 1;
-
-        //    return campaignEndorsement;
-        //}
+        public int GetCampaignNumbersByStatus(string status)
+        {
+            return FindMany(x => x.Status.ToUpper().Equals(status.ToUpper())).Count;
+        }
     }
 }

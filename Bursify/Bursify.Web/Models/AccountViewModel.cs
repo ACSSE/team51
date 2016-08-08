@@ -11,17 +11,37 @@ namespace Bursify.Web.Models
         public string BranchName { get; set; }
         public string BranchCode { get; set; }
 
-        public Account MapCamapignAccount(Account account)
+        public AccountViewModel()
+        {
+        }
+
+        public AccountViewModel(Account a)
+        {
+            SingleAccountMap(a);
+        }
+
+        public Account ReverseMap()
         {
             return new Account()
             {
-                ID = account.ID,
-                AccountName = account.AccountName,
-                AccountNumber = account.AccountNumber,
-                BankName = account.BankName,
-                BranchName = account.BranchName,
-                BranchCode = account.BranchCode
+                ID = this.ID,
+                AccountName = this.AccountName,
+                AccountNumber = this.AccountNumber,
+                BankName = this.BankName,
+                BranchName = this.BranchName,
+                BranchCode = this.BranchCode
             };
+        }
+
+        public AccountViewModel SingleAccountMap(Account a)
+        {
+            ID = a.ID;
+            AccountName = a.AccountName;
+            AccountNumber = a.AccountNumber;
+            BankName = a.BankName;
+            BranchName = a.BranchName;
+            BranchCode = a.BranchCode;
+            return this;
         }
     }
 }

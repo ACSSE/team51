@@ -468,6 +468,11 @@
     <Content Include="Content\images\campaign.jpeg" />
     <Content Include="Content\images\campaign.jpg" />
     <Content Include="Content\images\p1.jpeg" />
+    <Content Include="Content\images\system\Double Down-64.png" />
+    <Content Include="Content\images\system\entelect.png" />
+    <Content Include="Content\images\user\1.jpg" />
+    <Content Include="Content\images\user\Circled User Male.png" />
+    <Content Include="Content\images\user\elogo.jpg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BACKUP_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BASE_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_LOCAL_8544.svg" />
@@ -503,6 +508,19 @@
     <Content Include="scripts\spa\bursify\sponsor\chart\leaderboardCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\home\index.html" />
     <Content Include="scripts\spa\bursify\sponsor\home\sponsorCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\profile\profile.html" />
+    <Content Include="scripts\spa\bursify\sponsor\profile\sponsorProfileCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\registration\form.html" />
+    <Content Include="scripts\spa\bursify\sponsor\registration\registrationCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\add.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\addSponsorshipCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\dialog.tmpl.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\edit.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\editSponsorshipCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndex.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndexCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\addSponsorshipCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\edit.html" />
     <Content Include="scripts\spa\bursify\student\applications\myApplications.html" />
     <Content Include="scripts\spa\bursify\student\applications\myApplicationsCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\addCampaign.html" />
@@ -514,6 +532,8 @@
     <Content Include="scripts\spa\bursify\student\campaigns\viewCampaigns.html" />
     <Content Include="scripts\spa\bursify\student\home\index.html" />
     <Content Include="scripts\spa\bursify\student\home\studentCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\messages\messages.html" />
+    <Content Include="scripts\spa\bursify\student\messages\messagesCtrl.js" />
     <Content Include="scripts\spa\bursify\student\profile\profile.html" />
     <Content Include="scripts\spa\bursify\student\profile\studentProfileCtrl.js" />
     <Content Include="scripts\spa\bursify\student\sponsorship\index.html" />
@@ -521,6 +541,10 @@
     <Content Include="scripts\spa\home\index.html" />
     <Content Include="scripts\spa\home\indexCtrl.js" />
     <Content Include="scripts\spa\home\rootCtrl.js" />
+    <Content Include="scripts\spa\layout\navBar.directive.js" />
+    <Content Include="scripts\spa\layout\navBar.html" />
+    <Content Include="scripts\spa\layout\spnavBar.directive.js" />
+    <Content Include="scripts\spa\layout\spnavBar.html" />
     <Content Include="scripts\spa\layout\topBar.directive.js" />
     <Content Include="scripts\spa\layout\topBar.html" />
     <Content Include="scripts\spa\modules\common.core.js" />
@@ -570,6 +594,7 @@
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BursifyUserController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -581,12 +606,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\ApproveSponsorshipViewModel.cs" />
     <Compile Include="Models\BursifyUserViewModel.cs" />
     <Compile Include="Models\CampaignSponsorViewModel.cs" />
     <Compile Include="Models\CampaignViewModel.cs" />
     <Compile Include="Models\InstitutionViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
+    <Compile Include="Models\ReportCampaignModel.cs" />
+    <Compile Include="Models\SponsorCampaignViewModel.cs" />
     <Compile Include="Models\SponsorshipRequirementViewModel.cs" />
     <Compile Include="Models\SponsorshipViewModel.cs" />
     <Compile Include="Models\SponsorViewModel.cs" />
@@ -612,7 +640,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\images\Thumbs.db" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\fonts\stamp-icons.ttf" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\fonts\stamp-icons.woff" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\images\Thumbs.db" />
@@ -656,6 +683,7 @@
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\systemv" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\yearistype.sh" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\zone.tab" />
+    <Content Include="Content\images\system\Thumbs.db" />
     <None Include="Properties\PublishProfiles\bursify - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\bursify - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bursify - Web Deploy %282%29.pubxml" />
@@ -680,8 +708,6 @@
     <Folder Include="Content\images\company\" />
     <Folder Include="Content\images\raty\" />
     <Folder Include="Content\images\student\" />
-    <Folder Include="Content\images\system\" />
-    <Folder Include="Content\images\user\" />
     <Folder Include="Content\landing\wp-content\plugins\contact-form-7\includes\css\" />
     <Folder Include="Content\landing\wp-content\plugins\contact-form-7\includes\js\" />
     <Folder Include="Content\landing\wp-content\plugins\easy-digital-downloads\assets\js\" />

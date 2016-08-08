@@ -18,7 +18,7 @@ namespace Bursify.Tests
             var dataSession = new DataSession();
             var uowFactory = new UnitOfWorkFactory(dataSession);
             var uow = uowFactory.CreateUnitOfWork();
-            
+
             var user = new BursifyUser() { };
 
             user.Name = "SponsorTest";
