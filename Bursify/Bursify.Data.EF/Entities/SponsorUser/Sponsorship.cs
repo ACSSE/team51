@@ -29,6 +29,7 @@ namespace Bursify.Data.EF.Entities.SponsorUser
         public string ExpensesCovered { get; set; }
         public string TermsAndConditions { get; set; }
         public int NumberOfViews { get; set; }
+        public string AgeGroup { get; set; }
 
         public virtual Sponsor Sponsor { get; set; }
         //public virtual ICollection<Student> Students { get; set; }

@@ -14,9 +14,10 @@ namespace Bursify.Data.EF.Entities.SponsorUser
         //Unique identifier
         //foreign key
         public int ID { get; set; }
-        public string Type { get; set; }
+        public string Industry { get; set; }
         public string Website { get; set; }
         public string Location { get; set; }
+        public string CompanyEmail { get; set; }
         public int NumberOfStudentsSponsored { get; set; }
         public int NumberOfSponsorships { get; set; }
         public int NumberOfApplicants { get; set; }

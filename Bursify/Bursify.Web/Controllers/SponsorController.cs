@@ -22,6 +22,19 @@ namespace Bursify.Web.Controllers
             this.sponsorApi = sponsorApi;
         }
 
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SaveSponsor")]
+        public HttpResponseMessage SaveSponsor(HttpRequestMessage request, SponsorViewModel sponsor)
+        {
+            sponsorApi.AddSponsor(sponsor.ReverseMap());
+
+            var response = request.CreateResponse(HttpStatusCode.Created);
+
+            return response;
+        }
+
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetAllSponsors")]
@@ -29,9 +42,7 @@ namespace Bursify.Web.Controllers
         {
             var sponsors = _studentApi.GetAllSponsors();
 
-            var model = new SponsorViewModel();
-
-            var sponsorVm = model.MultipleSponsorsMap(sponsors);
+            var sponsorVm = SponsorViewModel.MultipleSponsorsMap(sponsors);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorVm);
 
@@ -45,9 +56,7 @@ namespace Bursify.Web.Controllers
         {
             var sponsors = _studentApi.GetTopTenSponsors();
 
-            var model = new SponsorViewModel();
-
-            var sponsorVm = model.MultipleSponsorsMap(sponsors);
+            var sponsorVm = SponsorViewModel.MultipleSponsorsMap(sponsors);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorVm);
 

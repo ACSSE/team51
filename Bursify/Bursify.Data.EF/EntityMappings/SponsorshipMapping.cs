@@ -64,6 +64,8 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.NumberOfViews)
                 .IsOptional();
 
+            this.Property(x => x.AgeGroup).IsOptional();
+
             this.HasRequired(x => x.Sponsor)
                 .WithMany(s => s.Sponsorhips)
                 .HasForeignKey(f => f.SponsorId);

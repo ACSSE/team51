@@ -61,8 +61,11 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/spa/home/indexCtrl.js",
                 "~/Scripts/spa/bursify/student/home/studentCtrl.js",
                  "~/Scripts/spa/bursify/student/profile/studentProfileCtrl.js",
+                 "~/Scripts/spa/bursify/student/messages/messagesCtrl.js",
                    "~/Scripts/spa/bursify/sponsor/profile/sponsorProfileCtrl.js",
                     "~/Scripts/spa/bursify/sponsor/registration/registrationCtrl.js",
+                    "~/Scripts/spa/bursify/sponsor/sponsorship/sponsorshipIndexCtrl.js",
+                    "~/Scripts/spa/bursify/sponsor/sponsorship/addSponsorship/addSponsorshipCtrl.js",
                  "~/Scripts/spa/bursify/student/campaigns/campaignsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/campaignDetailsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/addCampaignCtrl.js",
@@ -97,9 +100,8 @@ namespace Bursify.Web.App_Start
                     "~/Scripts/Vendors/md-table.min.css",
          "~/content/assets/css/style.css",
           "~/content/dist/css/AdminLTE.min.css",
-           "~/Content/assets/css/jquery.steps.css",
-            
-                 "~/Scripts/Vendors/angular-material.min.css"
+         // "~/Content/assets/css/jquery.steps.css",
+          "~/Scripts/Vendors/angular-material.min.css"
            
                 ));
 

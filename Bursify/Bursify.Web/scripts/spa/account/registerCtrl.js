@@ -14,7 +14,7 @@
         function register() {
             if (!$scope.user.terms) {
                 notificationService.displayInfo('Please agree to the terms.');
-                return; 
+                return;
             }
 
             if ($scope.user.usertype == "none") {
@@ -22,34 +22,33 @@
                 return;
             }
 
-          
-             membershipService.register($scope.user, registerCompleted)
-            
+
+            membershipService.register($scope.user, registerCompleted)
+
         }
 
         function registerCompleted(result) {
             if (result.data.success) {
-              
-             
+                membershipService.saveCredentials($scope.user);
+
                 $scope.userData.displayUserInfo();
 
                 if ($scope.user.usertype == "Student") {
-                    $location.path('/bursify/student/home');
+                    $location.path('/student/registration');
                     membershipService.saveCredentials($scope.user);
                     $scope.userData.displayUserInfo();
-                    notificationService.displaySuccess('Hello ' + $scope.user.Name);
-                    $rootScope.User = $scope.user.Name;
+                    notificationService.displaySuccess('Welcome ' + $scope.user.username);
+                    $rootScope.User = $scope.user.username;
                 } else if ($scope.user.usertype == "Sponsor") {
-                    $location.path('/bursify/sponsor/home');
+                    $location.path('/sponsor/registration');
                     membershipService.saveCredentials($scope.user);
                     $scope.userData.displayUserInfo();
-                    notificationService.displaySuccess('Hello ' + $scope.user.Name);
-                    $rootScope.User = $scope.user.Name;
+                    notificationService.displaySuccess('Welcome ' + $scope.user.username);
+                    $rootScope.User = $scope.user.username;
                 }
-               
+
             }
             else {
-                
                 notificationService.displayError('Registration failed. Email is already in use.');
                 $location.reload();
             }

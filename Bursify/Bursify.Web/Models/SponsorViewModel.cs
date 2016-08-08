@@ -6,29 +6,56 @@ namespace Bursify.Web.Models
 {
     public class SponsorViewModel
     {
-        public int BursifyUserId { get; set; }
+        public int ID { get; set; }
         public int NumberOfStudentsSponsored { get; set; }
         public int NumberOfSponsorships { get; set; }
         public int NumberOfApplicants { get; set; }
         public int BursifyRank { get; set; }
         public int BursifyScore { get; set; }
 
-        public Sponsor SingleSponsorMap(Sponsor sponsor)
+        public SponsorViewModel()
+        {
+        }
+
+        public SponsorViewModel(Sponsor s)
+        {
+            SingleSponsorMap(s);
+        }
+
+        public SponsorViewModel SingleSponsorMap(Sponsor sponsor)
+        {
+                ID = sponsor.ID;
+                NumberOfStudentsSponsored = sponsor.NumberOfStudentsSponsored;
+                NumberOfSponsorships = sponsor.NumberOfSponsorships;
+                NumberOfApplicants = sponsor.NumberOfApplicants;
+                BursifyRank = sponsor.BursifyRank;
+                BursifyScore = sponsor.BursifyScore;
+                return this;
+        }
+
+        public Sponsor ReverseMap()
         {
             return new Sponsor()
             {
-                ID = sponsor.ID,
-                NumberOfStudentsSponsored = sponsor.NumberOfStudentsSponsored,
-                NumberOfSponsorships = sponsor.NumberOfSponsorships,
-                NumberOfApplicants = sponsor.NumberOfApplicants,
-                BursifyRank = sponsor.BursifyRank,
-                BursifyScore = sponsor.BursifyScore
+                ID = this.ID,
+                NumberOfStudentsSponsored = this.NumberOfStudentsSponsored,
+                NumberOfSponsorships = this.NumberOfSponsorships,
+                NumberOfApplicants = this.NumberOfApplicants,
+                BursifyRank = this.BursifyRank,
+                BursifyScore = this.BursifyScore
             };
         }
 
-        public List<Sponsor> MultipleSponsorsMap(List<Sponsor> sponsors)
+        public static List<SponsorViewModel> MultipleSponsorsMap(List<Sponsor> sponsors)
         {
-            return (from sponsor in sponsors select SingleSponsorMap(sponsor)).ToList();
+            List<SponsorViewModel> sponsorsVm = new List<SponsorViewModel>();
+            foreach (var i in sponsors)
+            {
+                SponsorViewModel sVm = new SponsorViewModel(i);
+                sponsorsVm.Add(sVm);
+            }
+            return sponsorsVm;
         }
+
     }
 }

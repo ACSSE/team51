@@ -123,12 +123,13 @@ namespace Bursify.Data.EF.Migrations
                 "dbo.CampaignSponsor",
                 c => new
                     {
+                        ID = c.Int(nullable: false, identity: true),
                         CampaignId = c.Int(nullable: false),
                         SponsorId = c.Int(nullable: false),
                         AmountContributed = c.Double(nullable: false),
                         DateOfContribution = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => new { t.CampaignId, t.SponsorId })
+                .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Campaign", t => t.CampaignId, cascadeDelete: true)
                 .ForeignKey("dbo.Sponsor", t => t.SponsorId, cascadeDelete: true)
                 .Index(t => t.CampaignId)

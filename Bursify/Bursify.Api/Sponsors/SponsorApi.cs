@@ -21,14 +21,25 @@ namespace Bursify.Api.Sponsors
         private BridgeRepository<SponsorshipRequirement> requirementBridgeRepository;
         private Repository<Student> studentRepository;
         private BridgeRepository<CampaignReport> campaignReportBridgeRepository;
+        private SponsorRepository sponsorRepository;
 
-        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository) : base(unitOfWorkFactory, userRepository, campaignRepository, campaignSponsorRepository)
+        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, SponsorRepository sponsorRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository) : base(unitOfWorkFactory, userRepository, campaignRepository, campaignSponsorRepository)
         {
             this.sponsorshipRepository = sponsorshipRepository;
             this.studentSponsorshipRepository = studentSponsorshipRepository;
             this.requirementBridgeRepository = requirementBridgeRepository;
             this.studentRepository = studentRepository;
             this.campaignReportBridgeRepository = campaignReportBridgeRepository;
+            this.sponsorRepository = sponsorRepository;
+        }
+
+        public void AddSponsor(Sponsor s)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                sponsorRepository.Save(s);
+                uow.Commit();
+            }
         }
 
         public void AddSponsorship(int sponsorshipId, int sponsorId, string name, string description,

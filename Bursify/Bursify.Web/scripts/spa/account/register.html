@@ -5,55 +5,57 @@
     }
 </style>
 
-<div >
+
+
+
+<div id="content">
     <form role="form" novalidate angular-validator name="userRegistrationForm" angular-validator-submit="register()">
-        <div id="loadingbarContainer"></div>
         <div class="login-box">
             <div class="login-logo">
                 <a href="/Home/Index"><b>Bursify</b></a>
             </div>
-          
+            <p class="login-box-msg">Register a new account</p>
             <div class="login-box-body">
-             
+
                 <div class="form-group">
-                   
-                    <input type="text" name="inputUsername" class="form-control" ng-model="user.Name"
+
+                    <input type="text" name="inputUsername" class="form-control" ng-model="user.username"
                            placeholder="Username" validate-on="blur" required required-message="'Username is required'">
                 </div>
                 <div class="form-group">
-                  
+
                     <input type="email" name="inputEmail" class="form-control" ng-model="user.useremail" placeholder="Email address"
                            validate-on="blur" required required-message="'Email is required'">
                 </div>
                 <div class="form-group">
-                   
+
                     <input type="password" name="inputPassword" class="form-control" ng-model="user.password" placeholder="Password"
                            validate-on="blur" required required-message="'Password is required'">
                 </div>
 
                 <div class="form-group">
-                  
 
-                        <label for="inputRole">I am a...</label>
-                        <select class="form-control" ng-model="user.usertype" ng-options="x for x in bTypes"></select>
+
+                    <label for="inputRole">I am a...</label>
+                    <select class="form-control" ng-model="user.usertype" ng-options="x for x in bTypes"></select>
                 </div>
-               
-                   
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="inputTerms" ng-model="user.terms">
-                                    I agree to Terms &amp; Conditions
-                                </label>
-                            </div>
-                        </div><!-- /.col -->
-               
+
+
                 <div class="form-group">
-                  
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
-                   
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="inputTerms" ng-model="user.terms">
+                            I agree to Terms &amp; Conditions
+                        </label>
+                    </div>
+                </div><!-- /.col -->
+
+                <div class="form-group">
+
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+
                 </div>
-                
+
 
 
 
@@ -68,3 +70,4 @@
         </div>
     </form>
 </div>
+
