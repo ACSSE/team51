@@ -1,9 +1,8 @@
 package genesys.bursify;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,7 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import genesys.bursify.utility.FragmentUtility;
 import genesys.bursify.campaign.CampaignFragment;
+import genesys.bursify.profile.ProfileActivity;
 import genesys.bursify.sponsorship.SponsorshipFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity
 {
 
     int position = 1;
+    FragmentManager fragmentManager;
+    FragmentUtility fragmentUtility = new FragmentUtility();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+       fragmentManager = getSupportFragmentManager();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -44,30 +49,18 @@ public class MainActivity extends AppCompatActivity
         setFragment();
     }
 
-    private void loadFragment(Fragment fragment, String tag)
-    {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment taggedFragment = fragmentManager.findFragmentByTag(tag);
 
-        if (taggedFragment == null)
-        {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction
-                    .replace(R.id.homeContainer, fragment, tag)
-                    .commit();
-        }
-    }
 
     private void setFragment()
     {
         switch(position)
         {
             case 1:
-                loadFragment(SponsorshipFragment.newInstance(), SponsorshipFragment.class.getName());
+                fragmentUtility.loadFragment(SponsorshipFragment.newInstance(), SponsorshipFragment.class.getName(), R.id.homeContainer, fragmentManager);
                 break;
 
             case 2:
-                loadFragment(CampaignFragment.newInstance(), CampaignFragment.class.getName());
+                fragmentUtility.loadFragment(CampaignFragment.newInstance(), CampaignFragment.class.getName(), R.id.homeContainer, fragmentManager);
                 break;
         }
     }
@@ -121,19 +114,19 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera)
         {
             //position = 1;
-            loadFragment(SponsorshipFragment.newInstance(), SponsorshipFragment.class.getName());
+            fragmentUtility.loadFragment(SponsorshipFragment.newInstance(), SponsorshipFragment.class.getName(), R.id.homeContainer, fragmentManager);
             getSupportActionBar().setTitle("Sponsorships");
             //Toast.makeText(this, "Bursary", Toast.LENGTH_SHORT).show();
         }
         else if (id == R.id.nav_gallery)
         {
             //position = 2;
-            loadFragment(CampaignFragment.newInstance(), CampaignFragment.class.getName());
+            fragmentUtility.loadFragment(CampaignFragment.newInstance(), CampaignFragment.class.getName(), R.id.homeContainer, fragmentManager);
             getSupportActionBar().setTitle("Campaigns");
         }
         else if (id == R.id.nav_slideshow)
         {
-
+            startActivity(new Intent(this, ProfileActivity.class));
         }
         else if (id == R.id.nav_manage)
         {

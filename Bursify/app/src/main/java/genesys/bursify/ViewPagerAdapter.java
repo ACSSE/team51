@@ -52,23 +52,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter
 
     @Override
     public CharSequence getPageTitle(int position) {
-        /*CharSequence title = "";
-
-        switch(position)
-        {
-            case 0:
-
-                title = viewTitles.get(position);
-
-                break;
-
-            case 1:
-
-                title = "Campaigns";
-
-                break;
-
-        }*/
 
         return viewTitles.get(position);
     }

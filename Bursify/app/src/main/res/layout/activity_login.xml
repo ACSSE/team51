@@ -4,13 +4,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/loginBackground"
-    android:background="@drawable/login_image">
+    android:background="@drawable/login_img"
+    android:fitsSystemWindows="true">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-       android:src="@drawable/logo"
+       android:src="@drawable/logo_black"
         android:textSize="80sp"
         android:textColor="#FFFFFF"
         android:layout_centerHorizontal="true"
@@ -22,13 +23,13 @@
 
     <!-- Login progress -->
     <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+    android:id="@+id/login_progress"
+    style="?android:attr/progressBarStyleLarge"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"/>
 
     <LinearLayout
         android:layout_width="300dp"
@@ -51,10 +52,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_email"
                 android:inputType="textEmailAddress"
-                android:drawableLeft="@android:drawable/sym_action_email"
+                android:drawableLeft="@drawable/username"
                 android:maxLines="1"
                 android:singleLine="true"/>
-
 
         </android.support.design.widget.TextInputLayout>
 
@@ -72,19 +72,11 @@
                 android:imeActionLabel="@string/action_sign_in"
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
-                android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+                android:drawableLeft="@drawable/password"
                 android:maxLines="1"
                 android:singleLine="true"/>
 
-
         </android.support.design.widget.TextInputLayout>
-
-       <!-- <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/common_signin_button_text_long" />-->
 
         <Button
             android:id="@+id/email_sign_in_button"
@@ -94,7 +86,6 @@
             android:text="@string/action_sign_in"
             android:textStyle="normal"
             android:textColor="#FFFFFF"/>
-
 
     </LinearLayout>
 

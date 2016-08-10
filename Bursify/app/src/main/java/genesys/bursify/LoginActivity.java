@@ -7,50 +7,36 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.text.style.TypefaceSpan;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.Scopes;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.common.images.ImageManager;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import genesys.bursify.applicationIntro.IntroductionActivity;
+import genesys.bursify.utility.BursifyService;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -160,8 +146,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view)
             {
-                //attemptLogin();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                attemptLogin();
             }
         });
 
@@ -428,46 +413,43 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         {
             // TODO: attempt authentication against a network service.
 
+            JSONObject loginObject = new JSONObject();
+            JSONObject response;
+
             try
             {
-                // Simulate network access.
-                Thread.sleep(2000);
-            }
-            catch (InterruptedException e)
-            {
-                return false;
-            }
+                loginObject.accumulate("UserEmail", mEmail);
+                loginObject.accumulate("Password", mPassword);
 
-            for (String credential : DUMMY_CREDENTIALS)
+                response = BursifyService.postService(BursifyService.LOGIN, loginObject);
+
+                return response.getBoolean("success");
+            }
+            catch (JSONException e)
             {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail))
-                {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
+                e.printStackTrace();
             }
 
             // TODO: register the new account here.
-            return true;
+            return false;
         }
 
         @Override
-        protected void onPostExecute(final Boolean success)
-        {
-            mAuthTask = null;
-            showProgress(false);
+    protected void onPostExecute(final Boolean success)
+    {
+        mAuthTask = null;
+        showProgress(false);
 
-            if (success)
-            {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            }
-            else
-            {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
+        if (success)
+        {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
+        else
+        {
+            mPasswordView.setError(getString(R.string.error_incorrect_password));
+            mPasswordView.requestFocus();
+        }
+    }
 
         @Override
         protected void onCancelled()
@@ -475,6 +457,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
+
     }
 }
 

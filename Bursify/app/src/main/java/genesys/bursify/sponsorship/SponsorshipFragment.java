@@ -3,6 +3,7 @@ package genesys.bursify.sponsorship;
 
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -12,11 +13,14 @@ import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import genesys.bursify.ViewPagerAdapter;
 import genesys.bursify.R;
+import genesys.bursify.utility.BursifyService;
 
 
 /**
@@ -93,9 +97,8 @@ public class SponsorshipFragment extends Fragment
     {
         List<Fragment> viewList = new ArrayList<>();
 
-        viewList.add(new BursaryFragment());
-        viewList.add(new ScholarshipFragment());
-        viewList.add(new LearnershipFragment());
+        viewList.add(new AllSponsorshipFragment());
+        viewList.add(new SponsorshipSuggestionFragment());
 
         return viewList;
     }
@@ -104,9 +107,8 @@ public class SponsorshipFragment extends Fragment
     {
         List<String> viewListTitles = new ArrayList<>();
 
-        viewListTitles.add("Bursaries");
-        viewListTitles.add("Scholarships");
-        viewListTitles.add("Learnerships");
+        viewListTitles.add("All");
+        viewListTitles.add("Recommended");
 
         return viewListTitles;
     }
@@ -124,5 +126,4 @@ public class SponsorshipFragment extends Fragment
         super.onDestroyView();
         setHasOptionsMenu(false);
     }
-
 }

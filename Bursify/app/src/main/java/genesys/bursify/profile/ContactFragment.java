@@ -1,4 +1,4 @@
-package genesys.bursify.sponsorship;
+package genesys.bursify.profile;
 
 
 import android.os.Bundle;
@@ -9,15 +9,14 @@ import android.view.ViewGroup;
 
 import genesys.bursify.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ScholarshipFragment extends Fragment
+public class ContactFragment extends Fragment
 {
 
 
-    public ScholarshipFragment()
+    public ContactFragment()
     {
         // Required empty public constructor
     }
@@ -28,7 +27,7 @@ public class ScholarshipFragment extends Fragment
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scholarship, container, false);
+        return inflater.inflate(R.layout.fragment_contact, container, false);
     }
 
 }

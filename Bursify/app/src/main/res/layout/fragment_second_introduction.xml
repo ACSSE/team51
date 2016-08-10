@@ -1,13 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="genesys.bursify.applicationIntro.SecondIntroductionFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#e0e0e0"
+              android:orientation="vertical"
+              tools:context="genesys.bursify.applicationIntro.SecondIntroductionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="406dp"
+        android:src="@drawable/campaign"
+        android:layout_gravity="center"/>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Introduction two"/>
+        android:id="@+id/firstIntroText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crowd fund your projects"
+        android:textSize="25sp"
+        android:paddingTop="43dp"
+        android:layout_gravity="center_horizontal"/>
 
-</FrameLayout>
+</LinearLayout>
