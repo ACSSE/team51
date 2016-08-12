@@ -1,0 +1,45 @@
+$scope.Student = {
+
+            "FirstName": "",
+            "Surname": "",
+            "PhoneNumber": "",
+            "IdNumber": "",
+            "StudentNumber": "",
+            "Instituition": "",
+            "DateOfBirth": "",
+            "Race": "",
+            "Gender": "",
+            "Disability": "",
+            "DisabilityDescription": "",
+            "ResProvince": "",
+            "ResCity": "",
+            "ResStreetAddress": "",
+            "ResPostCode": "",
+			"PostProvince": "",
+            "PostPOBox": "",
+            "PostCity": "",
+            "PostStreetAddress": "",
+            "PostPostalCode": "",
+            "GaurdianRelationship": "",
+            "GuardianPhone": "",
+            "GuardianEmail": "",
+            "CurrentOccupation": "",
+			 "StudyField": "",
+            "HighestAcademicAchievement": "",
+            "YearOfAcademicAchievement": "",
+            "MarksYear": "",
+            "InstituitionType": "",
+            "InstituitionName": "",
+            "StudentLevel": "",
+            "Marks:": [
+    {"id":"0", "SubjectName":"", "SubjectMark": ""}
+   
+            ],
+            "Essay": "",
+            "IDDocumentPath": "",
+            "MarticCertificatePath": "",
+            "CVPath": "",
+            "AgreeTandCs": ""
+
+
+        };
