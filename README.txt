@@ -8,4 +8,4 @@ To start project:
 2- Run add-migration "initial"
 3- Run update-database -verbose
 
-We are currently developing the web application and have uploaded the prototype for the look of the website.
+We are currently developing the web and mobile application and have uploaded the prototype for the look of the website.
