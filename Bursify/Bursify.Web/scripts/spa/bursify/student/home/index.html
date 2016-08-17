@@ -1,0 +1,188 @@
+﻿
+<nav-bar></nav-bar>
+
+<div id="content">
+    
+    <div ng-cloak>
+                <md-content class="md-padding">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="BURSARIES">
+                            <md-content class="md-padding">
+                                <div class="col-md-12">
+                                    <div class="col-md-12 tabs-area box-shadow-none">
+                                        <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
+                                            <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-animate-text">
+                                                            <input type="text" class="form-text" required>
+                                                            <span class="bar"></span>
+                                                            <label class="label-search" style="color: black;">Type here to <b>Search</b> </label>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8">
+
+                                                        <div class="col-md-4">
+                                                            Sort by:
+                                                            <div class="form-group form-animate-checkbox">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <label>Closing Date</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            Sort by:
+                                                            <div class="form-group form-animate-checkbox">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <label>Rating</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            Sort by:
+                                                            <div class="form-group form-animate-checkbox">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <label>A-Z</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="media" ng-repeat="Sponsorship in Sponsorships">
+                                                    <div class="media-left">
+                                                        <a href="/Sponsorship/ViewBursary">
+
+
+                                                            <img ng-src="Content/images/user/elogo.jpg" width="55" height="55" class="media-object search-v1-avatar">
+                                                        </a>
+                                                    </div>
+
+
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading"><a href="#/student/sponsorship/{{Sponsorship.ID}}">{{Sponsorship.Name}}</a></h4>
+                                                        <p style="height: 120px;">{{Sponsorship.Description | limitTo: 180}}</p>
+
+                                                    </div>
+
+                                                    <div class="pull-left">
+                                                        <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
+                                                    </div>
+
+                                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
+                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="RECCOMMENDED">                
+                            <md-content class="md-padding">
+                                <div class="col-md-12">
+                                    <div class="col-md-12 tabs-area box-shadow-none">
+                                        <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
+                                            <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-animate-text">
+                                                            <input type="text" class="form-text" required>
+                                                            <span class="bar"></span>
+                                                            <label class="label-search" style="color: black;">Type here to <b>Search</b> </label>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8">
+
+                                                        <div class="col-md-4">
+                                                            Sort by:
+                                                            <div class="form-group form-animate-checkbox">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <label>Closing Date</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            Sort by:
+                                                            <div class="form-group form-animate-checkbox">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <label>Rating</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            Sort by:
+                                                            <div class="form-group form-animate-checkbox">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <label>A-Z</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | orderBy:'ClosingDate'">
+                                                    <div class="media-left">
+                                                        <a href="/Sponsorship/ViewBursary">
+
+
+                                                            <img ng-src="Content/images/user/elogo.jpg" width="55" height="55" class="media-object search-v1-avatar">
+                                                        </a>
+                                                    </div>
+
+
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading"><a href="#/student/sponsorship/{{Sponsorship.ID}}">{{Sponsorship.Name}}</a></h4>
+                                                        <p style="height: 120px;">{{Sponsorship.Description | limitTo: 180}}</p>
+
+                                                    </div>
+
+                                                    <div class="pull-left">
+                                                        <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
+                                                    </div>
+
+                                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
+                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        
+
+                    </md-tabs>
+                </md-content>
+                </div>
+        
+
+            <!--<div id="content" class="search-v1" style="padding-left: 0;">
+                <div class="panel">
+                    <div class="panel-body">
+                        <ul id="tabs-demo6" class="nav nav-tabs nav-tabs-v6 masonry-tabs" role="tablist">
+                            <li role="presentation" class="">
+                                <a href="#tabs-demo7-area1" id="tabs-demo6-1" role="tab" data-toggle="tab" aria-expanded="false">Bursaries</a>
+                            </li>
+                            <li role="presentation" class="active">
+                                <a href="#tabs-demo7-area2" role="tab" id="tabs-demo6-2" data-toggle="tab" aria-expanded="true">Scholarships</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>-->
+        </div>

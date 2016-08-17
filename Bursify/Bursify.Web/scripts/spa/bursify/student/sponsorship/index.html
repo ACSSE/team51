@@ -1,0 +1,245 @@
+﻿<nav-bar></nav-bar>
+
+<div id="content" >
+    <div class="profile-v1 panel box-shadow-none content-header">
+
+        <div class="col-md-12 col-sm-12 profile-v1-wrapper">
+            <div class="col-md-9  profile-v1-cover-wrap" style="padding-right:0; padding-left: 0;">
+                <div class="profile-v1-pp">
+
+                    <img ng-src="Content/images/user/elogo.jpg">
+                    <h2>{{Sponsorship.Name}}</h2>
+                    <input type="button" class="btn btn-danger"  ng-click="studentApply()" value="One-Click Apply">
+                </div>
+                <div class="col-md-12 profile-v1-cover">
+                    <img ng-src="Content/assets/img/bg1.jpg" class="img-responsive">
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 padding-0 profile-v1-right">
+                <div class="col-md-6 col-sm-4 profile-v1-right-wrap padding-0">
+                    <div class="col-md-12 padding-0 sub-profile-v1-right text-center sub-profile-v1-right1">
+                        <h1>70%</h1>
+                        <p>Average needed</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-4 profile-v1-right-wrap padding-0">
+                    <div class="col-md-12 sub-profile-v1-right text-center sub-profile-v1-right2">
+                        <h1>25</h1>
+                        <p>Days left</p>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-4 profile-v1-right-wrap padding-0">
+                    <div class="col-md-12 sub-profile-v1-right text-center sub-profile-v1-right3">
+                        <div style="color: rgb(240, 173, 78)">
+                            <span class="rate fa-star fa fa-2x"></span>
+                            <span class="rate fa-star fa fa-2x"></span>
+                            <span class="rate fa-star fa fa-2x"></span>
+                            <span class="rate fa-star fa fa-2x"></span>
+                            <span class="rate fa-star-half fa fa-2x"></span>
+                        </div>
+                        <br />
+                        <p>Bursify rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="pull-right article-v1-time">
+                <em>Closing Date - {{Sponsorship.ClosingDate | date: "MMM d, y"}}</em>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12 text-left title"><h2>About</h2></div>
+                <div class="col-md-12 text-justify">
+
+                    <p>
+                        {{Sponsorship.Description}}
+                    </p>
+
+                </div>
+                <div class="col-md-12 text-left title"><h2>This sponsorship provides: </h2></div>
+                <div class="col-md-12 text-justify">
+
+                    <ol>
+                        <li>Full Tuition</li>
+                    </ol>
+
+                </div>
+                <div class="col-md-12 text-left title"><h2>Field of Study: </h2></div>
+                <div class="col-md-12 text-justify">
+                    <ol>
+                        <li>{{Sponsorship.StudyFields}}</li>
+                    </ol>
+                </div>
+                <div class="col-md-12 text-left title"><h2>Requirements: </h2></div>
+                <div class="col-md-12 text-justify">
+
+                    <div class="col-md-6">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                70% Overall Average Mark
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 text-left title"><h2>Terms &amp; Conditions: </h2></div>
+                <div class="col-md-12 text-justify">
+                    <p>{{Sponsorship.TermsAndConditions}}</p>
+                    <!--<ol>
+                        <li>
+                            New bursary candidates will only be awarded after final year results are received and comply with the minimum requirements as stated above.
+                        </li>
+                        <li>
+                            Candidates that receive bursaries must be willing to sign a formal contract with Entelect as well as be willing to go through the re-evaluation after each full academic year of study.
+                        </li>
+                        <li>
+                            Candidates who receive bursaries must start work with Entelect directly after their graduation and the period will be dependable upon the years of bursary studies.
+                        </li>
+                        <li>
+                            Entelect has the right to use your specific skill set where it is needed most throughout the company.
+                        </li>
+                        <li>
+                            Completion of study will be required to be done within the agreement terms as stipulated.
+                        </li>
+
+                        <li>
+                            Candidates could be required to partake in additional skills and project training.
+                        </li>
+
+                        <li>
+                            Candidates are only allowed one field of study at a time that will be funded by Entelect.
+                        </li>
+
+                        <li>
+                            The companies Employment Equity policy will be taken into consideration when deciding on candidates for bursaries.
+                        </li>
+                    </ol>-->
+                    <div class="form-group form-animate-checkbox">
+                        <input type="checkbox" class="checkbox">
+                        <label> I Agree</label>
+                    </div>
+                    <input type="button" class="btn btn-danger" ng-click="studentApply()" value="One-Click Apply">
+                    <input type="button" class="btn btn-info" value="Share">
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="panel" style="padding-top: 10px;">
+                <div id="content">
+
+                    <div class="col-md-12 text-left title" style="padding-bottom: 15px; padding-top: 15px;"><h2>You may also like</h2></div>
+                    <div id="content" class="search-v1" style="padding-left: 0;">
+
+                        <div class="col-md-12">
+                            <div class="col-md-12 tabs-area box-shadow-none">
+                                <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
+                                    <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
+
+
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="/Sponsorship/ViewBursary">
+
+                                                    <img ng-src="Content/assets/img/avatar.jpg" class="media-object search-v1-avatar">
+                                                </a>
+                                            </div>
+
+
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Entelect Foundation Programme</a></h4>
+                                                <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+
+                                            </div>
+
+                                            <div class="pull-left">
+                                                <h4>Closing Date:</h4><p>18 Aug. 2016</p>
+                                            </div>
+
+                                            <div class="pull-right" style="color: rgb(240, 173, 78)">
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="/Sponsorship/ViewBursary">
+
+                                                    <img ng-src="Content/assets/img/logomi.png" class="media-object search-v1-avatar">
+                                                </a>
+                                            </div>
+
+
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Vodacom Bursary</a></h4>
+                                                <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+
+                                            </div>
+
+                                            <div class="pull-left">
+                                                <h4>Closing Date:</h4><p>18 Aug. 2016</p>
+                                            </div>
+
+                                            <div class="pull-right" style="color: rgb(240, 173, 78)">
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="/Sponsorship/ViewBursary">
+
+                                                    <img ng-src="Content/assets/img/logomi.png" class="media-object search-v1-avatar">
+                                                </a>
+                                            </div>
+
+
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">CSIR Bursary Programme</a></h4>
+                                                <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+
+                                            </div>
+
+                                            <div class="pull-left">
+                                                <h4>Closing Date:</h4><p>18 Aug. 2016</p>
+                                            </div>
+
+                                            <div class="pull-right" style="color: rgb(240, 173, 78)">
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x"></span>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area2" aria-labelledby="tabs-demo7-area2">
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade col-md-12 padding-0" id="tabs-demo7-area3" aria-labelledby="tabs-demo7-area3">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

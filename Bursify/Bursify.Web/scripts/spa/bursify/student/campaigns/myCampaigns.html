@@ -1,0 +1,45 @@
+﻿    <!--Displaying all the campaigns -->
+<nav-bar></nav-bar>
+<div id="content" style="margin-top:70px">
+    <div class="col-lg-11 col-lg-offset-1">
+        <div class="col-lg-3" ng-repeat="campaign in campaigns">
+            <div class="col-lg-12">
+                <div class="thumbnail" style="background-color:white">
+                    <a ng-href="#/student/campaign-details/{{campaign.ID}}">
+                        <img class="img-rounded" ng-src="/Images/Campaigns/{{campaign.PicturePath}}" alt="campagin picture" style="width:100%;height:200px;">
+                    </a>
+                    <div class="caption">
+                        <b>{{campaign.CampaignName}}</b><br>
+                        <small>{{campaign.StudentName}}</small><br><br>
+                        <p style="margin-top: -5px;">{{campaign.Description | limitTo: 28}}</p>
+                        <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+                        <!--<div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{campaign.AmountContributed}}" aria-valuemin="0" aria-valuemax="{{campaign.AmountRequired}}" style="width:{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%">
+                                <span class="sr-only">0% Complete</span>
+                                <output></output>
+                            </div><br>
+                        </div>-->
+                        <md-progress-linear md-mode="determinate" class="success" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <small>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</small>
+                                <b><small>Funded</small></b>
+                            </div>
+                            <div class="col-md-6 center">
+                                <small align="centre">R{{campaign.AmountContributed}}</small>
+                                <b><small class="centre">Funded</small></b>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <a class="btn btn-info btn-sm pull-left" ng-href="#/student/edit-campaign/{{campaign.ID}}">Edit</a>
+                            <button ng-click="remove(campaign)" class="btn btn-danger btn-sm pull-right" >Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/Test -->
+        </div>
+    </div>
+</div>
+<!--/Displaying all the campaigns -->
+<!--Displaying all the campaigns -->

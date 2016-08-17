@@ -1,0 +1,87 @@
+﻿<div id="content" style="margin-top:70px">
+<nav-bar></nav-bar>
+        <div class="panel panel-info col-lg-8 col-lg-offset-2" style="margin-top:20px">
+            <p class="panel-heading">{{campaign.CampaignName}}</p>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <a href="#/student/campaigns">
+                            <div class="thumbnail" style="background-color:lightgray">
+                                <img class="img-rounded" ng-src="/Images/Campaigns/{{campaign.PicturePath}}" alt="campagin picture" width="250">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div>
+                            <h1>{{numberOfSupporter | number}}</h1>
+                            <h5>Supporters</h5>
+                            <div>
+                                <h1>R{{campaign.AmountContributed}}.00</h1>
+                                <h5>Raised of R{{campaign.AmountRequired}}.00</h5>
+                            </div>
+
+                            <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h4>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</h4>
+                                    <b class="small">Funded</b>
+                                </div>
+                                <div class="col-lg-6 center">
+                                    <h4 align="centre">R{{campaign.AmountContributed}}.00</h4>
+                                    <b class="small centre">Contributed</b>
+                                </div>
+                                <a ng-click="fundCampaign($event,campaign)" class="btn btn-primary form-control full-opacity-hover" style="margin-top:10px">Fund this campaign</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p style="margin-left:100px">
+                            <h2>Description</h2>
+                            {{campaign.Description}}
+                        </p>
+                    </div>
+                    <div class="col-lg-12">
+                        <p style="margin-left:100px">
+                            <table class="table table-hover table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <td>Contributer's Full Name</td>
+                                        <td>Message</td>
+                                        <td>Amount Contributed</td>
+                                        <td>Date Contributed</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Mark John</td>
+                                        <td>Its a gread Project you deserve the Funding </td>
+                                        <td>R200.00</td>
+                                        <td>12 July 2016</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cool Kid</td>
+                                        <td>You are inspiration to our kids</td>
+                                        <td>R1520.00</td>
+                                        <td>39 July 2016</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Patrice Motsepe</td>
+                                        <td>I've Got all the money You Need</td>
+                                        <td>R30000.00</td>
+                                        <td>2 August 2016</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+

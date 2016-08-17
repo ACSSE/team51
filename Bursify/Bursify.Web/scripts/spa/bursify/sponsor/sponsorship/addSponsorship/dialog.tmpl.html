@@ -1,0 +1,31 @@
+﻿<md-dialog aria-label="Mango (Fruit)" >
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Adding A New Sponsorship</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="/Content/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <h2>You are about to submit a new sponsorship to Bursify.</h2>
+                <p>
+                    Please note that upon submitting the sponsorship will be avialable to all students on our system. By submitting this sponsorship to our system you agree to our terms and conditions. You as a sponsor certify that you are willing and able to provide students with mention sponsorship. Click on the type of sponsorship you wish to submit
+                </p>
+               
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-href="#/sponsor/sponsorships/add">
+               High School
+            </md-button>
+            <md-button ng-href="#/sponsor/sponsorships/addT">
+                Tertiary
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

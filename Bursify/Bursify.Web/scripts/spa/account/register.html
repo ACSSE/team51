@@ -1,0 +1,74 @@
+﻿
+<style>
+    #content, .ng-scope {
+        background-color: #FAFAFA;
+    }
+</style>
+
+
+
+
+<div id="content">
+    <form role="form" novalidate angular-validator name="userRegistrationForm" angular-validator-submit="register()">
+        <div class="login-box">
+            <div class="login-logo">
+                <a href="/Home/Index"><b>Bursify</b></a>
+                <div id="loadingbarContainer"></div>
+            </div>
+            <p class="login-box-msg">Register a new account</p>
+            <div class="login-box-body">
+                <div class="form-group">
+
+                    <input type="email" name="inputEmail" class="form-control" ng-model="user.useremail" placeholder="Email address"
+                           validate-on="blur" required required-message="'Email is required'">
+                </div>
+                <div class="form-group">
+
+                    <input type="{{inputType}}" name="inputPassword" class="form-control" ng-model="user.password" placeholder="Password"
+                           validate-on="blur" required required-message="'Password is required'">
+                    <input type="checkbox" hidden id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
+                    <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
+                    <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>  
+                </div>
+
+                <div class="form-group">
+
+
+                    <label for="inputRole">I am a...</label>
+                    <select class="form-control"  ng-init="user.usertype = 'Student'" ng-model="user.usertype">
+                        <option ng-value="Student">Student</option>
+                        <option ng-value="Sponsor">Sponsor</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="inputTerms" ng-model="user.terms">
+                            I agree to Terms &amp; Conditions
+                        </label>
+                    </div>
+                </div><!-- /.col -->
+
+                <div class="form-group">
+
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+
+                </div>
+
+
+
+
+                <div class="social-auth-links text-center">
+                    <p>- OR -</p>
+                    <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using Facebook</a>
+                    <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using Google</a>
+                </div>
+
+                <a href="#/login" class="text-center">I already have an account</a>
+            </div><!-- /.form-box -->
+        </div>
+    </form>
+</div>
+

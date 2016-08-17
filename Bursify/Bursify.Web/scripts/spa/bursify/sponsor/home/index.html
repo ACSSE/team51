@@ -1,0 +1,112 @@
+﻿<spnav-bar></spnav-bar>
+<div id="loadingbarContainer"></div>
+
+<div id="content">
+  
+    <div class="col-md-12" style="padding:20px;">
+        <div class="col-md-12 padding-0">
+            <div class="col-md-12 padding-0">
+                <div class="col-md-12 padding-0">
+                    <div class="col-md-6">
+                        <div class="panel box-v1">
+                            <div class="panel-heading bg-green-active border-none">
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                                    <h4 class="text-left">Sponsorships</h4>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <h4>
+                                        <span class="fa fa-graduation-cap icon text-right"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="panel-body text-center">
+                                <h1>20</h1>
+                                <p>Applicants</p>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel box-v1">
+                            <div class="panel-heading bg-aqua-active border-none">
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                                    <h4 class="text-left">Rank</h4>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <h4>
+                                        <span class="fa fa-group icon text-right"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="panel-body text-center">
+                                <h1>2</h1>
+                                <p>Bursify Leaderboards</p>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="Applicants">
+
+        <div class="col-md-12">
+            <div class="alert alert-success alert-border alert-dismissible fade in" role="alert">
+                <h3>
+                    Your Sponsorships
+                    <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </h3>
+                <p>You have recieved a total of 20 new applications for you sponsorships. Take time to see the students below sorted according to suitability.</p>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3 product-grid" ng-repeat="Student in Students">
+                    <div class="thumbnail">
+
+
+                        <img src="~/Content/images/student/student1.jpg" alt="250x250" data-src="holder.js/250x250" data-holder-rendered="true" style="width: 250px; height: 150px;">
+                        <div class="caption">
+                            <small><span class="fa-map-marker fa"></span> University of Johannesburg</small>
+                            <small class="pull-right"><i class="fa fa-2x fa-comments-o"></i></small>
+
+                            <h4>Mike Ross</h4>
+                            <p style="height: 80px;">I am very ambitious and a risk taker. Plus I have a really good memory.</p>
+
+
+
+
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                                    75% Science
+                                </div>
+
+                            </div>
+
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                    70% Mathematics
+                                </div>
+                            </div>
+
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                                    65% English
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+               
+            </div>
+
+        </div>
+    </div>
+</div>

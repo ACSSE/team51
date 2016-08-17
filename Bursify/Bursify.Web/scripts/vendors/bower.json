@@ -1,0 +1,21 @@
+{
+  "name": "vendors",
+  "homepage": "https://github.com/ACSSE/team51",
+  "authors": [
+    "Mackis <malcolm@mdevsa.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-motion": "^0.4.4"
+  }
+}
