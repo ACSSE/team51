@@ -47,12 +47,14 @@ namespace Bursify.Web.Controllers
             var user = _membershipApi.GetUserById(userId);
 
             if (user == null) return null;
+         
+            var imagePath = HttpContext.Current.Server.MapPath("~/Content/BursifyUploads/" + userId + "/images");
 
-            //var userDirectory = new FileInfo("~/Content/BursifyUploads/" + userId + "/images");
+            var directory = new DirectoryInfo(imagePath);
 
-            var imagePath = HttpContext.Current.Server.MapPath("~/Content/BursifyUploads/images");
+            if (!directory.Exists) { directory.Create();}
 
-            var multipartFormDataStreamProvider = new UploadMultipartFormProvider(imagePath);
+            var multipartFormDataStreamProvider = new UploadMultipartFormProvider(directory.FullName);
 
             // Read the MIME multipart asynchronously 
             Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
@@ -65,21 +67,19 @@ namespace Bursify.Web.Controllers
             var fileUploadResult = new FileUploadResult
             {
                 LocalFilePath = localFileName,
-
                 FileName = Path.GetFileName(localFileName),
-
                 FileLength = new FileInfo(localFileName).Length
             };
 
-            // update database
+            // update profile picture path of the user
             user.ProfilePicturePath = fileUploadResult.FileName;
 
+            //update the user in the database
             _membershipApi.UpdateUser(user);
 
             var response = request.CreateResponse(HttpStatusCode.OK, fileUploadResult);
 
             return response;
         }
-
     }
 }
