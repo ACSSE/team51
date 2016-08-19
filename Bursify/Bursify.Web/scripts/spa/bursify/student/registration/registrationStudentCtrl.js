@@ -1523,7 +1523,7 @@
             $scope.StudentP.InstitutionID = 1;
             apiService.post('/api/student/savestudent', $scope.StudentP, saveStudentDone, saveStudentFailed);
            
-            $location.path('/bursify/student/home');
+           
 
         }
 
@@ -1538,11 +1538,46 @@
         }
 
         function saveStudentDone() {
-            saveAddress();
+            $location.path('/bursify/student/home');
+           // saveAddress();
         }
 
         function saveAddress() {
+            $scope.Address = {
+                "AddressType": "Postal",
+                "PreferredAddress": "",
+                "StreetAddress": "",
+                "Province": "",
+                "City": "",
+                "PostOfficeBoxNumber": "",
+                "PostOfficeName": "",
+                "PostalCode": ""
+            };
 
+
+             $scope.Address.StreetAddress = $scope.Student.ResStreetAddress;
+             $scope.Address.Province = $scope.Student.ResProvince;
+             $scope.Address.City = $scope.Student.ResCity;
+             $scope.Address.PostalCode = $scope.Student.ResPostCode
+             //execute when the postal address of the student is the same as the residential address
+             if ($scope.PostalSameAs) {
+                 notificationService.displayInfo("Same");
+                 $scope.Address.AddressType = "Main";
+                 // pass address
+
+             } else if (!$scope.PostalSameAs) {
+                 // pass the address 
+                 $scope.Address.AddressType = "Residential";
+                 //call api 
+
+                 // pass the postal address
+                 $scope.Address.AddressType = "Postal";
+                 $scope.Address.StreetAddress = $scope.Student.PostStreetAddress;
+                 $scope.Address.Province = $scope.Student.PostProvince;
+                 $scope.Address.City = $scope.Student.PostCity;
+                 $scope.Address.PostalCode = $scope.Student.PostPostalCode;
+                 // call api again
+             }
         }
 
         function saveStudentFailed() {
