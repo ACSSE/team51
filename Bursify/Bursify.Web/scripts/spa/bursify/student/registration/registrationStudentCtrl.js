@@ -1464,7 +1464,7 @@
         };
 
         $scope.registerStudent = function () {
-           // notificationService.displayError("Ey: " + $rootScope.repository.loggedUser.userIden);
+          
             $scope.user = {};
             $scope.user.ID = $rootScope.repository.loggedUser.userIden;
             $scope.user.Email = $rootScope.repository.loggedUser.useremail;
@@ -1472,42 +1472,11 @@
             membershipService.saveCredentials($scope.user);
             $scope.userData.displayUserInfo();
 
-          //  notificationService.displayError("UserName: " + $rootScope.repository.loggedUser.username);
-            //  notificationService.displayInfo("here");
 
             //post student data 
-            
-            //ID = student.ID;
-            //Firstname = student.Firstname;
-            //Surname = student.Surname;
-            //EducationLevel = student.EducationLevel;
-            //AverageMark = student.AverageMark;
-            //StudentNumber = student.StudentNumber;
-            //IDNumber = student.IDNumber;
-            //Age = student.Age;
-            //HasDisability = student.HasDisability;
-            //DisabilityDescription = student.DisabilityDescription;
-            //Race = student.Race;
-            //Gender = student.Gender;
-            //CurrentOccupation = student.CurrentOccupation;
-            //StudyField = student.StudyField;
-            //HighestAcademicAchievement = student.HighestAcademicAchievement;
-            //YearOfAcademicAchievement = student.YearOfAcademicAchievement;
-            //DateOfBirth = student.DateOfBirth;
-            //NumberOfViews = student.NumberOfViews;
-            //Essay = student.Essay;
-            //GuardianPhone = student.GuardianPhone;
-            //GuardianEmail = student.GuardianEmail;
-            //GuardianRelationship = student.GuardianRelationship;
-            //IDDocumentPath = student.IDDocumentPath;
-            //MatricCertificatePath = student.MatricCertificatePath;
-            //CVPath = student.CVPath;
-            //AgreeTandC = student.AgreeTandC;
-            //Marks = StudentSubjectViewModel.MapMultipleSubjects((List<StudentSubject>)student.StudentSubjects);
-            //Institution = student.Institution;
 
             $scope.Student.ID = $scope.user.ID;
-            //  notificationService.displayError("My: " + $scope.Student.ID);
+           
             $scope.StudentP = {};
             $scope.StudentP.ID = $scope.Student.ID;
             $scope.StudentP.FirstName = $scope.Student.FirstName;
@@ -1553,88 +1522,9 @@
             $scope.StudentP.AgreeTandC = true;
             $scope.StudentP.InstitutionID = 1;
             apiService.post('/api/student/savestudent', $scope.StudentP, saveStudentDone, saveStudentFailed);
-
            
+            $location.path('/bursify/student/home');
 
-
-           // Firstname = student.Firstname;
-           // Surname = student.Surname;
-           // EducationLevel = student.EducationLevel;
-           // AverageMark = student.AverageMark;
-           // StudentNumber = student.StudentNumber;
-           // IDNumber = student.IDNumber;
-           // Age = student.Age;
-           // HasDisability = student.HasDisability;
-           // DisabilityDescription = student.DisabilityDescription;
-           // Race = student.Race;
-           // Gender = student.Gender;
-           // CurrentOccupation = student.CurrentOccupation;
-           // StudyField = student.StudyField;
-           // HighestAcademicAchievement = student.HighestAcademicAchievement;
-           // YearOfAcademicAchievement = student.YearOfAcademicAchievement;
-           // DateOfBirth = student.DateOfBirth;
-           // NumberOfViews = student.NumberOfViews;
-           // Essay = student.Essay;
-           // GuardianPhone = student.GuardianPhone;
-           // GuardianEmail = student.GuardianEmail;
-           // GuardianRelationship = student.GuardianRelationship;
-           // IDDocumentPath = student.IDDocumentPath;
-           // MatricCertificatePath = student.MatricCertificatePath;
-           // CVPath = student.CVPath;
-           // AgreeTandC = student.AgreeTandC;
-
-
-           // $scope.Student.HighestAcademicAchievement = $scope.Student.StudentLevel;
-           // $scope.Student.YearOfAcademicAchievement = $scope.Student.MarksYearAttained;
-
-           // //post address data
-           // //post marks data
-           // 
-
-           // if ($scope.Student.InstitutionName == 'Other') {
-           //     $scope.Student.InstituitionName = $scope.InstitutionNameOther;
-           //     $scope.Student.InstituitionWebsite = $scope.InstitutionWebsiteOther;
-           // }
-           
-           // $scope.Address = {
-           //     "AddressType": "Postal",
-           //     "PreferredAddress": "",
-           //     "StreetAddress": "",
-           //     "Province": "",
-           //     "City": "",
-           //     "PostOfficeBoxNumber": "",
-           //     "PostOfficeName": "",
-           //     "PostalCode": ""
-           // };
-
-           
-           // $scope.Address.StreetAddress = $scope.Student.ResStreetAddress;
-           // $scope.Address.Province = $scope.Student.ResProvince;
-           // $scope.Address.City = $scope.Student.ResCity;
-           // $scope.Address.PostalCode = $scope.Student.ResPostCode
-           // //execute when the postal address of the student is the same as the residential address
-           // if ($scope.PostalSameAs) {
-           //     notificationService.displayInfo("Same");
-           //     $scope.Address.AddressType = "Main";
-           //     // pass address
-                
-           // } else if (!$scope.PostalSameAs) {
-           //     // pass the address 
-           //     $scope.Address.AddressType = "Residential";
-           //     //call api 
-
-           //     // pass the postal address
-           //     $scope.Address.AddressType = "Postal";
-           //     $scope.Address.StreetAddress = $scope.Student.PostStreetAddress;
-           //     $scope.Address.Province = $scope.Student.PostProvince;
-           //     $scope.Address.City = $scope.Student.PostCity;
-           //     $scope.Address.PostalCode = $scope.Student.PostPostalCode;
-           //     // call api again
-           // }
-           
-           // $location.path('/bursify/student/home');
-
-           //// apiService.get('api/bursifyuser/getuser?email=' + )
         }
 
         $scope.testStudent = function () {
@@ -1648,7 +1538,11 @@
         }
 
         function saveStudentDone() {
-            notificationService.displayInfo("Done");
+            saveAddress();
+        }
+
+        function saveAddress() {
+
         }
 
         function saveStudentFailed() {
