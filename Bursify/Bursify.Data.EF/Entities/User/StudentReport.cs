@@ -19,6 +19,7 @@ namespace Bursify.Data.EF.Entities.User
         public int Average { get; set; }
         public string ReportLevel { get; set; }
         public string ReportPeriod { get; set; }
+        public string ReportInstitution { get; set; }
         
         public virtual Student Student { get; set; }
         public ICollection<Subject> Subjects { get; set; }
