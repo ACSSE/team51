@@ -1,7 +1,8 @@
 ﻿
 
 <nav-bar></nav-bar>
-<div id="content" >
+<div id="content" class="bg">
+   
     <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'default-primary-700'}">
         <div class="md-toolbar-tools">
             <span>My Report Card</span>
@@ -103,15 +104,14 @@
                 </md-card-content>
             </md-card>
         </div>
-        <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'grey'}">
-            <div class="md-toolbar-tools">
-                <span flex></span>
-                <md-button class="md-icon-button" aria-label="More">
-                    <md-icon md-svg-icon="Content/img/icons/more_vert.svg"></md-icon>
-                    <md-tooltip></md-tooltip>
-                </md-button>
-            </div>
-        </md-toolbar>
+        <div class="col-md-12">
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="More">
+                <md-icon md-svg-icon="Content/img/icons/more_vert.svg">View All</md-icon>
+                <md-tooltip></md-tooltip>
+            </md-button>
+        </div>
+      
      </md-content>
  
 

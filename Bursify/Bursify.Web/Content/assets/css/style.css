@@ -6251,6 +6251,7 @@ ul li a:focus {
   padding-left: 0px;
   width: 100%;
   color: #fff;
+  background-color: #fff;
 }
 .input-group-addon, .user-photo, .btn, .cover-v1, .nav-tabs.nav-tabs-v2, .tabs-area, .mail-wrapper, .mail-reply, .panel, .thumbnail, .navbar {
   -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
