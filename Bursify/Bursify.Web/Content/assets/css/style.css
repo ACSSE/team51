@@ -2209,7 +2209,7 @@ a:hover, a:active, a:focus {
   color: #999
 }
 .pagination>li>a {
-  background: #fff;
+  background: #fafafa;
   color: #666
 }
 .pagination.pagination-flat>li>a {
@@ -3333,7 +3333,7 @@ table.text-center, table.text-center td, table.text-center th {
   padding-left: 10px
 }
 .fc-widget-header {
-  background: #fff
+  background: #fafafa
 }
 .fc-grid {
   width: 100%;
@@ -6250,8 +6250,7 @@ ul li a:focus {
   padding-bottom: 10px;
   padding-left: 0px;
   width: 100%;
-  color: #fff;
-  background-color: #fff;
+  color: #918C8C;
 }
 .input-group-addon, .user-photo, .btn, .cover-v1, .nav-tabs.nav-tabs-v2, .tabs-area, .mail-wrapper, .mail-reply, .panel, .thumbnail, .navbar {
   -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
@@ -8379,7 +8378,7 @@ ul li a:focus {
   border: none !important;
 }
 .tabs-wrapper #tabs-demo .active a {
-  border-bottom: 2px solid #fff !important;
+  border-bottom: 2px solid #918C8C !important;
 }
 .tabs-wrapper #tabs-content-demo {
   padding: 20px;
@@ -8395,14 +8394,14 @@ ul li a:focus {
   margin-top: 20px;
 }
 .tab-content-v1 {
-  border-left: 2px solid #fff;
+  border-left: 2px solid #918C8C;
 }
 .nav-tabs.nav-tabs-v1 {
   border: none !important;
   padding: 10px !important;
 }
 .nav-tabs.nav-tabs-v1 a {
-  color: #fff;
+  color: #918C8C;
   font-weight: bold;
 }
 .nav-tabs.nav-tabs-v1 .active a {
@@ -8413,7 +8412,7 @@ ul li a:focus {
   content: '';
   position: absolute;
   width: 80%;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #918C8C;
   bottom: 1px;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
@@ -8652,7 +8651,7 @@ ul li a:focus {
   color: #999;
 }
 .nav-tabs.nav-tabs-v5 > li.active > a span.round-tabs {
-  background: #fff;
+  background: #fafafa;
 }
 .nav-tabs.nav-tabs-v5 > li {
   width: 20%;
@@ -9698,6 +9697,26 @@ ul li a:focus {
 }
 .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot {
   pointer-events: none;
+}
+
+/*END Form Wizard*/
+
+
+    .fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
 }
 
 body {

@@ -122,10 +122,7 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-            var subjects = new List<Subject>();
-                subjects.Add(SubjectViewModel.MapFromStudentSubject(r));
-                
-            _studentApi.AddSubjects(subjects);
+           
         
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
