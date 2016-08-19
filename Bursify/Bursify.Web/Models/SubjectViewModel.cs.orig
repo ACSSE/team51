@@ -13,7 +13,17 @@ namespace Bursify.Web.Models
         public int ID { get; set; }
         public int StudentReportID { get; set; }
         public string Name { get; set; }
+<<<<<<< HEAD
         public int MarkAcquired { get; set; }
+=======
+        public string SubjectLevel { get; set; }
+        public string Period { get; set; }
+
+        public SubjectViewModel()
+        {
+            
+        }
+
         public static Subject MapFromStudentSubject(StudentSubjectViewModel studentSubject)
         {
             return new Subject()
@@ -24,6 +34,11 @@ namespace Bursify.Web.Models
             };
         }
 
+        public SubjectViewModel(Subject s)
+        {
+            MapSingleSubject(s);
+        }
+>>>>>>> origin/studentFrontEndNG
 
         public SubjectViewModel MapSingleSubject(Subject subject)
         {

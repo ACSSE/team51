@@ -88,12 +88,11 @@ namespace Bursify.Api.Administrators
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                subjectRepository.Save(new Subject
+               /* subjectRepository.Save(new Subject
                 {
                     Name = name,
-                    SubjectLevel = level,
-                    Period = period
-                });
+                    SubjectLevel = level
+                });*/
                 uow.Commit();
             }
         }

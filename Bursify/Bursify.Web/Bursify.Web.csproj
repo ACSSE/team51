@@ -721,11 +721,10 @@
     <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Models\ReportCampaignModel.cs" />
     <Compile Include="Models\SponsorCampaignViewModel.cs" />
-    <Compile Include="Models\SponsorshipRequirementViewModel.cs" />
     <Compile Include="Models\SponsorshipViewModel.cs" />
     <Compile Include="Models\SponsorViewModel.cs" />
+    <Compile Include="Models\StudentReportViewModel.cs" />
     <Compile Include="Models\StudentSponsorshipViewModel.cs" />
-    <Compile Include="Models\StudentSubjectViewModel.cs" />
     <Compile Include="Models\StudentViewModel.cs" />
     <Compile Include="Models\SubjectViewModel.cs" />
     <Compile Include="Models\UserAddressViewModel.cs" />

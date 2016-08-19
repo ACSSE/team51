@@ -13,7 +13,7 @@ namespace Bursify.Data.EF.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201608171650561_initial"; }
+            get { return "201608191321090_initial"; }
         }
         
         string IMigrationMetadata.Source

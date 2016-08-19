@@ -122,11 +122,55 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-            var subjects = new List<Subject>();
-                subjects.Add(SubjectViewModel.MapFromStudentSubject(r));
-                
-            _studentApi.AddSubjects(subjects);
+<<<<<<< HEAD
         
+=======
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SaveAcademicRecord")]
+        public HttpResponseMessage SaveAcademicRecord(HttpRequestMessage request, List<StudentSubjectViewModel> resultsVm)
+        {
+           List<StudentSubject> results = new List<StudentSubject>();
+            var subjects = new List<Subject>();
+
+            foreach (var r in resultsVm)
+            {
+                subjects.Add(SubjectViewModel.MapFromStudentSubject(r));
+                results.Add(r.ReverseMap());
+                
+            }
+
+            _studentApi.AddSubjects(subjects);
+            _studentApi.AddStudentSubjects(results);
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SaveApplicationForm")]
+        public HttpResponseMessage SaveApplicationForm(HttpRequestMessage request, StudentViewModel student, List<UserAddressViewModel> address, List<StudentSubjectViewModel> studentMarks)
+        {
+            _studentApi.SaveStudent(student.ReverseMap());
+
+            foreach (var a in address)
+            {
+                _studentApi.SaveAddress(a.ReverseMap());
+            }
+
+            foreach(var mark in studentMarks)
+            {
+                _studentApi.AddStudentSubject(mark.ReverseMap());
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.Created);
+
+            return response;
+        }
+
+>>>>>>> origin/studentFrontEndNG
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("ApplyForSponsorship")]
