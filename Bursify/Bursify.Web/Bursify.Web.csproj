@@ -494,6 +494,7 @@
     <Content Include="Content\images\p1.jpeg" />
     <Content Include="Content\images\system\Double Down-64.png" />
     <Content Include="Content\images\system\entelect.png" />
+    <Content Include="Content\images\ui\report.png" />
     <Content Include="Content\images\user\1.jpg" />
     <Content Include="Content\images\user\Circled User Male.png" />
     <Content Include="Content\images\user\elogo.jpg" />
@@ -632,6 +633,8 @@
     <Content Include="scripts\spa\bursify\student\profile\studentProfileCtrl.js" />
     <Content Include="scripts\spa\bursify\student\registration\form.html" />
     <Content Include="scripts\spa\bursify\student\registration\registrationStudentCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\reportcard\reportcard.html" />
+    <Content Include="scripts\spa\bursify\student\reportcard\reportcardCtrl.js" />
     <Content Include="scripts\spa\bursify\student\sponsorship\index.html" />
     <Content Include="scripts\spa\bursify\student\sponsorship\sponsorshipCtrl.js" />
     <Content Include="scripts\spa\home\index.html" />

@@ -1522,10 +1522,7 @@
             $scope.StudentP.AgreeTandC = true;
             $scope.StudentP.InstitutionID = 1;
             apiService.post('/api/student/savestudent', $scope.StudentP, saveStudentDone, saveStudentFailed);
-           
-           
-
-        }
+         }
 
         $scope.testStudent = function () {
             for (var i = 0; i < $scope.Student.Marks.length; i++) {

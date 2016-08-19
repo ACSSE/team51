@@ -29,16 +29,12 @@
         }
 
         function loginCompleted(result) {
-
-       
             if (result.data.success) {
                 loginCompleted(result);
             }
             else {
                 notificationService.displayError('Login failed. Try again.');
             }
-
-
         }
 
         function loginUserCompleted(result) {
