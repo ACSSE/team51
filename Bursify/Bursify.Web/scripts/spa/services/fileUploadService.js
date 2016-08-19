@@ -15,11 +15,10 @@
 
         function uploadFile($files, userId, callback) {
             //$files: an array of files selected
-            notificationService.displayError("1");
+          
             for (var i = 0; i < $files.length; i++) {
                 var $file = $files[i];
                 (function (index) {
-                    notificationService.displayError("2");
                     $rootScope.upload[index] = $upload.upload({
                         url: "/api/bursifyuser/UploadImage/?userId=" + userId, // webapi url
                         method: "POST",
@@ -34,7 +33,7 @@
                     });
                 })(i);
             }
-            notificationService.displayError("Upload Done");
+           
         }
 
         return service;

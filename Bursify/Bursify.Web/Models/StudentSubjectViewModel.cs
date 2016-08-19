@@ -8,8 +8,9 @@ namespace Bursify.Web.Models
     {
         public int StudentId { get; set; }
         public int SubjectId { get; set; }
-        public int SubjectName { get; set; }
-        public int MarkAcquired { get; set; }
+        public string SubjectName { get; set; }
+        public string Period { get; set; }
+        public int SubjectMark { get; set; }
 
         public StudentSubjectViewModel()
         {
@@ -24,7 +25,7 @@ namespace Bursify.Web.Models
         {
             StudentId = studentSubject.StudentId;
             SubjectId = studentSubject.SubjectId;
-            MarkAcquired = studentSubject.MarkAcquired;
+            SubjectMark = studentSubject.MarkAcquired;
             return this;
         }
 
@@ -34,7 +35,7 @@ namespace Bursify.Web.Models
             {
                 StudentId = this.StudentId,
                 SubjectId = this.SubjectId,
-                MarkAcquired = this.MarkAcquired,
+                MarkAcquired = this.SubjectMark,
             };
         }
 
@@ -44,7 +45,7 @@ namespace Bursify.Web.Models
             {
                 StudentId = subject.StudentId,
                 SubjectId = subject.SubjectId,
-                MarkAcquired = subject.MarkAcquired,
+                MarkAcquired = subject.SubjectMark,
             };
         }
 

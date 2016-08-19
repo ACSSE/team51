@@ -20,6 +20,16 @@ namespace Bursify.Web.Models
             
         }
 
+        public static Subject MapFromStudentSubject(StudentSubjectViewModel studentSubject)
+        {
+            return new Subject()
+            {
+                ID = studentSubject.SubjectId,
+                Name = studentSubject.SubjectName,
+                Period = studentSubject.Period
+            };
+        }
+
         public SubjectViewModel(Subject s)
         {
             MapSingleSubject(s);

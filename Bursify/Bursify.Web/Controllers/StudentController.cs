@@ -128,12 +128,16 @@ namespace Bursify.Web.Controllers
         public HttpResponseMessage SaveAcademicRecord(HttpRequestMessage request, List<StudentSubjectViewModel> resultsVm)
         {
            List<StudentSubject> results = new List<StudentSubject>();
+            var subjects = new List<Subject>();
 
             foreach (var r in resultsVm)
             {
+                subjects.Add(SubjectViewModel.MapFromStudentSubject(r));
                 results.Add(r.ReverseMap());
+                
             }
 
+            _studentApi.AddSubjects(subjects);
             _studentApi.AddStudentSubjects(results);
 
             var response = request.CreateResponse(HttpStatusCode.OK);
