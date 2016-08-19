@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('BursifyApp', ['common.core', 'common.ui', 'ngMaterial', 'ngSanitize', 'ngHamburger', 'md.data.table', 'lfNgMdFileInput'])
+    angular.module('BursifyApp', ['common.core', 'common.ui', 'ngMaterial', 'ngSanitize', 'ngHamburger', 'md.data.table'])
         .config(config)
         .controller('MainCtrl', function($scope) {
             $scope.tgState = false;

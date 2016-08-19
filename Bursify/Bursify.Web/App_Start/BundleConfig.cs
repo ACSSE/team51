@@ -36,7 +36,7 @@ namespace Bursify.Web.App_Start
                  "~/Scripts/Vendors/angular-sanitize.js",
                 "~/Scripts/Vendors/angucomplete-alt.min.js",
                 "~/Scripts/Vendors/ui-bootstrap-tpls-0.13.1.js",
-                "~/Scripts/Vendors/file-input.js",
+            
                 "~/Scripts/Vendors/underscore.js",
                 "~/Scripts/Vendors/raphael.js",
                 "~/Scripts/Vendors/morris.js",
