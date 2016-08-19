@@ -3,9 +3,9 @@
 
     app.controller('registrationStudentCtrl', registrationStudentCtrl);
 
-    registrationStudentCtrl.$inject = ['$scope', '$rootScope', '$timeout', 'apiService', '$location', 'notificationService', '$compile', 'fileUploadService', 'membershipService'];
+    registrationStudentCtrl.$inject = ['$scope', '$rootScope', '$timeout', 'apiService', '$location', 'notificationService', '$compile', 'fileUploadService', 'membershipService', '$interval'];
 
-    function registrationStudentCtrl($scope, $rootScope, $timeout, apiService, $location, notificationService, $compile , fileUploadService, membershipService) {
+    function registrationStudentCtrl($scope, $rootScope, $timeout, apiService, $location, notificationService, $compile, fileUploadService, membershipService, $interval) {
         $scope.pageClass = 'page-registration-student';
 
 
@@ -69,7 +69,7 @@
             "InstituitionName": "",
             "InstituitionWebsite": "",
             "StudentLevel": "",
-            "Marks": [{ "SubjectName": "", "SubjectMark": "" }],
+            "Marks": [{ "SubjectName": "", "SubjectMark": "" , "StudentId": "", "Period": ""}],
             "Essay": "",
             "IDDocumentPath": "",
             "MarticCertificatePath": "",
@@ -107,6 +107,7 @@
 
         }
 
+        $scope.uploading = false;
 
         document.getElementById("uploadIDBtn").onchange = function () {
             document.getElementById("uploadIDFile").value = this.value;
@@ -127,17 +128,16 @@
 
         var IDFile = null;
         function UploadID() {
-            notificationService.displayInfo("one");
+            $scope.uploading = true;
             fileUploadService.uploadFile(IDFile, $rootScope.repository.loggedUser.userIden, IDUploadDone);
-
-        }
+        }  
 
         function IDUploadDone() {
-            notificationService.displayInfo("I.D document has been uploaded.");
+            //notificationService.displayInfo("I.D document has been uploaded.");
+            $scope.uploading = false;
         }
 
         function prepareID($files) {
-            notificationService.displayInfo("here");
             IDFile = $files;
             UploadID();
             
@@ -1464,7 +1464,7 @@
         };
 
         $scope.registerStudent = function () {
-            notificationService.displayError("Ey: " + $rootScope.repository.loggedUser.userIden);
+          
             $scope.user = {};
             $scope.user.ID = $rootScope.repository.loggedUser.userIden;
             $scope.user.Email = $rootScope.repository.loggedUser.useremail;
@@ -1472,42 +1472,11 @@
             membershipService.saveCredentials($scope.user);
             $scope.userData.displayUserInfo();
 
-          //  notificationService.displayError("UserName: " + $rootScope.repository.loggedUser.username);
-            //  notificationService.displayInfo("here");
 
             //post student data 
-            
-            //ID = student.ID;
-            //Firstname = student.Firstname;
-            //Surname = student.Surname;
-            //EducationLevel = student.EducationLevel;
-            //AverageMark = student.AverageMark;
-            //StudentNumber = student.StudentNumber;
-            //IDNumber = student.IDNumber;
-            //Age = student.Age;
-            //HasDisability = student.HasDisability;
-            //DisabilityDescription = student.DisabilityDescription;
-            //Race = student.Race;
-            //Gender = student.Gender;
-            //CurrentOccupation = student.CurrentOccupation;
-            //StudyField = student.StudyField;
-            //HighestAcademicAchievement = student.HighestAcademicAchievement;
-            //YearOfAcademicAchievement = student.YearOfAcademicAchievement;
-            //DateOfBirth = student.DateOfBirth;
-            //NumberOfViews = student.NumberOfViews;
-            //Essay = student.Essay;
-            //GuardianPhone = student.GuardianPhone;
-            //GuardianEmail = student.GuardianEmail;
-            //GuardianRelationship = student.GuardianRelationship;
-            //IDDocumentPath = student.IDDocumentPath;
-            //MatricCertificatePath = student.MatricCertificatePath;
-            //CVPath = student.CVPath;
-            //AgreeTandC = student.AgreeTandC;
-            //Marks = StudentSubjectViewModel.MapMultipleSubjects((List<StudentSubject>)student.StudentSubjects);
-            //Institution = student.Institution;
 
             $scope.Student.ID = $scope.user.ID;
-            //  notificationService.displayError("My: " + $scope.Student.ID);
+           
             $scope.StudentP = {};
             $scope.StudentP.ID = $scope.Student.ID;
             $scope.StudentP.FirstName = $scope.Student.FirstName;
@@ -1553,92 +1522,59 @@
             $scope.StudentP.AgreeTandC = true;
             $scope.StudentP.InstitutionID = 1;
             apiService.post('/api/student/savestudent', $scope.StudentP, saveStudentDone, saveStudentFailed);
+         }
 
-           
-
-
-           // Firstname = student.Firstname;
-           // Surname = student.Surname;
-           // EducationLevel = student.EducationLevel;
-           // AverageMark = student.AverageMark;
-           // StudentNumber = student.StudentNumber;
-           // IDNumber = student.IDNumber;
-           // Age = student.Age;
-           // HasDisability = student.HasDisability;
-           // DisabilityDescription = student.DisabilityDescription;
-           // Race = student.Race;
-           // Gender = student.Gender;
-           // CurrentOccupation = student.CurrentOccupation;
-           // StudyField = student.StudyField;
-           // HighestAcademicAchievement = student.HighestAcademicAchievement;
-           // YearOfAcademicAchievement = student.YearOfAcademicAchievement;
-           // DateOfBirth = student.DateOfBirth;
-           // NumberOfViews = student.NumberOfViews;
-           // Essay = student.Essay;
-           // GuardianPhone = student.GuardianPhone;
-           // GuardianEmail = student.GuardianEmail;
-           // GuardianRelationship = student.GuardianRelationship;
-           // IDDocumentPath = student.IDDocumentPath;
-           // MatricCertificatePath = student.MatricCertificatePath;
-           // CVPath = student.CVPath;
-           // AgreeTandC = student.AgreeTandC;
-
-
-           // $scope.Student.HighestAcademicAchievement = $scope.Student.StudentLevel;
-           // $scope.Student.YearOfAcademicAchievement = $scope.Student.MarksYearAttained;
-
-           // //post address data
-           // //post marks data
-           // 
-
-           // if ($scope.Student.InstitutionName == 'Other') {
-           //     $scope.Student.InstituitionName = $scope.InstitutionNameOther;
-           //     $scope.Student.InstituitionWebsite = $scope.InstitutionWebsiteOther;
-           // }
-           
-           // $scope.Address = {
-           //     "AddressType": "Postal",
-           //     "PreferredAddress": "",
-           //     "StreetAddress": "",
-           //     "Province": "",
-           //     "City": "",
-           //     "PostOfficeBoxNumber": "",
-           //     "PostOfficeName": "",
-           //     "PostalCode": ""
-           // };
-
-           
-           // $scope.Address.StreetAddress = $scope.Student.ResStreetAddress;
-           // $scope.Address.Province = $scope.Student.ResProvince;
-           // $scope.Address.City = $scope.Student.ResCity;
-           // $scope.Address.PostalCode = $scope.Student.ResPostCode
-           // //execute when the postal address of the student is the same as the residential address
-           // if ($scope.PostalSameAs) {
-           //     notificationService.displayInfo("Same");
-           //     $scope.Address.AddressType = "Main";
-           //     // pass address
-                
-           // } else if (!$scope.PostalSameAs) {
-           //     // pass the address 
-           //     $scope.Address.AddressType = "Residential";
-           //     //call api 
-
-           //     // pass the postal address
-           //     $scope.Address.AddressType = "Postal";
-           //     $scope.Address.StreetAddress = $scope.Student.PostStreetAddress;
-           //     $scope.Address.Province = $scope.Student.PostProvince;
-           //     $scope.Address.City = $scope.Student.PostCity;
-           //     $scope.Address.PostalCode = $scope.Student.PostPostalCode;
-           //     // call api again
-           // }
-           
-           // $location.path('/bursify/student/home');
-
-           //// apiService.get('api/bursifyuser/getuser?email=' + )
+        $scope.testStudent = function () {
+            for (var i = 0; i < $scope.Student.Marks.length; i++) {
+                $scope.Student.Marks[i].StudentId = $rootScope.repository.loggedUser.userIden;
+                $scope.Student.Marks[i].Period = $scope.Student.MarksYearAttained;
+            }
+            $scope.StudentMarks = $scope.Student.Marks;
+            apiService.post('/api/student/saveAcademicRecord', $scope.StudentMarks, saveStudentDone, saveStudentFailed);
+            
         }
 
         function saveStudentDone() {
-            notificationService.displayInfo("Done");
+            $location.path('/bursify/student/home');
+           // saveAddress();
+        }
+
+        function saveAddress() {
+            $scope.Address = {
+                "AddressType": "Postal",
+                "PreferredAddress": "",
+                "StreetAddress": "",
+                "Province": "",
+                "City": "",
+                "PostOfficeBoxNumber": "",
+                "PostOfficeName": "",
+                "PostalCode": ""
+            };
+
+
+             $scope.Address.StreetAddress = $scope.Student.ResStreetAddress;
+             $scope.Address.Province = $scope.Student.ResProvince;
+             $scope.Address.City = $scope.Student.ResCity;
+             $scope.Address.PostalCode = $scope.Student.ResPostCode
+             //execute when the postal address of the student is the same as the residential address
+             if ($scope.PostalSameAs) {
+                 notificationService.displayInfo("Same");
+                 $scope.Address.AddressType = "Main";
+                 // pass address
+
+             } else if (!$scope.PostalSameAs) {
+                 // pass the address 
+                 $scope.Address.AddressType = "Residential";
+                 //call api 
+
+                 // pass the postal address
+                 $scope.Address.AddressType = "Postal";
+                 $scope.Address.StreetAddress = $scope.Student.PostStreetAddress;
+                 $scope.Address.Province = $scope.Student.PostProvince;
+                 $scope.Address.City = $scope.Student.PostCity;
+                 $scope.Address.PostalCode = $scope.Student.PostPostalCode;
+                 // call api again
+             }
         }
 
         function saveStudentFailed() {
@@ -1651,9 +1587,44 @@
         //    notificationService.displayInfo('Account set up complete.');
         //    $location.path('/bursify/student/home');
         //}
-
-
     
+
+        var self = this, j = 0, counter = 0;
+        self.mode = 'query';
+        self.activated = true;
+        self.determinateValue = 30;
+        self.determinateValue2 = 30;
+        self.showList = [];
+        /**
+         * Turn off or on the 5 themed loaders
+         */
+        self.toggleActivation = function () {
+            if (!self.activated) self.showList = [];
+            if (self.activated) {
+                j = counter = 0;
+                self.determinateValue = 30;
+                self.determinateValue2 = 30;
+            }
+        };
+        $interval(function () {
+            self.determinateValue += 1;
+            self.determinateValue2 += 1.5;
+            if (self.determinateValue > 100) self.determinateValue = 30;
+            if (self.determinateValue2 > 100) self.determinateValue2 = 30;
+            // Incrementally start animation the five (5) Indeterminate,
+            // themed progress circular bars
+            if ((j < 2) && !self.showList[j] && self.activated) {
+                self.showList[j] = true;
+            }
+            if (counter++ % 4 == 0) j++;
+            // Show the indicator in the "Used within Containers" after 200ms delay
+            if (j == 2) self.contained = "indeterminate";
+        }, 100, 0, true);
+        $interval(function () {
+            self.mode = (self.mode == 'query' ? 'determinate' : 'query');
+        }, 7200, 0, true);
+
+
     }
 
 })(angular.module('BursifyApp'));
