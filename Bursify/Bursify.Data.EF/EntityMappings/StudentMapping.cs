@@ -86,11 +86,13 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.HasRequired(x => x.BursifyUser);
 
+            this.HasMany(x => x.StudentReports)
+                .WithRequired(x => x.Student)
+                .HasForeignKey(x => x.StudentId);
+
             this.HasRequired(x => x.Institution)
                 .WithMany(x => x.Students)
                 .HasForeignKey(x => x.InstitutionID);
-
-            this.HasMany(x => x.StudentSubjects);
 
             this.HasMany(x => x.StudentSponsorships);
             

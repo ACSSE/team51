@@ -69,59 +69,22 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-        //add a new subject
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("PostSubject")]
-        public HttpResponseMessage PostSubject(HttpRequestMessage request, SubjectViewModel subject)
+        [System.Web.Mvc.Route("AddSubjects")]
+        public HttpResponseMessage GetSubject(HttpRequestMessage request, List<Subject> subjects)
         {
-            var newSubject = new Subject()
+            var mappedSubjects = SubjectViewModel.MapMultipleSubjects(subjects);
+            var studentSubjects = new List<Subject>();
+
+            foreach (var modelSubject in mappedSubjects)
             {
-                Name = subject.Name,
-                SubjectLevel = subject.SubjectLevel
-            };
+                studentSubjects.Add(modelSubject.ReverseMap());
+            }
 
-            _studentApi.AddSubject(newSubject);
+            _studentApi.AddSubjects(studentSubjects);
 
-            var model = new SubjectViewModel();
-
-            var subjectVm = model.MapSingleSubject(newSubject);
-
-            var response = request.CreateResponse(HttpStatusCode.Created, subjectVm);
-
-            return response;
-        }
-
-        #endregion
-
-        #region StudentSubject
-
-        //get all subjects for a student
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpGet]
-        [System.Web.Mvc.Route("GetAllStudentSubjects")]
-        public HttpResponseMessage GetAllStudentSubjects(HttpRequestMessage request, int studentId)
-        {
-            var subjects = _studentApi.GetAllSubjects(studentId);
-
-            var subjectVm = StudentSubjectViewModel.MapMultipleSubjects(subjects);
-
-            var response = request.CreateResponse(HttpStatusCode.OK, subjectVm);
-
-            return response;
-        }
-
-        //add a subject for a student
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("PostStudentSubject")]
-        public HttpResponseMessage PostStudentSubject(HttpRequestMessage request, StudentSubjectViewModel studentSubject)
-        {
-            _studentApi.AddStudentSubject(studentSubject.ReverseMap());
-
-            var model = new SubjectViewModel();
-
-            var response = request.CreateResponse(HttpStatusCode.Created, studentSubject);
+            var response = request.CreateResponse(HttpStatusCode.OK);
 
             return response;
         }

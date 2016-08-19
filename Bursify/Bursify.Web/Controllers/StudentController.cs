@@ -53,9 +53,9 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetAddresses")]
-        public HttpResponseMessage GetAddresses(HttpRequestMessage request, int UserId)
+        public HttpResponseMessage GetAddresses(HttpRequestMessage request, int userId)
         {
-            var addresses = _studentApi.GetAddressofUser(UserId);
+            var addresses = _studentApi.GetAddressofUser(userId);
 
             var response = request.CreateResponse(HttpStatusCode.OK, addresses);
 
@@ -122,47 +122,7 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("SaveAcademicRecord")]
-        public HttpResponseMessage SaveAcademicRecord(HttpRequestMessage request, List<StudentSubjectViewModel> resultsVm)
-        {
-           List<StudentSubject> results = new List<StudentSubject>();
-
-            foreach (var r in resultsVm)
-            {
-                results.Add(r.ReverseMap());
-            }
-
-            _studentApi.AddStudentSubjects(results);
-
-            var response = request.CreateResponse(HttpStatusCode.OK);
-
-            return response;
-        }
-
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("SaveApplicationForm")]
-        public HttpResponseMessage SaveApplicationForm(HttpRequestMessage request, StudentViewModel student, List<UserAddressViewModel> address, List<StudentSubjectViewModel> studentMarks)
-        {
-            _studentApi.SaveStudent(student.ReverseMap());
-
-            foreach (var a in address)
-            {
-                _studentApi.SaveAddress(a.ReverseMap());
-            }
-
-            foreach(var mark in studentMarks)
-            {
-                _studentApi.AddStudentSubject(mark.ReverseMap());
-            }
-
-            var response = request.CreateResponse(HttpStatusCode.Created);
-
-            return response;
-        }
-
+        
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("ApplyForSponsorship")]

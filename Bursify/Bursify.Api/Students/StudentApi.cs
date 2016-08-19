@@ -14,7 +14,7 @@ namespace Bursify.Api.Students
 {
     public class StudentApi : UserApi
     {
-        public StudentApi(IUnitOfWorkFactory unitOfWorkFactory, BursifyUserRepository userRepository, Repository<UserAddress> userAddressRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, AccountRepository accountRepository, SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository, StudentRepository studentRepository, InstitutionRepository institutionRepository, SubjectRepository subjectRepository, StudentSponsorshipRepository studentSponsorshipRepository, StudentSubjectRepository studentSubjectRepository) : base(unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository)
+        public StudentApi(IUnitOfWorkFactory unitOfWorkFactory, BursifyUserRepository userRepository, Repository<UserAddress> userAddressRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, AccountRepository accountRepository, SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository, StudentRepository studentRepository, InstitutionRepository institutionRepository, SubjectRepository subjectRepository, StudentSponsorshipRepository studentSponsorshipRepository) : base(unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository)
         {
             _accountRepository = accountRepository;
             _sponsorshipRepository = sponsorshipRepository;
@@ -23,7 +23,6 @@ namespace Bursify.Api.Students
             _institutionRepository = institutionRepository;
             _subjectRepository = subjectRepository;
             _studentSponsorshipRepository = studentSponsorshipRepository;
-            _studentSubjectRepository = studentSubjectRepository;
         }
 
         #region Variables
@@ -38,7 +37,6 @@ namespace Bursify.Api.Students
 
         //bridging entities
         private readonly StudentSponsorshipRepository _studentSponsorshipRepository;
-        private readonly StudentSubjectRepository _studentSubjectRepository;
 
         #endregion
 
@@ -400,26 +398,6 @@ namespace Bursify.Api.Students
             }
         }
 
-        public void AddStudentSubject(StudentSubject studentSubject)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                _studentSubjectRepository.Save(studentSubject);
-
-                uow.Commit();
-            }
-        }
-
-        public void AddStudentSubjects(List<StudentSubject> studentSubjects)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                _studentSubjectRepository.Save(studentSubjects);
-
-                uow.Commit();
-            }
-        }
-
         public Subject GetSubject(int subjectId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
@@ -441,14 +419,6 @@ namespace Bursify.Api.Students
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 return _subjectRepository.GetSubjects(educationLevel);
-            }
-        }
-
-        public List<StudentSubject> GetAllSubjects(int studentId)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                return _studentSubjectRepository.GetStudentSubjects(studentId);
             }
         }
 

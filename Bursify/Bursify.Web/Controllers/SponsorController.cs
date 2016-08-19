@@ -6,6 +6,7 @@ using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Web.Models;
 
 namespace Bursify.Web.Controllers
@@ -90,39 +91,13 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
-
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("AddSponsorship")]
-        public HttpResponseMessage AddSponsorship(HttpRequestMessage request, SponsorshipViewModel sponsorshipVM, List<SponsorshipRequirementViewModel> requirementsVM)
-        {
-            var sponsorship = sponsorshipVM.ReverseMap();
-
-            sponsorApi.AddSponsorship(sponsorship);
-
-            List<SponsorshipRequirement> requirements = new List<SponsorshipRequirement>();
-
-            foreach (var r in requirementsVM)
-            {
-                requirements.Add(r.ReverseMap());
-            }
-
-            if (requirements.Count != 0)
-            {
-                sponsorApi.AddRequirements(requirements);
-            }
-            
-            var response = request.CreateResponse(HttpStatusCode.OK);
-
-            return response;
-        }
-
+        
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("AddRequirements")]
-        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<SponsorshipRequirementViewModel> requirementsVM)
+        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<SubjectViewModel> requirementsVM)
         {
-            List<SponsorshipRequirement> requirements = new List<SponsorshipRequirement>();
+            List<Subject> requirements = new List<Subject>();
             foreach (var r in requirementsVM)
             {
                 requirements.Add(r.ReverseMap());
@@ -130,7 +105,7 @@ namespace Bursify.Web.Controllers
 
             if (requirements.Count != 0)
             {
-                sponsorApi.AddRequirements(requirements);
+                _studentApi.AddSubjects(requirements);
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK);
