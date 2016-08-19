@@ -16,18 +16,19 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.ID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
+            this.Property(x => x.RequirementId)
+                .IsRequired();
+
             this.Property(x => x.Name)
                 .HasMaxLength(200)
                 .IsOptional();
 
-            this.Property(x => x.SubjectLevel)
+            this.Property(x => x.MarkAcquired)
                 .IsOptional();
 
-            this.Property(x => x.Period).IsOptional();
+            //this.HasOptional(x => x.Report);
 
-            this.HasMany(x => x.StudentSubjects);
-
-            this.HasMany(x => x.Requirements);
+            //this.HasOptional(x => x.Sponsorship);
         }
     }
 }

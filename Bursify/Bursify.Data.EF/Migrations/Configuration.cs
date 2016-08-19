@@ -2,14 +2,14 @@ namespace Bursify.Data.EF.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Bursify.Data.EF.Uow.DataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Uow.DataContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Bursify.Data.EF.Uow.DataContext context)
+        protected override void Seed(Uow.DataContext context)
         {
             //  This method will be called after migrating to the latest version.
 

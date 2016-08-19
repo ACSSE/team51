@@ -44,9 +44,9 @@ namespace Bursify.Data.EF.Entities.StudentUser
         public bool AgreeTandC { get; set; }
 
         public virtual BursifyUser BursifyUser { get; set; }    //required
+        public ICollection<StudentReport> StudentReports { get; set; }
         public virtual ICollection<Campaign> Campaigns { get; set; }
         public virtual Institution Institution { get; set; }
-        public ICollection<StudentSubject> StudentSubjects { get; set; }
         public ICollection<StudentSponsorship> StudentSponsorships { get; set; }
         public virtual ICollection<SponsorStudentNotification> SponsorStudentNotification { get; set; }
     }

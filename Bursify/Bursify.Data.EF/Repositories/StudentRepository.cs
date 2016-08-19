@@ -8,12 +8,13 @@ namespace Bursify.Data.EF.Repositories
 {
     public class StudentRepository : Repository<Student>
     {
-        private BridgeRepository<StudentSubject> studentSubjectBridgeRepository;
-
-        public StudentRepository(DataSession dataSession, BridgeRepository<StudentSubject> studentSubjectBridgeRepository) : base(dataSession)
+        public StudentRepository(DataSession dataSession) : base(dataSession)
         {
-            this.studentSubjectBridgeRepository = studentSubjectBridgeRepository;
+            
         }
+        /*private BridgeRepository<StudentSubject> studentSubjectBridgeRepository;
+
+        
 
         public void addSubject(StudentSubject sb) 
         {
@@ -27,7 +28,7 @@ namespace Bursify.Data.EF.Repositories
             Student student = (Student) st;
 
             student.StudentSubjects.Add(sb);
-        }
+        }*/
 
 
     }

@@ -84,10 +84,8 @@
   <ItemGroup>
     <Compile Include="Entities\Bridge\CampaignReport.cs" />
     <Compile Include="Entities\Bridge\CampaignSponsor.cs" />
-    <Compile Include="Entities\Bridge\SponsorshipRequirement.cs" />
     <Compile Include="Entities\Bridge\SponsorStudentNotification.cs" />
     <Compile Include="Entities\Bridge\StudentSponsorship.cs" />
-    <Compile Include="Entities\Bridge\StudentSubject.cs" />
     <Compile Include="Entities\Campaigns\Account.cs" />
     <Compile Include="Entities\Campaigns\Campaign.cs" />
     <Compile Include="Entities\SponsorUser\Sponsor.cs" />
@@ -95,6 +93,7 @@
     <Compile Include="Entities\StudentUser\Institution.cs" />
     <Compile Include="Entities\StudentUser\Student.cs" />
     <Compile Include="Entities\User\BursifyUser.cs" />
+    <Compile Include="Entities\User\StudentReport.cs" />
     <Compile Include="Entities\User\Subject.cs" />
     <Compile Include="Entities\User\UserAddress.cs" />
     <Compile Include="EntityMappings\AccountMapping.cs" />
@@ -105,17 +104,16 @@
     <Compile Include="EntityMappings\InstitutionMapping.cs" />
     <Compile Include="EntityMappings\SponsorMapping.cs" />
     <Compile Include="EntityMappings\SponsorshipMapping.cs" />
-    <Compile Include="EntityMappings\SponsorshipRequirementMapping.cs" />
     <Compile Include="EntityMappings\SponsorStudentNotificationMapping.cs" />
     <Compile Include="EntityMappings\StudentMapping.cs" />
+    <Compile Include="EntityMappings\StudentReportMapping.cs" />
     <Compile Include="EntityMappings\StudentSponsorshipMapping.cs" />
-    <Compile Include="EntityMappings\StudentSubjectMapping.cs" />
     <Compile Include="EntityMappings\SubjectMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
-    <Compile Include="Migrations\201608171650561_initial.cs" />
-    <Compile Include="Migrations\201608171650561_initial.Designer.cs">
-      <DependentUpon>201608171650561_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201608191321090_initial.cs" />
+    <Compile Include="Migrations\201608191321090_initial.Designer.cs">
+      <DependentUpon>201608191321090_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,7 +129,6 @@
     <Compile Include="Repositories\SponsorshipRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Repositories\StudentSponsorshipRepository.cs" />
-    <Compile Include="Repositories\StudentSubjectRepository.cs" />
     <Compile Include="Repositories\SubjectRepository.cs" />
     <Compile Include="Uow\DatabaseConfiguration.cs" />
     <Compile Include="Uow\DataContext.cs" />
@@ -148,8 +145,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608171650561_initial.resx">
-      <DependentUpon>201608171650561_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608191321090_initial.resx">
+      <DependentUpon>201608191321090_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

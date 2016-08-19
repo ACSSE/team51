@@ -74,7 +74,9 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.HasMany(x => x.StudentSponsorships);
 
-            this.HasMany(x => x.Requirements);
+            this.HasMany(x => x.Requirements)
+                .WithRequired(x => x.Sponsorship)
+                .HasForeignKey(x => x.RequirementId);
         }
     }
 }
