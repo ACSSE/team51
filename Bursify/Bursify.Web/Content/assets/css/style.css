@@ -2209,7 +2209,7 @@ a:hover, a:active, a:focus {
   color: #999
 }
 .pagination>li>a {
-  background: #fafafa;
+  background: #fff;
   color: #666
 }
 .pagination.pagination-flat>li>a {
@@ -3333,7 +3333,7 @@ table.text-center, table.text-center td, table.text-center th {
   padding-left: 10px
 }
 .fc-widget-header {
-  background: #fafafa
+  background: #fff
 }
 .fc-grid {
   width: 100%;
@@ -8652,7 +8652,7 @@ ul li a:focus {
   color: #999;
 }
 .nav-tabs.nav-tabs-v5 > li.active > a span.round-tabs {
-  background: #fafafa;
+  background: #fff;
 }
 .nav-tabs.nav-tabs-v5 > li {
   width: 20%;

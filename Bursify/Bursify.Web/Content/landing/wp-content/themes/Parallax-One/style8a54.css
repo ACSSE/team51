@@ -498,7 +498,7 @@ pre {
 	max-width: 100%;
 	overflow: auto;
 	padding: 1.6em;
-	background: #FAFAFA;
+	background: #fff;
 	border: 1px solid #E7E7E7;
 }
 
@@ -2305,7 +2305,7 @@ button.control_next.fade-btn {
     border: 3px solid #FFF;
     background-clip: padding-box;
     box-shadow: 0px 0px 0px 1px #008ED6;
-    background-color: #FAFAFA;
+    background-color: #fff;
 }
 
 .feedback .pic-container img {
