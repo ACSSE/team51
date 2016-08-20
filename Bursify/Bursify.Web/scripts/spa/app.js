@@ -16,11 +16,7 @@
         .defaultIconSet('Content/img/icons/sets/core-icons.svg', 24);
 
         $routeProvider
-            //.when("", {
-                
-            //   // templateUrl: "scripts/spa/account/login.html",
-            //   // controller: "loginCtrl"
-            //})
+          
             .when("/login", {
                 templateUrl: "scripts/spa/account/login.html",
                 controller: "loginCtrl"
@@ -70,12 +66,12 @@
                  // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/sponsor/registration", {
-                templateUrl: "scripts/spa/bursify/sponsor/registration/form.html",
+                templateUrl: "scripts/spa/bursify/sponsor/registration/registration.html",
                 controller: "registrationCtrl",
                // resolve: { isAuthenticated: isAuthenticated }
             })
              .when("/student/registration", {
-                 templateUrl: "scripts/spa/bursify/student/registration/form.html",
+                 templateUrl: "scripts/spa/bursify/student/registration/registration.html",
                  controller: "registrationStudentCtrl",
                  // resolve: { isAuthenticated: isAuthenticated }
              })

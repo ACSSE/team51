@@ -3,12 +3,32 @@
 
     app.controller('registrationStudentCtrl', registrationStudentCtrl);
 
-    registrationStudentCtrl.$inject = ['$scope', '$rootScope', '$timeout', 'apiService', '$location', 'notificationService', '$compile', 'fileUploadService', 'membershipService', '$interval'];
+    registrationStudentCtrl.$inject = ['$scope', '$rootScope', '$timeout', 'apiService', '$location', 'notificationService', '$compile', 'fileUploadService', 'membershipService', '$interval', '$mdDialog'];
 
-    function registrationStudentCtrl($scope, $rootScope, $timeout, apiService, $location, notificationService, $compile, fileUploadService, membershipService, $interval) {
+    function registrationStudentCtrl($scope, $rootScope, $timeout, apiService, $location, notificationService, $compile, fileUploadService, membershipService, $interval, $mdDialog) {
         $scope.pageClass = 'page-registration-student';
 
+        if ($scope.start == true) {
 
+            notificationService.displayError("ey");
+            showAlert();
+         }
+
+        $scope.showAlert = function (ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            // Modal dialogs should fully cover application
+            // to prevent interaction outside of dialog
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Welcome to Bursify')
+                .textContent("Please fill out your application form. You will only have to do this once and can always update it later.")
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+                .targetEvent(ev)
+            );
+        };
         $scope.isOpen = false;
         $scope.demo = {
             isOpen: false,
@@ -24,6 +44,8 @@
 
             var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
             $scope.selectedIndex = index;
+
+
         };
 
         $scope.myDate = new Date();
@@ -47,7 +69,7 @@
             "StudentNumber": "2157865",
             "DateOfBirth": "",
             "Age": "",
-            "Race": "",
+           
             "Gender": "",
             "HasDisability": "",
             "DisabilityDescription": "",
@@ -109,22 +131,9 @@
 
         $scope.uploading = false;
 
-        document.getElementById("uploadIDBtn").onchange = function () {
-            document.getElementById("uploadIDFile").value = this.value;
-            $scope.Student.IDDocumentPath = this.value;
-            UploadID();
-        };
+     
 
-        document.getElementById("uploadMCBtn").onchange = function () {
-            document.getElementById("uploadMCFile").value = this.value;
-            $scope.Student.MatricCertificatePath = this.value;
-        };
-
-        document.getElementById("uploadCVBtn").onchange = function () {
-            document.getElementById("uploadCVFile").value = this.value;
-            $scope.Student.CVPath = this.value;
-
-        };
+     
 
         var IDFile = null;
         function UploadID() {

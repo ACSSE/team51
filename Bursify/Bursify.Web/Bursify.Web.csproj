@@ -596,7 +596,7 @@
     <Content Include="scripts\spa\bursify\sponsor\home\sponsorCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\profile\profile.html" />
     <Content Include="scripts\spa\bursify\sponsor\profile\sponsorProfileCtrl.js" />
-    <Content Include="scripts\spa\bursify\sponsor\registration\form.html" />
+    <Content Include="scripts\spa\bursify\sponsor\registration\registration.html" />
     <Content Include="scripts\spa\bursify\sponsor\registration\registrationCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\add.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\addSponsorshipCtrl.js" />
@@ -631,7 +631,7 @@
     <Content Include="scripts\spa\bursify\student\messages\messagesCtrl.js" />
     <Content Include="scripts\spa\bursify\student\profile\profile.html" />
     <Content Include="scripts\spa\bursify\student\profile\studentProfileCtrl.js" />
-    <Content Include="scripts\spa\bursify\student\registration\form.html" />
+    <Content Include="scripts\spa\bursify\student\registration\registration.html" />
     <Content Include="scripts\spa\bursify\student\registration\registrationStudentCtrl.js" />
     <Content Include="scripts\spa\bursify\student\reportcard\reportcard.html" />
     <Content Include="scripts\spa\bursify\student\reportcard\reportcardCtrl.js" />
