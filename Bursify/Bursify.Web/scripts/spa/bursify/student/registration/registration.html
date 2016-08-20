@@ -326,19 +326,19 @@
                             <div class="box-body">
 
                                 <div class="col-md-2">
-                                    <select class="form-control" ng-model="Student.InstituitionType" ng-change="removeMarks()" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="s.level for s in data">
+                                    <select class="form-control" ng-model="Student.InstitutionType" ng-change="removeMarks()" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="s.level for s in data">
                                         <option value="">-- Instituition Type --</option>
                                     </select>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <select class="form-control" ng-model="Student.InstitutionName" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="p.place for p in Student.InstituitionType.places">
+                                    <select class="form-control" ng-model="Student.InstitutionName" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="p.place for p in Student.InstitutionType.places">
                                         <option value="" style="text-align: center;">-- Instituition --</option>
                                     </select>
                                 </div>
 
                                 <div class="col-md-2">
-                                    <select class="form-control" ng-model="Student.StudentLevel" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="g.grade for g in Student.InstituitionType.grades">
+                                    <select class="form-control" ng-model="Student.StudentLevel" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="g.grade for g in Student.InstitutionType.grades">
                                         <option value="">-- Level --</option>
                                     </select>
                                 </div>
@@ -355,7 +355,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <select ng-show="Student.InstituitionType.level == 'High School'" class="form-control" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <select ng-show="Student.InstitutionType.level == 'High School'" class="form-control" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="">-- Term --</option>
                                         <option value="2016">Term 1</option>
                                         <option value="2015">Term 2</option>
@@ -363,7 +363,7 @@
                                         <option value="2013">Term 4</option>
                                         <option value="2012">Matric Results</option>
                                     </select>
-                                    <select class="form-control" ng-show="Student.InstituitionType.level == 'University' || Student.InstituitionType.level == 'Private University/College'" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <select class="form-control" ng-show="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="">-- Semester --</option>
                                         <option value="2016">Semester 1</option>
                                         <option value="2015">Semester 2</option>
@@ -387,7 +387,7 @@
 
                                 </div>
                             </div>
-                            <div class="box-body" ng-if="Student.InstituitionType.level == 'University' || Student.InstituitionType.level == 'Private University/College'">
+                            <div class="box-body" ng-if="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'">
                                 <div class="col-md-12">
                                     <div class="form-group">
 
@@ -396,7 +396,7 @@
                                 </div>
                             </div>
 
-                            <div ng-if="Student.InstituitionType.level" class="box-body">
+                            <div ng-if="Student.InstitutionType.level" class="box-body">
 
                                 <div class="col-md-9">
                                     <label>Subject</label>
@@ -406,7 +406,7 @@
                                 </div>
 
                             </div>
-                            <div ng-if="Student.InstituitionType.level == 'High School'" class="box-body" id="markInput">
+                            <div ng-if="Student.InstitutionType.level == 'High School'" class="box-body" id="markInput">
 
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -425,7 +425,7 @@
                                 </div>
                             </div>
 
-                            <div ng-if="Student.InstituitionType.level == 'University' || Student.InstituitionType.level == 'Private University/College'" class="box-body" id="markInput">
+                            <div ng-if="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'" class="box-body" id="markInput">
 
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -443,8 +443,8 @@
                             </div>
 
 
-                            <div ng-if="Student.InstituitionType.level" id="MarksInputAdd"></div>
-                            <div ng-if="Student.InstituitionType.level" class="row"><div class="col-md-9"></div><div class="col-md-3"><label style="padding-left: 20px;" ng-click="appendText()">Add More Subjects</label><span ng-click="appendText()" class="fa fa-plus-circle fa-2x" style="padding-left:5px;"></span></div></div>
+                            <div ng-if="Student.InstitutionType.level" id="MarksInputAdd"></div>
+                            <div ng-if="Student.InstitutionType.level" class="row"><div class="col-md-9"></div><div class="col-md-3"><label style="padding-left: 20px;" ng-click="appendText()">Add More Subjects</label><span ng-click="appendText()" class="fa fa-plus-circle fa-2x" style="padding-left:5px;"></span></div></div>
 
                         </div>
                     </form>

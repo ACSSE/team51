@@ -88,8 +88,8 @@
             "CurrentOccupation": "",
             "StudyFields": "",
             "MarksYear": "",
-            "InstituitionName": "",
-            "InstituitionWebsite": "",
+            "InstitutionName": "",
+            "InstitutionWebsite": "",
             "StudentLevel": "",
             "Marks": [{ "SubjectName": "", "SubjectMark": "" , "StudentId": "", "Period": ""}],
             "Essay": "",
@@ -1480,12 +1480,7 @@
             $scope.user.Name = $scope.Student.FirstName + " " + $scope.Student.Surname;
             membershipService.saveCredentials($scope.user);
             $scope.userData.displayUserInfo();
-
-
-            //post student data 
-
             $scope.Student.ID = $scope.user.ID;
-           
             $scope.StudentP = {};
             $scope.StudentP.ID = $scope.Student.ID;
             $scope.StudentP.FirstName = $scope.Student.FirstName;
@@ -1531,6 +1526,7 @@
             $scope.StudentP.AgreeTandC = true;
             $scope.StudentP.InstitutionID = 1;
             apiService.post('/api/student/savestudent', $scope.StudentP, saveStudentDone, saveStudentFailed);
+
          }
 
         $scope.testStudent = function () {
@@ -1597,6 +1593,8 @@
         //    $location.path('/bursify/student/home');
         //}
     
+
+        /** Stuff for progress loader **/
 
         var self = this, j = 0, counter = 0;
         self.mode = 'query';
