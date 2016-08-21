@@ -1,118 +1,358 @@
-﻿
+﻿<style>
+    .row-horizon {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.row-horizon > [class*="col-lg"], .row-horizon > [class*="col-md"], .row-horizon > [class*="col-sm"], .row-horizon > [class*="col-xs"] {
+  float: none;
+  display: inline-block;
+  white-space: normal;
+  vertical-align: top;
+}
+.row-horizon > .col-xs-12 {
+  width: 90%;
+}
+.row-horizon > .col-xs-11 {
+  width: 82.5%;
+}
+.row-horizon > .col-xs-10 {
+  width: 75%;
+}
+.row-horizon > .col-xs-9 {
+  width: 67.5%;
+}
+.row-horizon > .col-xs-8 {
+  width: 60%;
+}
+.row-horizon > .col-xs-7 {
+  width: 52.5%;
+}
+.row-horizon > .col-xs-6 {
+  width: 45%;
+}
+.row-horizon > .col-xs-5 {
+  width: 37.5%;
+}
+.row-horizon > .col-xs-4 {
+  width: 30%;
+}
+.row-horizon > .col-xs-3 {
+  width: 22.5%;
+}
+.row-horizon > .col-xs-2 {
+  width: 15%;
+}
+.row-horizon > .col-xs-1 {
+  width: 7.5%;
+}
+@media (min-width: 768px) {
+  .row-horizon > .col-sm-12 {
+    width: 90%;
+  }
+  .row-horizon > .col-sm-11 {
+    width: 82.5%;
+  }
+  .row-horizon > .col-sm-10 {
+    width: 75%;
+  }
+  .row-horizon > .col-sm-9 {
+    width: 67.5%;
+  }
+  .row-horizon > .col-sm-8 {
+    width: 60%;
+  }
+  .row-horizon > .col-sm-7 {
+    width: 52.5%;
+  }
+  .row-horizon > .col-sm-6 {
+    width: 45%;
+  }
+  .row-horizon > .col-sm-5 {
+    width: 37.5%;
+  }
+  .row-horizon > .col-sm-4 {
+    width: 30%;
+  }
+  .row-horizon > .col-sm-3 {
+    width: 22.5%;
+  }
+  .row-horizon > .col-sm-2 {
+    width: 15%;
+  }
+  .row-horizon > .col-sm-1 {
+    width: 7.5%;
+  }
+}
+@media (min-width: 992px) {
+  .row-horizon > .col-md-12 {
+    width: 90%;
+  }
+  .row-horizon > .col-md-11 {
+    width: 82.5%;
+  }
+  .row-horizon > .col-md-10 {
+    width: 75%;
+  }
+  .row-horizon > .col-md-9 {
+    width: 67.5%;
+  }
+  .row-horizon > .col-md-8 {
+    width: 60%;
+  }
+  .row-horizon > .col-md-7 {
+    width: 52.5%;
+  }
+  .row-horizon > .col-md-6 {
+    width: 45%;
+  }
+  .row-horizon > .col-md-5 {
+    width: 37.5%;
+  }
+  .row-horizon > .col-md-4 {
+    width: 30%;
+  }
+  .row-horizon > .col-md-3 {
+    width: 22.5%;
+  }
+  .row-horizon > .col-md-2 {
+    width: 15%;
+  }
+  .row-horizon > .col-md-1 {
+    width: 7.5%;
+  }
+}
+@media (min-width: 1200px) {
+  .row-horizon > .col-lg-12 {
+    width: 90%;
+  }
+  .row-horizon > .col-lg-11 {
+    width: 82.5%;
+  }
+  .row-horizon > .col-lg-10 {
+    width: 75%;
+  }
+  .row-horizon > .col-lg-9 {
+    width: 67.5%;
+  }
+  .row-horizon > .col-lg-8 {
+    width: 60%;
+  }
+  .row-horizon > .col-lg-7 {
+    width: 52.5%;
+  }
+  .row-horizon > .col-lg-6 {
+    width: 45%;
+  }
+  .row-horizon > .col-lg-5 {
+    width: 37.5%;
+  }
+  .row-horizon > .col-lg-4 {
+    width: 30%;
+  }
+  .row-horizon > .col-lg-3 {
+    width: 22.5%;
+  }
+  .row-horizon > .col-lg-2 {
+    width: 15%;
+  }
+  .row-horizon > .col-lg-1 {
+    width: 7.5%;
+  }
+}
+</style>
+
+<style>
+    .chart-legend,.bar-legend,.line-legend,.pie-legend,.radar-legend,.polararea-legend,.doughnut-legend{list-style-type:none;margin-top:5px;text-align:center}.chart-legend li,.bar-legend li,.line-legend li,.pie-legend li,.radar-legend li,.polararea-legend li,.doughnut-legend li{display:inline-block;white-space:nowrap;position:relative;margin-bottom:4px;border-radius:5px;padding:2px 8px 2px 28px;font-size:smaller;cursor:default}.chart-legend li span,.bar-legend li span,.line-legend li span,.pie-legend li span,.radar-legend li span,.polararea-legend li span,.doughnut-legend li span{display:block;position:absolute;left:0;top:0;width:20px;height:20px;border-radius:5px}
+/*# sourceMappingURL=angular-chart.css.map */
+</style>
+
 
 <nav-bar></nav-bar>
-<div id="content" class="bg">
+<div id="content" class="bg" ng-controller="reportcardCtrl as ctrl">
    
-    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'default-primary-700'}">
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'lime'}">
         <div class="md-toolbar-tools">
-            <span>My Report Card</span>
+            <span>My Report</span>
+            <span flex></span>
+            
+        </div>
+    </md-toolbar>
+  <md-content class="md-padding">
+      <div>
+          <div ng-click="showGraph(false)">
+              List
+          </div>
+          <div ng-click="showGraph(true)">
+              Graph (click me)
+          </div>
+      </div>
+
+      <h1 ng-hide="graph.visible">a list of data is here in my app</h1>
+
+      <div class="chart-container" ng-show="graph.visible">
+          <canvas class="chart chart-line"
+                  data="graph.data"
+                  labels="graph.labels"
+                  series="graph.series"
+                  options="graph.options"
+                  legend="graph.legend"></canvas>
+      </div>
+
+  </md-content>
+    
+    
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'cyan'}">
+        <div class="md-toolbar-tools">
+            <span>My Reports</span>
+            <span flex></span>
+            <md-button md-raised>Add Report</md-button>
         </div>
     </md-toolbar>
 
-
-
     <md-content class="md-padding">
-        <div class="col-md-6">
-            <md-card class="_md" md-colors="{backgroundColor: 'green'}">
-                <md-card-header>
-                    <md-card-header-text>
-                        <span class="md-title">University of Johannesburg</span>
-                        <span class="md-subhead">Semester One</span>
-                    </md-card-header-text>
-                </md-card-header>
+        <div class="row row-horizon">
+            <div class="col-md-6">
+                <md-card class="_md" md-colors="{backgroundColor: 'green'}">
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-title">University of Johannesburg</span>
+                            <span class="md-subhead">Semester One</span>
+                        </md-card-header-text>
+                    </md-card-header>
 
-                <md-card-content>
-                    <h1 style="float: right; padding-top: 5%;">
-                        89 %
-                    </h1>
-                    <ul>
-                        <li>Module 1</li>
-                        <li>Module 2</li>
-                        <li>Module 3</li>
-                        <li>Module 4</li>
-                    </ul>
+                    <md-card-content>
+                        <h1 style="float: right; padding-top: 5%;">
+                            89 %
+                        </h1>
+                        <ul>
+                            <li>Module 1</li>
+                            <li>Module 2</li>
+                            <li>Module 3</li>
+                            <li>Module 4</li>
+                        </ul>
 
-                </md-card-content>
-            </md-card>
+                    </md-card-content>
+                </md-card>
+
+                <md-card class="_md" md-colors="{backgroundColor: 'green'}">
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-title">University of Johannesburg</span>
+                            <span class="md-subhead">Semester One</span>
+                        </md-card-header-text>
+                    </md-card-header>
+
+                    <md-card-content>
+                        <h1 style="float: right; padding-top: 5%;">
+                            89 %
+                        </h1>
+                        <ul>
+                            <li>Module 1</li>
+                            <li>Module 2</li>
+                            <li>Module 3</li>
+                            <li>Module 4</li>
+                        </ul>
+
+                    </md-card-content>
+                </md-card>
+            </div>
+
+            <div class="col-md-6">
+                <md-card class="_md" md-colors="{backgroundColor: 'green'}">
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-title">University of Johannesburg</span>
+                            <span class="md-subhead">Semester One</span>
+                        </md-card-header-text>
+                    </md-card-header>
+
+                    <md-card-content>
+                        <h1 style="float: right; padding-top: 5%;">
+                            89 %
+                        </h1>
+                        <ul>
+                            <li>Module 1</li>
+                            <li>Module 2</li>
+                            <li>Module 3</li>
+                            <li>Module 4</li>
+                        </ul>
+
+                    </md-card-content>
+                </md-card>
+
+                <md-card class="_md" md-colors="{backgroundColor: 'green'}">
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-title">University of Johannesburg</span>
+                            <span class="md-subhead">Semester One</span>
+                        </md-card-header-text>
+                    </md-card-header>
+
+                    <md-card-content>
+                        <h1 style="float: right; padding-top: 5%;">
+                            89 %
+                        </h1>
+                        <ul>
+                            <li>Module 1</li>
+                            <li>Module 2</li>
+                            <li>Module 3</li>
+                            <li>Module 4</li>
+                        </ul>
+
+                    </md-card-content>
+                </md-card>
+            </div>
+
+            <div class="col-md-6">
+                <md-card class="_md" md-colors="{backgroundColor: 'green'}">
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-title">University of Johannesburg</span>
+                            <span class="md-subhead">Semester One</span>
+                        </md-card-header-text>
+                    </md-card-header>
+
+                    <md-card-content>
+                        <h1 style="float: right; padding-top: 5%;">
+                            89 %
+                        </h1>
+                        <ul>
+                            <li>Module 1</li>
+                            <li>Module 2</li>
+                            <li>Module 3</li>
+                            <li>Module 4</li>
+                        </ul>
+
+                    </md-card-content>
+                </md-card>
+
+                <md-card class="_md" md-colors="{backgroundColor: 'green'}">
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-title">University of Johannesburg</span>
+                            <span class="md-subhead">Semester One</span>
+                        </md-card-header-text>
+                    </md-card-header>
+
+                    <md-card-content>
+                        <h1 style="float: right; padding-top: 5%;">
+                            89 %
+                        </h1>
+                        <ul>
+                            <li>Module 1</li>
+                            <li>Module 2</li>
+                            <li>Module 3</li>
+                            <li>Module 4</li>
+                        </ul>
+
+                    </md-card-content>
+                </md-card>
+            </div>
+
         </div>
-        <div class="col-md-6">
-            <md-card class="_md" md-colors="{backgroundColor: 'yellow'}">
-                <md-card-header>
-                    <md-card-header-text>
-                        <span class="md-title">University of Johannesburg</span>
-                        <span class="md-subhead">Semester One</span>
-                    </md-card-header-text>
-                </md-card-header>
 
-                <md-card-content>
-                    <h1 style="float: right; padding-top: 5%;">
-                        60 %
-                    </h1>
-                    <ul>
-                        <li>Module 1</li>
-                        <li>Module 2</li>
-                        <li>Module 3</li>
-                        <li>Module 4</li>
-                    </ul>
-
-                </md-card-content>
-            </md-card>
-        </div>
-        <div class="col-md-6">
-            <md-card class="_md" md-colors="{backgroundColor: 'orange'}">
-                <md-card-header>
-                    <md-card-header-text>
-                        <span class="md-title">University of Johannesburg</span>
-                        <span class="md-subhead">Semester One</span>
-                    </md-card-header-text>
-                </md-card-header>
-
-                <md-card-content>
-                    <h1 style="float: right; padding-top: 5%;">
-                        55 %
-                    </h1>
-                    <ul>
-                        <li>Module 1</li>
-                        <li>Module 2</li>
-                        <li>Module 3</li>
-                        <li>Module 4</li>
-                    </ul>
-
-                </md-card-content>
-            </md-card>
-        </div>
-        <div class="col-md-6">
-            <md-card class="_md" md-colors="{backgroundColor: 'deep-orange'}">
-                <md-card-header>
-                    <md-card-header-text>
-                        <span class="md-title">University of Johannesburg</span>
-                        <span class="md-subhead">Semester One</span>
-                    </md-card-header-text>
-                </md-card-header>
-
-                <md-card-content>
-                    <h1 style="float: right; padding-top: 5%;">
-                        44 %
-                    </h1>
-                    <ul>
-                        <li>Module 1</li>
-                        <li>Module 2</li>
-                        <li>Module 3</li>
-                        <li>Module 4</li>
-                    </ul>
-
-                </md-card-content>
-            </md-card>
-        </div>
-        <div class="col-md-12">
-            <span flex></span>
-            <md-button class="md-icon-button" aria-label="More">
-                <md-icon md-svg-icon="Content/img/icons/more_vert.svg">View All</md-icon>
-                <md-tooltip></md-tooltip>
-            </md-button>
-        </div>
-      
-     </md-content>
+    </md-content>
  
 
 </div>

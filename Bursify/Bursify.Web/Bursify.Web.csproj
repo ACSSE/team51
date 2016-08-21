@@ -657,6 +657,7 @@
     <Content Include="scripts\vendors\angular-aria.js" />
     <Content Include="scripts\vendors\angular-aside.css" />
     <Content Include="scripts\vendors\angular-base64.js" />
+    <Content Include="scripts\vendors\angular-chart.js" />
     <Content Include="scripts\vendors\angular-cookies.js" />
     <Content Include="scripts\vendors\angular-file-upload.js" />
     <Content Include="scripts\vendors\angular-hamburger-toggle.css" />
@@ -669,6 +670,7 @@
     <Content Include="scripts\vendors\angular-validator.js" />
     <Content Include="scripts\vendors\angular.js" />
     <Content Include="scripts\vendors\bootstrap.js" />
+    <Content Include="scripts\vendors\Chart.js" />
     <Content Include="scripts\vendors\file-input.css" />
     <Content Include="scripts\vendors\file-input.js" />
     <Content Include="scripts\vendors\jquery.fancybox-media.js" />

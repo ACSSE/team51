@@ -34,6 +34,7 @@ namespace Bursify.Web.App_Start
                  "~/Scripts/Vendors/angular-material.min.js",
                 "~/Scripts/Vendors/angular-hamburger-toggle.js",
                  "~/Scripts/Vendors/angular-sanitize.js",
+               
                 "~/Scripts/Vendors/angucomplete-alt.min.js",
                 "~/Scripts/Vendors/ui-bootstrap-tpls-0.13.1.js",
             
@@ -45,6 +46,8 @@ namespace Bursify.Web.App_Start
 
 
                 "~/Scripts/Vendors/loading-bar.js",
+                  "~/Scripts/Vendors/Chart.js",
+                  "~/Scripts/Vendors/angular-chart.js",
 
                  "~/ Content/assets/js/main.js"
                 ));

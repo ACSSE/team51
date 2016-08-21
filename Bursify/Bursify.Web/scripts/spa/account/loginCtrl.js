@@ -30,7 +30,7 @@
 
         function loginCompleted(result) {
             if (result.data.success) {
-                loginCompleted(result);
+                loginUserCompleted(result);
             }
             else {
                 notificationService.displayError('Login failed. Try again.');
