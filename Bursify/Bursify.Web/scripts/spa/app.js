@@ -13,6 +13,7 @@
 
         $mdIconProvider
         .iconSet('social', 'Content/img/icons/sets/social-icons.svg', 24)
+        .iconSet('communication', 'Content/img/icons/sets/communication-icons.svg', 24)
         .defaultIconSet('Content/img/icons/sets/core-icons.svg', 24);
 
         $routeProvider

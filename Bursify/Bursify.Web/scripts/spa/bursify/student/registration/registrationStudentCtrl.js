@@ -1556,7 +1556,8 @@
         }
 
         function saveStudentDone() {
-           notificationService.displayInfo('saveStudentDone')
+            notificationService.displayInfo('saveStudentDone')
+            $location.path('bursify/student/home');
         }
 
         function saveStudentFailed() {
