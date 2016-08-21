@@ -20,7 +20,7 @@
             // to prevent interaction outside of dialog
             $mdDialog.show(
               $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
+                .parent(angular.element(document.querySelector('#panel')))
                 .clickOutsideToClose(true)
                 .title('Welcome to Bursify')
                 .textContent("Please fill out your application form. You will only have to do this once and can always update it later.")
@@ -105,10 +105,10 @@
           
             $scope.count = $scope.count + 1;
 
-            if ($scope.Student.InstituitionType.level == 'University' || $scope.Student.InstituitionType.level == 'Private University/College') {
+            if ($scope.Student.InstitutionType.level == 'University' || $scope.Student.InstitutionType.level == 'Private University/College') {
                 angular.element(document.getElementById('MarksInputAdd')).append($compile("<div class=\'box-body\' id=\'markInput" + $scope.count + "\'><div class=\'col-md-9\'><div class=\'form-group\'> <input type='text' ng-model='Student.Marks[" + $scope.count  + "].SubjectName' class='form-control' id='exampleInputEmail1' placeholder='Module Name'></div></div><div class=\'col-md-3\'><div class=\'form-group\'><input type=\'number\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' class=\'form-control\' id=\'exampleInputEmail1\' placeholder=\'%\'></div></div></div>")($scope));
             } else {  
-                angular.element(document.getElementById('MarksInputAdd')).append($compile("<div class=\'box-body\' id=\'markInput" + $scope.count + "\'><div class=\'col-md-9\'><div class=\'form-group\'><select class=\'form-control\' style=\'width: 100%;\' tabindex=\'-1\' aria-hidden=\'true\' ng-model=\"Student.Marks[" + $scope.count + "]\" ng-options=\'s.subject for s in Student.InstituitionType.subjects\'><option value=\'\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' style=\'text-align: center;\'>-- Subject --</option></select></div></div><div class=\'col-md-3\'><div class=\'form-group\'><input type=\'number\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' class=\'form-control\' id=\'exampleInputEmail1\' placeholder=\'%\'></div></div></div>")($scope));
+                angular.element(document.getElementById('MarksInputAdd')).append($compile("<div class=\'box-body\' id=\'markInput" + $scope.count + "\'><div class=\'col-md-9\'><div class=\'form-group\'><select class=\'form-control\' style=\'width: 100%;\' tabindex=\'-1\' aria-hidden=\'true\' ng-model=\"Student.Marks[" + $scope.count + "]\" ng-options=\'s.subject for s in Student.Institution.subjects\'><option value=\'\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' style=\'text-align: center;\'>-- Subject --</option></select></div></div><div class=\'col-md-3\'><div class=\'form-group\'><input type=\'number\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' class=\'form-control\' id=\'exampleInputEmail1\' placeholder=\'%\'></div></div></div>")($scope));
             }
            
         }
@@ -182,7 +182,7 @@
                   { "grade": "Grade 12" }
               ],
               "places": [
-{ "place": "AB PHOKOMPE SECONDARY SCHOOL" },
+{"place": "AB PHOKOMPE SECONDARY SCHOOL" },
 { "place": "ABBOTTS COLLEGE-CENTURION" },
 { "place": "ABBOTTS COLLEGE-JOHANNESBURG SOUTH" },
 { "place": "ABBOTTS COLLEGE-NORTHCLIFF" },
@@ -1472,20 +1472,46 @@
             }, 5);
         };
 
-        $scope.registerStudent = function () {
+
+        $scope.saveInsti = function () {
           
+            $scope.InstiP = {};
+            $scope.InstiP.ID = 1;
+            $scope.InstiP.Name = $scope.Student.InstitutionName.place;
+            $scope.InstiP.Type = $scope.Student.InstitutionType.level;
+            $scope.InstiP.Website = 'www.uj.ac.za';
+
+
+            apiService.post('/api/student/SaveInstitution', $scope.InstiP, saveInstiDone, saveInstiFailed);
+        }
+
+
+        function saveInstiDone() {
+            notificationService.displayInfo('Success');
+            saveStudent();
+        }
+
+        function saveInstiFailed() {
+            notificationService.displayInfo('Error');
+        }
+
+
+        function saveStudent() {
+
             $scope.user = {};
             $scope.user.ID = $rootScope.repository.loggedUser.userIden;
             $scope.user.Email = $rootScope.repository.loggedUser.useremail;
             $scope.user.Name = $scope.Student.FirstName + " " + $scope.Student.Surname;
             membershipService.saveCredentials($scope.user);
             $scope.userData.displayUserInfo();
+
             $scope.Student.ID = $scope.user.ID;
             $scope.StudentP = {};
             $scope.StudentP.ID = $scope.Student.ID;
             $scope.StudentP.FirstName = $scope.Student.FirstName;
             $scope.StudentP.Surname = $scope.Student.Surname;
-            $scope.StudentP.EducationLevel = $scope.Student.InstituitionType.level;
+            $scope.StudentP.EducationLevel = $scope.Student.InstitutionType.level;
+            $scope.StudentP.InstitutionID = 1;
             $scope.StudentP.AverageMark = null;
             $scope.StudentP.StudentNumber = $scope.Student.StudentNumber;
             $scope.StudentP.IDNumber = $scope.Student.IdNumber;
@@ -1508,7 +1534,7 @@
             }
 
             $scope.StudentP.StudyField = myfields;
-            $scope.StudentP.HighestAcademicAchievement = $scope.Student.InstituitionType.level;
+            $scope.StudentP.HighestAcademicAchievement = $scope.Student.InstitutionType.level;
             $scope.StudentP.YearOfAcademicAchievement = $scope.Student.MarksYearAttained;
             $scope.StudentP.DateOfBirth = $scope.Student.DateOfBirth;
             $scope.StudentP.NumberOfViews = null;
@@ -1524,25 +1550,20 @@
             $scope.StudentP.IDDocumentPath = $scope.Student.IDDocumentPath;
             $scope.StudentP.CVPath = $scope.Student.CVPath
             $scope.StudentP.AgreeTandC = true;
-            $scope.StudentP.InstitutionID = 1;
+
             apiService.post('/api/student/savestudent', $scope.StudentP, saveStudentDone, saveStudentFailed);
 
-         }
-
-        $scope.testStudent = function () {
-            for (var i = 0; i < $scope.Student.Marks.length; i++) {
-                $scope.Student.Marks[i].StudentId = $rootScope.repository.loggedUser.userIden;
-                $scope.Student.Marks[i].Period = $scope.Student.MarksYearAttained;
-            }
-            $scope.StudentMarks = $scope.Student.Marks;
-            apiService.post('/api/student/saveAcademicRecord', $scope.StudentMarks, saveStudentDone, saveStudentFailed);
-            
         }
 
         function saveStudentDone() {
-            $location.path('/bursify/student/home');
-           // saveAddress();
+           notificationService.displayInfo('saveStudentDone')
         }
+
+        function saveStudentFailed() {
+            notificationService.displayError('Account set up Failed');
+        }
+
+
 
         function saveAddress() {
             $scope.Address = {
@@ -1582,11 +1603,7 @@
              }
         }
 
-        function saveStudentFailed() {
-            notificationService.displayError('Account set up Failed');
-        }
-
-
+   
 
         //function saveStudentCompleted() {
         //    notificationService.displayInfo('Account set up complete.');

@@ -1,7 +1,7 @@
 ﻿<div id="content" data-ng-init="showAlert()">
     <nav-bar></nav-bar>
    
-        <div class="panel">
+        <div id="panel" class="panel">
             <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
                 <md-tab label="Student">
                     <form name="student">
@@ -411,7 +411,7 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
 
-                                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="Student.Marks[0]" ng-options="s.subject for s in Student.InstituitionType.subjects">
+                                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="Student.Marks[0]" ng-options="s.subject for s in Student.Institution.subjects">
                                             <option style="text-align: center;">-- Subject --</option>
                                         </select>
 
@@ -527,7 +527,7 @@
                                 </div>
                             </div>
                             <div class="row col-md-12">
-                                <md-button class="md-raised"  md-colors="{backgroundColor: 'green'}" ng-click="bio.$valid && registerStudent()" >Save Application Form</md-button>
+                                <md-button class="md-raised"  md-colors="{backgroundColor: 'green'}" ng-click="bio.$valid && saveInsti()" >Save Application Form</md-button>
                            </div>
                         </div>
                    </form>
