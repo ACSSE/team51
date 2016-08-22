@@ -660,6 +660,7 @@
     <Content Include="scripts\vendors\angular-chart.js" />
     <Content Include="scripts\vendors\angular-cookies.js" />
     <Content Include="scripts\vendors\angular-file-upload.js" />
+    <Content Include="scripts\vendors\angular-fusionchart.js" />
     <Content Include="scripts\vendors\angular-hamburger-toggle.css" />
     <Content Include="scripts\vendors\angular-hamburger-toggle.js" />
     <Content Include="scripts\vendors\angular-material.min.css" />
@@ -673,6 +674,8 @@
     <Content Include="scripts\vendors\Chart.js" />
     <Content Include="scripts\vendors\file-input.css" />
     <Content Include="scripts\vendors\file-input.js" />
+    <Content Include="scripts\vendors\fusionchart.js" />
+    <Content Include="scripts\vendors\fusioncharts.charts.js" />
     <Content Include="scripts\vendors\jquery.fancybox-media.js" />
     <Content Include="scripts\vendors\jquery.fancybox.js" />
     <Content Include="scripts\vendors\jquery.js" />

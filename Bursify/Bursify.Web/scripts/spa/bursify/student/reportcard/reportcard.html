@@ -162,10 +162,6 @@
 }
 </style>
 
-<style>
-    .chart-legend,.bar-legend,.line-legend,.pie-legend,.radar-legend,.polararea-legend,.doughnut-legend{list-style-type:none;margin-top:5px;text-align:center}.chart-legend li,.bar-legend li,.line-legend li,.pie-legend li,.radar-legend li,.polararea-legend li,.doughnut-legend li{display:inline-block;white-space:nowrap;position:relative;margin-bottom:4px;border-radius:5px;padding:2px 8px 2px 28px;font-size:smaller;cursor:default}.chart-legend li span,.bar-legend li span,.line-legend li span,.pie-legend li span,.radar-legend li span,.polararea-legend li span,.doughnut-legend li span{display:block;position:absolute;left:0;top:0;width:20px;height:20px;border-radius:5px}
-/*# sourceMappingURL=angular-chart.css.map */
-</style>
 
 
 <nav-bar></nav-bar>
@@ -173,30 +169,20 @@
    
     <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'lime'}">
         <div class="md-toolbar-tools">
-            <span>My Report</span>
+            <span>Report Analytics</span>
             <span flex></span>
             
         </div>
     </md-toolbar>
   <md-content class="md-padding">
-      <div>
-          <div ng-click="showGraph(false)">
-              List
+     
+      <div class="chart-container" >
+          <div fusioncharts
+               width="100%"
+               height="400"
+               type="column2d"
+               dataSource="{{myDataSource}}">
           </div>
-          <div ng-click="showGraph(true)">
-              Graph (click me)
-          </div>
-      </div>
-
-      <h1 ng-hide="graph.visible">a list of data is here in my app</h1>
-
-      <div class="chart-container" ng-show="graph.visible">
-          <canvas class="chart chart-line"
-                  data="graph.data"
-                  labels="graph.labels"
-                  series="graph.series"
-                  options="graph.options"
-                  legend="graph.legend"></canvas>
       </div>
 
   </md-content>
@@ -211,6 +197,16 @@
     </md-toolbar>
 
     <md-content class="md-padding">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group form-animate-text">
+                    <input type="text" class="form-text" required="">
+                    <span class="bar"></span>
+                    <label class="label-search" style="color: black;">Type here to <b>Search</b> </label>
+
+                </div>
+            </div>
+        </div>
         <div class="row row-horizon">
             <div class="col-md-6">
                 <md-card class="_md" md-colors="{backgroundColor: 'green'}">

@@ -7,23 +7,36 @@
 
     function reportcardCtrl($scope, $rootScope, apiService, notificationService) {
         $scope.pageClass = 'page-student-reportcard';
-
-        $scope.graph = {};
-        $scope.graph.visible = false;
-
-        $scope.showGraph = function (yesOrNo) {
-            $scope.graph.visible = yesOrNo;
-        }
-
-        $scope.graph.data = [[1, 2, 3, 4, 5, 6, 7, 8]];
-        $scope.graph.labels = ['hoi', 'doei', 'hallo', 'hee', 'hoi', 'doei', 'hallo', 'hee'];
-        $scope.graph.options = {
-            animation: false
+        $scope.myDataSource = {
+            chart: {
+                caption: "Username's Report Analytics",
+                subCaption: "Five most recent reports.",
+                numberSuffix: "%",
+            },
+            data:[{
+                label: "2016/SEM1",
+                value: "72"
+            },
+            {
+                label: "2015/SEM2",
+                value: "67"
+            },
+            {
+                label: "2015/SEM1",
+                value: "75"
+            },
+            {
+                label: "2014/SEM2",
+                value: "87"
+            },
+            {
+                label: "2014/SEM1",
+                value: "90"
+            }]
         };
-        $scope.graph.series = ['Series']
-        // $scope.graph.colours;
-        $scope.graph.legend = true;
-   
+  
+       
+     
        // apiService.get('/api/student/GetMyReports/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reportLoadCompleted, reportLoadFailed);
         
         function reportLoadCompleted() {

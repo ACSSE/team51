@@ -21,7 +21,11 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/Vendors/toastr.js",
                 "~/Scripts/Vendors/jquery.raty.js",
                 "~/Scripts/Vendors/respond.src.js",
+               
+                "~/Scripts/Vendors/fusionchart.js",
+                 "~/Scripts/Vendors/fusioncharts.charts.js",
                 "~/Scripts/Vendors/angular.js",
+                "~/Scripts/Vendors/angular-fusionchart.js",
                 "~/Scripts/Vendors/angular-route.js",
                 "~/Scripts/Vendors/angular-cookies.js",
                 "~/Scripts/Vendors/angular-validator.js",
@@ -40,14 +44,9 @@ namespace Bursify.Web.App_Start
             
                 "~/Scripts/Vendors/underscore.js",
                 "~/Scripts/Vendors/raphael.js",
-                "~/Scripts/Vendors/morris.js",
                 "~/Scripts/Vendors/md-table.min.js",
-
-
-
                 "~/Scripts/Vendors/loading-bar.js",
-                  "~/Scripts/Vendors/Chart.js",
-                  "~/Scripts/Vendors/angular-chart.js",
+             
 
                  "~/ Content/assets/js/main.js"
                 ));
