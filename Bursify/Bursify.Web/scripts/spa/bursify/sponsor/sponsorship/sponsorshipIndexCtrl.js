@@ -17,19 +17,11 @@
 
         };
 
-
-        apiService.get('/api/bursifyuser/GetUser/?email=' + $rootScope.Email, null, Completed, null);
-    
-        function Completed(result) {
-            $scope.user = result.data;
-            $rootScope.User = $scope.user.Name;
-            $rootScope.ThisUserID = $scope.user.ID;
-        }
-
-
-        apiService.get('api/Sponsorship/GetAllSponsorships/?userId=' + $rootScope.ThisUserID, null,
+        apiService.get('api/Sponsorship/GetAllSponsorships/?userId=' + $rootScope.repository.loggedUser.userIden, null,
                        sponsorshipsLoadCompleted,
                        sponsorshipsLoadFailed);
+
+
         function sponsorshipsLoadCompleted(result) {
             $scope.Sponsorships = result.data;
         }

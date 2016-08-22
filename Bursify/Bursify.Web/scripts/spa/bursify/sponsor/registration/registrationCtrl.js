@@ -3,29 +3,16 @@
 
     app.controller('registrationCtrl', registrationCtrl);
 
-    registrationCtrl.$inject = ['$scope','$rootScope', '$timeout', 'apiService', '$location', 'notificationService'];
+    registrationCtrl.$inject = ['$scope','$rootScope', '$timeout', 'apiService', '$location', 'notificationService', 'membershipService'];
 
 
-    function registrationCtrl($scope, $rootScope, $timeout, apiService, $location, notificationService) {
+    function registrationCtrl($scope, $rootScope, $timeout, apiService, $location, notificationService, membershipService) {
         $scope.pageClass = 'page-view-registration';
         $scope.max = 2;
         $scope.user = {};
         $scope.selectedIndex = 0;
         $scope.secondLocked = false;
-       
-    
-        apiService.get('/api/bursifyuser/GetUser/?email=' + $rootScope.Email, null, Completed, null);
-
-        function Completed(result) {
-            $scope.BSponsor = result.data;
-            $scope.user = result.data;
-            $rootScope.User = $scope.user.Name;
-            $rootScope.ThisUserID = $scope.user.ID;
-          
-           
-        }
-        
-        
+ 
 
         $scope.nextTab = function () {
             
@@ -93,13 +80,13 @@
         };
 
         $scope.create = function () {
-
-            $scope.Sponsor.ID = $scope.BSponsor.ID;
+           
+            $scope.Sponsor.ID = $rootScope.repository.loggedUser.userIden;
             $scope.Sponsor.Location = $scope.Location.Prov.name + ', ' + $scope.Location.City;
             $scope.Sponsor.Industry = $scope.Sponsor.Industry.name;
            
 
-            apiService.post('/api/BursifyUser/UpdateBio/?userId=' + $scope.BSponsor.ID + '&bio=' + $scope.BursifySponsor.Description, null, null, null);
+            apiService.post('/api/BursifyUser/UpdateBio/?userId=' + $scope.Sponsor.ID + '&bio=' + $scope.BursifySponsor.Description, null, null, null);
             
             
              apiService.post('/api/Sponsor/SaveSponsor', $scope.Sponsor, completed1, failed);
@@ -108,6 +95,12 @@
 
         function completed1() {
             notificationService.displayInfo('Account set up complete.');
+            $scope.user = {};
+            $scope.user.ID = $rootScope.repository.loggedUser.userIden;
+            $scope.user.Email = $rootScope.repository.loggedUser.useremail;
+            $scope.user.Name = $scope.Sponsor.CompanyName;
+            membershipService.saveCredentials($scope.user);
+            $scope.userData.displayUserInfo();
             $location.path('/bursify/sponsor/home');
         }
 

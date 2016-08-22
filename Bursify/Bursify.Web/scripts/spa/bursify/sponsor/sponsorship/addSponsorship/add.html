@@ -38,6 +38,9 @@
                         <span flex></span>
                     </div>
                 </md-toolbar>
+                <div class="panel-heading bg-white border-none">
+                    <h4><span class="icon-notebook icons"></span> Provide sponsorship details below.</h4>
+                </div>
                 <div class="col-md-12">
 
                     <div class="form-group form-animate-text" style="margin-top:5px !important;">
@@ -140,6 +143,9 @@
                         <span flex></span>
                     </div>
                 </md-toolbar>
+                <div class="panel-heading bg-white border-none">
+                    <h4><span class="icon-notebook icons"></span> Turn on to set any advanced preferences.</h4>
+                </div>
 
                 <div class="panel box-v1">
                     <div class="panel-heading bg-white border-none">
@@ -227,15 +233,17 @@
                         <span flex></span>
                     </div>
                 </md-toolbar>
-
+                <div class="panel-heading bg-white border-none">
+                    <h4><span class="icon-notebook icons"></span> Please give all terms &amp; conditions students must adhere to upon acceptance</h4>
+                </div>
 
 
 
                 <div class="col-md-12">
                     <div class="form-group form-animate-text" style="margin-top:5px !important;">
-                        <textarea ng-model="Sponsorship.TermsAndConditions" type="text" class="form-text" id="validate_firstname" name="validate_firstname" required="" rows="10" />
+                        <textarea ng-model="Sponsorship.TermsAndConditions" type="text" class="form-text" id="validate_firstname" name="validate_firstname" required="" rows="10" placeholder="Terms & Conditions"/>
                         <span class="bar"></span>
-                        <label>Please give all terms &amp; conditions students must adhere to upon acceptance</label>
+                        
                     </div>
                 </div>
 
@@ -352,7 +360,7 @@
                     <div class="md-toolbar-tools">
 
                         <h2>
-                            <span>What this bursary covers</span>
+                            <span>Sponsorship benefits</span>
                         </h2>
                         <span flex></span>
                     </div>
@@ -421,9 +429,9 @@
 
                         <div id="submit1">
 
-                            <div class="col-md-10">
-                                <h1></h1>
-                                <button style="padding-top: 10px;" type="submit" ng-click="create()" class="btn btn-success">Submit</button>
+                            <div class="col-md-offset-10">
+                               
+                                <md-button class="md-raised md-primary">Submit Sponsorship</md-button>
                             </div>
 
                         </div>
