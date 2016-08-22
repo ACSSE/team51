@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Bursify.Data.EF.Entities.StudentUser;
 
 namespace Bursify.Data.EF.Entities.User
@@ -19,6 +15,7 @@ namespace Bursify.Data.EF.Entities.User
         public int Average { get; set; }
         public string ReportLevel { get; set; }
         public string ReportPeriod { get; set; }
+        public string ReportInstitution { get; set; }
         
         public virtual Student Student { get; set; }
         public ICollection<Subject> Subjects { get; set; }

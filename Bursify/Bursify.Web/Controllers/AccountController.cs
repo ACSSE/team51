@@ -1,11 +1,9 @@
-﻿using System;
-using Bursify.Web.Models;
+﻿using Bursify.Web.Models;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Security;
 using Bursify.Api.Students;
-using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Web.Controllers
@@ -26,17 +24,18 @@ namespace Bursify.Web.Controllers
         [AllowAnonymous]
         [Route("Login")]
         [HttpPost]
-        public HttpResponseMessage Login(HttpRequestMessage request, LoginViewModel user)
+        public HttpResponseMessage Login(HttpRequestMessage request, LoginViewModel userVm)
         {
             HttpResponseMessage response = null;
 
             if (ModelState.IsValid)
             {
-                var loginSuccess = _membershipApi.Login(user.UserEmail, user.Password);
+                var loginSuccess = _membershipApi.Login(userVm.UserEmail, userVm.Password);
 
                 if (loginSuccess)
                 {
-                    response = request.CreateResponse(HttpStatusCode.OK, new { success = true });
+                    var user = _membershipApi.GetUserByEmail(userVm.UserEmail);
+                    response = request.CreateResponse(HttpStatusCode.OK, new { success = true, user });
                 }
                 else
                 {

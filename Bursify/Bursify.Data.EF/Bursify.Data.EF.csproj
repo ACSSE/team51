@@ -115,6 +115,10 @@
     <Compile Include="Migrations\201608191321090_initial.Designer.cs">
       <DependentUpon>201608191321090_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608192123226_StudentReportUpdate.cs" />
+    <Compile Include="Migrations\201608192123226_StudentReportUpdate.Designer.cs">
+      <DependentUpon>201608192123226_StudentReportUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
@@ -127,6 +131,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SponsorRepository.cs" />
     <Compile Include="Repositories\SponsorshipRepository.cs" />
+    <Compile Include="Repositories\StudentReportRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Repositories\StudentSponsorshipRepository.cs" />
     <Compile Include="Repositories\SubjectRepository.cs" />
@@ -147,6 +152,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608191321090_initial.resx">
       <DependentUpon>201608191321090_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608192123226_StudentReportUpdate.resx">
+      <DependentUpon>201608192123226_StudentReportUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

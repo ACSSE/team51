@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Web.Models
@@ -13,6 +11,7 @@ namespace Bursify.Web.Models
         public int Average { get; set; }
         public string ReportLevel { get; set; }
         public string ReportPeriod { get; set; }
+        public string ReportInstitution { get; set; }
 
         public StudentReportViewModel MapSingleReport(StudentReport report)
         {
@@ -21,6 +20,7 @@ namespace Bursify.Web.Models
             Average = report.Average;
             ReportLevel = report.ReportLevel;
             ReportPeriod = report.ReportPeriod;
+            ReportInstitution = report.ReportInstitution;
 
             return this;
         }
@@ -33,7 +33,8 @@ namespace Bursify.Web.Models
                 StudentId = this.StudentId,
                 Average = this.Average,
                 ReportLevel = this.ReportLevel,
-                ReportPeriod = this.ReportPeriod
+                ReportPeriod = this.ReportPeriod,
+                ReportInstitution = this.ReportInstitution
             };
         }
 

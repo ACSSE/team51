@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Bursify.Data.EF.Repositories;
-using System.Windows.Forms;
 using Bursify.Data.EF.Entities.Bridge;
-using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Uow;
 
 namespace Bursify.DataTests
