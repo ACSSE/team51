@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('BursifyApp', ['common.core', 'common.ui', 'ngMaterial', 'ngSanitize', 'ngHamburger', 'md.data.table', 'lfNgMdFileInput'])
+    angular.module('BursifyApp', ['common.core', 'common.ui', 'ngMaterial', 'ngSanitize', 'ngHamburger', 'md.data.table'])
         .config(config)
         .controller('MainCtrl', function($scope) {
             $scope.tgState = false;
@@ -32,118 +32,123 @@
             .when("/bursify/student/home", {
                 templateUrl: "scripts/spa/bursify/student/home/index.html",
                 controller: "studentCtrl",
-               resolve: { isAuthenticated: isAuthenticated }
+               // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/bursify/sponsor/home", {
                 templateUrl: "scripts/spa/bursify/sponsor/home/index.html",
                 controller: "sponsorCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
+                // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/bursify/admin/home", {
                 templateUrl: "scripts/spa/bursify/admin/home/index.html",
                 controller: "adminCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
+                // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/sponsorship/view", {
                 templateUrl: "scripts/spa/bursify/student/sponsorship/index.html",
                 controller: "sponsorshipCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
+                // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/student/profile", {
                 templateUrl: "scripts/spa/bursify/student/profile/profile.html",
                 controller: "studentProfileCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
+                // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/student/messages", {
                 templateUrl: "scripts/spa/bursify/student/messages/messages.html",
                 controller: "messagesCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
+                // resolve: { isAuthenticated: isAuthenticated }
+            })
+            .when("/student/report", {
+                templateUrl: "scripts/spa/bursify/student/reportcard/reportcard.html",
+                controller: "reportcardCtrl",
+                // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/sponsor/profile", {
                 templateUrl: "scripts/spa/bursify/sponsor/profile/profile.html",
                 controller: "sponsorProfileCtrl",
-                 resolve: { isAuthenticated: isAuthenticated }
+                 // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/sponsor/registration", {
                 templateUrl: "scripts/spa/bursify/sponsor/registration/form.html",
                 controller: "registrationCtrl",
-               resolve: { isAuthenticated: isAuthenticated }
+               // resolve: { isAuthenticated: isAuthenticated }
             })
              .when("/student/registration", {
                  templateUrl: "scripts/spa/bursify/student/registration/form.html",
                  controller: "registrationStudentCtrl",
-                 resolve: { isAuthenticated: isAuthenticated }
+                 // resolve: { isAuthenticated: isAuthenticated }
              })
             .when("/sponsor/sponsorships", {
                 templateUrl: "scripts/spa/bursify/sponsor/sponsorship/sponsorshipIndex.html",
                 controller: "sponsorshipIndexCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
+                // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/sponsor/sponsorships/add", {
                 templateUrl: "scripts/spa/bursify/sponsor/sponsorship/addSponsorship/add.html",
                 controller: "addSponsorshipCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
+                // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/sponsor/sponsorships/addT", {
                 templateUrl: "scripts/spa/bursify/sponsor/sponsorship/addSponsorship/addT.html",
                 controller: "addTSponsorshipCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
+                // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/student/campaigns", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",
                 controller: "campaignsCtrl",
-                 resolve: { isAuthenticated: isAuthenticated }
+                 // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/student/applications", {
                 templateUrl: "scripts/spa/bursify/student/applications/myApplications.html",
                 controller: "myApplicationsCtrl",
-                 resolve: { isAuthenticated: isAuthenticated }
+                 // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/sponsor/chart", {
                 templateUrl: "scripts/spa/bursify/sponsor/chart/leaderboard.html",
                 controller: "leaderboardCtrl",
-                 resolve: { isAuthenticated: isAuthenticated}
+                 // resolve: { isAuthenticated: isAuthenticated}
             }).when("/student/sponsorship/:sponsorshipId", {
                 templateUrl: "scripts/spa/bursify/student/sponsorship/index.html",
                 controller: "sponsorshipCtrl",
-                 resolve: { isAuthenticated: isAuthenticated }
+                 // resolve: { isAuthenticated: isAuthenticated }
             })
             /* Campaigns start **/
                 //STUDENT 
                 .when("/student/campaigns", {
                     templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",
                     controller: "campaignsCtrl",
-                     resolve: { isAuthenticated: isAuthenticated }
+                     // resolve: { isAuthenticated: isAuthenticated }
                 })
                 .when("/student/myCampaigns/:StudentID", {
                     templateUrl: "scripts/spa/bursify/student/campaigns/myCampaigns.html",
                     controller: "myCampaignsCtrl",
-                     resolve: { isAuthenticated: isAuthenticated }
+                     // resolve: { isAuthenticated: isAuthenticated }
                 })
             .when("/student/add-campaign", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/addCampaign.html",
                 controller: "addCampaignCtrl",
-                 resolve: { isAuthenticated: isAuthenticated }
+                 // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/student/edit-campaign/:campaignId", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/editCampaign.html",
                 controller: "EditCampaignCtrl",
-                 resolve: { isAuthenticated: isAuthenticated }
+                 // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/student/campaign-details/:campaignId", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/campaignDetails.html",
                 controller: "campaignDetailsCtrl"
-                // resolve: { isAuthenticated: isAuthenticated }
+                // // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/student/fund-campaign", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/fundCampaign.html",
                 controller: "fundCampaignCtrl",
-                // resolve: { isAuthenticated: isAuthenticated }
+                // // resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/student/test", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/test.html",
                 controller: "testCtrl",
-                // resolve: { isAuthenticated: isAuthenticated }
+                // // resolve: { isAuthenticated: isAuthenticated }
             })
             .otherwise({
                 redirectTo: function () {

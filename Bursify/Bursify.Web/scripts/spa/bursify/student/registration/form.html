@@ -484,8 +484,11 @@
                                         <input id="uploadMCBtn" type="file" class="upload" />
                                     </div>
                                     <input id="uploadMCFile" ng-model="MCFilePath" placeholder="Matric Certificate" disabled="disabled" />
+                                 
                                 </div>
-
+                                <div class="row">
+                                    
+                                </div>
                                 <div class="row col-md-12">
 
 
@@ -494,6 +497,9 @@
                                         <input id="uploadCVBtn" type="file" class="upload" />
                                     </div>
                                     <input id="uploadCVFile" ng-model="CVFilePath" placeholder="CV" disabled="disabled" />
+                                </div>
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular md-mode="indeterminate" ng-if="uploading"></md-progress-circular>
                                 </div>
                             </div>
 
@@ -513,6 +519,6 @@
         </ng-form>
     </form>
 
-    <button ng-click="registerStudent()">test</button>
+    <button ng-click="testStudent()">test</button>
 
 </div>

@@ -29,51 +29,31 @@
         }
 
         function loginCompleted(result) {
-
-       
             if (result.data.success) {
-              
-                apiService.get('/api/bursifyuser/GetUser/?email=' + $scope.user.useremail, null, loginUserCompleted, null);
-
+                loginCompleted(result);
             }
             else {
                 notificationService.displayError('Login failed. Try again.');
             }
-
-
         }
 
         function loginUserCompleted(result) {
-            $scope.user = result.data;
+            $scope.user = result.data.user;
+            membershipService.saveCredentials($scope.user);
+            $scope.userData.displayUserInfo();
 
             if ($scope.user.UserType == "Student") {
                 $location.path('/bursify/student/home');
-                membershipService.saveCredentials($scope.user);
-                $scope.userData.displayUserInfo();
-                notificationService.displaySuccess('Hello ' + $scope.user.Name);
-              
-                $rootScope.User = $scope.user.Name; 
-                $rootScope.ThisUserID = $scope.user.ID;
-
-            } else if ($scope.user.UserType == "Sponsor") {
+                notificationService.displaySuccess('Welcome back ' + $scope.user.Name + "!");
+           } else if ($scope.user.UserType == "Sponsor") {
                 $location.path('/bursify/sponsor/home');
-                membershipService.saveCredentials($scope.user);
-                $scope.userData.displayUserInfo();
-                notificationService.displaySuccess('Hello ' + $scope.user.Name);
-               
-                $rootScope.User = $scope.user.Name;
-                $rootScope.ThisUserID = $scope.user.ID;
-
-
+              
+                notificationService.displaySuccess('Welcome back ' + $scope.user.Name + ".");
 
             } else if ($scope.user.UserType == "Admin") {
                 $location.path('/bursify/admin/home');
-                membershipService.saveCredentials($scope.user);
-                $scope.userData.displayUserInfo();
-                notificationService.displaySuccess('Hello ' + $scope.user.Name);
+                notificationService.displaySuccess('Admin ' + $scope.user.Name);
 
-                $rootScope.User = $scope.user.Name;
-          
             }
         }
     }
