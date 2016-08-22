@@ -657,7 +657,6 @@
     <Content Include="scripts\vendors\angular-aria.js" />
     <Content Include="scripts\vendors\angular-aside.css" />
     <Content Include="scripts\vendors\angular-base64.js" />
-    <Content Include="scripts\vendors\angular-chart.js" />
     <Content Include="scripts\vendors\angular-cookies.js" />
     <Content Include="scripts\vendors\angular-file-upload.js" />
     <Content Include="scripts\vendors\angular-fusionchart.js" />
@@ -671,7 +670,6 @@
     <Content Include="scripts\vendors\angular-validator.js" />
     <Content Include="scripts\vendors\angular.js" />
     <Content Include="scripts\vendors\bootstrap.js" />
-    <Content Include="scripts\vendors\Chart.js" />
     <Content Include="scripts\vendors\file-input.css" />
     <Content Include="scripts\vendors\file-input.js" />
     <Content Include="scripts\vendors\fusionchart.js" />
@@ -684,7 +682,6 @@
     <Content Include="scripts\vendors\md-table.min.css" />
     <Content Include="scripts\vendors\md-table.min.js" />
     <Content Include="scripts\vendors\modernizr.js" />
-    <Content Include="scripts\vendors\morris.js" />
     <Content Include="scripts\vendors\raphael.js" />
     <Content Include="scripts\vendors\respond.src.js" />
     <Content Include="scripts\vendors\toastr.js" />
