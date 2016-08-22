@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using Bursify.Data.EF.Entities.Bridge;
-using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Data.EF.EntityMappings
 {

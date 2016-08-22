@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
-using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Web.Models;
-using Bursify.Data.EF.Entities.Bridge;
 
 namespace Bursify.Web.Controllers
 {
@@ -43,9 +39,9 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetAllSubjects")]
-        public HttpResponseMessage GetAllSubjects(HttpRequestMessage request, string educationLevel)
+        public HttpResponseMessage GetAllSubjects(HttpRequestMessage request, int requirementId)
         {
-            var subjects = _studentApi.GetSubjects(educationLevel);
+            var subjects = _studentApi.GetSubjects(requirementId);
 
             var subjectVm = SubjectViewModel.MapMultipleSubjects(subjects);
 

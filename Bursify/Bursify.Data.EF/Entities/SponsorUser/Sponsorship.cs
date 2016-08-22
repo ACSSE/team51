@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Bursify.Data.EF.Entities.Bridge;
-using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Data.EF.Entities.SponsorUser

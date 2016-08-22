@@ -1,8 +1,6 @@
 ﻿using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Entities.User;

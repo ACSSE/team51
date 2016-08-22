@@ -3,8 +3,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
-using Bursify.Data.EF.Entities.Campaigns;
-using Bursify.Api.Security;
 
 namespace Bursify.Web.Controllers
 {

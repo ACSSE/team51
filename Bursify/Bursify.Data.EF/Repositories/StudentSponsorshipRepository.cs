@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.StudentUser;
-using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
 
 namespace Bursify.Data.EF.Repositories

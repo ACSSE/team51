@@ -4,8 +4,6 @@ using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
-using Bursify.Data.EF.Entities.Bridge;
-using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Web.Models;
 
