@@ -48,7 +48,7 @@
 
                                                 </div>
 
-                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | filter:searchB">
+                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | orderBy:sortType:sortReverse | filter:searchB">
                                                     <div class="media-left">
                                                         <a href="/Sponsorship/ViewBursary">
 

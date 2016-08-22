@@ -7,7 +7,8 @@
 
     function studentCtrl($scope, apiService, notificationService) {
         $scope.pageClass = 'page-home-student';
-       
+        $scope.sortType     = 'name'; // set the default sort type
+        $scope.sortReverse  = false; 
 
         $scope.isOpen = false;
         $scope.demo = {
