@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bursify.Api.Users;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.Campaigns;

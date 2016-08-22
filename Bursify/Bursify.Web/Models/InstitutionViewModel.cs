@@ -1,8 +1,6 @@
 
 using Bursify.Data.EF.Entities.StudentUser;
-using Bursify.Data.EF.Entities.User;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Bursify.Web.Models
 {

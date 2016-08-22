@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Bursify.Data.EF.Entities.StudentUser;
+﻿using System.Collections.Generic;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
 
@@ -22,11 +20,13 @@ namespace Bursify.Data.EF.Repositories
             return LoadAll();
         }
 
-        public List<Subject> GetSubjects(string subjectLevel)
+        public List<Subject> GetSubjects(int requirementId)
         {
-            /*var subjects = FindMany(subject => subject.SubjectLevel.Equals(subjectLevel, StringComparison.OrdinalIgnoreCase));*/
+            var subjects = FindMany(x => x.RequirementId == requirementId);
 
-            return null;
+            return subjects;
         }
+
+
     }
 }

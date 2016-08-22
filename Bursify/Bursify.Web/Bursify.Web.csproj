@@ -705,6 +705,7 @@
     <Compile Include="Controllers\SponsorController.cs" />
     <Compile Include="Controllers\SponsorshipController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\StudentReportController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
 using Bursify.Data.EF.Entities.StudentUser;
-using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Web.Models;
 
@@ -57,7 +53,9 @@ namespace Bursify.Web.Controllers
         {
             var addresses = _studentApi.GetAddressofUser(userId);
 
-            var response = request.CreateResponse(HttpStatusCode.OK, addresses);
+            var addressVm = UserAddressViewModel.MapMultipleStudents(addresses);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, addressVm);
 
             return response;
         }
@@ -206,6 +204,27 @@ namespace Bursify.Web.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetInstitution")]
+        public HttpResponseMessage GetInstitution(HttpRequestMessage request, string name, int userId)
+        {
+            var institution = _studentApi.GetExistingInstitution(name, userId);
+            HttpResponseMessage response = null;
+
+            if (institution != null)
+            { 
+
+                response = request.CreateResponse(HttpStatusCode.OK, new { exists = true, institution.ID });
+            }
+            else
+            {
+                response = request.CreateResponse(HttpStatusCode.OK, new { exists = false});
+            }
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("SaveInstitution")]
         public HttpResponseMessage SaveInstitution(HttpRequestMessage request, InstitutionViewModel institution)
@@ -225,6 +244,39 @@ namespace Bursify.Web.Controllers
             var institutionVm = model.MapSingleInstitution(newInstitution);
 
             var response = request.CreateResponse(HttpStatusCode.Created, institutionVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SaveInstitution")]
+        public HttpResponseMessage SaveInstitution(HttpRequestMessage request, string name, string type, string website)
+        {
+            var existing = _studentApi.GetInstitution(name);
+            HttpResponseMessage response = null;
+
+            if (existing == null)
+            {
+                var newInstitution = new Institution()
+                {
+                    Name = name,
+                    Type = type,
+                    Website = website
+                };
+
+                _studentApi.SaveInstitution(newInstitution);
+
+                var model = new InstitutionViewModel();
+
+                var institutionVm = model.MapSingleInstitution(newInstitution);
+
+                response = request.CreateResponse(HttpStatusCode.Created, institutionVm);
+            }
+            else
+            {
+                response = request.CreateResponse(HttpStatusCode.OK, existing.ID);
+            }
 
             return response;
         }

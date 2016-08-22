@@ -1,6 +1,4 @@
-﻿using System;
-using Bursify.Data.EF.Entities.Bridge;
-using Bursify.Data.EF.Entities.StudentUser;
+﻿using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Uow;
 
 //this class it not needed but being used anyway can be removed later and functions being used will use bridge repository
