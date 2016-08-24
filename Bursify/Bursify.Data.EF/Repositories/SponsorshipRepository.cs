@@ -97,7 +97,7 @@ namespace Bursify.Data.EF.Repositories
 
             foreach (var sponsorship in subjectList)
             {
-                var sponsorshipSubjects = sponsorship.Requirements.ToList();
+                var sponsorshipSubjects = new List<Sponsorship>();//.Requirements.ToList();
 
                 foreach (var sponsorshipSubject in sponsorshipSubjects)
                 {

@@ -52,9 +52,13 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.HasMany(x => x.Addresses);
 
+            this.HasMany(x => x.Activities);
+
             this.HasOptional(x => x.Student);
 
             this.HasOptional(x => x.Sponsor);
+
+            this.HasOptional(x => x.Account);
         }                                     
     }
 }

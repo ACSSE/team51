@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
 
@@ -22,7 +23,7 @@ namespace Bursify.Data.EF.Repositories
 
         public List<Subject> GetSubjects(int requirementId)
         {
-            var subjects = FindMany(x => x.RequirementId == requirementId);
+            var subjects = FindMany(x => x.StudentReportId == requirementId);
 
             return subjects;
         }

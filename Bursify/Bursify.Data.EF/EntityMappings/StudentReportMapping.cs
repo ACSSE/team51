@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
+using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Data.EF.EntityMappings
@@ -36,7 +37,7 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.HasMany(x => x.Subjects)
                 .WithRequired(x => x.Report)
-                .HasForeignKey(x => x.RequirementId);
+                .HasForeignKey(x => x.StudentReportId);
         }
     }
 }

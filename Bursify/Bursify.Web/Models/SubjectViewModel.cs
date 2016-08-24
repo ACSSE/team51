@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Web.Models
@@ -15,7 +16,7 @@ namespace Bursify.Web.Models
         public SubjectViewModel MapSingleSubject(Subject subject)
         {
             ID = subject.ID;
-            StudentReportID = subject.RequirementId;
+            StudentReportID = subject.StudentReportId;
             Name = subject.Name;
             MarkAcquired = subject.MarkAcquired;
 
@@ -27,7 +28,7 @@ namespace Bursify.Web.Models
             return new Subject()
             {
                 ID = this.ID,
-                RequirementId = this.StudentReportID,
+                StudentReportId = this.StudentReportID,
                 Name = this.Name,
                 MarkAcquired = this.MarkAcquired
             };

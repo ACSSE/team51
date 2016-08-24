@@ -32,8 +32,7 @@ namespace Bursify.Data.EF.Entities.SponsorUser
         public int Rating { get; set; }
 
         public virtual Sponsor Sponsor { get; set; }
-        //public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Requirement> Requirements { get; set; }
         public ICollection<StudentSponsorship> StudentSponsorships { get; set; }
-        public ICollection<Subject> Requirements { get; set; } 
     }
 }

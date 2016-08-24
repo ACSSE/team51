@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Bursify.Data.EF.Entities.StudentUser;
 
-namespace Bursify.Data.EF.Entities.User
+namespace Bursify.Data.EF.Entities.StudentUser
 {
     public class StudentReport : IEntity
     {
