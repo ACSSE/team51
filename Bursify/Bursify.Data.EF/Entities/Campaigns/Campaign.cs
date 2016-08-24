@@ -25,8 +25,7 @@ namespace Bursify.Data.EF.Entities.Campaigns
         public string ReasonsToSupport { get; set; }
         public int NumberOfUpVotes { get; set; }
         public string Status { get; set; }
-
-        public virtual Account Account { get; set; }
+        
         public virtual Student Student { get; set; }
         public virtual ICollection<CampaignSponsor> CampaignSponsors { get; set; }
         public virtual ICollection<CampaignReport> CampaignReports { get; set; }

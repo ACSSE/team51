@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
 

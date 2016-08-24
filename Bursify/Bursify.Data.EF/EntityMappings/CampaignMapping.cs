@@ -73,9 +73,7 @@ namespace Bursify.Data.EF.EntityMappings
             this.HasRequired(x => x.Student)
                 .WithMany(c => c.Campaigns)
                 .HasForeignKey(s => s.StudentId);
-
-            this.HasRequired(x => x.Account)
-                .WithRequiredPrincipal(x => x.Campaign);
+            
         }
     }
 }

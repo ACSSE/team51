@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Data.EF.EntityMappings
 {
@@ -15,25 +16,19 @@ namespace Bursify.Data.EF.EntityMappings
                 .HasMaxLength(200)
                 .IsOptional();
 
-            this.Property(x => x.AccountNumber)
-                .HasMaxLength(50)
+            this.Property(x => x.CardNumber)
                 .IsOptional();
 
-            this.Property(x => x.BankName)
-                .HasMaxLength(50)
+            this.Property(x => x.ExpirationYear)
                 .IsOptional();
 
-            this.Property(x => x.BranchName)
-                .HasMaxLength(50)
+            this.Property(x => x.ExpirationMonth)
                 .IsOptional();
 
-            this.Property(x => x.BranchCode)
-                .HasMaxLength(50)
+            this.Property(x => x.CvvNumber)
                 .IsOptional();
 
-            this.HasRequired(x => x.Campaign)
-                .WithRequiredDependent(a => a.Account);
-
+            this.HasRequired(x => x.BursifyUser);
         }
     }
 }
