@@ -19,6 +19,8 @@ namespace Bursify.Web.Models
         public string TelephoneNumber { get; set; }
         public string ProfilePicturePath { get; set; }
 
+        public string Name { get; set; }
+
         public BursifyUser MapSingleBursifyUser(BursifyUser user)
         {
             return new BursifyUser()
@@ -35,6 +37,23 @@ namespace Bursify.Web.Models
                 TelephoneNumber = user.TelephoneNumber,
                 ProfilePicturePath = user.ProfilePicturePath
             };
+        }
+
+        public BursifyUserViewModel ReverseMapUser(BursifyUser user)
+        {
+            BursifyUserId = user.ID;
+            Email = user.Email;
+            PasswordHash = user.PasswordHash;
+            PasswordSalt = user.PasswordSalt;
+            AccountStatus = user.AccountStatus;
+            UserType = user.UserType;
+            RegistrationDate = user.RegistrationDate;
+            Biography = user.Biography;
+            CellphoneNumber = user.CellphoneNumber;
+            TelephoneNumber = user.TelephoneNumber;
+            ProfilePicturePath = user.ProfilePicturePath;
+
+            return this;
         }
 
         public List<BursifyUser> MapMultipleBursifyUsers(List<BursifyUser> bursifyUsers)

@@ -9727,3 +9727,8 @@ body {
 html {
     overflow: initial !important;
 }
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+

@@ -7,13 +7,13 @@ namespace Bursify.Data.EF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AccountTableUpdate : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AccountTableUpdate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608241615541_AccountTableUpdate"; }
+            get { return "201608241631416_init"; }
         }
         
         string IMigrationMetadata.Source

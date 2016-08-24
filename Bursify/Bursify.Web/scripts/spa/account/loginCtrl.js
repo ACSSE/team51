@@ -44,7 +44,7 @@
 
             if ($scope.user.UserType == "Student") {
                 $location.path('/bursify/student/home');
-                notificationService.displaySuccess('Welcome back ' + $scope.user.Name + "!");
+                notificationService.displaySuccess('Welcome back ' + $scope.user.Name + " !");
            } else if ($scope.user.UserType == "Sponsor") {
                 $location.path('/bursify/sponsor/home');
               

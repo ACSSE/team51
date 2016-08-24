@@ -8,23 +8,9 @@
     function registrationStudentCtrl($scope, $rootScope, $timeout, apiService, $location, notificationService, $compile, fileUploadService, membershipService, $interval, $mdDialog) {
         $scope.pageClass = 'page-registration-student';
 
-        if ($scope.start == true) {
-            notificationService.displayError("ey");
-            showAlert();
-         }
+    
 
-        $scope.showAlert = function (ev) {
-            $mdDialog.show(
-              $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#panel')))
-                .clickOutsideToClose(true)
-                .title('Welcome to Bursify')
-                .textContent("Please fill out your application form. You will only have to do this once and can always update it later.")
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Got it!')
-                .targetEvent(ev)
-            );
-        };
+
         $scope.isOpen = false;
         $scope.demo = {
             isOpen: false,
@@ -1581,7 +1567,7 @@
              $scope.Address.PostalCode = $scope.Student.ResPostCode
              //execute when the postal address of the student is the same as the residential address
              if ($scope.PostalSameAs) {
-                 notificationService.displayInfo("Same");
+               
                  $scope.Address.AddressType = "Main";
                  // pass address
 
