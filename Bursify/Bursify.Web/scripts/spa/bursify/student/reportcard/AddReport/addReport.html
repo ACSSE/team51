@@ -1,0 +1,171 @@
+﻿<div id="content">
+    <nav-bar></nav-bar>
+
+    <form name="academic">
+        <div class="box-body">
+
+            <label>What are you doing this year</label>
+            <div class="row">
+                <div class="form-group">
+
+                    <div class="col-md-11">
+                        <md-radio-group ng-model="Student.CurrentOccupation" layout="row" required>
+                            <md-radio-button value="High School" class="md-primary">High School</md-radio-button>
+                            <md-radio-button value="Matric"> Matric </md-radio-button>
+                            <md-radio-button value="Full-Time Tertiary">Full-Time Tertiary</md-radio-button>
+                            <md-radio-button value="Part-Time Tertiary">Part-Time Tertiary</md-radio-button>
+                            <md-radio-button value="Unemployed ">Unemployed</md-radio-button>
+                        </md-radio-group>
+                    </div>
+                </div>
+
+            </div>
+
+            <label>Select the study fields you are currently in or the fields in which you have interest to study.</label>
+            <div class="box-body">
+
+                <div class="col-md-12 ">
+
+                    <md-input-container class="md-block">
+                        <md-select placeholder="Fields" ng-model="Student.StudyFields" md-on-open="loadFields()" style="min-width: 200px;" required multiple>
+                            <md-option ng-value="field" ng-repeat="field in fields | orderBy:'name'">{{field.name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+
+                </div>
+            </div>
+
+
+            <label>Enter your most recent results below.</label>
+            <div class="box-body">
+
+                <div class="col-md-2">
+                    <select class="form-control" ng-model="Student.InstitutionType" ng-change="removeMarks()" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="s.level for s in data">
+                        <option value="">-- Instituition Type --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <select class="form-control" ng-model="Student.InstitutionName" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="p.place for p in Student.InstitutionType.places">
+                        <option value="" style="text-align: center;">-- Instituition --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <select class="form-control" ng-model="Student.StudentLevel" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="g.grade for g in Student.InstitutionType.grades">
+                        <option value="">-- Level --</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-control" ng-model="Student.MarksYearAttained" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        <option value="">-- Year Attained --</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select ng-show="Student.InstitutionType.level == 'High School'" class="form-control" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        <option value="">-- Term --</option>
+                        <option value="2016">Term 1</option>
+                        <option value="2015">Term 2</option>
+                        <option value="2014">Term 3</option>
+                        <option value="2013">Term 4</option>
+                        <option value="2012">Matric Results</option>
+                    </select>
+                    <select class="form-control" ng-show="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        <option value="">-- Semester --</option>
+                        <option value="2016">Semester 1</option>
+                        <option value="2015">Semester 2</option>
+
+                    </select>
+                </div>
+                <label ng-if="Student.InstitutionName.place == 'Other'">Please provide name of instituition.</label>
+                <div class="col-md-12" ng-if="Student.InstitutionName.place == 'Other'">
+
+                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                        <input type="text" class="form-text" ng-model="InstitutionNameOther" id="validate_firstname" name="validate_firstname" required>
+                        <span class="bar"></span>
+                        <label>Instituition Name</label>
+                    </div>
+                    <div class="row"></div>
+                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                        <input type="text" class="form-text" ng-model="InstitutionWebsiteOther" id="validate_firstname" name="validate_firstname" required>
+                        <span class="bar"></span>
+                        <label>Instituition Website</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box-body" ng-if="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'">
+                <div class="col-md-12">
+                    <div class="form-group">
+
+                        <input type="text" ng-model="Student.Qualification" class="form-control" id="exampleInputEmail1" placeholder="Name Of Qualification">
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="Student.InstitutionType.level" class="box-body">
+
+                <div class="col-md-9">
+                    <label>Subject</label>
+                </div>
+                <div class="col-md-3">
+                    <label>Mark Achieved</label>
+                </div>
+
+            </div>
+            <div ng-if="Student.InstitutionType.level == 'High School'" class="box-body" id="markInput">
+
+                <div class="col-md-9">
+                    <div class="form-group">
+
+                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="Student.Marks[0]" ng-options="s.subject for s in Student.Institution.subjects">
+                            <option style="text-align: center;">-- Subject --</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+
+                        <input type="number" ng-model="Student.Marks[0].SubjectMark" class="form-control" id="exampleInputEmail1" placeholder="%">
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'" class="box-body" id="markInput">
+
+                <div class="col-md-9">
+                    <div class="form-group">
+
+                        <input type="text" ng-model="Student.Marks[0].SubjectName" class="form-control" id="exampleInputEmail1" placeholder="Module Name" />
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+
+                        <input type="number" ng-model="Student.Marks[0].SubjectMark" class="form-control" id="exampleInputEmail1" placeholder="%">
+                    </div>
+                </div>
+            </div>
+
+
+            <div ng-if="Student.InstitutionType.level" id="MarksInputAdd"></div>
+            <div ng-if="Student.InstitutionType.level" class="row"><div class="col-md-9"></div><div class="col-md-3"><label style="padding-left: 20px;" ng-click="appendText()">Add More Subjects</label><span ng-click="appendText()" class="fa fa-plus-circle fa-2x" style="padding-left:5px;"></span></div></div>
+
+        </div>
+    </form>
+    <div class="row">
+
+        <div class="col-md-offset-11">
+            <md-button class="md-raised md-primary" type="submit" md-colors="{backgroundColor: 'blue'}" ng-click="academic.$valid && nextTab()">Proceed</md-button>
+        </div>
+    </div>
+    </div>

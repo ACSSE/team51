@@ -34,7 +34,12 @@ namespace Bursify.Web.Controllers
 
                 if (loginSuccess)
                 {
-                    var user = _membershipApi.GetUserByEmail(userVm.UserEmail);
+                    var loggedInUser = _membershipApi.GetUserByEmail(userVm.UserEmail);
+                    var user = (new BursifyUserViewModel()).ReverseMapUser(loggedInUser);
+                    
+
+                    setUserName(user);
+
                     response = request.CreateResponse(HttpStatusCode.OK, new { success = true, user });
                 }
                 else
@@ -44,6 +49,21 @@ namespace Bursify.Web.Controllers
             }
 
             return response;
+        }
+
+        private void setUserName(BursifyUserViewModel userVm)
+        {
+            if(userVm.UserType.Equals("Student", System.StringComparison.OrdinalIgnoreCase))
+            {
+                var tempUser = _studentApi.GetStudent(userVm.BursifyUserId);
+                var fullName = tempUser.Firstname + " "
+                                + tempUser.Surname;
+                userVm.Name = fullName;
+            }
+            else
+            {
+                userVm.Name = _studentApi.GetSponsor(userVm.BursifyUserId).CompanyName;
+            }
         }
 
         [AllowAnonymous]
