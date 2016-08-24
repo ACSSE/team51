@@ -143,6 +143,14 @@
     <Compile Include="Migrations\201608241615541_AccountTableUpdate.Designer.cs">
       <DependentUpon>201608241615541_AccountTableUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608241731249_StudentTableUpdate.cs" />
+    <Compile Include="Migrations\201608241731249_StudentTableUpdate.Designer.cs">
+      <DependentUpon>201608241731249_StudentTableUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608241828438_UserAddressUpdate.cs" />
+    <Compile Include="Migrations\201608241828438_UserAddressUpdate.Designer.cs">
+      <DependentUpon>201608241828438_UserAddressUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
@@ -194,6 +202,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608241615541_AccountTableUpdate.resx">
       <DependentUpon>201608241615541_AccountTableUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608241731249_StudentTableUpdate.resx">
+      <DependentUpon>201608241731249_StudentTableUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608241828438_UserAddressUpdate.resx">
+      <DependentUpon>201608241828438_UserAddressUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

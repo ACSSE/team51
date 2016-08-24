@@ -5,6 +5,7 @@ using Bursify.Api.Students;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Web.Models;
+using Bursify.Web.Utility.ModelClasses;
 
 namespace Bursify.Web.Controllers
 {
@@ -80,13 +81,19 @@ namespace Bursify.Web.Controllers
 
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("SaveDetails")]
-        public HttpResponseMessage SaveDetails(HttpRequestMessage request, PesonalDetailsViewModel details)
+        [System.Web.Mvc.Route("SavePersonalDetails")]
+        public HttpResponseMessage SavePersonalDetails(HttpRequestMessage request, PersonalDetails details)
         {
-            var user = _studentApi.GetUserInfo(details.ID);
-            user.Biography = details.Bio;
+            var user = _studentApi.GetStudent(details.StudentId);
 
-            _studentApi.UpdateUser(user);
+            if (user == null) return null;
+
+            user.Firstname = details.Firstname;
+            user.Surname = details.Surname;
+            user.Headline = details.Headline;
+            user.Essay = details.Biograpghy;
+
+            _studentApi.SaveStudent(user);
 
             var response = request.CreateResponse(HttpStatusCode.Accepted);
 
@@ -96,32 +103,68 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("SaveContactDetails")]
-        public HttpResponseMessage SaveContactDetails(HttpRequestMessage request, ContactDetailsViewModel details, UserAddressViewModel address)
+        public HttpResponseMessage SaveContactDetails(HttpRequestMessage request, ContactDetails details)
         {
-            var user = _studentApi.GetUserInfo(details.ID);
-            user.CellphoneNumber = details.GPhone;
-            if (_studentApi.ValidateEmail(details.email))
-            {
-                user.Email = details.email;
-            }
+            var user = _studentApi.GetUserInfo(details.StudentId);
+            var student = _studentApi.GetStudent(details.StudentId);
+            var address = _studentApi.GetAddress(details.StudentId, details.AddressType);
+
+            user.CellphoneNumber = details.CellphoneNumber;
+            user.Email = details.Email;
+
+            student.GuardianPhone = details.GuardianPhoneNumber;
+            student.GuardianRelationship = details.GuardianRelationship;
+            student.GuardianEmail = details.GuardianEmail;
+
+            address.StreetAddress = details.StreetAddress;
+            address.City = details.City;
+            address.Province = details.Province;
+            address.PostalCode = details.PostalCode;
+
             _studentApi.UpdateUser(user);
-            var student = _studentApi.GetStudent(details.ID);
-
-            student.GuardianEmail = details.GEmail;
-            student.GuardianRelationship = details.GRelationship;
-            student.GuardianPhone = details.GPhone;
-
             _studentApi.SaveStudent(student);
-
-            _studentApi.SaveAddress(address.ReverseMap());
+            _studentApi.SaveAddress(address);
 
             var response = request.CreateResponse(HttpStatusCode.OK);
 
             return response;
         }
 
-           
-        
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("SaveEducationDetails")]
+        public HttpResponseMessage SaveEducationDetails(HttpRequestMessage request, Education education)
+        {
+            Institution institution = null;
+            var student = _studentApi.GetStudent(education.StudentId);
+            var schoolExists = _studentApi.InstitutionExists(education.InstitutionName);
+
+            if (schoolExists)
+            {
+                institution = _studentApi.GetInstitution(education.InstitutionName);                
+            }
+            else
+            {
+                institution = new Institution()
+                {
+                    Name = education.InstitutionName,
+                    Type = education.CurrentOccupation
+                };
+
+                _studentApi.SaveInstitution(institution);
+            }
+
+            student.InstitutionID = institution.ID;
+            student.StudyField = education.StudyField;
+            student.CurrentOccupation = education.CurrentOccupation;
+
+            _studentApi.SaveStudent(student);
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
+
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("ApplyForSponsorship")]
@@ -166,7 +209,7 @@ namespace Bursify.Web.Controllers
                 }
                 else
                 {
-                    response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
+                    response = request.CreateResponse(HttpStatusCode.OK, new {success = false});
                 }
             }
 
@@ -212,13 +255,12 @@ namespace Bursify.Web.Controllers
             HttpResponseMessage response = null;
 
             if (institution != null)
-            { 
-
-                response = request.CreateResponse(HttpStatusCode.OK, new { exists = true, institution.ID });
+            {
+                response = request.CreateResponse(HttpStatusCode.OK, new {exists = true, institution.ID});
             }
             else
             {
-                response = request.CreateResponse(HttpStatusCode.OK, new { exists = false});
+                response = request.CreateResponse(HttpStatusCode.OK, new {exists = false});
             }
 
             return response;

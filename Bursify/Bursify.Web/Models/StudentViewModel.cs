@@ -13,6 +13,7 @@ namespace Bursify.Web.Models
         public string IDNumber { get; set; }
         public string Firstname { get; set; }
         public string Surname { get; set; }
+        public string Headline { get; set; }
         public string EducationLevel { get; set; }
         public int AverageMark { get; set; }
         public string StudentNumber { get; set; }
@@ -52,6 +53,7 @@ namespace Bursify.Web.Models
             InstitutionID = student.InstitutionID;
             Firstname = student.Firstname;
             Surname = student.Surname;
+            Headline = student.Headline;
             EducationLevel = student.EducationLevel;
             AverageMark = student.AverageMark;
             StudentNumber = student.StudentNumber;
@@ -87,6 +89,7 @@ namespace Bursify.Web.Models
                 InstitutionID = this.InstitutionID,
                 Firstname = this.Firstname,
                 Surname = this.Surname,
+                Headline = this.Headline,
                 EducationLevel = this.EducationLevel,
                 AverageMark = this.AverageMark,
                 StudentNumber = this.StudentNumber,

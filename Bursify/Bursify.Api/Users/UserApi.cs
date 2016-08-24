@@ -1,4 +1,5 @@
-﻿using Bursify.Data.EF.Repositories;
+﻿using System;
+using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
 using System.Collections.Generic;
 using System.Linq;
@@ -141,12 +142,25 @@ namespace Bursify.Api.Users
             }
         }
 
-        public void SaveAddress(UserAddress a)
+        public void SaveAddress(UserAddress address)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                userAddressRepository.Save(a);
+                userAddressRepository.Save(address);
                 uow.Commit();
+            }
+        }
+
+        public UserAddress GetAddress(int userId, string type)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var address =
+                    userAddressRepository.FindSingle(
+                                x => x.BursifyUserId == userId
+                             && x.AddressType.Equals(type, StringComparison.OrdinalIgnoreCase));
+
+                return address;
             }
         }
     }

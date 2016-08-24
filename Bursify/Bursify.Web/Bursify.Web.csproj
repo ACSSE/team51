@@ -717,10 +717,9 @@
     <Compile Include="Models\BursifyUserViewModel.cs" />
     <Compile Include="Models\CampaignSponsorViewModel.cs" />
     <Compile Include="Models\CampaignViewModel.cs" />
-    <Compile Include="Models\ContactDetailsViewModel.cs" />
     <Compile Include="Models\InstitutionViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
-    <Compile Include="Models\PesonalDetailsViewModel.cs" />
+    <Compile Include="Models\PersonalDetailsViewModel.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Models\ReportCampaignModel.cs" />
     <Compile Include="Models\SponsorCampaignViewModel.cs" />
@@ -734,6 +733,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\FileUploadResult.cs" />
     <Compile Include="Utility\MimeMultipart.cs" />
+    <Compile Include="Utility\ModelClasses\ContactDetails.cs" />
+    <Compile Include="Utility\ModelClasses\Education.cs" />
+    <Compile Include="Utility\ModelClasses\PersonalDetails.cs" />
     <Compile Include="Utility\PaginationSet.cs" />
     <Compile Include="Utility\UploadMultipartFormProvider.cs" />
   </ItemGroup>

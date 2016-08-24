@@ -21,6 +21,9 @@ namespace Bursify.Data.EF.EntityMappings
                 .HasMaxLength(200)
                 .IsOptional();
 
+            this.Property(x => x.Headline)
+                .IsOptional();
+
             this.Property(X => X.EducationLevel)
                 .HasMaxLength(50)
                 .IsOptional();

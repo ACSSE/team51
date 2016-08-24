@@ -24,11 +24,7 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.PreferredAddress)
                 .IsOptional();
 
-            this.Property(x => x.HouseNumber)
-                .HasMaxLength(50)
-                .IsOptional();
-
-            this.Property(x => x.StreetName)
+            this.Property(x => x.StreetAddress)
                 .HasMaxLength(200)
                 .IsOptional();
 
@@ -41,10 +37,6 @@ namespace Bursify.Data.EF.EntityMappings
                 .IsOptional();
 
             this.Property(x => x.PostOfficeBoxNumber)
-                .IsOptional();
-
-            this.Property(x => x.PostOfficeName)
-                .HasMaxLength(200)
                 .IsOptional();
 
             this.Property(x => x.PostalCode)

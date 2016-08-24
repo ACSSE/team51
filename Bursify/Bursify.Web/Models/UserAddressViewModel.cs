@@ -9,12 +9,10 @@ namespace Bursify.Web.Models
         public int BursifyUserId { get; set; }
         public string AddressType { get; set; }
         public string PreferredAddress { get; set; }
-        public string HouseNumber { get; set; }
-        public string StreetName { get; set; }
+        public string StreetAddress { get; set; }
         public string Province { get; set; }
         public string City { get; set; }
-        public long PostOfficeBoxNumber { get; set; }
-        public string PostOfficeName { get; set; }
+        public string PostOfficeBoxNumber { get; set; }
         public string PostalCode { get; set; }
 
         public UserAddressViewModel MapSingleAddress(UserAddress userAddress)
@@ -23,12 +21,10 @@ namespace Bursify.Web.Models
             BursifyUserId = userAddress.BursifyUserId;
             AddressType = userAddress.AddressType;
             PreferredAddress = userAddress.PreferredAddress;
-            HouseNumber = userAddress.HouseNumber;
-            StreetName = userAddress.StreetName;
+            StreetAddress = userAddress.StreetAddress;
             Province = userAddress.Province;
             City = userAddress.City;
             PostOfficeBoxNumber = userAddress.PostOfficeBoxNumber;
-            PostOfficeName = userAddress.PostOfficeName;
             PostalCode = userAddress.PostalCode;
 
             return this;
@@ -42,12 +38,10 @@ namespace Bursify.Web.Models
                 BursifyUserId = this.BursifyUserId,
                 AddressType = this.AddressType,
                 PreferredAddress = this.PreferredAddress,
-                HouseNumber = this.HouseNumber,
-                StreetName = this.StreetName,
+                StreetAddress = this.StreetAddress,
                 Province = this.Province,
                 City = this.City,
                 PostOfficeBoxNumber = this.PostOfficeBoxNumber,
-                PostOfficeName = this.PostOfficeName,
                 PostalCode = this.PostalCode
             };
         }

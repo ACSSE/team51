@@ -14,7 +14,15 @@ namespace Bursify.Api.Students
 {
     public class StudentApi : UserApi
     {
-        public StudentApi(IUnitOfWorkFactory unitOfWorkFactory, BursifyUserRepository userRepository, Repository<UserAddress> userAddressRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, AccountRepository accountRepository, SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository, StudentRepository studentRepository, InstitutionRepository institutionRepository, SubjectRepository subjectRepository, StudentSponsorshipRepository studentSponsorshipRepository, StudentReportRepository studentReportRepository) : base(unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository)
+        public StudentApi(IUnitOfWorkFactory unitOfWorkFactory, BursifyUserRepository userRepository,
+            Repository<UserAddress> userAddressRepository, CampaignRepository campaignRepository,
+            CampaignSponsorRepository campaignSponsorRepository, AccountRepository accountRepository,
+            SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository,
+            StudentRepository studentRepository, InstitutionRepository institutionRepository,
+            SubjectRepository subjectRepository, StudentSponsorshipRepository studentSponsorshipRepository,
+            StudentReportRepository studentReportRepository)
+            : base(
+                unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository)
         {
             _accountRepository = accountRepository;
             _sponsorshipRepository = sponsorshipRepository;
@@ -59,7 +67,7 @@ namespace Bursify.Api.Students
         /// </summary>
         /// <param name="campaignId"> Id for the campaign </param>
         /// <returns> A single campaign </returns>
-        public Campaign GetSingleCampaign(int campaignId)   //done
+        public Campaign GetSingleCampaign(int campaignId) //done
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
@@ -73,7 +81,7 @@ namespace Bursify.Api.Students
         /// <param name="campaignId"> Id of campaign to retrieve </param>
         /// <param name="userId"> Id of student </param>
         /// <returns></returns>
-        public Campaign GetSingleCampaign(int campaignId, int userId)   //done
+        public Campaign GetSingleCampaign(int campaignId, int userId) //done
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
@@ -101,7 +109,7 @@ namespace Bursify.Api.Students
         /// </summary>
         /// <param name="userId"> unique id for the student </param>
         /// <returns> List of campaigns created by a student </returns>
-        public List<Campaign> GetAllCampaigns(int userId)   //done
+        public List<Campaign> GetAllCampaigns(int userId) //done
         {
             List<Campaign> userCampaigns = null;
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
@@ -133,7 +141,7 @@ namespace Bursify.Api.Students
         //}
 
         //done
-        public List<Campaign> SearchCampaigns(string criteria)  //done
+        public List<Campaign> SearchCampaigns(string criteria) //done
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
@@ -375,6 +383,17 @@ namespace Bursify.Api.Students
             }
         }
 
+        public bool InstitutionExists(string name)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var institution =
+                    _institutionRepository.FindSingle(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+
+                return institution != null;
+            }
+        }
+
         //done
         public Institution GetExistingInstitution(string name, int studentId)
         {
@@ -474,7 +493,7 @@ namespace Bursify.Api.Students
         }
 
         #endregion
-
+        
         public int GetNumberOfCampaignsByID(int ID)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
