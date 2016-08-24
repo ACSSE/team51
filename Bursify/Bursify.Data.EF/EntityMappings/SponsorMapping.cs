@@ -47,6 +47,8 @@ namespace Bursify.Data.EF.EntityMappings
             this.HasMany(x => x.CampaignSponsors);
 
             this.HasRequired(x => x.BursifyUser);
+
+            this.HasOptional(x => x.Account);
         }
     }
 }

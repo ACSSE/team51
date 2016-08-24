@@ -28,7 +28,7 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.CvvNumber)
                 .IsOptional();
 
-            this.HasRequired(x => x.BursifyUser);
+            this.HasRequired(x => x.Sponsor);
         }
     }
 }

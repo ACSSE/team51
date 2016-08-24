@@ -36,6 +36,5 @@ namespace Bursify.Data.EF.Entities.User
         public virtual ICollection<UserActivity> Activities { get; set; } 
         public virtual Sponsor Sponsor { get; set; }
         public virtual Student Student { get; set; }
-        public virtual Account Account { get; set; }
     }
 }

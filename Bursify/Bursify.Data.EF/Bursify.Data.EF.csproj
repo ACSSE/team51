@@ -86,6 +86,7 @@
     <Compile Include="Entities\Bridge\CampaignSponsor.cs" />
     <Compile Include="Entities\Bridge\SponsorStudentNotification.cs" />
     <Compile Include="Entities\Bridge\StudentSponsorship.cs" />
+    <Compile Include="Entities\Campaigns\CampaignAccount.cs" />
     <Compile Include="Entities\User\Account.cs" />
     <Compile Include="Entities\Campaigns\Campaign.cs" />
     <Compile Include="Entities\SponsorUser\Requirement.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Entities\User\UserAddress.cs" />
     <Compile Include="EntityMappings\AccountMapping.cs" />
     <Compile Include="EntityMappings\BursifyUserMapping.cs" />
+    <Compile Include="EntityMappings\CampaignAccountMapping.cs" />
     <Compile Include="EntityMappings\CampaignMapping.cs" />
     <Compile Include="EntityMappings\CampaignReportMapping.cs" />
     <Compile Include="EntityMappings\CampaignSponsorMapping.cs" />
@@ -150,6 +152,10 @@
     <Compile Include="Migrations\201608241828438_UserAddressUpdate.cs" />
     <Compile Include="Migrations\201608241828438_UserAddressUpdate.Designer.cs">
       <DependentUpon>201608241828438_UserAddressUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608241917557_CampaignTableUpdate.cs" />
+    <Compile Include="Migrations\201608241917557_CampaignTableUpdate.Designer.cs">
+      <DependentUpon>201608241917557_CampaignTableUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -208,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608241828438_UserAddressUpdate.resx">
       <DependentUpon>201608241828438_UserAddressUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608241917557_CampaignTableUpdate.resx">
+      <DependentUpon>201608241917557_CampaignTableUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

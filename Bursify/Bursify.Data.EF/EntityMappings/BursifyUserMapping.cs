@@ -57,8 +57,6 @@ namespace Bursify.Data.EF.EntityMappings
             this.HasOptional(x => x.Student);
 
             this.HasOptional(x => x.Sponsor);
-
-            this.HasOptional(x => x.Account);
         }                                     
     }
 }

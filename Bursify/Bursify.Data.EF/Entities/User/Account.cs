@@ -1,5 +1,6 @@
 ﻿using System;
 using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Data.EF.Entities.User
 {
@@ -12,6 +13,6 @@ namespace Bursify.Data.EF.Entities.User
         public int ExpirationMonth { get; set; }
         public int CvvNumber { get; set; }
 
-        public virtual BursifyUser BursifyUser { get; set; }
+        public virtual Sponsor Sponsor { get; set; }
     }
 }
