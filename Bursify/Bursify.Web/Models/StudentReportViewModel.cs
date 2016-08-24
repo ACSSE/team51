@@ -13,6 +13,7 @@ namespace Bursify.Web.Models
         public string ReportLevel { get; set; }
         public string ReportPeriod { get; set; }
         public string ReportInstitution { get; set; }
+        public List<SubjectViewModel> Subjects { get; set; }
 
         public StudentReportViewModel MapSingleReport(StudentReport report)
         {
@@ -22,6 +23,7 @@ namespace Bursify.Web.Models
             ReportLevel = report.ReportLevel;
             ReportPeriod = report.ReportPeriod;
             ReportInstitution = report.ReportInstitution;
+            Subjects = SubjectViewModel.ReverseMapSubjects((List<Subject>)report.Subjects);
 
             return this;
         }
@@ -35,7 +37,8 @@ namespace Bursify.Web.Models
                 Average = this.Average,
                 ReportLevel = this.ReportLevel,
                 ReportPeriod = this.ReportPeriod,
-                ReportInstitution = this.ReportInstitution
+                ReportInstitution = this.ReportInstitution,
+               // Subjects = this.Subjects
             };
         }
 

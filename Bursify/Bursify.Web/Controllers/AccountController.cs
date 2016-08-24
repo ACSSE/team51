@@ -38,7 +38,7 @@ namespace Bursify.Web.Controllers
                     var user = (new BursifyUserViewModel()).ReverseMapUser(loggedInUser);
                     
 
-                    setUserName(user);
+                    SetUserName(user);
 
                     response = request.CreateResponse(HttpStatusCode.OK, new { success = true, user });
                 }
@@ -51,7 +51,7 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-        private void setUserName(BursifyUserViewModel userVm)
+        private void SetUserName(BursifyUserViewModel userVm)
         {
             if(userVm.UserType.Equals("Student", System.StringComparison.OrdinalIgnoreCase))
             {

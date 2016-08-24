@@ -34,6 +34,30 @@ namespace Bursify.Web.Models
             };
         }
 
+        public SubjectViewModel ReverseMap(Subject subject)
+        {
+            return new SubjectViewModel()
+            {
+                ID = subject.ID,
+                StudentReportID = subject.StudentReportId,
+                Name = subject.Name,
+                MarkAcquired = subject.MarkAcquired
+            };
+        }
+
+        public static List<SubjectViewModel> ReverseMapSubjects(List<Subject> subjects)
+        {
+            var subjectViewModel = new SubjectViewModel();
+            var subjectVm = new List<SubjectViewModel>();
+
+            foreach (var subject in subjects)
+            {
+                subjectVm.Add(subjectViewModel.ReverseMap(subject));
+            }
+            return subjectVm;
+            //return subjects.Select(subjectViewModel.ReverseMap).ToList();
+        }
+
         public static List<SubjectViewModel> MapMultipleSubjects(List<Subject> reportViewModels)
         {
             var subjectViewModel = new SubjectViewModel();

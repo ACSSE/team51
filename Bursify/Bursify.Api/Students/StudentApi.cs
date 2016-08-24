@@ -424,6 +424,16 @@ namespace Bursify.Api.Students
             }
         }
 
+        public StudentReport GetReportWithSubjects(int reportId, int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var report = _studentReportRepository.GetReportWithSubjects(reportId, studentId);
+
+                return report;
+            }
+        }
+
         public List<StudentReport> GetStudentReports(int studentId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())

@@ -22,7 +22,7 @@ namespace Bursify.Web.Controllers
         [Route("GetReport")]
         public HttpResponseMessage GetReport(HttpRequestMessage request, int reportId, int studentId)
         {
-            var report = _studentApi.GetStudentReport(reportId, studentId);
+            var report = _studentApi.GetReportWithSubjects(reportId, studentId);
 
             var reportVm = (new StudentReportViewModel()).MapSingleReport(report);
 
