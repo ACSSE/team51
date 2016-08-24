@@ -115,33 +115,9 @@
     <Compile Include="EntityMappings\UserActivityMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
-    <Compile Include="Migrations\201608191321090_initial.cs" />
-    <Compile Include="Migrations\201608191321090_initial.Designer.cs">
-      <DependentUpon>201608191321090_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608192123226_StudentReportUpdate.cs" />
-    <Compile Include="Migrations\201608192123226_StudentReportUpdate.Designer.cs">
-      <DependentUpon>201608192123226_StudentReportUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608241510584_ActivityTable.cs" />
-    <Compile Include="Migrations\201608241510584_ActivityTable.Designer.cs">
-      <DependentUpon>201608241510584_ActivityTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608241536404_init.cs" />
-    <Compile Include="Migrations\201608241536404_init.Designer.cs">
-      <DependentUpon>201608241536404_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608241542360_init1.cs" />
-    <Compile Include="Migrations\201608241542360_init1.Designer.cs">
-      <DependentUpon>201608241542360_init1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608241558419_RequirementTable.cs" />
-    <Compile Include="Migrations\201608241558419_RequirementTable.Designer.cs">
-      <DependentUpon>201608241558419_RequirementTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608241615541_AccountTableUpdate.cs" />
-    <Compile Include="Migrations\201608241615541_AccountTableUpdate.Designer.cs">
-      <DependentUpon>201608241615541_AccountTableUpdate.cs</DependentUpon>
+    <Compile Include="Migrations\201608241631416_init.cs" />
+    <Compile Include="Migrations\201608241631416_init.Designer.cs">
+      <DependentUpon>201608241631416_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,26 +150,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608191321090_initial.resx">
-      <DependentUpon>201608191321090_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608192123226_StudentReportUpdate.resx">
-      <DependentUpon>201608192123226_StudentReportUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608241510584_ActivityTable.resx">
-      <DependentUpon>201608241510584_ActivityTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608241536404_init.resx">
-      <DependentUpon>201608241536404_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608241542360_init1.resx">
-      <DependentUpon>201608241542360_init1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608241558419_RequirementTable.resx">
-      <DependentUpon>201608241558419_RequirementTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608241615541_AccountTableUpdate.resx">
-      <DependentUpon>201608241615541_AccountTableUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608241631416_init.resx">
+      <DependentUpon>201608241631416_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

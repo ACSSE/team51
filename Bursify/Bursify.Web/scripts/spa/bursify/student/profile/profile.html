@@ -57,12 +57,26 @@
                             <md-content class="md-padding">
                                 <form role="form" novalidate angular-validator name="userProfileForm" angular-validator-submit="saveDetails()">
                                     <div class="box-body">
-                                        <md-input-container class="md-icon-float md-block">
-                                            <!-- Use floating label instead of placeholder -->
-                                            <label>Name</label>
-                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
-                                            <input value="{{username}}" type="text"></>
-                                        </md-input-container>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <md-input-container class="md-icon-float md-block">
+                                                <!-- Use floating label instead of placeholder -->
+                                                <label>Firstname</label>
+                                                <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                                <input value="{{user.Firstname}}" type="text"></>
+                                            </md-input-container>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <md-input-container class="md-icon-float md-block">
+                                                <!-- Use floating label instead of placeholder -->
+                                                <label>Surname</label>
+                                               
+                                                <input value="{{user.Surname}}" type="text"></>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                        
+                                      
 
                                         <md-input-container class="md-icon-float md-block">
                                             <!-- Use floating label instead of placeholder -->
@@ -72,9 +86,9 @@
                                         </md-input-container>
                                       
                                         <md-input-container class="md-block">
-                                            <label>Biography</label>
+                                            <label>Essay</label>
                                             <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
-                                            <textarea ng-model="user.Biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                                            <textarea ng-model="user.Essay" md-maxlength="150" rows="5" md-select-on-focus></textarea>
                                         </md-input-container>
 
 
@@ -176,9 +190,8 @@
 
                                     </div>
                                 </div>
-                                <div>
-
-                                    <button type="submit" class="btn btn-success">Save</button>
+                                <div class="col-md-offset-10">
+                                    <md-button md-no-ink class="md-primary" md-colors="{backgroundColor: 'teal'}">Save</md-button>
                                 </div>
                             </md-content>
                         </md-tab>
