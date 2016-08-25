@@ -73,7 +73,7 @@
             "InstitutionName": "",
             "InstitutionWebsite": "",
             "StudentLevel": "",
-            "Marks": [{ "SubjectName": "", "SubjectMark": "" , "StudentId": "", "Period": ""}],
+            "Marks": [{ "SubjectName": "", "SubjectMark": "" , "ReportId": ""}],
             "Essay": "",
             "IDDocumentPath": "",
             "MarticCertificatePath": "",
@@ -90,7 +90,7 @@
             if ($scope.Student.InstitutionType.level == 'University' || $scope.Student.InstitutionType.level == 'Private University/College') {
                 angular.element(document.getElementById('MarksInputAdd')).append($compile("<div class=\'box-body\' id=\'markInput" + $scope.count + "\'><div class=\'col-md-9\'><div class=\'form-group\'> <input type='text' ng-model='Student.Marks[" + $scope.count  + "].SubjectName' class='form-control' id='exampleInputEmail1' placeholder='Module Name'></div></div><div class=\'col-md-3\'><div class=\'form-group\'><input type=\'number\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' class=\'form-control\' id=\'exampleInputEmail1\' placeholder=\'%\'></div></div></div>")($scope));
             } else {  
-                angular.element(document.getElementById('MarksInputAdd')).append($compile("<div class=\'box-body\' id=\'markInput" + $scope.count + "\'><div class=\'col-md-9\'><div class=\'form-group\'><select class=\'form-control\' style=\'width: 100%;\' tabindex=\'-1\' aria-hidden=\'true\' ng-model=\"Student.Marks[" + $scope.count + "]\" ng-options=\'s.subject for s in Student.Institution.subjects\'><option value=\'\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' style=\'text-align: center;\'>-- Subject --</option></select></div></div><div class=\'col-md-3\'><div class=\'form-group\'><input type=\'number\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' class=\'form-control\' id=\'exampleInputEmail1\' placeholder=\'%\'></div></div></div>")($scope));
+                angular.element(document.getElementById('MarksInputAdd')).append($compile("<div class=\'box-body\' id=\'markInput" + $scope.count + "\'><div class=\'col-md-9\'><div class=\'form-group\'><select class=\'form-control\' style=\'width: 100%;\' tabindex=\'-1\' aria-hidden=\'true\' ng-model=\"Student.Marks[" + $scope.count + "]\" ng-options=\'s.subject for s in Student.InstitutionType.subjects\'><option value=\'\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' style=\'text-align: center;\'>-- Subject --</option></select></div></div><div class=\'col-md-3\'><div class=\'form-group\'><input type=\'number\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' class=\'form-control\' id=\'exampleInputEmail1\' placeholder=\'%\'></div></div></div>")($scope));
             }
            
         }
@@ -1529,8 +1529,8 @@
                 $scope.StudentP.Gender = "Female";
             }
             $scope.StudentP.GuardianRelationship = $scope.Student.GuardianRelationship.name;
-            $scope.StudentP.IDDocumentPath = $scope.Student.IDDocumentPath;
-            $scope.StudentP.CVPath = $scope.Student.CVPath
+            $scope.StudentP.IDDocumentPath = "pathToBeSet";
+            $scope.StudentP.CVPath = "pathToBeSet";
             $scope.StudentP.AgreeTandC = true;
 
             apiService.post('/api/student/savestudent', $scope.StudentP, saveStudentDone, saveStudentFailed);
@@ -1539,35 +1539,48 @@
 
         function saveStudentDone() {
             notificationService.displayInfo('saveStudentDone')
-            // save report now
+            saveReport()
           
         }
 
         function saveReport() {
-            // save subject
-        //         public int ID { get; set; }
-        //public int StudentId { get; set; }
-        //public int Average { get; set; }
-        //public string ReportLevel { get; set; }
-        //public string ReportPeriod { get; set; }
-            //public string ReportInstitution { get; set; }
 
             $scope.Report = {}
 
             $scope.Report.StudentId = $rootScope.repository.loggedUser.userIden;
             $scope.Report.ReportLevel = $scope.Student.StudentLevel.grade;
-         //   $scope.Report.ReportPeriod = $scope.Student.
+            $scope.Report.ReportPeriod = $scope.Student .InstitutionType.level;
+            $scope.Report.ReportInstitution = $scope.Student.InstitutionName.place;
+            $scope.Report.ReportYear = $scope.Student.MarksYearAttained;
+            apiService.post('/api/report/savereport', $scope.Report, saveReportDone, saveReportFailed);
         }
 
-        function saveReportDone() {
+        function saveReportDone(result) {
             // call save subject
+            $scope.myReportID = {};
+            $scope.myReportID = result.data.ID;
+            saveSubjects();
         }
 
         function saveReportFailed() {
+            // it failed
 
         }
 
         function saveSubjects() {
+            // save subjects
+           
+            $scope.subjectPost = [];
+          
+            for (var h = 0; h < $scope.Student.Marks.length; h++) {
+                $scope.mySubjects = { "Name": "", "MarkAcquired": "", "StudentReportId": "" };
+                $scope.mySubjects.StudentReportId = $scope.myReportID;
+                $scope.mySubjects.Name = $scope.Student.Marks[h].subject;
+                $scope.mySubjects.MarkAcquired = $scope.Student.Marks[h].SubjectMark;
+                $scope.subjectPost.push($scope.mySubjects);
+            }
+
+            apiService.post('/api/subject/addsubjects', $scope.subjectPost, saveSubjectsDone, saveSubjectsFailed);
 
         }
 
@@ -1631,7 +1644,7 @@
 
         //function saveStudentCompleted() {
         //    notificationService.displayInfo('Account set up complete.');
-        //    $location.path('/bursify/student/home');
+        //    $location.path('/student/home');
         //}
     
 
