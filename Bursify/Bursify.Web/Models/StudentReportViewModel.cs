@@ -10,6 +10,7 @@ namespace Bursify.Web.Models
         public int ID { get; set; }
         public int StudentId { get; set; }
         public int Average { get; set; }
+        public string ReportYear { get; set; }
         public string ReportLevel { get; set; }
         public string ReportPeriod { get; set; }
         public string ReportInstitution { get; set; }
@@ -20,6 +21,7 @@ namespace Bursify.Web.Models
             ID = report.ID;
             StudentId = report.StudentId;
             Average = report.Average;
+            ReportYear = report.ReportYear;
             ReportLevel = report.ReportLevel;
             ReportPeriod = report.ReportPeriod;
             ReportInstitution = report.ReportInstitution;
@@ -35,6 +37,7 @@ namespace Bursify.Web.Models
                 ID = this.ID,
                 StudentId = this.StudentId,
                 Average = this.Average,
+                ReportYear = this.ReportYear,
                 ReportLevel = this.ReportLevel,
                 ReportPeriod = this.ReportPeriod,
                 ReportInstitution = this.ReportInstitution,
