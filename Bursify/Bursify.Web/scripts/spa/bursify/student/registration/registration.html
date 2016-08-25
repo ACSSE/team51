@@ -297,10 +297,8 @@
                                     <div class="col-md-11">
                                         <md-radio-group ng-model="Student.CurrentOccupation" layout="row" required>
                                             <md-radio-button value="High School" class="md-primary">High School</md-radio-button>
-                                            <md-radio-button value="Matric"> Matric </md-radio-button>
-                                            <md-radio-button value="Full-Time Tertiary">Full-Time Tertiary</md-radio-button>
-                                            <md-radio-button value="Part-Time Tertiary">Part-Time Tertiary</md-radio-button>
-                                            <md-radio-button value="Unemployed ">Unemployed</md-radio-button>
+                                            <md-radio-button value="Tertiary"> Tertiary </md-radio-button>
+                                             <md-radio-button value="Unemployed ">Unemployed</md-radio-button>
                                         </md-radio-group>
                                     </div>
                                 </div>
@@ -411,7 +409,7 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
 
-                                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="Student.Marks[0]" ng-options="s.subject for s in Student.Institution.subjects">
+                                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="Student.Marks[0].SubjectName" ng-options="s.subject for s in Student.InstitutionType.subjects">
                                             <option style="text-align: center;">-- Subject --</option>
                                         </select>
 

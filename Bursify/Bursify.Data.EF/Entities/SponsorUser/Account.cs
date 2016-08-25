@@ -12,7 +12,6 @@ namespace Bursify.Data.EF.Entities.User
         public long ExpirationYear { get; set; }
         public int ExpirationMonth { get; set; }
         public int CvvNumber { get; set; }
-
         public virtual Sponsor Sponsor { get; set; }
     }
 }

@@ -117,9 +117,15 @@
     <Compile Include="EntityMappings\UserActivityMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
+<<<<<<< HEAD
+    <Compile Include="Migrations\201608251544342_initial.cs" />
+    <Compile Include="Migrations\201608251544342_initial.Designer.cs">
+      <DependentUpon>201608251544342_initial.cs</DependentUpon>
+=======
     <Compile Include="Migrations\201608251009161_initial.cs" />
     <Compile Include="Migrations\201608251009161_initial.Designer.cs">
       <DependentUpon>201608251009161_initial.cs</DependentUpon>
+>>>>>>> 75e85113c404e9e470275b88e571161609e33e7a
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,8 +158,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <EmbeddedResource Include="Migrations\201608251544342_initial.resx">
+      <DependentUpon>201608251544342_initial.cs</DependentUpon>
+=======
     <EmbeddedResource Include="Migrations\201608251009161_initial.resx">
       <DependentUpon>201608251009161_initial.cs</DependentUpon>
+>>>>>>> 75e85113c404e9e470275b88e571161609e33e7a
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
