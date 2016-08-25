@@ -60,8 +60,14 @@ namespace Bursify.Web.Models
 
         public static List<SubjectViewModel> MapMultipleSubjects(List<Subject> reportViewModels)
         {
-            var subjectViewModel = new SubjectViewModel();
-            return reportViewModels.Select(subjectViewModel.MapSingleSubject).ToList();
+            //var subjectViewModel = (new SubjectViewModel());
+            var list = new List<SubjectViewModel>();
+
+            foreach(var sub in reportViewModels)
+            {
+                list.Add((new SubjectViewModel()).MapSingleSubject(sub));
+            }
+            return list;
         }
     }
 }

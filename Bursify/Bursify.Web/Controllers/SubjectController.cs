@@ -69,7 +69,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("AddSubjects")]
-        public HttpResponseMessage GetSubject(HttpRequestMessage request, List<Subject> subjects)
+        public HttpResponseMessage AddSubjects(HttpRequestMessage request, List<Subject> subjects)
         {
             var mappedSubjects = SubjectViewModel.MapMultipleSubjects(subjects);
             var studentSubjects = new List<Subject>();

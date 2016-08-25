@@ -117,9 +117,9 @@
     <Compile Include="EntityMappings\UserActivityMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
-    <Compile Include="Migrations\201608251009161_initial.cs" />
-    <Compile Include="Migrations\201608251009161_initial.Designer.cs">
-      <DependentUpon>201608251009161_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201608251648305_initial.cs" />
+    <Compile Include="Migrations\201608251648305_initial.Designer.cs">
+      <DependentUpon>201608251648305_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,8 +152,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608251009161_initial.resx">
-      <DependentUpon>201608251009161_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608251648305_initial.resx">
+      <DependentUpon>201608251648305_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

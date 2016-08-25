@@ -237,6 +237,7 @@ namespace Bursify.Data.EF.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         StudentId = c.Int(nullable: false),
                         Average = c.Int(),
+                        ReportYear = c.String(),
                         ReportLevel = c.String(),
                         ReportPeriod = c.String(),
                         ReportInstitution = c.String(),

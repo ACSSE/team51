@@ -43,15 +43,15 @@
             $scope.userData.displayUserInfo();
 
             if ($scope.user.UserType == "Student") {
-                $location.path('/bursify/student/home');
+                $location.path('/student/home');
                 notificationService.displaySuccess('Welcome back ' + $scope.user.Name + " !");
            } else if ($scope.user.UserType == "Sponsor") {
-                $location.path('/bursify/sponsor/home');
+                $location.path('/sponsor/home');
               
                 notificationService.displaySuccess('Welcome back ' + $scope.user.Name + ".");
 
             } else if ($scope.user.UserType == "Admin") {
-                $location.path('/bursify/admin/home');
+                $location.path('/admin/home');
                 notificationService.displaySuccess('Admin ' + $scope.user.Name);
 
             }

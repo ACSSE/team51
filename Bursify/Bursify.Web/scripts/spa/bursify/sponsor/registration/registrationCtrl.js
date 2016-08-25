@@ -101,7 +101,7 @@
             $scope.user.Name = $scope.Sponsor.CompanyName;
             membershipService.saveCredentials($scope.user);
             $scope.userData.displayUserInfo();
-            $location.path('/bursify/sponsor/home');
+            $location.path('/sponsor/home');
         }
 
         function failed() {

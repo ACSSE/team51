@@ -54,7 +54,9 @@ namespace Bursify.Web.Controllers
 
             _studentApi.SaveStudentReport(newReport);
 
-            var response = request.CreateResponse(HttpStatusCode.Created, reportViewModel);
+            var report = (new StudentReportViewModel()).MapSingleReport(newReport);
+
+            var response = request.CreateResponse(HttpStatusCode.Created, report);
 
             return response;
         }

@@ -17,7 +17,7 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/Vendors/toastr.js",
                 "~/Scripts/Vendors/jquery.raty.js",
                 "~/Scripts/Vendors/respond.src.js",
-               
+
                 "~/Scripts/Vendors/fusionchart.js",
                  "~/Scripts/Vendors/fusioncharts.charts.js",
                 "~/Scripts/Vendors/angular.js",
@@ -34,15 +34,15 @@ namespace Bursify.Web.App_Start
                  "~/Scripts/Vendors/angular-material.min.js",
                 "~/Scripts/Vendors/angular-hamburger-toggle.js",
                  "~/Scripts/Vendors/angular-sanitize.js",
-               
+
                 "~/Scripts/Vendors/angucomplete-alt.min.js",
                 "~/Scripts/Vendors/ui-bootstrap-tpls-0.13.1.js",
-            
+
                 "~/Scripts/Vendors/underscore.js",
                 "~/Scripts/Vendors/raphael.js",
                 "~/Scripts/Vendors/md-table.min.js",
                 "~/Scripts/Vendors/loading-bar.js",
-             
+
 
                  "~/ Content/assets/js/main.js"
                 ));
@@ -107,8 +107,6 @@ namespace Bursify.Web.App_Start
          "~/content/assets/css/style.css",
           "~/content/dist/css/AdminLTE.min.css",
           "~/Scripts/Vendors/angular-material.min.css"
-     
-
 
 
                 ));
