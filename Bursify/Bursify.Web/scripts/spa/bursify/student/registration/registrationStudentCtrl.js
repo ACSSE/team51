@@ -1539,8 +1539,49 @@
 
         function saveStudentDone() {
             notificationService.displayInfo('saveStudentDone')
-            $location.path('bursify/student/home');
+            // save report now
+          
         }
+
+        function saveReport() {
+            // save subject
+        //         public int ID { get; set; }
+        //public int StudentId { get; set; }
+        //public int Average { get; set; }
+        //public string ReportLevel { get; set; }
+        //public string ReportPeriod { get; set; }
+            //public string ReportInstitution { get; set; }
+
+            $scope.Report = {}
+
+            $scope.Report.StudentId = $rootScope.repository.loggedUser.userIden;
+            $scope.Report.ReportLevel = $scope.Student.StudentLevel.grade;
+         //   $scope.Report.ReportPeriod = $scope.Student.
+        }
+
+        function saveReportDone() {
+            // call save subject
+        }
+
+        function saveReportFailed() {
+
+        }
+
+        function saveSubjects() {
+
+        }
+
+        function saveSubjectsDone() {
+            // registration complete
+            notificationService.displayInfo('Account Setup Complete');
+            $location.path('/student/home');
+        }
+
+        function saveSubjectsFailed() {
+
+        }
+
+
 
         function saveStudentFailed() {
             notificationService.displayError('Account set up Failed');

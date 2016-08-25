@@ -26,17 +26,17 @@
                 templateUrl: "scripts/spa/account/register.html",
                 controller: "registerCtrl"
             })
-            .when("/bursify/student/home", {
+            .when("/student/home", {
                 templateUrl: "scripts/spa/bursify/student/home/index.html",
                 controller: "studentCtrl",
                // resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/bursify/sponsor/home", {
+            .when("/sponsor/home", {
                 templateUrl: "scripts/spa/bursify/sponsor/home/index.html",
                 controller: "sponsorCtrl",
                 // resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/bursify/admin/home", {
+            .when("/admin/home", {
                 templateUrl: "scripts/spa/bursify/admin/home/index.html",
                 controller: "adminCtrl",
                 // resolve: { isAuthenticated: isAuthenticated }

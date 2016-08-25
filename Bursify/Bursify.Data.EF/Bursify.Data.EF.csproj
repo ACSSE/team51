@@ -117,21 +117,9 @@
     <Compile Include="EntityMappings\UserActivityMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
-    <Compile Include="Migrations\201608241631416_init.cs" />
-    <Compile Include="Migrations\201608241631416_init.Designer.cs">
-      <DependentUpon>201608241631416_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608241731249_StudentTableUpdate.cs" />
-    <Compile Include="Migrations\201608241731249_StudentTableUpdate.Designer.cs">
-      <DependentUpon>201608241731249_StudentTableUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608241828438_UserAddressUpdate.cs" />
-    <Compile Include="Migrations\201608241828438_UserAddressUpdate.Designer.cs">
-      <DependentUpon>201608241828438_UserAddressUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608241917557_CampaignTableUpdate.cs" />
-    <Compile Include="Migrations\201608241917557_CampaignTableUpdate.Designer.cs">
-      <DependentUpon>201608241917557_CampaignTableUpdate.cs</DependentUpon>
+    <Compile Include="Migrations\201608251009161_initial.cs" />
+    <Compile Include="Migrations\201608251009161_initial.Designer.cs">
+      <DependentUpon>201608251009161_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,17 +152,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608241631416_init.resx">
-      <DependentUpon>201608241631416_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608241731249_StudentTableUpdate.resx">
-      <DependentUpon>201608241731249_StudentTableUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608241828438_UserAddressUpdate.resx">
-      <DependentUpon>201608241828438_UserAddressUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608241917557_CampaignTableUpdate.resx">
-      <DependentUpon>201608241917557_CampaignTableUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608251009161_initial.resx">
+      <DependentUpon>201608251009161_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

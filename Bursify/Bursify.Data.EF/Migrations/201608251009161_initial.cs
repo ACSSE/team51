@@ -3,7 +3,7 @@ namespace Bursify.Data.EF.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -17,6 +17,26 @@ namespace Bursify.Data.EF.Migrations
                         ExpirationYear = c.Long(),
                         ExpirationMonth = c.Int(),
                         CvvNumber = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Sponsor", t => t.ID)
+                .Index(t => t.ID);
+            
+            CreateTable(
+                "dbo.Sponsor",
+                c => new
+                    {
+                        ID = c.Int(nullable: false),
+                        CompanyName = c.String(),
+                        Industry = c.String(),
+                        Website = c.String(),
+                        Location = c.String(),
+                        CompanyEmail = c.String(),
+                        NumberOfStudentsSponsored = c.Int(),
+                        NumberOfSponsorships = c.Int(),
+                        NumberOfApplicants = c.Int(),
+                        BursifyRank = c.Int(),
+                        BursifyScore = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.BursifyUser", t => t.ID)
@@ -62,12 +82,10 @@ namespace Bursify.Data.EF.Migrations
                         BursifyUserId = c.Int(nullable: false),
                         AddressType = c.String(maxLength: 50),
                         PreferredAddress = c.String(),
-                        HouseNumber = c.String(maxLength: 50),
-                        StreetName = c.String(maxLength: 200),
+                        StreetAddress = c.String(maxLength: 200),
                         Province = c.String(maxLength: 200),
                         City = c.String(maxLength: 200),
-                        PostOfficeBoxNumber = c.Long(),
-                        PostOfficeName = c.String(maxLength: 200),
+                        PostOfficeBoxNumber = c.String(),
                         PostalCode = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.ID)
@@ -115,6 +133,21 @@ namespace Bursify.Data.EF.Migrations
                 .Index(t => t.StudentId);
             
             CreateTable(
+                "dbo.CampaignAccount",
+                c => new
+                    {
+                        ID = c.Int(nullable: false),
+                        AccountName = c.String(nullable: false, maxLength: 200),
+                        AccountNumber = c.String(nullable: false, maxLength: 50),
+                        BankName = c.String(nullable: false, maxLength: 50),
+                        BranchName = c.String(maxLength: 50),
+                        BranchCode = c.String(maxLength: 50),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Campaign", t => t.ID)
+                .Index(t => t.ID);
+            
+            CreateTable(
                 "dbo.CampaignSponsor",
                 c => new
                     {
@@ -131,82 +164,6 @@ namespace Bursify.Data.EF.Migrations
                 .Index(t => t.SponsorId);
             
             CreateTable(
-                "dbo.Sponsor",
-                c => new
-                    {
-                        ID = c.Int(nullable: false),
-                        CompanyName = c.String(),
-                        Industry = c.String(),
-                        Website = c.String(),
-                        Location = c.String(),
-                        CompanyEmail = c.String(),
-                        NumberOfStudentsSponsored = c.Int(),
-                        NumberOfSponsorships = c.Int(),
-                        NumberOfApplicants = c.Int(),
-                        BursifyRank = c.Int(),
-                        BursifyScore = c.Int(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.BursifyUser", t => t.ID)
-                .Index(t => t.ID);
-            
-            CreateTable(
-                "dbo.Sponsorship",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        SponsorId = c.Int(nullable: false),
-                        Name = c.String(maxLength: 500),
-                        SponsorshipType = c.String(),
-                        Description = c.String(),
-                        ClosingDate = c.DateTime(),
-                        EssayRequired = c.Boolean(),
-                        SponsorshipValue = c.Double(),
-                        StudyFields = c.String(),
-                        Province = c.String(maxLength: 100),
-                        AverageMarkRequired = c.Int(),
-                        EducationLevel = c.String(maxLength: 200),
-                        PreferredInstitutions = c.String(maxLength: 500),
-                        ExpensesCovered = c.String(maxLength: 500),
-                        TermsAndConditions = c.String(),
-                        NumberOfViews = c.Int(),
-                        AgeGroup = c.String(),
-                        Rating = c.Int(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Sponsor", t => t.SponsorId, cascadeDelete: true)
-                .Index(t => t.SponsorId);
-            
-            CreateTable(
-                "dbo.Requirement",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        SponsorshipId = c.Int(nullable: false),
-                        Name = c.String(),
-                        MarkRequired = c.Int(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Sponsorship", t => t.SponsorshipId, cascadeDelete: true)
-                .Index(t => t.SponsorshipId);
-            
-            CreateTable(
-                "dbo.StudentSponsorship",
-                c => new
-                    {
-                        StudentId = c.Int(nullable: false),
-                        SponsorshipId = c.Int(nullable: false),
-                        ApplicationDate = c.DateTime(),
-                        Status = c.String(),
-                        SponsorshipOffered = c.Boolean(),
-                    })
-                .PrimaryKey(t => new { t.StudentId, t.SponsorshipId })
-                .ForeignKey("dbo.Sponsorship", t => t.SponsorshipId, cascadeDelete: true)
-                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
-                .Index(t => t.StudentId)
-                .Index(t => t.SponsorshipId);
-            
-            CreateTable(
                 "dbo.Student",
                 c => new
                     {
@@ -215,6 +172,7 @@ namespace Bursify.Data.EF.Migrations
                         IDNumber = c.String(),
                         Firstname = c.String(),
                         Surname = c.String(maxLength: 200),
+                        Headline = c.String(),
                         EducationLevel = c.String(maxLength: 50),
                         AverageMark = c.Int(),
                         StudentNumber = c.String(maxLength: 50),
@@ -301,6 +259,62 @@ namespace Bursify.Data.EF.Migrations
                 .Index(t => t.StudentReportId);
             
             CreateTable(
+                "dbo.StudentSponsorship",
+                c => new
+                    {
+                        StudentId = c.Int(nullable: false),
+                        SponsorshipId = c.Int(nullable: false),
+                        ApplicationDate = c.DateTime(),
+                        Status = c.String(),
+                        SponsorshipOffered = c.Boolean(),
+                    })
+                .PrimaryKey(t => new { t.StudentId, t.SponsorshipId })
+                .ForeignKey("dbo.Sponsorship", t => t.SponsorshipId, cascadeDelete: true)
+                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
+                .Index(t => t.StudentId)
+                .Index(t => t.SponsorshipId);
+            
+            CreateTable(
+                "dbo.Sponsorship",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        SponsorId = c.Int(nullable: false),
+                        Name = c.String(maxLength: 500),
+                        SponsorshipType = c.String(),
+                        Description = c.String(),
+                        ClosingDate = c.DateTime(),
+                        EssayRequired = c.Boolean(),
+                        SponsorshipValue = c.Double(),
+                        StudyFields = c.String(),
+                        Province = c.String(maxLength: 100),
+                        AverageMarkRequired = c.Int(),
+                        EducationLevel = c.String(maxLength: 200),
+                        PreferredInstitutions = c.String(maxLength: 500),
+                        ExpensesCovered = c.String(maxLength: 500),
+                        TermsAndConditions = c.String(),
+                        NumberOfViews = c.Int(),
+                        AgeGroup = c.String(),
+                        Rating = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Sponsor", t => t.SponsorId, cascadeDelete: true)
+                .Index(t => t.SponsorId);
+            
+            CreateTable(
+                "dbo.Requirement",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        SponsorshipId = c.Int(nullable: false),
+                        Name = c.String(),
+                        MarkRequired = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Sponsorship", t => t.SponsorshipId, cascadeDelete: true)
+                .Index(t => t.SponsorshipId);
+            
+            CreateTable(
                 "dbo.CampaignBursifyUsers",
                 c => new
                     {
@@ -317,64 +331,67 @@ namespace Bursify.Data.EF.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Account", "ID", "dbo.BursifyUser");
-            DropForeignKey("dbo.Student", "ID", "dbo.BursifyUser");
+            DropForeignKey("dbo.Account", "ID", "dbo.Sponsor");
             DropForeignKey("dbo.Sponsor", "ID", "dbo.BursifyUser");
+            DropForeignKey("dbo.Student", "ID", "dbo.BursifyUser");
             DropForeignKey("dbo.CampaignReport", "CampaignId", "dbo.Campaign");
             DropForeignKey("dbo.CampaignBursifyUsers", "BursifyUser_ID", "dbo.BursifyUser");
             DropForeignKey("dbo.CampaignBursifyUsers", "Campaign_ID", "dbo.Campaign");
             DropForeignKey("dbo.Campaign", "StudentId", "dbo.Student");
-            DropForeignKey("dbo.CampaignSponsor", "SponsorId", "dbo.Sponsor");
             DropForeignKey("dbo.StudentSponsorship", "StudentId", "dbo.Student");
+            DropForeignKey("dbo.StudentSponsorship", "SponsorshipId", "dbo.Sponsorship");
+            DropForeignKey("dbo.Sponsorship", "SponsorId", "dbo.Sponsor");
+            DropForeignKey("dbo.Requirement", "SponsorshipId", "dbo.Sponsorship");
             DropForeignKey("dbo.StudentReport", "StudentId", "dbo.Student");
             DropForeignKey("dbo.Subject", "StudentReportId", "dbo.StudentReport");
             DropForeignKey("dbo.SponsorStudentNotification", "StudentId", "dbo.Student");
             DropForeignKey("dbo.SponsorStudentNotification", "SponsorId", "dbo.Sponsor");
             DropForeignKey("dbo.Student", "InstitutionID", "dbo.Institution");
-            DropForeignKey("dbo.StudentSponsorship", "SponsorshipId", "dbo.Sponsorship");
-            DropForeignKey("dbo.Sponsorship", "SponsorId", "dbo.Sponsor");
-            DropForeignKey("dbo.Requirement", "SponsorshipId", "dbo.Sponsorship");
+            DropForeignKey("dbo.CampaignSponsor", "SponsorId", "dbo.Sponsor");
             DropForeignKey("dbo.CampaignSponsor", "CampaignId", "dbo.Campaign");
+            DropForeignKey("dbo.CampaignAccount", "ID", "dbo.Campaign");
             DropForeignKey("dbo.CampaignReport", "BursifyUserId", "dbo.BursifyUser");
             DropForeignKey("dbo.UserAddress", "BursifyUserId", "dbo.BursifyUser");
             DropForeignKey("dbo.UserActivity", "BursifyUserId", "dbo.BursifyUser");
             DropIndex("dbo.CampaignBursifyUsers", new[] { "BursifyUser_ID" });
             DropIndex("dbo.CampaignBursifyUsers", new[] { "Campaign_ID" });
+            DropIndex("dbo.Requirement", new[] { "SponsorshipId" });
+            DropIndex("dbo.Sponsorship", new[] { "SponsorId" });
+            DropIndex("dbo.StudentSponsorship", new[] { "SponsorshipId" });
+            DropIndex("dbo.StudentSponsorship", new[] { "StudentId" });
             DropIndex("dbo.Subject", new[] { "StudentReportId" });
             DropIndex("dbo.StudentReport", new[] { "StudentId" });
             DropIndex("dbo.SponsorStudentNotification", new[] { "StudentId" });
             DropIndex("dbo.SponsorStudentNotification", new[] { "SponsorId" });
             DropIndex("dbo.Student", new[] { "InstitutionID" });
             DropIndex("dbo.Student", new[] { "ID" });
-            DropIndex("dbo.StudentSponsorship", new[] { "SponsorshipId" });
-            DropIndex("dbo.StudentSponsorship", new[] { "StudentId" });
-            DropIndex("dbo.Requirement", new[] { "SponsorshipId" });
-            DropIndex("dbo.Sponsorship", new[] { "SponsorId" });
-            DropIndex("dbo.Sponsor", new[] { "ID" });
             DropIndex("dbo.CampaignSponsor", new[] { "SponsorId" });
             DropIndex("dbo.CampaignSponsor", new[] { "CampaignId" });
+            DropIndex("dbo.CampaignAccount", new[] { "ID" });
             DropIndex("dbo.Campaign", new[] { "StudentId" });
             DropIndex("dbo.CampaignReport", new[] { "BursifyUserId" });
             DropIndex("dbo.CampaignReport", new[] { "CampaignId" });
             DropIndex("dbo.UserAddress", new[] { "BursifyUserId" });
             DropIndex("dbo.UserActivity", new[] { "BursifyUserId" });
+            DropIndex("dbo.Sponsor", new[] { "ID" });
             DropIndex("dbo.Account", new[] { "ID" });
             DropTable("dbo.CampaignBursifyUsers");
+            DropTable("dbo.Requirement");
+            DropTable("dbo.Sponsorship");
+            DropTable("dbo.StudentSponsorship");
             DropTable("dbo.Subject");
             DropTable("dbo.StudentReport");
             DropTable("dbo.SponsorStudentNotification");
             DropTable("dbo.Institution");
             DropTable("dbo.Student");
-            DropTable("dbo.StudentSponsorship");
-            DropTable("dbo.Requirement");
-            DropTable("dbo.Sponsorship");
-            DropTable("dbo.Sponsor");
             DropTable("dbo.CampaignSponsor");
+            DropTable("dbo.CampaignAccount");
             DropTable("dbo.Campaign");
             DropTable("dbo.CampaignReport");
             DropTable("dbo.UserAddress");
             DropTable("dbo.UserActivity");
             DropTable("dbo.BursifyUser");
+            DropTable("dbo.Sponsor");
             DropTable("dbo.Account");
         }
     }
