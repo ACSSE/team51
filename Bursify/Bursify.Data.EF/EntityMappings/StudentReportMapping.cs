@@ -22,6 +22,9 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.Average)
                 .IsOptional();
 
+            this.Property(x => x.ReportYear)
+                .IsOptional();
+
             this.Property(x => x.ReportLevel)
                 .IsOptional();
 
