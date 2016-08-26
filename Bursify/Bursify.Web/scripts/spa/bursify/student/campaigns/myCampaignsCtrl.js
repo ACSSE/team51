@@ -33,8 +33,8 @@
                     $scope.studentName = 'Mike Ross';
                 }
         
-                function campaignsLoadFailed(response) {
-                    notificationService.displayError(response.data);
+                function campaignsLoadFailed() {
+                    notificationService.displayError("Unable to load your Campaigns.");
                 }
                 loadData();
     }

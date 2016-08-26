@@ -17,7 +17,7 @@
                 <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" ng-src="Content/assets/img/mike.jpg" alt="User profile picture">
-                        <h3 class="profile-username text-center">{{user.Name}}</h3>
+                        <h3 class="profile-username text-center">{{user.Firstname}} {{user.Surname}}</h3>
                         <p class="text-muted text-center">University Student</p>
 
                         <!-- About Me Box -->
@@ -27,19 +27,21 @@
                             </div><!-- /.box-header -->
                             <div class="box-body">
                                 <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
-                                <p class="text-muted">
-                                    Bsc I.T student at Univeristy of Johannesburg
+                                <p class="text-muted" ng-if="user.CurrentOccupation == 'High School'">
+                                    High School student at {Name of School}
                                 </p>
-
+                                <p class="text-muted" ng-if="user.CurrentOccupation == 'Tertiary'">
+                                    {Qualification} student at {Insti}
+                                </p>
                                 <hr>
 
                                 <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-                                <p class="text-muted">Johannesburg, Gauteng</p>
+                                <p class="text-muted">{city}, {Province}</p>
 
                                 <hr>
 
                                 <strong><i class="fa fa-file-text-o margin-r-5"></i>Headline</strong>
-                                <p>I am young ambitious and ready to take on the world. </p>
+                                <p>{{user.Headline}} </p>
                                
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->
@@ -82,20 +84,20 @@
                                             <!-- Use floating label instead of placeholder -->
                                             <label>Headline</label>
                                             <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
-                                            <input ng-model="user.Status" type="text">
+                                            <input ng-model="user.Headline" type="text">
                                         </md-input-container>
                                       
                                         <md-input-container class="md-block">
-                                            <label>Essay</label>
+                                            <label>Biography</label>
                                             <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
-                                            <textarea ng-model="user.Essay" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                                            <textarea ng-model="user.Biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
                                         </md-input-container>
 
 
                                     </div><!-- /.box-body -->
 
                                     <div class="col-md-offset-10">
-                                        <md-button md-no-ink class="md-primary"  md-colors="{backgroundColor: 'teal'}">Save</md-button>
+                                        <md-button md-no-ink class="md-primary md-raised"  md-colors="{backgroundColor: 'teal'}" ng-click="saveDetails()">Save</md-button>
                                     </div>
                                 </form>
                             </md-content>

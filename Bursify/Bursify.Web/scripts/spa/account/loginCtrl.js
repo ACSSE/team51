@@ -8,9 +8,12 @@
     function loginCtrl($scope, membershipService, notificationService, $rootScope, $location, apiService) {
         $scope.pageClass = 'page-login';
         
-        $scope.$watch('viewContentLoaded', function () {
+      
+
+        $scope.preload = function () {
+            $scope.userData.isUserLoggedIn = false;
             membershipService.removeCredentials();
-        });
+        }
 
         $scope.login = login;
         $scope.user = {};
