@@ -1492,7 +1492,7 @@
             $scope.StudentP.ID = $scope.Student.ID;
             $scope.StudentP.FirstName = $scope.Student.FirstName;
             $scope.StudentP.Surname = $scope.Student.Surname;
-            $scope.StudentP.EducationLevel = $scope.Student.InstitutionType.level;
+            $scope.StudentP.EducationLevel = $scope.Student.StudentLevel.grade;
             $scope.StudentP.InstitutionID = 1;
             $scope.StudentP.AverageMark = null;
             $scope.StudentP.StudentNumber = $scope.Student.StudentNumber;

@@ -613,6 +613,8 @@
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicantsCtrl.js" />
     <Content Include="scripts\spa\bursify\student\applications\myApplications.html" />
     <Content Include="scripts\spa\bursify\student\applications\myApplicationsCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\campaigns\addAccount.html" />
+    <Content Include="scripts\spa\bursify\student\campaigns\addAccountCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\addCampaign.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\addCampaignCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignDetails.html" />

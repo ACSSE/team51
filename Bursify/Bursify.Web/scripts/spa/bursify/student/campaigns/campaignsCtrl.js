@@ -17,7 +17,7 @@
         $scope.StudentName = '';
         $scope.currentCampaign = {};
         $scope.length = 0;
-
+        
         //For Payments
         $scope.cardNumber = '';
         $scope.CardType = '';

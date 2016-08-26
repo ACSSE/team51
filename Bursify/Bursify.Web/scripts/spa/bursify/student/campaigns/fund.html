@@ -20,7 +20,7 @@
                                         <div class="caption">
                                             <b>{{CampaignName}}</b><br>
                                             <small>{{StudentName}}</small><br><br>
-                                            <p style="margin-top: -5px;">{{Description | limitTo: 28}}</p>
+                                            <p style="margin-top: -5px;">{{Tagline | limitTo: 100}}</p>
                                             <p><span class="glyphicon glyphicon-map-marker">{{CampaignLocation}}</span></p>
                                             <md-progress-linear md-mode="determinate" class="success" value="{{(AmountContributed / AmountRequired)*100 | number:0}}"></md-progress-linear>
                                             <div class="row">
@@ -106,21 +106,11 @@
                                             </md-content>
                                         </md-tab>
                                         <md-tab label="PayPal">
-                                            <md-content class="md-padding">
+                                            <div  class="col-lg-offset-3" style="margin-top:50px">
                                                 <a href="https://www.paypal.com/signin/" target="_blank">
                                                     <img src="../../../../../Images/Payments/payment.png"/>
                                                 </a>
-                                            </md-content>
-                                        </md-tab>
-
-                                        <md-tab label="Bank Details">
-                                            <md-content class="md-padding">
-                                                <h3>Account holder : Mike Ross</h3>
-                                                <h3>Bank: Absa </h3>
-                                                <h3>Branch: Auckland Park</h3>
-                                                <h3>Account number: 28 4018 9565</h3>
-                                                <h3>Branch Code: 632005 </h3>
-                                            </md-content>
+                                            </div>
                                         </md-tab>
                                     </md-tabs>
                                 </md-content>
