@@ -9,11 +9,11 @@
                         <div class="col-md-12 padding-0">
                             <div class="col-md-12 padding-0">
                                 <div class="col-md-6">
-                                    <a ng-href="#">
+                                    <a ng-href="#/student/myCampaigns/{{1}}">
                                         <div class="panel box-v1">
                                             <div class="panel-heading bg-green-active border-none">
                                                 <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
-                                                    <h4 class="text-left"> Live Campaign</h4>
+                                                    <h4 class="text-left"> My Campaign</h4>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6 text-right">
                                                     <h4>
@@ -77,7 +77,7 @@
             <div class="col-lg-3" ng-repeat="campaign in campaigns">
                 <div class="col-lg-12">
                     <div class="thumbnail" style="background-color:white">
-                        <a ng-href="#/student/campaign-details/{{campaign.CampaignId}}">
+                        <a ng-href="#/student/campaign-details/{{campaign.ID}}">
                             <img class="img-rounded" ng-src="/Images/Campaigns/{{campaign.PicturePath}}" alt="campagin picture" style="width:100%;height:200px;">
                         </a>
                              <div class="caption">

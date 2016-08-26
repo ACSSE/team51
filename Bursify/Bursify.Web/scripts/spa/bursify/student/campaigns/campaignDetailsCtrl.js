@@ -83,8 +83,8 @@
                 //close modal 
                 notificationService.displaySuccess("Thank you for the support of R" + $scope.amount);
 
-                $mdDialog.close();
-                $location.path('/student/campaign-details/' + $routeParams.campaignId);
+                $mdDialog.cancel();
+
                 //Take them to campaign view
                 // redirectToCampaignDetails();
             }

@@ -1469,7 +1469,7 @@
 
 
         function saveInstiDone() {
-            notificationService.displayInfo('Success');
+           // notificationService.displayInfo('Success');
             saveStudent();
         }
 
@@ -1538,7 +1538,7 @@
         }
 
         function saveStudentDone() {
-            notificationService.displayInfo('saveStudentDone')
+          //  notificationService.displayInfo('saveStudentDone')
             saveReport()
           
         }
@@ -1586,66 +1586,114 @@
 
         function saveSubjectsDone() {
             // registration complete
-            notificationService.displayInfo('Account Setup Complete');
-            $location.path('/student/home');
+            saveAddress();
         }
 
         function saveSubjectsFailed() {
-
+            notificationService.displayError('Save Subjects Failed');
         }
 
 
 
         function saveStudentFailed() {
-            notificationService.displayError('Account set up Failed');
+            notificationService.displayError('Save Student Failed');
         }
 
 
 
         function saveAddress() {
-            $scope.Address = {
-                "AddressType": "Postal",
-                "PreferredAddress": "",
-                "StreetAddress": "",
-                "Province": "",
-                "City": "",
-                "PostOfficeBoxNumber": "",
-                "PostOfficeName": "",
-                "PostalCode": ""
-            };
-
-
-             $scope.Address.StreetAddress = $scope.Student.ResStreetAddress;
-             $scope.Address.Province = $scope.Student.ResProvince;
-             $scope.Address.City = $scope.Student.ResCity;
-             $scope.Address.PostalCode = $scope.Student.ResPostCode
+    
              //execute when the postal address of the student is the same as the residential address
              if ($scope.PostalSameAs) {
-               
+                 $scope.Address = {
+                     "AddressType": "",
+                     "PreferredAddress": "",
+                     "StreetAddress": "",
+                     "Province": "",
+                     "City": "",
+                     "PostOfficeBoxNumber": "",
+                     "PostOfficeName": "",
+                     "PostalCode": ""
+                 };
+
+
+                 $scope.Address.BursifyUserId = $rootScope.repository.loggedUser.userIden;
+                 $scope.Address.StreetAddress = $scope.Student.ResStreetAddress;
+                 $scope.Address.Province = $scope.Student.ResProvince.name;
+                 $scope.Address.City = $scope.Student.ResCity;
+                 $scope.Address.PostalCode = $scope.Student.ResPostCode
                  $scope.Address.AddressType = "Main";
                  // pass address
 
+                 apiService.post('/api/student/saveaddress', $scope.Address, saveAddressDone, saveAddressFailed);
+
              } else if (!$scope.PostalSameAs) {
                  // pass the address 
+                 $scope.Address = {
+                     "AddressType": "",
+                     "PreferredAddress": "",
+                     "StreetAddress": "",
+                     "Province": "",
+                     "City": "",
+                     "PostOfficeBoxNumber": "",
+                     "PostOfficeName": "",
+                     "PostalCode": ""
+                 };
+
+
+                 $scope.Address.BursifyUserId = $rootScope.repository.loggedUser.userIden;
+                 $scope.Address.StreetAddress = $scope.Student.ResStreetAddress;
+                 $scope.Address.Province = $scope.Student.ResProvince.name;
+                 $scope.Address.City = $scope.Student.ResCity;
+                 $scope.Address.PostalCode = $scope.Student.ResPostCode;
+                 $scope.Address.PreferredAddress = $scope.Student.PreferredAddress;
                  $scope.Address.AddressType = "Residential";
+               //  notificationService.displayInfo('Saved Residential');
                  //call api 
+                 apiService.post('/api/student/saveaddress', $scope.Address, null, saveAddressFailed);
 
                  // pass the postal address
+                 $scope.Address = {
+                     "AddressType": "",
+                     "PreferredAddress": "",
+                     "StreetAddress": "",
+                     "Province": "",
+                     "City": "",
+                     "PostOfficeBoxNumber": "",
+                     "PostOfficeName": "",
+                     "PostalCode": ""
+                 };
                  $scope.Address.AddressType = "Postal";
+                 $scope.Address.BursifyUserId = $rootScope.repository.loggedUser.userIden;
                  $scope.Address.StreetAddress = $scope.Student.PostStreetAddress;
-                 $scope.Address.Province = $scope.Student.PostProvince;
+                 $scope.Address.Province = $scope.Student.PostProvince.name;
                  $scope.Address.City = $scope.Student.PostCity;
                  $scope.Address.PostalCode = $scope.Student.PostPostalCode;
+                 $scope.Address.PostOfficeBoxNumber = $scope.Student.PostPOBox;
+                 $scope.Address.PreferredAddress = $scope.Student.PreferredAddress;
+               //  notificationService.displayInfo('Saved Postal');
                  // call api again
+                 apiService.post('/api/student/saveaddress', $scope.Address, saveAddressDone, saveAddressFailed);
+
              }
+
+             
+
+            
+          //   $location.path('/student/home');
         }
 
+        function saveAddressDone() {
+            notificationService.displayInfo('Your account is ready to go :)');
+            $location.path('/student/home');
+        }
+
+        function saveAddressFailed() {
+            notificationService.displayInfo('Failed');
+        }
    
 
-        //function saveStudentCompleted() {
-        //    notificationService.displayInfo('Account set up complete.');
-        //    $location.path('/student/home');
-        //}
+ 
     
 
         /** Stuff for progress loader **/
