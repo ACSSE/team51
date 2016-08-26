@@ -11,7 +11,7 @@
         $scope.user = {};
        
         $scope.preload = function () {
-            notificationService.displayError('ey');
+         
             $scope.userData.isUserLoggedIn = false;
             membershipService.removeCredentials();
         }
