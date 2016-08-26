@@ -17,6 +17,7 @@ namespace Bursify.Data.EF.Migrations
         protected override void Seed(Uow.DataContext context)
         {
             context.Set<BursifyUser>().AddOrUpdate(CreateStudents().ToArray());
+            context.Set<Institution>().AddOrUpdate(AddSchool());
             context.Set<Student>().AddOrUpdate(AddStudents().ToArray());
         }
 
@@ -44,6 +45,16 @@ namespace Bursify.Data.EF.Migrations
             }
 
             return bursifyUsers;
+        }
+
+        private Institution AddSchool()
+        {
+            return new Institution()
+            {
+                Name = "UJ",
+                Type = "Tertiary",
+                Website = "www.uj.ac.za"
+            };
         }
 
         private List<Student> AddStudents()
@@ -86,7 +97,7 @@ namespace Bursify.Data.EF.Migrations
 
         private string GetRace(int x)
         {
-            string[] raceStrings = {"African", "White", "Asian", "Indian", "Coloured"};
+            string[] raceStrings = { "African", "White", "Asian", "Indian", "Coloured" };
 
             return raceStrings[x];
         }

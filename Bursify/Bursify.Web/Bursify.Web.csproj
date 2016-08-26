@@ -584,6 +584,21 @@
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\campaigns\1.JPG" />
+    <Content Include="Images\campaigns\10.jpg" />
+    <Content Include="Images\campaigns\11.jpg" />
+    <Content Include="Images\campaigns\12.jpg" />
+    <Content Include="Images\campaigns\2.jpg" />
+    <Content Include="Images\campaigns\3.jpg" />
+    <Content Include="Images\campaigns\4.jpg" />
+    <Content Include="Images\campaigns\5.jpg" />
+    <Content Include="Images\campaigns\6.JPG" />
+    <Content Include="Images\campaigns\7.jpg" />
+    <Content Include="Images\campaigns\8.JPG" />
+    <Content Include="Images\campaigns\9.jpg" />
+    <Content Include="Images\campaigns\campaign.jpeg" />
+    <Content Include="Images\campaigns\campaign.jpg" />
+    <Content Include="Images\campaigns\default-campaign.jpg" />
     <Content Include="scripts\spa\account\login.html" />
     <Content Include="scripts\spa\account\loginCtrl.js" />
     <Content Include="scripts\spa\account\payment.png" />
@@ -808,14 +823,8 @@
     <Content Include="Content\images\system\Thumbs.db" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="Content\assets\css\plugins\icheck\skins\square\Thumbs.db" />
-    <None Include="Properties\PublishProfiles\bursify - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\bursify - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\bursify - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\bursify - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\bursifywebapp - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\bursifywebapp - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\bursifywebapp - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\bursifywebapp - Web Deploy.pubxml" />
     <Content Include="scripts\vendors\bower.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
