@@ -7,7 +7,6 @@ namespace Bursify.Web.Models
 {
     public class SubjectViewModel
     {
-
         public int ID { get; set; }
         public int StudentReportID { get; set; }
         public string Name { get; set; }

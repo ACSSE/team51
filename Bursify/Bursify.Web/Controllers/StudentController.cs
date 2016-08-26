@@ -85,15 +85,19 @@ namespace Bursify.Web.Controllers
         public HttpResponseMessage SavePersonalDetails(HttpRequestMessage request, PersonalDetails details)
         {
             var user = _studentApi.GetStudent(details.StudentId);
+            var bursifyUser = _studentApi.GetUserInfo(details.StudentId);
 
             if (user == null) return null;
 
             user.Firstname = details.Firstname;
             user.Surname = details.Surname;
             user.Headline = details.Headline;
-            user.Essay = details.Biograpghy;
+
+            bursifyUser.Biography = details.Biograpghy;
 
             _studentApi.SaveStudent(user);
+
+            _studentApi.UpdateUser(bursifyUser);
 
             var response = request.CreateResponse(HttpStatusCode.Accepted);
 
