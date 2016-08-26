@@ -47,6 +47,10 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MockData, Version=0.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MockData.0.0.6\lib\net40\MockData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -118,15 +122,12 @@
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
 <<<<<<< HEAD
-    <Compile Include="Migrations\201608251544342_initial.cs" />
-    <Compile Include="Migrations\201608251544342_initial.Designer.cs">
-      <DependentUpon>201608251544342_initial.cs</DependentUpon>
-=======
-    <Compile Include="Migrations\201608251009161_initial.cs" />
-    <Compile Include="Migrations\201608251009161_initial.Designer.cs">
-      <DependentUpon>201608251009161_initial.cs</DependentUpon>
->>>>>>> 75e85113c404e9e470275b88e571161609e33e7a
+    <Compile Include="Migrations\201608260553386_initial.cs" />
+    <Compile Include="Migrations\201608260553386_initial.Designer.cs">
+      <DependentUpon>201608260553386_initial.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> e8a4a0bd8baf0739e5534a5d063ef22e7e2b44d1
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
@@ -159,13 +160,13 @@
   </ItemGroup>
   <ItemGroup>
 <<<<<<< HEAD
-    <EmbeddedResource Include="Migrations\201608251544342_initial.resx">
-      <DependentUpon>201608251544342_initial.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="Migrations\201608251009161_initial.resx">
-      <DependentUpon>201608251009161_initial.cs</DependentUpon>
->>>>>>> 75e85113c404e9e470275b88e571161609e33e7a
+    <EmbeddedResource Include="Migrations\201608260553386_initial.resx">
+      <DependentUpon>201608260553386_initial.cs</DependentUpon>
     </EmbeddedResource>
+=======
+    <Content Include="it\MockData.resources.dll" />
+    <Content Include="uk\MockData.resources.dll" />
+>>>>>>> e8a4a0bd8baf0739e5534a5d063ef22e7e2b44d1
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
