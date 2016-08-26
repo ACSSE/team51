@@ -48,6 +48,8 @@ namespace Bursify.Web.App_Start
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
+
+            #region Services
                 "~/Scripts/spa/modules/common.core.js",
                 "~/Scripts/spa/modules/common.ui.js",
                 "~/Scripts/spa/app.js",
@@ -56,6 +58,17 @@ namespace Bursify.Web.App_Start
                 "~/Scripts/spa/services/membershipService.js",
                 "~/Scripts/spa/services/fileUploadService.js",
                 "~/Scripts/spa/account/loginCtrl.js",
+            #endregion
+
+            #region Campaign
+                  "~/Scripts/spa/bursify/student/campaigns/campaignsCtrl.js",
+                  "~/Scripts/spa/bursify/student/campaigns/campaignDetailsCtrl.js",
+                  "~/Scripts/spa/bursify/student/campaigns/addCampaignCtrl.js",
+                  "~/Scripts/spa/bursify/student/campaigns/editCampaignCtrl.js",
+                  "~/Scripts/spa/bursify/student/campaigns/myCampaignsCtrl.js",
+                  "~/Scripts/spa/bursify/student/campaigns/addAccountCtrl.js",
+
+            #endregion
 
                 "~/Scripts/spa/account/registerCtrl.js",
                 "~/Scripts/spa/home/rootCtrl.js",
@@ -69,10 +82,6 @@ namespace Bursify.Web.App_Start
                     "~/Scripts/spa/bursify/sponsor/sponsorship/sponsorshipIndexCtrl.js",
                     "~/Scripts/spa/bursify/sponsor/sponsorship/addSponsorship/addSponsorshipCtrl.js",
                     "~/Scripts/spa/bursify/sponsor/sponsorship/addSponsorship/addTSponsorshipCtrl.js",
-                 "~/Scripts/spa/bursify/student/campaigns/campaignsCtrl.js",
-                  "~/Scripts/spa/bursify/student/campaigns/campaignDetailsCtrl.js",
-                  "~/Scripts/spa/bursify/student/campaigns/addCampaignCtrl.js",
-                  "~/Scripts/spa/bursify/student/campaigns/editCampaignCtrl.js",
                 "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/chart/leaderboardCtrl.js",

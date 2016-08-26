@@ -3,15 +3,18 @@
 
     app.controller('registerCtrl', registerCtrl);
 
-    registerCtrl.$inject = ['$scope', 'membershipService', 'notificationService', '$rootScope', '$location'];
+    registerCtrl.$inject = ['$scope', 'membershipService', 'notificationService', '$rootScope', '$location', '$route'];
 
-    function registerCtrl($scope, membershipService, notificationService, $rootScope, $location) {
+    function registerCtrl($scope, membershipService, notificationService, $rootScope, $location, $route) {
         $scope.pageClass = 'page-login';
         $scope.register = register;
         $scope.user = {};
-        $scope.$watch('viewContentLoaded', function () {
+       
+        $scope.preload = function () {
+         
+            $scope.userData.isUserLoggedIn = false;
             membershipService.removeCredentials();
-        });
+        }
 
         function register() {
             if (!$scope.user.terms) {

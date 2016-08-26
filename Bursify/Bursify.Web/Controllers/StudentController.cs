@@ -80,6 +80,20 @@ namespace Bursify.Web.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("SaveAddress")]
+        public HttpResponseMessage SaveAddress(HttpRequestMessage request, UserAddressViewModel address)
+        {
+            var newAddress = address.ReverseMap();
+
+            _studentApi.SaveAddress(newAddress);
+
+            var response = request.CreateResponse(HttpStatusCode.Created);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("SavePersonalDetails")]
         public HttpResponseMessage SavePersonalDetails(HttpRequestMessage request, PersonalDetails details)

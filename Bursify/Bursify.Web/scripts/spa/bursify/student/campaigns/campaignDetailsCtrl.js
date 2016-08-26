@@ -12,7 +12,9 @@
         //Default values 
         $scope.campaign = {};
         $scope.loadingCampaign = true;
-
+        $scope.vote = "Upvode this Campaign";
+        $scope.numberOfSupporter = 2;
+        $scope.studentId = 1;
         //For Payments
         $scope.cardNumber = '';
         $scope.CardType = '';
@@ -46,10 +48,11 @@
         //Fund Campaign
         $scope.fundCampaign = function (ev,campaign) {
 
+            $scope.StudentName = "Mike Ross";
             $scope.CampaignName = campaign.CampaignName;
             $scope.CampaignLocation = campaign.Location;
             $scope.CampaignId = campaign.CampaignId;
-            $scope.StudentId = campaign.StudentId;
+            $scope.studentId = campaign.StudentId;
             $scope.Tagline = campaign.Tagline;
             $scope.Description = campaign.Description;
             $scope.AmountRequired = campaign.AmountRequired;
@@ -61,7 +64,6 @@
             $scope.AmountContributed = campaign.AmountContributed;
             $scope.FundUsage = campaign.FundUsage;
             $scope.ReasonsToSupport = campaign.ReasonsToSupport;
-            $scope.numberOfSupporter = 0;
 
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 
@@ -78,15 +80,13 @@
                 myCampaignLoadCompleted,
                 myCampaignLoadFailed);
 
-                $scope.AmountContributed = parseInt(campaign.AmountContributed) + parseInt($scope.amount);
+                $scope.AmountContributed = parseInt(campaign.AmountContributed);
                 $scope.numberOfSupporter = $scope.numberOfSupporter + 1;
                 //close modal 
                 notificationService.displaySuccess("Thank you for the support of R" + $scope.amount);
 
-                $mdDialog.close();
+                //$mdDialog.cancel(); // Disable if you want a user to view the see their payment progress on the campaign 
                 $location.path('/student/campaign-details/' + $routeParams.campaignId);
-                //Take them to campaign view
-                // redirectToCampaignDetails();
             }
 
             $scope.cancelFunding = function () {
@@ -96,7 +96,6 @@
             $mdDialog.show({
 
                 controller: 'campaignDetailsCtrl', // this must be the name of your controller
-
 
                 templateUrl: '/Scripts/spa/bursify/student/campaigns/fund.html', //this is the url of the template u call
 
@@ -118,5 +117,26 @@
                 $scope.customFullscreen = (wantsFullScreen === true);
             });
         };
+
+        $scope.upvodeCampaign = function (ev, id) {
+    
+            apiService.post('/api/campaign/EndorseCampaign/?userId=' + $scope.studentId + '&campaignId=' + id, null,
+            upvodeCampaignSucceded,
+            upvodeCampaignFailed);
+
+        };
+
+        function upvodeCampaignSucceded(response) {
+            notificationService.displaySuccess('Campaign has been successfully upvoted');
+            $scope.campaign = response.data;
+
+            $scope.vote = "upvoded";
+            //redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
+        }
+
+        function upvodeCampaignFailed(response) {
+            console.log(response);
+            notificationService.displayError(response.statusText);
+        }
     }
 })(angular.module('BursifyApp'));
