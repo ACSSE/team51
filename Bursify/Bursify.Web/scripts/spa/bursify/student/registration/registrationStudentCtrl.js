@@ -1359,7 +1359,7 @@
                   { id: 8, name: 'North West' },
                   { id: 9, name: 'Western Cape' }
                 ];
-            }, 5);
+            }, 0);
         };
 
 
@@ -1373,7 +1373,7 @@
                   { id: 4, name: 'Indian' },
                   { id: 5, name: 'White' }
                 ];
-            }, 5);
+            }, 0);
         };
 
         $scope.loadFields = function () {
@@ -1451,7 +1451,7 @@
                   { id: 4, name: 'Aunt' },
                   { id: 5, name: 'Gaurdian' }
                 ];
-            }, 5);
+            }, 0);
         };
 
 
@@ -1628,7 +1628,8 @@
                  $scope.Address.StreetAddress = $scope.Student.ResStreetAddress;
                  $scope.Address.Province = $scope.Student.ResProvince.name;
                  $scope.Address.City = $scope.Student.ResCity;
-                 $scope.Address.PostalCode = $scope.Student.ResPostCode
+                 $scope.Address.PostalCode = $scope.Student.ResPostCode;
+                 $scope.Address.PreferredAddress = $scope.Student.PreferredAddress;
                  $scope.Address.AddressType = "Main";
                  // pass address
 
@@ -1638,7 +1639,7 @@
                  // pass the address 
                  $scope.Address = {
                      "AddressType": "",
-                     "PreferredAddress": "",
+                   
                      "StreetAddress": "",
                      "Province": "",
                      "City": "",
