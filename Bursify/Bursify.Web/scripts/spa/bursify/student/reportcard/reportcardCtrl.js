@@ -3,9 +3,9 @@
 
     app.controller('reportcardCtrl', reportcardCtrl);
 
-    reportcardCtrl.$inject = ['$scope','$rootScope', 'apiService', 'notificationService'];
+    reportcardCtrl.$inject = ['$scope','$rootScope', 'apiService', 'notificationService', '$location'];
 
-    function reportcardCtrl($scope, $rootScope, apiService, notificationService) {
+    function reportcardCtrl($scope, $rootScope, apiService, notificationService, $location) {
         $scope.pageClass = 'page-student-reportcard';
         $scope.myDataSource = {
             chart: {
@@ -35,16 +35,24 @@
             }]
         };
   
-       
+        $scope.loadReports = function () {
+            apiService.get('/api/report/GetAllReports/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reportLoadCompleted, reportLoadFailed);
+        }
      
-       // apiService.get('/api/student/GetMyReports/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reportLoadCompleted, reportLoadFailed);
+
+        $scope.myReports = {};
         
-        function reportLoadCompleted() {
+        function reportLoadCompleted(result) {
             notificationService.displayInfo("Load complete");
+            $scope.myReports = result.data;
         }
 
         function reportLoadFailed() {
             notificationService.displayError("Load failed");
+        }
+
+        $scope.AddReport = function () {
+            $location.path('/student/report/add');
         }
 
     }

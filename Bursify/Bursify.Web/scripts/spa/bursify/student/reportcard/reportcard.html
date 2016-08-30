@@ -165,7 +165,7 @@
 
 
 <nav-bar></nav-bar>
-<div id="content" class="bg" ng-controller="reportcardCtrl as ctrl">
+<div id="content" class="bg"  ng-init="loadReports()">
    
     <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'lime'}">
         <div class="md-toolbar-tools">
@@ -176,14 +176,14 @@
     </md-toolbar>
   <md-content class="md-padding">
      
-      <div class="chart-container" >
+     <!--<div class="chart-container" >
           <div fusioncharts
                width="100%"
                height="400"
                type="column2d"
                dataSource="{{myDataSource}}">
           </div>
-      </div>
+      </div>-->
 
   </md-content>
     
@@ -192,7 +192,7 @@
         <div class="md-toolbar-tools">
             <span>My Reports</span>
             <span flex></span>
-            <md-button class="md-raised md-primary" >Add Report</md-button>
+            <md-button class="md-raised md-primary" ng-click="AddReport()">Add Report</md-button>
         </div>
     </md-toolbar>
 
@@ -209,24 +209,25 @@
         </div>
         <div class="row row-horizon">
             
-                <div class="col-md-6" style="padding-bottom: 15px;" ng-repeat="item in myDataSource.data">
+                <div class="col-md-6" style="padding-bottom: 15px;" ng-repeat="report in myReports">
                     <md-card class="_md" md-colors="{backgroundColor: 'green'}" >
                         <md-card-header>
                             <md-card-header-text>
-                                <span class="md-title">University of Johannesburg</span>
-                                <span class="md-subhead">Semester One</span>
+                                <span class="md-title">{{report.ReportInstitution}}</span>
+                                <span class="md-subhead">{{report.ReportPeriod}}</span>
                             </md-card-header-text>
                         </md-card-header>
 
                         <md-card-content>
                             <h1 style="float: right; padding-top: 5%;">
-                                89 %
+                                {{report.Average}} %
                             </h1>
                             <ul>
-                                <li>Module 1</li>
-                                <li>Module 2</li>
-                                <li>Module 3</li>
-                                <li>Module 4</li>
+                                <li>{{report.Subjects[0].Name}}</li>
+                                <li>{{report.Subjects[1].Name}}</li>
+                                <li>{{report.Subjects[2].Name}}</li>
+                                <li>{{report.Subjects[3].Name}}</li>
+                               
                             </ul>
 
                         </md-card-content>

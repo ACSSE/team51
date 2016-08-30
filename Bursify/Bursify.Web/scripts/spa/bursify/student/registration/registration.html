@@ -353,18 +353,18 @@
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <select ng-show="Student.InstitutionType.level == 'High School'" class="form-control" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <select ng-show="Student.InstitutionType.level == 'High School'" class="form-control" ng-model="Student.ReportPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="">-- Term --</option>
-                                        <option value="2016">Term 1</option>
-                                        <option value="2015">Term 2</option>
-                                        <option value="2014">Term 3</option>
-                                        <option value="2013">Term 4</option>
-                                        <option value="2012">Matric Results</option>
+                                        <option value="Term 1">Term 1</option>
+                                        <option value="Term 2">Term 2</option>
+                                        <option value="Term 3">Term 3</option>
+                                        <option value="Term 4">Term 4</option>
+                                       
                                     </select>
-                                    <select class="form-control" ng-show="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <select class="form-control" ng-show="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'"  ng-model="Student.ReportPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="">-- Semester --</option>
-                                        <option value="2016">Semester 1</option>
-                                        <option value="2015">Semester 2</option>
+                                        <option value="Semester 1">Semester 1</option>
+                                        <option value="Semester 2">Semester 2</option>
 
                                     </select>
                                 </div>

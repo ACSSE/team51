@@ -70,6 +70,7 @@
             "CurrentOccupation": "",
             "StudyFields": "",
             "MarksYear": "",
+            "ReportPeriod": "",
             "InstitutionName": "",
             "InstitutionWebsite": "",
             "StudentLevel": "",
@@ -118,6 +119,7 @@
      
 
         var IDFile = null;
+
         function UploadID() {
             $scope.uploading = true;
             fileUploadService.uploadFile(IDFile, $rootScope.repository.loggedUser.userIden, IDUploadDone);
@@ -130,8 +132,7 @@
 
         function prepareID($files) {
             IDFile = $files;
-            UploadID();
-            
+            UploadID();    
         }
 
         $scope.provin = null;
@@ -1243,17 +1244,57 @@
    { "place": "Other" },
               ],
               "subjects": [
-                    { "subject": "Afrikaans FAL" },
+                    { "subject": "Afrikaans SAL" },
+                  { "subject": "Afrikaans FAL" },
                   { "subject": "Afrikaans HL" },
-                  { "subject": "Afrikaans SL" },
-                    { "subject": "English FAL" },
-                  { "subject": "English HL" },
+                   { "subject": "English HL" },
+                  { "subject": "English FAL" },
                    { "subject": "IsiNdebele HL" },
-                     { "subject": "IsiXhosa FAL" },
-                    { "subject": "IsiXhosa HL" },
-                       { "subject": "IsiZulu FAL" },
+                   { "subject": "IsiNdebele FAL" },
+                   { "subject": "IsiXhosa HL" },
+                    { "subject": "IsiXhosa FAL" },
                     { "subject": "IsiZulu HL" },
-
+                    { "subject": "IsiZulu FAL" },
+                     { "subject": "Sepedi HL" },
+                      { "subject": "Sepedi FAL" },
+                     { "subject": "Sesotho HL" },
+                       { "subject": "Sesotho FAL" },
+                       { "subject": "Setswana HL" },
+                       { "subject": "Setswana FAL" },
+                       { "subject": "Siswati HL" },
+                       { "subject": "Siswati FAL" },
+                       { "subject": "Tshivenda HL" },
+                       { "subject": "Tshivenda FAL" },
+                       { "subject": "Xitsonga HL" },
+                       { "subject": "Xitsonga FAL" },
+                       { "subject": "Accounting" },
+                       { "subject": "Agricultural Sciences" },
+                       { "subject": "Agricultural Technology" },
+                       { "subject": "Agricultural Management Practices" },
+                       { "subject": "Business Studies" },
+                       { "subject": "Computer Application Technology" },
+                       { "subject": "Consumer Studies" },
+                       { "subject": "Civil Technology" },
+                       { "subject": "Dance Studies" },
+                       { "subject": "Design" },
+                       { "subject": "Dramatic Arts" },
+                       { "subject": "Economics" },
+                       { "subject": "Electrical Technology" },
+                       { "subject": "Engineering Graphic and Design" },
+                       { "subject": "Geography" },
+                       { "subject": "History" },
+                       { "subject": "Information Technology" },
+                       { "subject": "Hospitality Studies" },
+                       { "subject": "Life Orientation" },
+                       { "subject": "Life Science" },
+                       { "subject": "Mathematics" },
+                       { "subject": "Mathematical Literacy" },
+                       { "subject": "Mechanical Technology" },
+                       { "subject": "Music" },
+                       { "subject": "Physical Sciences" },
+                       { "subject": "Religion Studies" },
+                       { "subject": "Tourism" },
+                       { "subject": "Visual Arts" }
 
               ]
 
@@ -1554,11 +1595,23 @@
 
             $scope.Report = {}
 
+
             $scope.Report.StudentId = $rootScope.repository.loggedUser.userIden;
             $scope.Report.ReportLevel = $scope.Student.StudentLevel.grade;
-            $scope.Report.ReportPeriod = $scope.Student .InstitutionType.level;
+            $scope.Report.ReportPeriod = $scope.Student.ReportPeriod;
             $scope.Report.ReportInstitution = $scope.Student.InstitutionName.place;
             $scope.Report.ReportYear = $scope.Student.MarksYearAttained;
+            var bottom = $scope.count + 1;
+            var top = 0;
+            for (var h = 0; h < $scope.Student.Marks.length; h++) {
+      
+               top += $scope.Student.Marks[h].SubjectMark;
+              
+            }
+
+
+
+            $scope.Report.Average = top/bottom;
             apiService.post('/api/report/savereport', $scope.Report, saveReportDone, saveReportFailed);
         }
 
@@ -1630,7 +1683,7 @@
                  $scope.Address.City = $scope.Student.ResCity;
                  $scope.Address.PostalCode = $scope.Student.ResPostCode;
                  $scope.Address.PreferredAddress = $scope.Student.PreferredAddress;
-                 $scope.Address.AddressType = "Main";
+                 $scope.Address.AddressType = "Residential";
                  // pass address
 
                  apiService.post('/api/student/saveaddress', $scope.Address, saveAddressDone, saveAddressFailed);

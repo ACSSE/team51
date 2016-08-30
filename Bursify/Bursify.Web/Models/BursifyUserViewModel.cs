@@ -7,7 +7,7 @@ namespace Bursify.Web.Models
 {
     public class BursifyUserViewModel
     {
-        public int BursifyUserId { get; set; }
+        public int ID { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
@@ -41,7 +41,7 @@ namespace Bursify.Web.Models
 
         public BursifyUserViewModel ReverseMapUser(BursifyUser user)
         {
-            BursifyUserId = user.ID;
+            ID = user.ID;
             Email = user.Email;
             PasswordHash = user.PasswordHash;
             PasswordSalt = user.PasswordSalt;

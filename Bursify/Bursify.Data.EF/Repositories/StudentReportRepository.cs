@@ -27,10 +27,20 @@ namespace Bursify.Data.EF.Repositories
         {
             var reportCard = _dataSession.UnitOfWork.Context.Set<StudentReport>()
                 .Where(x => x.ID == reportId && x.StudentId == studentId)
-                .Include("Subjects")
+                .Include(x => x.Subjects)
                 .FirstOrDefault();
 
             return reportCard;
+        }
+
+        public List<StudentReport> GetAllReportsWithSubjects(int studentId)
+        {
+            var reports = _dataSession.UnitOfWork.Context.Set<StudentReport>()
+                .Where(x => x.StudentId == studentId)
+                .Include(x => x.Subjects)
+                .ToList();
+
+            return reports;
         }
 
         public List<StudentReport> GetStudentReports(int studentId)
