@@ -47,7 +47,7 @@ namespace Bursify.Web.Models
 
         public List<StudentReportViewModel> MapMultipleReports(List<StudentReport> reportViewModels)
         {
-            return reportViewModels.Select(MapSingleReport).ToList();
+            return reportViewModels.Select(report => (new StudentReportViewModel()).MapSingleReport(report)).ToList();
         }
     }
 }

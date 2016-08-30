@@ -54,7 +54,7 @@ namespace Bursify.Web.Controllers
         {
             var addresses = _studentApi.GetAddressofUser(userId);
 
-            var addressVm = UserAddressViewModel.MapMultipleStudents(addresses);
+            var addressVm = UserAddressViewModel.MapMultipleAddresses(addresses);
 
             var response = request.CreateResponse(HttpStatusCode.OK, addressVm);
 

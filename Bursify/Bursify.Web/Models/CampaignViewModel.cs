@@ -35,7 +35,7 @@ namespace Bursify.Web.Models
         }
 
         public CampaignViewModel SingleCampaignMap(Campaign campaign)
-        { 
+        {
             CampaignId = campaign.ID;
             StudentId = campaign.StudentId;
             CampaignName = campaign.CampaignName;
@@ -74,7 +74,8 @@ namespace Bursify.Web.Models
                 EndDate = this.EndDate,
                 AmountContributed = this.AmountContributed,
                 FundUsage = this.FundUsage,
-                ReasonsToSupport = this.ReasonsToSupport
+                ReasonsToSupport = this.ReasonsToSupport,
+                Status = this.Status
             };
         }
 

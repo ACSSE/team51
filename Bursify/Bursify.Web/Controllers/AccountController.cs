@@ -55,14 +55,14 @@ namespace Bursify.Web.Controllers
         {
             if(userVm.UserType.Equals("Student", System.StringComparison.OrdinalIgnoreCase))
             {
-                var tempUser = _studentApi.GetStudent(userVm.BursifyUserId);
+                var tempUser = _studentApi.GetStudent(userVm.ID);
                 var fullName = tempUser.Firstname + " "
                                 + tempUser.Surname;
                 userVm.Name = fullName;
             }
             else
             {
-                userVm.Name = _studentApi.GetSponsor(userVm.BursifyUserId).CompanyName;
+                userVm.Name = _studentApi.GetSponsor(userVm.ID).CompanyName;
             }
         }
 

@@ -46,7 +46,35 @@ namespace Bursify.Web.Models
             };
         }
 
-        public static List<UserAddressViewModel> MapMultipleStudents(List<UserAddress> address)
+        public UserAddress ReverseMap(UserAddressViewModel model)
+        {
+            return new UserAddress()
+            {
+                ID = model.ID,
+                BursifyUserId = model.BursifyUserId,
+                AddressType = model.AddressType,
+                PreferredAddress = model.PreferredAddress,
+                StreetAddress = model.StreetAddress,
+                Province = model.Province,
+                City = model.City,
+                PostOfficeBoxNumber = model.PostOfficeBoxNumber,
+                PostalCode = model.PostalCode
+            };
+        }
+
+        public static List<UserAddress> ReverseMapMultipleAddresses(List<UserAddressViewModel> address)
+        {
+            List<UserAddress> addressVM = new List<UserAddress>();
+            foreach (var s in address)
+            {
+                UserAddress aVm = (new UserAddressViewModel()).ReverseMap(s);
+                addressVM.Add(aVm);
+            }
+
+            return addressVM;
+        }
+
+        public static List<UserAddressViewModel> MapMultipleAddresses(List<UserAddress> address)
         {
             List<UserAddressViewModel> addressVM = new List<UserAddressViewModel>();
             foreach (var s in address)
