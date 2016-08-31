@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Uow;
@@ -76,11 +77,17 @@ namespace Bursify.Data.EF.Repositories
 
         public List<Sponsorship> LoadSponsorshipSuggestions(Student student)
         {
-            var sponsorships = new List<Sponsorship>();
+            var finalList = new List<StudentReport>();
 
-            if (!student.CurrentOccupation.Equals("Unemployed"))
+            if (!student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase))
             {
-                
+                var sponsorships =
+                    FindMany(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase));
+
+                foreach (var sponsorship in sponsorships)
+                {
+                    
+                }
             }
 
             return null;

@@ -7,6 +7,7 @@ using Bursify.Web.Utility;
 using System.Web;
 using System.Linq;
 using System.IO;
+using Bursify.Api.Students;
 using Bursify.Api.Users;
 
 namespace Bursify.Web.Controllers
@@ -16,11 +17,13 @@ namespace Bursify.Web.Controllers
     {
         private readonly MembershipApi _membershipApi;
         private readonly UserApi _userApi;
+        private readonly StudentApi _studentApi;
 
-        public BursifyUserController(MembershipApi membershipApi, UserApi userApi)
+        public BursifyUserController(MembershipApi membershipApi, UserApi userApi, StudentApi studentApi)
         {
             _membershipApi = membershipApi;
             _userApi = userApi;
+            _studentApi = studentApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -53,6 +56,14 @@ namespace Bursify.Web.Controllers
 
             userVm.PasswordHash = null;
             userVm.PasswordSalt = null;
+
+            var report = _studentApi.GetMostRecentReport(userId);
+            var studentModel = new StudentViewModel(_studentApi.GetStudent(userId));
+
+            if (report != null)
+            {
+                studentModel.AverageMark = report.Average;
+            }
 
             var response = request.CreateResponse(HttpStatusCode.OK, userVm);
 
