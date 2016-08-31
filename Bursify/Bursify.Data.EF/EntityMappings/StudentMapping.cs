@@ -28,9 +28,6 @@ namespace Bursify.Data.EF.EntityMappings
                 .HasMaxLength(50)
                 .IsOptional();
 
-            this.Property(x => x.AverageMark)
-                .IsOptional();
-
             this.Property(x => x.StudentNumber)
                 .HasMaxLength(50)
                 .IsOptional();

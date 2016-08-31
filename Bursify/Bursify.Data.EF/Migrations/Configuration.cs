@@ -73,7 +73,6 @@ namespace Bursify.Data.EF.Migrations
                 student.Firstname = MockData.Person.FirstName();
                 student.Surname = MockData.Person.Surname();
                 student.Headline = MockData.Lorem.Sentence();
-                student.AverageMark = MockData.RandomNumber.Next(20, 100);
                 student.StudentNumber = "201472025";
                 student.Age = MockData.RandomNumber.Next(16, 30);
                 student.HasDisability = MockData.Utils.Boolean();

@@ -76,55 +76,14 @@ namespace Bursify.Data.EF.Repositories
 
         public List<Sponsorship> LoadSponsorshipSuggestions(Student student)
         {
-            //get sponsorships matching the student's education level
-            var sponsorshipList = FindMany(sponsorship =>
-               (sponsorship.EducationLevel == student.EducationLevel));
+            var sponsorships = new List<Sponsorship>();
 
-            //get sponsorships with the student's study field
-            var studyFieldList = sponsorshipList.Where(sponsorship => sponsorship.StudyFields.ToUpper().Contains(student.StudyField.ToUpper())).ToList();
-
-            //from sponsorships with the student's study field
-            //get sponsorships whereby the student qualifies with the average mark
-            var averageMarkList = studyFieldList.Where(sponsorship => sponsorship.AverageMarkRequired > 0).ToList();
-            
-            //utility
-            //var studentSubjects = student.StudentSubjects.ToList();
-
-            //utility
-            var subjectList = studyFieldList.Where(sponsorship => !averageMarkList.Contains(sponsorship)).ToList();
-            
-            var filteredSubjectlist = new List<Sponsorship>();
-
-            foreach (var sponsorship in subjectList)
+            if (!student.CurrentOccupation.Equals("Unemployed"))
             {
-                var sponsorshipSubjects = new List<Sponsorship>();//.Requirements.ToList();
-
-                foreach (var sponsorshipSubject in sponsorshipSubjects)
-                {
-                    var subjectCounter = 0;
-
-                    /*foreach (var studentSubject in studentSubjects)
-                    {
-                        if (sponsorshipSubject.SubjectId != studentSubject.SubjectId) continue;
-
-                        var subjectQualifies = studentSubject.MarkAcquired >= sponsorshipSubject.RequiredMark;
-
-                        if (subjectQualifies)
-                        {
-                            subjectCounter++;
-                        }
-                    }*/
-
-                    /*if (subjectCounter == studentSubjects.Count)
-                    {    
-                        filteredSubjectlist.Add(sponsorship);   
-                    }*/
-                }
+                
             }
 
-            var finalList = (averageMarkList.ToList().Concat(filteredSubjectlist.ToList())).ToList();
-
-            return finalList;
+            return null;
         }
     }
 }

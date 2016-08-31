@@ -28,6 +28,16 @@ namespace Bursify.Web.Controllers
 
             var studentsVm = StudentViewModel.MapMultipleStudents(students);
 
+            foreach (var model in studentsVm)
+            {
+                var report = _studentApi.GetMostRecentReport(model.ID);
+
+                if (report != null)
+                {
+                    model.AverageMark = report.Average;
+                }
+            }
+
             var response = request.CreateResponse(HttpStatusCode.OK, studentsVm);
 
             return response;
@@ -41,6 +51,13 @@ namespace Bursify.Web.Controllers
             var student = _studentApi.GetStudent(studentId);
 
             var model = new StudentViewModel(student);
+
+            var report = _studentApi.GetMostRecentReport(studentId);
+
+            if (report != null)
+            {
+                model.AverageMark = report.Average;
+            }
 
             var response = request.CreateResponse(HttpStatusCode.OK, model);
 
