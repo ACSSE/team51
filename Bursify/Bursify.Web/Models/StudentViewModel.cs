@@ -55,7 +55,6 @@ namespace Bursify.Web.Models
             Surname = student.Surname;
             Headline = student.Headline;
             EducationLevel = student.EducationLevel;
-            AverageMark = student.AverageMark;
             StudentNumber = student.StudentNumber;
             IDNumber = student.IDNumber;
             Age = student.Age;
@@ -91,7 +90,6 @@ namespace Bursify.Web.Models
                 Surname = this.Surname,
                 Headline = this.Headline,
                 EducationLevel = this.EducationLevel,
-                AverageMark = this.AverageMark,
                 StudentNumber = this.StudentNumber,
                 IDNumber = this.IDNumber,
                 Age = this.Age,
@@ -127,7 +125,6 @@ namespace Bursify.Web.Models
                 Surname = model.Surname,
                 Headline = model.Headline,
                 EducationLevel = model.EducationLevel,
-                AverageMark = model.AverageMark,
                 StudentNumber = model.StudentNumber,
                 IDNumber = model.IDNumber,
                 Age = model.Age,

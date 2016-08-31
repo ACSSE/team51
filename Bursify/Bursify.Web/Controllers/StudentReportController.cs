@@ -60,6 +60,20 @@ namespace Bursify.Web.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet]
+        [Route("GetMostRecentReport")]
+        public HttpResponseMessage GetMostRecentReport(HttpRequestMessage request, int studentId)
+        {
+            var report = _studentApi.GetMostRecentReport(studentId);
+
+            var reportVm = (new StudentReportViewModel()).MapSingleReport(report);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, reportVm);
+
+            return response;
+        }
+
+        [AllowAnonymous]
         [HttpPost]
         [Route("SaveReport")]
         public HttpResponseMessage SaveReport(HttpRequestMessage request, StudentReportViewModel reportViewModel)

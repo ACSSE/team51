@@ -22,7 +22,6 @@ namespace Bursify.Data.EF.Entities.StudentUser
         public string Surname { get; set; }
         public string Headline { get; set; }
         public string EducationLevel { get; set; }
-        public int AverageMark { get; set; }
         public string StudentNumber { get; set; }
         public int Age { get; set; }
         public bool HasDisability { get; set; }
