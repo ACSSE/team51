@@ -1240,13 +1240,13 @@
 
 
             $scope.ReportP.Average = Math.ceil(top / bottom);
-         //   apiService.post('/api/report/savereport', $scope.Report, saveReportDone, saveReportFailed);
+          apiService.post('/api/report/savereport', $scope.ReportP, saveReportDone, saveReportFailed);
         }
 
 
 
         function saveReportDone(result) {
-            // call save subject
+        
             $scope.myReportID = {};
             $scope.myReportID = result.data.ID;
             saveSubjects();
