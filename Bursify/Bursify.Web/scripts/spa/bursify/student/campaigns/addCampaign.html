@@ -18,9 +18,13 @@
                             <div class="col-lg-8" style="background-color:white;">
                                 <md-content class="md-padding">
                                     <div class="box-body">
-                                        <label>My Campaign Details</label>
+                                        <label>My Campaign Name</label>
                                         <div class="form-group">
                                             <input type="text" class="form-control" ng-model="campaign.CampaignName" placeholder="Campaign Name or Title">
+                                        </div>
+                                        <label>Campaign Tagline</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" ng-model="campaign.Tagline" placeholder="Campaign Name or Title">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -80,18 +84,27 @@
                                             </div>
                                         </div>
 
-
-
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Upload Campaign image</label>
-                                                <input type="file" ng-model="campaign.PicturePath" class="form-control">
+                                                <label>Campaign Picture</label><br />
+                                                <div class="fileUpload btn btn-primary">
+                                                    <span>Upload</span>
+                                                    <input id="uploadIDBtn" type="file" ng-model="campaign.PicturePath" class="upload" ng-file-select="prepareVideo($files)" />
+                                                </div>
+
+                                                <input id="uploadIDFile" type="text" ng-model="campaign.PicturePath" placeholder="Campaign Image" disabled="disabled" />
+                                                <label>File uploaded is {{campaign.PicturePath}}</label>
                                             </div>
+
                                             <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Campaign Video</label>
-                                                    <input type="file" ng-model="campaign.VideoPath" class="form-control">
-                                                </div><!-- /.form-group -->
+                                                <label>Campaign Video</label><br />
+                                                <div class="fileUpload btn btn-primary">
+                                                    <span>Upload</span>
+                                                    <input id="uploadVideoBtn" type="file" ng-model="campaign.VideoPath" class="upload" ng-file-select="prepareVideo($files)" />
+                                                </div>
+
+                                                <input id="uploadIDVideoFile" type="text" ng-model="campaign.VideoPath" placeholder="Campaign Image" disabled="disabled" />
+                                                <label>File uploaded is {{campaign.VideoPath}}</label>
                                             </div>
 
                                         </div>
@@ -99,11 +112,9 @@
                                 </md-content>
                             </div>
                             <div class="col-md-4">
-
-
                                 <div class="thumbnail" style="background-color:white">
 
-                                    <img class="img-rounded" src="/Images/Campaigns/{{campaign.PicturePath}}" ng-model="PicturePath" alt="campagin picture" style="width:100%;height:200px;">
+                                    <img class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture" style="width:100%;height:200px;">
                                     <div class="caption">
                                         <b>{{campaign.CampaignName}}</b><br>
                                         <small>{{StudentName}}</small><br><br>
@@ -197,7 +208,7 @@
                             <div class="col-md-8" style="background-color: white;">
                                 <h4 style="margin-left:20px">Tell us about your campaign</h4>
                                 <div class="col-md-12">
-                                    <textarea class="form-control" rows="16" cols="200" ng-model="campaign.Tagline" placeholder="Tell the your story..."></textarea>
+                                    <textarea class="form-control" rows="16" cols="200" ng-model="campaign.Description" placeholder="Tell the your story..."></textarea>
                                     <br />
                                 </div>
 
@@ -370,7 +381,7 @@
                                     </div>
                                     <div class="row">
                                         <p style="margin-left:15px">
-                                            {{campaign.Tagline}}
+                                            {{campaign.Description}}
                                         </p>
                                     </div>
                                 </div>

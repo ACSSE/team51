@@ -19,9 +19,11 @@
         $scope.Account.BranchName;
         $scope.Account.BranchCode = 0;
         /* End of Form input */
-
         $scope.addAccount = addAccount;
+
         //Methods 
+
+
         function addAccount() {
             apiService.post('api/Campaign/SaveCampaignAccount', $scope.Account,
             addAccountSucceded,

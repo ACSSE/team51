@@ -3,6 +3,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
+using Bursify.Web.Utility;
+using Bursify.Api.Security;
+using System.Web;
+using System.IO;
+using System.Linq;
 
 namespace Bursify.Web.Controllers
 {
@@ -10,9 +15,11 @@ namespace Bursify.Web.Controllers
     public class CampaignController : ApiController
     {
         private readonly StudentApi _studentApi;
+        private readonly MembershipApi _membershipApi;
 
-        public CampaignController(StudentApi studentApi)
+        public CampaignController(MembershipApi memebershipApi, StudentApi studentApi)
         {
+            _membershipApi = memebershipApi;
             _studentApi = studentApi;
         }
 
@@ -120,7 +127,15 @@ namespace Bursify.Web.Controllers
 
             _studentApi.SaveCampaign(newCampaign);
 
-            var response = request.CreateResponse(HttpStatusCode.Created, campaign);
+            var campaignVm = new CampaignViewModel(newCampaign);
+
+            var student = _studentApi.GetStudent(campaignVm.StudentId);
+
+            campaignVm.Name = student.Firstname;
+
+            campaignVm.Surname = student.Surname ;
+
+            var response = request.CreateResponse(HttpStatusCode.Created, campaignVm);
 
             return response;
         }
@@ -180,5 +195,47 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("UploadImage")]
+        [MimeMultipart]
+        public HttpResponseMessage UploadImage(HttpRequestMessage request, int userId, int campaignId)
+        {
+            var user = _membershipApi.GetUserById(userId);
+
+            if (user == null) return null;
+
+            var imagePath = HttpContext.Current.Server.MapPath("~/Content/BursifyUploads/" + userId + "/images");
+
+            var directory = new DirectoryInfo(imagePath);
+
+            if (!directory.Exists) { directory.Create(); }
+
+            var multipartFormDataStreamProvider = new UploadMultipartFormProvider(directory.FullName);
+
+            // Read the MIME multipart asynchronously 
+            Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
+
+            var localFileName = multipartFormDataStreamProvider
+                .FileData.Select(multiPartData => multiPartData.LocalFileName).FirstOrDefault();
+
+            // Create response
+            if (localFileName == null) return null;
+            var fileUploadResult = new FileUploadResult
+            {
+                LocalFilePath = localFileName,
+                FileName = Path.GetFileName(localFileName),
+                FileLength = new FileInfo(localFileName).Length
+            };
+
+            var campaign = _studentApi.GetSingleCampaign(campaignId, userId);
+
+            campaign.PicturePath = fileUploadResult.FileName;
+
+            _studentApi.SaveCampaign(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, fileUploadResult);
+
+            return response;
+        }
     }
 }

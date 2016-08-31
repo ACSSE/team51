@@ -7,6 +7,7 @@ using Bursify.Web.Utility;
 using System.Web;
 using System.Linq;
 using System.IO;
+using Bursify.Api.Students;
 
 namespace Bursify.Web.Controllers
 {
@@ -14,10 +15,12 @@ namespace Bursify.Web.Controllers
     public class BursifyUserController : ApiController
     {
         private readonly MembershipApi _membershipApi;
+        private readonly StudentApi _studentApi;
 
-        public BursifyUserController(MembershipApi membershipApi)
+        public BursifyUserController(MembershipApi membershipApi, StudentApi studentApi)
         {
             _membershipApi = membershipApi;
+            _studentApi = studentApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]

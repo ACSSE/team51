@@ -14,9 +14,9 @@
         
         $scope.campaign.StudentId = $rootScope.repository.loggedUser.userIden;
         $scope.campaign.CampaignName = 'Soccer Event ';
-        $scope.campaign.Tagline = 'Our soccer team will e traveling to europe soon please assist us in reaching our goal';
         $scope.campaign.Location = 'Gauteng';
-        $scope.campaign.Description = 'Please fund us we wanna go out for the first time to england ';
+        $scope.campaign.Description = 'We would like to make an application for £1000 from the AN Other Fund. We are a group of local people in Anytown, and we have recently set up a community group running free sports activities for children in the area. ';
+        $scope.campaign.Tagline = 'Please provide a short description of your campaign';
         $scope.campaign.AmountRequired = 50000;
         $scope.campaign.CampaignType = 'Sport';
         $scope.campaign.VideoPath = 'xxx';
@@ -31,18 +31,41 @@
         $scope.addStudentCampaign = addStudentCampaign;
         
         /* End of Form input */
+        $scope.prepareVideo = prepareVideo;
 
-       //Methods 
+        //Picture
+        var campaignFile = null;
+     
+        var campaignVideo = null;
+        function UploadPicture() {
+            $scope.uploading = true;
+            fileUploadService.uploadCampImage(campaignVideo, $scope.campaign.StudentId, $scope.campaign.id, VideoUploadDone);
+        }
+
+        function VideoUploadDone() {
+            notificationService.displayInfo("Campaign Image has been uploaded.");
+            $scope.uploading = false;
+        }
+
+        function prepareVideo($files) {
+            campaignVideo = $files;
+           // UploadPicture();
+        }
+
         function addStudentCampaign()
         {
-            apiService.post('/api/campaign/SaveCampaign/?campaignId=', $scope.campaign,
+            apiService.post('/api/campaign/SaveCampaign/?campaign', $scope.campaign,
             addCampaignSucceded,
             addCampaignFailed);
         }
 
         function addCampaignSucceded(response) {
             notificationService.displaySuccess($scope.campaign.CampaignName + ' has been submitted to bursify campaign list');
-            $scope.campaign = response.data;
+            //$scope.campaign = response.data;
+
+            $scope.campaign.id = response.data.CampaignId;
+
+            UploadPicture();
 
             redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
         }
