@@ -50,16 +50,16 @@
                     <div class="col-md-2">
                         <select ng-show="Report.InstitutionType.name == 'High School'" class="form-control" ng-model="Report.ReportPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
                             <option value="">-- Term --</option>
-                            <option value="2016">Term 1</option>
-                            <option value="2015">Term 2</option>
-                            <option value="2014">Term 3</option>
-                            <option value="2013">Term 4</option>
+                            <option value="Term 1">Term 1</option>
+                            <option value="Term 2">Term 2</option>
+                            <option value="Term 3">Term 3</option>
+                            <option value="Term 4">Term 4</option>
              
                         </select>
                         <select class="form-control" ng-show="Report.InstitutionType.name == 'University' || Report.InstitutionType.name == 'Private University/College'" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
                             <option value="">-- Semester --</option>
-                            <option value="2016">Semester 1</option>
-                            <option value="2015">Semester 2</option>
+                            <option value="Semester 1">Semester 1</option>
+                            <option value="Semester 2">Semester 2</option>
 
                         </select>
                     </div>
@@ -96,7 +96,7 @@
                     <div class="col-md-9">
                         <div class="form-group">
 
-                            <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="Student.Marks[0]" ng-options="s.subject for s in Student.Institution.subjects">
+                            <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="Student.Marks[0]" ng-options="s.subject for s in Report.InstitutionType.subjects">
                                 <option style="text-align: center;">-- Subject --</option>
                             </select>
 
@@ -128,8 +128,8 @@
                 </div>
 
 
-                <div ng-if="Student.InstitutionType.level" id="MarksInputAdd"></div>
-                <div ng-if="Student.InstitutionType.level" class="row"><div class="col-md-9"></div><div class="col-md-3"><label style="padding-left: 20px;" ng-click="appendText()">Add More Subjects</label><span ng-click="appendText()" class="fa fa-plus-circle fa-2x" style="padding-left:5px;"></span></div></div>
+                <div ng-if="Report.InstitutionType.name" id="MarksInputAdd"></div>
+                <div ng-if="Report.InstitutionType.name" class="row"><div class="col-md-9"></div><div class="col-md-3"><label style="padding-left: 20px;" ng-click="appendText()">Add More Subjects</label><span ng-click="appendText()" class="fa fa-plus-circle fa-2x" style="padding-left:5px;"></span></div></div>
 
             </div>
         </form>
@@ -137,8 +137,8 @@
     </div>
     <div class="row">
 
-        <div class="col-md-offset-11">
-            <md-button class="md-raised md-primary" type="submit" md-colors="{backgroundColor: 'blue'}" ng-click="academic.$valid && nextTab()">Proceed</md-button>
+        <div class="col-md-offset-10">
+            <md-button class="md-raised md-primary" type="submit" md-colors="{backgroundColor: 'blue'}" ng-click="saveReport()">Submit</md-button>
         </div>
     </div>
     </div>

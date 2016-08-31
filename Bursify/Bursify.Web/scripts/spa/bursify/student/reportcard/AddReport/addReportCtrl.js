@@ -3,9 +3,9 @@
 
     app.controller('addReportCtrl', addReportCtrl);
 
-    addReportCtrl.$inject = ['$scope', '$rootScope', 'apiService', 'notificationService'];
+    addReportCtrl.$inject = ['$scope', '$rootScope','$compile','$location', 'apiService', 'notificationService'];
 
-    function addReportCtrl($scope, $rootScope, apiService, notificationService) {
+    function addReportCtrl($scope, $rootScope, $compile, $location, apiService, notificationService) {
     
         $scope.institutionType = $scope.institutionType || [
                {
@@ -1087,13 +1087,66 @@
   { "name": "ZITHOBENI SECONDARY SCHOOL" },
   { "name": "ZITIKENI SECONDARY SCHOOL" },
   { "name": "ZONKIZIZWE SECONDARY SCHOOL" },
-  { "name": "Other" },
-                   ],
+  { "name": "Other" } ],
                    grades: [
                 { "grade": "Grade 10" },
                 { "grade": "Grade 11" },
                 { "grade": "Grade 12" }
                    ],
+                   subjects: [
+                 { "subject": "Afrikaans SAL" },
+               { "subject": "Afrikaans FAL" },
+               { "subject": "Afrikaans HL" },
+                { "subject": "English HL" },
+               { "subject": "English FAL" },
+                { "subject": "IsiNdebele HL" },
+                { "subject": "IsiNdebele FAL" },
+                { "subject": "IsiXhosa HL" },
+                 { "subject": "IsiXhosa FAL" },
+                 { "subject": "IsiZulu HL" },
+                 { "subject": "IsiZulu FAL" },
+                  { "subject": "Sepedi HL" },
+                   { "subject": "Sepedi FAL" },
+                  { "subject": "Sesotho HL" },
+                    { "subject": "Sesotho FAL" },
+                    { "subject": "Setswana HL" },
+                    { "subject": "Setswana FAL" },
+                    { "subject": "Siswati HL" },
+                    { "subject": "Siswati FAL" },
+                    { "subject": "Tshivenda HL" },
+                    { "subject": "Tshivenda FAL" },
+                    { "subject": "Xitsonga HL" },
+                    { "subject": "Xitsonga FAL" },
+                    { "subject": "Accounting" },
+                    { "subject": "Agricultural Sciences" },
+                    { "subject": "Agricultural Technology" },
+                    { "subject": "Agricultural Management Practices" },
+                    { "subject": "Business Studies" },
+                    { "subject": "Computer Application Technology" },
+                    { "subject": "Consumer Studies" },
+                    { "subject": "Civil Technology" },
+                    { "subject": "Dance Studies" },
+                    { "subject": "Design" },
+                    { "subject": "Dramatic Arts" },
+                    { "subject": "Economics" },
+                    { "subject": "Electrical Technology" },
+                    { "subject": "Engineering Graphic and Design" },
+                    { "subject": "Geography" },
+                    { "subject": "History" },
+                    { "subject": "Information Technology" },
+                    { "subject": "Hospitality Studies" },
+                    { "subject": "Life Orientation" },
+                    { "subject": "Life Science" },
+                    { "subject": "Mathematics" },
+                    { "subject": "Mathematical Literacy" },
+                    { "subject": "Mechanical Technology" },
+                    { "subject": "Music" },
+                    { "subject": "Physical Sciences" },
+                    { "subject": "Religion Studies" },
+                    { "subject": "Tourism" },
+                    { "subject": "Visual Arts" }
+
+                   ]
                   
                },
                {
@@ -1128,6 +1181,107 @@
                }
            
         ];
+
+        $scope.count = 0;
+
+        $scope.Student = {
+            
+            "Marks": [{ "SubjectName": "", "SubjectMark": "", "ReportId": "" }]
+       
+        };
+
+        $scope.appendText = function () {
+
+            $scope.count = $scope.count + 1;
+
+            if ($scope.Report.InstitutionType.name == 'University' || $scope.Report.InstitutionType.name == 'Private University/College') {
+                angular.element(document.getElementById('MarksInputAdd')).append($compile("<div class=\'box-body\' id=\'markInput" + $scope.count + "\'><div class=\'col-md-9\'><div class=\'form-group\'> <input type='text' ng-model='Student.Marks[" + $scope.count + "].SubjectName' class='form-control' id='exampleInputEmail1' placeholder='Module Name'></div></div><div class=\'col-md-3\'><div class=\'form-group\'><input type=\'number\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' class=\'form-control\' id=\'exampleInputEmail1\' placeholder=\'%\'></div></div></div>")($scope));
+            } else {
+                angular.element(document.getElementById('MarksInputAdd')).append($compile("<div class=\'box-body\' id=\'markInput" + $scope.count + "\'><div class=\'col-md-9\'><div class=\'form-group\'><select class=\'form-control\' style=\'width: 100%;\' tabindex=\'-1\' aria-hidden=\'true\' ng-model=\"Student.Marks[" + $scope.count + "]\" ng-options=\'s.subject for s in Report.InstitutionType.subjects\'><option value=\'\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' style=\'text-align: center;\'>-- Subject --</option></select></div></div><div class=\'col-md-3\'><div class=\'form-group\'><input type=\'number\' ng-model=\'Student.Marks[" + $scope.count + "].SubjectMark\' class=\'form-control\' id=\'exampleInputEmail1\' placeholder=\'%\'></div></div></div>")($scope));
+            }
+
+        }
+
+        $scope.typeChange = false;
+
+        $scope.removeMarks = function () {
+            if ($scope.typeChange == false) {
+                $scope.typeChange = true;
+            } else {
+
+                for (var i = 0; i <= $scope.count; i++) {
+
+                    angular.element(document.getElementById('markInput' + i)).remove();
+                }
+
+            }
+
+        }
+
+
+        $scope.saveReport = function() {
+           
+            $scope.ReportP = {}
+
+
+            $scope.ReportP.StudentId = $rootScope.repository.loggedUser.userIden;
+            $scope.ReportP.ReportLevel = $scope.Report.ReportLevel.grade;
+            $scope.ReportP.ReportPeriod = $scope.Report.ReportPeriod;
+            $scope.ReportP.ReportInstitution = $scope.Report.ReportInstitution.name;
+            $scope.ReportP.ReportYear = $scope.Report.ReportYear;
+            var bottom = $scope.count + 1;
+            var top = 0;
+            for (var h = 0; h < $scope.Student.Marks.length; h++) {
+
+                top += $scope.Student.Marks[h].SubjectMark;
+
+            }
+
+
+
+            $scope.ReportP.Average = Math.ceil(top / bottom);
+         //   apiService.post('/api/report/savereport', $scope.Report, saveReportDone, saveReportFailed);
+        }
+
+
+
+        function saveReportDone(result) {
+            // call save subject
+            $scope.myReportID = {};
+            $scope.myReportID = result.data.ID;
+            saveSubjects();
+        }
+
+        function saveReportFailed() {
+            // it failed
+
+        }
+
+        function saveSubjects() {
+            // save subjects
+
+            $scope.subjectPost = [];
+
+            for (var h = 0; h < $scope.Student.Marks.length; h++) {
+                $scope.mySubjects = { "Name": "", "MarkAcquired": "", "StudentReportId": "" };
+                $scope.mySubjects.StudentReportId = $scope.myReportID;
+                $scope.mySubjects.Name = $scope.Student.Marks[h].subject;
+                $scope.mySubjects.MarkAcquired = $scope.Student.Marks[h].SubjectMark;
+                $scope.subjectPost.push($scope.mySubjects);
+            }
+
+            apiService.post('/api/subject/addsubjects', $scope.subjectPost, saveSubjectsDone, saveSubjectsFailed);
+
+        }
+
+        function saveSubjectsDone() {
+            // registration complete
+            $location.path('/student/report');
+        }
+
+        function saveSubjectsFailed() {
+            notificationService.displayError('Save Subjects Failed');
+        }
 
     }
 
