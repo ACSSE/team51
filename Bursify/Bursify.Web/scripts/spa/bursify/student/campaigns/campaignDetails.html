@@ -7,7 +7,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <a href="#/student/campaigns">
                             <div class="thumbnail" style="background-color:lightgray">
-                                <img class="img-rounded" ng-src="/Images/Campaigns/{{campaign.PicturePath}}" alt="campagin picture" width="250">
+                                <img class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture" width="250">
                             </div>
                         </a>
                     </div>
@@ -49,7 +49,7 @@
                     <div class="col-lg-12">
                         <p style="margin-left:100px">
                             <h2>Description</h2>
-                            {{campaign.Tagline}}
+                            {{campaign.Description}}
                         </p>
                     </div>
                     <md-toolbar class="center" md-colors="{backgroundColor: 'light-blue'}">Contributors</md-toolbar>
