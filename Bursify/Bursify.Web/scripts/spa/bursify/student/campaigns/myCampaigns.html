@@ -1,16 +1,14 @@
 ﻿    <!--Displaying all the campaigns -->
 <nav-bar></nav-bar>
 
-
 <div id="content" style="margin-top:70px">
     <div class="col-lg-12 ">
         .
         <div class="row">
-            <div class="col-lg-12">
-
+            <form id="editform" ng-submit="removeCampaign()">
                 <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="campaign in campaigns" class="col-lg-4">
                     <md-card>
-                        <img ng-src="../../../../../Images/Campaigns/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                        <img ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
                         <md-card-title>
                             <md-card-title-text>
                                 <span class="md-headline">{{campaign.CampaignName}}</span>
@@ -34,38 +32,31 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <md-content layout-padding style="margin-left: 20px; margin-right: 20px">
+                                <md-content class="md-padding" layout-padding style="margin-left: 20px; margin-right: 20px">
                                     <div layout="row" layout-align="space-between">
                                         <md-button class="md-fab" aria-label="Photos">
-                                            <md-tooltip style="color:black;flood-color:dimgrey">
+                                            <md-tooltip >
                                                 Edit
                                             </md-tooltip>
                                             <a ng-href="#/student/edit-campaign/{{campaign.CampaignId}}">
                                                 <md-icon md-svg-src="../../../../../Content/img/icons/ic_mode_edit_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
                                             </a>
                                         </md-button>
-                                        <md-button class="md-fab" aria-label="Photos">
-                                            <md-tooltip style="color:black;flood-color:dimgrey">
+                                      
+                                        <md-button class=""  type="submit">
+                                             <md-icon md-svg-icon="Content/img/icons/ic_delete_forever_black_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                                            <md-tooltip>
                                                 Delete
                                             </md-tooltip>
-                                            <a ng-href="#/student/edit-campaign/{{campaign.CampaignId}}">
-                                                <md-icon md-svg-src="../../../../../Content/img/icons/ic_delete_white_24px.svg" style="width: 24px; height: 24px;"></md-icon>
-                                            </a>
-                                        </md-button>
+                                         </md-button>
                                     </div>
                                 </md-content>
-
-
-
                             </div>
                         </md-card-content>
                     </md-card>
                     <br />
                 </div>
-
-            </div>
+            </form>
         </div>
     </div>
 </div>
-<!--/Displaying all the campaigns -->
-<!--Displaying all the campaigns -->

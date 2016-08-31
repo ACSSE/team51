@@ -40,11 +40,26 @@
                 function campaignsLoadFailed(response) {
                     notificationService.displayError(response.data);
                 }
-                
-                function removeCampaign(id)
+
+                function removeCampaign()
                 {
                     //Call api
+                    Alert("HGHGGHHG");
+                    camapign.Status = "Stopped";
+
+                    apiService.post('/api/campaign/SaveCampaign/?campaignId', campaign,
+                    addCampaignSucceded,
+                    addCampaignFailed);
                     notificationService.displaySuccess("Removed");
+                }
+
+                function addCampaignSucceded(response) {
+                    notificationService.displaySuccess('Campaign Deleted');
+                }
+
+                function addCampaignFailed(response) {
+                    console.log(response);
+                    notificationService.displayError(response.statusText);
                 }
                 loadData();
 
