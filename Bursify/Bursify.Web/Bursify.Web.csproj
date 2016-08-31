@@ -463,6 +463,7 @@
     <Content Include="Content\bootstrap-additions.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BursifyUploads\1\images\43fa8808141683597115653296_700w_0.jpg" />
     <Content Include="Content\css\blank.gif" />
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -521,6 +522,8 @@
     <Content Include="Content\img\icons\ic_close_24px.svg" />
     <Content Include="Content\img\icons\ic_code_24px.svg" />
     <Content Include="Content\img\icons\ic_comment_24px.svg" />
+    <Content Include="Content\img\icons\ic_delete_forever_black_24px.svg" />
+    <Content Include="Content\img\icons\ic_delete_white_24px.svg" />
     <Content Include="Content\img\icons\ic_email_24px.svg" />
     <Content Include="Content\img\icons\ic_euro_24px.svg" />
     <Content Include="Content\img\icons\ic_insert_drive_file_24px.svg" />
@@ -835,7 +838,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\BursifyUploads\" />
     <Folder Include="Content\dist\js\pages\" />
     <Folder Include="Content\images\campaign\" />
     <Folder Include="Content\images\company\" />

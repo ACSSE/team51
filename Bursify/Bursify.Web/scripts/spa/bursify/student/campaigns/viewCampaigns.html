@@ -1,9 +1,6 @@
 ﻿    <!--Displaying all the campaigns -->
     <div id="content" style="margin-top:70px">
         <nav-bar></nav-bar>
-
-
-
         <!--Start of Top part-->
         <div class="col-lg-12">
             <div class="col-lg-12">              
@@ -83,7 +80,8 @@
             <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="campaign in campaigns" class="col-lg-4">
                     <a ng-href="#/student/campaign-details/{{campaign.CampaignId}}">
                 <md-card>
-                    <img ng-src="../../../../../Images/Campaigns/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                   
+                    <img ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline">{{campaign.CampaignName}}</span>
