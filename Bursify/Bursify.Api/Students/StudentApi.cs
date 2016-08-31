@@ -422,8 +422,6 @@ namespace Bursify.Api.Students
             {
                 var reports = uow.Context.Set<StudentReport>()
                     .Where(x => x.StudentId == studentId)
-                    .OrderBy(x => x.ReportPeriod)
-                    .ThenBy(x => x.ReportYear)
                     .OrderByDescending(x => x.ReportYear)
                     .ThenByDescending(x => x.ReportPeriod)
                     .Take(5)
