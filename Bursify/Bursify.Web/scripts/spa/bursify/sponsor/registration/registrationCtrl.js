@@ -21,13 +21,15 @@
         };
 
    
-
+        $scope.Location = {};
+        $scope.Location.City = "Johannesburg";
         $scope.Sponsor = {
             "ID":  "",
         "CompanyName": "Entelect",
         "NumberOfStudentsSponsored": "",
         "NumberOfSponsorships": "",
         "NumberOfApplicants": "",
+        "Description": "Entelect assists the world's best companies in the delivery of customised software solutions that differentiate them in the marketplace.",
         "BursifyRank": "",
         "BursifyScore": "",
         "CompanyEmail": "www.entelect.co.za",
@@ -66,15 +68,15 @@
 
             return $timeout(function () {
                 $scope.provinces = $scope.provinces || [
-                  { id: 1, name: 'EC' },
-                  { id: 2, name: 'FS' },
-                  { id: 3, name: 'GP' },
-                  { id: 4, name: 'KZN' },
-                  { id: 5, name: 'LMP' },
-                  { id: 6, name: 'MP' },
-                  { id: 7, name: 'NC' },
-                  { id: 8, name: 'NW' },
-                  { id: 9, name: 'WC' }
+                  { id: 1, name: 'Eastern Cape' },
+                  { id: 2, name: 'Free State' },
+                  { id: 3, name: 'Gauteng' },
+                  { id: 4, name: 'KwaZulu-Natal' },
+                  { id: 5, name: 'Limpopo' },
+                  { id: 6, name: 'Mpumalanga' },
+                  { id: 7, name: 'Northern Cape' },
+                  { id: 8, name: 'North West' },
+                  { id: 9, name: 'Western Cape' }
                 ];
             }, 10);
         };
@@ -86,7 +88,7 @@
             $scope.Sponsor.Industry = $scope.Sponsor.Industry.name;
            
 
-            apiService.post('/api/BursifyUser/UpdateBio/?userId=' + $scope.Sponsor.ID + '&bio=' + $scope.BursifySponsor.Description, null, null, null);
+            apiService.post('/api/BursifyUser/UpdateBio/?userId=' + $scope.Sponsor.ID + '&bio=' + $scope.Sponsor.Description, null, null, null);
             
             
              apiService.post('/api/Sponsor/SaveSponsor', $scope.Sponsor, completed1, failed);

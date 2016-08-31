@@ -241,6 +241,7 @@ namespace Bursify.Data.EF.Migrations
                         ReportLevel = c.String(),
                         ReportPeriod = c.String(),
                         ReportInstitution = c.String(),
+                        ReportFilePath = c.String(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)

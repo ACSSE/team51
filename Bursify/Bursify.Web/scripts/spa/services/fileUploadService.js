@@ -15,12 +15,14 @@
 
         function uploadFile($files, userId, callback) {
             //$files: an array of files selected
-          
+           
             for (var i = 0; i < $files.length; i++) {
                 var $file = $files[i];
+               
+             
                 (function (index) {
                     $rootScope.upload[index] = $upload.upload({
-                        url: "/api/bursifyuser/UploadImage/?userId=" + userId, // webapi url
+                        url: "/api/bursifyuser/UploadImage/?userId=" + userId, 
                         method: "POST",
                         file: $file
                     }).progress(function (evt) {
@@ -33,6 +35,8 @@
                     });
                 })(i);
             }
+
+          
            
         }
 

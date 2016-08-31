@@ -167,7 +167,7 @@
 <nav-bar></nav-bar>
 <div id="content" class="bg"  ng-init="loadReports()">
    
-    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'lime'}">
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'grey'}">
         <div class="md-toolbar-tools">
             <span>Report Analytics</span>
             <span flex></span>
@@ -176,19 +176,19 @@
     </md-toolbar>
   <md-content class="md-padding">
      
-     <!--<div class="chart-container" >
+     <div class="chart-container" >
           <div fusioncharts
                width="100%"
                height="400"
                type="column2d"
                dataSource="{{myDataSource}}">
           </div>
-      </div>-->
+      </div>
 
   </md-content>
     
     
-    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'cyan'}">
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'teal'}">
         <div class="md-toolbar-tools">
             <span>My Reports</span>
             <span flex></span>
@@ -200,7 +200,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group form-animate-text">
-                    <input type="text" class="form-text" required="">
+                    <input type="text" class="form-text" ng-model="searchB" required="">
                     <span class="bar"></span>
                     <label class="label-search" style="color: black;">Type here to <b>Search</b> </label>
 
@@ -208,9 +208,19 @@
             </div>
         </div>
         <div class="row row-horizon">
-            
-                <div class="col-md-6" style="padding-bottom: 15px;" ng-repeat="report in myReports">
-                    <md-card class="_md" md-colors="{backgroundColor: 'green'}" >
+            <style>
+                .red {
+                    background-color: #D32F2F;
+                }
+                 .orange {
+                    background-color: #FFC107;
+                }
+                  .green {
+                    background-color: #4CAF50;
+                }
+            </style>
+                <div class="col-md-6" style="padding-bottom: 15px;" ng-repeat="report in myReports | filter:searchB">
+                    <md-card class="_md" ng-class="{green: report.Average > 60, orange: report.Average >= 50,  red: report.Average > 0,}">
                         <md-card-header>
                             <md-card-header-text>
                                 <span class="md-title">{{report.ReportInstitution}}</span>

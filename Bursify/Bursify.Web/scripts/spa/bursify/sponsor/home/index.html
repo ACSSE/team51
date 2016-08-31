@@ -1,9 +1,9 @@
 ﻿<spnav-bar></spnav-bar>
 <div id="loadingbarContainer"></div>
 
-<div id="content">
+<div id="content" class="md-padding">
   
-    <div class="col-md-12" style="padding:20px;">
+    <div class="col-md-12 md-padding" style="padding:20px;" >
         <div class="col-md-12 padding-0">
             <div class="col-md-12 padding-0">
                 <div class="col-md-12 padding-0">
@@ -51,7 +51,7 @@
     </div>
 
 
-    <div id="Applicants">
+    <div id="Applicants" class="md-padding">
 
         <div class="col-md-12">
             <div class="alert alert-success alert-border alert-dismissible fade in" role="alert">
@@ -64,7 +64,7 @@
         </div>
 
 
-        <div class="col-md-12">
+        <div class="col-md-12 md-padding">
             <div class="row">
                 <div class="col-md-3 product-grid" ng-repeat="Student in Students">
                     <div class="thumbnail">
@@ -78,25 +78,9 @@
                             <h4>{{Student.Firstname}} {{Student.Surname}}</h4>
                             <p style="height: 80px;">I am very ambitious and a risk taker. Plus I have a really good memory.</p>
 
-
-
-
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
-                                    75% Science
-                                </div>
-
-                            </div>
-
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-                                    70% Mathematics
-                                </div>
-                            </div>
-
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
-                                    65% English
+                            <div class="progress progress-rounded">
+                                <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                    65 %
                                 </div>
                             </div>
 

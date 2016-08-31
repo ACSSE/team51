@@ -1611,7 +1611,7 @@
 
 
 
-            $scope.Report.Average = top/bottom;
+            $scope.Report.Average = Math.ceil(top / bottom);
             apiService.post('/api/report/savereport', $scope.Report, saveReportDone, saveReportFailed);
         }
 
