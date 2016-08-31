@@ -416,6 +416,21 @@ namespace Bursify.Api.Students
             }
         }
 
+        public List<StudentReport> GetFiveMostRecentReports(int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var reports = uow.Context.Set<StudentReport>()
+                    .Where(x => x.StudentId == studentId)
+                    .OrderByDescending(x => x.ReportYear)
+                    .ThenByDescending(x => x.ReportPeriod)
+                    .Take(5)
+                    .ToList();
+
+                return reports;
+            }
+        }
+
         public StudentReport GetStudentReport(int reportId, int studentId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
@@ -513,7 +528,7 @@ namespace Bursify.Api.Students
         }
 
         #endregion
-        
+
         public int GetNumberOfCampaignsByID(int ID)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())

@@ -16,6 +16,7 @@ namespace Bursify.Data.EF.Entities.StudentUser
         public string ReportLevel { get; set; } 
         public string ReportPeriod { get; set; }
         public string ReportInstitution { get; set; }
+        public string ReportFilePath { get; set; }
         
         public virtual Student Student { get; set; }
         public ICollection<Subject> Subjects { get; set; }

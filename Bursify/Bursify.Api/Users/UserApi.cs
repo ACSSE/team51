@@ -2,6 +2,7 @@
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Entities.User;
@@ -38,6 +39,20 @@ namespace Bursify.Api.Users
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 return userRepository.LoadById(Id);
+            }
+        }
+
+        public BursifyUser GetCompleteUser(int userId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var user = uow.Context.Set<BursifyUser>()
+                    .Where(x => x.ID == userId)
+                    .Include(x => x.Addresses)
+                    .Include(x => x.Student)
+                    .FirstOrDefault();
+
+                return user;
             }
         }
 

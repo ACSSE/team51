@@ -2,6 +2,8 @@
 using Bursify.Data.EF.Entities.User;
 using System.Linq;
 using System.Collections.Generic;
+using Bursify.Api.Students;
+using Bursify.Data.EF.Entities.StudentUser;
 
 namespace Bursify.Web.Models
 {
@@ -18,6 +20,8 @@ namespace Bursify.Web.Models
         public string CellphoneNumber { get; set; }
         public string TelephoneNumber { get; set; }
         public string ProfilePicturePath { get; set; }
+        public List<UserAddress> Addresses { get; set; }
+        public Student Student { get; set; }
 
         public string Name { get; set; }
 
@@ -35,7 +39,9 @@ namespace Bursify.Web.Models
                 Biography = user.Biography,
                 CellphoneNumber = user.CellphoneNumber,
                 TelephoneNumber = user.TelephoneNumber,
-                ProfilePicturePath = user.ProfilePicturePath
+                ProfilePicturePath = user.ProfilePicturePath,
+                Addresses = UserAddressViewModel.ReverseMapMultipleAddresses(UserAddressViewModel.MapMultipleAddresses((List<UserAddress>)user.Addresses)),
+                Student = (new StudentViewModel()).ReverseMap(user.Student)
             };
         }
 

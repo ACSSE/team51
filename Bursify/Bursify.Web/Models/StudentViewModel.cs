@@ -117,6 +117,42 @@ namespace Bursify.Web.Models
             };
         }
 
+        public Student ReverseMap(Student model)
+        {
+            return new Student()
+            {
+                ID = model.ID,
+                InstitutionID = model.InstitutionID,
+                Firstname = model.Firstname,
+                Surname = model.Surname,
+                Headline = model.Headline,
+                EducationLevel = model.EducationLevel,
+                AverageMark = model.AverageMark,
+                StudentNumber = model.StudentNumber,
+                IDNumber = model.IDNumber,
+                Age = model.Age,
+                HasDisability = model.HasDisability,
+                DisabilityDescription = model.DisabilityDescription,
+                Race = model.Race,
+                Gender = model.Gender,
+                CurrentOccupation = model.CurrentOccupation,
+                StudyField = model.StudyField,
+                HighestAcademicAchievement = model.HighestAcademicAchievement,
+                YearOfAcademicAchievement = model.YearOfAcademicAchievement,
+                DateOfBirth = model.DateOfBirth,
+                NumberOfViews = model.NumberOfViews,
+                Essay = model.Essay,
+                GuardianPhone = model.GuardianPhone,
+                GuardianEmail = model.GuardianEmail,
+                GuardianRelationship = model.GuardianRelationship,
+                IDDocumentPath = model.IDDocumentPath,
+                MatricCertificatePath = model.MatricCertificatePath,
+                CVPath = model.CVPath,
+                AgreeTandC = model.AgreeTandC
+
+            };
+        }
+
         public static List<StudentViewModel> MapMultipleStudents(List<Student> students)
         {
             List<StudentViewModel> studentsVM = new List<StudentViewModel>();

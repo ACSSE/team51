@@ -7,6 +7,7 @@ using Bursify.Web.Utility;
 using System.Web;
 using System.Linq;
 using System.IO;
+using Bursify.Api.Users;
 
 namespace Bursify.Web.Controllers
 {
@@ -14,10 +15,12 @@ namespace Bursify.Web.Controllers
     public class BursifyUserController : ApiController
     {
         private readonly MembershipApi _membershipApi;
+        private readonly UserApi _userApi;
 
-        public BursifyUserController(MembershipApi membershipApi)
+        public BursifyUserController(MembershipApi membershipApi, UserApi userApi)
         {
             _membershipApi = membershipApi;
+            _userApi = userApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -25,6 +28,24 @@ namespace Bursify.Web.Controllers
         public HttpResponseMessage GetUser(HttpRequestMessage request, string email)
         {
             var user = _membershipApi.GetUserByEmail(email);
+
+            var model = new BursifyUserViewModel();
+
+            var userVm = model.MapSingleBursifyUser(user);
+
+            userVm.PasswordHash = null;
+            userVm.PasswordSalt = null;
+
+            var response = request.CreateResponse(HttpStatusCode.OK, userVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("GetUser")]
+        public HttpResponseMessage GetUser(HttpRequestMessage request, int userId)
+        {
+            var user = _userApi.GetCompleteUser(userId);
 
             var model = new BursifyUserViewModel();
 
