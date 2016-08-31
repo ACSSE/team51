@@ -14,20 +14,11 @@ namespace Bursify.Data.EF.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-<<<<<<< HEAD
         //protected override void Seed(Uow.DataContext context)
         //{
         //    context.Set<BursifyUser>().AddOrUpdate(CreateStudents().ToArray());
         //    context.Set<Student>().AddOrUpdate(AddStudents().ToArray());
         //}
-=======
-        protected override void Seed(Uow.DataContext context)
-        {
-            context.Set<BursifyUser>().AddOrUpdate(CreateStudents().ToArray());
-            context.Set<Institution>().AddOrUpdate(AddSchool());
-            context.Set<Student>().AddOrUpdate(AddStudents().ToArray());
-        }
->>>>>>> b6f2f9de8f3fbaf2ee3dde1d7d074ac52353babb
 
         //private List<BursifyUser> CreateStudents()
         //{
@@ -55,7 +46,6 @@ namespace Bursify.Data.EF.Migrations
         //    return bursifyUsers;
         //}
 
-<<<<<<< HEAD
         //private List<Student> AddStudents()
         //{
         //    var students = new List<Student>();
@@ -65,27 +55,6 @@ namespace Bursify.Data.EF.Migrations
         //    foreach (var user in CreateStudents())
         //    {
         //        var student = new Student();
-=======
-        private Institution AddSchool()
-        {
-            return new Institution()
-            {
-                Name = "UJ",
-                Type = "Tertiary",
-                Website = "www.uj.ac.za"
-            };
-        }
-
-        private List<Student> AddStudents()
-        {
-            var students = new List<Student>();
-            int id = 1;
-            string companyName = MockData.Company.BS();
-            Console.WriteLine(companyName);
-            foreach (var user in CreateStudents())
-            {
-                var student = new Student();
->>>>>>> b6f2f9de8f3fbaf2ee3dde1d7d074ac52353babb
 
         //        student.ID = id++;
         //        student.InstitutionID = 1;
@@ -108,6 +77,28 @@ namespace Bursify.Data.EF.Migrations
         //        student.NumberOfViews = 25;
         //        student.Essay = MockData.Lorem.Paragraphs(5).ToString();
 
+<<<<<<< HEAD
+=======
+                student.ID = id++;
+                student.InstitutionID = 1;
+                student.IDNumber = "9521332463352";
+                student.Firstname = MockData.Person.FirstName();
+                student.Surname = MockData.Person.Surname();
+                student.Headline = MockData.Lorem.Sentence();
+                student.StudentNumber = "201472025";
+                student.Age = MockData.RandomNumber.Next(16, 30);
+                student.HasDisability = MockData.Utils.Boolean();
+                student.DisabilityDescription = "None";
+                student.Race = GetRace(MockData.RandomNumber.Next(0, 4));
+                student.Gender = (MockData.RandomNumber.Next(0, 100) >= 50) ? "Male" : "Female";
+                student.CurrentOccupation = (MockData.RandomNumber.Next(0, 100) >= 50) ? "High-School Student" : "Tertiary Student";
+                student.StudyField = "Information Technology";
+                student.HighestAcademicAchievement = "Primary School";
+                student.YearOfAcademicAchievement = 2008;
+                student.DateOfBirth = MockData.Utils.RandomDate(new DateTime(2000, 01, 01), new DateTime(2016, 10, 10));
+                student.NumberOfViews = 25;
+                student.Essay = MockData.Lorem.Paragraphs(5).ToString();
+>>>>>>> ba01065c5259deb965eaa25f2cbaedd0354fb72d
 
         //        students.Add(student);
         //    }
@@ -115,15 +106,9 @@ namespace Bursify.Data.EF.Migrations
         //    return students;
         //}
 
-<<<<<<< HEAD
         //private string GetRace(int x)
         //{
         //    string[] raceStrings = {"African", "White", "Asian", "Indian", "Coloured"};
-=======
-        private string GetRace(int x)
-        {
-            string[] raceStrings = { "African", "White", "Asian", "Indian", "Coloured" };
->>>>>>> b6f2f9de8f3fbaf2ee3dde1d7d074ac52353babb
 
         //    return raceStrings[x];
         //}

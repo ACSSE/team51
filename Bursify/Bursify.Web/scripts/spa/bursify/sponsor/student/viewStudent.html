@@ -1,0 +1,59 @@
+﻿<div id="content" ng-init="loadStudent()">
+    <spnav-bar></spnav-bar>
+    <div id="loadingbarContainer"></div>
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'cyan'}">
+        <div class="md-toolbar-tools">
+            <span>Student Profile</span>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+
+     
+
+        <md-card md-colors="::{backgroundColor: '{{theme}}-primary-700'}">
+            <md-card-title>
+                <img ng-src="/Content/images/student/student1.jpg" alt="250x250" style="width: 350px; height: 250px;">
+                <div class="row">
+                    <div class="col-md-9">
+                        <md-card-title-text style="margin-left: 15px;">
+                            <span class="md-headline" style="font-size: 35px;">{{Student.Student.Firstname}} {{Student.Student.Surname}}</span>
+                            <span class="md-subhead description">{{Student.Student.EducationLevel}} student at {{Student.Student.Institution}}</span>
+                            <span class="md-subhead">{{Student.Addresses[0].City}} area, {{Student.Addresses[0].Province}}</span>
+
+                            <p>{{Student.Student.Headline}}</p>
+                        </md-card-title-text>
+                    </div>
+                    <div class="col-md-3">
+                        <md-card-title-text style="margin-left: 15px;">
+                            <md-button class="md-raised md-primary">Offer Sponsorship</md-button>
+                       </md-card-title-text>
+                    </div>
+                </div>
+               
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center" style="margin-top: -55px;">
+                <md-button class="md-icon-button" aria-label="Favorite">
+                    <md-icon md-svg-icon="Content/img/icons/favorite.svg"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Settings">
+                    <md-icon md-svg-icon="Content/img/icons/menu.svg"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Share">
+                    <md-icon md-svg-icon="Content/img/icons/share-arrow.svg"></md-icon>
+                </md-button>
+            </md-card-actions>
+            <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'purple'}">
+                <div class="md-toolbar-tools">
+                    <span>Biography</span>
+                    <span flex></span>
+
+                </div>
+            </md-toolbar>
+        </md-card>
+       
+
+
+
+    
+</div>

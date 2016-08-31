@@ -67,26 +67,27 @@
         <div class="col-md-12 md-padding">
             <div class="row">
                 <div class="col-md-3 product-grid" ng-repeat="Student in Students">
-                    <div class="thumbnail">
+                    <a href="#/sponsor/viewStudent/{{Student.ID}}">
+                        <div class="thumbnail">
 
-                        
-                        <img src="~/Content/images/student/student1.jpg" alt="250x250" data-src="holder.js/250x250" data-holder-rendered="true" style="width: 250px; height: 150px;">
-                        <div class="caption">
-                            <small><span class="fa-map-marker fa"></span> University of Johannesburg</small>
-                            <small class="pull-right"><i class="fa fa-2x fa-comments-o"></i></small>
+                            <img ng-src="/Content/images/student/student1.jpg" alt="250x250" style="width: 250px; height: 150px;">
+                            <div class="caption">
+                                <small><span class="fa-map-marker fa"></span> University of Johannesburg</small>
+                                <small class="pull-right"><i class="fa fa-2x fa-comments-o"></i></small>
 
-                            <h4>{{Student.Firstname}} {{Student.Surname}}</h4>
-                            <p style="height: 80px;">I am very ambitious and a risk taker. Plus I have a really good memory.</p>
+                                <h4>{{Student.Firstname}} {{Student.Surname}}</h4>
+                                <p style="height: 80px;">I am very ambitious and a risk taker. Plus I have a really good memory.</p>
 
-                            <div class="progress progress-rounded">
-                                <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                    65 %
+                                <div class="progress progress-rounded">
+                                    <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        65 %
+                                    </div>
                                 </div>
+
                             </div>
 
                         </div>
-
-                    </div>
+                    </a>
                 </div>
                
             </div>

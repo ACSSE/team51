@@ -110,10 +110,16 @@
                 templateUrl: "scripts/spa/bursify/sponsor/chart/leaderboard.html",
                 controller: "leaderboardCtrl",
                  // resolve: { isAuthenticated: isAuthenticated}
-            }).when("/student/sponsorship/:sponsorshipId", {
+            })
+            .when("/student/sponsorship/:sponsorshipId", {
                 templateUrl: "scripts/spa/bursify/student/sponsorship/index.html",
                 controller: "sponsorshipCtrl",
                  // resolve: { isAuthenticated: isAuthenticated }
+            })
+            .when("/sponsor/viewStudent/:StudentId", {
+                templateUrl: "scripts/spa/bursify/sponsor/student/viewStudent.html",
+                controller: "viewStudentCtrl",
+                // resolve: { isAuthenticated: isAuthenticated }
             })
             /* Campaigns start **/
                 //STUDENT 
