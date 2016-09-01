@@ -65,6 +65,8 @@ namespace Bursify.Web.Controllers
                 studentModel.AverageMark = report.Average;
             }
 
+            //userVm.Student = studentModel.ReverseMap();
+
             var response = request.CreateResponse(HttpStatusCode.OK, userVm);
 
             return response;

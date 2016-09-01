@@ -111,6 +111,7 @@ namespace Bursify.Web.Models
                 MatricCertificatePath = this.MatricCertificatePath,
                 CVPath = this.CVPath,
                 AgreeTandC = this.AgreeTandC
+                //Average = this.AverageMark
                
             };
         }

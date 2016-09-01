@@ -1,9 +1,9 @@
 ﻿<div id="content" ng-init="loadStudent()">
     <spnav-bar></spnav-bar>
     <div id="loadingbarContainer"></div>
-    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'cyan'}">
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'blue'}">
         <div class="md-toolbar-tools">
-            <span>Student Profile</span>
+            <span>{{Student.Student.Firstname}} {{Student.Student.Surname}}'s Profile</span>
             <span flex></span>
 
         </div>
@@ -11,46 +11,112 @@
 
      
 
-        <md-card md-colors="::{backgroundColor: '{{theme}}-primary-700'}">
-            <md-card-title>
-                <img ng-src="/Content/images/student/student1.jpg" alt="250x250" style="width: 350px; height: 250px;">
-                <div class="row">
-                    <div class="col-md-9">
-                        <md-card-title-text style="margin-left: 15px;">
-                            <span class="md-headline" style="font-size: 35px;">{{Student.Student.Firstname}} {{Student.Student.Surname}}</span>
-                            <span class="md-subhead description">{{Student.Student.EducationLevel}} student at {{Student.Student.Institution}}</span>
-                            <span class="md-subhead">{{Student.Addresses[0].City}} area, {{Student.Addresses[0].Province}}</span>
+    <section class="content">
 
-                            <p>{{Student.Student.Headline}}</p>
-                        </md-card-title-text>
-                    </div>
-                    <div class="col-md-3">
-                        <md-card-title-text style="margin-left: 15px;">
-                            <md-button class="md-raised md-primary">Offer Sponsorship</md-button>
-                       </md-card-title-text>
-                    </div>
-                </div>
-               
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center" style="margin-top: -55px;">
-                <md-button class="md-icon-button" aria-label="Favorite">
-                    <md-icon md-svg-icon="Content/img/icons/favorite.svg"></md-icon>
-                </md-button>
-                <md-button class="md-icon-button" aria-label="Settings">
-                    <md-icon md-svg-icon="Content/img/icons/menu.svg"></md-icon>
-                </md-button>
-                <md-button class="md-icon-button" aria-label="Share">
-                    <md-icon md-svg-icon="Content/img/icons/share-arrow.svg"></md-icon>
-                </md-button>
-            </md-card-actions>
-            <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'purple'}">
-                <div class="md-toolbar-tools">
-                    <span>Biography</span>
-                    <span flex></span>
+        <div class="row">
+            <div class="col-md-4">
 
+                <!-- Profile Image -->
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" style="width: 200px; height: 200px;" ng-src="Content/assets/img/mike.jpg" alt="Student profile picture">
+                        <h3 class="profile-username text-center">{{Student.Student.Firstname}} {{Student.Student.Surname}}</h3>
+                        <h4 class="text-muted text-center">{{Student.Student.Age}} yrs old.</h4>
+
+                        <p class="text-muted text-center">{{Student.Student.EducationLevel}} Student</p>
+
+                        <!-- About Me Box -->
+                        <div class="box box-success">
+                         
+                            <div class="box-body">
+                                <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
+                                <p class="text-muted" ng-if="Student.Student.CurrentOccupation == 'High School'">
+                                    High School student at {Name of School}
+                                </p>
+                                <p class="text-muted" ng-if="Student.Student.CurrentOccupation == 'Tertiary'">
+                                    {Qualification} student at {Insti}
+                                </p>
+                                <hr>
+
+                                <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+                                <p class="text-muted">{{Student.Addresses[0].City}}, {{Student.Addresses[0].Province}}</p>
+
+                                <hr>
+
+                                <strong><i class="fa fa-file-text-o margin-r-5"></i>Headline</strong>
+                                <p>{{Student.Student.Headline}} </p>
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+
+
+                    </div><!-- /.box-body -->
+                </md-card>
+
+
+            </div><!-- /.col -->
+            <div class="col-md-8">
+                <div class="panel">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="About">
+                            <md-content class="md-padding">
+                                <form role="form" novalidate angular-validator name="StudentProfileForm" angular-validator-submit="saveDetails()">
+                                    <div class="box-body">
+                                     
+                                        <md-input-container class="md-block">
+                                            <label>Biography</label>
+                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                            <textarea ng-model="Student.Biography" md-maxlength="150" rows="5" md-select-on-focus disabled></textarea>
+                                        </md-input-container>
+
+
+                                    </div><!-- /.box-body -->
+
+                                  
+                                </form>
+                            </md-content>
+                        </md-tab>
+                       
+                        <md-tab label="Education">
+                            
+                            <md-content class="md-padding">
+                                <md-list >
+                                    <md-subheader class="md-no-sticky">Subjects</md-subheader>
+                                    <md-list-item >
+                                        <p> Mathematics </p>
+                                        <div class="col-md-4">
+                                            <div style="display: inline; width: 80px; height: 80px;"><canvas width="80" height="80"></canvas><input type="text" value="71" class="dial dial3" style="width: 44px; height: 26px; position: absolute; vertical-align: middle; margin-top: 26px; margin-left: -62px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 16px; line-height: normal; font-family: Arial; text-align: center; color: rgb(135, 206, 235); padding: 0px; -webkit-appearance: none; background: none;"></div>
+                                        </div>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-subheader class="md-no-sticky">Progress</md-subheader>
+                                    </md-list>
+                            </md-content>
+                        </md-tab>
+
+                        <md-tab label="Campaigns">
+
+                            <md-content class="md-padding">
+                                <md-card>
+                                    <md-card-title>
+                                        <md-card-title-media>
+                                            <div class="md-media-sm card-media" layout>
+                                                <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" style="color:grey"></md-icon>
+                                            </div>
+                                        </md-card-title-media>
+                                        <md-card-title-text>
+                                            <span class="md-headline">{{Student.Student.Firstname}}</span>
+                                            <span class="md-subhead description">Ipsum lorem caveat emptor...</span>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                </md-card>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
                 </div>
-            </md-toolbar>
-        </md-card>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </section>
        
 
 
