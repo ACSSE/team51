@@ -35,14 +35,37 @@
             var label1 = $scope.recentReports
             $scope.myDataSource = {
                 chart: {
-                    caption: $rootScope.repository.loggedUser.username + " Report Analytics",
-                    subCaption: "Five most recent reports.",
+                    caption: "Most Recent Average's",
+                    subCaption: "",
                     numberSuffix: "%",
-                    paletteColors: "00897b"
+                    //Cosmetics
+                    "lineThickness": "2",
+                    "paletteColors": "#0075c2",
+                    "baseFontColor": "#333333",
+                    "baseFont": "Helvetica Neue,Arial",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0",
+                    "showBorder": "0",
+                    "bgColor": "#ffffff",
+                    "showShadow": "0",
+                    "canvasBgColor": "#ffffff",
+                    "canvasBorderAlpha": "0",
+                    "divlineAlpha": "100",
+                    "divlineColor": "#999999",
+                    "divlineThickness": "1",
+                    "divLineIsDashed": "1",
+                    "divLineDashLen": "1",
+                    "divLineGapLen": "1",
+                    "showXAxisLine": "1",
+                    "xAxisLineThickness": "1",
+                    "xAxisLineColor": "#999999",
+                    "showAlternateHGridColor": "0",
+
                 },
                 data: [{
                     label: "" + $scope.recentReports[0].ReportYear + "/" + $scope.recentReports[0].ReportPeriod,
-                    value:  $scope.recentReports[0].Average
+                    value: $scope.recentReports[0].Average
                 },
                 {
                     label: "" + $scope.recentReports[1].ReportYear + "/" + $scope.recentReports[1].ReportPeriod,

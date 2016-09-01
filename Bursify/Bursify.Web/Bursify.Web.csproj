@@ -518,6 +518,7 @@
     <Content Include="Content\img\icons\addShoppingCart.svg" />
     <Content Include="Content\img\icons\android.svg" />
     <Content Include="Content\img\icons\angular-logo.svg" />
+    <Content Include="Content\img\icons\application-form.svg" />
     <Content Include="Content\img\icons\bower-logo.svg" />
     <Content Include="Content\img\icons\cake.svg" />
     <Content Include="Content\img\icons\codepen-logo.svg" />
@@ -562,6 +563,7 @@
     <Content Include="Content\img\icons\more_vert.svg" />
     <Content Include="Content\img\icons\npm-logo.svg" />
     <Content Include="Content\img\icons\octicon-repo.svg" />
+    <Content Include="Content\img\icons\pdf.svg" />
     <Content Include="Content\img\icons\print.svg" />
     <Content Include="Content\img\icons\separator.svg" />
     <Content Include="Content\img\icons\sets\communication-icons.svg" />

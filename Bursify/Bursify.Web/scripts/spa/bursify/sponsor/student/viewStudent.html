@@ -1,6 +1,6 @@
-﻿<div id="content" ng-init="loadStudent()">
+﻿<div id="loadingbarContainer"></div>
+<div id="content" ng-init="loadStudent()">
     <spnav-bar></spnav-bar>
-    <div id="loadingbarContainer"></div>
     <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'blue'}">
         <div class="md-toolbar-tools">
             <span>{{Student.Student.Firstname}} {{Student.Student.Surname}}'s Profile</span>
@@ -31,7 +31,7 @@
                             <div class="box-body">
                                 <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
                                 <p class="text-muted" ng-if="Student.Student.CurrentOccupation == 'High School'">
-                                    High School student at {Name of School}
+                                    High School student at {{recentReports[0].ReportInstitution}}
                                 </p>
                                 <p class="text-muted" ng-if="Student.Student.CurrentOccupation == 'Tertiary'">
                                     {Qualification} student at {Insti}
@@ -47,10 +47,15 @@
                                 <p>{{Student.Student.Headline}} </p>
 
                             </div><!-- /.box-body -->
+                       
                         </div><!-- /.box -->
 
-
+                        
                     </div><!-- /.box-body -->
+                    <md-button class="md-primary" style="width: 96%">
+                        <md-icon md-svg-src="/content/img/icons/application-form.svg" class="name"></md-icon>
+                        Reccommend Sponsorship
+                    </md-button>
                 </md-card>
 
 
@@ -65,7 +70,7 @@
                                      
                                         <md-input-container class="md-block">
                                             <label>Biography</label>
-                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                            <md-icon md-svg-src="/content/img/icons/bio.svg" class="name"></md-icon>
                                             <textarea ng-model="Student.Biography" md-maxlength="150" rows="5" md-select-on-focus disabled></textarea>
                                         </md-input-container>
 
@@ -81,15 +86,36 @@
                             
                             <md-content class="md-padding">
                                 <md-list >
-                                    <md-subheader class="md-no-sticky">Subjects</md-subheader>
-                                    <md-list-item >
-                                        <p> Mathematics </p>
+                                    <md-subheader class="md-no-sticky">Study Fields of Interest</md-subheader>
+
+
+                                    <md-list-item>
+                                        <p ng-repeat="subject in myReports[0].Subjects"> {{subject.Name}} </p>
+
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-subheader class="md-no-sticky">Analytics - Student Progress</md-subheader>
+                                    <!--<md-content class="md-padding">
+
+                                        <div class="chart-container">
+                                            <div fusioncharts
+                                                 width="100%"
+                                                 height="400"
+                                                 type="line"
+                                                 dataSource="{{myDataSource}}">
+                                            </div>
+                                        </div>
+
+                                    </md-content>-->
+                                    <md-divider></md-divider>
+                                    <md-subheader class="md-no-sticky">Subjects - Most Recent Results</md-subheader>
+                                    <md-list-item ng-repeat="subject in myReports[0].Subjects">
+                                        <p> {{subject.Name}} </p>
                                         <div class="col-md-4">
-                                            <div style="display: inline; width: 80px; height: 80px;"><canvas width="80" height="80"></canvas><input type="text" value="71" class="dial dial3" style="width: 44px; height: 26px; position: absolute; vertical-align: middle; margin-top: 26px; margin-left: -62px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 16px; line-height: normal; font-family: Arial; text-align: center; color: rgb(135, 206, 235); padding: 0px; -webkit-appearance: none; background: none;"></div>
+                                            <div style="display: inline; width: 80px; height: 80px;"><canvas width="80" height="80"></canvas><input type="text" value="{{subject.MarkAcquired}}" class="dial dial3"  disabled style="width: 44px; height: 26px; position: absolute; vertical-align: middle; margin-top: 26px; margin-left: -62px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 16px; line-height: normal; font-family: Arial; text-align: center; color: rgb(135, 206, 235); padding: 0px; -webkit-appearance: none; background: none;"></div>
                                         </div>
                                     </md-list-item>
                                     <md-divider></md-divider>
-                                    <md-subheader class="md-no-sticky">Progress</md-subheader>
                                     </md-list>
                             </md-content>
                         </md-tab>
@@ -97,17 +123,33 @@
                         <md-tab label="Campaigns">
 
                             <md-content class="md-padding">
-                                <md-card>
+                                <p ng-show="!Campaigns.length">Student is yet to start a campaign.</p>
+                                <md-card ng-repeat="camp in Campaigns">
                                     <md-card-title>
                                         <md-card-title-media>
-                                            <div class="md-media-sm card-media" layout>
-                                                <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" style="color:grey"></md-icon>
+                                            <div class="md-media-lg card-media" layout>
+                                                <img class="img-responsive img-lg"  ng-src="Content/images/campaign/1.jpg" alt="Student profile picture">
+
                                             </div>
                                         </md-card-title-media>
-                                        <md-card-title-text>
-                                            <span class="md-headline">{{Student.Student.Firstname}}</span>
-                                            <span class="md-subhead description">Ipsum lorem caveat emptor...</span>
+                                        <md-card-title-text style="padding-left: 25px;">
+                                            <span class="md-headline">{{camp.CampaignName}}</span>
+                                            <span class="md-subhead description">{{camp.Tagline}} Then I'll make an executive decision and say you are released from further labour</span>
                                         </md-card-title-text>
+                                        <md-card-actions layout="row" layout-align="end center">
+                                            <div>
+                                             
+                                                <div>
+                                                    <p>R{{camp.AmountContributed}}.00</p>
+                                                    <p>Raised of R{{camp.AmountRequired}}.00</p>
+                                                </div>
+
+                                                <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+
+                                            
+                                            </div>
+                                            <md-button ng-href="#/student/campaign-details/{{camp.CampaignId}}">View</md-button>
+                                        </md-card-actions>
                                     </md-card-title>
                                 </md-card>
                             </md-content>
