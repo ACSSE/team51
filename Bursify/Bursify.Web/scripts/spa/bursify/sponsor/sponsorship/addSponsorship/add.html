@@ -69,10 +69,11 @@
                             <md-input-container>
                                 <label>Sponsorship Type</label>
 
-                                <md-select ng-model="selectedField" style="min-width: 200px;">
+                                <md-select ng-model="Sponsorship.SponsorshipType" style="min-width: 200px;">
                                    
                                     <md-optgroup label="Sponsorship Type">
-                                        <md-option ng-value="field" ng-repeat="field in fields">{{field}}</md-option>
+                                        <md-option ng-value="Bursary">Bursary</md-option>
+                                        <md-option ng-value="Scholarship">Scholarship</md-option>
                                     </md-optgroup>
                                 </md-select>
                             </md-input-container>
@@ -81,10 +82,11 @@
                             <md-input-container>
                                 <label>Education Level</label>
 
-                                <md-select ng-model="selectedField" style="min-width: 200px;">
+                                <md-select ng-model="Sponsorship.EducationLevel" style="min-width: 200px;">
 
                                     <md-optgroup label="Education Level">
-                                        <md-option ng-value="field" ng-repeat="field in fields">{{field}}</md-option>
+                                        <md-option ng-value="High School" >High School</md-option>
+                                        <md-option ng-value="Tertiary">Tertiary</md-option>
                                     </md-optgroup>
                                 </md-select>
                             </md-input-container>
@@ -92,14 +94,18 @@
                         <div class="col-md-3">
                             <md-input-container>
                                 <label>Province</label>
-                                <md-select ng-model="selectedProvince"
-                                           md-on-close="clearSearchTermP()"
-                                           data-md-container-class="selectdemoSelectHeader"
-                                           style="min-width: 200px;">
+                                <md-select ng-model="Sponsorship.EducationLevel" style="min-width: 200px;">
 
-                                    <md-optgroup label="Provinces">
-                                        <md-option ng-value="province" ng-repeat="province in provinces">{{province}}</md-option>
+                                    <md-optgroup label="Province">
+                                        <md-option ng-value="province" ng-repeat="province in provinces">{{province.name}}</md-option>
+                                      
                                     </md-optgroup>
+                                </md-select>
+
+                               
+                                <md-select placeholder="Province" ng-model="Student.ResProvince" md-on-open="loadProvinces()" style="min-width: 200px;" required>
+                                      
+                                      <md-option ></md-option>
                                 </md-select>
                             </md-input-container>
                         </div>
@@ -140,7 +146,7 @@
                 
                 <div id="submit1">
 
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <md-checkbox md-no-ink aria-label="Checkbox No Ink"  ng-model="Sponsorship.EssayRequired" class="md-primary">
                             Motivational Essay Required
                         </md-checkbox>
@@ -190,21 +196,27 @@
                             <div class="col-md-8">
                                 <md-input-container>
                                     Gender
-                                    <md-switch ng-model="data.cbGender" aria-label="Switch 1">
+                                    <md-switch class="md-primary" ng-model="data.cbGender" aria-label="Switch 1">
 
                                     </md-switch>
 
                                 </md-input-container>
                             </div>
                             <div class="col-md-4" ng-if="data.cbGender">
-                                <div class="form-group form-animate-checkbox">
-                                    <input type="checkbox" class="checkbox">
-                                    <label>Male</label>
+                                <div class="form-group form-animate-checkbox ">
+                                    <md-checkbox  md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderF" ng-model="SelectedGenderM" class="md-primary">
+                                        Male
+                                    </md-checkbox>
                                 </div>
                                 <div class="form-group form-animate-checkbox">
-                                    <input type="checkbox" class="checkbox">
-                                    <label>Female</label>
+                                    <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                                        Female
+                                    </md-checkbox>
                                 </div>
+                               
+
+
+                                
                             </div>
                         </div>
 
@@ -212,7 +224,7 @@
                             <div class="col-md-8">
                                 <md-input-container>
                                     Race
-                                    <md-switch ng-model="data.cbRace" aria-label="Switch 1">
+                                    <md-switch class="md-primary" ng-model="data.cbRace" aria-label="Switch 1">
 
                                     </md-switch>
 
@@ -239,18 +251,40 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <md-input-container>
-                                    Institution
-                                    <md-switch ng-model="data.cbRace" aria-label="Switch 1">
+                                    Disability
+                                    <md-switch class="md-primary" ng-model="data.cbDisa" aria-label="Switch 1">
 
                                     </md-switch>
 
                                 </md-input-container>
                             </div>
-                            <div class="col-md-4" ng-if="data.cbRace">
+                            <div class="col-md-4" ng-if="data.cbDisa">
+
+                                <md-input-container>
+                                    <md-checkbox class="md-primary" ng-model="data.cbDisa" aria-label="Switch 1">
+                                        Students with disability
+                                    </md-checkbox>
+
+                                </md-input-container>
+                            </div>
+                            <br />
+                        </div>
+
+                        <div class="row" ng-if="Sponsorship.EducationLevel == 'Tertiary'">
+                            <div class="col-md-8">
+                                <md-input-container>
+                                    Institution
+                                    <md-switch class="md-primary" ng-model="data.cbInsti" aria-label="Switch 1">
+
+                                    </md-switch>
+
+                                </md-input-container>
+                            </div>
+                            <div class="col-md-4" ng-if="data.cbInst">
 
                                 <md-input-container>
                                     <label>Place of study</label>
-                                    <md-select ng-model="selectedRace"
+                                    <md-select ng-model="selectedInsti"
                                               
                                                style="min-width: 250px;">
 
@@ -425,57 +459,14 @@
                     </div>
 
                     <md-content class="md-padding">
-
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group form-animate-checkbox">
-                                    <input type="checkbox" class="checkbox">
-                                    <label>Registration</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group form-animate-checkbox">
-                                    <input type="checkbox" class="checkbox">
-                                    <label>Examination Fees</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group form-animate-checkbox">
-                                    <input type="checkbox" class="checkbox">
-                                    <label>Tuition Fees</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group form-animate-checkbox">
-                                    <input type="checkbox" class="checkbox">
-                                    <label>Books</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group form-animate-checkbox">
-                                    <input type="checkbox" class="checkbox">
-                                    <label>Accomodation</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group form-animate-checkbox">
-                                    <input type="checkbox" class="checkbox">
-                                    <label>Living Allowance</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group form-animate-checkbox">
-                                    <input type="checkbox" class="checkbox">
-                                    <label>Laptop Allowance</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group form-animate-checkbox">
-                                    <input type="checkbox" class="checkbox">
-                                    <label>Transport</label>
-                                </div>
+                        <div layout="row" layout-wrap flex>
+                            <div flex="50" ng-repeat="item in items">
+                                <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                                    {{ item }}
+                                </md-checkbox>
                             </div>
                         </div>
+                     
 
                        
 

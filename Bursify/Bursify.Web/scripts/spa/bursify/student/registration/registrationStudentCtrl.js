@@ -138,22 +138,6 @@
         $scope.provin = null;
         $scope.Industry = null;
 
-        $scope.fields = null;
-        $scope.loadFields = function () {
-
-            return $timeout(function () {
-                $scope.fields = $scope.fields || [
-                  { id: 1, name: 'Accounting' },
-                  { id: 2, name: 'Aviation' },
-                  { id: 3, name: 'Animation' },
-                  { id: 4, name: 'Arts & Crafts' },
-                  { id: 5, name: 'Automotive' },
-                  { id: 6, name: 'Aerospace' },
-                  { id: 7, name: 'Banking' }
-                ];
-            }, 10);
-        };
-
 
         $scope.data = [
           {
@@ -1416,7 +1400,7 @@
                 ];
             }, 0);
         };
-
+        $scope.fields = null;
         $scope.loadFields = function () {
 
             return $timeout(function () {
@@ -1463,7 +1447,7 @@
                  { id: 40, name: 'Business Information Technology' },
                  { id: 41, name: 'Food & Beverage Operations' },
                  { id: 42, name: 'Information Technology' },
-                 { id: 43, name: 'Computer Science & Informatics' },
+                 { id: 43, name: 'Informatics' },
                  { id: 44, name: 'Zoology' },
                  { id: 45, name: 'Environmental Management' },
                  { id: 46, name: 'Geography' },
@@ -1477,6 +1461,7 @@
                  { id: 54, name: 'Physics' },
                  { id: 55, name: 'Food Technology' },
                  { id: 56, name: 'Applied Mathematics' },
+                 { id: 57, name: 'Computer Science' },
                 ];
             }, 5);
         };

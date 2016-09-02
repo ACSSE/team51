@@ -1,7 +1,7 @@
 ﻿<spnav-bar></spnav-bar>
 <div id="loadingbarContainer"></div>
 
-<div id="content" class="md-padding">
+<div id="content" class="md-padding" ng-init="FilterType = 'All'">
   
     <div class="col-md-12 md-padding" style="padding:20px;" >
         <div class="col-md-12 padding-0">
@@ -49,11 +49,11 @@
             </div>
         </div>
     </div>
-
+  
 
     <div id="Applicants" class="md-padding">
 
-        <div class="col-md-12">
+        <!--<div class="col-md-12">
             <div class="alert alert-success alert-border alert-dismissible fade in" role="alert">
                 <h3>
                     Your Sponsorships
@@ -61,12 +61,101 @@
                 </h3>
                 <p>You have recieved a total of 20 new applications for you sponsorships. Take time to see the students below sorted according to suitability.</p>
             </div>
+        </div>-->
+        <div class="row">
+            <div class="col-md-4">
+                <label>Filter Students By: </label>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type != 'All' && StudentFiler.type != 'Mark' && StudentFiler.type != 'Disability' && StudentFiler.type != 'FieldOfstudy'">
+                <label>Select filter: </label>
+            </div>
+            <div class="col-md-6" ng-show="StudentFiler.type == 'FieldOfstudy'">
+                <label>Select fields of study: </label>
+            </div>
         </div>
+        
+        <div class="row">
+           
+            <div class="col-md-4">
+                <style>
+                    .md-placeholder {
+                        display: none;
+                    }
+                </style>
+                <md-input-container class="md-padding">
+                    <md-select ng-model="StudentFiler.type" ng-init="StudentFiler.type = 'All'" style="min-width: 200px;">
+                       
+                        <md-optgroup label="Filter By">
+                            <md-option value="All">Show All</md-option>
+                            <md-option value="Gender">Gender</md-option>
+                            <md-option value="Race">Race</md-option>
+                            <md-option value="Age">Age</md-option>
+                            <md-option value="Mark">Average Mark</md-option>
+                            <md-option value="Disability">Disability</md-option>
+                            <md-option value="FieldOfstudy">Study Fields</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'Gender'" style="padding-top: 45px;">
+                <md-radio-group ng-model="FilterType" layout="row" required>
+                    <md-radio-button value="Male" class="md-primary">Male</md-radio-button>
+                    <md-radio-button value="Female" class="md-primary">Female</md-radio-button>
+   
+                </md-radio-group>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'Race'" style="padding-top: 45px;">
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderF" ng-model="SelectedGenderM" class="md-primary">
+                    African
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    Asain
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    Coloured
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                   Indian
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    White
+                </md-checkbox>
 
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'Age'" style="padding-top: 45px;">
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderF" ng-model="SelectedGenderM" class="md-primary">
+                    16 - 20
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    21 - 25
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    26 - 30
+                </md-checkbox>
+              </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'Mark'" style="padding-top: 45px;">
+                <p>Now showing students sorted by overall average marks.</p>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'Disability'" style="padding-top: 45px;">
+                <p>Now showing students who stated they have a disability.</p>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'FieldOfstudy'" style="padding-top: 45px;">
+                <md-input-container class="md-block" style="margin-top: -15px;">
+                    <md-select placeholder="Fields" ng-model="Student.StudyFields" md-on-open="loadFields()" style="min-width: 200px;" required multiple>
+                        <md-option ng-value="field" ng-repeat="field in fields | orderBy:'name'">{{field.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+         </div>
+        <md-list>
+            
+           <md-divider></md-divider>
+           
+        </md-list>
 
         <div class="col-md-12 md-padding">
             <div class="row">
-                <div class="col-md-3 product-grid" ng-repeat="Student in Students">
+                <div class="col-md-3 product-grid" ng-repeat="Student in Students | myFilter:FilterType">
                     <a href="#/sponsor/viewStudent/{{Student.ID}}">
                         <div class="thumbnail">
 

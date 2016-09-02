@@ -13,7 +13,25 @@
         $scope.pageClass = 'page-add-sponsorship';
     
        
-        $scope.provinces = ['EC', 'FS', 'GP', 'KZN', 'LMP', 'MP', 'NC', 'NW', 'WC'];
+        $scope.loadProvinces = function () {
+
+            return $timeout(function () {
+                $scope.provinces = $scope.provinces || [
+                  { id: 1, name: 'All Provinces' },
+                  { id: 2, name: 'Eastern Cape' },
+                  { id: 3, name: 'Free State' },
+                  { id: 4, name: 'Gauteng' },
+                  { id: 5, name: 'Kwa-Zulu Natal' },
+                  { id: 6, name: 'Limpopo' },
+                  { id: 7, name: 'Mpumalanga' },
+                  { id: 8, name: 'Northern Cape' },
+                  { id: 9, name: 'North West' },
+                  { id: 10, name: 'Western Cape' },
+                 
+                ];
+            }, 0);
+        };
+
 
         $scope.ages = ['16-20', '21-25', '26-30', 'Any'];
 
@@ -52,6 +70,21 @@
             "TermsAndConditions": "",
             "SponsorshipType": "",
             "AgeGroup": ""
+        };
+
+        $scope.items = ['Registration', 'Examination Fees', 'Tuition Fees', 'Textbooks', 'Accommodation', 'Living Allowance', 'Laptop Allowance', 'Transport'];
+        $scope.selected = [];
+        $scope.toggle = function (item, list) {
+            var idx = list.indexOf(item);
+            if (idx > -1) {
+                list.splice(idx, 1);
+            }
+            else {
+                list.push(item);
+            }
+        };
+        $scope.exists = function (item, list) {
+            return list.indexOf(item) > -1;
         };
 
         $(document).mousemove(function (e) {

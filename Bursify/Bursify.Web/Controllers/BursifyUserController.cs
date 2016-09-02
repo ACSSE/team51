@@ -90,8 +90,8 @@ namespace Bursify.Web.Controllers
             var multipartFormDataStreamProvider = new UploadMultipartFormProvider(directory.FullName);
 
             // Read the MIME multipart asynchronously 
-            Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
-
+            Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);//.ContinueWith(task => task.RunSynchronously());
+            
             var localFileName = multipartFormDataStreamProvider
                 .FileData.Select(multiPartData => multiPartData.LocalFileName).FirstOrDefault();
 
