@@ -31,6 +31,7 @@ namespace Bursify.Web.Controllers
             foreach (var model in studentsVm)
             {
                 var report = _studentApi.GetMostRecentReport(model.ID);
+                model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
 
                 if (report != null)
                 {
@@ -53,6 +54,7 @@ namespace Bursify.Web.Controllers
             var model = new StudentViewModel(student);
 
             var report = _studentApi.GetMostRecentReport(studentId);
+            model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
 
             if (report != null)
             {

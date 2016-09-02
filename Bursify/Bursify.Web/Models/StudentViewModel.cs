@@ -10,6 +10,7 @@ namespace Bursify.Web.Models
     {
         public int ID { get; set; }
         public int InstitutionID { get; set; }
+        public string InstitutionName { get; set; }
         public string IDNumber { get; set; }
         public string Firstname { get; set; }
         public string Surname { get; set; }
