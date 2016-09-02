@@ -50,7 +50,7 @@ namespace Bursify.Data.EF.Repositories
                                      || sponsorship.Description.ToUpper().Contains(criteria)
                                      || sponsorship.StudyFields.ToUpper().Contains(criteria)
                                      || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
-                                     || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+                                     || sponsorship.InstitutionPreference.ToUpper().Contains(criteria));
             }
             else if (criteria.Contains("SCHOLARSHIP") || criteria.Contains("SCHOLARSHIPS"))
             {
@@ -60,7 +60,7 @@ namespace Bursify.Data.EF.Repositories
                                     || sponsorship.Description.ToUpper().Contains(criteria)
                                     || sponsorship.StudyFields.ToUpper().Contains(criteria)
                                     || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
-                                    || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+                                    || sponsorship.InstitutionPreference.ToUpper().Contains(criteria));
             }
             else
             {
@@ -69,7 +69,7 @@ namespace Bursify.Data.EF.Repositories
                                      || sponsorship.Description.ToUpper().Contains(criteria)
                                      || sponsorship.StudyFields.ToUpper().Contains(criteria)
                                      || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
-                                     || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+                                     || sponsorship.InstitutionPreference.ToUpper().Contains(criteria));
             }
 
             return filteredSponsorships;

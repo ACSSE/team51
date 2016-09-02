@@ -366,11 +366,11 @@ namespace Bursify.Api.Students
         #region School
 
         //done
-        public Institution GetInstitution(int userId)
+        public Institution GetInstitution(int institutionId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return _institutionRepository.GetInstitution(userId);
+                return _institutionRepository.GetInstitution(institutionId);
             }
         }
 
