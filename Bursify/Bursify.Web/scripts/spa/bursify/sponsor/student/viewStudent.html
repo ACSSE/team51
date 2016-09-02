@@ -19,7 +19,7 @@
                 <!-- Profile Image -->
                 <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" style="width: 200px; height: 200px;" ng-src="Content/assets/img/mike.jpg" alt="Student profile picture">
+                        <img class="profile-user-img img-responsive img-circle" style="width: 190px; height: 140px;" ng-src="/Content/images/student/student2.jpg" alt="Student profile picture">
                         <h3 class="profile-username text-center">{{Student.Student.Firstname}} {{Student.Student.Surname}}</h3>
                         <h4 class="text-muted text-center">{{Student.Student.Age}} yrs old.</h4>
 
@@ -86,7 +86,7 @@
                             
                             <md-content class="md-padding">
                                 <md-list >
-                                    <md-subheader class="md-no-sticky">Study Fields of Interest</md-subheader>
+                                    <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Study Fields of Interest</md-subheader>
 
 
                                     <md-list-item>
@@ -94,7 +94,7 @@
 
                                     </md-list-item>
                                     <md-divider></md-divider>
-                                    <md-subheader class="md-no-sticky">Analytics - Student Progress</md-subheader>
+                                    <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Analytics - Student Progress</md-subheader>
                                     <!--<md-content class="md-padding">
 
                                         <div class="chart-container">
@@ -108,7 +108,7 @@
 
                                     </md-content>-->
                                     <md-divider></md-divider>
-                                    <md-subheader class="md-no-sticky">Subjects - Most Recent Results</md-subheader>
+                                    <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Subjects - Most Recent Results</md-subheader>
                                     <md-list-item ng-repeat="subject in myReports[0].Subjects">
                                         <p> {{subject.Name}} </p>
                                         <div class="col-md-4">

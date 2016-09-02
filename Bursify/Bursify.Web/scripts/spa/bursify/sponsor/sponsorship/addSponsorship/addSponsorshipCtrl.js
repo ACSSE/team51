@@ -12,18 +12,28 @@
 
         $scope.pageClass = 'page-add-sponsorship';
     
-        $scope.fields = ['Accounting', 'Actuarial Science', 'Civil Engineering', 'Mechanical Engineering', 'Electrical Engineering', 'Chemical Engineering', 'Industrial Engineering', 'Agriculture',
-        'Chemistry', 'Computer Science', 'Commerce', 'Economics', 'Film & Media', 'Finance', 'Government', 'Geology', 'Health Sciences', 'Human Resources (HR)', 'Journalism', 'Information Technology (IT)',
-        'Law', 'Medicine', 'Management Studies', 'Nature Conservation', 'Nursing', 'Physics', 'Physiotherapy', 'Teaching & Education', 'Sport Management'];
-
+       
         $scope.provinces = ['EC', 'FS', 'GP', 'KZN', 'LMP', 'MP', 'NC', 'NW', 'WC'];
-
-      //  $scope.subjects = ['MM', 'FS', 'GP', 'KZN', 'LMP', 'MP', 'NC', 'NW', 'WC'];
 
         $scope.ages = ['16-20', '21-25', '26-30', 'Any'];
 
         $scope.races = ['African', 'Asain', 'Indian', 'Coloured', 'White'];
    
+        $scope.fields = null;
+        $scope.loadFields = function () {
+
+            return $timeout(function () {
+                $scope.fields = $scope.fields || [
+                  { id: 1, name: 'Accounting' },
+                  { id: 2, name: 'Aviation' },
+                  { id: 3, name: 'Animation' },
+                  { id: 4, name: 'Arts & Crafts' },
+                  { id: 5, name: 'Automotive' },
+                  { id: 6, name: 'Aerospace' },
+                  { id: 7, name: 'Banking' }
+                ];
+            }, 10);
+        };
       
         $scope.Sponsorship = {
             "ID": "",
@@ -36,7 +46,7 @@
             "StudyFields": "",
             "Province": "",
             "AverageMarkRequired": "",
-            "EducationLevel": "High School",
+            "EducationLevel": "",
             "PreferredInstitutions": "",
             "ExpensesCovered": "",
             "TermsAndConditions": "",

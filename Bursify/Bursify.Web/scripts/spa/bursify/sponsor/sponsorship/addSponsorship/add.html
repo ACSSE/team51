@@ -31,10 +31,10 @@
         <form>
             <div id="details">
                 <md-toolbar>
-                    <div class="md-toolbar-tools" md-colors="{background: 'purple'}">
+                    <div class="md-toolbar-tools" md-colors="{background: 'deep-purple'}">
 
                         <h2>
-                            <span>High School Sponsorship Details</span>
+                            <span>Sponsorship Details</span>
                         </h2>
                         <span flex></span>
                     </div>
@@ -58,69 +58,94 @@
                         <label>Give a brief description of the sponsorship</label>
                     </div>
                 </div>
+               
+                    
+                
 
                 <div class="row">
-                    <div class="col-md-3">
-                        <md-input-container>
-                            <md-datepicker ng-model="Sponsorship.ClosingDate" md-placeholder="Closing date" style="min-width: 350px;">></md-datepicker>
-                        </md-input-container>
-                    </div>
-                    <div class="col-md-3">
-                        <md-input-container>
-                            <label>Fields</label>
+                  
 
-                            <md-select ng-model="selectedField"
-                                       md-on-close="clearSearchTermF()"
-                                       data-md-container-class="selectdemoSelectHeader"
-                                       style="min-width: 250px;">
-                                <md-optgroup label="Fields">
-                                    <md-option ng-value="field" ng-repeat="field in fields">{{field}}</md-option>
-                                </md-optgroup>
-                            </md-select>
-                        </md-input-container>
-                    </div>
-                    <div class="col-md-3">
-                        <md-input-container>
-                            <label>Province</label>
-                            <md-select ng-model="selectedProvince"
-                                       md-on-close="clearSearchTermP()"
-                                       data-md-container-class="selectdemoSelectHeader"
-                                        style="min-width: 250px;">
+                        <div class="col-md-3">
+                            <md-input-container>
+                                <label>Sponsorship Type</label>
 
-                                <md-optgroup label="Provinces">
-                                    <md-option ng-value="province" ng-repeat="province in provinces">{{province}}</md-option>
-                                </md-optgroup>
-                            </md-select>
-                        </md-input-container>
-                    </div>
-                    <div class="col-md-3">
-                        <md-input-container>
-                            <label>Age group</label>
-                            <md-select ng-model="selectedAgeGroup"
-                                       md-on-close="clearSearchTermA()"
-                                       data-md-container-class="selectdemoSelectHeader"
-                                       style="min-width: 250px;">
+                                <md-select ng-model="selectedField" style="min-width: 200px;">
+                                   
+                                    <md-optgroup label="Sponsorship Type">
+                                        <md-option ng-value="field" ng-repeat="field in fields">{{field}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-3">
+                            <md-input-container>
+                                <label>Education Level</label>
 
-                                <md-optgroup label="Age Groups">
-                                    <md-option ng-value="age" ng-repeat="age in ages">{{age}}</md-option>
-                                </md-optgroup>
-                            </md-select>
-                        </md-input-container>
-                    </div>
-                   
+                                <md-select ng-model="selectedField" style="min-width: 200px;">
 
-                </div>
+                                    <md-optgroup label="Education Level">
+                                        <md-option ng-value="field" ng-repeat="field in fields">{{field}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-3">
+                            <md-input-container>
+                                <label>Province</label>
+                                <md-select ng-model="selectedProvince"
+                                           md-on-close="clearSearchTermP()"
+                                           data-md-container-class="selectdemoSelectHeader"
+                                           style="min-width: 200px;">
+
+                                    <md-optgroup label="Provinces">
+                                        <md-option ng-value="province" ng-repeat="province in provinces">{{province}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-3">
+                            <md-input-container>
+                                <label>Age group</label>
+                                <md-select ng-model="selectedAgeGroup"
+                                           md-on-close="clearSearchTermA()"
+                                           data-md-container-class="selectdemoSelectHeader"
+                                           style="min-width: 150px;">
+
+                                    <md-optgroup label="Age Groups">
+                                        <md-option ng-value="age" ng-repeat="age in ages">{{age}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                      
+                       
+
+                        <div class="col-md-12 ">
+                            <label>Relevant Study Fields</label>
+                            <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                <md-tooltip md-direction="bottom">
+                                    Select many
+                                </md-tooltip>
+                                <md-input-container class="md-block">
+                                    <md-select placeholder="Select relevant study fields." ng-model="Student.StudyFields" md-on-open="loadFields()" style="min-width: 200px;" required multiple>
+                                        <md-option ng-value="field" ng-repeat="field in fields | orderBy:'name'">{{field.name}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                    </div>
                 
                    
                 
                 <div id="submit1">
 
                     <div class="col-md-10">
-                        <div class="form-group form-animate-checkbox">
-                            <label>Motivational Essay Required</label>
-                            <input type="checkbox" ng-model="Sponsorship.EssayRequired" class="checkbox">
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink"  ng-model="Sponsorship.EssayRequired" class="md-primary">
+                            Motivational Essay Required
+                        </md-checkbox>
+                   
 
-                        </div>
                     </div>
                     <div class="col-md-2">
                         <md-input-container>
@@ -145,13 +170,11 @@
                     </div>
                 </md-toolbar>
                 <div class="panel-heading bg-white border-none">
-                    <h4><span class="icon-notebook icons"></span> Turn on to set any advanced preferences.</h4>
+                    <h4><span class="icon-notebook icons"></span> Turn on to set advanced preference.</h4>
                 </div>
 
                 <div class="panel box-v1">
-                    <div class="panel-heading bg-white border-none">
-                        <h4><span class="icon-notebook icons"></span>Turn on preferences for this particular sponsorship.</h4>
-                    </div>
+                  
 
                     <md-content class="md-padding">
                         <div class="row">
@@ -213,6 +236,32 @@
                             <br />
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-8">
+                                <md-input-container>
+                                    Institution
+                                    <md-switch ng-model="data.cbRace" aria-label="Switch 1">
+
+                                    </md-switch>
+
+                                </md-input-container>
+                            </div>
+                            <div class="col-md-4" ng-if="data.cbRace">
+
+                                <md-input-container>
+                                    <label>Place of study</label>
+                                    <md-select ng-model="selectedRace"
+                                              
+                                               style="min-width: 250px;">
+
+                                        <md-optgroup label="Instituition">
+                                            <md-option ng-value="" ng-repeat="race in races">{{race}}</md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <br />
+                        </div>
 
 
                     </md-content>
@@ -226,7 +275,7 @@
 
             <div id="terms">
                 <md-toolbar>
-                    <div class="md-toolbar-tools" md-colors="{background: 'deep-purple'}">
+                    <div class="md-toolbar-tools" md-colors="{background: 'blue'}">
 
                         <h2>
                             <span>Terms &amp; Conditions</span>
@@ -255,7 +304,7 @@
 
             <div id="requirements" style="background-color: white">
                 <md-toolbar>
-                    <div class="md-toolbar-tools" md-colors="{background: 'indigo'}">
+                    <div class="md-toolbar-tools" md-colors="{background: 'deep-purple'}">
 
                         <h2>
                             <span>Sponsorship Requirements</span>
@@ -428,14 +477,7 @@
                             </div>
                         </div>
 
-                        <div id="submit1">
-
-                            <div class="col-md-offset-10">
-                               
-                                <md-button class="md-raised md-primary">Submit Sponsorship</md-button>
-                            </div>
-
-                        </div>
+                       
 
 
                     </md-content>
@@ -448,6 +490,53 @@
 
 
             </div>
+
+            <div id="Closing">
+                <md-toolbar md-colors="{background: 'deep-purple'}">
+                    <div class="md-toolbar-tools">
+
+                        <h2>
+                            <span>Closing Date</span>
+                        </h2>
+                        <span flex></span>
+                    </div>
+
+
+                </md-toolbar>
+
+
+                <div class="panel box-v2">
+                    <div class="panel-heading bg-white border-none">
+                        <h4><span class="icon-notebook icons"></span> Date to stop accepting applications.</h4>
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <md-input-container>
+                            <md-datepicker ng-model="Sponsorship.ClosingDate" md-placeholder="Starting date"></md-datepicker>
+
+                        </md-input-container>
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <md-input-container>
+                            <md-datepicker ng-model="Sponsorship.ClosingDate" md-placeholder="Closing date"></md-datepicker>
+
+                        </md-input-container>
+                    </div>
+
+                    <div id="submit1">
+
+                        <div class="col-md-offset-10">
+
+                            <md-button class="md-raised" md-colors="{background: 'teal'}">Submit Sponsorship</md-button>
+                        </div>
+
+                    </div>
+
+</div>
+                </div>
 
 
         </form>
