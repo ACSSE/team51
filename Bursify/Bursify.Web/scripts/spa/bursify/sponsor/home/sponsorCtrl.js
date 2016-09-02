@@ -10,8 +10,6 @@
         };
     });
 
-
-
     sponsorCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$timeout'];
 
     function sponsorCtrl($scope, apiService, notificationService, $timeout) {

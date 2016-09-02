@@ -10,14 +10,19 @@
     </md-toolbar>
     <!-- Main content -->
     <section class="content">
-
         <div class="row">
             <div class="col-md-3">
 
                 <!-- Profile Image -->
                 <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" ng-src="Content/assets/img/mike.jpg" alt="Student profile picture">
+                        <span>
+                            <img ng-click="triggerUpload()" class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" ng-src="Content/BursifyUploads/{{BursifyUser.ID}}/images/{{BursifyUser.ProfilePicturePath}}" alt="Student profile picture" />
+                            <md-tooltip md-direction="left" style="padding-left: 105px;">
+                                Click to update
+                            </md-tooltip>
+                        </span>
+                        <input type="file" ng-file-select="prepareImage($files)" style="display:none" id="fileInput" name="filedata" />
                         <h3 class="profile-username text-center">{{Student.Firstname}} {{Student.Surname}}</h3>
                         <p class="text-muted text-center">{{Student.EducationLevel}} Student</p>
                        

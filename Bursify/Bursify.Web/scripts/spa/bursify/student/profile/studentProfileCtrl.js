@@ -3,10 +3,10 @@
 
     app.controller('studentProfileCtrl', studentProfileCtrl);
 
-    studentProfileCtrl.$inject = ['$scope','$rootScope', 'apiService', 'notificationService', 'membershipService', '$timeout'];
+    studentProfileCtrl.$inject = ['$scope','$rootScope', 'apiService', 'notificationService', 'membershipService', '$timeout', 'fileUploadService'];
 
 
-    function studentProfileCtrl($scope, $rootScope, apiService, notificationService, membershipService, $timeout) {
+    function studentProfileCtrl($scope, $rootScope, apiService, notificationService, membershipService, $timeout, fileUploadService) {
         $scope.pageClass = 'page-view-profile';
         $scope.markselect = {};
         $scope.CDetails = {};
@@ -26,7 +26,7 @@
                 ];
             }, 0);
         };
-
+        $scope.BursifyUser = {};
         $scope.loadRelates = function () {
 
             return $timeout(function () {
@@ -42,14 +42,50 @@
 
         apiService.get('/api/student/getstudent/?studentId=' + $rootScope.repository.loggedUser.userIden,null,  loadUser, loadFailed);
 
+        $scope.triggerUpload = function () {
+            var fileuploader = angular.element("#fileInput");
+            fileuploader.on('click', function () {
+                console.log("File upload triggered programatically");
+            })
+            fileuploader.trigger('click')
+        }
 
-    function loadUser(result) {
-         $scope.Student = result.data;
-    }
+        var ImageFile = null;
+        $scope.prepareImage = function prepareImage($files) {
+            ImageFile = $files;
+            UploadImage();    
+        }
 
-    function loadFailed() {
+        function UploadImage() {
+            $scope.uploading = true;
+            fileUploadService.uploadFile(ImageFile, $rootScope.repository.loggedUser.userIden, ImageUploadDone);
+        }
+
+        function ImageUploadDone() {
+            loadBursifyuser();
+        }
+
+
+        function loadUser(result) {
+            $scope.Student = result.data;
+
+            loadBursifyuser();
+        }
+
+        function loadBursifyuser() {
+            apiService.get('/api/Bursifyuser/getuser/?userId=' + $rootScope.repository.loggedUser.userIden, null, loadUserDone, loadUserFailed);
+        }
+
+        function loadUserDone(result) {
+            $scope.BursifyUser = result.data;
+        }
+        function loadUserFailed() {
+            notificationService.displayError('Failed to load user.');
+        }
+
+        function loadFailed() {
         notificationService.displayError('Could not load profile.');
-    }
+      }
 
      $scope.saveDetails = function () {
     
@@ -77,18 +113,7 @@
      }
 
      $scope.saveContact = function() {
-        //       public int StudentId { get; set; }
-        //public string AddressType { get; set; }
-        //public string CellphoneNumber { get; set; }
-        //public string Email { get; set; }
-        //public string GuardianPhoneNumber { get; set; }
-        //public string GuardianRelationship { get; set; }
-        //public string GuardianEmail { get; set; }
-        //public string StreetAddress { get; set; }
-        //public string City { get; set; }
-        //public string Province { get; set; }
-        //public string PostalCode { get; set; }
-
+    
    
          $scope.CDetails.StudentId = $rootScope.repository.loggedUser.userIden;
          $scope.CDetails.AddressType = "Main";
