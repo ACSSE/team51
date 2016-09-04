@@ -91,11 +91,7 @@
                 controller: "addSponsorshipCtrl",
                 // resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/sponsor/sponsorships/addT", {
-                templateUrl: "scripts/spa/bursify/sponsor/sponsorship/addSponsorship/addT.html",
-                controller: "addTSponsorshipCtrl",
-                // resolve: { isAuthenticated: isAuthenticated }
-            })
+            
             .when("/student/campaigns", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",
                 controller: "campaignsCtrl",

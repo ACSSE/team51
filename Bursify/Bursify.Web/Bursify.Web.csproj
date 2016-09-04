@@ -474,7 +474,6 @@
     <Content Include="Content\css\morris.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\toastr.css" />
-    <Content Include="Content\dialog.tmpl.html" />
     <Content Include="Content\dist\css\AdminLTE.css" />
     <Content Include="Content\dist\css\AdminLTE.min.css" />
     <Content Include="Content\dist\img\credit\american-express.png" />
@@ -634,8 +633,6 @@
     <Content Include="scripts\spa\bursify\sponsor\registration\registrationCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\add.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\addSponsorshipCtrl.js" />
-    <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\addT.html" />
-    <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\addTSponsorshipCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\dialog.tmpl.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\edit.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\editSponsorshipCtrl.js" />
@@ -887,8 +884,6 @@
     <Folder Include="Content\landing\wp-content\plugins\woocommerce\assets\js\jquery-cookie\" />
     <Folder Include="Content\landing\wp-content\plugins\wp-product-review\images\" />
     <Folder Include="Content\landing\wp-content\plugins\wp-rocket\inc\front\js\" />
-    <Folder Include="Content\plugins\" />
-    <Folder Include="scripts\spa\bursify\campaigns\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bursify.Api\Bursify.Api.csproj">
