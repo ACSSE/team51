@@ -81,7 +81,8 @@ namespace Bursify.Web.App_Start
                      "~/Scripts/spa/bursify/student/registration/registrationStudentCtrl.js",
                     "~/Scripts/spa/bursify/sponsor/sponsorship/sponsorshipIndexCtrl.js",
                     "~/Scripts/spa/bursify/sponsor/sponsorship/addSponsorship/addSponsorshipCtrl.js",
-    
+                      "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/applicantsCtrl.js",
+
                 "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/chart/leaderboardCtrl.js",

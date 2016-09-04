@@ -28,12 +28,12 @@
         <div class="col-md-4" ng-repeat="Sponsorship in Sponsorships">
             <md-card class="_md">
                 
-                <img ng-src="Content/images/campaign/1.JPG" class="md-card-image" alt="Washed Out">
-                <md-card-title>
+               <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{Sponsorship.Name}}</span>
-                        <span class="md-title">{{Sponsorship.NumberOfViews}}</span>
-                        <span class="md-subhead">{{Sponsorship.ClosingDate}} closing Date</span>
+                        <span class="md-subtitle">257 applicants</span>
+
+                        <span class="md-subhead">closing Date: {{Sponsorship.ClosingDate | limitTo: 10}}</span>
                        
                     </md-card-title-text>
                 </md-card-title>
@@ -47,10 +47,10 @@
                     <md-button class="md-icon-button md-primary" aria-label="Settings">
                         <md-icon md-svg-icon="Content/img/icons/launch.svg"></md-icon>
                         <md-tooltip md-direction="bottom">
-                            Share
+                            Reccommend 
                         </md-tooltip>
                     </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
+                    <md-button class="md-icon-button md-primary" aria-label="Settings" href="#/sponsor/sponsorships/view/{{Sponsorship.ID}}">
                         <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
                         <md-tooltip md-direction="bottom">
                            View Applicants

@@ -11,7 +11,13 @@
         apiService.get('/api/sponsorship/GetApplicants/?sponsorshipId=' + $routeParams.sponsorshipId, null, applicantsLoadCompleted, applicantsLoadFailed);
 
 
+        function applicantsLoadCompleted() {
 
+        }
+
+        function applicantsLoadFailed() {
+
+        }
     }
 
 })(angular.module('BursifyApp'));

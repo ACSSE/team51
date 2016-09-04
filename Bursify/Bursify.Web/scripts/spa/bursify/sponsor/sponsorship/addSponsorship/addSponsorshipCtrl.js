@@ -13,7 +13,7 @@
         $scope.pageClass = 'page-add-';
     
         $scope.provinces = $scope.provinces || [
-                 { id: 1, name: 'All Provinces' },
+                 { id: 1, name: 'All' },
                  { id: 2, name: 'Eastern Cape' },
                  { id: 3, name: 'Free State' },
                  { id: 4, name: 'Gauteng' },
@@ -29,7 +29,7 @@
    
 
 
-        $scope.ages = ['16-20', '21-25', '26-30', 'Any'];
+        $scope.ages = ['All','16-20', '21-25', '26-30'];
 
         $scope.races = ['African', 'Asain', 'Indian', 'Coloured', 'White'];
 
@@ -85,6 +85,7 @@
 
             return $timeout(function () {
                 $scope.fields = $scope.fields || [
+                   { id: 0, name: '*All' },
                   { id: 1, name: 'Art' },
                   { id: 2, name: 'Design' },
                   { id: 3, name: 'Architecture' },
@@ -142,32 +143,33 @@
                  { id: 55, name: 'Food Technology' },
                  { id: 56, name: 'Applied Mathematics' },
                  { id: 57, name: 'Computer Science' },
+                 
                 ];
-            }, 10);
+            }, 3);
         };
       
         $scope.Sponsorship = {
         ID : "",
         SponsorId : "",
-        Name : "",
-        Description : "",
+        Name : "Entelect Bursary",
+        Description: "The vehicle that you configured has a unique code with which you can identify yourself with at any desired time. The OnlineCode gives you access to your configuration at any time and you can send it to a Mercedes-Benz dealership or share it with friends and acquaintances on Facebook or Twitter.",
         StartingDate : "",
         ClosingDate : "",
-        EssayRequired : "",
-        SponsorshipValue : "",
-        StudyFields : "",
-        Province : "",
-        AverageMarkRequired : "",
-        EducationLevel : "",
-        InstitutionPreference : "",
-        GenderPreference : "",
-        RacePreference : "",
-        DisabilityPreference : "",
+        EssayRequired : "false",
+        SponsorshipValue : 50000,
+        StudyFields : "All",
+        Province : "All",
+        AverageMarkRequired : 70,
+        EducationLevel : "Tertiary",
+        InstitutionPreference : "All",
+        GenderPreference : "All",
+        RacePreference : "All",
+        DisabilityPreference : "All",
         ExpensesCovered : "",
-        TermsAndConditions : "",
-        SponsorshipType : "",
-        AgeGroup : "",
-        Rating : "",
+        TermsAndConditions : "*** Price excludes CO2 tax and includes VAT at a standard rate of 14%, but excludes additional costs necessary to your car. This Car Configurator is designed and provided to give an indication of specifications and pricing available in relation to our range of Mercedes-Benz vehicles. Every effort has been made to ensure that these accurately reflect current customer offerings. However, please note that specifications and pricing can change without notice and we do not make any representations or warranties in relation to the availability of any specifications or the accuracy of the prices included in the Car Configurator or as to the availability of any particular vehicle. In addition, illustrations shown may include accessories which are not provided as standard. All texts, images, logos and graphics, as well as their arrangements, are subject to copyright and other intellectual property laws. Copyright Daimler AG. If not otherwise stated, all brands named are legally protected trademarks of the Daimler Group of Companies. This especially applies to the names of the vehicle models, all logos and the company emblem. Please note that any price received via the Car Configurator does not qualify as a formal quote. Please contact or visit one of our dealers for current pricing and specifications. All vehicle orders are subject to terms and conditions of sale. The recommended retail price as well as all promotions displayed on this website are applicable within South Africa only.",
+        SponsorshipType : "Bursary",
+        AgeGroup : "All",
+        Rating : 5,
         };
 
         $scope.Requirements = [{ "Name": "", "MarkRequired": "" }];
@@ -310,6 +312,45 @@
             selectedDirection: 'left'
         };
 
+        $scope.sumbitSP = function () {
+           
+            var myExpenses = "";
+            for (var i = 0; i < $scope.selected.length; i++) {
+                myExpenses += $scope.selected[i] + ",";
+            }
+
+            $scope.Sponsorship.ExpensesCovered = myExpenses;
+
+            var study = "";
+            for (var i = 0; i < $scope.StudyFields.length; i++) {
+                study += $scope.StudyFields[i] + ",";
+            }
+
+            $scope.Sponsorship.StudyFields = study;
+
+            if (!('contains' in String.prototype)) String.prototype.contains = function (str, startIndex) {
+                return -1 !== String.prototype.indexOf.call(this, str, startIndex);
+            };
+
+            var finder = study;
+            if (finder.contains("*All") == true) {
+                $scope.Sponsorship.StudyFields = "All";
+            }
+
+
+            $scope.Sponsorship.SponsorId = $rootScope.repository.loggedUser.userIden;
+            apiService.post('/api/sponsorship/SaveSponsorship', $scope.Sponsorship, saveDone, saveFailed);
+
+
+        }
+
+        function saveDone(result) {
+            $location.path('/sponsor/sponsorships');
+        }
+
+        function saveFailed() {
+            notificationService.displayError("Unable to submit sponsorship." + result.data);
+        }
 
     }
 
