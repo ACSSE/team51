@@ -7,8 +7,42 @@
             <h2>
                 <span>Applicants</span>
             </h2>
-            <span flex></span>   
+           <span flex></span>   
         </div>
     </md-toolbar>
+   
+
+    <!-- exact table from live demo -->
+    <md-table-container>
+        <table md-table multiple ng-model="selected" md-progress="promise">
+            <thead md-head md-order="myOrder" md-on-reorder="getDesserts">
+                <tr md-row>
+                    <th md-column><span></span></th>
+                    <th md-column md-numeric md-order-by="nameToLower"><span>Name</span></th>
+                    <th md-column md-numeric >School</th>
+                    <th md-column md-numeric >Gender</th>
+                    <th md-column md-numeric >Age</th>
+                    <th md-column md-numeric >Province</th>
+                    <th md-column md-numeric>Level</th>
+                    <th md-column md-numeric >Average</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="applicant in Applicants | orderBy: myOrder">
+                    <td md-cell><img class="" style="width: 75px; height: 75px;" ng-src="{{applicant.PicturePath}}" alt="Student profile picture" /></td>
+                    <td md-cell md-order-by="nameToLower">{{applicant.Name}}</td>
+                    <td md-cell style="text-align: center;">{{applicant.School}}</td>
+                    <td md-cell>{{applicant.Gender}}</td>
+                    <td md-cell>{{applicant.Age}}</td>
+                    <td md-cell>{{applicant.Province}}</td>
+                    <td md-cell>{{applicant.Level}}</td>
+                    <td md-cell>{{applicant.Average}}</td>
+                </tr>
+               
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination>
 
 </div>
