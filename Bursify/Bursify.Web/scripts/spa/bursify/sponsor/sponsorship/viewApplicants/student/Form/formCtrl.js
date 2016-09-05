@@ -125,8 +125,8 @@
 }])
 
 // Main application controller
-.controller('formCtrl', ['$scope', '$http', 'DEFAULT_INVOICE', 'DEFAULT_LOGO', 'LocalStorage', 'Currency',
-  function ($scope, $http, DEFAULT_INVOICE, DEFAULT_LOGO, LocalStorage, Currency) {
+.controller('formCtrl', ['$scope', '$http', 'DEFAULT_INVOICE', 'DEFAULT_LOGO', 'LocalStorage','notificationService', '$routeParams','apiService', 'Currency',
+  function ($scope, $http, DEFAULT_INVOICE, DEFAULT_LOGO, LocalStorage, notificationService , $routeParams,apiService,  Currency) {
 
       // Set defaults
       $scope.currencySymbol = '$';
@@ -230,12 +230,53 @@
       // Runs on document.ready
       angular.element(document).ready(function () {
           // Set focus
-          document.getElementById('invoice-number').focus();
-
+         
           // Changes the logo whenever the input changes
-          document.getElementById('imgInp').onchange = function () {
-              readUrl(this);
-          };
+        
       });
+
+      $scope.LoadData = function () {
+       
+          apiService.get('/api/bursifyUser/getuser/?userId=' + $routeParams.StudentId, null, userLoaded, userLoadFailed);
+      }
+
+      $scope.User = {};
+      function userLoaded(result) {
+          $scope.User = result.data;
+          loadStudent();
+      }
+
+      function userLoadFailed() {
+          notificationService.displayError("Unable to load user.");
+      }
+
+      function loadStudent() {
+          apiService.get('/api/student/getstudent/?studentId=' + $routeParams.StudentId, null, studentLoaded, studentLoadFailed);
+
+      }
+      $scope.Student = {};
+      function studentLoaded(result) {
+          $scope.Student = result.data;
+          loadSponsorship();
+      }
+
+      function studentLoadFailed() {
+          notificationService.displayError("Unable to load student.");
+      }
+
+      $scope.Sponsorship = {};
+      function loadSponsorship() {
+          apiService.get('/api/Sponsorship/GetSponsorship/?sponsorshipId=' + $routeParams.SponsorshipId, null, sponsorshipLoaded, sponsorshipLoadFailed);
+
+      }
+
+
+      function sponsorshipLoaded(result) {
+          $scope.Sponsorship = result.data;
+      }
+
+      function sponsorshipLoadFailed() {
+          notificationService.displayError("Unable to load sponsorship.");
+      }
 
   }])

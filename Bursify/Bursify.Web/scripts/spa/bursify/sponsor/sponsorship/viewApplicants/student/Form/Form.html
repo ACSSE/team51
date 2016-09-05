@@ -144,91 +144,84 @@ div.container{
   color: #ce0c15;
 }
 
+@media print{
+    a {
+        display: none;
+    }
+}
+
+@media screen and projection {
+    a {
+        display: inline;
+    }
+}
+
 </style>
 
 
-<div class="container md-padding" width="800px" id="invoice" >
+<div class="container md-padding" width="800px" id="invoice" ng-init="LoadData()">
    
-    <div class="row branding">
+    <div class="row branding md-padding" ng-init="printMode = 'true'">
         <div class="col-xs-6">
-            <div class="invoice-number-container">
-                <label for="invoice-number">Invoice #</label><input type="text" id="invoice-number" ng-model="invoice.invoice_number" />
-            </div>
-        </div>
-        <div class="col-xs-6 logo-container">
-            <input type="file" id="imgInp" />
-            <img ng-hide="logoRemoved" id="company_logo" ng-src="/Content/images/bursify.png" alt="your image" width="300" />
             <div>
-                
+                <h2 style="padding-top: 5px;">{{Sponsorship.Name}}</h2>
             </div>
+        </div>
+        <div class="col-xs-offset-9">
+            <input type="file" id="imgInp" />
+            <img id="company_logo" ng-src="/Content/images/bursify.png" alt="your image" style="width: 200px; padding-left: -250px; padding-top: 25px;" />
+            <div>
+
+            </div>
+        </div>
+        
+      
+    </div>
+    <div class="row infos md-padding">
+       
+        <div class="col-md-6">
+            <img class="" style="width: 200px; height: 140px; padding-top: 2px; padding-left: -10px;" ng-src="/Content/images/p1.jpeg" alt="Student profile picture" />
+        </div>
+        <div class="col-md-6 right">
+            <div class="input-container" style="line-height:0.5; padding-top: 0.5pc" ><p>{{Student.Firstname}} {{Student.Surname}}</p></div>
+            <div class="input-container" style="line-height:0.5;"><p> {{Student.Age}} yrs old</p></div>
+            <div class="input-container" style="line-height:0.5;"><p>Date of Birth: {{Student.DateOfBirth | date: "MMM d, y"}}</p></div>
+            <div class="input-container" style="line-height:0.5;"><p>ID-Number: {{Student.IDNumber}}</p></div>
+            <div class="input-container" style="line-height:0.5;"><p>Gender: {{Student.Gender}}</p></div>
+            <div class="input-container" style="line-height:0.5;"><p>Race: {{Student.Race}}</p></div>
+            <div class="input-container" style="line-height:0.5;"><p>Disabilities: {{Student.DisabilityDescription}}</p></div>
+
+
         </div>
     </div>
-    <div class="row infos">
-        <div class="col-xs-6">
-            <div class="input-container"><input type="text" ng-model="invoice.customer_info.name" /></div>
-            <div class="input-container"><input type="text" ng-model="invoice.customer_info.web_link" /></div>
-            <div class="input-container"><input type="text" ng-model="invoice.customer_info.address1" /></div>
-            <div class="input-container"><input type="text" ng-model="invoice.customer_info.address2" /></div>
-            <div class="input-container"><input type="text" ng-model="invoice.customer_info.postal" /></div>
-            <div class="input-container" data-ng-hide='printMode'>
-                <select ng-model='currencySymbol' ng-options='currency.symbol as currency.name for currency in availableCurrencies'></select>
-            </div>
-        </div>
-        <div class="col-xs-6 right">
-            <div class="input-container"><input type="text" ng-model="invoice.company_info.name" /></div>
-            <div class="input-container"><input type="text" ng-model="invoice.company_info.web_link" /></div>
-            <div class="input-container"><input type="text" ng-model="invoice.company_info.address1" /></div>
-            <div class="input-container"><input type="text" ng-model="invoice.company_info.address2" /></div>
-            <div class="input-container"><input type="text" ng-model="invoice.company_info.postal" /></div>
-        </div>
+    <div class="row branding md-padding">
+        <h3>Academic Details</h3>
+        <div class="input-container" style="line-height:0.5; padding-top: 0.5pc"><p>{{Student.Firstname}} {{Student.Surname}}</p></div>
+        <div class="input-container" style="line-height:0.5;"><p> {{Student.Age}} yrs old</p></div>
+        <div class="input-container" style="line-height:0.5;"><p>Date of Birth: {{Student.DateOfBirth | date: "MMM d, y"}}</p></div>
+        <div class="input-container" style="line-height:0.5;"><p>ID-Number: {{Student.IDNumber}}</p></div>
+        <div class="input-container" style="line-height:0.5;"><p>Gender: {{Student.Gender}}</p></div>
+        <div class="input-container" style="line-height:0.5;"><p>Race: {{Student.Race}}</p></div>
+        <div class="input-container" style="line-height:0.5;"><p>Disabilities: {{Student.DisabilityDescription}}</p></div>
+
     </div>
-    <div class="items-table">
-        <div class="row header">
-            <div class="col-xs-1">&nbsp;</div>
-            <div class="col-xs-5">Description</div>
-            <div class="col-xs-2">Quantity</div>
-            <div class="col-xs-2">Cost {{currencySymbol}}</div>
-            <div class="col-xs-2 text-right">Total</div>
-        </div>
-        <div class="row invoice-item" ng-repeat="item in invoice.items" ng-animate="'slide-down'">
-            <div class="col-xs-1 remove-item-container">
-                <a href ng-hide="printMode" ng-click="removeItem(item)" class="btn btn-danger">[X]</a>
-            </div>
-            <div class="col-xs-5 input-container">
-                <input ng-model="item.description" placeholder="Description" />
-            </div>
-            <div class="col-xs-2 input-container">
-                <input ng-model="item.qty" value="1" size="4" ng-required ng-validate="integer" placeholder="Quantity" />
-            </div>
-            <div class="col-xs-2 input-container">
-                <input ng-model="item.cost" value="0.00" ng-required ng-validate="number" size="6" placeholder="Cost" />
-            </div>
-            <div class="col-xs-2 text-right input-container">
-                {{item.cost * item.qty | currency: currencySymbol}}
-            </div>
-        </div>
-        <div class="row invoice-item">
-            <div class="col-xs-12 add-item-container" ng-hide="printMode">
-                <a class="btn btn-primary" href ng-click="addItem()">[+]</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-10 text-right">Sub Total</div>
-            <div class="col-xs-2 text-right">{{invoiceSubTotal() | currency: currencySymbol}}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-10 text-right">Tax(%): <input ng-model="invoice.tax" ng-validate="number" style="width:43px"></div>
-            <div class="col-xs-2 text-right">{{calculateTax() | currency: currencySymbol}}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-10 text-right">Grand Total:</div>
-            <div class="col-xs-2 text-right">{{calculateGrandTotal() | currency: currencySymbol}}</div>
-        </div>
+
+    <div class="row branding md-padding">
+        <h3>Address</h3>
     </div>
+
+    <div class="row branding md-padding">
+        <h3>Gaurdian</h3>
+    </div>
+ 
+
+
+    <div class="row branding md-padding">
+        <h3>Study Details</h3>
+    </div>
+
     <div class="row noPrint actions">
         <a class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>
      
-        <a class="btn btn-primary" ng-hide="printMode" ng-click="printMode = true;">Turn On Print Mode</a>
-        <a class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;">Turn Off Print Mode</a>
     </div>
 </div>

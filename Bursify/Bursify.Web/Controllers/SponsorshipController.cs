@@ -81,7 +81,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetSponsorship")]
-        public HttpResponseMessage GetSponsorships(HttpRequestMessage request, int sponsorshipId)
+        public HttpResponseMessage GetSponsorship(HttpRequestMessage request, int sponsorshipId)
         {
             var sponsorship = _studentApi.GetSponsorship(sponsorshipId);
 
@@ -97,7 +97,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetSponsorship")]
-        public HttpResponseMessage GetSponsorships(HttpRequestMessage request, int sponsorshipId, int userId)
+        public HttpResponseMessage GetSponsorship(HttpRequestMessage request, int sponsorshipId, int userId)
         {
             var sponsorship = _studentApi.GetSponsorship(sponsorshipId, userId);
 
