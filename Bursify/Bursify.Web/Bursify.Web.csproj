@@ -774,6 +774,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\FileUploadResult.cs" />
     <Compile Include="Utility\MimeMultipart.cs" />
+    <Compile Include="Utility\ModelClasses\Applicant.cs" />
     <Compile Include="Utility\ModelClasses\ContactDetails.cs" />
     <Compile Include="Utility\ModelClasses\Education.cs" />
     <Compile Include="Utility\ModelClasses\PersonalDetails.cs" />

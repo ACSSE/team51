@@ -75,22 +75,5 @@ namespace Bursify.Data.EF.Repositories
             return filteredSponsorships;
         }
 
-        public List<Sponsorship> LoadSponsorshipSuggestions(Student student)
-        {
-            var finalList = new List<StudentReport>();
-
-            if (!student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase))
-            {
-                var sponsorships =
-                    FindMany(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase));
-
-                foreach (var sponsorship in sponsorships)
-                {
-                    
-                }
-            }
-
-            return null;
-        }
     }
 }

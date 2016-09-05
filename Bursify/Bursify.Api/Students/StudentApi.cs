@@ -276,7 +276,7 @@ namespace Bursify.Api.Students
             {
                 var student = GetStudent(studentId);
 
-                return _sponsorshipRepository.LoadSponsorshipSuggestions(student);
+                return _studentSponsorshipRepository.LoadSponsorshipSuggestions(student);
             }
         }
 
@@ -420,14 +420,7 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                var reports = uow.Context.Set<StudentReport>()
-                    .Where(x => x.StudentId == studentId)
-                    .OrderByDescending(x => x.ReportYear)
-                    .ThenByDescending(x => x.ReportPeriod)
-                    .Take(5)
-                    .ToList();
-
-                return reports;
+                return _studentReportRepository.GetFiveMostRecentReports(studentId);
             }
         }
 
@@ -435,13 +428,7 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                var report = uow.Context.Set<StudentReport>()
-                    .Where(x => x.StudentId == studentId)
-                    .OrderByDescending(x => x.ReportYear)
-                    .ThenByDescending(x => x.ReportPeriod)
-                    .FirstOrDefault();
-
-                return report;
+                return _studentReportRepository.GetMostRecentReport(studentId);
             }
         }
 
