@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
@@ -368,6 +370,28 @@ namespace Bursify.Web.Controllers
             int number = _studentApi.GetNumberOfCampaignSupporters(campaignId);
 
             var response = request.CreateResponse(HttpStatusCode.OK, number);
+
+            return response;
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("GetStudyFields")]
+        public HttpResponseMessage GetStudyFields(HttpRequestMessage request, int studentId)
+        {
+            var student = _studentApi.GetStudent(studentId);
+            var studyFields = new List<string>();
+
+            if (student.StudyField.Contains(","))
+            {
+                studyFields = student.StudyField.Split(',').ToList();
+            }
+            else
+            {
+                studyFields.Add(student.StudyField);
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK, studyFields);
 
             return response;
         }

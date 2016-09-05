@@ -4,6 +4,7 @@ using System.Linq;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
 
 namespace Bursify.Data.EF.Repositories
@@ -130,19 +131,27 @@ namespace Bursify.Data.EF.Repositories
                 .OrderByDescending(x => x.ReportYear)
                 .ThenByDescending(x => x.ReportPeriod)
                 .FirstOrDefault();
+
+            var school = _dataSession.UnitOfWork.Context
+                .Set<Institution>()
+                .FirstOrDefault(x => x.ID == student.InstitutionID);
+
+            var address = _dataSession.UnitOfWork.Context
+                .Set<UserAddress>()
+                .FirstOrDefault(userAddress => userAddress.BursifyUserId == student.ID && userAddress.PreferredAddress);
             //FindMany(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase));
 
             var suggestionList = sponsorships.Where(sponsorship => 
-                                 latestReport != null 
-                                 && (sponsorship.StudyFields.Contains(student.StudyField)
-                                 && sponsorship.AverageMarkRequired <= latestReport.Average
-                                 || CheckAge(sponsorship.AgeGroup, student.Age)
+                                 school != null && latestReport != null && address != null
+                                 && 
+                                 (sponsorship.StudyFields.Contains(student.StudyField)
+                                 && sponsorship.AverageMarkRequired <= latestReport.Average)
+                                 &&(CheckAge(sponsorship.AgeGroup, student.Age)
                                  || sponsorship.GenderPreference.Equals(student.Gender)
-                                 || sponsorship.RacePreference.Equals(student.Race))).ToList();
-
-            //check province preference
-
-            //check institution preference
+                                 || sponsorship.RacePreference.Equals(student.Race)
+                                 || sponsorship.InstitutionPreference.Contains(school.Name)
+                                 || sponsorship.Province.Contains(address.Province))
+                                 ).ToList();
 
             //check disability preference
 

@@ -145,7 +145,7 @@ namespace Bursify.Web.Controllers
                                     _studentApi.GetMostRecentReport(applicant.ID).Average, 
                                     applicant.Gender)).ToList();
 
-            var response = request.CreateResponse(HttpStatusCode.OK, applicants);
+            var response = request.CreateResponse(HttpStatusCode.OK, new { count = applicants.Count, applicants });
 
             return response;
         }
