@@ -97,6 +97,12 @@
                  controller: "applicantsCtrl",
                  // resolve: { isAuthenticated: isAuthenticated }
              })
+
+              .when("/sponsor/sponsorships/view/student/:StudentId", {
+                  templateUrl: "scripts/spa/bursify/sponsor/sponsorship/ViewApplicants/student/studentapplication.html",
+                  controller: "studentApplicationCtrl",
+                  // resolve: { isAuthenticated: isAuthenticated }
+              })
             
             .when("/student/campaigns", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",

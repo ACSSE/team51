@@ -1,15 +1,15 @@
 ﻿<div id="loadingbarContainer"></div>
 <div id="content" ng-init="loadStudent()">
     <spnav-bar></spnav-bar>
-    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'blue'}">
+    <md-toolbar class="md-table-toolbar" >
         <div class="md-toolbar-tools">
             <span>{{Student.Student.Firstname}} {{Student.Student.Surname}}'s Profile</span>
             <span flex></span>
-           
+            <md-button md-colors="{background: 'green' }">Grant Sponsorship</md-button>
         </div>
     </md-toolbar>
 
-     
+
 
     <section class="content">
 
@@ -19,7 +19,7 @@
                 <!-- Profile Image -->
                 <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" style="width: 190px; height: 140px;" ng-src="/Content/images/student/student2.jpg" alt="Student profile picture">
+                        <img class="profile-user-img img-responsive img-circle" style="width: 150px; height: 140px;" ng-src="/Content/images/student/student2.jpg" alt="Student profile picture">
                         <h3 class="profile-username text-center">{{Student.Student.Firstname}} {{Student.Student.Surname}}</h3>
                         <h4 class="text-muted text-center">{{Student.Student.Age}} yrs old.</h4>
 
@@ -27,7 +27,7 @@
 
                         <!-- About Me Box -->
                         <div class="box box-success">
-                         
+
                             <div class="box-body">
                                 <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
                                 <p class="text-muted" ng-if="Student.Student.CurrentOccupation == 'High School'">
@@ -47,14 +47,14 @@
                                 <p>{{Student.Student.Headline}} </p>
 
                             </div><!-- /.box-body -->
-                       
+
                         </div><!-- /.box -->
 
-                        
+
                     </div><!-- /.box-body -->
-                    <md-button class="md-primary" style="width: 96%">
-                        <md-icon md-svg-src="/content/img/icons/application-form.svg" class="name"></md-icon>
-                        Reccommend Sponsorship
+                    <md-button class="md-success" style="width: 96%">
+                        <md-icon md-svg-src="/content/img/icons/pdf.svg" class="name"></md-icon>
+                        Application Form
                     </md-button>
                 </md-card>
 
@@ -108,7 +108,7 @@
 
                                     </md-content>
                                     <md-divider></md-divider>
-                                    <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Most Recent Results</md-subheader>
+                                    <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Subjects - Most Recent Results</md-subheader>
                                     <md-list-item ng-repeat="subject in myReports[0].Subjects">
                                         <p> {{subject.Name}} </p>
                                         <div class="col-md-4">
@@ -116,70 +116,52 @@
                                         </div>
                                     </md-list-item>
                                     <md-divider></md-divider>
-
                                 </md-list>
                             </md-content>
                         </md-tab>
 
-                        <md-tab label="Reports">
+                        <md-tab label="Campaigns">
 
                             <md-content class="md-padding">
+                                <p ng-show="!Campaigns.length">Student is yet to start a campaign.</p>
+                                <md-card ng-repeat="camp in Campaigns">
+                                    <md-card-title>
+                                        <md-card-title-media>
+                                            <div class="md-media-lg card-media" layout>
+                                                <img class="img-responsive img-lg" ng-src="Content/images/campaign/1.jpg" alt="Student profile picture">
+
+                                            </div>
+                                        </md-card-title-media>
+                                        <md-card-title-text style="padding-left: 25px;">
+                                            <span class="md-headline">{{camp.CampaignName}}</span>
+                                            <span class="md-subhead description">{{camp.Tagline}} Then I'll make an executive decision and say you are released from further labour</span>
+                                        </md-card-title-text>
+                                        <md-card-actions layout="row" layout-align="end center">
+                                            <div>
+
+                                                <div>
+                                                    <p>R{{camp.AmountContributed}}.00</p>
+                                                    <p>Raised of R{{camp.AmountRequired}}.00</p>
+                                                </div>
+
+                                                <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
 
 
+                                            </div>
+                                            <md-button ng-href="#/student/campaign-details/{{camp.CampaignId}}">View</md-button>
+                                        </md-card-actions>
+                                    </md-card-title>
+                                </md-card>
                             </md-content>
                         </md-tab>
-
-
-                        <md-tab label="Contact Details">
-
-                            <md-content class="md-padding">
-
-
-                            </md-content>
-                        </md-tab>
-
-                                <md-tab label="Campaigns">
-
-                                    <md-content class="md-padding">
-                                        <p ng-show="!Campaigns.length">Student is yet to start a campaign.</p>
-                                        <md-card ng-repeat="camp in Campaigns">
-                                            <md-card-title>
-                                                <md-card-title-media>
-                                                    <div class="md-media-lg card-media" layout>
-                                                        <img class="img-responsive img-lg" ng-src="Content/images/campaign/1.jpg" alt="Student profile picture">
-
-                                                    </div>
-                                                </md-card-title-media>
-                                                <md-card-title-text style="padding-left: 25px;">
-                                                    <span class="md-headline">{{camp.CampaignName}}</span>
-                                                    <span class="md-subhead description">{{camp.Tagline}} Then I'll make an executive decision and say you are released from further labour</span>
-                                                </md-card-title-text>
-                                                <md-card-actions layout="row" layout-align="end center">
-                                                    <div>
-
-                                                        <div>
-                                                            <p>R{{camp.AmountContributed}}.00</p>
-                                                            <p>Raised of R{{camp.AmountRequired}}.00</p>
-                                                        </div>
-
-                                                        <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
-
-
-                                                    </div>
-                                                    <md-button ng-href="#/student/campaign-details/{{camp.CampaignId}}">View</md-button>
-                                                </md-card-actions>
-                                            </md-card-title>
-                                        </md-card>
-                                    </md-content>
-                                </md-tab>
                     </md-tabs>
                 </div>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </section>
-       
 
 
 
-    
+
+
 </div>
