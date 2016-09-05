@@ -1,0 +1,127 @@
+﻿<md-dialog aria-label="Mango (Fruit)" ng-cloak>
+    
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Fund {{CampaignName}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancelFunding()"> X </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <!--Code here-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <div class="col-lg-12">
+                                <div class="col-lg-12">
+                                    <div class="thumbnail" style="background-color:white">
+                                        <img class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture" style="width:100%;height:200px;">
+                                        <div class="caption">
+                                            <b>{{CampaignName}}</b><br>
+                                            <small>{{StudentName}}</small><br><br>
+                                            <p style="margin-top: -5px;">{{Tagline | limitTo: 100}}</p>
+                                            <p><span class="glyphicon glyphicon-map-marker">{{CampaignLocation}}</span></p>
+                                            <md-progress-linear md-mode="determinate" class="success" value="{{(AmountContributed / AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <small>{{(AmountContributed / AmountRequired)*100 | number:0}}%</small>
+                                                    <b><small>Funded</small></b>
+                                                </div>
+                                                <div class="col-md-6 center">
+                                                    <small align="centre">R{{AmountContributed}}</small>
+                                                    <b><small class="centre">Funded</small></b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/Test -->
+                            </div>
+                            
+                        </div><!--Left  Section-->
+                        <div class="col-lg-8">
+                            <div ng-cloak>
+                                <md-content>
+                                    <md-tabs md-dynamic-height md-border-bottom>
+                                        <md-tab label="Credit Card / Debit Card">
+                                            <md-content class="md-padding">
+                                                <md-content layout-padding>
+                                                    <div>
+                                                        <form name="userForm">
+                                                            <div layout-gt-sm="row">
+                                                                <md-input-container class="md-block" flex-gt-sm>
+                                                                    <label>Card Number</label>
+                                                                    <input ng-model="cardNumber">
+                                                                </md-input-container>
+                                                                <md-input-container class="md-block" flex-gt-sm>
+                                                                    <label>Card Type</label>
+                                                                    <input ng-model="cardType">
+                                                                </md-input-container>
+                                                            </div>
+                                                            <div layout-gt-sm="row">
+                                                                <md-input-container class="md-block" flex-gt-sm="66">
+                                                                    <label>Name on card</label>
+                                                                    <input ng-model="cardName">
+                                                                </md-input-container>
+                                                                <div class="col-sm-3">
+                                                                    <md-input-container>
+                                                                        <label>CVV</label>
+                                                                        <input ng-model="cvvNumber">
+                                                                    </md-input-container>
+                                                                </div>
+                                                            </div>
+                                                            <div layout-gt-sm="row">
+                                                                <md-input-container class="md-block" flex-gt-sm>
+                                                                    <label>Validity</label>
+                                                                </md-input-container>
+                                                                <md-input-container class="md-block" flex-gt-sm>
+                                                                    <label>Month</label>
+                                                                    <md-select ng-model="month">
+                                                                        <md-option ng-repeat="month in Months" value="{{month}}">
+                                                                            {{month}}
+                                                                        </md-option>
+                                                                    </md-select>
+                                                                </md-input-container>
+
+                                                                <md-input-container class="md-block" flex-gt-sm>
+                                                                    <label>Year</label>
+                                                                    <md-select ng-model="year">
+                                                                        <md-option ng-repeat="year in Years" value="{{year}}">
+                                                                            {{year}}
+                                                                        </md-option>
+                                                                    </md-select>
+                                                                </md-input-container>
+                                                            </div>
+                                                            <div layout-gt-sm="row">
+                                                                <md-input-container class="md-block" flex-gt-sm>
+                                                                    <label>Amount</label>
+                                                                    <input ng-model="amount">
+                                                                </md-input-container>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </md-content>
+
+                                            </md-content>
+                                        </md-tab>
+                                        <md-tab label="PayPal">
+                                            <div  class="col-lg-offset-3" style="margin-top:50px">
+                                                <a href="https://www.paypal.com/signin/" target="_blank">
+                                                    <img src="../../../../../Images/Payments/payment.png"/>
+                                                </a>
+                                            </div>
+                                        </md-tab>
+                                    </md-tabs>
+                                </md-content>
+                            </div>
+                        </div> <!--Right  Section-->
+                    </div>
+                </div>
+            <div class="row">
+                <md-button class="btn-danger pull-left" ng-click="cancelFunding()"> Cancel</md-button>
+                <md-button class="btn-success pull-right" ng-click="saveFunding()"> Fund </md-button>
+             </div>
+            </div>
+        </md-dialog-content>
+</md-dialog>
