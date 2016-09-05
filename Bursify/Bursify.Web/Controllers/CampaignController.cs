@@ -32,7 +32,14 @@ namespace Bursify.Web.Controllers
             var campaigns = _studentApi.GetAllCampaigns();
 
             var campaignVm = CampaignViewModel.MultipleCampaignsMap(campaigns);
-            
+
+            foreach (var c in campaignVm)
+            {
+                var student = _studentApi.GetStudent(c.StudentId);
+                c.Name = student.Firstname;
+                c.Surname = student.Surname;
+            }
+
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
 
             return response;
@@ -47,6 +54,13 @@ namespace Bursify.Web.Controllers
             var campaigns = _studentApi.GetAllCampaigns(userId);
 
             var campaignVm = CampaignViewModel.MultipleCampaignsMap(campaigns);
+
+            foreach (var c in campaignVm)
+            {
+                var student = _studentApi.GetStudent(c.StudentId);
+                c.Name = student.Firstname;
+                c.Surname = student.Surname;
+            }
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
 
