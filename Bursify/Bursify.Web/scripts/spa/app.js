@@ -103,6 +103,12 @@
                   controller: "studentApplicationCtrl",
                   // resolve: { isAuthenticated: isAuthenticated }
               })
+
+              .when("/sponsor/sponsorships/view/student/form/:StudentId/:SponsorshipId", {
+                  templateUrl: "scripts/spa/bursify/sponsor/sponsorship/ViewApplicants/student/form/form.html",
+                  controller: "formCtrl",
+                  // resolve: { isAuthenticated: isAuthenticated }
+              })
             
             .when("/student/campaigns", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",
@@ -129,6 +135,7 @@
                 controller: "viewStudentCtrl",
                 // resolve: { isAuthenticated: isAuthenticated }
             })
+            
             /* Campaigns start **/
                 //STUDENT 
                 .when("/student/campaigns", {

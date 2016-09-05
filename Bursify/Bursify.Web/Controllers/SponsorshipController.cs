@@ -135,7 +135,7 @@ namespace Bursify.Web.Controllers
         {
             var students = _sponsorApi.GetStudentsApplying(sponsorshipId);
 
-            var applicants = students.Select(applicant => 
+            var data = students.Select(applicant => 
                                     new Applicant(applicant.ID, applicant.Firstname, 
                                     applicant.Surname,
                                     _studentApi.GetUserInfo(applicant.ID).ProfilePicturePath, 
@@ -144,8 +144,8 @@ namespace Bursify.Web.Controllers
                                     applicant.EducationLevel, 
                                     _studentApi.GetMostRecentReport(applicant.ID).Average, 
                                     applicant.Gender)).ToList();
-
-            var response = request.CreateResponse(HttpStatusCode.OK, applicants);
+          
+            var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data });
 
             return response;
         }

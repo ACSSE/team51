@@ -490,6 +490,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\images\background.jpg" />
+    <Content Include="Content\images\BURSIFY.png" />
     <Content Include="Content\images\campaign.jpeg" />
     <Content Include="Content\images\campaign.jpg" />
     <Content Include="Content\images\p1.jpeg" />
@@ -640,6 +641,8 @@
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndexCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicants.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicantsCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\Form\Form.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\Form\formCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\studentApplication.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\studentApplicationCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\student\viewStudent.html" />
