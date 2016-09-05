@@ -17,7 +17,8 @@
         $scope.StudentName = '';
         $scope.currentCampaign = {};
         $scope.length = 0;
-        
+        $scope.Live = 'ACTIVE';
+
         //For Payments
         $scope.cardNumber = '';
         $scope.CardType = '';
@@ -38,10 +39,6 @@
         function campaignsLoadCompleted(result) {
             $scope.campaigns = result.data;
             $scope.loadingCampaigns = false;
-
-           
-            //Use student id to get the name of the student who started the campaign  *****NBNB****
-            $scope.StudentName = 'Student Name';
         }
 
         function campaignsLoadFailed(response) {

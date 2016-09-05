@@ -45,15 +45,13 @@
                                             </div>
                                             <div class="panel-body text-center ">
                                     <a ng-href="#/student/add-campaign">
-                                                <i class="fa fa-play fa-4x" aria-hidden="true"></i>
+                                       <i class="fa fa-play fa-4x" aria-hidden="true"></i>
                                     </a>
                                     <p>Start yours It's simple...</p>
                                     <hr />
                                     </div>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -62,9 +60,117 @@
             </div>
         <!--End of Top part-->
 
+        <!-- Start Of sorting -->
+            <md-content class="md-padding">
+                <div class="col-md-12">
+                    <div class="col-md-12 tabs-area box-shadow-none">
+                        <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
+                            <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group form-animate-text">
+                                            <input type="text" class="form-text" ng-model="searchA" required>
+                                            <span class="bar"></span>
+                                            <label class="label-search" style="color: black;">Type here to <b>Search</b> </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="col-md-4">
+                                            Sort by:
+                                            <div class="form-group form-animate-checkbox" ng-init="type='All'">
+                                                <select class="form-control" style="width: 100%;" ng-model="type" tabindex="-1" aria-hidden="true">
+                                                    <option>All</option>
+                                                    <option>Art</option>
+                                                    <option>Books</option>
+                                                    <option>Excursion</option>
+                                                    <option>Food</option>
+                                                    <option>Journalism</option>
+                                                    <option>Music</option>
+                                                    <option>Publishing</option>
+                                                    <option>Sports</option>
+                                                    <option>Theater</option>
+                                                    <option>Technology</option>
+                                                </select>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="media" ng-if="type != 'All'" ng-repeat="campaign in campaigns| filter:type | filter:searchA">
+                                    <a ng-href="#/student/campaign-details/{{campaign.CampaignId}}">
+                                        <md-card style="height: 450px;">
+                                            <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                                            <md-card-title>
+                                                <md-card-title-text>
+                                                    <span class="md-headline">{{campaign.CampaignName}}</span>
+                                                    <small>{{campaign.Name + ' '+  campaign.Surname}}</small><br>
+                                                </md-card-title-text>
+                                            </md-card-title>
+                                            <md-card-content>
+                                                <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
+                                                <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+
+                                                <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                        <br />
+                                                        <small>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</small>
+                                                        <b><small>Funded</small></b>
+                                                    </div>
+                                                    <div class="col-md-5 pull-left">
+                                                        <br />
+                                                        <small>R{{campaign.AmountContributed}}</small>
+                                                        <b><small>Funded</small></b>
+                                                    </div>
+                                                </div>
+                                            </md-card-content>
+                                        </md-card>
+                                    </a>
+                                </div>
+
+                                <div class="media" ng-if="type == 'All'" ng-repeat="campaign in campaigns">
+                                    <a ng-href="#/student/campaign-details/{{campaign.CampaignId}}">
+                                        <md-card style="height: 450px;">
+                                            <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                                            <md-card-title>
+                                                <md-card-title-text>
+                                                    <span class="md-headline">{{campaign.CampaignName}}</span>
+                                                    <small>{{campaign.Name + ' '+  campaign.Surname}}</small><br>
+                                                </md-card-title-text>
+                                            </md-card-title>
+                                            <md-card-content>
+                                                <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
+                                                <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+
+                                                <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                        <br />
+                                                        <small>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</small>
+                                                        <b><small>Funded</small></b>
+                                                    </div>
+                                                    <div class="col-md-5 pull-left">
+                                                        <br />
+                                                        <small>R{{campaign.AmountContributed}}</small>
+                                                        <b><small>Funded</small></b>
+                                                    </div>
+                                                </div>
+                                            </md-card-content>
+                                        </md-card>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </md-content>
+        <!-- End Of sorting -->
+
         <div class="col-lg-12 ">
             <!--Start of Middle part-->
-            <div class="col-lg-12">
+            <!--<div class="col-lg-12">
 
             <div class="col-md-12">
                 <div class="alert alert-primary alert-border alert-dismissible fade in" role="alert">
@@ -72,24 +178,23 @@
                     <p>Your Campaign received 0 upvodes and 2 new funders</p>
                 </div>
             </div>
-            </div>
+            </div>-->
             <!--End of Middle part-->
             .
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-lg-12">
             <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="campaign in campaigns" class="col-lg-4">
-                    <a ng-href="#/student/campaign-details/{{campaign.CampaignId}}">
-                <md-card>
-                   
-                    <img ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                <a ng-href="#/student/campaign-details/{{campaign.CampaignId}}" ng-if="campaign.Status == Live">
+                <md-card style="height: 450px;">
+                    <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline">{{campaign.CampaignName}}</span>
-                            <small>{{StudentName}}</small><br>
+                            <small>{{campaign.Name + ' '+  campaign.Surname}}</small><br>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
-                        <p style="margin-top: -20px; height: 70px;">{{campaign.Tagline}}</p>
+                        <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
                     <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
 
                      <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
@@ -109,7 +214,7 @@
                 <br />
             </div>
             </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <!--/Displaying all the campaigns -->
