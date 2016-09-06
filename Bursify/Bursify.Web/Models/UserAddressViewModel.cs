@@ -8,7 +8,7 @@ namespace Bursify.Web.Models
         public int ID { get; set; }
         public int BursifyUserId { get; set; }
         public string AddressType { get; set; }
-        public bool PreferredAddress { get; set; }
+        public string PreferredAddress { get; set; }
         public string StreetAddress { get; set; }
         public string Province { get; set; }
         public string City { get; set; }
