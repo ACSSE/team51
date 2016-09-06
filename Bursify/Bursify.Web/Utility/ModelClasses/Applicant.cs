@@ -17,11 +17,6 @@ namespace Bursify.Web.Utility.ModelClasses
         public int Average { get; set; }
         public string Gender { get; set; }
 
-        public Applicant()
-        {
-            
-        }
-
         public Applicant(int id, string name, string surname, string picturePath, int age, string province, string level, int average, string gender)
         {
             ID = id;
