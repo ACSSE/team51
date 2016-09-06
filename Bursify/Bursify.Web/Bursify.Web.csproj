@@ -474,7 +474,6 @@
     <Content Include="Content\css\morris.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\toastr.css" />
-    <Content Include="Content\dialog.tmpl.html" />
     <Content Include="Content\dist\css\AdminLTE.css" />
     <Content Include="Content\dist\css\AdminLTE.min.css" />
     <Content Include="Content\dist\img\credit\american-express.png" />
@@ -491,9 +490,25 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\images\background.jpg" />
+    <Content Include="Content\images\BURSIFY.png" />
     <Content Include="Content\images\campaign.jpeg" />
     <Content Include="Content\images\campaign.jpg" />
     <Content Include="Content\images\p1.jpeg" />
+    <Content Include="Content\images\student\student1.jpg" />
+    <Content Include="Content\images\student\student10.jpg" />
+    <Content Include="Content\images\student\student11.jpg" />
+    <Content Include="Content\images\student\student12.jpg" />
+    <Content Include="Content\images\student\student13.jpg" />
+    <Content Include="Content\images\student\student14.jpg" />
+    <Content Include="Content\images\student\student15.jpg" />
+    <Content Include="Content\images\student\student2.jpg" />
+    <Content Include="Content\images\student\student3.jpg" />
+    <Content Include="Content\images\student\student4.jpg" />
+    <Content Include="Content\images\student\student5.jpg" />
+    <Content Include="Content\images\student\student6.jpg" />
+    <Content Include="Content\images\student\student7.jpg" />
+    <Content Include="Content\images\student\student8.jpg" />
+    <Content Include="Content\images\student\student9.jpg" />
     <Content Include="Content\images\system\Double Down-64.png" />
     <Content Include="Content\images\system\entelect.png" />
     <Content Include="Content\images\ui\report.png" />
@@ -503,6 +518,7 @@
     <Content Include="Content\img\icons\addShoppingCart.svg" />
     <Content Include="Content\img\icons\android.svg" />
     <Content Include="Content\img\icons\angular-logo.svg" />
+    <Content Include="Content\img\icons\application-form.svg" />
     <Content Include="Content\img\icons\bower-logo.svg" />
     <Content Include="Content\img\icons\cake.svg" />
     <Content Include="Content\img\icons\codepen-logo.svg" />
@@ -547,6 +563,7 @@
     <Content Include="Content\img\icons\more_vert.svg" />
     <Content Include="Content\img\icons\npm-logo.svg" />
     <Content Include="Content\img\icons\octicon-repo.svg" />
+    <Content Include="Content\img\icons\pdf.svg" />
     <Content Include="Content\img\icons\print.svg" />
     <Content Include="Content\img\icons\separator.svg" />
     <Content Include="Content\img\icons\sets\communication-icons.svg" />
@@ -617,8 +634,6 @@
     <Content Include="scripts\spa\bursify\sponsor\registration\registrationCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\add.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\addSponsorshipCtrl.js" />
-    <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\addT.html" />
-    <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\addTSponsorshipCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\dialog.tmpl.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\edit.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\editSponsorshipCtrl.js" />
@@ -626,6 +641,12 @@
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndexCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicants.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicantsCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\Form\Form.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\Form\formCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\studentApplication.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\studentApplicationCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\student\viewStudent.html" />
+    <Content Include="scripts\spa\bursify\sponsor\student\viewStudentCtrl.js" />
     <Content Include="scripts\spa\bursify\student\applications\myApplications.html" />
     <Content Include="scripts\spa\bursify\student\applications\myApplicationsCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\addAccount.html" />
@@ -841,7 +862,6 @@
     <Folder Include="Content\images\campaign\" />
     <Folder Include="Content\images\company\" />
     <Folder Include="Content\images\raty\" />
-    <Folder Include="Content\images\student\" />
     <Folder Include="Content\landing\wp-content\plugins\contact-form-7\includes\css\" />
     <Folder Include="Content\landing\wp-content\plugins\contact-form-7\includes\js\" />
     <Folder Include="Content\landing\wp-content\plugins\easy-digital-downloads\assets\js\" />
@@ -870,8 +890,6 @@
     <Folder Include="Content\landing\wp-content\plugins\woocommerce\assets\js\jquery-cookie\" />
     <Folder Include="Content\landing\wp-content\plugins\wp-product-review\images\" />
     <Folder Include="Content\landing\wp-content\plugins\wp-rocket\inc\front\js\" />
-    <Folder Include="Content\plugins\" />
-    <Folder Include="scripts\spa\bursify\campaigns\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bursify.Api\Bursify.Api.csproj">

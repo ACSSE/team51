@@ -91,11 +91,25 @@
                 controller: "addSponsorshipCtrl",
                 // resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/sponsor/sponsorships/addT", {
-                templateUrl: "scripts/spa/bursify/sponsor/sponsorship/addSponsorship/addT.html",
-                controller: "addTSponsorshipCtrl",
-                // resolve: { isAuthenticated: isAuthenticated }
-            })
+
+             .when("/sponsor/sponsorships/view/:sponsorshipId", {
+                 templateUrl: "scripts/spa/bursify/sponsor/sponsorship/ViewApplicants/applicants.html",
+                 controller: "applicantsCtrl",
+                 // resolve: { isAuthenticated: isAuthenticated }
+             })
+
+              .when("/sponsor/sponsorships/view/student/:StudentId", {
+                  templateUrl: "scripts/spa/bursify/sponsor/sponsorship/ViewApplicants/student/studentapplication.html",
+                  controller: "studentApplicationCtrl",
+                  // resolve: { isAuthenticated: isAuthenticated }
+              })
+
+              .when("/sponsor/sponsorships/view/student/form/:StudentId/:SponsorshipId", {
+                  templateUrl: "scripts/spa/bursify/sponsor/sponsorship/ViewApplicants/student/form/form.html",
+                  controller: "formCtrl",
+                  // resolve: { isAuthenticated: isAuthenticated }
+              })
+            
             .when("/student/campaigns", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",
                 controller: "campaignsCtrl",
@@ -110,11 +124,18 @@
                 templateUrl: "scripts/spa/bursify/sponsor/chart/leaderboard.html",
                 controller: "leaderboardCtrl",
                  // resolve: { isAuthenticated: isAuthenticated}
-            }).when("/student/sponsorship/:sponsorshipId", {
+            })
+            .when("/student/sponsorship/:sponsorshipId", {
                 templateUrl: "scripts/spa/bursify/student/sponsorship/index.html",
                 controller: "sponsorshipCtrl",
                  // resolve: { isAuthenticated: isAuthenticated }
             })
+            .when("/sponsor/viewStudent/:StudentId", {
+                templateUrl: "scripts/spa/bursify/sponsor/student/viewStudent.html",
+                controller: "viewStudentCtrl",
+                // resolve: { isAuthenticated: isAuthenticated }
+            })
+            
             /* Campaigns start **/
                 //STUDENT 
                 .when("/student/campaigns", {

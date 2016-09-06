@@ -36,7 +36,7 @@ namespace Bursify.Web.Controllers
         [Route("GetAllReports")]
         public HttpResponseMessage GetAllReports(HttpRequestMessage request, int studentId)
         {
-            var reports = _studentApi.GetStudentReports(studentId);
+            var reports = _studentApi.GetAllReportsWithSubjects(studentId);
 
             var reportVm = (new StudentReportViewModel()).MapMultipleReports(reports);
 

@@ -55,7 +55,10 @@
         <requestLimits maxAllowedContentLength="1073741824"/>
       </requestFiltering>
     </security>
+<<<<<<< HEAD
     
+=======
+>>>>>>> 07ef1091b36463fdc3eec0c8f8d480b0f40d4919
   </system.webServer>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">

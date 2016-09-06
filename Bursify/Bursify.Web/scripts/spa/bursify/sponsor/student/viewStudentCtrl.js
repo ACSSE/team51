@@ -1,26 +1,46 @@
 ﻿(function (app) {
     'use strict';
 
-    app.controller('reportcardCtrl', reportcardCtrl);
+    app.controller('viewStudentCtrl', viewStudentCtrl);
 
-    reportcardCtrl.$inject = ['$scope','$rootScope', 'apiService', 'notificationService', '$location'];
+    viewStudentCtrl.$inject = ['$scope', '$rootScope', '$routeParams', '$timeout', 'apiService', '$location', 'notificationService', '$mdDialog', '$mdMedia'];
 
-    function reportcardCtrl($scope, $rootScope, apiService, notificationService, $location) {
-        $scope.pageClass = 'page-student-reportcard';
-        $scope.loadReports = function () {
-            apiService.get('/api/report/GetAllReports/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reportLoadCompleted, reportLoadFailed);
 
-            apiService.get('/api/report/GetSortedReports/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reportLoadCompleted2, reportLoadFailed2);
+    function viewStudentCtrl($scope, $rootScope, $routeParams, $timeout, apiService, $location, notificationService, $mdDialog, $mdMedia) {
+        $scope.pageClass = 'page-view-sponsorship';
+        $scope.max = 2;
+        $scope.selectedIndex = 0;
+        $scope.secondLocked = false;
+        $scope.nextTab = function () {
+            var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
+            $scope.selectedIndex = index;
+
+        };
+        $scope.Student = {};
+
+        $scope.loadStudent = function () {
+          
+            apiService.get('/api/bursifyUser/getuser/?userId=' + $routeParams.StudentId, null, profileLoaded, profileLoadFailed);
         }
+
+        function loadReports() {  
+           apiService.get('/api/report/GetAllReports/?studentId=' + $routeParams.StudentId, null, reportLoadCompleted, reportLoadFailed);
+
+           apiService.get('/api/report/GetSortedReports/?studentId=' + $routeParams.StudentId, null, reportLoadCompleted2, reportLoadFailed2);
+
+           apiService.get('/api/campaign/GetAllCampaigns/?userId=' + $routeParams.StudentId, null, campLoadCompleted, campLoadFailed);
+
+       }
+
         $scope.myDataSource = {};
 
 
         $scope.myReports = {};
 
         $scope.recentReports = {};
-        
+
         function reportLoadCompleted(result) {
-   
+
             $scope.myReports = result.data;
         }
 
@@ -28,14 +48,13 @@
             notificationService.displayError("Load failed");
         }
 
-
         function reportLoadCompleted2(result) {
-           
+
             $scope.recentReports = result.data;
             var label1 = $scope.recentReports
             $scope.myDataSource = {
                 chart: {
-                    caption: "Most Recent Average's",
+                    caption:"Most Recent Average's",
                     subCaption: "",
                     numberSuffix: "%",
                     //Cosmetics
@@ -93,11 +112,30 @@
             notificationService.displayError("Load Sorted failed");
         }
 
-        $scope.AddReport = function () {
-            $location.path('/student/report/add');
+
+       
+        function profileLoaded(result) {
+           
+            $scope.Student = result.data;
+            loadReports();
         }
 
+
+        function profileLoadFailed() {
+            notificationService.displayError('Error');
+        }
+
+        $scope.Campaigns = {}
+        function campLoadCompleted(result) {
+            $scope.Campaigns = result.data;
+        }
+
+        function campLoadFailed()
+        {
+            notificationService.displayError("Error loading campaigns.");
+        }
     }
+
 
 })(angular.module('BursifyApp'));
 

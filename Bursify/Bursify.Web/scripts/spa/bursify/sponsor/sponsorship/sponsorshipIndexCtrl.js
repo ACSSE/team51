@@ -12,14 +12,19 @@
         $scope.selectedIndex = 0;
         $scope.secondLocked = false;
         $scope.nextTab = function () {
-             var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
+            var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
             $scope.selectedIndex = index;
 
         };
 
-        apiService.get('api/Sponsorship/GetAllSponsorships/?userId=' + $rootScope.repository.loggedUser.userIden, null,
-                       sponsorshipsLoadCompleted,
-                       sponsorshipsLoadFailed);
+        $scope.LoadSP = function () {
+            var x = $rootScope.repository.loggedUser.userIden;
+           
+                apiService.get('api/Sponsorship/GetAllSponsorships/?userId=' + $rootScope.repository.loggedUser.userIden, null,
+                         sponsorshipsLoadCompleted,
+                         sponsorshipsLoadFailed);
+         
+        }
 
 
         function sponsorshipsLoadCompleted(result) {
@@ -27,7 +32,7 @@
         }
 
         function sponsorshipsLoadFailed() {
-            notificationService.displayInfo("Could not load your sponsorships. Please sign in again.");
+            notificationService.displayError("Could not load your sponsorships. Please sign in again.");
         }
      
         $scope.addHigh = function () {
@@ -48,6 +53,10 @@
                 $location.path('/sponsor/sponsorships/add');
             }
         };
+
+        $scope.Cancel = function () {
+            $mdDialog.hide();
+        }
 
         $scope.field = null;
         $scope.fields = null;

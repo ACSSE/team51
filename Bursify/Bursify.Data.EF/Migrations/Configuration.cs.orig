@@ -77,6 +77,28 @@ namespace Bursify.Data.EF.Migrations
         //        student.NumberOfViews = 25;
         //        student.Essay = MockData.Lorem.Paragraphs(5).ToString();
 
+<<<<<<< HEAD
+=======
+                student.ID = id++;
+                student.InstitutionID = 1;
+                student.IDNumber = "9521332463352";
+                student.Firstname = MockData.Person.FirstName();
+                student.Surname = MockData.Person.Surname();
+                student.Headline = MockData.Lorem.Sentence();
+                student.StudentNumber = "201472025";
+                student.Age = MockData.RandomNumber.Next(16, 30);
+                student.HasDisability = MockData.Utils.Boolean();
+                student.DisabilityDescription = "None";
+                student.Race = GetRace(MockData.RandomNumber.Next(0, 4));
+                student.Gender = (MockData.RandomNumber.Next(0, 100) >= 50) ? "Male" : "Female";
+                student.CurrentOccupation = (MockData.RandomNumber.Next(0, 100) >= 50) ? "High-School Student" : "Tertiary Student";
+                student.StudyField = "Information Technology";
+                student.HighestAcademicAchievement = "Primary School";
+                student.YearOfAcademicAchievement = 2008;
+                student.DateOfBirth = MockData.Utils.RandomDate(new DateTime(2000, 01, 01), new DateTime(2016, 10, 10));
+                student.NumberOfViews = 25;
+                student.Essay = MockData.Lorem.Paragraphs(5).ToString();
+>>>>>>> ba01065c5259deb965eaa25f2cbaedd0354fb72d
 
         //        students.Add(student);
         //    }

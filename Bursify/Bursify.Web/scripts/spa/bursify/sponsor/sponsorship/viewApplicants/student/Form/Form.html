@@ -1,0 +1,226 @@
+﻿<style>
+    .slide-down-enter,
+.slide-down-leave
+{
+    -webkit-transition:200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition:200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition:200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition:200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition:200ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    display:block;
+    overflow:hidden;
+    position:relative;
+}
+
+.items-table .row {
+  border-bottom:1px solid #ddd;
+  line-height:3em;
+}
+.items-table .row:last-child {
+  border-bottom:none;
+  line-height:3em;
+}
+
+.slide-down-enter.slide-down-enter-active,
+.slide-down-leave {
+    opacity:1;
+    height:46px;
+}
+
+.slide-down-leave.slide-down-leave-active,
+.slide-down-enter {
+    opacity:0;
+    height:0px;
+}
+
+
+.invoice-number-container * {
+  font-weight:bold;
+}
+
+.items-table .row:nth-child(even) {
+  background:#f9f9f9;
+}
+.items-table input {
+  line-height:1.5em;
+}
+.actions {
+  padding-top:1em;
+}
+input:focus {
+  outline: 0;
+}
+
+.heading {
+  background-color:#357EBD;
+  color:#FFF;
+  margin-bottom:1em;
+  text-align:center;
+  line-height:2.5em;
+}
+.branding {
+  padding-bottom:2em;
+  border-bottom:1px solid #ddd;
+}
+.logo-container {
+  text-align:right;
+}
+.infos .right {
+  text-align:right;
+}
+.infos .right input {
+  text-align:right;
+}
+.infos .input-container {
+  padding:3px 0;
+}
+
+.header.row {
+  font-weight:bold;
+  border-bottom:1px solid #ddd;
+  border-top:1px solid #ddd;
+}
+
+input, textarea{
+  border: 1px solid #FFF;
+}
+
+.container input:hover, .container textarea:hover,
+.table-striped > tbody > tr:nth-child(2n+1) > td input:hover,
+.container input:focus, .container textarea:focus,
+.table-striped > tbody > tr:nth-child(2n+1) > td input:focus{
+  border: 1px solid #CCC;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td input{
+    background-color: #F9F9F9;
+    border: 1px solid #F9F9F9;
+}
+
+
+
+@media print {
+    .noPrint {
+        display:none;
+    }
+}
+
+body{
+  padding:20px;
+}
+
+.infos input{
+  width: 300px;
+}
+
+.align-right input{
+  text-align:right;
+  width: 300px;
+}
+
+div.container{
+  width: 800px;
+}
+
+#imgInp{
+  display: none;
+}
+
+.copy {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  width: 100%;
+  margin: 40px 0 20px 0;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: #404040;
+  cursor: default;
+  line-height: 1.4em;
+}
+
+.copy .love {
+  display: inline-block;
+  position: relative;
+  color: #ce0c15;
+}
+
+@media print{
+    a {
+        display: none;
+    }
+}
+
+@media screen and projection {
+    a {
+        display: inline;
+    }
+}
+
+</style>
+
+
+<div class="container md-padding" width="800px" id="invoice" ng-init="LoadData()">
+   
+    <div class="row branding md-padding" ng-init="printMode = 'true'">
+        <div class="col-xs-6">
+            <div>
+                <h2 style="padding-top: 5px;">{{Sponsorship.Name}}</h2>
+            </div>
+        </div>
+        <div class="col-xs-offset-9">
+            <input type="file" id="imgInp" />
+            <img id="company_logo" ng-src="/Content/images/bursify.png" alt="your image" style="width: 200px; padding-left: -250px; padding-top: 25px;" />
+            <div>
+
+            </div>
+        </div>
+        
+      
+    </div>
+    <div class="row infos md-padding">
+       
+        <div class="col-md-6">
+            <img class="" style="width: 200px; height: 140px; padding-top: 2px; padding-left: -10px;" ng-src="/Content/images/p1.jpeg" alt="Student profile picture" />
+        </div>
+        <div class="col-md-6 right">
+            <div class="input-container" style="line-height:0.5; padding-top: 0.5pc" ><p>{{Student.Firstname}} {{Student.Surname}}</p></div>
+            <div class="input-container" style="line-height:0.5;"><p> {{Student.Age}} yrs old</p></div>
+            <div class="input-container" style="line-height:0.5;"><p>Date of Birth: {{Student.DateOfBirth | date: "MMM d, y"}}</p></div>
+            <div class="input-container" style="line-height:0.5;"><p>ID-Number: {{Student.IDNumber}}</p></div>
+            <div class="input-container" style="line-height:0.5;"><p>Gender: {{Student.Gender}}</p></div>
+            <div class="input-container" style="line-height:0.5;"><p>Race: {{Student.Race}}</p></div>
+            <div class="input-container" style="line-height:0.5;"><p>Disabilities: {{Student.DisabilityDescription}}</p></div>
+
+
+        </div>
+    </div>
+    <div class="row branding md-padding">
+        <h3>Contact Details</h3>
+        <div class="input-container" style="line-height:0.5; padding-top: 0.5pc"><p>{{Student.Firstname}} {{Student.Surname}}</p></div>
+        <div class="input-container" style="line-height:0.5;"><p> {{Student.Age}} yrs old</p></div>
+        <div class="input-container" style="line-height:0.5;"><p>Date of Birth: {{Student.DateOfBirth | date: "MMM d, y"}}</p></div>
+        <div class="input-container" style="line-height:0.5;"><p>ID-Number: {{Student.IDNumber}}</p></div>
+        <div class="input-container" style="line-height:0.5;"><p>Gender: {{Student.Gender}}</p></div>
+        <div class="input-container" style="line-height:0.5;"><p>Race: {{Student.Race}}</p></div>
+        <div class="input-container" style="line-height:0.5;"><p>Disabilities: {{Student.DisabilityDescription}}</p></div>
+ </div>
+
+    <div class="row branding md-padding">
+        <h3>Address</h3>
+    </div>
+
+    <div class="row branding md-padding">
+        <h3>Gaurdian</h3>
+    </div>
+ 
+
+
+    <div class="row branding md-padding">
+        <h3>Study Details</h3>
+    </div>
+
+    <div class="row noPrint actions">
+        <a class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>
+     
+    </div>
+</div>
