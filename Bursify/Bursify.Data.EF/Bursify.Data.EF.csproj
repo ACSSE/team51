@@ -121,6 +121,10 @@
     <Compile Include="EntityMappings\UserActivityMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
+    <Compile Include="Migrations\201609061044430_UserAddressUpdate.cs" />
+    <Compile Include="Migrations\201609061044430_UserAddressUpdate.Designer.cs">
+      <DependentUpon>201609061044430_UserAddressUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
@@ -154,6 +158,11 @@
   <ItemGroup>
     <Content Include="it\MockData.resources.dll" />
     <Content Include="uk\MockData.resources.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201609061044430_UserAddressUpdate.resx">
+      <DependentUpon>201609061044430_UserAddressUpdate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
