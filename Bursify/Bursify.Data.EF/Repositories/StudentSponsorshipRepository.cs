@@ -138,7 +138,7 @@ namespace Bursify.Data.EF.Repositories
 
             var address = _dataSession.UnitOfWork.Context
                 .Set<UserAddress>()
-                .FirstOrDefault(userAddress => userAddress.BursifyUserId == student.ID && userAddress.PreferredAddress);
+                .FirstOrDefault(userAddress => userAddress.BursifyUserId == student.ID && userAddress.PreferredAddress.Contains("Residential"));
             //FindMany(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase));
 
             var suggestionList = sponsorships.Where(sponsorship => 
