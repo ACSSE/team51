@@ -3,8 +3,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
-using Bursify.Data.EF.Entities.Campaigns;
-using Bursify.Api.Security;
 
 namespace Bursify.Web.Controllers
 {
@@ -60,8 +58,9 @@ namespace Bursify.Web.Controllers
 
             foreach (var c in campaignVm)
             {
-                c.Name = _studentApi.GetUserInfo(c.StudentId).Name;
-                c.Surname = _studentApi.GetStudent(c.StudentId).Surname;
+                var student = _studentApi.GetStudent(c.StudentId);
+                c.Name = student.Firstname;
+                c.Surname = student.Surname;
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
@@ -77,10 +76,11 @@ namespace Bursify.Web.Controllers
         {
             var campaign = _studentApi.GetSingleCampaign(campaignId);
 
-            var model = new CampaignViewModel();
+            var model = new CampaignViewModel(campaign);
 
-            model.Name = _studentApi.GetUserInfo(model.StudentId).Name;
-            model.Surname = _studentApi.GetStudent(model.StudentId).Surname;
+            var student = _studentApi.GetStudent(campaign.StudentId);
+            model.Name = student.Firstname;
+            model.Surname = student.Surname;
 
             var campaignVm = model.SingleCampaignMap(campaign);
 
@@ -97,10 +97,11 @@ namespace Bursify.Web.Controllers
         {
             var campaign = _studentApi.GetSingleCampaign(campaignId, userId);
 
-            var model = new CampaignViewModel();
+            var model = new CampaignViewModel(campaign);
 
-            model.Name = _studentApi.GetUserInfo(model.StudentId).Name;
-            model.Surname = _studentApi.GetStudent(model.StudentId).Surname;
+            var student = _studentApi.GetStudent(campaign.StudentId);
+            model.Name = student.Firstname;
+            model.Surname = student.Surname;
 
             model.SingleCampaignMap(campaign);
 
@@ -167,6 +168,17 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetNumberCampaignsByStudent")]
+        public HttpResponseMessage GetNumberCampaignsByStudent(HttpRequestMessage request, int Id)
+        {
+            int number = _studentApi.GetNumberOfCampaignsByID(Id);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, number);
+
+            return response;
+        }
 
     }
 }

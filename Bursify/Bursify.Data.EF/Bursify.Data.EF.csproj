@@ -47,6 +47,10 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MockData, Version=0.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MockData.0.0.6\lib\net40\MockData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -84,36 +88,44 @@
   <ItemGroup>
     <Compile Include="Entities\Bridge\CampaignReport.cs" />
     <Compile Include="Entities\Bridge\CampaignSponsor.cs" />
-    <Compile Include="Entities\Bridge\SponsorshipRequirement.cs" />
     <Compile Include="Entities\Bridge\StudentSponsorship.cs" />
-    <Compile Include="Entities\Bridge\StudentSubject.cs" />
-    <Compile Include="Entities\Campaigns\Account.cs" />
+    <Compile Include="Entities\Campaigns\CampaignAccount.cs" />
+    <Compile Include="Entities\SponsorUser\Account.cs" />
     <Compile Include="Entities\Campaigns\Campaign.cs" />
+    <Compile Include="Entities\SponsorUser\Requirement.cs" />
     <Compile Include="Entities\SponsorUser\Sponsor.cs" />
     <Compile Include="Entities\SponsorUser\Sponsorship.cs" />
     <Compile Include="Entities\StudentUser\Institution.cs" />
     <Compile Include="Entities\StudentUser\Student.cs" />
     <Compile Include="Entities\User\BursifyUser.cs" />
-    <Compile Include="Entities\User\Subject.cs" />
+    <Compile Include="Entities\StudentUser\StudentReport.cs" />
+    <Compile Include="Entities\StudentUser\Subject.cs" />
+    <Compile Include="Entities\User\UserActivity.cs" />
     <Compile Include="Entities\User\UserAddress.cs" />
     <Compile Include="EntityMappings\AccountMapping.cs" />
     <Compile Include="EntityMappings\BursifyUserMapping.cs" />
+    <Compile Include="EntityMappings\CampaignAccountMapping.cs" />
     <Compile Include="EntityMappings\CampaignMapping.cs" />
     <Compile Include="EntityMappings\CampaignReportMapping.cs" />
     <Compile Include="EntityMappings\CampaignSponsorMapping.cs" />
     <Compile Include="EntityMappings\InstitutionMapping.cs" />
+    <Compile Include="EntityMappings\RequirementMapping.cs" />
     <Compile Include="EntityMappings\SponsorMapping.cs" />
     <Compile Include="EntityMappings\SponsorshipMapping.cs" />
-    <Compile Include="EntityMappings\SponsorshipRequirementMapping.cs" />
     <Compile Include="EntityMappings\StudentMapping.cs" />
+    <Compile Include="EntityMappings\StudentReportMapping.cs" />
     <Compile Include="EntityMappings\StudentSponsorshipMapping.cs" />
-    <Compile Include="EntityMappings\StudentSubjectMapping.cs" />
     <Compile Include="EntityMappings\SubjectMapping.cs" />
+    <Compile Include="EntityMappings\UserActivityMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
-    <Compile Include="Migrations\201608080955444_initial.cs" />
-    <Compile Include="Migrations\201608080955444_initial.Designer.cs">
-      <DependentUpon>201608080955444_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201608301212553_initial.cs" />
+    <Compile Include="Migrations\201608301212553_initial.Designer.cs">
+      <DependentUpon>201608301212553_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608301258085_removenotifications.cs" />
+    <Compile Include="Migrations\201608301258085_removenotifications.Designer.cs">
+      <DependentUpon>201608301258085_removenotifications.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,9 +139,9 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SponsorRepository.cs" />
     <Compile Include="Repositories\SponsorshipRepository.cs" />
+    <Compile Include="Repositories\StudentReportRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Repositories\StudentSponsorshipRepository.cs" />
-    <Compile Include="Repositories\StudentSubjectRepository.cs" />
     <Compile Include="Repositories\SubjectRepository.cs" />
     <Compile Include="Uow\DatabaseConfiguration.cs" />
     <Compile Include="Uow\DataContext.cs" />
@@ -146,8 +158,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608080955444_initial.resx">
-      <DependentUpon>201608080955444_initial.cs</DependentUpon>
+    <Content Include="it\MockData.resources.dll" />
+    <Content Include="uk\MockData.resources.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201608301212553_initial.resx">
+      <DependentUpon>201608301212553_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608301258085_removenotifications.resx">
+      <DependentUpon>201608301258085_removenotifications.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

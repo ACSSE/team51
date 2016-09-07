@@ -1,13 +1,14 @@
 ﻿(function (app) {
     'use strict';
 
-    app.factory('notificationService', notificationService);
+    app.factory('notificationService', notificationService, 'messageService', messageService);
 
     function notificationService() {
 
         toastr.options = {
             "debug": false,
             "positionClass": "toast-top-right",
+             "progressBar": true,
             "onclick": null,
             "fadeIn": 300,
             "fadeOut": 1000,
@@ -48,4 +49,7 @@
 
     }
 
+    function messageService() {
+
+    }
 })(angular.module('common.core'));

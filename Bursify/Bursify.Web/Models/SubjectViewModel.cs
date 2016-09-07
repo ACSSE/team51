@@ -2,63 +2,71 @@
 using System.Linq;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
-using Bursify.Data.EF.Entities.Bridge;
 
 namespace Bursify.Web.Models
 {
     public class SubjectViewModel
     {
-        #region Variables
-
-        //entry Id
         public int ID { get; set; }
-
-        //subject model plus the ID
+        public int StudentReportID { get; set; }
         public string Name { get; set; }
-        public string SubjectLevel { get; set; }
-        
-        public int StudentId { get; set; }
-        public int SubjectId { get; set; }
         public int MarkAcquired { get; set; }
 
-        #endregion
+        public SubjectViewModel MapSingleSubject(Subject subject)
+        {
+            ID = subject.ID;
+            StudentReportID = subject.StudentReportId;
+            Name = subject.Name;
+            MarkAcquired = subject.MarkAcquired;
 
-        #region Subject
+            return this;
+        }
 
-        public Subject MapSingleSubject(Subject subject)
+        public Subject ReverseMap()
         {
             return new Subject()
             {
-                ID = subject.ID,
-                Name = subject.Name,
-                SubjectLevel = subject.SubjectLevel
+                ID = this.ID,
+                StudentReportId = this.StudentReportID,
+                Name = this.Name,
+                MarkAcquired = this.MarkAcquired
             };
         }
 
-        public List<Subject> MapMultipleSubjects(List<Subject> subjects)
+        public SubjectViewModel ReverseMap(Subject subject)
         {
-            return (from subject in subjects select MapSingleSubject(subject)).ToList();
-        }
-
-        #endregion
-
-        #region StudentSubject
-
-        public StudentSubject MapSingleStudentSubject(StudentSubject studentSubject)
-        {
-            return new StudentSubject()
+            return new SubjectViewModel()
             {
-                StudentId = studentSubject.StudentId,
-                SubjectId = studentSubject.SubjectId,
-                MarkAcquired = studentSubject.MarkAcquired
+                ID = subject.ID,
+                StudentReportID = subject.StudentReportId,
+                Name = subject.Name,
+                MarkAcquired = subject.MarkAcquired
             };
         }
 
-        public List<StudentSubject> MapMultipleStudentSubjects(List<StudentSubject> studentSubjects)
+        public static List<SubjectViewModel> ReverseMapSubjects(List<Subject> subjects)
         {
-            return (from studentSubject in studentSubjects select MapSingleStudentSubject(studentSubject)).ToList();
+            var subjectViewModel = new SubjectViewModel();
+            var subjectVm = new List<SubjectViewModel>();
+
+            foreach (var subject in subjects)
+            {
+                subjectVm.Add(subjectViewModel.ReverseMap(subject));
+            }
+            return subjectVm;
+            //return subjects.Select(subjectViewModel.ReverseMap).ToList();
         }
 
-        #endregion
+        public static List<SubjectViewModel> MapMultipleSubjects(List<Subject> reportViewModels)
+        {
+            //var subjectViewModel = (new SubjectViewModel());
+            var list = new List<SubjectViewModel>();
+
+            foreach(var sub in reportViewModels)
+            {
+                list.Add((new SubjectViewModel()).MapSingleSubject(sub));
+            }
+            return list;
+        }
     }
 }

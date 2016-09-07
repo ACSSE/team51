@@ -21,11 +21,12 @@
                 </thead>
                 <tbody md-body>
                     <tr md-row md-select="application" md-select-id="name" md-auto-select ng-repeat="application in applications">
-                        <td md-cell>{{application.name}}</td>
-                        <td md-cell style="text-align:center;">{{application.sponsor}}</td>
-                        <td md-cell style="text-align:center;">{{application.closing}}</td>
-                        <td md-cell style="text-align:center;">{{application.applied}}</td>
-                        <td md-cell style="text-align:center;"><md-button md-colors="{background: 'yellow'}" class="md-raised">{{application.status}}</md-button></td>
+                        <td md-cell>{{application.SponsorshipName}}</td>
+                        <td md-cell style="">{{application.SponsorName}}</td>
+                        <td md-cell style="">{{application.ClosingDate | date: "MMM d, y"}}</td>
+                        <td md-cell style="">{{application.ApplicationDate | date: "MMM d, y"}}</td>
+                      
+                        <td md-cell style=""><md-button md-colors="{background: 'yellow'}" class="md-raised">{{application.Status }}</md-button></td>
                     </tr>
                 </tbody>
             </table>

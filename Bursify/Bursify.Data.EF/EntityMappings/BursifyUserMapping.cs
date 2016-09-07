@@ -15,29 +15,25 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            this.Property(x => x.Name)
-                .HasMaxLength(100)
-                .IsRequired();
-
             this.Property(x => x.Email)
                 .HasMaxLength(100)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.PasswordHash)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.PasswordSalt)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.AccountStatus)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.UserType)
                 .HasMaxLength(50)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.RegistrationDate)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.Biography)
                 .IsOptional();
@@ -55,6 +51,8 @@ namespace Bursify.Data.EF.EntityMappings
                 .IsOptional();
 
             this.HasMany(x => x.Addresses);
+
+            this.HasMany(x => x.Activities);
 
             this.HasOptional(x => x.Student);
 

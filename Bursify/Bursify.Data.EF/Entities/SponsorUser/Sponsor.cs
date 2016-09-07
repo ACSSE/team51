@@ -14,6 +14,7 @@ namespace Bursify.Data.EF.Entities.SponsorUser
         //Unique identifier
         //foreign key
         public int ID { get; set; }
+        public string CompanyName { get; set; }
         public string Industry { get; set; }
         public string Website { get; set; }
         public string Location { get; set; }
@@ -25,7 +26,8 @@ namespace Bursify.Data.EF.Entities.SponsorUser
         public int BursifyScore { get; set; }
 
         public virtual BursifyUser BursifyUser { get; set; }
+        public virtual Account Account { get; set; }
         public ICollection<Sponsorship> Sponsorhips { get; set; }
-        public virtual ICollection<CampaignSponsor> CampaignSponsors { get; set; }
+        public virtual ICollection<CampaignSponsor> CampaignSponsors { get; set; } 
     }
 }

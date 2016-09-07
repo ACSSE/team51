@@ -3,58 +3,24 @@
 
     app.controller('myApplicationsCtrl', myApplicationsCtrl);
 
-    myApplicationsCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
+    myApplicationsCtrl.$inject = ['$scope','$rootScope', 'apiService', 'notificationService'];
 
-    function myApplicationsCtrl($scope, apiService, notificationService) {
+    function myApplicationsCtrl($scope,$rootScope, apiService, notificationService) {
         $scope.pageClass = 'page-student-myApplications';
 
-        $scope.applications = [
-        {
-            "name": "Entelect Foundation",
-            "sponsor": "Entelect",
-            "closing": "10/09/2346",
-            "applied": "nu",
-            "status": "Pending"
-        },
-       {
-           "name": "Entelect",
-           "sponsor": "Entelect",
-           "closing": "10/09/2345",
-           "applied": "nu",
-           "status": "Approved"
-       },
-       {
-           "name": "Entelect",
-           "sponsor": "Entelect",
-           "closing": "10/09/2345",
-           "applied": "nu",
-           "status": "Pending"
+       
 
-       },
-       {
-           "name": "Entelect",
-           "sponsor": "Entelect",
-           "closing": "10/09/2345",
-           "applied": "nu",
-           "status": "Pending"
+        apiService.get('/api/student/GetMyApplications/?studentId=' + $rootScope.repository.loggedUser.userIden, null, applicationLoadCompleted, applicationLoadFailed);
+        
+        function applicationLoadCompleted(result) {
+            $scope.applications = result.data;
+        }
 
-       },
-       {
-           "name": "Entelect",
-           "sponsor": "Entelect",
-           "closing": "10/09/2345",
-           "applied": "nu",
-           "status": "Pending"
 
-       },
-       {
-           "name": "Entelect",
-           "sponsor": "Entelect",
-           "closing": "10/09/2345",
-           "applied": "nu",
-           "status": "Pending"
+        function applicationLoadFailed(result) {
+            notificationService.displayError("Failed");
+        }
 
-       }];
 
         $scope.selected = [];
 

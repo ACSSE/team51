@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bursify.Data.EF.Entities.Bridge;
+﻿using System.Collections.Generic;
 using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
@@ -88,12 +83,20 @@ namespace Bursify.Api.Administrators
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                subjectRepository.Save(new Subject
+               /* subjectRepository.Save(new Subject
                 {
                     Name = name,
-                    SubjectLevel = level,
-                    Period = period
-                });
+                    SubjectLevel = level
+                });*/
+                uow.Commit();
+            }
+        }
+
+        public void AddSubject(Subject s)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                subjectRepository.Save(s);
                 uow.Commit();
             }
         }
@@ -205,7 +208,6 @@ namespace Bursify.Api.Administrators
                 uow.Commit();
             }
         }
-
 
     }
 }

@@ -1,7 +1,8 @@
-﻿using Bursify.Data.EF.Repositories;
+﻿using System;
+using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Entities.User;
 
@@ -10,14 +11,16 @@ namespace Bursify.Api.Users
     public class UserApi
     {
         protected readonly IUnitOfWorkFactory unitOfWorkFactory;
-        protected readonly Repository<BursifyUser> userRepository;
+        protected readonly BursifyUserRepository userRepository;
+        protected readonly Repository<UserAddress> userAddressRepository;
         protected readonly CampaignRepository campaignRepository;
         protected readonly CampaignSponsorRepository campaignSponsorRepository;
 
-        public UserApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository)
+        public UserApi(IUnitOfWorkFactory unitOfWorkFactory, BursifyUserRepository userRepository, Repository<UserAddress> userAddressRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository)
         {
             this.unitOfWorkFactory = unitOfWorkFactory;
             this.userRepository = userRepository;
+            this.userAddressRepository = userAddressRepository;
             this.campaignRepository = campaignRepository;
             this.campaignSponsorRepository = campaignSponsorRepository;
         }
@@ -38,6 +41,18 @@ namespace Bursify.Api.Users
             }
         }
 
+        public bool ValidateEmail(string email)
+        {
+            var e = userRepository.GetUserByEmail(email);
+
+            if (e == null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public void UpdateUser(BursifyUser user)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
@@ -47,7 +62,7 @@ namespace Bursify.Api.Users
             }
         }
 
-        public void UpdateUser(int Id, string accountStatus, ICollection<UserAddress> address, string bio, string cellno, string email, string name, string picPath, string telno)
+        public void UpdateUser(int Id, string accountStatus, ICollection<UserAddress> address, string bio, string cellno, string email, string picPath, string telno)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
@@ -57,7 +72,6 @@ namespace Bursify.Api.Users
                 user.Biography = bio;
                 user.CellphoneNumber = cellno;
                 user.Email = email;
-                user.Name = name;
                 user.ProfilePicturePath = picPath;
                 user.TelephoneNumber = telno;
                 UpdateUser(user);
@@ -117,6 +131,36 @@ namespace Bursify.Api.Users
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 return campaignSponsorRepository.GetNumberOfSupportersOfCampaign(Id);
+            }
+        }
+
+        public List<UserAddress> GetAddressofUser(int Id)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return userRepository.LoadById(Id).Addresses.ToList();
+            }
+        }
+
+        public void SaveAddress(UserAddress address)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                userAddressRepository.Save(address);
+                uow.Commit();
+            }
+        }
+
+        public UserAddress GetAddress(int userId, string type)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var address =
+                    userAddressRepository.FindSingle(
+                                x => x.BursifyUserId == userId
+                             && x.AddressType.Equals(type, StringComparison.OrdinalIgnoreCase));
+
+                return address;
             }
         }
     }

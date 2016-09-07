@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Entities.SponsorUser;
@@ -13,11 +14,11 @@ namespace Bursify.Data.EF.Entities.User
         {
             //Student = new Student();
             Addresses = new List<UserAddress>();
+            Activities = new List<UserActivity>();
             //Sponsors = new List<Sponsor>();
         }
 
         public int ID { get; set; }
-        public string Name { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
@@ -32,6 +33,7 @@ namespace Bursify.Data.EF.Entities.User
         public virtual ICollection<UserAddress> Addresses { get; set; }
         public virtual ICollection<CampaignReport> CampaignReports { get; set; }
         public virtual ICollection<Campaign> Upvotes { get; set; }
+        public virtual ICollection<UserActivity> Activities { get; set; } 
         public virtual Sponsor Sponsor { get; set; }
         public virtual Student Student { get; set; }
     }

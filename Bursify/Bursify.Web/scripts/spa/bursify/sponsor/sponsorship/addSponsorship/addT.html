@@ -1,0 +1,435 @@
+﻿<div id="content" style="background-color: white">
+    <spnav-bar></spnav-bar>
+
+    <style>
+        .panel {
+            margin-bottom: 0px;
+        }
+    </style>
+
+    <md-content class="md-padding">
+        <div id="details">
+            <md-toolbar>
+                <div class="md-toolbar-tools" md-colors="{background: 'teal'}">
+
+                    <h2>
+                        <span>Tertiary Sponsorship Details</span>
+                    </h2>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+            <div class="col-md-12">
+
+                <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                    <input type="text" class="form-text" id="validate_firstname" name="validate_firstname" required="">
+                    <span class="bar"></span>
+                    <label>Sponsorship Name</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                    <textarea type="text" class="form-text" id="validate_firstname" name="validate_firstname" required="" rows="5" />
+                    <span class="bar"></span>
+                    <label>Give a brief description of the sponsorship</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <md-input-container>
+                        <md-datepicker ng-model="myDate" md-placeholder="Closing date" style="min-width: 350px;">></md-datepicker>
+                    </md-input-container>
+                </div>
+                <div class="col-md-3">
+                    <md-input-container>
+                        <label>Fields</label>
+                        <md-select ng-model="selectedVegetables"
+                                   md-on-close="clearSearchTerm()"
+                                   data-md-container-class="selectdemoSelectHeader"
+                                   multiple style="min-width: 250px;">
+
+                            <md-optgroup label="vegetables">
+                                <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
+              filter:searchTerm">{{vegetable}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div class="col-md-3">
+                    <md-input-container>
+                        <label>Province</label>
+                        <md-select ng-model="selectedVegetables"
+                                   md-on-close="clearSearchTerm()"
+                                   data-md-container-class="selectdemoSelectHeader"
+                                   multiple style="min-width: 250px;">
+
+                            <md-optgroup label="vegetables">
+                                <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
+              filter:searchTerm">{{vegetable}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div class="col-md-3">
+                    <md-input-container>
+                        <label>Age group</label>
+                        <md-select ng-model="selectedVegetables"
+                                   md-on-close="clearSearchTerm()"
+                                   data-md-container-class="selectdemoSelectHeader"
+                                   style="min-width: 250px;">
+
+                            <md-optgroup label="vegetables">
+                                <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
+              filter:searchTerm">{{vegetable}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+            </div>
+            <div id="submit1">
+
+                <div class="col-md-10">
+
+                </div>
+                <div class="col-md-2">
+                    <md-input-container>
+                        <md-switch ng-model="data.cb1" aria-label="Switch 1">
+                            Advanced Preferences
+                        </md-switch>
+
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="advanced" ng-if="data.cb1">
+            <md-toolbar>
+                <div class="md-toolbar-tools" md-colors="{background: 'red'}">
+
+                    <h2>
+                        <span>Advanced Preferences</span>
+                    </h2>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+
+            <div class="panel box-v1">
+                <div class="panel-heading bg-white border-none">
+                    <h4><span class="icon-notebook icons"></span>Turn on preferences for this particular sponsorship.</h4>
+                </div>
+
+                <md-content class="md-padding">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label>Preference</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Setting</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <md-input-container>
+                                Gender
+                                <md-switch ng-model="data.cbGender" aria-label="Switch 1">
+
+                                </md-switch>
+
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-4" ng-if="data.cbGender">
+                            <div class="form-group form-animate-checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <label>Male</label>
+                            </div>
+                            <div class="form-group form-animate-checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <label>Female</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <md-input-container>
+                                Province
+                                <md-switch ng-model="data.cbProv" aria-label="Switch 1">
+
+                                </md-switch>
+
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-4" ng-if="data.cbProv">
+
+                            <md-input-container>
+                                <label>Age group</label>
+                                <md-select ng-model="selectedVegetabl"
+                                           md-on-close="clearSearchTerm()"
+                                           md-on-open="fixPosition()"
+                                           data-md-container-class="selectdemoSelectHeaderz"
+                                           style="min-width: 250px;">
+
+                                    <md-optgroup label="vegetables">
+                                        <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
+              filter:searchTerm">{{vegetable}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <br />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <md-input-container>
+                                Race
+                                <md-switch ng-model="data.cbRace" aria-label="Switch 1">
+
+                                </md-switch>
+
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-4" ng-if="data.cbRace">
+
+                            <md-input-container>
+                                <label>Age group</label>
+                                <md-select ng-model="selectedVegetabl"
+                                           md-on-close="clearSearchTerm()"
+                                           md-on-open="fixPosition()"
+                                           data-md-container-class="selectdemoSelectHeaderz"
+                                           style="min-width: 250px;">
+
+                                    <md-optgroup label="vegetables">
+                                        <md-option ng-value="vegetable" ng-repeat="vegetable in vegetables |
+              filter:searchTerm">{{vegetable}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <br />
+                    </div>
+
+
+
+                </md-content>
+
+
+            </div>
+
+
+
+        </div>
+
+        <div id="terms">
+            <md-toolbar>
+                <div class="md-toolbar-tools" md-colors="{background: 'green'}">
+
+                    <h2>
+                        <span>Terms &amp; Conditions</span>
+                    </h2>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+
+
+
+
+            <div class="col-md-12">
+                <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                    <textarea type="text" class="form-text" id="validate_firstname" name="validate_firstname" required="" rows="10" />
+                    <span class="bar"></span>
+                    <label>Please give all terms &amp; conditions students must adhere to upon acceptance</label>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <div id="requirements" style="background-color: white">
+            <md-toolbar>
+                <div class="md-toolbar-tools" md-colors="{background: 'light-green'}">
+
+                    <h2>
+                        <span>Sponsorship Requirements</span>
+                    </h2>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+            <div class="panel box-v1">
+                <div class="panel-heading bg-white border-none">
+                    <h4><span class="icon-notebook icons"></span>Specify subject requirements for high school students.</h4>
+                </div>
+
+                <md-content class="md-padding">
+                    <div class="row">
+
+                        <div class="col-md-9">
+                            <div class="form-group">
+
+                                <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <option>Maths</option>
+                                    <option>English</option>
+                                    <option>Afrikaans</option>
+                                    <option>Life Orientation</option>
+                                    <option>Geography</option>
+                                    <option>Business</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="%">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-9">
+                            <div class="form-group">
+
+                                <select class="form-control " style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <option>English</option>
+                                    <option>Maths</option>
+
+                                    <option>Afrikaans</option>
+                                    <option>Life Orientation</option>
+                                    <option>Geography</option>
+                                    <option>Business</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="%">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-9">
+
+                        </div>
+                        <div class="col-md-3">
+                            <label style="padding-right: 25px;">Add More Subjects</label><span class="fa fa-plus-circle fa-2x"></span>
+                        </div>
+                    </div>
+                </md-content>
+
+
+            </div>
+        </div>
+
+
+        <div id="offer">
+            <md-toolbar md-colors="{background: 'lime'}">
+                <div class="md-toolbar-tools">
+
+                    <h2>
+                        <span>What this bursary covers</span>
+                    </h2>
+                    <span flex></span>
+                </div>
+
+
+            </md-toolbar>
+
+
+            <div class="panel box-v2">
+                <div class="panel-heading bg-white border-none">
+                    <h4><span class="icon-notebook icons"></span> Tick what this bursary covers.</h4>
+                </div>
+
+                <md-content class="md-padding">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group form-animate-checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <label>Registration</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-animate-checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <label>Examination Fees</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-animate-checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <label>Tuition Fees</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-animate-checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <label>Books</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-animate-checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <label>Accomodation</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-animate-checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <label>Living Allowance</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-animate-checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <label>Laptop Allowance</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-animate-checkbox">
+                                <input type="checkbox" class="checkbox">
+                                <label>Transport</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="submit1">
+
+                        <div class="col-md-10">
+                            <h1></h1>
+                            <button style="padding-top: 10px;" type="submit" class="btn btn-success">Submit</button>
+                        </div>
+
+                    </div>
+
+
+                </md-content>
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </md-content>
+
+
+
+
+</div>
+

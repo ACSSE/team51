@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bursify.Api.Users;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.Campaigns;
@@ -18,16 +16,14 @@ namespace Bursify.Api.Sponsors
     {
         private SponsorshipRepository sponsorshipRepository;
         private StudentSponsorshipRepository studentSponsorshipRepository;
-        private BridgeRepository<SponsorshipRequirement> requirementBridgeRepository;
         private Repository<Student> studentRepository;
         private BridgeRepository<CampaignReport> campaignReportBridgeRepository;
         private SponsorRepository sponsorRepository;
 
-        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, Repository<BursifyUser> userRepository, SponsorRepository sponsorRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, BridgeRepository<SponsorshipRequirement> requirementBridgeRepository, Repository<Student> studentRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository) : base(unitOfWorkFactory, userRepository, campaignRepository, campaignSponsorRepository)
+        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, BursifyUserRepository userRepository, Repository<UserAddress> userAddressRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, Repository<Student> studentRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository, SponsorRepository sponsorRepository) : base(unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository)
         {
             this.sponsorshipRepository = sponsorshipRepository;
             this.studentSponsorshipRepository = studentSponsorshipRepository;
-            this.requirementBridgeRepository = requirementBridgeRepository;
             this.studentRepository = studentRepository;
             this.campaignReportBridgeRepository = campaignReportBridgeRepository;
             this.sponsorRepository = sponsorRepository;
@@ -80,28 +76,28 @@ namespace Bursify.Api.Sponsors
             }
         }
 
-        public void AddSponsorship(int sponsorshipId, int sponsorId, string name, string description,
+        /*public void AddSponsorship(int sponsorshipId, int sponsorId, string name, string description,
             DateTime closingDate, bool essayRequired, double sponsorshipValue, string studyFields, string province,
             int averageMarkRequired, string educationLevel, string preferredInstitutions, string expensesCovered,
-            string termsAndConditions, List<SponsorshipRequirement> requirements)
+            string termsAndConditions, List<Subject> requirements)
         {
             AddSponsorship(sponsorshipId, sponsorId, name, description,
             closingDate, essayRequired, sponsorshipValue, studyFields, province,
             averageMarkRequired, educationLevel, preferredInstitutions, expensesCovered,
             termsAndConditions);
-            AddRequirements(requirements);
-        }
+           // AddRequirements(requirements);
+        }*/
 
-        public void AddRequirement(SponsorshipRequirement requirement)
+        /*public void AddRequirement(Subject requirement)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 requirementBridgeRepository.Save(requirement);
                 uow.Commit();
             }
-        }
+        }*/
 
-        public void AddRequirement(int sponsorId, int subjectId, int requiredMark)
+        /*public void AddRequirement(int sponsorId, int subjectId, int requiredMark)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
@@ -114,9 +110,9 @@ namespace Bursify.Api.Sponsors
 
                 uow.Commit();
             }
-        }
+        }*/
 
-        public void AddRequirements(List<SponsorshipRequirement> requirements)
+        /*public void AddRequirements(List<SponsorshipRequirement> requirements)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
@@ -127,7 +123,7 @@ namespace Bursify.Api.Sponsors
 
                 uow.Commit();
             }
-        }
+        }*/
 
         public Student GetStudent(int Id)
         {
@@ -220,5 +216,12 @@ namespace Bursify.Api.Sponsors
             }
         }
 
+        public List<Sponsorship> GetSponsorSponsorships(int SponsorId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return sponsorRepository.LoadById(SponsorId).Sponsorhips.ToList();
+            }
+        }
     }
 }

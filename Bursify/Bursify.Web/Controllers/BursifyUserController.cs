@@ -3,7 +3,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Security;
-using Bursify.Data.EF.Entities.User;
+using Bursify.Web.Utility;
+using System.Web;
+using System.Linq;
+using System.IO;
 
 namespace Bursify.Web.Controllers
 {
@@ -31,6 +34,49 @@ namespace Bursify.Web.Controllers
             userVm.PasswordSalt = null;
 
             var response = request.CreateResponse(HttpStatusCode.OK, userVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("UploadImage")]
+        [MimeMultipart]
+        public HttpResponseMessage UploadImage(HttpRequestMessage request, int userId)
+        {
+            var user = _membershipApi.GetUserById(userId);
+
+            if (user == null) return null;
+         
+            var imagePath = HttpContext.Current.Server.MapPath("~/Content/BursifyUploads/" + userId + "/images");
+
+            var directory = new DirectoryInfo(imagePath);
+
+            if (!directory.Exists) { directory.Create();}
+
+            var multipartFormDataStreamProvider = new UploadMultipartFormProvider(directory.FullName);
+
+            // Read the MIME multipart asynchronously 
+            Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
+
+            var localFileName = multipartFormDataStreamProvider
+                .FileData.Select(multiPartData => multiPartData.LocalFileName).FirstOrDefault();
+
+            // Create response
+            if (localFileName == null) return null;
+            var fileUploadResult = new FileUploadResult
+            {
+                LocalFilePath = localFileName,
+                FileName = Path.GetFileName(localFileName),
+                FileLength = new FileInfo(localFileName).Length
+            };
+
+            // update profile picture path of the user
+            user.ProfilePicturePath = fileUploadResult.FileName;
+
+            //update the user in the database
+            _membershipApi.UpdateUser(user);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, fileUploadResult);
 
             return response;
         }

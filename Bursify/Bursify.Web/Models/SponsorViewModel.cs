@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Web.Models
@@ -7,11 +6,16 @@ namespace Bursify.Web.Models
     public class SponsorViewModel
     {
         public int ID { get; set; }
+        public string CompanyName { get; set; }
         public int NumberOfStudentsSponsored { get; set; }
         public int NumberOfSponsorships { get; set; }
         public int NumberOfApplicants { get; set; }
         public int BursifyRank { get; set; }
         public int BursifyScore { get; set; }
+        public string CompanyEmail { get; set; }
+        public string Website { get; set; }
+        public string Industry { get; set; }
+        public string Location { get; set; }
 
         public SponsorViewModel()
         {
@@ -19,18 +23,23 @@ namespace Bursify.Web.Models
 
         public SponsorViewModel(Sponsor s)
         {
-            SingleSponsorMap(s);
+            SingleSponsorMap(s);    
         }
 
         public SponsorViewModel SingleSponsorMap(Sponsor sponsor)
         {
-                ID = sponsor.ID;
-                NumberOfStudentsSponsored = sponsor.NumberOfStudentsSponsored;
-                NumberOfSponsorships = sponsor.NumberOfSponsorships;
-                NumberOfApplicants = sponsor.NumberOfApplicants;
-                BursifyRank = sponsor.BursifyRank;
-                BursifyScore = sponsor.BursifyScore;
-                return this;
+            ID = sponsor.ID;
+            CompanyName = sponsor.CompanyName;
+            NumberOfStudentsSponsored = sponsor.NumberOfStudentsSponsored;
+            NumberOfSponsorships = sponsor.NumberOfSponsorships;
+            NumberOfApplicants = sponsor.NumberOfApplicants;
+            BursifyRank = sponsor.BursifyRank;
+            BursifyScore = sponsor.BursifyScore;
+            CompanyEmail = sponsor.CompanyEmail;
+            Website = sponsor.Website;
+            Industry = sponsor.Industry;
+            Location = sponsor.Location;
+            return this;
         }
 
         public Sponsor ReverseMap()
@@ -38,11 +47,16 @@ namespace Bursify.Web.Models
             return new Sponsor()
             {
                 ID = this.ID,
+                CompanyName = this.CompanyName,
                 NumberOfStudentsSponsored = this.NumberOfStudentsSponsored,
                 NumberOfSponsorships = this.NumberOfSponsorships,
                 NumberOfApplicants = this.NumberOfApplicants,
                 BursifyRank = this.BursifyRank,
-                BursifyScore = this.BursifyScore
+                BursifyScore = this.BursifyScore,
+                CompanyEmail = this.CompanyEmail,
+                Website = this.Website,
+                Industry = this.Industry,
+                Location = this.Location
             };
         }
 

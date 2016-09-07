@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using Bursify.Data.EF.Entities.Bridge;
-using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Data.EF.EntityMappings
 {
@@ -22,10 +21,10 @@ namespace Bursify.Data.EF.EntityMappings
                 .IsRequired();
 
             this.Property(x => x.AmountContributed)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.DateOfContribution)
-                .IsRequired();
+                .IsOptional();
 
             this.HasRequired(x => x.Campaign)
                 .WithMany(c => c.CampaignSponsors)

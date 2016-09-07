@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Uow;
@@ -89,7 +88,7 @@ namespace Bursify.Data.EF.Repositories
             var averageMarkList = studyFieldList.Where(sponsorship => sponsorship.AverageMarkRequired > 0).ToList();
             
             //utility
-            var studentSubjects = student.StudentSubjects.ToList();
+            //var studentSubjects = student.StudentSubjects.ToList();
 
             //utility
             var subjectList = studyFieldList.Where(sponsorship => !averageMarkList.Contains(sponsorship)).ToList();
@@ -98,13 +97,13 @@ namespace Bursify.Data.EF.Repositories
 
             foreach (var sponsorship in subjectList)
             {
-                var sponsorshipSubjects = sponsorship.Requirements.ToList();
+                var sponsorshipSubjects = new List<Sponsorship>();//.Requirements.ToList();
 
                 foreach (var sponsorshipSubject in sponsorshipSubjects)
                 {
                     var subjectCounter = 0;
 
-                    foreach (var studentSubject in studentSubjects)
+                    /*foreach (var studentSubject in studentSubjects)
                     {
                         if (sponsorshipSubject.SubjectId != studentSubject.SubjectId) continue;
 
@@ -114,12 +113,12 @@ namespace Bursify.Data.EF.Repositories
                         {
                             subjectCounter++;
                         }
-                    }
+                    }*/
 
-                    if (subjectCounter == studentSubjects.Count)
+                    /*if (subjectCounter == studentSubjects.Count)
                     {    
                         filteredSubjectlist.Add(sponsorship);   
-                    }
+                    }*/
                 }
             }
 

@@ -1,8 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 using Bursify.Data.EF.Entities.Bridge;
-using Bursify.Data.EF.Entities.StudentUser;
-using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Data.EF.EntityMappings
 {
@@ -21,12 +18,12 @@ namespace Bursify.Data.EF.EntityMappings
                 .IsRequired();
 
             this.Property(x => x.ApplicationDate)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.Status)
-                .IsRequired();
+                .IsOptional();
 
-            this.Property(x => x.SponsorshipOffered).IsRequired();
+            this.Property(x => x.SponsorshipOffered).IsOptional();
 
             this.HasRequired(x => x.Student)
                 .WithMany(s => s.StudentSponsorships)

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
@@ -43,7 +40,7 @@ namespace Bursify.Api.Security
             return false;
         }
 
-        public BursifyUser RegisterUser(string username, string userEmail, string password, string userType)
+        public BursifyUser RegisterUser(string userEmail, string password, string userType)
         {
             BursifyUser user = null;
 
@@ -60,11 +57,10 @@ namespace Bursify.Api.Security
                 user = new BursifyUser
                 {
                     Email = userEmail,
-                    Name = username,
                     PasswordHash = cryptoService.HashPassword(password, salt),
                     PasswordSalt = salt,
                     UserType = userType,
-                    AccountStatus = "InActive",
+                    AccountStatus = "Active",
                     RegistrationDate = DateTime.UtcNow
                 };
 
@@ -92,5 +88,26 @@ namespace Bursify.Api.Security
             return user;
         }
 
+        public BursifyUser GetUserById(int id)
+        {
+            BursifyUser user = null;
+
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                user = userRepository.GetUserById(id);
+            }
+
+            return user;
+        }
+
+        public void UpdateUser(BursifyUser user)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                userRepository.Save(user);
+                uow.Commit();
+            }
+
+        }
     }
 }

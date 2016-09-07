@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using Bursify.Data.EF.Entities.StudentUser;
-using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Data.EF.EntityMappings
 {
@@ -17,17 +16,17 @@ namespace Bursify.Data.EF.EntityMappings
            
             this.Property(x => x.Name)
                 .HasMaxLength(500)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.Type)
                 .HasMaxLength(50)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.Website)
                 .HasMaxLength(500)
                 .IsOptional();
 
-            this.HasRequired(x => x.Student);
+            this.HasMany(x => x.Students);
         }
     }
 }

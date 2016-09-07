@@ -1,4 +1,5 @@
 ﻿using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Web.Models
 {
@@ -6,10 +7,10 @@ namespace Bursify.Web.Models
     {
         public int ID { get; set; }
         public string AccountName { get; set; }
-        public string AccountNumber { get; set; }
-        public string BankName { get; set; }
-        public string BranchName { get; set; }
-        public string BranchCode { get; set; }
+        public string CardNumber { get; set; }
+        public long ExpirationYear { get; set; }
+        public int ExpirationMonth { get; set; }
+        public int CvvNumber { get; set; }
 
         public AccountViewModel()
         {
@@ -26,10 +27,10 @@ namespace Bursify.Web.Models
             {
                 ID = this.ID,
                 AccountName = this.AccountName,
-                AccountNumber = this.AccountNumber,
-                BankName = this.BankName,
-                BranchName = this.BranchName,
-                BranchCode = this.BranchCode
+                CardNumber = this.CardNumber,
+                ExpirationYear = this.ExpirationYear,
+                ExpirationMonth = this.ExpirationMonth,
+                CvvNumber = this.CvvNumber
             };
         }
 
@@ -37,10 +38,10 @@ namespace Bursify.Web.Models
         {
             ID = a.ID;
             AccountName = a.AccountName;
-            AccountNumber = a.AccountNumber;
-            BankName = a.BankName;
-            BranchName = a.BranchName;
-            BranchCode = a.BranchCode;
+            CardNumber = a.CardNumber;
+            ExpirationYear = a.ExpirationMonth;
+            ExpirationMonth = a.ExpirationMonth;
+            CvvNumber = a.CvvNumber;
             return this;
         }
     }

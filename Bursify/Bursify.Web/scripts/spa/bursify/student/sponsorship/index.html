@@ -1,18 +1,18 @@
 ﻿<nav-bar></nav-bar>
 
-<div id="content" class="article-v1">
+<div id="content" >
     <div class="profile-v1 panel box-shadow-none content-header">
 
         <div class="col-md-12 col-sm-12 profile-v1-wrapper">
             <div class="col-md-9  profile-v1-cover-wrap" style="padding-right:0; padding-left: 0;">
                 <div class="profile-v1-pp">
 
-                    <img src="~/Content/images/user/elogo.jpg">
-                    <h2>Entelect Foundation Programmes</h2>
-                    <input type="button" class="btn btn-danger" value="One-Click Apply">
+                    <img ng-src="Content/images/user/elogo.jpg">
+                    <h2>{{Sponsorship.Name}}</h2>
+                    <input type="button" class="btn btn-danger"  ng-click="studentApply()" value="One-Click Apply">
                 </div>
                 <div class="col-md-12 profile-v1-cover">
-                    <img src="~/Content/assets/img/bg3.jpg" class="img-responsive">
+                    <img ng-src="Content/assets/img/bg1.jpg" class="img-responsive">
                 </div>
             </div>
             <div class="col-md-3 col-sm-12 padding-0 profile-v1-right">
@@ -35,7 +35,7 @@
                             <span class="rate fa-star fa fa-2x"></span>
                             <span class="rate fa-star fa fa-2x"></span>
                             <span class="rate fa-star fa fa-2x"></span>
-                            <span class="rate fa-star fa fa-2x"></span>
+                            <span class="rate fa-star-half fa fa-2x"></span>
                         </div>
                         <br />
                         <p>Bursify rating</p>
@@ -47,16 +47,14 @@
     <div class="col-md-12">
         <div class="panel">
             <div class="pull-right article-v1-time">
-                <em>Closing Date - 1 October 2016</em>
+                <em>Closing Date - {{Sponsorship.ClosingDate | date: "MMM d, y"}}</em>
             </div>
             <div class="panel-body">
                 <div class="col-md-12 text-left title"><h2>About</h2></div>
                 <div class="col-md-12 text-justify">
 
                     <p>
-                        Entelect understands that life can be difficult and sometimes assistance is needed to reach one’s goals in life which in turn leads to a success and fulfilling career.  Entelect offers candidates who are motivated as well as dedicated to follow a career into the world of finance with bursaries to help them achieve their goals.  If you dream of working in the field of finance then you should apply for a bursary with Entelect.  Their aim is to fill the critical openings within the financial sector with skilled and properly qualified candidates that are willing to study full time to achieve this.
-
-                        Entelect has sponsored between 50 and 80 candidates each year for the last five years in a wide range of financial fields and will keep doing so with their bursary program.  Have a look at the fields available if you would love to pursue such a career into the financial sector.
+                        {{Sponsorship.Description}}
                     </p>
 
                 </div>
@@ -68,14 +66,10 @@
                     </ol>
 
                 </div>
-                <div class="col-md-12 text-left title"><h2>Fields of Study: </h2></div>
+                <div class="col-md-12 text-left title"><h2>Field of Study: </h2></div>
                 <div class="col-md-12 text-justify">
                     <ol>
-                        <li>Informatics</li>
-                        <li>Risk Management</li>
-                        <li>Statistics</li>
-                        <li>Industrial Engineering</li>
-                        <li>Mathematical Science</li>
+                        <li>{{Sponsorship.StudyFields}}</li>
                     </ol>
                 </div>
                 <div class="col-md-12 text-left title"><h2>Requirements: </h2></div>
@@ -92,7 +86,8 @@
 
                 <div class="col-md-12 text-left title"><h2>Terms &amp; Conditions: </h2></div>
                 <div class="col-md-12 text-justify">
-                    <ol>
+                    <p>{{Sponsorship.TermsAndConditions}}</p>
+                    <!--<ol>
                         <li>
                             New bursary candidates will only be awarded after final year results are received and comply with the minimum requirements as stated above.
                         </li>
@@ -120,12 +115,12 @@
                         <li>
                             The companies Employment Equity policy will be taken into consideration when deciding on candidates for bursaries.
                         </li>
-                    </ol>
+                    </ol>-->
                     <div class="form-group form-animate-checkbox">
                         <input type="checkbox" class="checkbox">
                         <label> I Agree</label>
                     </div>
-                    <input type="button" class="btn btn-danger" value="One-Click Apply">
+                    <input type="button" class="btn btn-danger" ng-click="studentApply()" value="One-Click Apply">
                     <input type="button" class="btn btn-info" value="Share">
 
                 </div>
@@ -147,7 +142,7 @@
                                             <div class="media-left">
                                                 <a href="/Sponsorship/ViewBursary">
 
-                                                    <img src="~/Content/assets/img/avatar.jpg" class="media-object search-v1-avatar">
+                                                    <img ng-src="Content/assets/img/avatar.jpg" class="media-object search-v1-avatar">
                                                 </a>
                                             </div>
 
@@ -176,13 +171,13 @@
                                             <div class="media-left">
                                                 <a href="/Sponsorship/ViewBursary">
 
-                                                    <img src="~/Content/assets/img/logomi.png" class="media-object search-v1-avatar">
+                                                    <img ng-src="Content/assets/img/logomi.png" class="media-object search-v1-avatar">
                                                 </a>
                                             </div>
 
 
                                             <div class="media-body">
-                                                <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Entelect Foundation Programme</a></h4>
+                                                <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Vodacom Bursary</a></h4>
                                                 <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
 
                                             </div>
@@ -205,13 +200,13 @@
                                             <div class="media-left">
                                                 <a href="/Sponsorship/ViewBursary">
 
-                                                    <img src="~/Content/assets/img/logomi.png" class="media-object search-v1-avatar">
+                                                    <img ng-src="Content/assets/img/logomi.png" class="media-object search-v1-avatar">
                                                 </a>
                                             </div>
 
 
                                             <div class="media-body">
-                                                <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Entelect Foundation Programme</a></h4>
+                                                <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">CSIR Bursary Programme</a></h4>
                                                 <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
 
                                             </div>

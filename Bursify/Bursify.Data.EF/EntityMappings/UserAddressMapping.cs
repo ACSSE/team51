@@ -19,20 +19,16 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.AddressType)
                 .HasMaxLength(50)
-                .IsRequired();
-
-            this.Property(x => x.PreferredAddress)
-                .IsRequired();
-
-            this.Property(x => x.HouseNumber)
-                .HasMaxLength(50)
                 .IsOptional();
 
-            this.Property(x => x.StreetName)
+            this.Property(x => x.PreferredAddress)
+                .IsOptional();
+
+            this.Property(x => x.StreetAddress)
                 .HasMaxLength(200)
                 .IsOptional();
 
-            this.Property(x => x.Suburb)
+            this.Property(x => x.Province)
                 .HasMaxLength(200)
                 .IsOptional();
 
@@ -43,13 +39,9 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.PostOfficeBoxNumber)
                 .IsOptional();
 
-            this.Property(x => x.PostOfficeName)
-                .HasMaxLength(200)
-                .IsOptional();
-
             this.Property(x => x.PostalCode)
                 .HasMaxLength(50)
-                .IsRequired();
+                .IsOptional();
 
             this.HasRequired(x => x.BursifyUser);
         }

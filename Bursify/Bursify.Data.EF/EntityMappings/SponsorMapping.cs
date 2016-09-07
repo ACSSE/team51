@@ -13,6 +13,8 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.ID);
 
+            this.Property(x => x.CompanyName).IsOptional();
+
             this.Property(x => x.Industry)
                 .IsOptional();
 
@@ -45,6 +47,8 @@ namespace Bursify.Data.EF.EntityMappings
             this.HasMany(x => x.CampaignSponsors);
 
             this.HasRequired(x => x.BursifyUser);
+
+            this.HasOptional(x => x.Account);
         }
     }
 }

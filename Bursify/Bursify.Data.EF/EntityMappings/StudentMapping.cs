@@ -13,8 +13,15 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.ID);
 
+            this.Property(x => x.InstitutionID).IsRequired();
+
+            this.Property(x => x.IDNumber).IsOptional();
+
             this.Property(x => x.Surname)
                 .HasMaxLength(200)
+                .IsOptional();
+
+            this.Property(x => x.Headline)
                 .IsOptional();
 
             this.Property(X => X.EducationLevel)
@@ -33,6 +40,8 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.HasDisability)
                 .IsOptional();
+
+            this.Property(x => x.DisabilityDescription).IsOptional();
 
             this.Property(x => x.Race)
                 .HasMaxLength(50)
@@ -62,11 +71,31 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.NumberOfViews)
                 .IsOptional();
 
+            this.Property(x => x.Essay).IsOptional();
+
+            this.Property(x => x.GuardianPhone).IsOptional();
+
+            this.Property(x => x.GuardianRelationship).IsOptional();
+
+            this.Property(x => x.GuardianEmail).IsOptional();
+
+            this.Property(x => x.IDDocumentPath).IsOptional();
+
+            this.Property(x => x.MatricCertificatePath).IsOptional();
+
+            this.Property(x => x.CVPath).IsOptional();
+
+            this.Property(x => x.AgreeTandC).IsOptional();
+
             this.HasRequired(x => x.BursifyUser);
 
-            this.HasOptional(x => x.Institution);
+            this.HasMany(x => x.StudentReports)
+                .WithRequired(x => x.Student)
+                .HasForeignKey(x => x.StudentId);
 
-            this.HasMany(x => x.StudentSubjects);
+            this.HasRequired(x => x.Institution)
+                .WithMany(x => x.Students)
+                .HasForeignKey(x => x.InstitutionID);
 
             this.HasMany(x => x.StudentSponsorships);
             

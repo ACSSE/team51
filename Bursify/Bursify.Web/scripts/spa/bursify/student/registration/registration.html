@@ -1,0 +1,538 @@
+﻿<div id="content">
+    <nav-bar></nav-bar>
+   
+        <div id="panel" class="panel">
+            <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+                <md-tab label="Student">
+                    <form name="student">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input ng-model="Student.FirstName" type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                        <span class="bar"></span>
+                                        <label>Firstname</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input ng-model="Student.Surname" type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                        <span class="bar"></span>
+                                        <label>Surname</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3 form-group">
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input ng-model="Student.PhoneNumber" type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                        <span class="bar"></span>
+                                        <label>Phone Number</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input ng-model="Student.StudentNumber" type="text" class="form-text">
+                                        <span class="bar"></span>
+                                        <label>Student Number (if applicable)</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input ng-model="Student.IdNumber" type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                        <span class="bar"></span>
+                                        <label>South African ID Number</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <md-input-container>
+                                            <md-datepicker ng-model="Student.DateOfBirth" md-placeholder="Date Of Birth" md-min-date="minDate" md-max-date="maxDate" required></md-datepicker>
+                                        </md-input-container>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <md-input-container class="md-block">
+                                        <md-select placeholder="Ethnicity" ng-model="Student.Race" md-on-open="loadRaces()" style="min-width: 200px;" required>
+                                            <md-option ng-value="race" ng-repeat="race in races">{{race.name}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-3">
+                                    <label style="padding-left: -15px;">Gender</label>
+                                    <div class="row">
+
+                                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderF" ng-model="SelectedGenderM" class="md-primary">
+                                            Male
+                                        </md-checkbox>
+
+
+                                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                                            Female
+                                        </md-checkbox>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-3">
+                                    <label>Do you have a disability?</label>
+                                    <div class="row">
+
+                                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedDisabilityN" ng-model="SelectedDisabilityY" class="md-primary">
+                                            Yes
+                                        </md-checkbox>
+
+
+                                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedDisabilityY" ng-model="SelectedDisabilityN" class="md-primary">
+                                            No
+                                        </md-checkbox>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+                            <div class="col-md-12" ng-if="SelectedDisabilityY">
+
+                                <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                    <input ng-model="Student.DisabilityDescription" type="text" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                    <span class="bar"></span>
+                                    <label>Please specify disability</label>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-offset-11">
+                                    <md-button class="md-raised md-primary" type="submit" md-colors="{backgroundColor: 'blue'}" ng-click="student.$valid && nextTab()">Proceed</md-button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </md-tab>
+                <md-tab label="Residential">
+                  
+                    <form name="residential">
+                        <div class="box-body">
+
+                            <label style="font-size: 15px;">Resedential Details</label>
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <md-input-container class="md-block">
+                                        <md-select placeholder="Province" ng-model="Student.ResProvince" md-on-open="loadProvinces()" style="min-width: 200px;" required>
+                                            <md-option ng-value="province" ng-repeat="province in provinces">{{province.name}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input type="text" class="form-text" ng-model="Student.ResCity" id="validate_firstname" name="validate_firstname" required>
+                                        <span class="bar"></span>
+                                        <label>City</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-9">
+
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input type="text" class="form-text" id="validate_firstname" ng-model="Student.ResStreetAddress" name="validate_firstname" required>
+                                        <span class="bar"></span>
+                                        <label>Street Address</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input type="text" class="form-text" ng-model="Student.ResPostCode" id="validate_firstname" name="validate_firstname" required>
+                                        <span class="bar"></span>
+                                        <label>Postal Code</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <label>Postal Address</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-init="PostalSameAs=false" ng-model="PostalSameAs" class="md-primary">
+                                        Same as above
+                                    </md-checkbox>
+                                </div>
+                            </div>
+                            <div id="postal" ng-if="!PostalSameAs">
+                                <div class="row">
+                                    <div class="col-md-4">
+
+                                        <md-input-container class="md-block">
+                                            <md-select placeholder="Province" ng-model="Student.PostProvince" md-on-open="loadProvinces()" style="min-width: 200px;" required>
+                                                <md-option ng-value="provinceP" ng-repeat="provinceP in provinces">{{provinceP.name}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                            <input type="text" class="form-text" ng-model="Student.PostPOBox" id="validate_firstname" name="validate_firstname" required>
+                                            <span class="bar"></span>
+                                            <label>P.O Box</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                            <input type="text" class="form-text" ng-model="Student.PostCity" id="validate_firstname" name="validate_firstname" required>
+                                            <span class="bar"></span>
+                                            <label>City</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+
+                                        <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                            <input type="text" class="form-text" ng-model="Student.PostStreetAddress" id="validate_firstname" name="validate_firstname" required>
+                                            <span class="bar"></span>
+                                            <label>Street Address</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                            <input type="text" ng-model="Student.PostPostalCode" class="form-text" id="validate_firstname" name="validate_firstname" required>
+                                            <span class="bar"></span>
+                                            <label>Postal Code</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <label>Prefered means of communication</label>
+                            <div class="row">
+                                <div class="form-group">
+
+                                    <div class="col-md-11">
+                                        <md-radio-group ng-model="Student.PreferredAddress" layout="row" required>
+                                            <md-radio-button value="Email" class="md-primary">Email</md-radio-button>
+                                            <md-radio-button value="Phone"> Phone </md-radio-button>
+                                            <md-radio-button value="Residential Address"> Residential Address </md-radio-button>
+                                            <md-radio-button value="PostBox">Post Box</md-radio-button>
+
+                                        </md-radio-group>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-offset-11">
+                                    <md-button class="md-raised md-primary" ng-disabled="!Student.PreferredAddress" type="submit" md-colors="{backgroundColor: 'blue'}" ng-click="residential.$valid && nextTab()">Proceed</md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </md-tab>
+
+                <md-tab label="Gaurdian">
+                    <form name="gaurdian">
+                        <div class="box-body">
+                            <label>Guardian Details</label>
+                            <div class="row">
+                                <div class="col-md-6">
+
+
+                                    <md-select placeholder="Relationship" ng-model="Student.GuardianRelationship" md-on-open="loadRelates()" style="min-width: 200px;" required>
+                                        <md-option ng-value="relate" ng-repeat="relate in relates">{{relate.name}}</md-option>
+                                    </md-select>
+
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input type="text" class="form-text" ng-model="Student.GuardianPhone" required>
+                                        <span class="bar"></span>
+                                        <label>Phone</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input type="text" class="form-text" ng-model="Student.GuardianEmail" required>
+                                        <span class="bar"></span>
+                                        <label>Email</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-offset-11">
+                                    <md-button class="md-raised md-primary" type="submit" md-colors="{backgroundColor: 'blue'}" ng-click="gaurdian.$valid && nextTab()">Proceed</md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                   
+                </md-tab>
+
+
+                <md-tab label="Academic">
+                    <form name="academic">
+                        <div class="box-body">
+
+                            <label>What are you doing this year</label>
+                            <div class="row">
+                                <div class="form-group">
+
+                                    <div class="col-md-11">
+                                        <md-radio-group ng-model="Student.CurrentOccupation" layout="row" required>
+                                            <md-radio-button value="High School" class="md-primary">High School</md-radio-button>
+                                            <md-radio-button value="Tertiary"> Tertiary </md-radio-button>
+                                             <md-radio-button value="Unemployed ">Unemployed</md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <label>Select the study fields you are currently in or the fields in which you have interest to study.</label>
+                            <div class="box-body">
+
+                                <div class="col-md-12 ">
+
+                                    <md-input-container class="md-block">
+                                        <md-select placeholder="Fields" ng-model="Student.StudyFields" md-on-open="loadFields()" style="min-width: 200px;" required multiple>
+                                            <md-option ng-value="field" ng-repeat="field in fields | orderBy:'name'">{{field.name}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                </div>
+                            </div>
+
+
+                            <label>Enter your most recent results below.</label>
+                            <div class="box-body">
+
+                                <div class="col-md-2">
+                                    <select class="form-control" ng-model="Student.InstitutionType" ng-change="removeMarks()" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="s.level for s in data">
+                                        <option value="">-- Instituition Type --</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <select class="form-control" ng-model="Student.InstitutionName" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="p.place for p in Student.InstitutionType.places">
+                                        <option value="" style="text-align: center;">-- Instituition --</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <select class="form-control" ng-model="Student.StudentLevel" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-options="g.grade for g in Student.InstitutionType.grades">
+                                        <option value="">-- Level --</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select class="form-control" ng-model="Student.MarksYearAttained" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option value="">-- Year Attained --</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2010">2010</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select ng-show="Student.InstitutionType.level == 'High School'" class="form-control" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option value="">-- Term --</option>
+                                        <option value="2016">Term 1</option>
+                                        <option value="2015">Term 2</option>
+                                        <option value="2014">Term 3</option>
+                                        <option value="2013">Term 4</option>
+                                        <option value="2012">Matric Results</option>
+                                    </select>
+                                    <select class="form-control" ng-show="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option value="">-- Semester --</option>
+                                        <option value="2016">Semester 1</option>
+                                        <option value="2015">Semester 2</option>
+
+                                    </select>
+                                </div>
+                                <label ng-if="Student.InstitutionName.place == 'Other'">Please provide name of instituition.</label>
+                                <div class="col-md-12" ng-if="Student.InstitutionName.place == 'Other'">
+
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input type="text" class="form-text" ng-model="InstitutionNameOther" id="validate_firstname" name="validate_firstname" required>
+                                        <span class="bar"></span>
+                                        <label>Instituition Name</label>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                                        <input type="text" class="form-text" ng-model="InstitutionWebsiteOther" id="validate_firstname" name="validate_firstname" required>
+                                        <span class="bar"></span>
+                                        <label>Instituition Website</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="box-body" ng-if="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+
+                                        <input type="text" ng-model="Student.Qualification" class="form-control" id="exampleInputEmail1" placeholder="Name Of Qualification">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-if="Student.InstitutionType.level" class="box-body">
+
+                                <div class="col-md-9">
+                                    <label>Subject</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Mark Achieved</label>
+                                </div>
+
+                            </div>
+                            <div ng-if="Student.InstitutionType.level == 'High School'" class="box-body" id="markInput">
+
+                                <div class="col-md-9">
+                                    <div class="form-group">
+
+                                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" ng-model="Student.Marks[0]" ng-options="s.subject for s in Student.InstitutionType.subjects">
+                                            <option style="text-align: center;">-- Subject --</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+
+                                        <input type="number" ng-model="Student.Marks[0].SubjectMark" class="form-control" id="exampleInputEmail1" placeholder="%">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-if="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'" class="box-body" id="markInput">
+
+                                <div class="col-md-9">
+                                    <div class="form-group">
+
+                                        <input type="text" ng-model="Student.Marks[0].SubjectName" class="form-control" id="exampleInputEmail1" placeholder="Module Name" />
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+
+                                        <input type="number" ng-model="Student.Marks[0].SubjectMark" class="form-control" id="exampleInputEmail1" placeholder="%">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div ng-if="Student.InstitutionType.level" id="MarksInputAdd"></div>
+                            <div ng-if="Student.InstitutionType.level" class="row"><div class="col-md-9"></div><div class="col-md-3"><label style="padding-left: 20px;" ng-click="appendText()">Add More Subjects</label><span ng-click="appendText()" class="fa fa-plus-circle fa-2x" style="padding-left:5px;"></span></div></div>
+
+                        </div>
+                    </form>
+                    <div class="row">
+
+                        <div class="col-md-offset-11">
+                            <md-button class="md-raised md-primary" type="submit" md-colors="{backgroundColor: 'blue'}" ng-click="academic.$valid && nextTab()">Proceed</md-button>
+                        </div>
+                    </div>
+                    
+                </md-tab>
+
+                <md-tab label="Biography">
+                   <form name="bio">
+                        <div class="box-body">
+                            <label>Essay About You</label>
+                            <p>
+                                1. Tell us about your family, including your parents’ current circumstances.<br />
+                                2. Tell us about yourself:<br />
+                                2.1 Describe yourself in three words<br />
+                                2.2 How would your friends describe you?<br />
+                                2.3 What is your greatest passion?<br />
+                                2.4 What are your major strengths?<br />
+                                2.5 What are your major weaknesses?<br />
+                                3. Give a short overview of your school (and post-Matric/ tertiary) achievements thus far.<br />
+                                4. What leadership position(s) have you served in and what impact has that had?<br />
+                                5. Mention the committees/ organisations you belong(ed) to and any community service projects you have been involved with.<br />
+                                6. Briefly tell us why you have chosen your field of study.<br />
+                                7. Tell us about your further study plans and ideals for the future.<br />
+                                8. If you have not been studying tell us how you have spent the time.<br />
+                                9. Mention any books you read that have impressed you.<br />
+                                10. Tell us about one event or person that influenced you deeply.<br />
+                                11. Describe the South Africa you want to see in the next 10 years.
+                            </p>
+
+                            <md-input-container class="md-block">
+                                <textarea ng-model="Student.Essay" rows="7" md-select-on-focus placeholder="Tell us about your self..."></textarea>
+                            </md-input-container>
+                            <div class="row col-md-12">
+                                <label>Documentation Submission</label>
+                                <div class="row col-md-12">
+
+                                    <div class="fileUpload btn btn-primary">
+                                        <span>Upload</span>
+                                        <input id="uploadIDBtn" type="file" class="upload" ng-file-select="prepareID($files)" />
+                                    </div>
+
+                                    <input id="uploadIDFile" type="text" placeholder="I.D Copy" disabled="disabled" />
+                                </div>
+
+                                <div class="row col-md-12">
+                                    <div class="fileUpload btn btn-primary">
+                                        <span>Upload</span>
+                                        <input id="uploadMCBtn" type="file" class="upload" />
+                                    </div>
+                                    <input id="uploadMCFile" ng-model="MCFilePath" placeholder="Matric Certificate" disabled="disabled" />
+
+                                </div>
+                                <div class="row">
+
+                                </div>
+                                <div class="row col-md-12">
+
+
+                                    <div class="fileUpload btn btn-primary">
+                                        <span>Upload</span>
+                                        <input id="uploadCVBtn" type="file" class="upload" />
+                                    </div>
+                                    <input id="uploadCVFile" ng-model="CVFilePath" placeholder="CV" disabled="disabled" />
+                                </div>
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular md-mode="indeterminate" ng-if="uploading"></md-progress-circular>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group form-animate-checkbox">
+                                    <input type="checkbox" class="checkbox" required>
+                                    <label>I agree to the terms &amp; conditions</label>
+                                </div>
+                            </div>
+                            <div class="row col-md-12">
+                                <md-button class="md-raised"  md-colors="{backgroundColor: 'green'}" ng-click="bio.$valid && saveInsti()" >Save Application Form</md-button>
+                           </div>
+                        </div>
+                   </form>
+                </md-tab>
+            </md-tabs>
+        </div>
+  
+
+</div>
+

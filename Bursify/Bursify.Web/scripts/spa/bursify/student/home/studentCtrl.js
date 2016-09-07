@@ -7,7 +7,8 @@
 
     function studentCtrl($scope, apiService, notificationService) {
         $scope.pageClass = 'page-home-student';
-       
+        $scope.sortType     = 'name'; // set the default sort type
+        $scope.sortReverse  = false; 
 
         $scope.isOpen = false;
         $scope.demo = {
@@ -15,6 +16,16 @@
             count: 0,
             selectedDirection: 'left'
         };
+
+        apiService.get('/api/sponsorship/GetAllSponsorships', null, CompletedSponsorship, FailedSponsorship);
+
+        function CompletedSponsorship(result) {
+            $scope.Sponsorships = result.data;
+        }
+
+        function FailedSponsorship() {
+            notificationService.displayInfo('Unable to load students.');
+        }
 
 
     }

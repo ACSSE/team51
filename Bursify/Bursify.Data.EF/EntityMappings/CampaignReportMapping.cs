@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 using Bursify.Data.EF.Entities.Bridge;
 
 namespace Bursify.Data.EF.EntityMappings
@@ -20,7 +15,7 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.BursifyUserId).IsRequired();
 
-            this.Property(x => x.Reason).IsRequired();
+            this.Property(x => x.Reason).IsOptional();
 
             this.HasRequired(x => x.Campaign)
                 .WithMany(c => c.CampaignReports)

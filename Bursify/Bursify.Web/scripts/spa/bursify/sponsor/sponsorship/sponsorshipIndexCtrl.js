@@ -3,10 +3,10 @@
 
     app.controller('sponsorshipIndexCtrl', sponsorshipIndexCtrl);
 
-    sponsorshipIndexCtrl.$inject = ['$scope', '$timeout', 'apiService', '$location', 'notificationService', '$mdDialog', '$mdMedia'];
+    sponsorshipIndexCtrl.$inject = ['$scope','$rootScope', '$timeout', 'apiService', '$location', 'notificationService', '$mdDialog', '$mdMedia'];
 
 
-    function sponsorshipIndexCtrl($scope, $timeout, apiService, $location, notificationService, $mdDialog, $mdMedia) {
+    function sponsorshipIndexCtrl($scope,$rootScope, $timeout, apiService, $location, notificationService, $mdDialog, $mdMedia) {
         $scope.pageClass = 'page-view-sponsorship';
         $scope.max = 2;
         $scope.selectedIndex = 0;
@@ -17,6 +17,18 @@
 
         };
 
+        apiService.get('api/Sponsorship/GetAllSponsorships/?userId=' + $rootScope.repository.loggedUser.userIden, null,
+                       sponsorshipsLoadCompleted,
+                       sponsorshipsLoadFailed);
+
+
+        function sponsorshipsLoadCompleted(result) {
+            $scope.Sponsorships = result.data;
+        }
+
+        function sponsorshipsLoadFailed() {
+            notificationService.displayInfo("Could not load your sponsorships. Please sign in again.");
+        }
      
         $scope.addHigh = function () {
             $location.path('/sponsor/sponsorships/add');
@@ -69,7 +81,6 @@
                 clickOutsideToClose: true
             })
             .then(function (answer) {
-                alert("hi");
                 $mdDialog.hide();
             }, function () {
                 $scope.status = 'You cancelled the dialog.';

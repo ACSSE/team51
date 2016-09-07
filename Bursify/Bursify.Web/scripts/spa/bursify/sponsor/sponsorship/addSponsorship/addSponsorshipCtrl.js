@@ -1,28 +1,47 @@
-﻿(function (app) {
+﻿ (function (app) {
     'use strict';
+
 
     app.controller('addSponsorshipCtrl', addSponsorshipCtrl);
 
-    addSponsorshipCtrl.$inject = ['$scope','$timeout', 'apiService', 'notificationService', '$mdDialog', '$mdMedia'];
+    addSponsorshipCtrl.$inject = ['$scope', '$rootScope', '$timeout', 'apiService', 'notificationService', '$mdDialog', '$mdMedia', '$location'];
 
-    function addSponsorshipCtrl($scope,$timeout, apiService, notificationService, $mdDialog, $mdMedia) {
-        $scope.pageClass = 'page-view-sponsorship';
-        $scope.ser = {
-            title: 'Developer',
-            email: 'ipsum@lorem.com',
-            firstName: '',
-            lastName: '',
-            company: 'Google',
-            address: '1600 Amphitheatre Pkwy',
-            city: 'Mountain View',
-            state: 'CA',
-            biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
-            postalCode: '94043'
-        };
-        $scope.vegetables = ['Corn', 'Onions', 'Kale', 'Arugula', 'Peas', 'Zucchini'];
-        $scope.searchTerm;
-        $scope.clearSearchTerm = function () {
-            $scope.searchTerm = '';
+    function addSponsorshipCtrl($scope,$rootScope, $timeout, apiService, notificationService, $mdDialog, $mdMedia, $location) {
+
+        $mdDialog.hide();
+
+        $scope.pageClass = 'page-add-sponsorship';
+    
+        $scope.fields = ['Accounting', 'Actuarial Science', 'Civil Engineering', 'Mechanical Engineering', 'Electrical Engineering', 'Chemical Engineering', 'Industrial Engineering', 'Agriculture',
+        'Chemistry', 'Computer Science', 'Commerce', 'Economics', 'Film & Media', 'Finance', 'Government', 'Geology', 'Health Sciences', 'Human Resources (HR)', 'Journalism', 'Information Technology (IT)',
+        'Law', 'Medicine', 'Management Studies', 'Nature Conservation', 'Nursing', 'Physics', 'Physiotherapy', 'Teaching & Education', 'Sport Management'];
+
+        $scope.provinces = ['EC', 'FS', 'GP', 'KZN', 'LMP', 'MP', 'NC', 'NW', 'WC'];
+
+      //  $scope.subjects = ['MM', 'FS', 'GP', 'KZN', 'LMP', 'MP', 'NC', 'NW', 'WC'];
+
+        $scope.ages = ['16-20', '21-25', '26-30', 'Any'];
+
+        $scope.races = ['African', 'Asain', 'Indian', 'Coloured', 'White'];
+   
+      
+        $scope.Sponsorship = {
+            "ID": "",
+            "SponsorId": "",
+            "Name": "",
+            "Description": "",
+            "ClosingDate": "",
+            "EssayRequired": "false",
+            "SponsorshipValue": "",
+            "StudyFields": "",
+            "Province": "",
+            "AverageMarkRequired": "",
+            "EducationLevel": "High School",
+            "PreferredInstitutions": "",
+            "ExpensesCovered": "",
+            "TermsAndConditions": "",
+            "SponsorshipType": "",
+            "AgeGroup": ""
         };
 
         $(document).mousemove(function (e) {
@@ -31,8 +50,29 @@
         });
 
         $scope.data = {
-            cb1: true
+            cb1: false
         };
+
+        $scope.create = function () {
+           
+            $scope.Sponsorship.SponsorId = $rootScope.ThisUserID;
+            $scope.Sponsorship.StudyFields = $scope.selectedField;
+            $scope.Sponsorship.Province = $scope.selectedProvince;
+            $scope.Sponsorship.AgeGroup = $scope.selectedAgeGroup;
+            $scope.Sponsorship.SponsorshipType = "High School";
+          
+            apiService.post('/api/Sponsorship/SaveSponsorship', $scope.Sponsorship, completed1, failed);
+        }
+
+        function completed1() {
+            notificationService.displaySuccess("Sponsorship Successfuly Submitted");
+            $location.path('/sponsor/sponsorships');
+        }
+
+        function failed() {
+            notificationService.displayError("An error occured.");
+        }
+        
 
         $scope.fixPosition = function () {
             

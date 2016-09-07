@@ -10,16 +10,17 @@
         $rootScope.upload = [];
 
         var service = {
-            uploadImage: uploadImage
+            uploadFile: uploadFile
         }
 
-        function uploadImage($files, movieId, callback) {
+        function uploadFile($files, userId, callback) {
             //$files: an array of files selected
+          
             for (var i = 0; i < $files.length; i++) {
                 var $file = $files[i];
                 (function (index) {
                     $rootScope.upload[index] = $upload.upload({
-                        url: "api/movies/images/upload?movieId=" + movieId, // webapi url
+                        url: "/api/bursifyuser/UploadImage/?userId=" + userId, // webapi url
                         method: "POST",
                         file: $file
                     }).progress(function (evt) {
@@ -32,6 +33,7 @@
                     });
                 })(i);
             }
+           
         }
 
         return service;

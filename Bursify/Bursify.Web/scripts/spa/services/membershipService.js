@@ -29,13 +29,16 @@
             registrationFailed);
         }
 
+
         function saveCredentials(user) {
-            var membershipData = $base64.encode(user.Name + ':' + user.password );
-            
+           
+            var membershipData = $base64.encode(user.Email + ':' + user.password);
+          //  notificationService.displayError("UID: " + user.useremail);
             $rootScope.repository = {
                 loggedUser: {
                     username: user.Name,
-                    userBID: user.BursifyUserId,
+                    useremail: user.Email,
+                    userIden: user.ID,
                     authdata: membershipData
                 }
             };
@@ -44,8 +47,12 @@
             $cookieStore.put('repository', $rootScope.repository);
         }
 
+
+       
+
+     
+
         function removeCredentials() {
-         
             $rootScope.repository = {};
             $cookieStore.remove('repository');
             $http.defaults.headers.common.Authorization = '';

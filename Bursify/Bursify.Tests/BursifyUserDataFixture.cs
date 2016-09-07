@@ -12,7 +12,7 @@ namespace Bursify.Tests
     [TestFixture]
     public class BursifyUserDataFixture
     {
-        [Test]
+        /*[Test]
         public void CanAccessDb()
         {
             var dataSession = new DataSession();
@@ -21,7 +21,6 @@ namespace Bursify.Tests
 
             var user = new BursifyUser() { };
 
-            user.Name = "SponsorTest";
             user.Email = "brandon@gmail.com";
             user.PasswordHash = "password123";
             user.PasswordSalt = "passwordSalt";
@@ -37,10 +36,10 @@ namespace Bursify.Tests
             {
                 BursifyUserId = user.ID,
                 AddressType = "Postal",
-                PreferredAddress = true,
+                PreferredAddress = "true",
                 HouseNumber = "",
                 StreetName = "",
-                Suburb = "",
+                Province = "",
                 City = "Johannesburg",
                 PostOfficeBoxNumber = 1730,
                 PostOfficeName = "That one close to my house",
@@ -160,6 +159,65 @@ namespace Bursify.Tests
 
             uow.Context.Set<BursifyUser>().Add(user);
             uow.Context.Set<UserAddress>().Add(address);
+
+            uow.Context.SaveChanges();
+            uow.Commit();
+        }*/
+
+        [Test]
+        public void DataInsert()
+        {
+            var dataSession = new DataSession();
+            var uowFactory = new UnitOfWorkFactory(dataSession);
+            var uow = uowFactory.CreateUnitOfWork();
+
+            var user = new BursifyUser() { };
+
+            user.Email = "brandon@gmail.com";
+            user.PasswordHash = "password123";
+            user.PasswordSalt = "passwordSalt";
+            user.AccountStatus = "Active";
+            user.UserType = "Student";
+            user.RegistrationDate = DateTime.Today;
+            user.Biography = "Bio stuff";
+            user.CellphoneNumber = "0840924299";
+            user.TelephoneNumber = "0123456789";
+            user.ProfilePicturePath = "somewhereSafe";
+
+            var report = new StudentReport()
+            {
+                StudentId = 1,
+                Average = 75,
+                ReportInstitution = "UJ Test",
+                ReportPeriod = "Semester 1",
+                ReportLevel = "Second Year",
+                Subjects = new List<Subject>()
+            {
+                new Subject()
+                {
+                    Name = "Informatics",
+                    MarkAcquired = 75
+                },
+
+                new Subject()
+                {
+                    Name = "Maths",
+                    MarkAcquired = 75
+                },
+
+                new Subject()
+                {
+                    Name = "Linear",
+                    MarkAcquired = 75
+                }
+            }
+            };
+
+
+            //uow.Context.Set<BursifyUser>().Add(user);
+            uow.Context.Set<StudentReport>().Add(report);
+
+            //uow.Context.Set<Subject>().Add(subject);
 
             uow.Context.SaveChanges();
             uow.Commit();

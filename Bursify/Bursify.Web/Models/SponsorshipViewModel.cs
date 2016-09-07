@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Web.Models
@@ -22,6 +21,8 @@ namespace Bursify.Web.Models
         public string ExpensesCovered { get; set; }
         public string TermsAndConditions { get; set; }
         public string SponsorshipType { get; set; }
+        public string AgeGroup { get; set; }
+        public int Rating { get; set; }
 
         public SponsorshipViewModel()
         {
@@ -50,6 +51,8 @@ namespace Bursify.Web.Models
             ExpensesCovered = sponsorship.ExpensesCovered;
             TermsAndConditions = sponsorship.TermsAndConditions;
             SponsorshipType = SponsorshipType;
+            AgeGroup = sponsorship.AgeGroup;
+            Rating = sponsorship.Rating;
             return this;
 
         }
@@ -71,7 +74,9 @@ namespace Bursify.Web.Models
                 SponsorId = this.SponsorId,
                 SponsorshipType = this.SponsorshipType,
                 StudyFields = this.StudyFields,
-                TermsAndConditions = this.TermsAndConditions
+                TermsAndConditions = this.TermsAndConditions,
+                AgeGroup = this.AgeGroup,
+                Rating = this.Rating
             };
             return sponsorship;
         }

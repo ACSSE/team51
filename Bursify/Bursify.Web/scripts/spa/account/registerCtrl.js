@@ -3,13 +3,18 @@
 
     app.controller('registerCtrl', registerCtrl);
 
-    registerCtrl.$inject = ['$scope', 'membershipService', 'notificationService', '$rootScope', '$location'];
+    registerCtrl.$inject = ['$scope', 'membershipService', 'notificationService', '$rootScope', '$location', '$route'];
 
-    function registerCtrl($scope, membershipService, notificationService, $rootScope, $location) {
+    function registerCtrl($scope, membershipService, notificationService, $rootScope, $location, $route) {
         $scope.pageClass = 'page-login';
         $scope.register = register;
         $scope.user = {};
-        $scope.bTypes = ["Student", "Sponsor"];
+       
+        $scope.preload = function () {
+         
+            $scope.userData.isUserLoggedIn = false;
+            membershipService.removeCredentials();
+        }
 
         function register() {
             if (!$scope.user.terms) {
@@ -17,40 +22,43 @@
                 return;
             }
 
-            if ($scope.user.usertype == "none") {
-                notificationService.displayInfo('Please select a UserType.');
-                return;
-            }
+          //  $location.path('/student/registration');
+         //  notificationService.displayInfo($scope.user.usertype);
 
-
-            membershipService.register($scope.user, registerCompleted)
+           membershipService.register($scope.user, registerCompleted)
 
         }
 
+        $scope.inputType = 'password';
+
+        // Hide & show password function
+        $scope.hideShowPassword = function () {
+            if ($scope.inputType == 'password')
+                $scope.inputType = 'text';
+            else
+                $scope.inputType = 'password';
+        };
+
         function registerCompleted(result) {
+           
             if (result.data.success) {
-                membershipService.saveCredentials($scope.user);
 
-                $scope.userData.displayUserInfo();
-
-                if ($scope.user.usertype == "Student") {
+                if ($scope.user.usertype == "Student") { 
+                    $scope.user = result.data.user;
+                    membershipService.saveCredentials($scope.user);
+                   
                     $location.path('/student/registration');
-                    membershipService.saveCredentials($scope.user);
-                    $scope.userData.displayUserInfo();
-                    notificationService.displaySuccess('Welcome ' + $scope.user.username);
-                    $rootScope.User = $scope.user.username;
                 } else if ($scope.user.usertype == "Sponsor") {
-                    $location.path('/sponsor/registration');
+                    $scope.user = result.data.user;
                     membershipService.saveCredentials($scope.user);
-                    $scope.userData.displayUserInfo();
-                    notificationService.displaySuccess('Welcome ' + $scope.user.username);
-                    $rootScope.User = $scope.user.username;
+                  
+                    $location.path('/sponsor/registration');
                 }
 
             }
             else {
                 notificationService.displayError('Registration failed. Email is already in use.');
-                $location.reload();
+               
             }
         }
     }

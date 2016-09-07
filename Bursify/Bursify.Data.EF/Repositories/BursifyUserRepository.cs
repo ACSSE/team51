@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using Bursify.Data.EF.Entities.Campaigns;
-using Bursify.Data.EF.Entities.User;
+﻿using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
 
 namespace Bursify.Data.EF.Repositories
@@ -11,16 +9,15 @@ namespace Bursify.Data.EF.Repositories
         {
         }
 
-        public BursifyUser GetUserByEmail(string email)
+        public BursifyUser GetUserById(int id)
         {
-            var user = FindSingle(x => x.Email.Equals(email));
+            var user = LoadById(id);
             return user;
         }
 
-
-        public BursifyUser GetUserByUsername(string userName)
+        public BursifyUser GetUserByEmail(string email)
         {
-            var user = FindSingle(x => x.Name == userName);
+            var user = FindSingle(x => x.Email.Equals(email));
             return user;
         }
 
@@ -34,12 +31,10 @@ namespace Bursify.Data.EF.Repositories
             return FindMany(x => x.AccountStatus != "InActive" && x.AccountStatus.ToUpper().Equals(type.ToUpper())).Count;
         }
 
-
         public int GetNumberOfUsersByStatus(string status)
         {
             return FindMany(x => x.AccountStatus.ToUpper().Equals(status.ToUpper())).Count;
         }
-
 
     }
 }

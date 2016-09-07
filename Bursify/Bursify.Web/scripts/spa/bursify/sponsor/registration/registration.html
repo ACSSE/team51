@@ -1,0 +1,107 @@
+﻿
+
+
+<div id="content">
+    <spnav-bar></spnav-bar>
+    <form>
+    <div class="panel">
+        <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+            <md-tab label="Sponsor Account">
+         
+                <md-content class="md-padding">
+                    <div class="form-group form-animate-checkbox">
+
+                        <label>Sponsor Accounts offer bursaries and campaign support to students on Bursify. To add a Sponsor Account, please enter the company name and your email address at this company. Only current employees are eligible to create a Sponsor Account Page.</label>
+
+                    </div>
+                    <div class="box-body">
+                   
+                        <md-input-container class="md-icon-float md-block">
+                            <!-- Use floating label instead of placeholder -->
+                            <label style="font-size: 18px;">Company Name</label>
+                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                            <input value="" id="companyName" type="text" ng-model="Sponsor.CompanyName" required/>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label style="font-size: 18px;">Your email address at company</label>
+                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                            <input value="" id="sponsorEmail"  ng-model="Sponsor.CompanyEmail" type="text" required></>
+                        </md-input-container>
+                        <md-checkbox ng-model="secondLocked" style="margin: 5px;">
+
+                            I verify that I am the official representative of this company/sponsor and have the right to act on behalf of my company in the creation of this page.
+
+                        </md-checkbox>
+
+
+
+                    </div><!-- /.box-body -->
+
+                    <div>
+
+                        <md-button type="submit" class="btn btn-warning" ng-click="nextTab()">Proceed</md-button>
+                    </div>
+
+                </md-content>
+            </md-tab>
+            <md-tab label="Sponsor Details" ng-disabled="!secondLocked">
+                <md-content class="md-padding">
+
+                    <div class="box-body">
+                        <md-input-container class="md-block">
+                            <label>Description</label>
+                          
+                            <textarea ng-model="BursifySponsor.Description" md-maxlength="150" rows="5" md-select-on-focus placeholder="Tell us about your company..." required></textarea>
+                        </md-input-container>
+
+                        <div class="col-md-4">
+                            <md-input-container class="md-block">
+                                <md-select placeholder="Province" ng-model="Location.Prov" md-on-open="loadProvinces()" style="min-width: 200px;" required>
+                                    <md-option ng-value="province" ng-repeat="province in provinces">{{province.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-4">
+
+                            <md-input-container class="md-icon-float md-block">
+                                <!-- Use floating label instead of placeholder -->
+                                <label style="font-size: 18px;">City</label>
+                                <input id="companyName" type="text" ng-model="Location.City" required/>
+                            </md-input-container>
+                        </div>
+
+                        <div class="col-md-4">
+                            <md-input-container class="md-block">
+                                <md-select placeholder="Company Industry" ng-model="Sponsor.Industry" md-on-open="loadFields()" style="min-width: 200px;" required>
+                                    <md-option ng-value="field" ng-repeat="field in fields">{{field.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                           
+                            
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <md-input-container class="md-block">
+                                <label style="font-size: 18px;">Company Webiste</label>
+                             
+                                <input value="" id="sponsorEmail"  ng-model="Sponsor.Website" type="text"></>
+                            </md-input-container>
+                        </div>
+                    </div><!-- /.box-body -->
+
+                    <div>
+
+                        <md-button type="submit" class="btn btn-success" ng-click="create()">Create</md-button>
+                    </div>
+
+
+
+                </md-content>
+            </md-tab>
+
+        </md-tabs>
+    </div>
+        </form>
+
+</div>

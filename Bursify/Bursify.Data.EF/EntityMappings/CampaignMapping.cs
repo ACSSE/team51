@@ -19,7 +19,7 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.CampaignName)
                 .HasMaxLength(200)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.Tagline)
                 .HasMaxLength(200)
@@ -27,17 +27,17 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.Location)
                 .HasMaxLength(500)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.Description)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.AmountRequired)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.CampaignType)
                 .HasMaxLength(50)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.VideoPath)
                 .HasMaxLength(200)
@@ -48,16 +48,16 @@ namespace Bursify.Data.EF.EntityMappings
                 .IsOptional();
 
             this.Property(x => x.StartDate)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.EndDate)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.AmountContributed)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.FundUsage)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.ReasonsToSupport)
                 .IsOptional();
@@ -66,7 +66,7 @@ namespace Bursify.Data.EF.EntityMappings
                 .IsOptional();
 
             this.Property(x => x.Status)
-                .IsRequired();
+                .IsOptional();
 
             this.HasMany(x => x.CampaignSponsors);
 
@@ -74,8 +74,7 @@ namespace Bursify.Data.EF.EntityMappings
                 .WithMany(c => c.Campaigns)
                 .HasForeignKey(s => s.StudentId);
 
-            this.HasRequired(x => x.Account)
-                .WithRequiredPrincipal(x => x.Campaign);
+            this.HasOptional(x => x.CampaignAccount);
         }
     }
 }

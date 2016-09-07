@@ -2543,7 +2543,7 @@ a:focus {
 }
 /* PAGINATION */
 .pagination > li > a {
-  background: #fafafa;
+  background: #fff;
   color: #666;
 }
 .pagination.pagination-flat > li > a {
@@ -3930,7 +3930,7 @@ table.text-center th {
   padding-left: 10px;
 }
 .fc-widget-header {
-  background: #fafafa;
+  background: #fff;
 }
 .fc-grid {
   width: 100%;

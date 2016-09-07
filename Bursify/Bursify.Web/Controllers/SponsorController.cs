@@ -4,8 +4,8 @@ using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
-using Bursify.Data.EF.Entities.Bridge;
-using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
 using Bursify.Web.Models;
 
 namespace Bursify.Web.Controllers
@@ -80,37 +80,23 @@ namespace Bursify.Web.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("AddSponsorship")]
-        public HttpResponseMessage AddSponsorship(HttpRequestMessage request, SponsorshipViewModel sponsorshipVM, List<SponsorshipRequirementViewModel> requirementsVM)
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetSponsorships")]
+        public HttpResponseMessage GetSubjects(HttpRequestMessage request, int SponsorId)
         {
-            var sponsorship = sponsorshipVM.ReverseMap();
+            var sponsoships = sponsorApi.GetSponsorSponsorships(SponsorId);
 
-            sponsorApi.AddSponsorship(sponsorship);
-
-            List<SponsorshipRequirement> requirements = new List<SponsorshipRequirement>();
-
-            foreach (var r in requirementsVM)
-            {
-                requirements.Add(r.ReverseMap());
-            }
-
-            if (requirements.Count != 0)
-            {
-                sponsorApi.AddRequirements(requirements);
-            }
-            
-            var response = request.CreateResponse(HttpStatusCode.OK);
+            var response = request.CreateResponse(HttpStatusCode.OK, sponsoships);
 
             return response;
         }
-
+        
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("AddRequirements")]
-        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<SponsorshipRequirementViewModel> requirementsVM)
+        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<SubjectViewModel> requirementsVM)
         {
-            List<SponsorshipRequirement> requirements = new List<SponsorshipRequirement>();
+            List<Subject> requirements = new List<Subject>();
             foreach (var r in requirementsVM)
             {
                 requirements.Add(r.ReverseMap());
@@ -118,7 +104,7 @@ namespace Bursify.Web.Controllers
 
             if (requirements.Count != 0)
             {
-                sponsorApi.AddRequirements(requirements);
+                _studentApi.AddSubjects(requirements);
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK);
@@ -228,8 +214,9 @@ namespace Bursify.Web.Controllers
 
             foreach (var c in campaignsVM)
             {
-                c.Name = sponsorApi.GetUserInfo(c.StudentId).Name;
-                c.Surname = sponsorApi.GetStudent(c.StudentId).Surname;
+                var student = _studentApi.GetStudent(c.StudentId);
+                c.Name = student.Firstname;
+                c.Surname = student.Surname;
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignsVM);

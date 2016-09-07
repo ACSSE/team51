@@ -1,4 +1,6 @@
-﻿<div id="content">
+﻿
+
+<div id="content">
     <spnav-bar></spnav-bar>  
     <md-toolbar>
         <div class="md-toolbar-tools">
@@ -10,7 +12,7 @@
             <md-menu md-offset="0 -7">
                 
                 <md-button aria-label="Open demo menu" class="md-raised" ng-click="showAdvanced($event)">
-                   Add Sponsorship
+                   Add A Sponsorship
                 </md-button>
                 <md-menu-content width="4">
                     <md-menu-item ng-repeat="level in levels">
@@ -22,15 +24,15 @@
     </md-toolbar>
   
     <div class="col-md-12">
-        <div class="col-md-4">
+        <div class="col-md-4" ng-repeat="Sponsorship in Sponsorships">
             <md-card class="_md">
                 
-                <img ng-src="Content/images/campaign/1.JPG" class="md-card-image" alt="Washed Out" src="img/washedout.png">
+                <img ng-src="Content/images/campaign/1.JPG" class="md-card-image" alt="Washed Out">
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">Bursify Bursary 2016</span>
-                        <span class="md-title">85 applicants</span>
-                        <span class="md-subhead">5 days left</span>
+                        <span class="md-headline">{{Sponsorship.Name}}</span>
+                        <span class="md-title">{{Sponsorship.NumberOfViews}}</span>
+                        <span class="md-subhead">{{Sponsorship.ClosingDate}} closing Date</span>
                        
                     </md-card-title-text>
                 </md-card-title>
@@ -56,95 +58,13 @@
 
                 </md-card-actions>
                 <md-card-content>
-                    <p>
-                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+                    <p style="height:55px">
+                        {{Sponsorship.Description | limitTo: 140}}...
                     </p>
                 </md-card-content> 
             </md-card>
         </div>
-        <div class="col-md-4">
-            <md-card class="_md">
-
-                <img ng-src="Content/images/campaign/1.JPG" class="md-card-image" alt="Washed Out" src="img/washedout.png">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Bursify Bursary 2016</span>
-                        <span class="md-title">85 applicants</span>
-                        <span class="md-subhead">5 days left</span>
-
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="start center" class="layout-align-start-center layout-row">
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/menu.svg"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            Edit
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/launch.svg"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            Share
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            View Applicants
-                        </md-tooltip>
-                    </md-button>
-
-                </md-card-actions>
-                <md-card-content>
-                    <p>
-                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                    </p>
-                </md-card-content>
-            </md-card>
-        </div>
-        <div class="col-md-4">
-            <md-card class="_md">
-
-                <img ng-src="Content/images/campaign/1.JPG" class="md-card-image" alt="Washed Out" src="img/washedout.png">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Bursify Bursary 2016</span>
-                        <span class="md-title">85 applicants</span>
-                        <span class="md-subhead">5 days left</span>
-
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="start center" class="layout-align-start-center layout-row">
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/menu.svg"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            Edit
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/launch.svg"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            Share
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            View Applicants
-                        </md-tooltip>
-                    </md-button>
-
-                </md-card-actions>
-                <md-card-content>
-                    <p>
-                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                    </p>
-                </md-card-content>
-            </md-card>
-        </div>
+       
 
     </div>
 </div>

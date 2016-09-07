@@ -19,29 +19,29 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.Name)
                 .HasMaxLength(500)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.SponsorshipType)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.Description)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.ClosingDate)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.EssayRequired)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.SponsorshipValue)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.StudyFields)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.Province)
                 .HasMaxLength(100)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.AverageMarkRequired)
                 .IsOptional();
@@ -56,15 +56,17 @@ namespace Bursify.Data.EF.EntityMappings
 
             this.Property(x => x.ExpensesCovered)
                 .HasMaxLength(500)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.TermsAndConditions)
-                .IsRequired();
+                .IsOptional();
 
             this.Property(x => x.NumberOfViews)
                 .IsOptional();
 
             this.Property(x => x.AgeGroup).IsOptional();
+
+            this.Property(x => x.Rating).IsOptional();
 
             this.HasRequired(x => x.Sponsor)
                 .WithMany(s => s.Sponsorhips)
@@ -73,6 +75,7 @@ namespace Bursify.Data.EF.EntityMappings
             this.HasMany(x => x.StudentSponsorships);
 
             this.HasMany(x => x.Requirements);
+
         }
     }
 }
