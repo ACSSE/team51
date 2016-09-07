@@ -3,6 +3,7 @@
 using Bursify.Data.EF.Entities.StudentUser;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bursify.Web.Models
 {
@@ -24,7 +25,7 @@ namespace Bursify.Web.Models
         public string Race { get; set; }
         public string Gender { get; set; }
         public string CurrentOccupation { get; set; }
-        public string StudyField { get; set; }
+        public string[] StudyField { get; set; }
         public string HighestAcademicAchievement { get; set; }
         public long YearOfAcademicAchievement { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -64,7 +65,7 @@ namespace Bursify.Web.Models
             Race = student.Race;
             Gender = student.Gender;
             CurrentOccupation = student.CurrentOccupation;
-            StudyField = student.StudyField;
+            StudyField = student.StudyField.Split(',');
             HighestAcademicAchievement = student.HighestAcademicAchievement;
             YearOfAcademicAchievement = student.YearOfAcademicAchievement;
             DateOfBirth = student.DateOfBirth;
@@ -79,6 +80,11 @@ namespace Bursify.Web.Models
             AgreeTandC = student.AgreeTandC;
            
             return this;
+        }
+
+        private string ArrayToString(string[] array)
+        {
+            return array.Aggregate("", (current, s) => current + (s + ","));
         }
 
         public Student ReverseMap()
@@ -99,7 +105,7 @@ namespace Bursify.Web.Models
                 Race = this.Race,
                 Gender = this.Gender,
                 CurrentOccupation = this.CurrentOccupation,
-                StudyField = this.StudyField,
+                StudyField = ArrayToString(this.StudyField),
                 HighestAcademicAchievement = this.HighestAcademicAchievement,
                 YearOfAcademicAchievement = this.YearOfAcademicAchievement,
                 DateOfBirth = this.DateOfBirth,

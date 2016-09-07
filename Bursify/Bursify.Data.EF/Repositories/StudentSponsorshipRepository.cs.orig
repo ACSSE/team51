@@ -122,8 +122,13 @@ namespace Bursify.Data.EF.Repositories
         {
             var student = _dataSession.UnitOfWork.Context.Set<Student>()
                 .FirstOrDefault(x => x.ID == studentId);
+<<<<<<< HEAD
+=======
 
             if (student != null && student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase)) return null;
+>>>>>>> origin/BackendBrandon
+
+            if (student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase)) return null;
                 
             var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
                 .Where(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase))

@@ -274,8 +274,11 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
+<<<<<<< HEAD
+=======
                 
 
+>>>>>>> origin/BackendBrandon
                 return _studentSponsorshipRepository.LoadSponsorshipSuggestions(studentId);
             }
         }
