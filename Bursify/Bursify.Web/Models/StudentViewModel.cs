@@ -84,7 +84,7 @@ namespace Bursify.Web.Models
 
         private string ArrayToString(string[] array)
         {
-            return array.Aggregate("", (current, s) => current + (s + ","));
+            return array.Length > 1 ? array.Aggregate("", (current, s) => current + (s + ",")) : array[0];
         }
 
         public Student ReverseMap()

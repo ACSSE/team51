@@ -68,7 +68,7 @@
             "GuardianPhone": "085 789 1456",
             "GuardianEmail": "mother@nicemother.com",
             "CurrentOccupation": "",
-            "StudyFields": "",
+         
             "MarksYear": "",
             "ReportPeriod": "",
             "InstitutionName": "",
@@ -1545,7 +1545,19 @@
             //    myfields += $scope.Student.StudyFields[i].name + ",";
             //}
 
-            $scope.StudentP.StudyField = $scope.Student.StudyFields;
+            if ($scope.StudentP.CurrentOccupation == 'Tertiary') {
+                if ($scope.Student.StudyFields.length > 1) {
+                    notificationService.displayInfo("Please only select the study field you are in.");
+                    var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex - 1;
+                    $scope.selectedIndex = index;
+                    return;
+                } else {
+                    $scope.StudentP.StudyField = $scope.Student.StudyFields;
+                }
+            } else {
+                $scope.StudentP.StudyField = $scope.Student.StudyFields;
+            }
+         
             $scope.StudentP.HighestAcademicAchievement = $scope.Student.InstitutionType.level;
             $scope.StudentP.YearOfAcademicAchievement = $scope.Student.MarksYearAttained;
             $scope.StudentP.DateOfBirth = $scope.Student.DateOfBirth;

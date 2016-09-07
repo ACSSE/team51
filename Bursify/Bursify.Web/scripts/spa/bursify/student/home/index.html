@@ -7,7 +7,7 @@
     <div ng-cloak>
                 <md-content class="md-padding">
                     <md-tabs md-dynamic-height md-border-bottom>
-                        <md-tab label="BURSARIES">
+                        <md-tab label="RECCOMMENDED">
                             <md-content class="md-padding">
                                 <div class="col-md-12">
                                     <div class="col-md-12 tabs-area box-shadow-none">
@@ -49,7 +49,7 @@
 
                                                 </div>
 
-                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | orderBy:sortType:sortReverse | filter:searchB">
+                                                <div class="media" ng-repeat="Sponsorship in Recco | orderBy:sortType:sortReverse | filter:searchB">
                                                     <div class="media-left">
                                                         <a href="#/student/sponsorship/{{Sponsorship.ID}}">
 
@@ -70,11 +70,12 @@
                                                     </div>
 
                                                     <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 1 "></span>
+                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 2 "></span>
+                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 3 "></span>
+                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 4 "></span>
+                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 5 "></span>
+
                                                     </div>
 
                                                 </div>
@@ -85,7 +86,7 @@
                                 </div>
                             </md-content>
                         </md-tab>
-                        <md-tab label="RECCOMMENDED">                
+                        <md-tab label="ALL BURSARIES">                
                             <md-content class="md-padding">
                                 <div class="col-md-12">
                                     <div class="col-md-12 tabs-area box-shadow-none">
@@ -148,11 +149,12 @@
                                                     </div>
 
                                                     <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 1 "></span>
+                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 2 "></span>
+                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 3 "></span>
+                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 4 "></span>
+                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 5 "></span>
+
                                                     </div>
 
                                                 </div>
