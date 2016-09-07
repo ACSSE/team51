@@ -22,7 +22,6 @@ namespace Bursify.Data.EF.Entities.StudentUser
         public string Surname { get; set; }
         public string Headline { get; set; }
         public string EducationLevel { get; set; }
-        public int AverageMark { get; set; }
         public string StudentNumber { get; set; }
         public int Age { get; set; }
         public bool HasDisability { get; set; }
@@ -49,5 +48,6 @@ namespace Bursify.Data.EF.Entities.StudentUser
         public virtual ICollection<Campaign> Campaigns { get; set; }
         public virtual Institution Institution { get; set; }
         public ICollection<StudentSponsorship> StudentSponsorships { get; set; }
+        public virtual ICollection<SponsorStudentNotification> SponsorStudentNotification { get; set; }
     }
 }

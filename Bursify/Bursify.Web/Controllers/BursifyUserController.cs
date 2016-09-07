@@ -7,6 +7,9 @@ using Bursify.Web.Utility;
 using System.Web;
 using System.Linq;
 using System.IO;
+using System.Threading.Tasks;
+using Bursify.Api.Students;
+using Bursify.Api.Users;
 
 namespace Bursify.Web.Controllers
 {
@@ -14,10 +17,14 @@ namespace Bursify.Web.Controllers
     public class BursifyUserController : ApiController
     {
         private readonly MembershipApi _membershipApi;
+        private readonly UserApi _userApi;
+        private readonly StudentApi _studentApi;
 
-        public BursifyUserController(MembershipApi membershipApi)
+        public BursifyUserController(MembershipApi membershipApi, UserApi userApi, StudentApi studentApi)
         {
             _membershipApi = membershipApi;
+            _userApi = userApi;
+            _studentApi = studentApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -39,9 +46,37 @@ namespace Bursify.Web.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("GetUser")]
+        public HttpResponseMessage GetUser(HttpRequestMessage request, int userId)
+        {
+            var user = _userApi.GetCompleteUser(userId);
+
+            var model = new BursifyUserViewModel();
+
+            var userVm = model.MapSingleBursifyUser(user);
+
+            userVm.PasswordHash = null;
+            userVm.PasswordSalt = null;
+
+            var report = _studentApi.GetMostRecentReport(userId);
+            var studentModel = new StudentViewModel(_studentApi.GetStudent(userId));
+
+            if (report != null)
+            {
+                studentModel.AverageMark = report.Average;
+            }
+
+            userVm.Student = studentModel.ReverseMap();
+
+            var response = request.CreateResponse(HttpStatusCode.OK, userVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.Route("UploadImage")]
         [MimeMultipart]
-        public HttpResponseMessage UploadImage(HttpRequestMessage request, int userId)
+        public async Task<HttpResponseMessage> UploadImage(HttpRequestMessage request, int userId)
         {
             var user = _membershipApi.GetUserById(userId);
 
@@ -56,18 +91,20 @@ namespace Bursify.Web.Controllers
             var multipartFormDataStreamProvider = new UploadMultipartFormProvider(directory.FullName);
 
             // Read the MIME multipart asynchronously 
-            Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
-
+            await Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
+           
             var localFileName = multipartFormDataStreamProvider
-                .FileData.Select(multiPartData => multiPartData.LocalFileName).FirstOrDefault();
+                .FileData.Select(multiPartData => multiPartData.LocalFileName).ToList();
+
+            var nameOfFile = localFileName[0];
 
             // Create response
-            if (localFileName == null) return null;
+            if (nameOfFile == null) return null;
             var fileUploadResult = new FileUploadResult
             {
-                LocalFilePath = localFileName,
-                FileName = Path.GetFileName(localFileName),
-                FileLength = new FileInfo(localFileName).Length
+                LocalFilePath = nameOfFile,
+                FileName = Path.GetFileName(nameOfFile),
+                FileLength = new FileInfo(nameOfFile).Length
             };
 
             // update profile picture path of the user

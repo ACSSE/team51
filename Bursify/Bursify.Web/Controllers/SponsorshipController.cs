@@ -1,8 +1,12 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Web.Models;
+using Bursify.Web.Utility.ModelClasses;
 
 namespace Bursify.Web.Controllers
 {
@@ -10,10 +14,12 @@ namespace Bursify.Web.Controllers
     public class SponsorshipController : ApiController
     {
         private readonly StudentApi _studentApi;
+        private readonly SponsorApi _sponsorApi;
 
-        public SponsorshipController(StudentApi studentApi)
+        public SponsorshipController(StudentApi studentApi, SponsorApi sponsorApi)
         {
             _studentApi = studentApi;
+            _sponsorApi = sponsorApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -118,6 +124,28 @@ namespace Bursify.Web.Controllers
             var sponsorshipVm = model.SingleSponsorshipMap(newSponsorship);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetApplicants")]
+        public HttpResponseMessage GetApplicants(HttpRequestMessage request, int sponsorshipId)
+        {
+            var students = _sponsorApi.GetStudentsApplying(sponsorshipId);
+
+            var applicants = students.Select(applicant => 
+                                    new Applicant(applicant.ID, applicant.Firstname, 
+                                    applicant.Surname,
+                                    _studentApi.GetUserInfo(applicant.ID).ProfilePicturePath, 
+                                    applicant.Age, 
+                                    _studentApi.GetAddress(applicant.ID, "Residential").Province, 
+                                    applicant.EducationLevel, 
+                                    _studentApi.GetMostRecentReport(applicant.ID).Average, 
+                                    applicant.Gender)).ToList();
+
+            var response = request.CreateResponse(HttpStatusCode.OK, new { count = applicants.Count, applicants });
 
             return response;
         }

@@ -34,6 +34,9 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.ReportInstitution)
                 .IsOptional();
 
+            this.Property(x => x.ReportFilePath)
+                .IsOptional();
+
             this.HasRequired(x => x.Student)
                 .WithMany(x => x.StudentReports)
                 .HasForeignKey(x => x.StudentId);

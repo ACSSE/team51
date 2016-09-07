@@ -39,7 +39,10 @@ namespace Bursify.Data.EF.Repositories
         {
             var application = LoadByIds(userId, sponsorshipId);
 
-            if (application == null) { return false; }
+            if (application == null)
+            {
+                return false;
+            }
 
             application.Status = statusMessage;
 
@@ -70,7 +73,10 @@ namespace Bursify.Data.EF.Repositories
 
         public List<StudentSponsorship> GetSponsorApplicants(int sponsorshipId)
         {
-            return FindMany(applicant => applicant.SponsorshipId == sponsorshipId).Where(x => x.Status == "Pending").ToList();
+            return
+                FindMany(applicant => applicant.SponsorshipId == sponsorshipId)
+                    .Where(x => x.Status == "Pending")
+                    .ToList();
         }
 
         public List<Sponsorship> GetStudentsAppliedSponsorships(int userId)
@@ -108,7 +114,59 @@ namespace Bursify.Data.EF.Repositories
             return
                 FindSingle(sponsorship =>
                     sponsorship.leftId == studentId
-                && sponsorship.rightId == sponsorshipId);
+                    && sponsorship.rightId == sponsorshipId);
+        }
+
+        public List<Sponsorship> LoadSponsorshipSuggestions(Student student)
+        {
+            if (student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase)) return null;
+
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            var latestReport = _dataSession.UnitOfWork.Context.Set<StudentReport>()
+                .Where(x => x.StudentId == student.ID)
+                .OrderByDescending(x => x.ReportYear)
+                .ThenByDescending(x => x.ReportPeriod)
+                .FirstOrDefault();
+
+            var school = _dataSession.UnitOfWork.Context
+                .Set<Institution>()
+                .FirstOrDefault(x => x.ID == student.InstitutionID);
+
+            var address = _dataSession.UnitOfWork.Context
+                .Set<UserAddress>()
+                .FirstOrDefault(userAddress => userAddress.BursifyUserId == student.ID && userAddress.PreferredAddress.Contains("Residential"));
+            //FindMany(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase));
+
+            var suggestionList = sponsorships.Where(sponsorship => 
+                                 school != null && latestReport != null && address != null
+                                 && 
+                                 (sponsorship.StudyFields.Contains(student.StudyField)
+                                 && sponsorship.AverageMarkRequired <= latestReport.Average)
+                                 &&(CheckAge(sponsorship.AgeGroup, student.Age)
+                                 || sponsorship.GenderPreference.Equals(student.Gender)
+                                 || sponsorship.RacePreference.Equals(student.Race)
+                                 || sponsorship.InstitutionPreference.Contains(school.Name)
+                                 || sponsorship.Province.Contains(address.Province))
+                                 ).ToList();
+
+            //check disability preference
+
+            return suggestionList;
+        }
+
+        private static bool CheckAge(string ageGroup, int studentAge)
+        {
+            var age = ageGroup.Split('-');
+
+            if (ageGroup.Equals("Any", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            return studentAge >= Convert.ToInt32(age[0]) && studentAge <= Convert.ToInt32(age[1]);
         }
 
         //done in api using generic repo

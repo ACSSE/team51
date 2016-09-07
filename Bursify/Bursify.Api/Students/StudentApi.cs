@@ -276,7 +276,7 @@ namespace Bursify.Api.Students
             {
                 var student = GetStudent(studentId);
 
-                return _sponsorshipRepository.LoadSponsorshipSuggestions(student);
+                return _studentSponsorshipRepository.LoadSponsorshipSuggestions(student);
             }
         }
 
@@ -366,11 +366,11 @@ namespace Bursify.Api.Students
         #region School
 
         //done
-        public Institution GetInstitution(int userId)
+        public Institution GetInstitution(int institutionId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return _institutionRepository.GetInstitution(userId);
+                return _institutionRepository.GetInstitution(institutionId);
             }
         }
 
@@ -413,6 +413,22 @@ namespace Bursify.Api.Students
             {
                 _institutionRepository.Save(institution);
                 uow.Commit();
+            }
+        }
+
+        public List<StudentReport> GetFiveMostRecentReports(int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentReportRepository.GetFiveMostRecentReports(studentId);
+            }
+        }
+
+        public StudentReport GetMostRecentReport(int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentReportRepository.GetMostRecentReport(studentId);
             }
         }
 
@@ -503,7 +519,7 @@ namespace Bursify.Api.Students
         }
 
         #endregion
-        
+
         public int GetNumberOfCampaignsByID(int ID)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())

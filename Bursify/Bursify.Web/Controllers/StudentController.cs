@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
@@ -28,6 +30,17 @@ namespace Bursify.Web.Controllers
 
             var studentsVm = StudentViewModel.MapMultipleStudents(students);
 
+            foreach (var model in studentsVm)
+            {
+                var report = _studentApi.GetMostRecentReport(model.ID);
+                model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
+
+                if (report != null)
+                {
+                    model.AverageMark = report.Average;
+                }
+            }
+
             var response = request.CreateResponse(HttpStatusCode.OK, studentsVm);
 
             return response;
@@ -42,6 +55,14 @@ namespace Bursify.Web.Controllers
 
             var model = new StudentViewModel(student);
 
+            var report = _studentApi.GetMostRecentReport(studentId);
+            model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
+
+            if (report != null)
+            {
+                model.AverageMark = report.Average;
+            }
+
             var response = request.CreateResponse(HttpStatusCode.OK, model);
 
             return response;
@@ -54,7 +75,7 @@ namespace Bursify.Web.Controllers
         {
             var addresses = _studentApi.GetAddressofUser(userId);
 
-            var addressVm = UserAddressViewModel.MapMultipleStudents(addresses);
+            var addressVm = UserAddressViewModel.MapMultipleAddresses(addresses);
 
             var response = request.CreateResponse(HttpStatusCode.OK, addressVm);
 
@@ -349,6 +370,28 @@ namespace Bursify.Web.Controllers
             int number = _studentApi.GetNumberOfCampaignSupporters(campaignId);
 
             var response = request.CreateResponse(HttpStatusCode.OK, number);
+
+            return response;
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("GetStudyFields")]
+        public HttpResponseMessage GetStudyFields(HttpRequestMessage request, int studentId)
+        {
+            var student = _studentApi.GetStudent(studentId);
+            var studyFields = new List<string>();
+
+            if (student.StudyField.Contains(","))
+            {
+                studyFields = student.StudyField.Split(',').ToList();
+            }
+            else
+            {
+                studyFields.Add(student.StudyField);
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK, studyFields);
 
             return response;
         }

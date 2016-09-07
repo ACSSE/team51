@@ -10,6 +10,7 @@ namespace Bursify.Web.Models
     {
         public int ID { get; set; }
         public int InstitutionID { get; set; }
+        public string InstitutionName { get; set; }
         public string IDNumber { get; set; }
         public string Firstname { get; set; }
         public string Surname { get; set; }
@@ -55,7 +56,6 @@ namespace Bursify.Web.Models
             Surname = student.Surname;
             Headline = student.Headline;
             EducationLevel = student.EducationLevel;
-            AverageMark = student.AverageMark;
             StudentNumber = student.StudentNumber;
             IDNumber = student.IDNumber;
             Age = student.Age;
@@ -91,7 +91,6 @@ namespace Bursify.Web.Models
                 Surname = this.Surname,
                 Headline = this.Headline,
                 EducationLevel = this.EducationLevel,
-                AverageMark = this.AverageMark,
                 StudentNumber = this.StudentNumber,
                 IDNumber = this.IDNumber,
                 Age = this.Age,
@@ -114,6 +113,41 @@ namespace Bursify.Web.Models
                 CVPath = this.CVPath,
                 AgreeTandC = this.AgreeTandC
                
+            };
+        }
+
+        public Student ReverseMap(Student model)
+        {
+            return new Student()
+            {
+                ID = model.ID,
+                InstitutionID = model.InstitutionID,
+                Firstname = model.Firstname,
+                Surname = model.Surname,
+                Headline = model.Headline,
+                EducationLevel = model.EducationLevel,
+                StudentNumber = model.StudentNumber,
+                IDNumber = model.IDNumber,
+                Age = model.Age,
+                HasDisability = model.HasDisability,
+                DisabilityDescription = model.DisabilityDescription,
+                Race = model.Race,
+                Gender = model.Gender,
+                CurrentOccupation = model.CurrentOccupation,
+                StudyField = model.StudyField,
+                HighestAcademicAchievement = model.HighestAcademicAchievement,
+                YearOfAcademicAchievement = model.YearOfAcademicAchievement,
+                DateOfBirth = model.DateOfBirth,
+                NumberOfViews = model.NumberOfViews,
+                Essay = model.Essay,
+                GuardianPhone = model.GuardianPhone,
+                GuardianEmail = model.GuardianEmail,
+                GuardianRelationship = model.GuardianRelationship,
+                IDDocumentPath = model.IDDocumentPath,
+                MatricCertificatePath = model.MatricCertificatePath,
+                CVPath = model.CVPath,
+                AgreeTandC = model.AgreeTandC
+
             };
         }
 

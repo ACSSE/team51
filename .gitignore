@@ -2,10 +2,10 @@
 #ignore thumbnails created by windows
 Thumbs.db
 #Ignore files build by Visual Studio
+applicationhost.config
 *.obj
-*.mdf
 *.ldf
-*.DS_Store
+*.mdf
 *.pdb
 *.user
 *.aps
@@ -21,6 +21,8 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
+bin\
+obj\
 [Bb]in
 [Dd]ebug*/
 *.lib
@@ -29,5 +31,3 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
-Web.config
-App.config
