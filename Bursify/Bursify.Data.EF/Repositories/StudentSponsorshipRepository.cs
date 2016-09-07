@@ -118,19 +118,24 @@ namespace Bursify.Data.EF.Repositories
                     && sponsorship.rightId == sponsorshipId);
         }
 
-        public List<Sponsorship> LoadSponsorshipSuggestions(Student student)
+        public List<Sponsorship> LoadSponsorshipSuggestions(int studentId)
         {
+            var student = _dataSession.UnitOfWork.Context.Set<Student>()
+                .FirstOrDefault(x => x.ID == studentId);
+
             if (student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase)) return null;
+
+            var latestReport = DbContext/*_dataSession.UnitOfWork.Context*/.Set<StudentReport>()
+               .Where(x => x.StudentId == student.ID)
+               .OrderByDescending(x => x.ReportYear)
+               .ThenByDescending(x => x.ReportPeriod)
+               .FirstOrDefault();
 
             var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
                 .Where(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
-            var latestReport = _dataSession.UnitOfWork.Context.Set<StudentReport>()
-                .Where(x => x.StudentId == student.ID)
-                .OrderByDescending(x => x.ReportYear)
-                .ThenByDescending(x => x.ReportPeriod)
-                .FirstOrDefault();
+           
 
             var school = _dataSession.UnitOfWork.Context
                 .Set<Institution>()

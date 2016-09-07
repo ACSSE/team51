@@ -274,9 +274,9 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                var student = GetStudent(studentId);
+                
 
-                return _studentSponsorshipRepository.LoadSponsorshipSuggestions(student);
+                return _studentSponsorshipRepository.LoadSponsorshipSuggestions(studentId);
             }
         }
 

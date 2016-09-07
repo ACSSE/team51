@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 using Bursify.Api.Students;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.Bridge;
@@ -46,7 +47,8 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-        [System.Web.Mvc.AllowAnonymous]
+        ///[System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Authorize]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetStudent")]
         public HttpResponseMessage GetStudent(HttpRequestMessage request, int studentId)
@@ -114,7 +116,8 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-        [System.Web.Mvc.AllowAnonymous]
+        //[System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Authorize(Roles = "Student")]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("SavePersonalDetails")]
         public HttpResponseMessage SavePersonalDetails(HttpRequestMessage request, PersonalDetails details)
@@ -370,28 +373,6 @@ namespace Bursify.Web.Controllers
             int number = _studentApi.GetNumberOfCampaignSupporters(campaignId);
 
             var response = request.CreateResponse(HttpStatusCode.OK, number);
-
-            return response;
-        }
-
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("GetStudyFields")]
-        public HttpResponseMessage GetStudyFields(HttpRequestMessage request, int studentId)
-        {
-            var student = _studentApi.GetStudent(studentId);
-            var studyFields = new List<string>();
-
-            if (student.StudyField.Contains(","))
-            {
-                studyFields = student.StudyField.Split(',').ToList();
-            }
-            else
-            {
-                studyFields.Add(student.StudyField);
-            }
-
-            var response = request.CreateResponse(HttpStatusCode.OK, studyFields);
 
             return response;
         }
