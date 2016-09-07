@@ -313,7 +313,7 @@
 
                                     <md-input-container class="md-block">
                                         <md-select placeholder="Fields" ng-model="Student.StudyFields" md-on-open="loadFields()" style="min-width: 200px;" required multiple>
-                                            <md-option ng-value="field" ng-repeat="field in fields | orderBy:'name'">{{field.name}}</md-option>
+                                            <md-option ng-value="field" ng-repeat="field in fields | orderBy:'name'">{{field}}</md-option>
                                         </md-select>
                                     </md-input-container>
 

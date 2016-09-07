@@ -20,9 +20,22 @@
         sponsorshipLoadCompleted,
         sponsorshipLoadFailed);
 
-
-        function sponsorshipLoadCompleted(result) {    
+        $scope.diffDays = {};
+        $scope.t = {};
+        function sponsorshipLoadCompleted(result) {
             $scope.Sponsorship = result.data;
+
+            var oneDay = 24*60*60*1000;	// hours*minutes*seconds*milliseconds
+            var firstDate = new Date();
+            var secondDate = new Date($scope.Sponsorship.ClosingDate);
+            //$scope.diffDays = $scope.t.Subtract(new Date(1970, 1, 1)).TotalMilliseconds;
+ 
+            var x = Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay));
+            $scope.diffDays = ~~x;
+
+            var expenses = $scope.Sponsorship.ExpensesCovered;
+
+            $scope.expenses = expenses.split(",");
         }
 
         function sponsorshipLoadFailed() {
@@ -38,14 +51,19 @@
         }
 
         $scope.studentApply = function () {
-            notificationService.displayError($rootScope.repository.loggedUser.userIden);
-            $scope.StudentSponsorshipVM.StudentId = $rootScope.repository.loggedUser.userIden;
-            $scope.StudentSponsorshipVM.SponsorshipId = $routeParams.sponsorshipId;
-            var today = new Date();
-            $scope.StudentSponsorshipVM.ApplicationDate = today;
-            $scope.StudentSponsorshipVM.Status = "Pending";
-            $scope.StudentSponsorshipVM.SponsorshipOffered = "false";
-            apiService.post('/api/student/ApplyForSponsorship', $scope.StudentSponsorshipVM, ApplicationCompleted, ApplicationFailed);
+            if ($scope.terms) {
+                notificationService.displayError($rootScope.repository.loggedUser.userIden);
+                $scope.StudentSponsorshipVM.StudentId = $rootScope.repository.loggedUser.userIden;
+                $scope.StudentSponsorshipVM.SponsorshipId = $routeParams.sponsorshipId;
+                var today = new Date();
+                $scope.StudentSponsorshipVM.ApplicationDate = today;
+                $scope.StudentSponsorshipVM.Status = "Pending";
+                $scope.StudentSponsorshipVM.SponsorshipOffered = "false";
+                apiService.post('/api/student/ApplyForSponsorship', $scope.StudentSponsorshipVM, ApplicationCompleted, ApplicationFailed);
+
+            } else {
+                notificationService.displayInfo("You need to agree to the terms and conditions first.")
+            }
         }
 
   

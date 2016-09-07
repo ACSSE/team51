@@ -118,10 +118,13 @@ namespace Bursify.Data.EF.Repositories
                     && sponsorship.rightId == sponsorshipId);
         }
 
-        public List<Sponsorship> LoadSponsorshipSuggestions(Student student)
+        public List<Sponsorship> LoadSponsorshipSuggestions(int studentId)
         {
-            if (student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase)) return null;
+            var student = _dataSession.UnitOfWork.Context.Set<Student>()
+                .FirstOrDefault(x => x.ID == studentId);
 
+            if (student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase)) return null;
+                
             var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
                 .Where(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase))
                 .ToList();

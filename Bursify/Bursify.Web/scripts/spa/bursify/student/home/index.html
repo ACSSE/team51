@@ -2,7 +2,7 @@
 <nav-bar></nav-bar>
 <div id="loadingbarContainer"></div>
 
-<div id="content">
+<div id="content" ng-init="loadSponsorships()">
     
     <div ng-cloak>
                 <md-content class="md-padding">
@@ -51,7 +51,7 @@
 
                                                 <div class="media" ng-repeat="Sponsorship in Sponsorships | orderBy:sortType:sortReverse | filter:searchB">
                                                     <div class="media-left">
-                                                        <a href="/Sponsorship/ViewBursary">
+                                                        <a href="#/student/sponsorship/{{Sponsorship.ID}}">
 
 
                                                             <img ng-src="Content/images/user/elogo.jpg" width="55" height="55" class="media-object search-v1-avatar">
