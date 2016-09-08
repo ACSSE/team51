@@ -2,7 +2,6 @@
 using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
-using Bursify.Services;
 
 namespace Bursify.Api.Security
 {

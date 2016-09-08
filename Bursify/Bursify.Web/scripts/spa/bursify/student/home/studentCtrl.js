@@ -36,6 +36,11 @@
             $scope.Recco = result.data;
         }
 
+
+        $scope.getNumber = function (max) {
+            return new Array(max);
+        }
+
         function reccoFailed() {
             notificationService.displayInfo('Unable to load reccommended sponsorships.');
         }

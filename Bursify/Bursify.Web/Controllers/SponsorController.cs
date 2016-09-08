@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
+using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Web.Models;
@@ -14,12 +15,12 @@ namespace Bursify.Web.Controllers
     public class SponsorController : ApiController
     {
         private readonly StudentApi _studentApi;
-        private SponsorApi sponsorApi;
+        private readonly SponsorApi _sponsorApi;
 
         public SponsorController(StudentApi studentApi, SponsorApi sponsorApi)
         {
             _studentApi = studentApi;
-            this.sponsorApi = sponsorApi;
+            _sponsorApi = sponsorApi;
         }
 
 
@@ -28,7 +29,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("SaveSponsor")]
         public HttpResponseMessage SaveSponsor(HttpRequestMessage request, SponsorViewModel sponsor)
         {
-            sponsorApi.AddSponsor(sponsor.ReverseMap());
+            _sponsorApi.AddSponsor(sponsor.ReverseMap());
 
             var response = request.CreateResponse(HttpStatusCode.Created);
 
@@ -84,40 +85,21 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetSponsorships")]
         public HttpResponseMessage GetSubjects(HttpRequestMessage request, int SponsorId)
         {
-            var sponsoships = sponsorApi.GetSponsorSponsorships(SponsorId);
+            var sponsoships = _sponsorApi.GetSponsorSponsorships(SponsorId);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsoships);
 
             return response;
         }
         
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("AddRequirements")]
-        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<SubjectViewModel> requirementsVM)
-        {
-            List<Subject> requirements = new List<Subject>();
-            foreach (var r in requirementsVM)
-            {
-                requirements.Add(r.ReverseMap());
-            }
-
-            if (requirements.Count != 0)
-            {
-                _studentApi.AddSubjects(requirements);
-            }
-
-            var response = request.CreateResponse(HttpStatusCode.OK);
-
-            return response;
-        }
+      
 
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetStudent")]
         public HttpResponseMessage GetStudent(HttpRequestMessage request, int Id)
         {
-            var student = sponsorApi.GetStudent(Id);
+            var student = _studentApi.GetStudent(Id);
 
             StudentViewModel studentVM = new StudentViewModel();
             studentVM.MapSingleStudent(student);
@@ -132,7 +114,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("OfferSponsorship")]
         public HttpResponseMessage OfferSponsorship(HttpRequestMessage request, int studentId, int sponsorshipId)
         {
-            sponsorApi.OfferSponsorship(studentId, sponsorshipId);
+            _sponsorApi.OfferSponsorship(studentId, sponsorshipId);
 
             var response = request.CreateResponse(HttpStatusCode.OK);
 
@@ -144,7 +126,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetStudentsSponsored")]
         public HttpResponseMessage GetStudentsSponsored(HttpRequestMessage request, int sponsorshipId)
         {
-            var students = sponsorApi.GetStudentsSponsored(sponsorshipId);
+            var students = _sponsorApi.GetStudentsSponsored(sponsorshipId);
 
             var s = StudentViewModel.MapMultipleStudents(students);
             
@@ -158,7 +140,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetStudentsApplying")]
         public HttpResponseMessage GetStudentsApplying(HttpRequestMessage request, int sponsorshipId)
         {
-            var students = sponsorApi.GetStudentsApplying(sponsorshipId);
+            var students = _sponsorApi.GetStudentsApplying(sponsorshipId);
 
             var s = StudentViewModel.MapMultipleStudents(students);
 
@@ -172,7 +154,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("ApproveSponsorship")]
         public HttpResponseMessage ApproveSponsorship(HttpRequestMessage request, ApproveSponsorshipViewModel approveVm)
         {
-            bool status = sponsorApi.ApproveSponsorship(approveVm.studentId, approveVm.campaignId, approveVm.confirmation);
+            bool status = _sponsorApi.ApproveSponsorship(approveVm.studentId, approveVm.campaignId, approveVm.confirmation);
 
             HttpResponseMessage response = null;
 
@@ -194,7 +176,7 @@ namespace Bursify.Web.Controllers
         public HttpResponseMessage SponsorCampaign(HttpRequestMessage request,
             SponsorCampaignViewModel sponsorCampaignVM)
         {
-            sponsorApi.SponsorCampaign(sponsorCampaignVM.sponsorId, sponsorCampaignVM.Campaignid,
+            _sponsorApi.SponsorCampaign(sponsorCampaignVM.sponsorId, sponsorCampaignVM.Campaignid,
                 sponsorCampaignVM.amount);
 
             var response = request.CreateResponse(HttpStatusCode.OK, new {success = true});
@@ -209,7 +191,7 @@ namespace Bursify.Web.Controllers
         public HttpResponseMessage GetSponsoredCampaigns(HttpRequestMessage request,
             int sponsorId)
         {
-            var campaigns = sponsorApi.GetSupportedCampaigns(sponsorId);
+            var campaigns = _sponsorApi.GetSupportedCampaigns(sponsorId);
             var campaignsVM = CampaignViewModel.MultipleCampaignsMap(campaigns);
 
             foreach (var c in campaignsVM)
@@ -230,7 +212,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("ReportCampaign")]
         public HttpResponseMessage ReportCampaign(HttpRequestMessage request, ReportCampaignModel reportVM)
         {
-            sponsorApi.ReportCampaign(reportVM.userId, reportVM.camapignId, reportVM.reason);
+            _sponsorApi.ReportCampaign(reportVM.userId, reportVM.camapignId, reportVM.reason);
 
             var response = request.CreateResponse(HttpStatusCode.OK);
 

@@ -1,0 +1,26 @@
+﻿<md-dialog  >
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools" md-colors="{background: 'red'}">
+                <h2>Do not meet requirements.</h2>
+                <span flex></span>
+                
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+               
+                <p>
+                    Unfortunately based on your latest results you do not meet the average requirement of {{Sponsorship.AverageMarkRequired}}% for this sponsorship.
+                </p>
+               
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="closeModal()">
+               Okay
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

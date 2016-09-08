@@ -4,11 +4,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
+using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Web.Models;
-using Bursify.Web.Utility.ModelClasses;
 
 namespace Bursify.Web.Controllers
 {
@@ -16,10 +17,12 @@ namespace Bursify.Web.Controllers
     public class StudentController : ApiController
     {
         private readonly StudentApi _studentApi;
+        private readonly SponsorApi _sponsorApi;
 
-        public StudentController(StudentApi studentApi)
+        public StudentController(StudentApi studentApi, SponsorApi sponsorApi)
         {
             _studentApi = studentApi;
+            _sponsorApi = sponsorApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -375,6 +378,33 @@ namespace Bursify.Web.Controllers
             var response = request.CreateResponse(HttpStatusCode.OK, number);
 
             return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetMyApplications")]
+        public HttpResponseMessage GetMyApplications(HttpRequestMessage request, int studentId)
+        {
+           
+            var applications = _studentApi.GetStudentApplications(studentId);
+            var appSponsorships = _studentApi.GetSponsorshipApplications(studentId);
+
+            var data = new List<ApplicationViewModel>();
+
+            foreach (var s in appSponsorships)
+            {
+                foreach (var ss in applications)
+                {
+                    var name = _sponsorApi.GetSponsor(s.SponsorId).CompanyName;
+                    var avm = new ApplicationViewModel(name, s.Name, ss.ApplicationDate, s.ClosingDate, ss.Status);
+
+                    if (data.Contains(avm)) continue;
+                    data.Add(avm);
+                    break;
+                }
+            }
+
+            return request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
         }
     }
 }

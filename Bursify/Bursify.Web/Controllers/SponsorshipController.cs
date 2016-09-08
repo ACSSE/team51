@@ -6,7 +6,7 @@ using System.Web.Http;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Web.Models;
-using Bursify.Web.Utility.ModelClasses;
+using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Web.Controllers
 {
@@ -95,6 +95,27 @@ namespace Bursify.Web.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("AddRequirements")]
+        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<RequirementViewModel> requirementsVM)
+        {
+            List<Requirement> requirements = new List<Requirement>();
+            foreach (var r in requirementsVM)
+            {
+                requirements.Add(r.ReverseMap());
+            }
+
+            if (requirements.Count != 0)
+            {
+                _studentApi.AddRequirements(requirements);
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetSponsorship")]
         public HttpResponseMessage GetSponsorship(HttpRequestMessage request, int sponsorshipId, int userId)
@@ -138,6 +159,7 @@ namespace Bursify.Web.Controllers
             var data = students.Select(applicant => 
                                     new Applicant(applicant.ID, applicant.Firstname, 
                                     applicant.Surname,
+                                    _studentApi.GetInstitution(applicant.InstitutionID).Name,
                                     _studentApi.GetUserInfo(applicant.ID).ProfilePicturePath, 
                                     applicant.Age, 
                                     _studentApi.GetAddress(applicant.ID, "Residential").Province, 
@@ -146,6 +168,20 @@ namespace Bursify.Web.Controllers
                                     applicant.Gender)).ToList();
           
             var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data });
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetSimilar")]
+        public HttpResponseMessage GetSimilar(HttpRequestMessage request, int sponsorshipId)
+        {
+            var sponsorships = _studentApi.GetSimilarSponsorships(sponsorshipId);
+
+            var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
             return response;
         }

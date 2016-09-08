@@ -125,11 +125,11 @@ namespace Bursify.Api.Sponsors
             }
         }*/
 
-        public Student GetStudent(int Id)
+        public Sponsor GetSponsor(int sponsorId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return studentRepository.LoadById(Id);
+                return sponsorRepository.GetSponsor(sponsorId);
             }
         }
 

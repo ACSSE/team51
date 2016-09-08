@@ -172,7 +172,7 @@
         Rating : 5,
         };
 
-        $scope.Requirements = [{ "Name": "", "MarkRequired": "" }];
+        $scope.Requirements = [{ "Name": "", "MarkRequired": "", "SponsorshipId": "" }];
 
         $scope.Subjects = [
                        "Overall Average",
@@ -345,7 +345,20 @@
         }
 
         function saveDone(result) {
+            $scope.AddedSP = result.data;
+            for (var i = 0; i < $scope.Requirements.length; i++) {
+                $scope.Requirements[i].SponsorshipId = $scope.AddedSP.ID;
+            }
+            apiService.post('/api/sponsorship/addrequirements', $scope.Requirements, finished, requirementsFailed);
+         
+        }
+
+        function finished() {
             $location.path('/sponsor/sponsorships');
+        }
+
+        function requirementsFailed() {
+            notificationService.displayError('Could not add requirements.')
         }
 
         function saveFailed() {
