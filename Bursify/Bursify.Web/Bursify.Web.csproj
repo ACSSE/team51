@@ -679,6 +679,7 @@
     <Content Include="scripts\spa\bursify\student\reportcard\AddReport\addReportCtrl.js" />
     <Content Include="scripts\spa\bursify\student\reportcard\reportcard.html" />
     <Content Include="scripts\spa\bursify\student\reportcard\reportcardCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\sponsorship\dialog.tmpl.html" />
     <Content Include="scripts\spa\bursify\student\sponsorship\index.html" />
     <Content Include="scripts\spa\bursify\student\sponsorship\sponsorshipCtrl.js" />
     <Content Include="scripts\spa\home\index.html" />

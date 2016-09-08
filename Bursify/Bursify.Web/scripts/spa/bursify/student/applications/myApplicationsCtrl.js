@@ -8,96 +8,8 @@
     function myApplicationsCtrl($scope, $rootScope, apiService, notificationService, $routeParams, $timeout) {
         $scope.pageClass = 'page-view-applicants';
 
-        apiService.get('/api/sponsorship/GetmyApplications/?studentId=' + $rootScope.repository.loggedUser.userIden, null, applicantsLoadCompleted, applicantsLoadFailed);
-        $scope.Applicants = {
-            "count": 9,
-            "data": [
-             {
-                 ID: 1,
-                 Name: "AAA",
-                 School: "UJ",
-                 PicturePath: "Content/images/student/student3.jpg",
-                 Age: 18,
-                 Province: "Gauteng",
-                 Level: "Grade 12",
-                 Average: 80,
-                 Gender: "Female"
-             },
-               {
-                   Name: "Nice Name",
-                   School: "UJ",
-                   PicturePath: "Content/images/student/student3.jpg",
-                   Age: 20, Province: "Gauteng",
-                   Level: "Grade 12",
-                   Average: 85,
-                   Gender: "Female"
-               },
-                 {
-                     Name: "Nice Name",
-                     School: "UJ",
-                     PicturePath: "Content/images/student/student3.jpg",
-                     Age: 16, Province: "Gauteng",
-                     Level: "Grade 12",
-                     Average: 89,
-                     Gender: "Female"
-                 },
-                   {
-                       Name: "Nice Name",
-                       School: "UJ",
-                       PicturePath: "Content/images/student/student3.jpg",
-                       Age: 18, Province: "Gauteng",
-                       Level: "Grade 12",
-                       Average: 75,
-                       Gender: "Female"
-                   },
-                     {
-                         Name: "Abel Name",
-                         School: "UJ",
-                         PicturePath: "Content/images/student/student3.jpg",
-                         Age: 19, Province: "Gauteng",
-                         Level: "Grade 12",
-                         Average: 80,
-                         Gender: "Female"
-                     },
-                       {
-                           Name: "Constance Name",
-                           School: "UJ",
-                           PicturePath: "Content/images/student/student3.jpg",
-                           Age: 18, Province: "Gauteng",
-                           Level: "Grade 12",
-                           Average: 90,
-                           Gender: "Female"
-                       },
-                         {
-                             Name: "Joseph",
-                             School: "UJ",
-                             PicturePath: "Content/images/student/student3.jpg",
-                             Age: 17, Province: "Gauteng",
-                             Level: "Grade 12",
-                             Average: 72,
-                             Gender: "Male"
-                         },
-                           {
-                               Name: "Nice Name",
-                               School: "UJ",
-                               PicturePath: "Content/images/student/student3.jpg",
-                               Age: 18, Province: "Gauteng",
-                               Level: "Grade 12",
-                               Average: 80,
-                               Gender: "Female"
-                           }, {
-                               Name: "Nice Name",
-                               School: "UJ",
-                               PicturePath: "Content/images/student/student3.jpg",
-                               Age: 18, Province: "Gauteng",
-                               Level: "Grade 12",
-                               Average: 80,
-                               Gender: "Male"
-                           }
-
-            ]
-        };
-
+        apiService.get('/api/student/GetmyApplications/?studentId=' + $rootScope.repository.loggedUser.userIden, null, applicantsLoadCompleted, applicantsLoadFailed);
+        $scope.Applications = {};
         $scope.selected = [];
         $scope.query = {
             order: '-Average',
@@ -163,8 +75,8 @@
 
 
 
-        function applicantsLoadCompleted() {
-
+        function applicantsLoadCompleted(result) {
+            $scope.Applications = result.data;
         }
 
         function applicantsLoadFailed() {

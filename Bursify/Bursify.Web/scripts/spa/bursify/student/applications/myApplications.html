@@ -31,21 +31,21 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row md-select="dessert" md-select-id="Name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect" data-ng-repeat="applicant in Applicants.data | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit">
-                            <td md-cell style="font-size: 14px;">{{applicant.Name}} </td>
-                            <td md-cell>{{applicant.Gender}}</td>
-                            <td md-cell>{{applicant.Age}}</td>
+                        <tr md-row md-select="dessert" md-select-id="Name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect" data-ng-repeat="applicant in Applications.data | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit">
+                            <td md-cell style="font-size: 14px;">{{applicant.SponsorName}} </td>
+                            <td md-cell>{{applicant.SponsorshipName}}</td>
+                            <td md-cell>{{applicant.ApplicationDate | date: "MMM d, y"}}</td>
 
-                            <td md-cell>{{applicant.School}}</td>
+                            <td md-cell>{{applicant.ClosingDate | date: "MMM d, y"}}</td>
                            
                             <td md-cell hide-sm>
-                                <md-button ng-show="applicant.Gender == 'Male'" aria-label="Open demo menu" class="md-raised" md-colors="{background: 'yellow'}" ng-click="showAdvanced($event)">
+                                <md-button ng-show="applicant.Status == 'Pending'" aria-label="Open demo menu" class="md-raised" md-colors="{background: 'yellow'}" ng-click="showAdvanced($event)">
                                   Pending
                                 </md-button>
-                                <md-button ng-show="applicant.Gender == 'Female'" aria-label="Open demo menu" class="md-raised" md-colors="{background: 'green'}" ng-click="showAdvanced($event)">
+                                <md-button ng-show="applicant.Status == 'Approved'" aria-label="Open demo menu" class="md-raised" md-colors="{background: 'green'}" ng-click="showAdvanced($event)">
                                     Approved
                                 </md-button>
-                                <md-button ng-show="applicant.Gender == 'Female'" aria-label="Open demo menu" class="md-raised" md-colors="{background: 'red'}" ng-click="showAdvanced($event)">
+                                <md-button ng-show="applicant.Status == 'Unsuccessful'" aria-label="Open demo menu" class="md-raised" md-colors="{background: 'red'}" ng-click="showAdvanced($event)">
                                     Unsuccessful
                                 </md-button>
                             </td>

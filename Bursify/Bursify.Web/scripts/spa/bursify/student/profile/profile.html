@@ -34,15 +34,15 @@
                             <div class="box-body">
                                 <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
                                 <p class="text-muted" ng-if="Student.CurrentOccupation == 'High School'">
-                                    High School student at {Name of School}
+                                    High School student at {{Student.InstitutionName}}
                                 </p>
                                 <p class="text-muted" ng-if="Student.CurrentOccupation == 'Tertiary'">
-                                    {Qualification} student at {Insti}
+                                    {{Student.StudyField[0]}} student at {{Student.InstitutionName}}
                                 </p>
                                 <hr>
 
                                 <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-                                <p class="text-muted">{city}, {Province}</p>
+                                <p class="text-muted">{{BursifyUser.Addresses[0].City}}, {{BursifyUser.Addresses[0].Province}}</p>
 
                                 <hr>
 
