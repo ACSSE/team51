@@ -9,26 +9,6 @@
         $scope.pageClass = 'page-view-applicants';
 
         apiService.get('/api/sponsorship/GetApplicants/?sponsorshipId=' + $routeParams.sponsorshipId, null, applicantsLoadCompleted, applicantsLoadFailed);
-
-         $scope.selected = [];
-        $scope.query = {
-            order: '-Average',
-            limit: 5,
-            page: 1
-        };
-
-
-        $scope.options = {
-            rowSelection: true,
-            multiSelect: true,
-            autoSelect: true,
-            decapitate: false,
-            largeEditDialog: false,
-            boundaryLinks: false,
-            limitSelect: true,
-            pageSelect: true
-        };
-
         $scope.Applicants = {
             "count": 9,
             "data": [
@@ -118,6 +98,25 @@
             ]
         };
 
+         $scope.selected = [];
+        $scope.query = {
+            order: '-Average',
+            limit: 5,
+            page: 1
+        };
+
+
+        $scope.options = {
+            rowSelection: true,
+            multiSelect: true,
+            autoSelect: true,
+            decapitate: false,
+            largeEditDialog: false,
+            boundaryLinks: false,
+            limitSelect: true,
+            pageSelect: true
+        };
+
         $scope.selected = [];
         $scope.limitOptions = [5, 10, 15, {
             label: 'All',
@@ -126,9 +125,6 @@
             }
         }];
 
-  
-
-  
         $scope.toggleLimitOptions = function () {
             $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
         };
@@ -167,8 +163,9 @@
 
 
 
-        function applicantsLoadCompleted() {
-
+        function applicantsLoadCompleted(result) {
+     
+            $scope.Applicants = result.data;
         }
 
         function applicantsLoadFailed() {

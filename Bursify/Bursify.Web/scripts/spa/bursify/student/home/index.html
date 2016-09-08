@@ -16,10 +16,9 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group form-animate-text">
-                                                            <input type="text" class="form-text" ng-model="searchB" required>
+                                                            <input type="text" class="form-text" ng-model="searchA" placeholder="Type here to search">
                                                             <span class="bar"></span>
-                                                            <label class="label-search" style="color: black;">Type here to <b>Search</b> </label>
-
+         
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8">
@@ -48,8 +47,8 @@
                                                     </div>
 
                                                 </div>
-
-                                                <div class="media" ng-repeat="Sponsorship in Recco | orderBy:sortType:sortReverse | filter:searchB">
+                                                
+                                                <div class="media" ng-repeat="Sponsorship in Recco | filter:searchA">
                                                     <div class="media-left">
                                                         <a href="#/student/sponsorship/{{Sponsorship.ID}}">
 
@@ -95,11 +94,9 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group form-animate-text">
-                                                            <input type="text" class="form-text" required>
+                                                            <input type="text" class="form-text" ng-model="searchB" placeholder="Type here to search">
                                                             <span class="bar"></span>
-                                                            <label class="label-search" style="color: black;">Type here to <b>Search</b> </label>
-
-                                                        </div>
+                                                          </div>
                                                     </div>
                                                     <div class="col-md-8">
 
@@ -128,7 +125,7 @@
 
                                                 </div>
 
-                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | orderBy:'ClosingDate'">
+                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | filter: searchB" >
                                                     <div class="media-left">
                                                         <a href="/Sponsorship/ViewBursary">
 
@@ -172,20 +169,5 @@
                 </div>
         
 
-            <!--<div id="content" class="search-v1" style="padding-left: 0;">
-                <div class="panel">
-                    <div class="panel-body">
-                        <ul id="tabs-demo6" class="nav nav-tabs nav-tabs-v6 masonry-tabs" role="tablist">
-                            <li role="presentation" class="">
-                                <a href="#tabs-demo7-area1" id="tabs-demo6-1" role="tab" data-toggle="tab" aria-expanded="false">Bursaries</a>
-                            </li>
-                            <li role="presentation" class="active">
-                                <a href="#tabs-demo7-area2" role="tab" id="tabs-demo6-2" data-toggle="tab" aria-expanded="true">Scholarships</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-
-            </div>-->
+ 
         </div>
