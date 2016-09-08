@@ -171,5 +171,19 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetSimilar")]
+        public HttpResponseMessage GetSimilar(HttpRequestMessage request, int sponsorshipId)
+        {
+            var sponsorships = _studentApi.GetSimilarSponsorships(sponsorshipId);
+
+            var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
+
+            return response;
+        }
     }
 }

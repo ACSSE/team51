@@ -262,6 +262,14 @@ namespace Bursify.Api.Students
             }
         }
 
+        public List<Sponsorship> GetSimilarSponsorships(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorshipRepository.GetSimilarSponsorships(sponsorshipId);
+            }
+        }
+
         //done
         public List<Sponsorship> SearchSponsorships(string criteria)
         {
