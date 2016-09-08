@@ -9,8 +9,11 @@ namespace Bursify.Data.EF.Repositories
 {
     public class SponsorshipRepository : Repository<Sponsorship>
     {
+        private readonly DataSession _dataSession;
+
         public SponsorshipRepository(DataSession dataSession) : base(dataSession)
         {
+            _dataSession = dataSession;
         }
 
         public List<Sponsorship> GetAllSponsorships()
@@ -73,6 +76,16 @@ namespace Bursify.Data.EF.Repositories
             }
 
             return filteredSponsorships;
+        }
+
+        public List<Sponsorship> GetSimilarSponsorships(int sponsorshipId)
+        {
+            var current = LoadById(sponsorshipId);
+
+            var sponsorships =
+                FindMany(sponsorship => sponsorship.StudyFields.Contains(current.StudyFields)).Take(3).ToList();
+
+            return sponsorships;
         }
 
     }
