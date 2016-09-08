@@ -6,6 +6,7 @@ using System.Web.Http;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Web.Models;
+using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Web.Controllers
 {
@@ -89,6 +90,27 @@ namespace Bursify.Web.Controllers
             var sponsorshipVm = model.SingleSponsorshipMap(sponsorship);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("AddRequirements")]
+        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<RequirementViewModel> requirementsVM)
+        {
+            List<Requirement> requirements = new List<Requirement>();
+            foreach (var r in requirementsVM)
+            {
+                requirements.Add(r.ReverseMap());
+            }
+
+            if (requirements.Count != 0)
+            {
+                _studentApi.AddRequirements(requirements);
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
 
             return response;
         }

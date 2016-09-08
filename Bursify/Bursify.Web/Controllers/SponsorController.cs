@@ -92,26 +92,7 @@ namespace Bursify.Web.Controllers
             return response;
         }
         
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("AddRequirements")]
-        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<RequirementViewModel> requirementsVM)
-        {
-            List<Requirement> requirements = new List<Requirement>();
-            foreach (var r in requirementsVM)
-            {
-                requirements.Add(r.ReverseMap());
-            }
-
-            if (requirements.Count != 0)
-            {
-                _studentApi.AddRequirements(requirements);
-            }
-
-            var response = request.CreateResponse(HttpStatusCode.OK);
-
-            return response;
-        }
+      
 
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
