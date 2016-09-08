@@ -9,7 +9,7 @@ namespace Bursify.Data.EF.Entities.SponsorUser
     {
         public Sponsorship()
         {
-            //Students = new List<Student>();
+            Requirements = new List<Requirement>();
         }
 
         public int ID { get; set; }
@@ -34,7 +34,7 @@ namespace Bursify.Data.EF.Entities.SponsorUser
         public int NumberOfViews { get; set; }
         public string AgeGroup { get; set; }
         public int Rating { get; set; }
-
+        
         public virtual Sponsor Sponsor { get; set; }
         public virtual ICollection<Requirement> Requirements { get; set; }
         public ICollection<StudentSponsorship> StudentSponsorships { get; set; }

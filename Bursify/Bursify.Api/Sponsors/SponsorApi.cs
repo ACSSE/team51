@@ -159,11 +159,11 @@ namespace Bursify.Api.Sponsors
             }
         }
 
-        public bool ApproveSponsorship(int userId, int sponsorshipId, string confirmationMessage)
+        public bool ApproveSponsorship(int studentId, int sponsorshipId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                bool status = studentSponsorshipRepository.ConfirmSponsorship(userId, sponsorshipId, confirmationMessage);
+                bool status = studentSponsorshipRepository.ConfirmSponsorship(studentId, sponsorshipId);
                 uow.Commit();
                 return status;
             }

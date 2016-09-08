@@ -21,11 +21,11 @@ namespace Bursify.Data.EF.Repositories
         }
 
         //for student
-        public void ApplyForSponsorship(int userId, int sponsorshipId)
+        public void ApplyForSponsorship(int studentId, int sponsorshipId)
         {
             var newApplication = new StudentSponsorship()
             {
-                StudentId = userId,
+                StudentId = studentId,
                 SponsorshipId = sponsorshipId,
                 ApplicationDate = DateTime.UtcNow,
                 Status = "Pending",
@@ -36,16 +36,16 @@ namespace Bursify.Data.EF.Repositories
         }
 
         //for sponsor
-        public bool ConfirmSponsorship(int userId, int sponsorshipId, string statusMessage)
+        public bool ConfirmSponsorship(int studentId, int sponsorshipId)
         {
-            var application = LoadByIds(userId, sponsorshipId);
+            var application = LoadByIds(studentId, sponsorshipId);
 
             if (application == null)
             {
                 return false;
             }
 
-            application.Status = statusMessage;
+            application.Status = "Approved";
 
             Save(application);
 
