@@ -81,9 +81,32 @@ namespace Bursify.Data.EF.Repositories
         public List<Sponsorship> GetSimilarSponsorships(int sponsorshipId)
         {
             var current = LoadById(sponsorshipId);
+            var otherSponsorships = LoadAll();
 
-            var sponsorships =
-                FindMany(sponsorship => sponsorship.StudyFields.Contains(current.StudyFields)).Take(3).ToList();
+            var sponsorships = new List<Sponsorship>();
+
+            var fields = current.StudyFields.Split(',');
+            
+            foreach (var other in otherSponsorships)
+            {
+                if (other.ID != current.ID)
+                {
+                    foreach (var field in fields)
+                    {
+                        if (field.Length > 0 && other.StudyFields.Contains(field) || other.StudyFields.Equals("Any"))
+                        {
+                            sponsorships.Add(other);
+                            break;
+                        }
+                    }
+                }
+
+               if(sponsorships.Count == 3)
+                {
+                    break;
+                }
+            }
+
 
             return sponsorships;
         }
