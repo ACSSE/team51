@@ -117,7 +117,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetStudent")]
         public HttpResponseMessage GetStudent(HttpRequestMessage request, int Id)
         {
-            var student = sponsorApi.GetStudent(Id);
+            var student = _studentApi.GetStudent(Id);
 
             StudentViewModel studentVM = new StudentViewModel();
             studentVM.MapSingleStudent(student);

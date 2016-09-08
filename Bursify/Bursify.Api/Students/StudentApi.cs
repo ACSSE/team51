@@ -280,6 +280,29 @@ namespace Bursify.Api.Students
             }
         }
 
+        public List<StudentSponsorship> GetStudentApplications(int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetStudentsApplications(studentId);
+            }
+        }
+
+        public List<Sponsorship> GetSponsorshipApplications(int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                List<Sponsorship> sponsorships = new List<Sponsorship>();
+
+                foreach (StudentSponsorship ss in GetStudentApplications(studentId))
+                {
+                    sponsorships.Add(GetSponsorship(ss.SponsorshipId));
+                }
+
+                return sponsorships;
+            }
+        }
+
         //for later
         public void RateSponsorship()
         {

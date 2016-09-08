@@ -4,10 +4,9 @@ using Bursify.Api.Security;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Api.Users;
-using Bursify.App_Start;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
-using Bursify.Services;
+using Bursify.Web;
 using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.WebApi;
@@ -15,7 +14,7 @@ using WebActivator;
 
 [assembly: PostApplicationStartMethod(typeof(SimpleInjectorInitializer), "Initialize")]
 
-namespace Bursify.App_Start
+namespace Bursify.Web
 {
     public static class SimpleInjectorInitializer
     {

@@ -6,7 +6,6 @@ using System.Web.Http;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Web.Models;
-using Bursify.Web.Utility.ModelClasses;
 
 namespace Bursify.Web.Controllers
 {

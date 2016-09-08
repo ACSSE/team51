@@ -1,4 +1,4 @@
-﻿namespace Bursify.Services
+﻿namespace Bursify.Api.Security
 {
     public interface ICryptoService
     {
