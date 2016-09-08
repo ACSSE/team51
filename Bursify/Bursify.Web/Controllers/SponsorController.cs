@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
+using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Web.Models;
@@ -94,9 +95,9 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("AddRequirements")]
-        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<SubjectViewModel> requirementsVM)
+        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<RequirementViewModel> requirementsVM)
         {
-            List<Subject> requirements = new List<Subject>();
+            List<Requirement> requirements = new List<Requirement>();
             foreach (var r in requirementsVM)
             {
                 requirements.Add(r.ReverseMap());
@@ -104,7 +105,7 @@ namespace Bursify.Web.Controllers
 
             if (requirements.Count != 0)
             {
-                _studentApi.AddSubjects(requirements);
+                _studentApi.AddRequirements(requirements);
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK);

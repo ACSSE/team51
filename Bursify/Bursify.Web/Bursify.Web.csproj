@@ -767,6 +767,7 @@
     <Compile Include="Models\PersonalDetailsViewModel.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Models\ReportCampaignModel.cs" />
+    <Compile Include="Models\RequirementViewModel.cs" />
     <Compile Include="Models\SponsorCampaignViewModel.cs" />
     <Compile Include="Models\SponsorshipViewModel.cs" />
     <Compile Include="Models\SponsorViewModel.cs" />

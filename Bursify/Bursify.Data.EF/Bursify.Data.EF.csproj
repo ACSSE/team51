@@ -139,6 +139,7 @@
     <Compile Include="Repositories\CampaignSponsorRepository.cs" />
     <Compile Include="Repositories\InstitutionRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\RequirementRepository.cs" />
     <Compile Include="Repositories\SponsorRepository.cs" />
     <Compile Include="Repositories\SponsorshipRepository.cs" />
     <Compile Include="Repositories\StudentReportRepository.cs" />

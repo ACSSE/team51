@@ -53,6 +53,7 @@ namespace Bursify.Web
             container.Register<SubjectRepository>();
             container.Register<StudentRepository>();
             container.Register<CampaignReportRepository>();
+            container.Register<RequirementRepository>();
             container.Register(typeof(BridgeRepository<>));
             container.Register<CampaignSponsorRepository>();
             container.Register<StudentSponsorshipRepository>();
