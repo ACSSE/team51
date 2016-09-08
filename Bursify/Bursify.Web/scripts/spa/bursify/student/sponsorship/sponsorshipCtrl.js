@@ -43,8 +43,20 @@
         apiService.get('/api/sponsorship/GetSponsorship/?sponsorshipId=' + $routeParams.sponsorshipId, null,
         sponsorshipLoadCompleted,
         sponsorshipLoadFailed);
+        apiService.get('/api/sponsorship/GetSimilar/?sponsorshipId=' + $routeParams.sponsorshipId, null,
+        similarLoadCompleted,
+        similarLoadFailed);
 
         $scope.diffDays = {};
+
+        $scope.Similar = {};
+        function similarLoadCompleted(result) {
+            $scope.Similar = result.data;
+        }
+
+        function similarLoadFailed() {
+            notificationService.displayError("Could not load similar.");
+         }
        
         function sponsorshipLoadCompleted(result) {
             $scope.Sponsorship = result.data;

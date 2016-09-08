@@ -131,7 +131,7 @@
                     </ol>-->
                     <div class="form-group form-animate-checkbox">
                         <input type="checkbox" class="checkbox" ng-model="terms">
-                        <label> I Agree</label>
+                        <label> I Agree to the Terms &amp; Conditions</label>
                     </div>
                     <input type="button" class="btn btn-danger" ng-click="studentApply()" value="One-Click Apply">
                     <input type="button" class="btn btn-info" value="Share">
@@ -142,7 +142,7 @@
             <div class="panel" style="padding-top: 10px;">
                 <div id="content">
 
-                    <div class="col-md-12 text-left title" style="padding-bottom: 15px; padding-top: 15px;"><h2>You may also like</h2></div>
+                    <div class="col-md-12 text-left title" style="padding-bottom: 15px; padding-top: 15px;"><h2>You may also like: </h2></div>
                     <div id="content" class="search-v1" style="padding-left: 0;">
 
                         <div class="col-md-12">
@@ -151,7 +151,7 @@
                                     <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
 
 
-                                        <div class="media">
+                                        <div class="media" ng-repeat="Sponsorship in Similar">
                                             <div class="media-left">
                                                 <a href="/Sponsorship/ViewBursary">
 
@@ -161,83 +161,27 @@
 
 
                                             <div class="media-body">
-                                                <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Entelect Foundation Programme</a></h4>
-                                                <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+                                                <h4 class="media-heading"><a href="#/student/sponsorship/{{Sponsorship.ID}}">{{Sponsorship.Name}}</a></h4>
+                                                <p style="height: 120px;">{{Sponsorship.Description | limitTo: 180}}</p>
 
                                             </div>
 
                                             <div class="pull-left">
-                                                <h4>Closing Date:</h4><p>18 Aug. 2016</p>
+                                                <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
                                             </div>
 
                                             <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
+                                                <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 1 "></span>
+                                                <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 2 "></span>
+                                                <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 3 "></span>
+                                                <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 4 "></span>
+                                                <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 5 "></span>
+
                                             </div>
 
                                         </div>
 
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="/Sponsorship/ViewBursary">
-
-                                                    <img ng-src="Content/assets/img/logomi.png" class="media-object search-v1-avatar">
-                                                </a>
-                                            </div>
-
-
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Vodacom Bursary</a></h4>
-                                                <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-
-                                            </div>
-
-                                            <div class="pull-left">
-                                                <h4>Closing Date:</h4><p>18 Aug. 2016</p>
-                                            </div>
-
-                                            <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="/Sponsorship/ViewBursary">
-
-                                                    <img ng-src="Content/assets/img/logomi.png" class="media-object search-v1-avatar">
-                                                </a>
-                                            </div>
-
-
-                                            <div class="media-body">
-                                                <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">CSIR Bursary Programme</a></h4>
-                                                <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-
-                                            </div>
-
-                                            <div class="pull-left">
-                                                <h4>Closing Date:</h4><p>18 Aug. 2016</p>
-                                            </div>
-
-                                            <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                                <span class="rate fa-star fa fa-2x"></span>
-                                            </div>
-
-                                        </div>
-
+   
 
 
                                     </div>
