@@ -6,7 +6,6 @@ using System.Web.Http;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Web.Models;
-using Bursify.Web.Utility.ModelClasses;
 
 namespace Bursify.Web.Controllers
 {
@@ -138,6 +137,7 @@ namespace Bursify.Web.Controllers
             var data = students.Select(applicant => 
                                     new Applicant(applicant.ID, applicant.Firstname, 
                                     applicant.Surname,
+                                    _studentApi.GetInstitution(applicant.InstitutionID).Name,
                                     _studentApi.GetUserInfo(applicant.ID).ProfilePicturePath, 
                                     applicant.Age, 
                                     _studentApi.GetAddress(applicant.ID, "Residential").Province, 

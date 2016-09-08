@@ -20,7 +20,7 @@ namespace Bursify.Api.Students
             SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository,
             StudentRepository studentRepository, InstitutionRepository institutionRepository,
             SubjectRepository subjectRepository, StudentSponsorshipRepository studentSponsorshipRepository,
-            StudentReportRepository studentReportRepository)
+            StudentReportRepository studentReportRepository, RequirementRepository requirementRepository)
             : base(
                 unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository)
         {
@@ -32,6 +32,7 @@ namespace Bursify.Api.Students
             _subjectRepository = subjectRepository;
             _studentSponsorshipRepository = studentSponsorshipRepository;
             _studentReportRepository = studentReportRepository;
+            _requirementRepository = requirementRepository;
         }
 
         #region Variables
@@ -44,6 +45,7 @@ namespace Bursify.Api.Students
         private readonly InstitutionRepository _institutionRepository;
         private readonly SubjectRepository _subjectRepository;
         private readonly StudentReportRepository _studentReportRepository;
+        private readonly RequirementRepository _requirementRepository;
 
         //bridging entities
         private readonly StudentSponsorshipRepository _studentSponsorshipRepository;
@@ -280,6 +282,29 @@ namespace Bursify.Api.Students
             }
         }
 
+        public List<StudentSponsorship> GetStudentApplications(int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetStudentsApplications(studentId);
+            }
+        }
+
+        public List<Sponsorship> GetSponsorshipApplications(int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                List<Sponsorship> sponsorships = new List<Sponsorship>();
+
+                foreach (StudentSponsorship ss in GetStudentApplications(studentId))
+                {
+                    sponsorships.Add(GetSponsorship(ss.SponsorshipId));
+                }
+
+                return sponsorships;
+            }
+        }
+
         //for later
         public void RateSponsorship()
         {
@@ -489,6 +514,16 @@ namespace Bursify.Api.Students
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 _subjectRepository.Save(subjects);
+
+                uow.Commit();
+            }
+        }
+
+        public void AddRequirements(List<Requirement> requirements)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _requirementRepository.Save(requirements);
 
                 uow.Commit();
             }

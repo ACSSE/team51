@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Bursify.Web.App_Start
+namespace Bursify.Web
 {
     public class BundleConfig
     {
