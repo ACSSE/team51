@@ -1,6 +1,12 @@
 ﻿<nav-bar></nav-bar>
 <div id="loadingbarContainer"></div>
-
+<style>
+    @media print {
+    .noPrint {
+        display:none;
+    }
+}
+</style>
 <div id="content" >
     <div class="profile-v1 panel box-shadow-none content-header">
 
@@ -44,6 +50,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div style="display: none">
+        {{Sponsorship.Name}}
     </div>
     <div class="col-md-12">
         <div class="panel">
@@ -129,17 +138,54 @@
                             The companies Employment Equity policy will be taken into consideration when deciding on candidates for bursaries.
                         </li>
                     </ol>-->
-                    <div class="form-group form-animate-checkbox">
+                    <div class="form-group form-animate-checkbox  noPrint">
                         <input type="checkbox" class="checkbox" ng-model="terms">
                         <label> I Agree to the Terms &amp; Conditions</label>
                     </div>
-                    <input type="button" class="btn btn-danger" ng-click="studentApply()" value="One-Click Apply">
-                    <input type="button" class="btn btn-info" value="Share">
+                    <div class="row  noPrint">
+                        <div class="col-md-2" >
+                          
+                       <input type="button" class="btn btn-danger " ng-click="studentApply()" value="One-Click Apply">
+                               
+
+                         
+                        </div>
+                        <div class="col-md-2 noPrint" style="margin-top: -10px; margin-left: -5px;">
+                            <md-fab-speed-dial md-open="sponsorshipCtrl.isOpen" md-direction="right"
+                                               class="md-scale">
+                                <md-fab-trigger>
+                                    <input type="button" class="btn btn-info" value="Share">
+                                </md-fab-trigger>
+
+                                <md-fab-actions>
+
+                                    <md-button aria-label="Copy" class="md-fab md-raised md-mini" md-colors="{background: 'light-blue'}">
+                                        <md-tooltip md-direction="bottom">
+                                            Share
+                                        </md-tooltip>
+                                        <md-icon aria-label="Copy" md-svg-src="Content/img/icons/share-arrow.svg"></md-icon>
+                                    </md-button>
+                                    <md-button ng-click="printer()" aria-label="Copy" class="md-fab md-raised md-mini" md-colors="{background: 'light-blue'}">
+                                        <md-tooltip md-direction="bottom">
+                                            Print
+                                        </md-tooltip>
+                                        <md-icon aria-label="Copy"   md-svg-src="Content/img/icons/pdf.svg"></md-icon>
+                                    </md-button>
+                                    <md-button aria-label="Copy" class="md-fab md-raised md-mini" md-colors="{background: 'light-blue'}">
+                                        <md-tooltip md-direction="bottom">
+                                            Copy Url
+                                        </md-tooltip>
+                                        <md-icon aria-label="Copy" md-svg-src="content-copy"></md-icon>
+                                    </md-button>
+                                </md-fab-actions>
+                            </md-fab-speed-dial>
+                            </div>
+                        </div>
 
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="panel" style="padding-top: 10px;" ng-if="Similar[0].ID">
+            <div class="panel noPrint" style="padding-top: 10px;" ng-if="Similar[0].ID">
                 <div id="content">
 
                     <div class="col-md-12 text-left title" style="padding-bottom: 15px; padding-top: 15px;"><h2>You may also like: </h2></div>

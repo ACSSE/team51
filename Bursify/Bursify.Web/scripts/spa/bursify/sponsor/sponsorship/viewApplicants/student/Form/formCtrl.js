@@ -273,6 +273,11 @@
 
       function sponsorshipLoaded(result) {
           $scope.Sponsorship = result.data;
+          printIn();
+      }
+
+      function printIn() {
+          window.print();
       }
 
       function sponsorshipLoadFailed() {
