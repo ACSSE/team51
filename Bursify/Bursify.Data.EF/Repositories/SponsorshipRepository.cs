@@ -91,13 +91,9 @@ namespace Bursify.Data.EF.Repositories
             {
                 if (other.ID != current.ID)
                 {
-                    foreach (var field in fields)
+                    if (fields.Any(field => (field.Length > 0 && other.StudyFields.Contains(field)) || other.StudyFields.Equals("Any")))
                     {
-                        if (field.Length > 0 && other.StudyFields.Contains(field) || other.StudyFields.Equals("Any"))
-                        {
-                            sponsorships.Add(other);
-                            break;
-                        }
+                        sponsorships.Add(other);
                     }
                 }
 
@@ -106,7 +102,6 @@ namespace Bursify.Data.EF.Repositories
                     break;
                 }
             }
-
 
             return sponsorships;
         }

@@ -152,9 +152,9 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("ApproveSponsorship")]
-        public HttpResponseMessage ApproveSponsorship(HttpRequestMessage request, ApproveSponsorshipViewModel approveVm)
+        public HttpResponseMessage ApproveSponsorship(HttpRequestMessage request, int studentId, int sponsorshipId)
         {
-            bool status = _sponsorApi.ApproveSponsorship(approveVm.studentId, approveVm.campaignId, approveVm.confirmation);
+            bool status = _sponsorApi.ApproveSponsorship(studentId, sponsorshipId);
 
             HttpResponseMessage response = null;
 
