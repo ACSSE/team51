@@ -3,11 +3,12 @@
 
     app.controller('sponsorshipCtrl', sponsorshipCtrl);
 
-    sponsorshipCtrl.$inject = ['$scope', '$rootScope', 'apiService', 'notificationService', '$routeParams', '$mdDialog', '$mdMedia'];
+    sponsorshipCtrl.$inject = ['$scope', '$rootScope', 'apiService', 'notificationService', '$routeParams', '$mdDialog', '$mdMedia' , '$mdBottomSheet', '$mdToast'];
 
-    function sponsorshipCtrl($scope, $rootScope, apiService, notificationService, $routeParams, $mdDialog, $mdMedia) {
+    function sponsorshipCtrl($scope, $rootScope, apiService, notificationService, $routeParams, $mdDialog, $mdMedia, $mdBottomSheet, $mdToast) {
         $scope.pageClass = 'page-view-sponsorship';
       
+        this.isOpen = false;
 
         function doesNotQ() {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
@@ -24,13 +25,17 @@
                 $scope.status = 'You cancelled the dialog.';
             });
 
-
+       
             $scope.$watch(function () {
                 return $mdMedia('xs') || $mdMedia('sm');
             }, function (wantsFullScreen) {
                 $scope.customFullscreen = (wantsFullScreen === true);
             });
         };
+        $scope.printer = function () {
+           
+            window.print();
+        }
 
 
         $scope.isOpen = false;
@@ -133,6 +138,7 @@
         function ApplicationFailed() {
             notificationService.displayInfo("Failed");
         }
+
 
     }
 
