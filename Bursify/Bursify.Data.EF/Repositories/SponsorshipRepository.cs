@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Uow;
@@ -18,17 +19,31 @@ namespace Bursify.Data.EF.Repositories
 
         public List<Sponsorship> GetAllSponsorships()
         {
-            return LoadAll();
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Include(x => x.Requirements)
+                .ToList();
+
+            return sponsorships;
         }
 
         public List<Sponsorship> GetAllSponsorships(string type)
         {
-            return FindMany(sponsorship => sponsorship.SponsorshipType.ToUpper().Equals(type.ToUpper()));
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(sponsorship => sponsorship.SponsorshipType.ToUpper().Equals(type.ToUpper()))
+                .Include(x => x.Requirements)
+                .ToList();
+
+            return sponsorships;
         }
 
         public List<Sponsorship> GetAllSponsorships(int sponsorId)
         {
-            return FindMany(sponsorship => sponsorship.SponsorId == sponsorId);
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(x => x.SponsorId == sponsorId)
+                .Include(x => x.Requirements)
+                .ToList();
+
+            return sponsorships;
         }
 
         public Sponsorship GetSponsorship(int id, int sponsorId)

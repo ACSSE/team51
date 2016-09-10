@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Web.Models
@@ -100,13 +101,7 @@ namespace Bursify.Web.Models
 
         public static List<SponsorshipViewModel> MultipleSponsorshipsMap(List<Sponsorship> sponsorships)
         {
-            List<SponsorshipViewModel> sponsorshipVM = new List<SponsorshipViewModel>();
-            foreach (var s in sponsorships)
-            {
-                SponsorshipViewModel sVm = new SponsorshipViewModel(s);
-                sponsorshipVM.Add(sVm);
-            }
-            return sponsorshipVM;
+            return sponsorships.Select(sponsorship => new SponsorshipViewModel(sponsorship)).ToList();
         }
     }
 }

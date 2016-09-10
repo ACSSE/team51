@@ -8,20 +8,22 @@ namespace Bursify.Data.EF.Repositories
 {
     public class CampaignRepository : Repository<Campaign>
     {
+        private readonly DataSession _dataSession;
+
         public CampaignRepository(DataSession dataSession) : base(dataSession)
         {
+            _dataSession = dataSession;
         }
 
         public List<Campaign> GetAllCampaigns()
         {
-            return LoadAll();
+            var campaigns = _dataSession.UnitOfWork.Context.Set<Campaign>()
+                .Where(campaign => campaign.Status.Equals("Active"))
+                .ToList();
+
+            return campaigns;
         }
 
-
-        public List<Campaign> GetActiveCampaigns()
-        {
-            return LoadAll().Where(x => x.Status == "Active").ToList();
-        }
 
         public Campaign GetCampaign(int campaignId)
         {
