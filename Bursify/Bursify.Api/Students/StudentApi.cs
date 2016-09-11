@@ -395,11 +395,19 @@ namespace Bursify.Api.Students
             }
         }
 
+        public List<Student> GetStudentSuggestions(int sponsorId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentRepository.GetStudentSuggestions(sponsorId);
+            }
+        }
+
         #endregion
 
-        #region School
+            #region School
 
-        //done
+            //done
         public Institution GetInstitution(int institutionId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())

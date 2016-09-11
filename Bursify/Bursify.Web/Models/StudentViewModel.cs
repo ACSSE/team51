@@ -162,10 +162,14 @@ namespace Bursify.Web.Models
         public static List<StudentViewModel> MapMultipleStudents(List<Student> students)
         {
             List<StudentViewModel> studentsVM = new List<StudentViewModel>();
-            foreach (var s in students)
+
+            if (students.Count > 0)
             {
-                StudentViewModel sVm = new StudentViewModel(s);
-                studentsVM.Add(sVm);
+                foreach (var s in students)
+                {
+                    StudentViewModel sVm = new StudentViewModel(s);
+                    studentsVM.Add(sVm);
+                }
             }
             return studentsVM;
         }
