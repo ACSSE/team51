@@ -18,6 +18,7 @@ namespace Bursify.Data.EF.Repositories
         public BursifyUser GetUserByEmail(string email)
         {
             var user = FindSingle(x => x.Email.Equals(email));
+          
             return user;
         }
 

@@ -123,6 +123,7 @@ namespace Bursify.Web.Models
             };
         }
 
+        //only use this method for an already existing user
         public Student ReverseMap(Student model)
         {
             return new Student()

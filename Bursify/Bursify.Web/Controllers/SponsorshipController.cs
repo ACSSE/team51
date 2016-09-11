@@ -156,17 +156,18 @@ namespace Bursify.Web.Controllers
         {
             var students = _sponsorApi.GetStudentsApplying(sponsorshipId);
 
-            var data = students.Select(applicant => 
-                                    new Applicant(applicant.ID, applicant.Firstname, 
+           
+            var data = students.Select(applicant =>
+                                    new Applicant(applicant.ID, applicant.Firstname,
                                     applicant.Surname,
                                     _studentApi.GetInstitution(applicant.InstitutionID).Name,
-                                    _studentApi.GetUserInfo(applicant.ID).ProfilePicturePath, 
-                                    applicant.Age, 
-                                    _studentApi.GetAddress(applicant.ID, "Residential").Province, 
-                                    applicant.EducationLevel, 
-                                    _studentApi.GetMostRecentReport(applicant.ID).Average, 
+                                    _studentApi.GetUserInfo(applicant.ID).ProfilePicturePath,
+                                    applicant.Age,
+                                    _studentApi.GetAddress(applicant.ID, "Residential").Province,
+                                    applicant.EducationLevel,
+                                    _studentApi.GetMostRecentReport(applicant.ID).Average,
                                     applicant.Gender)).ToList();
-          
+
             var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data });
 
             return response;

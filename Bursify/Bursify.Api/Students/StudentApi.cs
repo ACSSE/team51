@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bursify.Api.Users;
+using System.Data.Entity;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.Entities.Campaigns;
