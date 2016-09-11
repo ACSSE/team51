@@ -86,5 +86,17 @@ namespace Bursify.Data.EF.Repositories
         {
             return FindMany(x => x.Status.ToUpper().Equals(status.ToUpper())).Count;
         }
+
+        public List<Campaign> GetSimilarCampaigns(int campaignId)
+        {
+            var current = LoadById(campaignId);
+
+            var campaigns = _dataSession.UnitOfWork.Context.Set<Campaign>()
+                .Where(campaign => campaign.CampaignType.Equals(current.CampaignType) && campaign.ID != current.ID)
+                .Take(3)
+                .ToList();
+
+            return campaigns;
+        }
     }
 }
