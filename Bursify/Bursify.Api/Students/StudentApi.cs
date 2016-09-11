@@ -285,8 +285,6 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                
-
                 return _studentSponsorshipRepository.LoadSponsorshipSuggestions(studentId);
             }
         }
@@ -405,9 +403,9 @@ namespace Bursify.Api.Students
 
         #endregion
 
-            #region School
+        #region School
 
-            //done
+        //done
         public Institution GetInstitution(int institutionId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())

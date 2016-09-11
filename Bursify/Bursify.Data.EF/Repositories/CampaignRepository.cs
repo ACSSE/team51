@@ -24,7 +24,6 @@ namespace Bursify.Data.EF.Repositories
             return campaigns;
         }
 
-
         public Campaign GetCampaign(int campaignId)
         {
             return FindSingle(campaign =>
@@ -58,7 +57,6 @@ namespace Bursify.Data.EF.Repositories
 
             return userCampaigns;
         }
-
 
         public Campaign EndorseCampaign(BursifyUser user, int campaignId)
         {

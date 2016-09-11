@@ -126,6 +126,13 @@ namespace Bursify.Data.EF.Repositories
                 }
             }
 
+            var data = GetSponsorshipsWithRequirements(sponsorships);
+            
+            return data;
+        }
+
+        private List<Sponsorship> GetSponsorshipsWithRequirements(List<Sponsorship> sponsorships)
+        {
             var data = new List<Sponsorship>();
 
             foreach (var sponsorship in sponsorships)

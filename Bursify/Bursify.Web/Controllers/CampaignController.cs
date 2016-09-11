@@ -148,7 +148,7 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
-
+       
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetCampaignAccount")]

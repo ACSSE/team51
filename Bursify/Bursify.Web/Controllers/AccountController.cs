@@ -21,6 +21,28 @@ namespace Bursify.Web.Controllers
             _studentApi = studentApi;
         }
 
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("VerifyPassword")]
+        public HttpResponseMessage VerifyPassword(HttpRequestMessage request, int userId, string password)
+        {
+            var user = _membershipApi.GetUserById(userId);
+            HttpResponseMessage response = null;
+
+            var isValid = _membershipApi.IsPasswordValid(user, password);
+
+            if (isValid)
+            {
+                response = request.CreateResponse(HttpStatusCode.OK, new { success = true });
+            }
+            else
+            {
+                response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
+            }
+
+            return response;
+        }
+
         [AllowAnonymous]
         [Route("Login")]
         [HttpPost]
