@@ -10,7 +10,7 @@ using Bursify.Web.Models;
 
 namespace Bursify.Web.Controllers
 {
-    [System.Web.Mvc.RoutePrefix("api/Sponsor")]
+       [System.Web.Mvc.RoutePrefix("api/Sponsor")]
     public class SponsorController : ApiController
     {
         private readonly StudentApi _studentApi;

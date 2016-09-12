@@ -155,6 +155,22 @@ namespace Bursify.Web.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPut]
+        [System.Web.Mvc.Route("RemoveCampaign")]
+        public HttpResponseMessage RemoveCampaign(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId);
+
+            campaign.Status = "Inactive";
+
+            _studentApi.SaveCampaign(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.Accepted);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetCampaignAccount")]
         public HttpResponseMessage GetCampaignAccount(HttpRequestMessage request, int campaignId)

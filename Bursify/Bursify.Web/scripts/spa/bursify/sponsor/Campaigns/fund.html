@@ -1,5 +1,4 @@
 ﻿<md-dialog aria-label="Mango (Fruit)" ng-cloak>
-    
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Fund {{CampaignName}}</h2>
@@ -13,31 +12,35 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="col-lg-4">
-                            <div class="col-lg-12">
-                                <div class="col-lg-12">
-                                    <div class="thumbnail" style="background-color:white">
-                                        <img class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture" style="width:100%;height:200px;">
-                                        <div class="caption">
-                                            <b>{{CampaignName}}</b><br>
-                                            <small>{{StudentName}}</small><br><br>
-                                            <p style="margin-top: -5px;">{{Tagline | limitTo: 100}}</p>
-                                            <p><span class="glyphicon glyphicon-map-marker">{{CampaignLocation}}</span></p>
-                                            <md-progress-linear md-mode="determinate" class="success" value="{{(AmountContributed / AmountRequired)*100 | number:0}}"></md-progress-linear>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <small>{{(AmountContributed / AmountRequired)*100 | number:0}}%</small>
-                                                    <b><small>Funded</small></b>
-                                                </div>
-                                                <div class="col-md-6 center">
-                                                    <small align="centre">R{{AmountContributed}}</small>
-                                                    <b><small class="centre">Funded</small></b>
-                                                </div>
+                            <a ng-href="#/sponsor/campaign-details/{{campaign.CampaignId}}">
+                                <md-card style="height: 450px;">
+                                    <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <span class="md-headline">{{campaign.CampaignName}}</span>
+                                            <small>{{campaign.Name + ' '+  campaign.Surname}}</small><br>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <md-card-content>
+                                        <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
+                                        <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+
+                                        <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <br />
+                                                <small>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</small>
+                                                <b><small>Funded</small></b>
+                                            </div>
+                                            <div class="col-md-5 pull-left">
+                                                <br />
+                                                <small>R{{campaign.AmountContributed}}</small>
+                                                <b><small>Funded</small></b>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!--/Test -->
-                            </div>
+                                    </md-card-content>
+                                </md-card>
+                            </a>
                             
                         </div><!--Left  Section-->
                         <div class="col-lg-8">
@@ -45,7 +48,6 @@
                                 <md-content>
                                     <md-tabs md-dynamic-height md-border-bottom>
                                         <md-tab label="Credit Card / Debit Card">
-                                            <md-content class="md-padding">
                                                 <md-content layout-padding>
                                                     <div>
                                                         <form name="userForm">
@@ -102,15 +104,18 @@
                                                         </form>
                                                     </div>
                                                 </md-content>
-
-                                            </md-content>
                                         </md-tab>
                                         <md-tab label="PayPal">
-                                            <div  class="col-lg-offset-3" style="margin-top:50px">
-                                                <a href="https://www.paypal.com/signin/" target="_blank">
-                                                    <img src="../../../../../Images/Payments/payment.png"/>
-                                                </a>
-                                            </div>
+                                                <md-content layout-padding style="width:500px">
+                                                        <div class="col-lg-offset-3" style="margin-top:50px" >
+                                                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                                                <input type="hidden" name="cmd" value="_s-xclick">
+                                                                <input type="hidden" name="hosted_button_id" value="8Y5SAMMCEWJKN">
+                                                                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                                                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                                                            </form>
+                                                        </div>
+                                                </md-content>
                                         </md-tab>
                                     </md-tabs>
                                 </md-content>
@@ -123,5 +128,6 @@
                 <md-button class="btn-success pull-right" ng-click="saveFunding()"> Fund </md-button>
              </div>
             </div>
+
         </md-dialog-content>
 </md-dialog>

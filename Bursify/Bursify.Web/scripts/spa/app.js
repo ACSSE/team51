@@ -159,13 +159,13 @@
                 resolve: { isAuthenticated: isAuthenticated }
             })
             //Sponsor
-                        .when("/student/campaign-details/:campaignId", {
-                            templateUrl: "scripts/spa/bursify/student/campaigns/campaignDetails.html",
-                            controller: "campaignDetailsCtrl"
+                        .when("/sponsor/campaign-details/:campaignId", {
+                            templateUrl: "scripts/spa/bursify/sponsor/campaigns/campaignDetails.html",
+                            controller: "viewCampaignCtrl"
                             // resolve: { isAuthenticated: isAuthenticated }
                         })
-                            .when("/student/campaigns", {
-                                templateUrl: "scripts/spa/bursify/student/campaigns/viewCampaigns.html",
+                            .when("/sponsor/campaigns", {
+                                templateUrl: "scripts/spa/bursify/sponsor/campaigns/viewCampaigns.html",
                                 controller: "campaignsCtrl",
                                 resolve: { isAuthenticated: isAuthenticated }
                             })
@@ -176,7 +176,11 @@
                             // resolve: { isAuthenticated: isAuthenticated}
                         })
 
-
+                        .when("/sponsor/fund", {
+                            templateUrl: "scripts/spa/bursify/sponsor/campaigns/fundCampaign.html",
+                            controller: "fundCampaignCtrl",
+                            // resolve: { isAuthenticated: isAuthenticated }
+                        })
 
             /* Campaigns start **/
             .otherwise({

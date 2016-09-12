@@ -1,95 +1,195 @@
-﻿<div id="content" style="margin-top:70px">
-<nav-bar></nav-bar>
-        <div class="panel panel-info col-lg-8 col-lg-offset-2" style="margin-top:20px">
-            <p class="panel-heading">{{campaign.CampaignName}}</p>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <a href="#/student/campaigns">
-                            <div class="thumbnail" style="background-color:lightgray">
-                                <img class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture" width="250">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div>
-                            <h1>{{numberOfSupporter | number}}</h1>
-                            <h5>Supporters</h5>
-                            <div>
-                                <h1>R{{campaign.AmountContributed}}.00</h1>
-                                <h5>Raised of R{{campaign.AmountRequired}}.00</h5>
-                            </div>
+﻿<nav-bar></nav-bar>
+<div id="content">
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'teal-300'}">
+        <div class="md-toolbar-tools">
+            <span>Add Campaign</span>
+        </div>
+    </md-toolbar>
+    <md-card>
+        <h5 style="margin-left:20px">{{campaign.Name + " " + campaign.Surname}}</h5>
 
-                            <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h4>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</h4>
-                                    <b class="small">Funded</b>
-                                </div>
-                                <div class="col-lg-6 center">
-                                    <h4 align="centre">R{{campaign.AmountContributed}}.00</h4>
-                                    <b class="small centre">Contributed</b>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <a ng-click="upvodeCampaign($event,campaign.CampaignId)" class="btn btn-primary form-control full-opacity-hover" style="margin-top:10px">{{vote}}</a>
-                                    </div>
-                                    
-                                    <div class="col-lg-6">
-                                        <a ng-click="fundCampaign($event,campaign)" class="btn btn-success form-control full-opacity-hover" style="margin-top:10px">Fund this Campaign</a>
-                                    </div>
-                                </div>
+        <md-card-header>
+            <md-card-header-text>
+                <md-card>
+                    <a href="#/student/campaigns">
+                        <img style="height:300px; width:500px" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
+                    </a>
+                </md-card>
+            </md-card-header-text>
+            <div class="col-lg-12">
+                <div class="col-lg-8">
+                    <md-card-header-text>
+                        <span class="md-title">{{campaign.CampaignName}}</span>
+                        <span class="small">by {{campaign.Name + " "+ campaign.Surname}}</span>
+                        <br />
+                        <span class="small-text-medium">{{campaign.Tagline}}</span>
+                        <br />
+                        <br />
+                        <style>
+                            .upvote:hover {
+                                color: forestgreen;
+                            }
+                        </style>
+                        <div class="row" style="margin-bottom:10px">
+                            <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left">{{campaign.Location}}</span></div>
+                            <div class="col-lg-4"><span><i class="fa fa-tags" aria-hidden="true">{{campaign.CampaignType}}</i></span></div>
+                            <div class="col-lg-4">
+                                <i class="upvote" ng-click="upvodeCampaign($event,campaign.CampaignId)" ng-disabled="isMyCampaign == true">
+                                    <i class="fa fa-thumbs-up" aria-hidden="true">
+                                        <md-tooltip md-direction="top" style="margin-top:50px">
+                                            Upvote
+                                        </md-tooltip>
+                                    </i>
+                                </i>
                             </div>
                         </div>
-                    </div>
+                        <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-4">{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%<br />funded</div>
+                            <div class="col-lg-4">R{{campaign.AmountContributed}} <br />Raised</div>
+                            <div class="col-lg-4">{{daysleft}}<br />days to go</div>
+                        </div>
+                        <br />
+                        <md-button ng-click="fundCampaign($event,campaign)" ng-disabled="true" class="btn btn-success form-control full-opacity-hover" style="margin-top:10px">Fund this Campaign</md-button>
+                    </md-card-header-text>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p style="margin-left:100px">
-                            <h2>Description</h2>
-                            {{campaign.Description}}
-                        </p>
-                    </div>
-                    <md-toolbar class="center" md-colors="{backgroundColor: 'light-blue'}">Contributors</md-toolbar>
-                    <div class="col-lg-12">
-                        <p style="margin-left:100px">
-                            <table class="table table-hover table-responsive table-striped">
-                                <thead>
-                                    <tr>
-                                        <td>Contributer's Full Name</td>
-                                        <td>Message</td>
-                                        <td>Amount Contributed</td>
-                                        <td>Date Contributed</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mark John</td>
-                                        <td>Its a gread Project you deserve the Funding </td>
-                                        <td>R200.00</td>
-                                        <td>12 July 2016</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cool Kid</td>
-                                        <td>You are inspiration to our kids</td>
-                                        <td>R1520.00</td>
-                                        <td>39 July 2016</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Patrice Motsepe</td>
-                                        <td>I've Got all the money You Need</td>
-                                        <td>R30000.00</td>
-                                        <td>2 August 2016</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            
-                        </p>
+                <div class="col-lg-4">
+                    <h4>Funders</h4>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">Kenda Murguia</a>
+                        <a href="#" class="list-group-item">Mirta Schnur</a>
+                        <a href="#" class="list-group-item">Entelect</a>
+                        <a href="#" class="list-group-item">Julianna Ayon</a>
+                        <a href="#" class="list-group-item">Ciera Sailor</a>
+                        <a href="#" class="list-group-item">Vennie Watkin</a>
                     </div>
                 </div>
             </div>
+
+
+        </md-card-header>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Campaign Description:</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <p><pre>{{campaign.Description}}</pre> </p>
+        </md-card-content>
+        <div id="content">
+
+            <div class="col-md-12 text-left title" style="padding-bottom: 15px; padding-top: 15px;"><h2>You may also like</h2></div>
+            <div id="content" class="search-v1" style="padding-left: 0;">
+
+                <div class="col-md-12">
+                    <div class="col-md-12 tabs-area box-shadow-none">
+                        <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
+                            <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
+
+
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="/Sponsorship/ViewBursary">
+
+                                            <img ng-src="Content/assets/img/avatar.jpg" class="media-object search-v1-avatar">
+                                        </a>
+                                    </div>
+
+
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Entelect Foundation Programme</a></h4>
+                                        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+
+                                    </div>
+
+                                    <div class="pull-left">
+                                        <h4>Closing Date:</h4><p>18 Aug. 2016</p>
+                                    </div>
+
+                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="/Sponsorship/ViewBursary">
+
+                                            <img ng-src="Content/assets/img/logomi.png" class="media-object search-v1-avatar">
+                                        </a>
+                                    </div>
+
+
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Vodacom Bursary</a></h4>
+                                        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+
+                                    </div>
+
+                                    <div class="pull-left">
+                                        <h4>Closing Date:</h4><p>18 Aug. 2016</p>
+                                    </div>
+
+                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="/Sponsorship/ViewBursary">
+
+                                            <img ng-src="Content/assets/img/logomi.png" class="media-object search-v1-avatar">
+                                        </a>
+                                    </div>
+
+
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">CSIR Bursary Programme</a></h4>
+                                        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+
+                                    </div>
+
+                                    <div class="pull-left">
+                                        <h4>Closing Date:</h4><p>18 Aug. 2016</p>
+                                    </div>
+
+                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                        <span class="rate fa-star fa fa-2x"></span>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area2" aria-labelledby="tabs-demo7-area2">
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade col-md-12 padding-0" id="tabs-demo7-area3" aria-labelledby="tabs-demo7-area3">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </md-card>
+</div>
+
 

@@ -3,9 +3,9 @@
 
     app.controller('campaignsCtrl', campaignsCtrl);
 
-    campaignsCtrl.$inject = ['$scope', 'apiService', '$http', 'notificationService', '$mdDialog', '$mdMedia', '$location'];
+    campaignsCtrl.$inject = ['$scope', 'apiService', '$http', 'notificationService', '$mdDialog', '$mdMedia', '$location','$rootScope'];
 
-    function campaignsCtrl($scope, apiService, $http, notificationService, $mdDialog, $mdMedia, $location) {
+    function campaignsCtrl($scope, apiService, $http, notificationService, $mdDialog, $mdMedia, $location, $rootScope) {
         $scope.pageClass = 'page-home-campaigns';
 
         $scope.Years = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
@@ -16,7 +16,7 @@
         $scope.campaigns = [];
         $scope.StudentName = '';
         $scope.currentCampaign = {};
-        $scope.length = 0;
+        $scope.noOfCampaigns = 0;
         $scope.Live = 'ACTIVE';
 
         //For Payments
@@ -34,6 +34,7 @@
             apiService.get('/api/Campaign/', null,
                         campaignsLoadCompleted,
                         campaignsLoadFailed);
+            loadNumCampaigns();
         }
 
         function campaignsLoadCompleted(result) {
@@ -60,6 +61,27 @@
         function redirectToCampaignDetails() {
             $location.url('/addCampaign.html');
         }
+
+        //Get Number of Campaigns
+        function loadNumCampaigns() {
+
+            apiService.get('/api/Campaign/GetAllCampaigns/?userId=' + $rootScope.repository.loggedUser.userIden, null,
+                        Completed,
+                        Failed);
+        }
+
+        function Completed(result) {
+            var myCampaigns = [];
+            myCampaigns = result.data;
+            $scope.noOfCampaigns = myCampaigns.length;
+            $scope.loadingCampaigns = false;
+
+        }
+
+        function Failed(response) {
+            notificationService.displayError(response.data);
+        }
+        //End of calculating number of campaigns
 
         $scope.fundCampaign = function (ev, campaign) {
             $scope.CampaignName = campaign.CampaignName;

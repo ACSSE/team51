@@ -4,17 +4,17 @@
     app.controller('campaignDetailsCtrl', campaignDetailsCtrl);
 
     //Single Campaign view
-    campaignDetailsCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', 'fileUploadService', '$mdDialog', '$mdMedia'];
+    campaignDetailsCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', 'fileUploadService', '$mdDialog', '$mdMedia', '$rootScope'];
 
-    function campaignDetailsCtrl($scope, $location, $routeParams, apiService, notificationService, fileUploadService, $mdDialog, $mdMedia) {
+    function campaignDetailsCtrl($scope, $location, $routeParams, apiService, notificationService, fileUploadService, $mdDialog, $mdMedia, $rootScope) {
         $scope.pageClass = "page-campaign-details";
 
         //Default values 
         $scope.campaign = {};
         $scope.loadingCampaign = true;
-        $scope.vote = "Upvode this Campaign";
+        $scope.vote = "Upvode";
         $scope.numberOfSupporter = 2;
-        $scope.studentId = 1;
+        $scope.studentId = $rootScope.repository.loggedUser.userIden;
         //For Payments
         $scope.cardNumber = '';
         $scope.CardType = '';
@@ -23,6 +23,7 @@
         $scope.month;
         $scope.year = 0;
         $scope.amount = 0;
+        $scope.isMyCampaign = false;
 
         $scope.loadCampaign = function () {
         };
@@ -32,11 +33,21 @@
             apiService.get('/api/Campaign/GetCampaign/?campaignId=' + $routeParams.campaignId, null,
             myCampaignLoadCompleted,
             myCampaignLoadFailed);
+            
         }
 
         function myCampaignLoadCompleted(result) {
             $scope.campaign = result.data;
             $scope.loadingCampaign = false;
+
+            if ($scope.campaign.StudentId == $scope.studentId)
+            {
+                $scope.isMyCampaign = false;
+            }
+            else
+            {
+                $scope.isMyCampaign = true;
+            }
         }
 
         function myCampaignLoadFailed(response) {
@@ -48,7 +59,7 @@
         //Fund Campaign
         $scope.fundCampaign = function (ev,campaign) {
 
-            $scope.StudentName = "Mike Ross";
+            $scope.StudentName = campaign.Name + ' ' + campaign.Surname;
             $scope.CampaignName = campaign.CampaignName;
             $scope.CampaignLocation = campaign.Location;
             $scope.CampaignId = campaign.CampaignId;

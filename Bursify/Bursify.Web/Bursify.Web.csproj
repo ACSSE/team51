@@ -464,6 +464,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BursifyUploads\1\images\43fa8808141683597115653296_700w_0.jpg" />
+    <Content Include="Content\BursifyUploads\default-campaign.jpg" />
     <Content Include="Content\css\blank.gif" />
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -530,6 +531,8 @@
     <Content Include="Content\img\icons\ic_label_24px.svg" />
     <Content Include="Content\img\icons\ic_launch_24px.svg" />
     <Content Include="Content\img\icons\ic_menu_24px.svg" />
+    <Content Include="Content\img\icons\ic_mode_edit_black_24px.svg" />
+    <Content Include="Content\img\icons\ic_mode_edit_white_24px.svg" />
     <Content Include="Content\img\icons\ic_more_vert_24px.svg" />
     <Content Include="Content\img\icons\ic_ondemand_video_24px.svg" />
     <Content Include="Content\img\icons\ic_people_24px.svg" />
@@ -610,6 +613,11 @@
     <Content Include="scripts\spa\app.js" />
     <Content Include="scripts\spa\bursify\admin\home\index.html" />
     <Content Include="scripts\spa\bursify\admin\home\adminCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\campaigns\campaignDetails.html" />
+    <Content Include="scripts\spa\bursify\sponsor\campaigns\viewCampaignCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\campaigns\campaignsCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\campaigns\fund.html" />
+    <Content Include="scripts\spa\bursify\sponsor\campaigns\viewCampaigns.html" />
     <Content Include="scripts\spa\bursify\sponsor\chart\leaderboard.html" />
     <Content Include="scripts\spa\bursify\sponsor\chart\leaderboardCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\home\index.html" />
@@ -872,7 +880,6 @@
     <Folder Include="Content\landing\wp-content\plugins\wp-product-review\images\" />
     <Folder Include="Content\landing\wp-content\plugins\wp-rocket\inc\front\js\" />
     <Folder Include="Content\plugins\" />
-    <Folder Include="scripts\spa\bursify\campaigns\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bursify.Api\Bursify.Api.csproj">

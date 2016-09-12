@@ -15,11 +15,9 @@
                 $scope.campaigns = [];
                 $scope.loadingCampaigns = true;
                 $scope.isReadOnly = true;
-        
-                $scope.campaigns = [];
-                $scope.studentName = '';
-        
+                $scope.removeCampaign = removeCampaign;
                 $scope.loadData = loadData;
+                $scope.canDelete = false;
         
                
                 function loadData() {
@@ -41,16 +39,12 @@
                     notificationService.displayError(response.data);
                 }
 
-                function removeCampaign()
+                function removeCampaign(campaign)
                 {
                     //Call api
-                    Alert("HGHGGHHG");
-                    camapign.Status = "Stopped";
-
-                    apiService.post('/api/campaign/SaveCampaign/?campaignId', campaign,
+                    apiService.post('/api/campaign/RemoveCampaign/?campaignId=' + campaign.CampaignId,
                     addCampaignSucceded,
                     addCampaignFailed);
-                    notificationService.displaySuccess("Removed");
                 }
 
                 function addCampaignSucceded(response) {

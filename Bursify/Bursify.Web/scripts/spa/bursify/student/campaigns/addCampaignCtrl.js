@@ -49,25 +49,26 @@
 
         function prepareVideo($files) {
             campaignVideo = $files;
-           // UploadPicture();
+            UploadPicture();
         }
 
         function addStudentCampaign()
         {
+            var text = $scope.campaign.Description;
+            text = text.replace(/\r?\n/g, '<br/>');
+            $scope.campaign.Description = text;
             apiService.post('/api/campaign/SaveCampaign/?campaign', $scope.campaign,
             addCampaignSucceded,
             addCampaignFailed);
+
+            redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
         }
 
         function addCampaignSucceded(response) {
             notificationService.displaySuccess($scope.campaign.CampaignName + ' has been submitted to bursify campaign list');
             //$scope.campaign = response.data;
 
-            $scope.campaign.id = response.data.CampaignId;
-
             UploadPicture();
-
-            redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
         }
 
         function addCampaignFailed(response) {
@@ -76,7 +77,7 @@
         }
 
         function redirectToCampaigns() {
-            $location.path('/student/campaigns');
+            $location.path('/student/myCampaigns/');
         }
     }
 })(angular.module('BursifyApp'));

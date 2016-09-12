@@ -17,7 +17,8 @@
         $scope.StudentName = '';
         $scope.currentCampaign = {};
         $scope.length = 0;
-        
+        $scope.Live = 'ACTIVE';
+
         //For Payments
         $scope.cardNumber = '';
         $scope.CardType = '';
@@ -44,21 +45,6 @@
             notificationService.displayError(response.data);
         }
         loadData();
-        function addCampaignSucceded(response) {
-            notificationService.displaySuccess('Campaign has been submitted to bursify campaign list');
-            $scope.campaign = response.data;
-
-            redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
-        }
-
-        function addCampaignFailed(response) {
-            console.log(response);
-            notificationService.displayError(response.statusText);
-        }
-
-        function redirectToCampaignDetails() {
-            $location.url('/addCampaign.html');
-        }
 
         $scope.fundCampaign = function (ev, campaign) {
             $scope.CampaignName = campaign.CampaignName;
@@ -110,7 +96,7 @@
 
                 controller: 'campaignsCtrl', // this must be the name of your controller
 
-                templateUrl: '/Scripts/spa/bursify/student/campaigns/fund.html', //this is the url of the template u call
+                templateUrl: '/Scripts/spa/sponsor/campaigns/fund.html', //this is the url of the template u call
 
                 parent: angular.element(document.body),
 

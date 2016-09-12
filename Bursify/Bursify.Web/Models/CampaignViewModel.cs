@@ -41,7 +41,7 @@ namespace Bursify.Web.Models
             CampaignName = campaign.CampaignName;
             Tagline = campaign.Tagline;
             Location = campaign.Location;
-            Description = campaign.Location;
+            Description = campaign.Description;
             AmountRequired = campaign.AmountRequired;
             CampaignType = campaign.CampaignType;
             VideoPath = campaign.VideoPath;
@@ -74,7 +74,8 @@ namespace Bursify.Web.Models
                 EndDate = this.EndDate,
                 AmountContributed = this.AmountContributed,
                 FundUsage = this.FundUsage,
-                ReasonsToSupport = this.ReasonsToSupport
+                ReasonsToSupport = this.ReasonsToSupport,
+                Status = this.Status
             };
         }
 

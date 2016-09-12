@@ -5,7 +5,7 @@
     <div class="col-lg-12 ">
         .
         <div class="row">
-            <form id="editform" ng-submit="removeCampaign()">
+            <form id="editform" ng-submit="">
                 <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="campaign in campaigns" class="col-lg-4">
                     <md-card style="height: 520px;">
                         <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
@@ -15,7 +15,9 @@
                                 <small>{{campaign.Name + ' '+  campaign.Surname}}</small><br>
                         </md-card-title>
                         <md-card-content>
-                            <p style="margin-top:-20px">{{campaign.Tagline}}</p>
+                            <br />
+                            <br />
+                            <p style="height: 26px;">{{campaign.Tagline}}</p>
                             <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
 
                             <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
@@ -31,18 +33,19 @@
                                     <b><small>Funded</small></b>
                                 </div>
                             </div>
+                            
                             <div class="row">
                                 <md-content class="md-padding" layout-padding style="margin-left: 20px; margin-right: 20px">
                                     <div layout="row" layout-align="space-between">
-                                        <md-button class="" style="margin-left:-50px" type="submit" >
-                                            <md-icon style="margin-left:30px" md-svg-icon="Content/img/icons/../../../../../Content/img/icons/ic_mode_edit_black_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                                        <md-button class="" style="margin-left:-50px" ng-href="#/student/edit-campaign/{{campaign.CampaignId}}">
+                                            <md-icon  md-svg-icon="Content/img/icons/../../../../../Content/img/icons/ic_mode_edit_black_24px.svg" style="width: 24px; height: 24px;margin-left:30px"></md-icon>
                                             <md-tooltip style="margin-top:80px">
                                                 Edit
                                             </md-tooltip>
                                         </md-button>
 
-                                        <md-button class="" style="margin-right:-40px" type="submit">
-                                             <md-icon style="margin-left:-25px"  md-svg-icon="Content/img/icons/ic_delete_forever_black_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                                        <md-button class="" style="margin-right:-40px" type="submit" ng-click="removeCampaign(campaign)" ng-if="campaign.AmountContributed == 0">
+                                             <md-icon md-svg-icon="Content/img/icons/ic_delete_forever_black_24px.svg" style="width: 24px; height: 24px;margin-left:-25px"></md-icon>
                                             <md-tooltip style="margin-top:80px">
                                                 Delete
                                             </md-tooltip>
