@@ -8,7 +8,6 @@
     <div ng-cloak>
 
         <form name="newCampaignForm" ng-submit="addStudentCampaign()">
-
             <md-tabs md-dynamic-height md-border-bottom>
 
                 <md-tab label="Details">
@@ -105,7 +104,6 @@
                                                 <input id="uploadIDVideoFile" type="text" ng-model="campaign.VideoPath" placeholder="Campaign Image" disabled="disabled" />
                                                 <label>File uploaded is {{campaign.VideoPath}}</label>
                                             </div>
-
                                         </div>
                                     </div>
                                 </md-content>
@@ -247,95 +245,6 @@
                     </md-content>
                 </md-tab><!--Campaign story Section-->
 
-
-                <md-tab label="Account Details">
-                    <md-content class="md-padding">
-                        <div ng-cloak ng-controller="addAccountCtrl">
-                            <md-content class="col-lg-offset-3">
-                                <div name="newCampaignForm" ng-submit="addAccount()">
-                                    <md-content class="md-padding" layout-xs="column" layout="row">
-                                        <md-card>
-                                            <md-card-title>
-                                                <md-card-title-text>
-                                                    <span class="md-headline">Bank Account Details </span>
-                                                </md-card-title-text>
-                                            </md-card-title>
-                                            <md-card-content>
-                                                <div class="box-body">
-                                                    <label>My Account Details</label>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" ng-model="Account.AccountName" placeholder="Account holder Name" ng-disabled="Account.AccountName">
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Account Type</label>
-                                                                <select class="form-control" style="width: 100%;" ng-model="Account.AccountType" tabindex="-1" aria-hidden="true">
-                                                                    <option>{{AccountType}}</option>
-                                                                    <option>Savings Account</option>
-                                                                    <option>Cheque Account</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Bank Name</label>
-                                                                <select class="form-control" style="width: 100%;" ng-model="Account.BankName" tabindex="-1" aria-hidden="true">
-                                                                    <option value="Province">Select Your Bank</option>
-                                                                    <option value="Eastern Cape">ABSA</option>
-                                                                    <option value="Free State">Capitec</option>
-                                                                    <option value="Gauteng">FNB</option>
-                                                                    <option value="Kwazulu Natal">Nedbank</option>
-                                                                    <option value="Limpopo">Standard Bank</option>
-                                                                    <option value="Mpumalanga">African Bank</option>
-                                                                    <option value="Northen Cape">Bidvest Bank</option>
-                                                                    <option value="North West">Investec Bank</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Account Number</label>
-                                                                <input type="number" ng-model="Account.AccountNumber" class="form-control">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Branch Name</label>
-                                                                <input type="text" ng-model="Account.BranchName" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Brach Code</label>
-                                                                <input type="number" ng-model="Account.BranchCode" name="date" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </md-card-content>
-                                            <md-card-actions layout="row" layout-align="end center">
-                                                <md-button class="md-raised md-success" md-colors="{backgroundColor: 'green'}" ng-click="addAccount()">Save Account</md-button>
-                                            </md-card-actions>
-                                        </md-card>
-                                    </md-content>
-
-                                </div>
-                            </md-content>
-                        </div>
-                    </md-content>
-                </md-tab>
-
-
                 <md-tab label="Campaign Preview">
                     <md-content class="md-padding">
                         <div class="row">
@@ -391,11 +300,7 @@
                     </md-content>
                 </md-tab><!--Preview Section-->
 
-                <!--<input type="submit" class="btn btn-info" />-->
-
             </md-tabs>
-
         </form>
-
     </div>
 </div>
