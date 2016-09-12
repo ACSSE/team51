@@ -1,4 +1,5 @@
 ﻿using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
 

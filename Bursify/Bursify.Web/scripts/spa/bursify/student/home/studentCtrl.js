@@ -3,9 +3,9 @@
 
     app.controller('studentCtrl', studentCtrl);
 
-    studentCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
+    studentCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$rootScope'];
 
-    function studentCtrl($scope, apiService, notificationService) {
+    function studentCtrl($scope, apiService, notificationService, $rootScope) {
         $scope.pageClass = 'page-home-student';
         $scope.sortType     = 'name'; // set the default sort type
         $scope.sortReverse  = false; 
@@ -17,14 +17,36 @@
             selectedDirection: 'left'
         };
 
-        apiService.get('/api/sponsorship/GetAllSponsorships', null, CompletedSponsorship, FailedSponsorship);
 
+        $scope.loadSponsorships = function () {
+            apiService.get('/api/sponsorship/GetAllSponsorships', null, CompletedSponsorship, FailedSponsorship);
+        }
+       
         function CompletedSponsorship(result) {
             $scope.Sponsorships = result.data;
+            loadReccommended();
+        }
+
+        function loadReccommended() {
+            apiService.get('/api/student/getsponsorshipsuggestions/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reccoCompleted, reccoFailed);
+        }
+
+        $scope.Recco = {};
+        function reccoCompleted(result) {
+            $scope.Recco = result.data;
+        }
+
+
+        $scope.getNumber = function (max) {
+            return new Array(max);
+        }
+
+        function reccoFailed() {
+            notificationService.displayInfo('Unable to load reccommended sponsorships.');
         }
 
         function FailedSponsorship() {
-            notificationService.displayInfo('Unable to load students.');
+            notificationService.displayInfo('Unable to load sponsorships.');
         }
 
 

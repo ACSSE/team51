@@ -2,6 +2,8 @@
 using Bursify.Data.EF.Entities.User;
 using System.Linq;
 using System.Collections.Generic;
+using Bursify.Api.Students;
+using Bursify.Data.EF.Entities.StudentUser;
 
 namespace Bursify.Web.Models
 {
@@ -21,7 +23,7 @@ namespace Bursify.Web.Models
 
         public string Name { get; set; }
 
-        public BursifyUser MapSingleBursifyUser(BursifyUser user)
+        public BursifyUser MapStudentUser(BursifyUser user)
         {
             return new BursifyUser()
             {
@@ -35,7 +37,29 @@ namespace Bursify.Web.Models
                 Biography = user.Biography,
                 CellphoneNumber = user.CellphoneNumber,
                 TelephoneNumber = user.TelephoneNumber,
-                ProfilePicturePath = user.ProfilePicturePath
+                ProfilePicturePath = user.ProfilePicturePath,
+                Addresses = UserAddressViewModel.ReverseMapMultipleAddresses(UserAddressViewModel.MapMultipleAddresses((List<UserAddress>)user.Addresses)),
+                Student = (new StudentViewModel()).ReverseMap(user.Student)
+            };
+        }
+
+        public BursifyUser MapSponsorUser(BursifyUser user)
+        {
+            return new BursifyUser()
+            {
+                ID = user.ID,
+                Email = user.Email,
+                PasswordHash = user.PasswordHash,
+                PasswordSalt = user.PasswordSalt,
+                AccountStatus = user.AccountStatus,
+                UserType = user.UserType,
+                RegistrationDate = user.RegistrationDate,
+                Biography = user.Biography,
+                CellphoneNumber = user.CellphoneNumber,
+                TelephoneNumber = user.TelephoneNumber,
+                ProfilePicturePath = user.ProfilePicturePath,
+                Addresses = UserAddressViewModel.ReverseMapMultipleAddresses(UserAddressViewModel.MapMultipleAddresses((List<UserAddress>)user.Addresses)),
+                Sponsor = (new SponsorViewModel()).ReverseMap(user.Sponsor)
             };
         }
 
@@ -58,7 +82,7 @@ namespace Bursify.Web.Models
 
         public List<BursifyUser> MapMultipleBursifyUsers(List<BursifyUser> bursifyUsers)
         {
-            return (from user in bursifyUsers select MapSingleBursifyUser(user)).ToList();
+            return (from user in bursifyUsers select MapStudentUser(user)).ToList();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Bursify.Web.Models
         }
 
         public CampaignViewModel SingleCampaignMap(Campaign campaign)
-        { 
+        {
             CampaignId = campaign.ID;
             StudentId = campaign.StudentId;
             CampaignName = campaign.CampaignName;

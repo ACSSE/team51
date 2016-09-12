@@ -1,8 +1,12 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Web.Models;
+using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Web.Controllers
 {
@@ -10,10 +14,12 @@ namespace Bursify.Web.Controllers
     public class SponsorshipController : ApiController
     {
         private readonly StudentApi _studentApi;
+        private readonly SponsorApi _sponsorApi;
 
-        public SponsorshipController(StudentApi studentApi)
+        public SponsorshipController(StudentApi studentApi, SponsorApi sponsorApi)
         {
             _studentApi = studentApi;
+            _sponsorApi = sponsorApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -75,7 +81,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetSponsorship")]
-        public HttpResponseMessage GetSponsorships(HttpRequestMessage request, int sponsorshipId)
+        public HttpResponseMessage GetSponsorship(HttpRequestMessage request, int sponsorshipId)
         {
             var sponsorship = _studentApi.GetSponsorship(sponsorshipId);
 
@@ -89,9 +95,30 @@ namespace Bursify.Web.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("AddRequirements")]
+        public HttpResponseMessage AddRequirements(HttpRequestMessage request, List<RequirementViewModel> requirementsVM)
+        {
+            List<Requirement> requirements = new List<Requirement>();
+            foreach (var r in requirementsVM)
+            {
+                requirements.Add(r.ReverseMap());
+            }
+
+            if (requirements.Count != 0)
+            {
+                _studentApi.AddRequirements(requirements);
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetSponsorship")]
-        public HttpResponseMessage GetSponsorships(HttpRequestMessage request, int sponsorshipId, int userId)
+        public HttpResponseMessage GetSponsorship(HttpRequestMessage request, int sponsorshipId, int userId)
         {
             var sponsorship = _studentApi.GetSponsorship(sponsorshipId, userId);
 
@@ -116,6 +143,44 @@ namespace Bursify.Web.Controllers
             var model = new SponsorshipViewModel();
 
             var sponsorshipVm = model.SingleSponsorshipMap(newSponsorship);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetApplicants")]
+        public HttpResponseMessage GetApplicants(HttpRequestMessage request, int sponsorshipId)
+        {
+            var students = _sponsorApi.GetStudentsApplying(sponsorshipId);
+
+           
+            var data = students.Select(applicant =>
+                                    new Applicant(applicant.ID, applicant.Firstname,
+                                    applicant.Surname,
+                                    _studentApi.GetInstitution(applicant.InstitutionID).Name,
+                                    _studentApi.GetUserInfo(applicant.ID).ProfilePicturePath,
+                                    applicant.Age,
+                                    _studentApi.GetAddress(applicant.ID, "Residential").Province,
+                                    applicant.EducationLevel,
+                                    _studentApi.GetMostRecentReport(applicant.ID).Average,
+                                    applicant.Gender)).ToList();
+
+            var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data });
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetSimilar")]
+        public HttpResponseMessage GetSimilar(HttpRequestMessage request, int sponsorshipId)
+        {
+            var sponsorships = _studentApi.GetSimilarSponsorships(sponsorshipId);
+
+            var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 

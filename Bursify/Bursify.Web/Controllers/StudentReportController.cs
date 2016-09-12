@@ -36,9 +36,37 @@ namespace Bursify.Web.Controllers
         [Route("GetAllReports")]
         public HttpResponseMessage GetAllReports(HttpRequestMessage request, int studentId)
         {
-            var reports = _studentApi.GetStudentReports(studentId);
+            var reports = _studentApi.GetAllReportsWithSubjects(studentId);
 
             var reportVm = (new StudentReportViewModel()).MapMultipleReports(reports);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, reportVm);
+
+            return response;
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("GetSortedReports")]
+        public HttpResponseMessage GetSortedReports(HttpRequestMessage request, int studentId)
+        {
+            var reports = _studentApi.GetFiveMostRecentReports(studentId);
+
+            var reportVm = (new StudentReportViewModel()).MapMultipleReports(reports);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, reportVm);
+
+            return response;
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("GetMostRecentReport")]
+        public HttpResponseMessage GetMostRecentReport(HttpRequestMessage request, int studentId)
+        {
+            var report = _studentApi.GetMostRecentReport(studentId);
+
+            var reportVm = (new StudentReportViewModel()).MapSingleReport(report);
 
             var response = request.CreateResponse(HttpStatusCode.OK, reportVm);
 

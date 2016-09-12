@@ -1,33 +1,54 @@
-﻿using Bursify.Data.EF.Entities.StudentUser;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Uow;
 
-//this class it not needed but being used anyway can be removed later and functions being used will use bridge repository
 namespace Bursify.Data.EF.Repositories
 {
     public class StudentRepository : Repository<Student>
     {
+        private readonly DataSession _dataSession;
+
         public StudentRepository(DataSession dataSession) : base(dataSession)
         {
-            
-        }
-        /*private BridgeRepository<StudentSubject> studentSubjectBridgeRepository;
-
-        
-
-        public void addSubject(StudentSubject sb) 
-        {
-            studentSubjectBridgeRepository.Save(sb);
+            _dataSession = dataSession;
         }
 
-        //this method is a alternative to be tested might not work
-        public void addSubjectv2(StudentSubject sb)
+        public List<Student> GetStudentSuggestions(int sponsorId)
         {
-            var st = FindSingle(x => x.ID == sb.StudentId);
-            Student student = (Student) st;
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(sponsorship => sponsorship.SponsorId == sponsorId)
+                .Include(sponsorship => sponsorship.Requirements)
+                .ToList();
 
-            student.StudentSubjects.Add(sb);
-        }*/
+            var allStudents = LoadAll();
+            var students = new List<Student>();
 
+            foreach (var sponsorship in sponsorships)
+            {
+                foreach (var student in allStudents)
+                {
+                    var report = _dataSession.UnitOfWork.Context.Set<StudentReport>()
+                        .Where(x => x.StudentId == student.ID)
+                        .OrderByDescending(x => x.ReportYear)
+                        .ThenByDescending(x => x.ReportPeriod)
+                        .FirstOrDefault();
 
+                    if (report == null || sponsorship.AverageMarkRequired > report.Average ||
+                        !sponsorship.StudyFields.Contains(student.StudyField) ||
+                        !sponsorship.EducationLevel.Equals(student.EducationLevel)) continue;
+
+                    if (!students.Contains(student))
+                    {
+                        students.Add(student);
+                    }
+                }
+            }
+
+            return students;
+        }
     }
 }

@@ -1,11 +1,15 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
+using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Web.Models;
-using Bursify.Web.Utility.ModelClasses;
 
 namespace Bursify.Web.Controllers
 {
@@ -13,10 +17,12 @@ namespace Bursify.Web.Controllers
     public class StudentController : ApiController
     {
         private readonly StudentApi _studentApi;
+        private readonly SponsorApi _sponsorApi;
 
-        public StudentController(StudentApi studentApi)
+        public StudentController(StudentApi studentApi, SponsorApi sponsorApi)
         {
             _studentApi = studentApi;
+            _sponsorApi = sponsorApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -28,12 +34,24 @@ namespace Bursify.Web.Controllers
 
             var studentsVm = StudentViewModel.MapMultipleStudents(students);
 
+            foreach (var model in studentsVm)
+            {
+                var report = _studentApi.GetMostRecentReport(model.ID);
+                model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
+
+                if (report != null)
+                {
+                    model.AverageMark = report.Average;
+                }
+            }
+
             var response = request.CreateResponse(HttpStatusCode.OK, studentsVm);
 
             return response;
         }
 
-        [System.Web.Mvc.AllowAnonymous]
+        ///[System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Authorize]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetStudent")]
         public HttpResponseMessage GetStudent(HttpRequestMessage request, int studentId)
@@ -41,6 +59,14 @@ namespace Bursify.Web.Controllers
             var student = _studentApi.GetStudent(studentId);
 
             var model = new StudentViewModel(student);
+
+            var report = _studentApi.GetMostRecentReport(studentId);
+            model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
+
+            if (report != null)
+            {
+                model.AverageMark = report.Average;
+            }
 
             var response = request.CreateResponse(HttpStatusCode.OK, model);
 
@@ -54,7 +80,7 @@ namespace Bursify.Web.Controllers
         {
             var addresses = _studentApi.GetAddressofUser(userId);
 
-            var addressVm = UserAddressViewModel.MapMultipleStudents(addresses);
+            var addressVm = UserAddressViewModel.MapMultipleAddresses(addresses);
 
             var response = request.CreateResponse(HttpStatusCode.OK, addressVm);
 
@@ -93,7 +119,8 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-        [System.Web.Mvc.AllowAnonymous]
+        //[System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Authorize(Roles = "Student")]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("SavePersonalDetails")]
         public HttpResponseMessage SavePersonalDetails(HttpRequestMessage request, PersonalDetails details)
@@ -349,6 +376,47 @@ namespace Bursify.Web.Controllers
             int number = _studentApi.GetNumberOfCampaignSupporters(campaignId);
 
             var response = request.CreateResponse(HttpStatusCode.OK, number);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetMyApplications")]
+        public HttpResponseMessage GetMyApplications(HttpRequestMessage request, int studentId)
+        {
+           
+            var applications = _studentApi.GetStudentApplications(studentId);
+            var appSponsorships = _studentApi.GetSponsorshipApplications(studentId);
+
+            var data = new List<ApplicationViewModel>();
+
+            foreach (var s in appSponsorships)
+            {
+                foreach (var ss in applications)
+                {
+                    var name = _sponsorApi.GetSponsor(s.SponsorId).CompanyName;
+                    var avm = new ApplicationViewModel(name, s.Name, ss.ApplicationDate, s.ClosingDate, ss.Status);
+
+                    if (data.Contains(avm)) continue;
+                    data.Add(avm);
+                    break;
+                }
+            }
+
+            return request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetStudentSuggestions")]
+        public HttpResponseMessage GetStudentSuggestions(HttpRequestMessage request, int sponsorId)
+        {
+            var suggestions = _studentApi.GetStudentSuggestions(sponsorId);
+
+            var data = StudentViewModel.MapMultipleStudents(suggestions);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, data);
 
             return response;
         }

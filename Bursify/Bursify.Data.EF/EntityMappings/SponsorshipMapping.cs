@@ -27,6 +27,9 @@ namespace Bursify.Data.EF.EntityMappings
             this.Property(x => x.Description)
                 .IsOptional();
 
+            this.Property(x => x.StartingDate)
+                .IsOptional();
+
             this.Property(x => x.ClosingDate)
                 .IsOptional();
 
@@ -50,8 +53,16 @@ namespace Bursify.Data.EF.EntityMappings
                 .HasMaxLength(200)
                 .IsOptional();
 
-            this.Property(x => x.PreferredInstitutions)
-                .HasMaxLength(500)
+            this.Property(x => x.InstitutionPreference)
+                .IsOptional();
+
+            this.Property(x => x.GenderPreference)
+                .IsOptional();
+
+            this.Property(x => x.RacePreference)
+                .IsOptional();
+
+            this.Property(x => x.DisabilityPreference)
                 .IsOptional();
 
             this.Property(x => x.ExpensesCovered)

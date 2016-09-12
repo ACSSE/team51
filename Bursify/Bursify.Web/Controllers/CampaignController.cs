@@ -3,11 +3,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bursify.Api.Students;
-using Bursify.Web.Utility;
-using Bursify.Api.Security;
-using System.Web;
-using System.IO;
-using System.Linq;
 
 namespace Bursify.Web.Controllers
 {
@@ -15,11 +10,9 @@ namespace Bursify.Web.Controllers
     public class CampaignController : ApiController
     {
         private readonly StudentApi _studentApi;
-        private readonly MembershipApi _membershipApi;
 
-        public CampaignController(MembershipApi memebershipApi, StudentApi studentApi)
+        public CampaignController(StudentApi studentApi)
         {
-            _membershipApi = memebershipApi;
             _studentApi = studentApi;
         }
 
@@ -33,11 +26,12 @@ namespace Bursify.Web.Controllers
 
             var campaignVm = CampaignViewModel.MultipleCampaignsMap(campaigns);
 
-            foreach (var c in campaignVm)
+            foreach (var model in campaignVm)
             {
-                var student = _studentApi.GetStudent(c.StudentId);
-                c.Name = student.Firstname;
-                c.Surname = student.Surname;
+                var student = _studentApi.GetStudent(model.StudentId);
+
+                model.Name = student.Firstname;
+                model.Surname = student.Surname;
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
@@ -55,11 +49,13 @@ namespace Bursify.Web.Controllers
 
             var campaignVm = CampaignViewModel.MultipleCampaignsMap(campaigns);
 
-            foreach (var c in campaignVm)
+            var student = _studentApi.GetStudent(userId);
+
+            foreach (var model in campaignVm)
             {
-                var student = _studentApi.GetStudent(c.StudentId);
-                c.Name = student.Firstname;
-                c.Surname = student.Surname;
+                
+                model.Name = student.Firstname;
+                model.Surname = student.Surname;
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
@@ -146,30 +142,13 @@ namespace Bursify.Web.Controllers
             var student = _studentApi.GetStudent(campaignVm.StudentId);
 
             campaignVm.Name = student.Firstname;
-
-            campaignVm.Surname = student.Surname ;
+            campaignVm.Surname = student.Surname;
 
             var response = request.CreateResponse(HttpStatusCode.Created, campaignVm);
 
             return response;
         }
-
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpPut]
-        [System.Web.Mvc.Route("RemoveCampaign")]
-        public HttpResponseMessage RemoveCampaign(HttpRequestMessage request, int campaignId)
-        {
-            var campaign = _studentApi.GetSingleCampaign(campaignId);
-
-            campaign.Status = "Inactive";
-
-            _studentApi.SaveCampaign(campaign);
-
-            var response = request.CreateResponse(HttpStatusCode.Accepted);
-
-            return response;
-        }
-
+       
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetCampaignAccount")]
@@ -226,44 +205,22 @@ namespace Bursify.Web.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.Route("UploadImage")]
-        [MimeMultipart]
-        public HttpResponseMessage UploadImage(HttpRequestMessage request, int userId, int campaignId)
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetSimilarCampaigns")]
+        public HttpResponseMessage GetSimilarCampaigns(HttpRequestMessage request, int campaignId)
         {
-            var user = _membershipApi.GetUserById(userId);
+            var campaigns = _studentApi.GetSimilarCampaigns(campaignId);
 
-            if (user == null) return null;
+            var campaignVm = CampaignViewModel.MultipleCampaignsMap(campaigns);
 
-            var imagePath = HttpContext.Current.Server.MapPath("~/Content/BursifyUploads/" + userId + "/images");
-
-            var directory = new DirectoryInfo(imagePath);
-
-            if (!directory.Exists) { directory.Create(); }
-
-            var multipartFormDataStreamProvider = new UploadMultipartFormProvider(directory.FullName);
-
-            // Read the MIME multipart asynchronously 
-            Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
-
-            var localFileName = multipartFormDataStreamProvider
-                .FileData.Select(multiPartData => multiPartData.LocalFileName).FirstOrDefault();
-
-            // Create response
-            if (localFileName == null) return null;
-            var fileUploadResult = new FileUploadResult
+            foreach (var c in campaignVm)
             {
-                LocalFilePath = localFileName,
-                FileName = Path.GetFileName(localFileName),
-                FileLength = new FileInfo(localFileName).Length
-            };
+                var student = _studentApi.GetStudent(c.StudentId);
+                c.Name = student.Firstname;
+                c.Surname = student.Surname;
+            }
 
-            var campaign = _studentApi.GetSingleCampaign(campaignId, userId);
-
-            campaign.PicturePath = fileUploadResult.FileName;
-
-            _studentApi.SaveCampaign(campaign);
-
-            var response = request.CreateResponse(HttpStatusCode.OK, fileUploadResult);
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
 
             return response;
         }

@@ -3,48 +3,85 @@
 
     app.controller('myApplicationsCtrl', myApplicationsCtrl);
 
-    myApplicationsCtrl.$inject = ['$scope','$rootScope', 'apiService', 'notificationService'];
+    myApplicationsCtrl.$inject = ['$scope', '$rootScope', 'apiService', 'notificationService', '$routeParams', '$timeout'];
 
-    function myApplicationsCtrl($scope,$rootScope, apiService, notificationService) {
-        $scope.pageClass = 'page-student-myApplications';
+    function myApplicationsCtrl($scope, $rootScope, apiService, notificationService, $routeParams, $timeout) {
+        $scope.pageClass = 'page-view-applicants';
 
-       
-
-        apiService.get('/api/student/GetMyApplications/?studentId=' + $rootScope.repository.loggedUser.userIden, null, applicationLoadCompleted, applicationLoadFailed);
-        
-        function applicationLoadCompleted(result) {
-            $scope.applications = result.data;
-        }
-
-
-        function applicationLoadFailed(result) {
-            notificationService.displayError("Failed");
-        }
-
-
+        apiService.get('/api/student/GetmyApplications/?studentId=' + $rootScope.repository.loggedUser.userIden, null, applicantsLoadCompleted, applicantsLoadFailed);
+        $scope.Applications = {};
         $scope.selected = [];
-
         $scope.query = {
-            order: 'name',
-            limit: 4,
+            order: '-Average',
+            limit: 5,
             page: 1
         };
 
-        function success() {
 
-            //<td md-cell>{{application.name}}</td>
-            //      <td md-cell>{{application.sponsor}}</td>
-            //      <td md-cell>{{application.closing}}</td>
-            //      <td md-cell>{{aplication.date}}</td>
-            //      <td md-cell>{{application.status}}</td>
-       
-        }
+        $scope.options = {
+            rowSelection: true,
+            multiSelect: true,
+            autoSelect: true,
+            decapitate: false,
+            largeEditDialog: false,
+            boundaryLinks: false,
+            limitSelect: true,
+            pageSelect: true
+        };
 
-        $scope.getApplications = function () {
-            notificationService.displayError('Here');
+        $scope.selected = [];
+        $scope.limitOptions = [5, 10, 15, {
+            label: 'All',
+            value: function () {
+                return $scope.Applicants ? $scope.Applicants.count : 0;
+            }
+        }];
+
+        $scope.toggleLimitOptions = function () {
+            $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
         };
 
 
+
+        $scope.onPaginate = function (page, limit) {
+            console.log('Scope Page: ' + $scope.query.page + ' Scope Limit: ' + $scope.query.limit);
+            console.log('Page: ' + page + ' Limit: ' + limit);
+
+            $scope.promise = $timeout(function () {
+
+            }, 2000);
+        };
+
+
+        $scope.log = function (item) {
+            console.log(item.name, 'was selected');
+        };
+
+        $scope.loadStuff = function () {
+            $scope.promise = $timeout(function () {
+
+            }, 2000);
+        };
+
+        $scope.onReorder = function (order) {
+
+            console.log('Scope Order: ' + $scope.query.order);
+            console.log('Order: ' + order);
+
+            $scope.promise = $timeout(function () {
+
+            }, 2000);
+        };
+
+
+
+        function applicantsLoadCompleted(result) {
+            $scope.Applications = result.data;
+        }
+
+        function applicantsLoadFailed() {
+            notificationService.displayError("Failed");
+        }
     }
 
 })(angular.module('BursifyApp'));

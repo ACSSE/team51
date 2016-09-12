@@ -68,8 +68,9 @@
             "GuardianPhone": "085 789 1456",
             "GuardianEmail": "mother@nicemother.com",
             "CurrentOccupation": "",
-            "StudyFields": "",
+         
             "MarksYear": "",
+            "ReportPeriod": "",
             "InstitutionName": "",
             "InstitutionWebsite": "",
             "StudentLevel": "",
@@ -118,6 +119,7 @@
      
 
         var IDFile = null;
+
         function UploadID() {
             $scope.uploading = true;
             fileUploadService.uploadFile(IDFile, $rootScope.repository.loggedUser.userIden, IDUploadDone);
@@ -130,28 +132,11 @@
 
         function prepareID($files) {
             IDFile = $files;
-            UploadID();
-            
+            UploadID();    
         }
 
         $scope.provin = null;
         $scope.Industry = null;
-
-        $scope.fields = null;
-        $scope.loadFields = function () {
-
-            return $timeout(function () {
-                $scope.fields = $scope.fields || [
-                  { id: 1, name: 'Accounting' },
-                  { id: 2, name: 'Aviation' },
-                  { id: 3, name: 'Animation' },
-                  { id: 4, name: 'Arts & Crafts' },
-                  { id: 5, name: 'Automotive' },
-                  { id: 6, name: 'Aerospace' },
-                  { id: 7, name: 'Banking' }
-                ];
-            }, 10);
-        };
 
 
         $scope.data = [
@@ -1243,17 +1228,57 @@
    { "place": "Other" },
               ],
               "subjects": [
-                    { "subject": "Afrikaans FAL" },
+                    { "subject": "Afrikaans SAL" },
+                  { "subject": "Afrikaans FAL" },
                   { "subject": "Afrikaans HL" },
-                  { "subject": "Afrikaans SL" },
-                    { "subject": "English FAL" },
-                  { "subject": "English HL" },
+                   { "subject": "English HL" },
+                  { "subject": "English FAL" },
                    { "subject": "IsiNdebele HL" },
-                     { "subject": "IsiXhosa FAL" },
-                    { "subject": "IsiXhosa HL" },
-                       { "subject": "IsiZulu FAL" },
+                   { "subject": "IsiNdebele FAL" },
+                   { "subject": "IsiXhosa HL" },
+                    { "subject": "IsiXhosa FAL" },
                     { "subject": "IsiZulu HL" },
-
+                    { "subject": "IsiZulu FAL" },
+                     { "subject": "Sepedi HL" },
+                      { "subject": "Sepedi FAL" },
+                     { "subject": "Sesotho HL" },
+                       { "subject": "Sesotho FAL" },
+                       { "subject": "Setswana HL" },
+                       { "subject": "Setswana FAL" },
+                       { "subject": "Siswati HL" },
+                       { "subject": "Siswati FAL" },
+                       { "subject": "Tshivenda HL" },
+                       { "subject": "Tshivenda FAL" },
+                       { "subject": "Xitsonga HL" },
+                       { "subject": "Xitsonga FAL" },
+                       { "subject": "Accounting" },
+                       { "subject": "Agricultural Sciences" },
+                       { "subject": "Agricultural Technology" },
+                       { "subject": "Agricultural Management Practices" },
+                       { "subject": "Business Studies" },
+                       { "subject": "Computer Application Technology" },
+                       { "subject": "Consumer Studies" },
+                       { "subject": "Civil Technology" },
+                       { "subject": "Dance Studies" },
+                       { "subject": "Design" },
+                       { "subject": "Dramatic Arts" },
+                       { "subject": "Economics" },
+                       { "subject": "Electrical Technology" },
+                       { "subject": "Engineering Graphic and Design" },
+                       { "subject": "Geography" },
+                       { "subject": "History" },
+                       { "subject": "Information Technology" },
+                       { "subject": "Hospitality Studies" },
+                       { "subject": "Life Orientation" },
+                       { "subject": "Life Science" },
+                       { "subject": "Mathematics" },
+                       { "subject": "Mathematical Literacy" },
+                       { "subject": "Mechanical Technology" },
+                       { "subject": "Music" },
+                       { "subject": "Physical Sciences" },
+                       { "subject": "Religion Studies" },
+                       { "subject": "Tourism" },
+                       { "subject": "Visual Arts" }
 
               ]
 
@@ -1359,7 +1384,7 @@
                   { id: 8, name: 'North West' },
                   { id: 9, name: 'Western Cape' }
                 ];
-            }, 5);
+            }, 0);
         };
 
 
@@ -1373,72 +1398,70 @@
                   { id: 4, name: 'Indian' },
                   { id: 5, name: 'White' }
                 ];
-            }, 5);
+            }, 0);
         };
-
-        $scope.loadFields = function () {
-
-            return $timeout(function () {
-                $scope.fields = $scope.fields || [
-                  { id: 1, name: 'Art' },
-                  { id: 2, name: 'Design' },
-                  { id: 3, name: 'Architecture' },
-                  { id: 4, name: 'Accounting' },
-                  { id: 5, name: 'Economics' },
-                 { id: 6, name: 'Finance' },
-                 { id: 7, name: 'Civil Engineering' },
-                 { id: 8, name: 'Education' },
-                 { id: 9, name: 'Electrical Engineering' },
-                 { id: 10, name: 'Mechanical Engineering' },
-                 { id: 11, name: 'Extraction Metallurgy' },
-                 { id: 12, name: 'Industrial Engineering' },
-                 { id: 13, name: 'Mining Engineering' },
-                 { id: 14, name: 'Mineral Surveying' },
-                 { id: 15, name: 'Town Planning' },
-                  { id: 16, name: 'Engineering' },
-                 { id: 17, name: 'Health Sciences' },
-                 { id: 18, name: 'Biokinetics' },
-                 { id: 19, name: 'Sport Development' },
-                 { id: 20, name: 'Sport Management' },
-                  { id: 21, name: 'Somatology' },
-                  { id: 22, name: 'Social Work' },
-                { id: 23, name: 'Communication & Language' },
-                { id: 24, name: 'Geography & Anthropology' },
-                { id: 25, name: 'Philosophy & Religion' },
-                { id: 26, name: 'Polotics' },
-                 { id: 27, name: 'Psychology' },
-                  { id: 28, name: 'Public Relations' },
-                 { id: 29, name: 'Law' },
-                 { id: 30, name: 'Human Resource Management' },
-                 { id: 31, name: 'Information Management' },
-                 { id: 32, name: 'Public Management & Governance' },
-                 { id: 33, name: 'Tourism Development' },
-                 { id: 34, name: 'Logistics Management' },
-                 { id: 35, name: 'Marketing Management' },
-                 { id: 36, name: 'Transport Economics' },
-                 { id: 37, name: 'Hospitality Management' },
-                 { id: 38, name: 'Logistics' },
-                 { id: 39, name: 'Management' },
-                 { id: 40, name: 'Business Information Technology' },
-                 { id: 41, name: 'Food & Beverage Operations' },
-                 { id: 42, name: 'Information Technology' },
-                 { id: 43, name: 'Computer Science & Informatics' },
-                 { id: 44, name: 'Zoology' },
-                 { id: 45, name: 'Environmental Management' },
-                 { id: 46, name: 'Geography' },
-                 { id: 47, name: 'Human Physiologo' },
-                 { id: 48, name: 'Biochemistry' },
-                 { id: 49, name: 'Sport Sciences' },
-                 { id: 50, name: 'Computational Science' },
-                 { id: 51, name: 'Mathematical Statistics' },
-                 { id: 52, name: 'Mathematics' },
-                 { id: 53, name: 'Chemistry' },
-                 { id: 54, name: 'Physics' },
-                 { id: 55, name: 'Food Technology' },
-                 { id: 56, name: 'Applied Mathematics' },
-                ];
-            }, 5);
-        };
+        $scope.fields = null;
+    
+                $scope.fields = [
+                  'Art'  ,
+                  'Design' ,
+                  'Architecture' ,
+                  'Accounting' ,
+                  'Economics' ,
+                  'Finance' ,
+                  'Civil Engineering' ,
+                  'Education' ,
+                  'Electrical Engineering' ,
+                   'Mechanical Engineering' ,
+                   'Extraction Metallurgy' ,
+                   'Industrial Engineering' ,
+                   'Mining Engineering' ,
+                   'Mineral Surveying' ,
+                   'Town Planning' ,
+                   'Engineering' ,
+                   'Health Sciences' ,
+                   'Biokinetics' ,
+                   'Sport Development' ,
+                   'Sport Management' ,
+                   'Somatology' ,
+                   'Social Work' ,
+                   'Communication & Language' ,
+                   'Geography & Anthropology' ,
+                   'Philosophy & Religion' ,
+                   'Polotics' ,
+                   'Psychology' ,
+                   'Public Relations' ,
+                   'Law' ,
+                   'Human Resource Management' ,
+                   'Information Management' ,
+                   'Public Management & Governance' ,
+                   'Tourism Development' ,
+                   'Logistics Management' ,
+                   'Marketing Management' ,
+                   'Transport Economics' ,
+                   'Hospitality Management' ,
+                   'Logistics' ,
+                   'Management' ,
+                   'Business Information Technology' ,
+                   'Food & Beverage Operations' ,
+                   'Information Technology' ,
+                   'Informatics' ,
+                   'Zoology' ,
+                   'Environmental Management' ,
+                   'Geography' ,
+                   'Human Physiologo' ,
+                   'Biochemistry' ,
+                   'Sport Sciences' ,
+                   'Computational Science' ,
+                   'Mathematical Statistics' ,
+                   'Mathematics' ,
+                   'Chemistry' ,
+                   'Physics' ,
+                   'Food Technology' ,
+                   'Applied Mathematics' ,
+                   'Computer Science'  ];
+        
+     
 
 
         $scope.loadRelates = function () {
@@ -1451,7 +1474,7 @@
                   { id: 4, name: 'Aunt' },
                   { id: 5, name: 'Gaurdian' }
                 ];
-            }, 5);
+            }, 0);
         };
 
 
@@ -1497,7 +1520,14 @@
             $scope.StudentP.AverageMark = null;
             $scope.StudentP.StudentNumber = $scope.Student.StudentNumber;
             $scope.StudentP.IDNumber = $scope.Student.IdNumber;
-            $scope.StudentP.Age = null;
+
+            var today = new Date();
+            var age = today.getFullYear() - $scope.Student.DateOfBirth.getFullYear();
+            var m = today.getMonth() - $scope.Student.DateOfBirth.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < $scope.Student.DateOfBirth.getDate())) {
+                age--;
+            }
+            $scope.StudentP.Age = age;
             if ($scope.SelectedDisabilityY) {
                 $scope.Student.HasDisability = true;
                 $scope.StudentP.DisabilityDescription = $scope.Student.DisabilityDescription;
@@ -1510,12 +1540,24 @@
             $scope.StudentP.Race = $scope.Student.Race.name;
             $scope.StudentP.Gender = $scope.Student.Gender;
             $scope.StudentP.CurrentOccupation = $scope.Student.CurrentOccupation;
-            var myfields = "";
-            for (var i = 0; i < $scope.Student.StudyFields.length; i++) {
-                myfields += $scope.Student.StudyFields[i].name + ",";
-            }
+            //var myfields = "";
+            //for (var i = 0; i < $scope.Student.StudyFields.length; i++) {
+            //    myfields += $scope.Student.StudyFields[i].name + ",";
+            //}
 
-            $scope.StudentP.StudyField = myfields;
+            if ($scope.StudentP.CurrentOccupation == 'Tertiary') {
+                if ($scope.Student.StudyFields.length > 1) {
+                    notificationService.displayInfo("Please only select the study field you are in.");
+                    var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex - 1;
+                    $scope.selectedIndex = index;
+                    return;
+                } else {
+                    $scope.StudentP.StudyField = $scope.Student.StudyFields;
+                }
+            } else {
+                $scope.StudentP.StudyField = $scope.Student.StudyFields;
+            }
+         
             $scope.StudentP.HighestAcademicAchievement = $scope.Student.InstitutionType.level;
             $scope.StudentP.YearOfAcademicAchievement = $scope.Student.MarksYearAttained;
             $scope.StudentP.DateOfBirth = $scope.Student.DateOfBirth;
@@ -1547,11 +1589,23 @@
 
             $scope.Report = {}
 
+
             $scope.Report.StudentId = $rootScope.repository.loggedUser.userIden;
             $scope.Report.ReportLevel = $scope.Student.StudentLevel.grade;
-            $scope.Report.ReportPeriod = $scope.Student .InstitutionType.level;
+            $scope.Report.ReportPeriod = $scope.Student.ReportPeriod;
             $scope.Report.ReportInstitution = $scope.Student.InstitutionName.place;
             $scope.Report.ReportYear = $scope.Student.MarksYearAttained;
+            var bottom = $scope.count + 1;
+            var top = 0;
+            for (var h = 0; h < $scope.Student.Marks.length; h++) {
+      
+               top += $scope.Student.Marks[h].SubjectMark;
+              
+            }
+
+
+
+            $scope.Report.Average = Math.ceil(top / bottom);
             apiService.post('/api/report/savereport', $scope.Report, saveReportDone, saveReportFailed);
         }
 
@@ -1621,8 +1675,9 @@
                  $scope.Address.StreetAddress = $scope.Student.ResStreetAddress;
                  $scope.Address.Province = $scope.Student.ResProvince.name;
                  $scope.Address.City = $scope.Student.ResCity;
-                 $scope.Address.PostalCode = $scope.Student.ResPostCode
-                 $scope.Address.AddressType = "Main";
+                 $scope.Address.PostalCode = $scope.Student.ResPostCode;
+                 $scope.Address.PreferredAddress = $scope.Student.PreferredAddress;
+                 $scope.Address.AddressType = "Residential";
                  // pass address
 
                  apiService.post('/api/student/saveaddress', $scope.Address, saveAddressDone, saveAddressFailed);
@@ -1631,7 +1686,7 @@
                  // pass the address 
                  $scope.Address = {
                      "AddressType": "",
-                     "PreferredAddress": "",
+                   
                      "StreetAddress": "",
                      "Province": "",
                      "City": "",

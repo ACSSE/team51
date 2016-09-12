@@ -1,40 +1,67 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Uow;
-using Bursify.Data.EF.Entities.StudentUser;
 
 namespace Bursify.Data.EF.Repositories
 {
     public class SponsorshipRepository : Repository<Sponsorship>
     {
+        private readonly DataSession _dataSession;
+
         public SponsorshipRepository(DataSession dataSession) : base(dataSession)
         {
+            _dataSession = dataSession;
         }
 
         public List<Sponsorship> GetAllSponsorships()
         {
-            return LoadAll();
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Include(x => x.Requirements)
+                .ToList();
+
+            return sponsorships;
         }
 
         public List<Sponsorship> GetAllSponsorships(string type)
         {
-            return FindMany(sponsorship => sponsorship.SponsorshipType.ToUpper().Equals(type.ToUpper()));
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(sponsorship => sponsorship.SponsorshipType.ToUpper().Equals(type.ToUpper()))
+                .Include(x => x.Requirements)
+                .ToList();
+
+            return sponsorships;
         }
 
         public List<Sponsorship> GetAllSponsorships(int sponsorId)
         {
-            return FindMany(sponsorship => sponsorship.SponsorId == sponsorId);
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(x => x.SponsorId == sponsorId)
+                .Include(x => x.Requirements)
+                .ToList();
+
+            return sponsorships;
         }
 
         public Sponsorship GetSponsorship(int id, int sponsorId)
         {
-            return FindSingle(sponsorship => sponsorship.ID == id && sponsorship.SponsorId == sponsorId);
+            var sponsorship = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(x => x.ID == id && x.SponsorId == sponsorId)
+                .Include(x => x.Requirements)
+                .FirstOrDefault();
+
+            return sponsorship;
         }
 
         public Sponsorship GetSponsorship(int id)
         {
-            return FindSingle(sponsorship => sponsorship.ID == id);
+            var sponsorship = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(x => x.ID == id)
+                .Include(x => x.Requirements)
+                .FirstOrDefault();
+
+            return sponsorship;
         }
 
         public List<Sponsorship> FindSponsorships(string criteria)
@@ -44,87 +71,79 @@ namespace Bursify.Data.EF.Repositories
             if (criteria.Contains("BURSARY") || criteria.Contains("BURSARIES"))
             {
                 filteredSponsorships = FindMany(sponsorship =>
-                                        sponsorship.SponsorshipType.ToUpper() == "BURSARY"
-                                     || sponsorship.Name.ToUpper().Contains(criteria)
-                                     || sponsorship.Description.ToUpper().Contains(criteria)
-                                     || sponsorship.StudyFields.ToUpper().Contains(criteria)
-                                     || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
-                                     || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+                    sponsorship.SponsorshipType.ToUpper() == "BURSARY"
+                    || sponsorship.Name.ToUpper().Contains(criteria)
+                    || sponsorship.Description.ToUpper().Contains(criteria)
+                    || sponsorship.StudyFields.ToUpper().Contains(criteria)
+                    || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
+                    || sponsorship.InstitutionPreference.ToUpper().Contains(criteria));
             }
             else if (criteria.Contains("SCHOLARSHIP") || criteria.Contains("SCHOLARSHIPS"))
             {
                 filteredSponsorships = FindMany(sponsorship =>
-                                        sponsorship.SponsorshipType.ToUpper() == "SCHOLARSHIP"
-                                    || sponsorship.Name.ToUpper().Contains(criteria)
-                                    || sponsorship.Description.ToUpper().Contains(criteria)
-                                    || sponsorship.StudyFields.ToUpper().Contains(criteria)
-                                    || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
-                                    || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+                    sponsorship.SponsorshipType.ToUpper() == "SCHOLARSHIP"
+                    || sponsorship.Name.ToUpper().Contains(criteria)
+                    || sponsorship.Description.ToUpper().Contains(criteria)
+                    || sponsorship.StudyFields.ToUpper().Contains(criteria)
+                    || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
+                    || sponsorship.InstitutionPreference.ToUpper().Contains(criteria));
             }
             else
             {
                 filteredSponsorships = FindMany(sponsorship =>
-                                         sponsorship.Name.ToUpper().Contains(criteria)
-                                     || sponsorship.Description.ToUpper().Contains(criteria)
-                                     || sponsorship.StudyFields.ToUpper().Contains(criteria)
-                                     || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
-                                     || sponsorship.PreferredInstitutions.ToUpper().Contains(criteria));
+                    sponsorship.Name.ToUpper().Contains(criteria)
+                    || sponsorship.Description.ToUpper().Contains(criteria)
+                    || sponsorship.StudyFields.ToUpper().Contains(criteria)
+                    || sponsorship.ExpensesCovered.ToUpper().Contains(criteria)
+                    || sponsorship.InstitutionPreference.ToUpper().Contains(criteria));
             }
 
             return filteredSponsorships;
         }
 
-        public List<Sponsorship> LoadSponsorshipSuggestions(Student student)
+        public List<Sponsorship> GetSimilarSponsorships(int sponsorshipId)
         {
-            //get sponsorships matching the student's education level
-            var sponsorshipList = FindMany(sponsorship =>
-               (sponsorship.EducationLevel == student.EducationLevel));
+            var current = LoadById(sponsorshipId);
+            var otherSponsorships = LoadAll();
 
-            //get sponsorships with the student's study field
-            var studyFieldList = sponsorshipList.Where(sponsorship => sponsorship.StudyFields.ToUpper().Contains(student.StudyField.ToUpper())).ToList();
+            var sponsorships = new List<Sponsorship>();
 
-            //from sponsorships with the student's study field
-            //get sponsorships whereby the student qualifies with the average mark
-            var averageMarkList = studyFieldList.Where(sponsorship => sponsorship.AverageMarkRequired > 0).ToList();
-            
-            //utility
-            //var studentSubjects = student.StudentSubjects.ToList();
+            var fields = current.StudyFields.Split(',');
 
-            //utility
-            var subjectList = studyFieldList.Where(sponsorship => !averageMarkList.Contains(sponsorship)).ToList();
-            
-            var filteredSubjectlist = new List<Sponsorship>();
-
-            foreach (var sponsorship in subjectList)
+            foreach (var other in otherSponsorships)
             {
-                var sponsorshipSubjects = new List<Sponsorship>();//.Requirements.ToList();
-
-                foreach (var sponsorshipSubject in sponsorshipSubjects)
+                if (other.ID != current.ID)
                 {
-                    var subjectCounter = 0;
-
-                    /*foreach (var studentSubject in studentSubjects)
+                    if (fields.Any(field => (field.Length > 0 && other.StudyFields.Contains(field)) || other.StudyFields.Equals("Any")))
                     {
-                        if (sponsorshipSubject.SubjectId != studentSubject.SubjectId) continue;
+                        sponsorships.Add(other);
+                    }
+                }
 
-                        var subjectQualifies = studentSubject.MarkAcquired >= sponsorshipSubject.RequiredMark;
-
-                        if (subjectQualifies)
-                        {
-                            subjectCounter++;
-                        }
-                    }*/
-
-                    /*if (subjectCounter == studentSubjects.Count)
-                    {    
-                        filteredSubjectlist.Add(sponsorship);   
-                    }*/
+                if (sponsorships.Count == 3)
+                {
+                    break;
                 }
             }
 
-            var finalList = (averageMarkList.ToList().Concat(filteredSubjectlist.ToList())).ToList();
+            var data = GetSponsorshipsWithRequirements(sponsorships);
+            
+            return data;
+        }
 
-            return finalList;
+        private List<Sponsorship> GetSponsorshipsWithRequirements(List<Sponsorship> sponsorships)
+        {
+            var data = new List<Sponsorship>();
+
+            foreach (var sponsorship in sponsorships)
+            {
+                data = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                    .Where(x => x.ID == sponsorship.ID)
+                    .Include(x => x.Requirements)
+                    .ToList();
+            }
+
+            return data;
         }
     }
 }

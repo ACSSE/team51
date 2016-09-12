@@ -14,6 +14,7 @@ namespace Bursify.Web.Models
         public string ReportLevel { get; set; }
         public string ReportPeriod { get; set; }
         public string ReportInstitution { get; set; }
+        public string ReportFilePath { get; set; }
         public List<SubjectViewModel> Subjects { get; set; }
 
         public StudentReportViewModel MapSingleReport(StudentReport report)
@@ -25,6 +26,7 @@ namespace Bursify.Web.Models
             ReportLevel = report.ReportLevel;
             ReportPeriod = report.ReportPeriod;
             ReportInstitution = report.ReportInstitution;
+            ReportFilePath = report.ReportFilePath;
             Subjects = SubjectViewModel.ReverseMapSubjects((List<Subject>)report.Subjects);
 
             return this;
@@ -41,13 +43,14 @@ namespace Bursify.Web.Models
                 ReportLevel = this.ReportLevel,
                 ReportPeriod = this.ReportPeriod,
                 ReportInstitution = this.ReportInstitution,
+                ReportFilePath = this.ReportFilePath
                // Subjects = this.Subjects
             };
         }
 
         public List<StudentReportViewModel> MapMultipleReports(List<StudentReport> reportViewModels)
         {
-            return reportViewModels.Select(MapSingleReport).ToList();
+            return reportViewModels.Select(report => (new StudentReportViewModel()).MapSingleReport(report)).ToList();
         }
     }
 }

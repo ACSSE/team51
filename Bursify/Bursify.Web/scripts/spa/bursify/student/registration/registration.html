@@ -1,5 +1,6 @@
 ﻿<div id="content">
     <nav-bar></nav-bar>
+    <div id="loadingbarContainer"></div>
    
         <div id="panel" class="panel">
             <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
@@ -53,7 +54,7 @@
                                 <div class="col-md-3">
                                     <div class="row">
                                         <md-input-container>
-                                            <md-datepicker ng-model="Student.DateOfBirth" md-placeholder="Date Of Birth" md-min-date="minDate" md-max-date="maxDate" required></md-datepicker>
+                                            <md-datepicker ng-model="Student.DateOfBirth" ng-value="Student.DateOfBirth" md-placeholder="Date Of Birth" md-min-date="minDate" md-max-date="maxDate" required></md-datepicker>
                                         </md-input-container>
 
                                     </div>
@@ -228,9 +229,9 @@
                                     <div class="col-md-11">
                                         <md-radio-group ng-model="Student.PreferredAddress" layout="row" required>
                                             <md-radio-button value="Email" class="md-primary">Email</md-radio-button>
-                                            <md-radio-button value="Phone"> Phone </md-radio-button>
-                                            <md-radio-button value="Residential Address"> Residential Address </md-radio-button>
-                                            <md-radio-button value="PostBox">Post Box</md-radio-button>
+                                            <md-radio-button value="Phone" class="md-primary"> Phone </md-radio-button>
+                                            <md-radio-button value="Residential Address" class="md-primary"> Residential Address </md-radio-button>
+                                            <md-radio-button value="PostBox" class="md-primary">Post Box</md-radio-button>
 
                                         </md-radio-group>
                                     </div>
@@ -298,7 +299,6 @@
                                         <md-radio-group ng-model="Student.CurrentOccupation" layout="row" required>
                                             <md-radio-button value="High School" class="md-primary">High School</md-radio-button>
                                             <md-radio-button value="Tertiary"> Tertiary </md-radio-button>
-                                             <md-radio-button value="Unemployed ">Unemployed</md-radio-button>
                                         </md-radio-group>
                                     </div>
                                 </div>
@@ -312,7 +312,7 @@
 
                                     <md-input-container class="md-block">
                                         <md-select placeholder="Fields" ng-model="Student.StudyFields" md-on-open="loadFields()" style="min-width: 200px;" required multiple>
-                                            <md-option ng-value="field" ng-repeat="field in fields | orderBy:'name'">{{field.name}}</md-option>
+                                            <md-option ng-value="field" ng-repeat="field in fields | orderBy:'name'">{{field}}</md-option>
                                         </md-select>
                                     </md-input-container>
 
@@ -320,7 +320,7 @@
                             </div>
 
 
-                            <label>Enter your most recent results below.</label>
+                            <label>Enter your most recent results below at your current institution.</label>
                             <div class="box-body">
 
                                 <div class="col-md-2">
@@ -353,18 +353,18 @@
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <select ng-show="Student.InstitutionType.level == 'High School'" class="form-control" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <select ng-show="Student.InstitutionType.level == 'High School'" class="form-control" ng-model="Student.ReportPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="">-- Term --</option>
-                                        <option value="2016">Term 1</option>
-                                        <option value="2015">Term 2</option>
-                                        <option value="2014">Term 3</option>
-                                        <option value="2013">Term 4</option>
-                                        <option value="2012">Matric Results</option>
+                                        <option value="Term 1">Term 1</option>
+                                        <option value="Term 2">Term 2</option>
+                                        <option value="Term 3">Term 3</option>
+                                        <option value="Term 4">Term 4</option>
+                                       
                                     </select>
-                                    <select class="form-control" ng-show="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'" ng-model="Student.MarksPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <select class="form-control" ng-show="Student.InstitutionType.level == 'University' || Student.InstitutionType.level == 'Private University/College'"  ng-model="Student.ReportPeriod" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="">-- Semester --</option>
-                                        <option value="2016">Semester 1</option>
-                                        <option value="2015">Semester 2</option>
+                                        <option value="Semester 1">Semester 1</option>
+                                        <option value="Semester 2">Semester 2</option>
 
                                     </select>
                                 </div>

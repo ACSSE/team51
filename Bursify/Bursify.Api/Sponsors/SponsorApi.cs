@@ -58,7 +58,7 @@ namespace Bursify.Api.Sponsors
                     Province = province,
                     AverageMarkRequired = averageMarkRequired,
                     EducationLevel = educationLevel,
-                    PreferredInstitutions = preferredInstitutions,
+                    InstitutionPreference = preferredInstitutions,
                     ExpensesCovered = expensesCovered,
                     TermsAndConditions = termsAndConditions,
                 });
@@ -71,7 +71,7 @@ namespace Bursify.Api.Sponsors
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                AddSponsorship(sponsorship.ID, sponsorship.SponsorId, sponsorship.Name, sponsorship.Description, sponsorship.ClosingDate, sponsorship.EssayRequired, sponsorship.SponsorshipValue, sponsorship.StudyFields, sponsorship.Province, sponsorship.AverageMarkRequired, sponsorship.EducationLevel, sponsorship.PreferredInstitutions, sponsorship.ExpensesCovered, sponsorship.TermsAndConditions);
+                AddSponsorship(sponsorship.ID, sponsorship.SponsorId, sponsorship.Name, sponsorship.Description, sponsorship.ClosingDate, sponsorship.EssayRequired, sponsorship.SponsorshipValue, sponsorship.StudyFields, sponsorship.Province, sponsorship.AverageMarkRequired, sponsorship.EducationLevel, sponsorship.InstitutionPreference, sponsorship.ExpensesCovered, sponsorship.TermsAndConditions);
                 uow.Commit();
             }
         }
@@ -125,11 +125,11 @@ namespace Bursify.Api.Sponsors
             }
         }*/
 
-        public Student GetStudent(int Id)
+        public Sponsor GetSponsor(int sponsorId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return studentRepository.LoadById(Id);
+                return sponsorRepository.GetSponsor(sponsorId);
             }
         }
 
@@ -159,11 +159,11 @@ namespace Bursify.Api.Sponsors
             }
         }
 
-        public bool ApproveSponsorship(int userId, int sponsorshipId, string confirmationMessage)
+        public bool ApproveSponsorship(int studentId, int sponsorshipId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                bool status = studentSponsorshipRepository.ConfirmSponsorship(userId, sponsorshipId, confirmationMessage);
+                bool status = studentSponsorshipRepository.ConfirmSponsorship(studentId, sponsorshipId);
                 uow.Commit();
                 return status;
             }

@@ -1,16 +1,16 @@
 ﻿<spnav-bar></spnav-bar>
 <div id="loadingbarContainer"></div>
 
-<div id="content">
+<div id="content" class="md-padding" ng-init="FilterType = 'All'">
   
-    <div class="col-md-12" style="padding:20px;">
+    <div class="col-md-12 md-padding" style="padding:20px;" >
         <div class="col-md-12 padding-0">
             <div class="col-md-12 padding-0">
                 <div class="col-md-12 padding-0">
                     <div class="col-md-6">
                         <div class="panel box-v1">
-                            <div class="panel-heading bg-green-active border-none">
-                                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                            <div class="panel-heading border-none" md-colors="{background: 'indigo'}">
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0 ">
                                     <h4 class="text-left">Sponsorships</h4>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 text-right">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="panel box-v1">
-                            <div class="panel-heading bg-aqua-active border-none">
+                            <div class="panel-heading border-none"  md-colors="{background: 'teal'}">
                                 <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
                                     <h4 class="text-left">Rank</h4>
                                 </div>
@@ -49,65 +49,171 @@
             </div>
         </div>
     </div>
+  
 
+    <div id="Applicants" class="md-padding">
 
-    <div id="Applicants">
-
-        <div class="col-md-12">
-            <div class="alert alert-success alert-border alert-dismissible fade in" role="alert">
-                <h3>
-                    Your Sponsorships
-                    <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </h3>
-                <p>You have recieved a total of 20 new applications for you sponsorships. Take time to see the students below sorted according to suitability.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <label>Filter Students By: </label>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type != 'All' && StudentFiler.type != 'Mark' && StudentFiler.type != 'Disability' && StudentFiler.type != 'FieldOfstudy'">
+                <label>Select filter: </label>
+            </div>
+            <div class="col-md-6" ng-show="StudentFiler.type == 'FieldOfstudy'">
+                <label>Select fields of study: </label>
             </div>
         </div>
 
+        <div class="row">
 
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-3 product-grid" ng-repeat="Student in Students">
-                    <div class="thumbnail">
+            <div class="col-md-4">
+                <style>
+                    .md-placeholder {
+                        display: none;
+                    }
+                </style>
+                <md-input-container class="md-padding">
+                    <md-select ng-model="StudentFiler.type" ng-init="StudentFiler.type = 'All'" style="min-width: 200px;">
 
+                        <md-optgroup label="Filter By">
+                            <md-option value="All">Show All</md-option>
+                            <md-option value="Gender">Gender</md-option>
+                            <md-option value="Race">Race</md-option>
+                            <md-option value="Age">Age</md-option>
+                          
+                            <md-option value="Disability">Disability</md-option>
+                            <md-option value="FieldOfstudy">Study Fields</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'Gender'" style="padding-top: 45px;">
+                <md-radio-group ng-model="FilterType" layout="row" required>
+                    <md-radio-button value="Male" class="md-primary">Male</md-radio-button>
+                    <md-radio-button value="Female" class="md-primary">Female</md-radio-button>
 
-                        <img src="~/Content/images/student/student1.jpg" alt="250x250" data-src="holder.js/250x250" data-holder-rendered="true" style="width: 250px; height: 150px;">
-                        <div class="caption">
-                            <small><span class="fa-map-marker fa"></span> University of Johannesburg</small>
-                            <small class="pull-right"><i class="fa fa-2x fa-comments-o"></i></small>
+                </md-radio-group>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'Race'" style="padding-top: 45px;">
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderF" ng-model="SelectedGenderM" class="md-primary">
+                    African
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    Asain
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    Coloured
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    Indian
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    White
+                </md-checkbox>
 
-                            <h4>{{Student.Firstname}} {{Student.Surname}}</h4>
-                            <p style="height: 80px;">I am very ambitious and a risk taker. Plus I have a really good memory.</p>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'Age'" style="padding-top: 45px;">
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderF" ng-model="SelectedGenderM" class="md-primary">
+                    16 - 20
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    21 - 25
+                </md-checkbox>
+                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
+                    26 - 30
+                </md-checkbox>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'Mark'" style="padding-top: 45px;">
+                <p>Now showing students sorted by overall average marks.</p>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'Disability'" style="padding-top: 45px;">
+                <p>Now showing students who stated they have a disability.</p>
+            </div>
+            <div class="col-md-6" ng-if="StudentFiler.type == 'FieldOfstudy'" style="padding-top: 45px;">
+                <md-input-container class="md-block" style="margin-top: -15px;">
+                    <md-select placeholder="Fields" ng-model="Student.StudyFields" md-on-open="loadFields()" style="min-width: 200px;" required multiple>
+                        <md-option ng-value="field" ng-repeat="field in fields | orderBy:'name'">{{field.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </div>
+        <md-list>
 
+            <md-divider></md-divider>
 
+        </md-list>
 
+        <md-content class="md-padding">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Suggested Students">
+                    <md-content class="md-padding">
+                        <div class="col-md-12 md-padding">
+                            <div class="row">
+                                <div class="col-md-3 product-grid" ng-repeat="Student in Students | myFilter:FilterType">
+                                    <a href="#/sponsor/viewStudent/{{Student.ID}}">
+                                        <div class="thumbnail">
 
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
-                                    75% Science
+                                            <img ng-src="/Content/images/student/student2.jpg" alt="250x250" style="width: 250px; height: 150px;">
+                                            <div class="caption">
+                                                <small><span class="fa-map-marker fa"></span> University of Johannesburg</small>
+                                                <small class="pull-right"><i class="fa fa-2x fa-comments-o"></i></small>
+
+                                                <h4>{{Student.Firstname}} {{Student.Surname}}</h4>
+                                                <p style="height: 80px;">I am very ambitious and a risk taker. Plus I have a really good memory.</p>
+
+                                                <div class="progress progress-rounded">
+                                                    <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                        65 % Average
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </a>
                                 </div>
 
-                            </div>
-
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-                                    70% Mathematics
-                                </div>
-                            </div>
-
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
-                                    65% English
-                                </div>
                             </div>
 
                         </div>
+                     </md-content>
+                  </md-tab>
+                <md-tab label="All Students">
+                    <md-content class="md-padding">
+                        <div class="col-md-12 md-padding">
+                            <div class="row">
+                                <div class="col-md-3 product-grid" ng-repeat="Student in Students | myFilter:FilterType">
+                                    <a href="#/sponsor/viewStudent/{{Student.ID}}">
+                                        <div class="thumbnail">
 
-                    </div>
-                </div>
-               
-            </div>
+                                            <img ng-src="/Content/images/student/student2.jpg" alt="250x250" style="width: 250px; height: 150px;">
+                                            <div class="caption">
+                                                <small><span class="fa-map-marker fa"></span> University of Johannesburg</small>
+                                                <small class="pull-right"><i class="fa fa-2x fa-comments-o"></i></small>
 
-        </div>
+                                                <h4>{{Student.Firstname}} {{Student.Surname}}</h4>
+                                                <p style="height: 80px;">I am very ambitious and a risk taker. Plus I have a really good memory.</p>
+
+                                                <div class="progress progress-rounded">
+                                                    <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                        65 % Average
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </md-content>
+                </md-tab>
+                </md-tabs>
+          </md-content>
     </div>
 </div>
 

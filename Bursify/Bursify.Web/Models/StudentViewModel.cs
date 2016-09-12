@@ -3,6 +3,7 @@
 using Bursify.Data.EF.Entities.StudentUser;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bursify.Web.Models
 {
@@ -10,6 +11,7 @@ namespace Bursify.Web.Models
     {
         public int ID { get; set; }
         public int InstitutionID { get; set; }
+        public string InstitutionName { get; set; }
         public string IDNumber { get; set; }
         public string Firstname { get; set; }
         public string Surname { get; set; }
@@ -23,7 +25,7 @@ namespace Bursify.Web.Models
         public string Race { get; set; }
         public string Gender { get; set; }
         public string CurrentOccupation { get; set; }
-        public string StudyField { get; set; }
+        public string[] StudyField { get; set; }
         public string HighestAcademicAchievement { get; set; }
         public long YearOfAcademicAchievement { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -55,7 +57,6 @@ namespace Bursify.Web.Models
             Surname = student.Surname;
             Headline = student.Headline;
             EducationLevel = student.EducationLevel;
-            AverageMark = student.AverageMark;
             StudentNumber = student.StudentNumber;
             IDNumber = student.IDNumber;
             Age = student.Age;
@@ -64,7 +65,7 @@ namespace Bursify.Web.Models
             Race = student.Race;
             Gender = student.Gender;
             CurrentOccupation = student.CurrentOccupation;
-            StudyField = student.StudyField;
+            StudyField = student.StudyField.Split(',');
             HighestAcademicAchievement = student.HighestAcademicAchievement;
             YearOfAcademicAchievement = student.YearOfAcademicAchievement;
             DateOfBirth = student.DateOfBirth;
@@ -81,6 +82,11 @@ namespace Bursify.Web.Models
             return this;
         }
 
+        private string ArrayToString(string[] array)
+        {
+            return array.Length > 1 ? array.Aggregate("", (current, s) => current + (s + ",")) : array[0];
+        }
+
         public Student ReverseMap()
         {
             return new Student()
@@ -91,7 +97,6 @@ namespace Bursify.Web.Models
                 Surname = this.Surname,
                 Headline = this.Headline,
                 EducationLevel = this.EducationLevel,
-                AverageMark = this.AverageMark,
                 StudentNumber = this.StudentNumber,
                 IDNumber = this.IDNumber,
                 Age = this.Age,
@@ -100,7 +105,7 @@ namespace Bursify.Web.Models
                 Race = this.Race,
                 Gender = this.Gender,
                 CurrentOccupation = this.CurrentOccupation,
-                StudyField = this.StudyField,
+                StudyField = ArrayToString(this.StudyField),
                 HighestAcademicAchievement = this.HighestAcademicAchievement,
                 YearOfAcademicAchievement = this.YearOfAcademicAchievement,
                 DateOfBirth = this.DateOfBirth,
@@ -113,17 +118,58 @@ namespace Bursify.Web.Models
                 MatricCertificatePath = this.MatricCertificatePath,
                 CVPath = this.CVPath,
                 AgreeTandC = this.AgreeTandC
+                //Average = this.AverageMark
                
+            };
+        }
+
+        //only use this method for an already existing user
+        public Student ReverseMap(Student model)
+        {
+            return new Student()
+            {
+                ID = model.ID,
+                InstitutionID = model.InstitutionID,
+                Firstname = model.Firstname,
+                Surname = model.Surname,
+                Headline = model.Headline,
+                EducationLevel = model.EducationLevel,
+                StudentNumber = model.StudentNumber,
+                IDNumber = model.IDNumber,
+                Age = model.Age,
+                HasDisability = model.HasDisability,
+                DisabilityDescription = model.DisabilityDescription,
+                Race = model.Race,
+                Gender = model.Gender,
+                CurrentOccupation = model.CurrentOccupation,
+                StudyField = model.StudyField,
+                HighestAcademicAchievement = model.HighestAcademicAchievement,
+                YearOfAcademicAchievement = model.YearOfAcademicAchievement,
+                DateOfBirth = model.DateOfBirth,
+                NumberOfViews = model.NumberOfViews,
+                Essay = model.Essay,
+                GuardianPhone = model.GuardianPhone,
+                GuardianEmail = model.GuardianEmail,
+                GuardianRelationship = model.GuardianRelationship,
+                IDDocumentPath = model.IDDocumentPath,
+                MatricCertificatePath = model.MatricCertificatePath,
+                CVPath = model.CVPath,
+                AgreeTandC = model.AgreeTandC
+
             };
         }
 
         public static List<StudentViewModel> MapMultipleStudents(List<Student> students)
         {
             List<StudentViewModel> studentsVM = new List<StudentViewModel>();
-            foreach (var s in students)
+
+            if (students.Count > 0)
             {
-                StudentViewModel sVm = new StudentViewModel(s);
-                studentsVM.Add(sVm);
+                foreach (var s in students)
+                {
+                    StudentViewModel sVm = new StudentViewModel(s);
+                    studentsVM.Add(sVm);
+                }
             }
             return studentsVM;
         }

@@ -2,6 +2,7 @@
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Entities.User;
@@ -38,6 +39,84 @@ namespace Bursify.Api.Users
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 return userRepository.LoadById(Id);
+            }
+        }
+
+        public BursifyUser GetCompletStudentUser(int userId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var user = uow.Context.Set<BursifyUser>()
+                    .Where(x => x.ID == userId)
+                    .Include(x => x.Addresses)
+                    .Include(x => x.Student)
+                    .FirstOrDefault();
+
+                return user;
+            }
+        }
+
+        public BursifyUser GetCompletStudentUser(string email)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var user = uow.Context.Set<BursifyUser>()
+                    .Where(x => x.Email.Equals(email))
+                    .Include(x => x.Addresses)
+                    .Include(x => x.Student)
+                    .FirstOrDefault();
+
+                return user;
+            }
+        }
+
+        public string GetUserType(int userId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return uow.Context.Set<BursifyUser>()
+                    .Where(x => x.ID == userId)
+                    .Select(x => x.UserType)
+                    .FirstOrDefault();
+            }
+        }
+
+        public string GetUserType(string email)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return uow.Context.Set<BursifyUser>()
+                    .Where(x => x.Email.Equals(email))
+                    .Select(x => x.UserType)
+                    .FirstOrDefault();
+            }
+        }
+
+        public BursifyUser GetCompletSponsorUser(int userId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var user = uow.Context.Set<BursifyUser>()
+                    .Where(x => x.ID == userId)
+                    .Include(x => x.Addresses)
+                    .Include(x => x.Sponsor)
+                    .FirstOrDefault();
+
+                return user;
+            }
+        }
+
+        public BursifyUser GetCompletSponsorUser(string email)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var user = uow.Context.Set<BursifyUser>()
+                    .Where(x => x.Email.Equals(email))
+                    .Include(x => x.Addresses)
+                    .Include(x => x.Sponsor)
+                    .FirstOrDefault();
+
+                return user;
             }
         }
 
