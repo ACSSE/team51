@@ -2,7 +2,7 @@
 <div id="content">
     <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'teal-300'}">
         <div class="md-toolbar-tools">
-            <span>Add Campaign</span>
+            <span>View Campaign</span>
         </div>
     </md-toolbar>
     <md-card>
@@ -33,9 +33,9 @@
                 <div class="row" style="margin-bottom:10px">
                     <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left">{{campaign.Location}}</span></div>
                     <div class="col-lg-4"><span><i class="fa fa-tags" aria-hidden="true">{{campaign.CampaignType}}</i></span></div>
-                    <div class="col-lg-4"><i class="upvote" ng-click="upvodeCampaign($event,campaign.CampaignId)"><i class="fa fa-thumbs-up" aria-hidden="true">
-                        <md-tooltip md-direction="top" style="margin-top:70px">
-                         Upvote
+                    <div class="col-lg-4"><i class="upvote" style="color:{{upvoted}}" ng-click="upvodeCampaign($event,campaign.CampaignId)"><i class="fa fa-thumbs-up" aria-hidden="true">
+                        <md-tooltip md-direction="top" style="margin-top:50px;">
+                         {{vote}}
                          </md-tooltip>
                         </i></i></div>
                 </div>
@@ -62,7 +62,6 @@
                     </div>
                 </div>
             </div>
-            
 
         </md-card-header>
         <md-card-title>
@@ -184,6 +183,6 @@
             </div>
         </div>
 
-    </div>
+    </div> <!-- Suggested Campaigns-->
     </md-card>
 </div>

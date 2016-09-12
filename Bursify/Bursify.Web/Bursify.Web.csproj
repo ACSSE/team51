@@ -667,6 +667,8 @@
     <Content Include="scripts\spa\bursify\student\campaigns\campaignDetails.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignDetailsCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignsCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\campaigns\confirmDelete.html" />
+    <Content Include="scripts\spa\bursify\student\campaigns\confirmDeleteCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\editCampaign.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\editCampaignCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\fund.html" />
@@ -934,7 +936,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50808</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50000/</IISUrl>
+          <IISUrl>http://localhost:50000/#/login</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

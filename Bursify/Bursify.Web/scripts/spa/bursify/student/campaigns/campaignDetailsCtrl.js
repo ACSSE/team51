@@ -12,7 +12,8 @@
         //Default values 
         $scope.campaign = {};
         $scope.loadingCampaign = true;
-        $scope.vote = "Upvode";
+        $scope.vote = "upvote";
+        $scope.upvoted = "black";
         $scope.numberOfSupporter = 2;
         $scope.studentId = $rootScope.repository.loggedUser.userIden;
         //For Payments
@@ -139,9 +140,8 @@
 
         function upvodeCampaignSucceded(response) {
             notificationService.displaySuccess('Campaign has been successfully upvoted');
-            $scope.campaign = response.data;
-
-            $scope.vote = "upvoded";
+            $scope.vote = "upvoted";
+            $scope.upvoted = "green";
             //redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
         }
 

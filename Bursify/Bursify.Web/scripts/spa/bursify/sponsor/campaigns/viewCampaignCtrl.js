@@ -12,7 +12,8 @@
         //Default values 
         $scope.campaign = {};
         $scope.loadingCampaign = true;
-        $scope.vote = "upvode";
+        $scope.vote = "upvote";
+        $scope.upvoted = "black";
         $scope.numberOfSupporter = 0;
         $scope.sponsorId = $rootScope.repository.loggedUser.userIden;
         $scope.daysleft = 0;
@@ -156,7 +157,8 @@
 
         function upvodeCampaignSucceded(response) {
             notificationService.displaySuccess('Campaign has been successfully upvoted');
-            $scope.vote = "upvoded";
+            $scope.vote = "upvoted";
+            $scope.upvoted = "green";
             loadCampaign();
             //redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
         }

@@ -49,7 +49,7 @@
 
         function prepareVideo($files) {
             campaignVideo = $files;
-            UploadPicture();
+           // UploadPicture();
         }
 
         function addStudentCampaign()
@@ -66,7 +66,7 @@
 
         function addCampaignSucceded(response) {
             notificationService.displaySuccess($scope.campaign.CampaignName + ' has been submitted to bursify campaign list');
-            //$scope.campaign = response.data;
+            $scope.campaign = response.data;
 
             UploadPicture();
         }

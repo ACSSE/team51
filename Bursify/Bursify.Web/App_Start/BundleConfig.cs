@@ -70,7 +70,8 @@ namespace Bursify.Web
                   "~/Scripts/spa/bursify/student/campaigns/editCampaignCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/myCampaignsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/addAccountCtrl.js",
-
+                  "~/Scripts/spa/bursify/student/campaigns/confirmDeleteCtrl.js",
+                  
             #endregion
 
                 "~/Scripts/spa/account/registerCtrl.js",
