@@ -60,6 +60,8 @@
                 <em>Closing Date - {{Sponsorship.ClosingDate | date: "MMM d, y"}}</em>
             </div>
             <div class="panel-body">
+                <div class="col-md-12 text-left title" ng-if="Student.AverageMark < Sponsorship.AverageMarkRequired"><p style="color: lightcoral;">Unfortunately at this moment you do not reach the requirements for this sponsorship and will not be able to apply. You are still able to share this sposonship with fellow students. Make use of the reccommended section on the home page where you will be able to find sponsorships better suited for you. (Contact admin for any queries)</p></div>
+             
                 <div class="col-md-12 text-left title"><h2>About</h2></div>
                 <div class="col-md-12 text-justify">
 
@@ -140,12 +142,12 @@
                     </ol>-->
                     <div class="form-group form-animate-checkbox  noPrint">
                         <input type="checkbox" class="checkbox" ng-model="terms">
-                        <label> I Agree to the Terms &amp; Conditions</label>
+                        <label ng-disabled="Student.AverageMark < Sponsorship.AverageMarkRequired"> I Agree to the Terms &amp; Conditions</label>
                     </div>
                     <div class="row  noPrint">
                         <div class="col-md-2" >
                           
-                       <input type="button" class="btn btn-danger " ng-click="studentApply()" value="One-Click Apply">
+                       <input type="button" class="btn btn-danger" ng-disabled="Student.AverageMark < Sponsorship.AverageMarkRequired || !terms" ng-click="studentApply()" value="One-Click Apply">
                                
 
                          

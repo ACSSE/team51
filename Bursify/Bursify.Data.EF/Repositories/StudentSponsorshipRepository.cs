@@ -6,6 +6,7 @@ using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
+using System.Data.Entity;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -125,9 +126,9 @@ namespace Bursify.Data.EF.Repositories
 
             if (student != null && student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase)) return null;
                 
-            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
-                .Where(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase))
-                .ToList();
+            //var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+            //    .Where(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase))
+            //    .ToList();
 
             var latestReport = DbContext/*_dataSession.UnitOfWork.Context*/.Set<StudentReport>()
                 .Where(x => x.StudentId == student.ID)
@@ -144,12 +145,14 @@ namespace Bursify.Data.EF.Repositories
                 .FirstOrDefault(userAddress => userAddress.BursifyUserId == student.ID && userAddress.PreferredAddress.Contains("Residential"));
             //FindMany(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase));
 
-            var suggestionList = sponsorships.Where(sponsorship => 
-                                 student != null && school != null && latestReport != null
-                                 && sponsorship.StudyFields.Contains(student.StudyField)
+            var suggestionList = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(sponsorship => 
+                                 //student != null && school != null && latestReport != null
+                                  sponsorship.StudyFields.Contains(student.StudyField)
                                  && sponsorship.AverageMarkRequired <= latestReport.Average
-                                 && CheckAge(sponsorship.AgeGroup, student.Age)
-                                 ).ToList();
+                                 )                                
+                .Include(x => x.Requirements)
+                .ToList();
 
             //check disability preference
 

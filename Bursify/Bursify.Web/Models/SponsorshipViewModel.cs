@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Bursify.Data.EF.Entities.SponsorUser;
+using System.Linq;
 
 namespace Bursify.Web.Models
 {
@@ -68,7 +69,7 @@ namespace Bursify.Web.Models
             return this;
 
         }
-
+        
         public Sponsorship ReverseMap()
         {
             var sponsorship = new Sponsorship
@@ -100,13 +101,7 @@ namespace Bursify.Web.Models
 
         public static List<SponsorshipViewModel> MultipleSponsorshipsMap(List<Sponsorship> sponsorships)
         {
-            List<SponsorshipViewModel> sponsorshipVM = new List<SponsorshipViewModel>();
-            foreach (var s in sponsorships)
-            {
-                SponsorshipViewModel sVm = new SponsorshipViewModel(s);
-                sponsorshipVM.Add(sVm);
-            }
-            return sponsorshipVM;
+            return sponsorships.Select(sponsorship => (new SponsorshipViewModel()).SingleSponsorshipMap(sponsorship)).ToList();
         }
     }
 }

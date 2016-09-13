@@ -10,28 +10,7 @@
       
         this.isOpen = false;
 
-        function doesNotQ() {
-            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-            $mdDialog.show({
-                controller: 'sponsorshipCtrl',
-                templateUrl: '/Scripts/spa/bursify/student/sponsorship/dialog.tmpl.html',
-                parent: angular.element(document.body),
-              
-                clickOutsideToClose: true
-            })
-            .then(function (answer) {
-                $mdDialog.hide();
-            }, function () {
-                $scope.status = 'You cancelled the dialog.';
-            });
-
-       
-            $scope.$watch(function () {
-                return $mdMedia('xs') || $mdMedia('sm');
-            }, function (wantsFullScreen) {
-                $scope.customFullscreen = (wantsFullScreen === true);
-            });
-        };
+ 
         $scope.printer = function () {
            
             window.print();
@@ -76,7 +55,20 @@
             var expenses = $scope.Sponsorship.ExpensesCovered;
 
             $scope.expenses = expenses.split(",");
+            apiService.get('/api/student/Getstudent/?studentId=' + $rootScope.repository.loggedUser.userIden, null,
+      studentLoadCompleted,
+      studentLoadFailed);
         }
+
+        $scope.Student = {};
+        function studentLoadCompleted(result) {
+            $scope.Student = result.data;
+        }
+
+        function studentLoadFailed() {
+            notificationService.displayError('Could not load student.');
+        }
+        
 
         function sponsorshipLoadFailed() {
             notificationService.displayInfo("Failed");
@@ -90,36 +82,11 @@
             "SponsorshipOffered": ""
         }
 
+
+    
+      
+
         $scope.studentApply = function () {
-            if ($scope.terms) {
-                
-                apiService.get('/api/student/getstudent/?studentId=' + $rootScope.repository.loggedUser.userIden, null, doesQ, studentFailed);
-        
-            } else {
-                notificationService.displayInfo("You need to agree to the terms and conditions first.")
-            }
-        }
-
-        $scope.Student = {}
-        function doesQ(result) {
-            $scope.Student = result.data;
-            var qualifies = $scope.Sponsorship.AverageMarkRequired <= $scope.Student.AverageMark;
-            if(qualifies){
-                isValid();
-            } else {
-                doesNotQ();
-              
-            }
-        }
-
-        $scope.closeModal = function () {
-            $mdDialog.hide();
-        }
-        function studentFailed() {
-            notificationService.displayError("Could not load student.");
-        }
-
-        function isValid() {
             $scope.StudentSponsorshipVM.StudentId = $rootScope.repository.loggedUser.userIden;
             $scope.StudentSponsorshipVM.SponsorshipId = $routeParams.sponsorshipId;
             var today = new Date();

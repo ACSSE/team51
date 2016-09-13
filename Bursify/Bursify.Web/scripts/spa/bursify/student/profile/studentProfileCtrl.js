@@ -40,6 +40,64 @@
             }, 0);
         };
 
+        $scope.loadGrades = function () {
+
+            return $timeout(function () {
+                $scope.grades = $scope.grades || [
+                  { id: 1, name: 'Grade 9' },
+                  { id: 2, name: 'Grade 10' },
+                  { id: 3, name: 'Grade 11' },
+                  { id: 4, name: 'Grade 12' }
+                ];
+            }, 0);
+        };
+
+        $scope.loadLevels = function () {
+
+            return $timeout(function () {
+                $scope.levels = $scope.levels || [
+                  { id: 1, name: "1st Year"},
+                  { id: 2, name: "2nd Year" },
+                  { id: 3, name: "3rd Year" },
+                  { id: 4, name: "4th Year" },
+                  { id: 5, name: "5th Year" },
+                  { id: 6, name: "6th Year" },
+                  { id: 7, name: "7th Year" },
+                  { id: 8, name: "Postgrad" },
+                  { id: 9, name: "Honours"  },
+                  { id: 10, name: "Masters"  },
+                 
+
+                ];
+            }, 0);
+        };
+
+
+
+        $scope.loadSchools = function () {
+
+            return $timeout(function () {
+                $scope.schools = $scope.schools || [
+                  { id: 1, name: "1st Year" },
+                  { id: 2, name: "2nd Year" },
+                  { id: 3, name: "3rd Year" },
+                  { id: 4, name: "4th Year" },
+                  { id: 5, name: "5th Year" },
+                  { id: 6, name: "6th Year" },
+                  { id: 7, name: "7th Year" },
+                  { id: 8, name: "Postgrad" },
+                  { id: 9, name: "Honours" },
+                  { id: 10, name: "Masters" },
+
+
+                ];
+            }, 0);
+        };
+
+
+
+
+
         apiService.get('/api/student/getstudent/?studentId=' + $rootScope.repository.loggedUser.userIden,null,  loadUser, loadFailed);
 
         $scope.triggerUpload = function () {

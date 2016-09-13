@@ -4,6 +4,7 @@ using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.Entities.StudentUser;
+using System.Data.Entity;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -18,27 +19,52 @@ namespace Bursify.Data.EF.Repositories
 
         public List<Sponsorship> GetAllSponsorships()
         {
-            return LoadAll();
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Include(x => x.Requirements)
+                .ToList();
+
+            return sponsorships;
         }
 
         public List<Sponsorship> GetAllSponsorships(string type)
         {
-            return FindMany(sponsorship => sponsorship.SponsorshipType.ToUpper().Equals(type.ToUpper()));
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(sponsorship => sponsorship.SponsorshipType.ToUpper().Equals(type.ToUpper()))
+                .Include(x => x.Requirements)
+                .ToList();
+
+            return sponsorships;
         }
 
         public List<Sponsorship> GetAllSponsorships(int sponsorId)
         {
-            return FindMany(sponsorship => sponsorship.SponsorId == sponsorId);
+            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(x => x.SponsorId == sponsorId)
+                .Include(x => x.Requirements)
+                .ToList();
+
+            return sponsorships;
         }
 
         public Sponsorship GetSponsorship(int id, int sponsorId)
         {
-            return FindSingle(sponsorship => sponsorship.ID == id && sponsorship.SponsorId == sponsorId);
+            
+            var sponsorship = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(x => x.ID == id && x.SponsorId == sponsorId)
+                .Include(x => x.Requirements)
+                .FirstOrDefault();
+
+            return sponsorship;
         }
 
         public Sponsorship GetSponsorship(int id)
         {
-            return FindSingle(sponsorship => sponsorship.ID == id);
+            var sponsorship = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
+                .Where(x => x.ID == id)
+                .Include(x => x.Requirements)
+                .FirstOrDefault();
+
+            return sponsorship;
         }
 
         public List<Sponsorship> FindSponsorships(string criteria)
@@ -81,21 +107,15 @@ namespace Bursify.Data.EF.Repositories
         public List<Sponsorship> GetSimilarSponsorships(int sponsorshipId)
         {
             var current = LoadById(sponsorshipId);
-            var otherSponsorships = LoadAll();
 
             var sponsorships = new List<Sponsorship>();
 
             var fields = current.StudyFields.Split(',');
             
-            foreach (var other in otherSponsorships)
+            foreach (var field in fields)
             {
-                if (other.ID != current.ID)
-                {
-                    if (fields.Any(field => (field.Length > 0 && other.StudyFields.Contains(field)) || other.StudyFields.Equals("Any")))
-                    {
-                        sponsorships.Add(other);
-                    }
-                }
+              
+
 
                if(sponsorships.Count == 3)
                 {

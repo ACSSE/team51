@@ -33,7 +33,7 @@
         }
 
         $scope.myDataSource = {};
-
+        $scope.myDataSource2 = {};
 
         $scope.myReports = {};
 
@@ -55,6 +55,58 @@
             $scope.myDataSource = {
                 chart: {
                     caption:"Most Recent Average's",
+                    subCaption: "",
+                    numberSuffix: "%",
+                    //Cosmetics
+                    "lineThickness": "2",
+                    "paletteColors": "#0075c2",
+                    "baseFontColor": "#333333",
+                    "baseFont": "Helvetica Neue,Arial",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0",
+                    "showBorder": "0",
+                    "bgColor": "#ffffff",
+                    "showShadow": "0",
+                    "canvasBgColor": "#ffffff",
+                    "canvasBorderAlpha": "0",
+                    "divlineAlpha": "100",
+                    "divlineColor": "#999999",
+                    "divlineThickness": "1",
+                    "divLineIsDashed": "1",
+                    "divLineDashLen": "1",
+                    "divLineGapLen": "1",
+                    "showXAxisLine": "1",
+                    "xAxisLineThickness": "1",
+                    "xAxisLineColor": "#999999",
+                    "showAlternateHGridColor": "0",
+
+                },
+                data: [{
+                    label: "" + $scope.recentReports[0].ReportYear + "/" + $scope.recentReports[0].ReportPeriod,
+                    value: $scope.recentReports[0].Average
+                },
+                {
+                    label: "" + $scope.recentReports[1].ReportYear + "/" + $scope.recentReports[1].ReportPeriod,
+                    value: $scope.recentReports[1].Average
+                },
+                {
+                    label: "" + $scope.recentReports[2].ReportYear + "/" + $scope.recentReports[2].ReportPeriod,
+                    value: $scope.recentReports[2].Average
+                },
+                {
+                    label: "" + $scope.recentReports[3].ReportYear + "/" + $scope.recentReports[3].ReportPeriod,
+                    value: $scope.recentReports[3].Average
+                },
+                {
+                    label: "" + $scope.recentReports[4].ReportYear + "/" + $scope.recentReports[4].ReportPeriod,
+                    value: $scope.recentReports[4].Average
+                }]
+            };
+
+            $scope.myDataSource2 = {
+                chart: {
+                    caption: "Most Recent Average's",
                     subCaption: "",
                     numberSuffix: "%",
                     //Cosmetics
