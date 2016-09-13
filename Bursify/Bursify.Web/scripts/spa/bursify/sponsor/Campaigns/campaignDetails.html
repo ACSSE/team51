@@ -1,0 +1,125 @@
+﻿    <spnav-bar></spnav-bar>
+<div id="content">
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'teal-300'}">
+        <div class="md-toolbar-tools">
+            <span>View Campaign</span>
+        </div>
+    </md-toolbar>
+    <md-card>
+        <a href="#/sponsor/campaigns"><span style="margin-left:20px"><i class="fa fa-arrow-left btn btn-round"> Back</i></span></a>
+        <md-card-header>
+            <md-card-header-text>
+                <md-card>
+                    <a href="#/sponsor/campaigns">
+                        <img style="height:300px; width:500px" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
+                    </a>
+                </md-card>
+            </md-card-header-text>
+            <div class="col-lg-12">
+                <div class="col-lg-8">
+            <md-card-header-text>
+                <span class="md-title">{{campaign.CampaignName}}</span>
+                <span class="small">by {{campaign.Name + " "+ campaign.Surname}}</span>
+                <br />
+                <span class="small-text-medium">{{campaign.Tagline}}</span>
+                <br />
+                <br />
+                <style>
+                    .upvote:hover{
+                        color: forestgreen;
+                    }
+                </style>
+                <div class="row" style="margin-bottom:10px">
+                    <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left">{{campaign.Location}}</span></div>
+                    <div class="col-lg-4"><span><i class="fa fa-tags" aria-hidden="true">{{campaign.CampaignType}}</i></span></div>
+                    <div class="col-lg-4"><i class="upvote" style="color:{{upvoted}}" ng-click="upvodeCampaign($event,campaign.CampaignId)"><i class="fa fa-thumbs-up" aria-hidden="true">
+                        <md-tooltip md-direction="top" style="margin-top:50px;">
+                         {{vote}}
+                         </md-tooltip>
+                        </i></i></div>
+                </div>
+                <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                <br />
+                <div class="row">
+                    <div class="col-lg-4">{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%<br />funded</div>
+                    <div class="col-lg-4">R{{campaign.AmountContributed}} <br />Raised</div>
+                    <div class="col-lg-4">{{daysleft}}<br />days to go</div>
+                </div>
+                <br />
+                <md-button ng-click="fundCampaign($event,campaign)" class="btn btn-success form-control full-opacity-hover" style="margin-top:10px">Fund this Campaign</md-button>
+            </md-card-header-text>
+                </div>
+                <div class="col-lg-4">
+                    <h4>Funders</h4>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">Kenda Murguia</a>
+                        <a href="#" class="list-group-item">Mirta Schnur</a>
+                        <a href="#" class="list-group-item">Entelect</a>
+                        <a href="#" class="list-group-item">Julianna Ayon</a>
+                        <a href="#" class="list-group-item">Ciera Sailor</a>
+                        <a href="#" class="list-group-item">Vennie Watkin</a>
+                    </div>
+                </div>
+            </div>
+
+        </md-card-header>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Campaign Description:</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <p><pre>{{campaign.Description}}</pre> </p>
+        </md-card-content>
+
+    <div id="content">
+
+        <div class="col-md-12 text-left title" style="padding-bottom: 15px; padding-top: 15px;"><h2>You may also like</h2></div>
+        <div id="content" class="search-v1" style="padding-left: 0;">
+            <div class="col-md-12">
+                <div class="col-md-12 tabs-area box-shadow-none">
+                    <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
+                        <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
+
+                            <div class="" ng-repeat="campaignDetail in SuggestedCampaigns">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a ng-href="#/sponsor/campaign-details/{{campaignDetail.CampaignId}}">
+
+                                            <img ng-src="../../../../../Content/BursifyUploads/{{campaignDetail.StudentId}}/images/{{campaignDetail.PicturePath}}" class="media-object search-v1-avatar">
+                                        </a>
+                                    </div>
+
+
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a ng-href="#/sponsor/campaign-details/{{campaignDetail.CampaignId}}">{{campaignDetail.CampaignName}}</a></h4>
+                                        <p>{{campaignDetail.Description}}</p>
+                                    </div>
+
+                                    <div class="pull-left">
+                                        <h4>Closing Date:</h4><p>{{campaignDetail.EndDate}}</p>
+                                        <md-progress-linear md-mode="determinate" value="{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}"></md-progress-linear>
+
+                                    </div>
+                                    <!--<md-progress-linear md-mode="determinate" value="{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}"></md-progress-linear>
+
+                                    <div class="pull-right">
+                                        <md-progress-linear md-mode="determinate" value="{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                    </div>-->
+
+                                </div>
+                            </div>
+                        <!--<div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area2" aria-labelledby="tabs-demo7-area2">
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade col-md-12 padding-0" id="tabs-demo7-area3" aria-labelledby="tabs-demo7-area3">
+                        </div>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    </div>
+    </md-card>
+</div>

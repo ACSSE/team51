@@ -3,9 +3,9 @@
 
     app.controller('campaignsCtrl', campaignsCtrl);
 
-    campaignsCtrl.$inject = ['$scope', 'apiService', '$http', 'notificationService', '$mdDialog', '$mdMedia', '$location','$rootScope'];
+    campaignsCtrl.$inject = ['$scope', 'apiService', '$http', 'notificationService', '$mdDialog', '$mdMedia', '$location'];
 
-    function campaignsCtrl($scope, apiService, $http, notificationService, $mdDialog, $mdMedia, $location, $rootScope) {
+    function campaignsCtrl($scope, apiService, $http, notificationService, $mdDialog, $mdMedia, $location) {
         $scope.pageClass = 'page-home-campaigns';
 
         $scope.Years = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
@@ -16,7 +16,7 @@
         $scope.campaigns = [];
         $scope.StudentName = '';
         $scope.currentCampaign = {};
-        $scope.noOfCampaigns = 0;
+        $scope.length = 0;
         $scope.Live = 'ACTIVE';
 
         //For Payments
@@ -34,7 +34,6 @@
             apiService.get('/api/Campaign/', null,
                         campaignsLoadCompleted,
                         campaignsLoadFailed);
-            loadNumCampaigns();
         }
 
         function campaignsLoadCompleted(result) {
@@ -46,42 +45,6 @@
             notificationService.displayError(response.data);
         }
         loadData();
-        function addCampaignSucceded(response) {
-            notificationService.displaySuccess('Campaign has been submitted to bursify campaign list');
-            $scope.campaign = response.data;
-
-            redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
-        }
-
-        function addCampaignFailed(response) {
-            console.log(response);
-            notificationService.displayError(response.statusText);
-        }
-
-        function redirectToCampaignDetails() {
-            $location.url('/addCampaign.html');
-        }
-
-        //Get Number of Campaigns
-        function loadNumCampaigns() {
-
-            apiService.get('/api/Campaign/GetAllCampaigns/?userId=' + $rootScope.repository.loggedUser.userIden, null,
-                        Completed,
-                        Failed);
-        }
-
-        function Completed(result) {
-            var myCampaigns = [];
-            myCampaigns = result.data;
-            $scope.noOfCampaigns = myCampaigns.length;
-            $scope.loadingCampaigns = false;
-
-        }
-
-        function Failed(response) {
-            notificationService.displayError(response.data);
-        }
-        //End of calculating number of campaigns
 
         $scope.fundCampaign = function (ev, campaign) {
             $scope.CampaignName = campaign.CampaignName;
@@ -133,7 +96,7 @@
 
                 controller: 'campaignsCtrl', // this must be the name of your controller
 
-                templateUrl: '/Scripts/spa/bursify/student/campaigns/fund.html', //this is the url of the template u call
+                templateUrl: '/Scripts/spa/sponsor/campaigns/fund.html', //this is the url of the template u call
 
                 parent: angular.element(document.body),
 

@@ -1,0 +1,106 @@
+﻿ <spnav-bar></spnav-bar>
+
+<div id="content">
+    <!-- Main content -->
+    <section class="content">
+  
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-animate-text">
+                        <input type="text" class="form-text" placeholder="Type hear for search" style="margin-top:25px" ng-model="searchA"/>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+                    <div class="col-md-4">
+                        Sort by:
+                        <md-input-container class="md-block">
+                            <md-select placeholder="Campaign Type" ng-model="type" style="min-width: 200px;">
+                                <md-option>All</md-option>
+                                <md-option>Art</md-option>
+                                <md-option>Books</md-option>
+                                <md-option>Excursion</md-option>
+                                <md-option>Food</md-option>
+                                <md-option>Journalism</md-option>
+                                <md-option>Music</md-option>
+                                <md-option>Publishing</md-option>
+                                <md-option>Sports</md-option>
+                                <md-option>Theater</md-option>
+                                <md-option>Technology</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+            </div>
+
+            <div class="row">
+                <div ng-if="type == 'All'">
+                    <div ng-repeat="campaign in campaigns | orderby: StartDate" class="col-md-3">
+                        <a ng-href="#/sponsor/campaign-details/{{campaign.CampaignId}}">
+                            <md-card >
+                                <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                                <md-card-title>
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{campaign.CampaignName}}</span>
+                                        <small>{{campaign.Name + ' '+  campaign.Surname}}</small><br>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-content>
+                                    <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
+                                    <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+                                    <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <br />
+                                            <small>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</small>
+                                            <b><small>Funded</small></b>
+                                        </div>
+                                        <div class="col-md-5 pull-left">
+                                            <br />
+                                            <small>R{{campaign.AmountContributed}}</small>
+                                            <b><small>Funded</small></b>
+                                        </div>
+                                    </div>
+                                </md-card-content>
+                            </md-card>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        <div class="row">
+            <div ng-if="type != 'All'">
+                <div ng-repeat="campaign in campaigns| filter:type | filter:searchA" class="col-md-3">
+                    <a ng-href="#/sponsor/campaign-details/{{campaign.CampaignId}}">
+                        <md-card>
+                            <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{campaign.CampaignName}}</span>
+                                    <small>{{campaign.Name + ' '+  campaign.Surname}}</small><br>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
+                                <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+
+                                <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <br />
+                                        <small>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</small>
+                                        <b><small>Funded</small></b>
+                                    </div>
+                                    <div class="col-md-5 pull-left">
+                                        <br />
+                                        <small>R{{campaign.AmountContributed}}</small>
+                                        <b><small>Funded</small></b>
+                                    </div>
+                                </div>
+                            </md-card-content>
+                        </md-card>
+                    </a>
+                </div>
+            </div>
+        </div>
+  
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

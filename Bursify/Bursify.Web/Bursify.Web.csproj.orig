@@ -667,8 +667,6 @@
     <Content Include="scripts\spa\bursify\student\campaigns\campaignDetails.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignDetailsCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignsCtrl.js" />
-    <Content Include="scripts\spa\bursify\student\campaigns\confirmDelete.html" />
-    <Content Include="scripts\spa\bursify\student\campaigns\confirmDeleteCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\editCampaign.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\editCampaignCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\fund.html" />
@@ -906,6 +904,10 @@
     <Folder Include="Content\landing\wp-content\plugins\woocommerce\assets\js\jquery-cookie\" />
     <Folder Include="Content\landing\wp-content\plugins\wp-product-review\images\" />
     <Folder Include="Content\landing\wp-content\plugins\wp-rocket\inc\front\js\" />
+<<<<<<< HEAD
+    <Folder Include="Content\plugins\" />
+=======
+>>>>>>> 21f8ed14a9659b63d53b494edeea6db36bfa0ed0
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bursify.Api\Bursify.Api.csproj">
@@ -936,7 +938,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50808</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50000/#/login</IISUrl>
+          <IISUrl>http://localhost:50000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -35,6 +35,36 @@
     <script src="Content/landing/wp-content/plugins/pirate-forms/js/scripts-general.js"></script>
   
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+        .bounce {
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            -webkit-animation: bounce 3s infinite;
+        }
+
+        @-webkit-keyframes bounce {
+            0% {
+                bottom: 5px;
+            }
+
+            25%, 75% {
+                bottom: 15px;
+            }
+
+            50% {
+                bottom: 20px;
+            }
+
+            100% {
+                bottom: 0;
+            }
+        }
+
+        .page-scroll:hover {
+            color: #8DC153;
+        }
+    </style>
 
 </head>
 <body itemscope class="home blog" dir="ltr">
@@ -71,8 +101,8 @@
 
                                                 <li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-item mega-current_page_item mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-5687' id='mega-menu-item-5687'><a class="mega-menu-link" href="#customers">Team</a></li>
                                                 <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-5693' id='mega-menu-item-5693'><a class="mega-menu-link" href="#contact">Contact</a></li>
-                                                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-5693' id='mega-menu-item-5693'><a class="mega-menu-link" href="http://bursify.azurewebsites.net/#/login">Sign In</a></li>
-                                                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-5693' id='mega-menu-item-5693'><a class="mega-menu-link" href="http://bursify.azurewebsites.net/#/register">Sign Up</a></li>
+                                                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-5693' id='mega-menu-item-5693'><a class="mega-menu-link" href="http://localhost:50000/#/login">Sign In</a></li>
+                                                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-5693' id='mega-menu-item-5693'><a class="mega-menu-link" href="http://localhost:50000/#/register">Sign Up</a></li>
                                             </ul>
                                         </div>
                                     </nav>
@@ -95,9 +125,11 @@
                                         <div class="only-logo" style="padding-top: 70px;">
                                             <div id="only-logo-inner" class="navbar">
                                                 <div id="parallax_only_logo" class="navbar-header">
-
-
-                                                    <a id="site-navigation" class="main-navigation" role="navigation" href="#services"><img src="Content/images/system/Double Down-64.png" alt="Caret" /></a>
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <a href="#services" class="page-scroll"><ul class="text-center" style="color:black;"><li><i class="bounce fa fa-angle-double-down fa-2x"><img style="margin-left:-20px" src="Content/images/system/Double Down-64.png" alt="Caret" /></i></li></ul></a>
+                                                    <!--<a id="site-navigation" class="main-navigation" role="navigation" href="#services"><img src="Content/images/system/Double Down-64.png" alt="Caret" /></a>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -108,6 +140,8 @@
                     </div>
                 </div>
             </header>
+
+            
             <div itemprop id="content" class="content-warp" role="main">
 
                 <section class="services" id="services" role="region" aria-label="Services" style="height: 100vh;">

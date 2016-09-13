@@ -15,8 +15,8 @@ namespace Bursify.Data.EF.Uow
 
         public UnitOfWork(DataContext context)
         {
-            this.Context = context;
-            this.transaction = this.Context.Database.BeginTransaction(IsolationLevel.ReadCommitted);
+            Context = context;
+            transaction = Context.Database.BeginTransaction(IsolationLevel.ReadCommitted);
         }
 
         public void Commit()

@@ -1,12 +1,12 @@
 ﻿(function (app) {
     'use strict';
 
-    app.controller('campaignDetailsCtrl', campaignDetailsCtrl);
+    app.controller('viewCampaignCtrl', viewCampaignCtrl);
 
     //Single Campaign view
-    campaignDetailsCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', 'fileUploadService', '$mdDialog', '$mdMedia', '$rootScope'];
+    viewCampaignCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', 'fileUploadService', '$mdDialog', '$mdMedia','$rootScope'];
 
-    function campaignDetailsCtrl($scope, $location, $routeParams, apiService, notificationService, fileUploadService, $mdDialog, $mdMedia, $rootScope) {
+    function viewCampaignCtrl($scope, $location, $routeParams, apiService, notificationService, fileUploadService, $mdDialog, $mdMedia, $rootScope) {
         $scope.pageClass = "page-campaign-details";
 
         //Default values 
@@ -15,8 +15,9 @@
         $scope.loadingCampaign = true;
         $scope.vote = "upvote";
         $scope.upvoted = "black";
-        $scope.numberOfSupporter = 2;
-        $scope.studentId = $rootScope.repository.loggedUser.userIden;
+        $scope.numberOfSupporter = 0;
+        $scope.sponsorId = $rootScope.repository.loggedUser.userIden;
+        $scope.daysleft = 0;
         //For Payments
         $scope.cardNumber = '';
         $scope.CardType = '';
@@ -25,7 +26,6 @@
         $scope.month;
         $scope.year = 0;
         $scope.amount = 0;
-        $scope.isMyCampaign = false;
 
         $scope.loadCampaign = function () {
         };
@@ -35,6 +35,7 @@
             apiService.get('/api/Campaign/GetCampaign/?campaignId=' + $routeParams.campaignId, null,
             myCampaignLoadCompleted,
             myCampaignLoadFailed);
+
             //Load suppoters
             //loadSupporters();
 
@@ -46,22 +47,19 @@
                 suggestedCampaignsLoadFailed);
         }
 
-        function myCampaignLoadCompleted(result) {
-            $scope.campaign = result.data;
-            $scope.loadingCampaign = false;
-
-            if ($scope.campaign.StudentId == $scope.studentId)
-            {
-                $scope.isMyCampaign = false;
-            }
-            else
-            {
-                $scope.isMyCampaign = true;
-            }
+        function loadSupporters()
+        {
+            //Get number of supported campaigns
+            $scope.loadingCampaign = true;
+            apiService.get('/api/Student/GetNumberSupportedCampaign/?campaignId=' + $routeParams.campaignId, null,
+            campaignSupportersLoadCompleted,
+            myCampaignLoadFailed);
         }
-
-        function myCampaignLoadFailed(response) {
-            notificationService.displayError(response.data);
+        function campaignSupportersLoadCompleted(result)
+        {
+            $scope.numberOfSupporter = result.data;
+            //$scope.numberOfSupporter = 800;
+            $scope.loadingCampaign = false;
         }
         function suggestedCampaignsLoadCompleted(result) {
             $scope.SuggestedCampaigns = result.data;
@@ -71,12 +69,25 @@
         function suggestedCampaignsLoadFailed(response) {
             notificationService.displayError(response.data);
         }
+
+        function campaignSupportersLoadFailed(response) {
+            notificationService.displayError(response.data);
+        }
+        function myCampaignLoadCompleted(result) {
+            $scope.campaign = result.data;
+            $scope.loadingCampaign = false;
+            $scope.daysleft =  (new Date().getDay() * 6);
+
+        }
+
+        function myCampaignLoadFailed(response) {
+            notificationService.displayError(response.data);
+        }
+
         loadCampaign();
        
         //Fund Campaign
         $scope.fundCampaign = function (ev,campaign) {
-
-            $scope.StudentName = campaign.Name + ' ' + campaign.Surname;
             $scope.CampaignName = campaign.CampaignName;
             $scope.CampaignLocation = campaign.Location;
             $scope.CampaignId = campaign.CampaignId;
@@ -96,11 +107,20 @@
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 
             $scope.saveFunding = function () {
-                //Fund this Campign
-                //Get sponsor ID 
-                //Get Campaign ID 
-                //Amount funded
                 //Date funded
+                var date = new Date().toLocaleString();
+                //Sponsor a Campaign
+
+                var sponsorCampaign = {};
+                sponsorCampaign.sponsorId = $scope.sponsorId;
+                sponsorCampaign.Campaignid = $routeParams.campaignId;
+                sponsorCampaign.amount = $scope.amount;
+
+                //api / SponsorSponsorCampaign
+                apiService.post('/api/Sponsor/SponsorCampaign/', sponsorCampaign,
+                null,
+                null);
+
 
                 //Add Amount Contributed to the existing
                 campaign.AmountContributed = parseInt(campaign.AmountContributed) + parseInt($scope.amount);
@@ -114,7 +134,7 @@
                 notificationService.displaySuccess("Thank you for the support of R" + $scope.amount);
 
                 //$mdDialog.cancel(); // Disable if you want a user to view the see their payment progress on the campaign 
-                $location.path('/student/campaign-details/' + $routeParams.campaignId);
+                //$location.path('/sponsor/campaign-details/' + $routeParams.campaignId);
             }
 
             $scope.cancelFunding = function () {
@@ -123,9 +143,9 @@
 
             $mdDialog.show({
 
-                controller: 'campaignDetailsCtrl', // this must be the name of your controller
+                controller: 'viewCampaignCtrl', // this must be the name of your controller
 
-                templateUrl: '/Scripts/spa/bursify/student/campaigns/fund.html', //this is the url of the template u call
+                templateUrl: '/Scripts/spa/bursify/sponsor/campaigns/fund.html', //this is the url of the template u call
 
                 parent: angular.element(document.body),
 
@@ -148,16 +168,16 @@
 
         $scope.upvodeCampaign = function (ev, id) {
     
-            apiService.post('/api/campaign/EndorseCampaign/?userId=' + $scope.studentId + '&campaignId=' + id, null,
+            apiService.post('/api/campaign/EndorseCampaign/?userId=' + $scope.sponsorId + '&campaignId=' + id, null,
             upvodeCampaignSucceded,
             upvodeCampaignFailed);
-
         };
 
         function upvodeCampaignSucceded(response) {
             notificationService.displaySuccess('Campaign has been successfully upvoted');
             $scope.vote = "upvoted";
             $scope.upvoted = "green";
+            loadCampaign();
             //redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
         }
 
