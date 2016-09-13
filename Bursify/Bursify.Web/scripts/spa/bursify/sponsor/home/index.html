@@ -150,7 +150,7 @@
                     <md-content class="md-padding">
                         <div class="col-md-12 md-padding">
                             <div class="row">
-                                <div class="col-md-3 product-grid" ng-repeat="Student in Students | myFilter:FilterType">
+                                <div class="col-md-3 product-grid" data-ng-repeat="Student in Students | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit">
                                     <a href="#/sponsor/viewStudent/{{Student.ID}}">
                                         <div class="thumbnail">
 

@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Uow;
-using System.Data.Entity;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -52,7 +51,6 @@ namespace Bursify.Data.EF.Repositories
                 .Include(x => x.Requirements)
                 .FirstOrDefault();
 
-            return sponsorship;
             return sponsorship;
         }
 
@@ -106,15 +104,21 @@ namespace Bursify.Data.EF.Repositories
         public List<Sponsorship> GetSimilarSponsorships(int sponsorshipId)
         {
             var current = LoadById(sponsorshipId);
+            var otherSponsorships = LoadAll();
 
             var sponsorships = new List<Sponsorship>();
 
             var fields = current.StudyFields.Split(',');
 
-            foreach (var field in fields)
+            foreach (var other in otherSponsorships)
             {
-              
-
+                if (other.ID != current.ID)
+                {
+                    if (fields.Any(field => (field.Length > 0 && other.StudyFields.Contains(field)) || other.StudyFields.Equals("Any")))
+                    {
+                        sponsorships.Add(other);
+                    }
+                }
 
                 if (sponsorships.Count == 3)
                 {

@@ -3,7 +3,11 @@ using System.Data.Entity;
 using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Uow;
+<<<<<<< HEAD
+=======
+using Bursify.Data.EF.Entities.StudentUser;
 using System.Data.Entity;
+>>>>>>> 4a6931fd763af4494d2f28562b0e923404fcd73e
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -47,12 +51,15 @@ namespace Bursify.Data.EF.Repositories
 
         public Sponsorship GetSponsorship(int id, int sponsorId)
         {
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 4a6931fd763af4494d2f28562b0e923404fcd73e
             var sponsorship = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
                 .Where(x => x.ID == id && x.SponsorId == sponsorId)
                 .Include(x => x.Requirements)
                 .FirstOrDefault();
 
-            return sponsorship;
             return sponsorship;
         }
 
@@ -110,8 +117,13 @@ namespace Bursify.Data.EF.Repositories
             var sponsorships = new List<Sponsorship>();
 
             var fields = current.StudyFields.Split(',');
+<<<<<<< HEAD
 
+            foreach (var other in otherSponsorships)
+=======
+            
             foreach (var field in fields)
+>>>>>>> 4a6931fd763af4494d2f28562b0e923404fcd73e
             {
               
 
