@@ -6,8 +6,7 @@
         </div>
     </md-toolbar>
     <md-card>
-        <h5 style="margin-left:20px">{{campaign.Name + " " + campaign.Surname}}</h5>
-
+        <a href="#/student/campaigns"><span style="margin-left:20px"><i class="fa fa-arrow-left btn btn-round"> Back</i></span></a>
         <md-card-header>
             <md-card-header-text>
                 <md-card>
@@ -77,113 +76,52 @@
         <md-card-content>
             <p><pre>{{campaign.Description}}</pre> </p>
         </md-card-content>
+       
+
         <div id="content">
 
             <div class="col-md-12 text-left title" style="padding-bottom: 15px; padding-top: 15px;"><h2>You may also like</h2></div>
             <div id="content" class="search-v1" style="padding-left: 0;">
-
                 <div class="col-md-12">
                     <div class="col-md-12 tabs-area box-shadow-none">
                         <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
                             <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
 
+                                <div class="" ng-repeat="campaignDetail in SuggestedCampaigns">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a ng-href="#/student/campaign-details/{{campaignDetail.CampaignId}}">
 
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="/Sponsorship/ViewBursary">
+                                                <img ng-src="../../../../../Content/BursifyUploads/{{campaignDetail.StudentId}}/images/{{campaignDetail.PicturePath}}" class="media-object search-v1-avatar">
+                                            </a>
+                                        </div>
 
-                                            <img ng-src="Content/assets/img/avatar.jpg" class="media-object search-v1-avatar">
-                                        </a>
+
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a ng-href="#/student/campaign-details/{{campaignDetail.CampaignId}}">{{campaignDetail.CampaignName}}</a></h4>
+                                            <p>{{campaignDetail.Description}}</p>
+                                        </div>
+
+                                        <div class="pull-left">
+                                            <h4>Closing Date:</h4><p>{{campaignDetail.EndDate}}</p>
+                                            <md-progress-linear md-mode="determinate" value="{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}"></md-progress-linear>
+
+                                        </div>
+                                        <!--<md-progress-linear md-mode="determinate" value="{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}"></md-progress-linear>
+
+                                    <div class="pull-right">
+                                        <md-progress-linear md-mode="determinate" value="{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                    </div>-->
+
                                     </div>
-
-
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Entelect Foundation Programme</a></h4>
-                                        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-
-                                    </div>
-
-                                    <div class="pull-left">
-                                        <h4>Closing Date:</h4><p>18 Aug. 2016</p>
-                                    </div>
-
-                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                    </div>
-
                                 </div>
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="/Sponsorship/ViewBursary">
-
-                                            <img ng-src="Content/assets/img/logomi.png" class="media-object search-v1-avatar">
-                                        </a>
-                                    </div>
-
-
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">Vodacom Bursary</a></h4>
-                                        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-
-                                    </div>
-
-                                    <div class="pull-left">
-                                        <h4>Closing Date:</h4><p>18 Aug. 2016</p>
-                                    </div>
-
-                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                    </div>
-
-                                </div>
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="/Sponsorship/ViewBursary">
-
-                                            <img ng-src="Content/assets/img/logomi.png" class="media-object search-v1-avatar">
-                                        </a>
-                                    </div>
-
-
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="/Sponsorship/ViewBursary">CSIR Bursary Programme</a></h4>
-                                        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-
-                                    </div>
-
-                                    <div class="pull-left">
-                                        <h4>Closing Date:</h4><p>18 Aug. 2016</p>
-                                    </div>
-
-                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                        <span class="rate fa-star fa fa-2x"></span>
-                                    </div>
-
-                                </div>
-
-
-
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area2" aria-labelledby="tabs-demo7-area2">
+                                <!--<div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area2" aria-labelledby="tabs-demo7-area2">
                             </div>
                             <div role="tabpanel" class="tab-pane fade col-md-12 padding-0" id="tabs-demo7-area3" aria-labelledby="tabs-demo7-area3">
+                            </div>-->
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
