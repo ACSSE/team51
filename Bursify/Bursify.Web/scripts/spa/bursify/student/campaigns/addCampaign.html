@@ -12,7 +12,7 @@
 
             <md-tabs md-dynamic-height md-border-bottom>
 
-                <md-tab label="Details">
+                <md-tab label="Details" id="details">
                     <md-content class="md-padding">
                         <div class="col-lg-12">
                             <div class="col-lg-8" style="background-color:white;">
@@ -140,7 +140,12 @@
                                 </div>
                             </div>
 
-                                        <md-button   class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}">Next</md-button>
+                                        <md-button   class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" href="#/student/add-campaign/#amount">Next</md-button>
+                            <script type="text/javascript">
+    $('.nexttab').click(function(){
+        $('.nav-tabs > .active').next('md-tab').find('a').trigger('click');
+});
+                            </script>
                         </div>
                     </md-content>
                 </md-tab> <!-- Campaign Details Section-->
@@ -202,7 +207,7 @@
                     </md-content>
                 </md-tab><!--Campaign Target Amount Section-->
 
-                <md-tab label="Campaign Story">
+                <md-tab label="Campaign Story" id="story">
                     <md-content class="md-padding">
                         <div class="row">
                             <div class="col-md-8" style="background-color: white;">
@@ -248,7 +253,7 @@
                     </md-content>
                 </md-tab><!--Campaign story Section-->
 
-                <md-tab label="Campaign Preview">
+                <md-tab label="Campaign Preview" id="preview">
                     <md-content class="md-padding">
                         <div class="row">
                             <div class="panel panel-info col-lg-8 col-lg-offset-2" style="margin-top:20px">

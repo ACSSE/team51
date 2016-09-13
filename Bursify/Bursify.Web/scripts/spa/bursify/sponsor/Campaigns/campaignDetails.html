@@ -72,7 +72,8 @@
         <md-card-content>
             <p><pre>{{campaign.Description}}</pre> </p>
         </md-card-content>
-    <div id="content">
+
+    <!--<div id="content">
 
         <div class="col-md-12 text-left title" style="padding-bottom: 15px; padding-top: 15px;"><h2>You may also like</h2></div>
         <div id="content" class="search-v1" style="padding-left: 0;">
@@ -183,6 +184,41 @@
             </div>
         </div>
 
-    </div> <!-- Suggested Campaigns-->
+    </div>-->
+
+        <div class="row">
+            <div>
+                <div ng-repeat="campaign in SuggestedCampaigns" class="col-md-3">
+                    <a ng-href="#/sponsor/campaign-details/{{campaign.CampaignId}}">
+                        <md-card>
+                            <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{campaign.CampaignName}}</span>
+                                    <small>{{campaign.Name + ' '+  campaign.Surname}}</small><br>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
+                                <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+                                <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <br />
+                                        <small>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</small>
+                                        <b><small>Funded</small></b>
+                                    </div>
+                                    <div class="col-md-5 pull-left">
+                                        <br />
+                                        <small>R{{campaign.AmountContributed}}</small>
+                                        <b><small>Funded</small></b>
+                                    </div>
+                                </div>
+                            </md-card-content>
+                        </md-card>
+                    </a>
+                </div>
+            </div>
+        </div>
     </md-card>
 </div>

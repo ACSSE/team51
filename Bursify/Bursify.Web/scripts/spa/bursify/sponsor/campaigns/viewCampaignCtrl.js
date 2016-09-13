@@ -11,6 +11,7 @@
 
         //Default values 
         $scope.campaign = {};
+        $scope.SuggestedCampaigns = [];
         $scope.loadingCampaign = true;
         $scope.vote = "upvote";
         $scope.upvoted = "black";
@@ -35,7 +36,15 @@
             myCampaignLoadCompleted,
             myCampaignLoadFailed);
 
-            loadSupporters();
+            //Load suppoters
+            //loadSupporters();
+
+            //Load suggested campaigns 
+            //Load suggested campaigns
+            $scope.loadingCampaign = true;
+            apiService.get('/api/Campaign/GetSimilarCampaigns/?campaignId=' + $routeParams.campaignId, null,
+                suggestedCampaignsLoadCompleted,
+                suggestedCampaignsLoadFailed);
         }
 
         function loadSupporters()
@@ -52,6 +61,15 @@
             //$scope.numberOfSupporter = 800;
             $scope.loadingCampaign = false;
         }
+        function suggestedCampaignsLoadCompleted(result) {
+            $scope.SuggestedCampaigns = result.data;
+            $scope.loadingCampaigns = false;
+        }
+
+        function suggestedCampaignsLoadFailed(response) {
+            notificationService.displayError(response.data);
+        }
+
         function campaignSupportersLoadFailed(response) {
             notificationService.displayError(response.data);
         }
