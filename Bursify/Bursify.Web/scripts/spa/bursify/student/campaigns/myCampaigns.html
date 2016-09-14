@@ -11,7 +11,7 @@
         .
         <div class="row">
             <form id="editform" ng-submit="">
-                <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="campaign in campaigns" class="col-lg-4">
+                <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="campaign in campaigns | " class="col-lg-4">
                     <md-card style="height: 520px;">
                         <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
                         <md-card-title>
@@ -23,7 +23,7 @@
                             <br />
                             <br />
                             <p style="height: 26px;">{{campaign.Tagline}}</p>
-                            <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+                            <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
 
                             <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
                             <div class="row">
