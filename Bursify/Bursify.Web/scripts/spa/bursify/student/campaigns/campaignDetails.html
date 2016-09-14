@@ -30,7 +30,7 @@
                             }
                         </style>
                         <div class="row" style="margin-bottom:10px">
-                            <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left">{{campaign.Location}}</span></div>
+                            <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left"></span>{{campaign.Location}}</div>
                             <div class="col-lg-4"><span><i class="fa fa-tags" aria-hidden="true">{{campaign.CampaignType}}</i></span></div>
                             <div class="col-lg-4">
                                 <i class="upvote" ng-click="upvodeCampaign($event,campaign.CampaignId)" ng-disabled="isMyCampaign == true">
@@ -53,19 +53,26 @@
                         <md-button ng-click="fundCampaign($event,campaign)" ng-disabled="true" class="btn btn-success form-control full-opacity-hover" style="margin-top:10px">Fund this Campaign</md-button>
                     </md-card-header-text>
                 </div>
-                <div class="col-lg-4">
-                    <h4>Funders</h4>
-                    <div class="list-group">
+                <div class="col-lg-4"><!--Start of Funders column-->
+                    <div class="list-group" style="height:300px;overflow:scroll;">
+                        <a href="" class="list-group-item-heading"><h4>Funders</h4></a>
                         <a href="#" class="list-group-item">Kenda Murguia</a>
                         <a href="#" class="list-group-item">Mirta Schnur</a>
                         <a href="#" class="list-group-item">Entelect</a>
                         <a href="#" class="list-group-item">Julianna Ayon</a>
                         <a href="#" class="list-group-item">Ciera Sailor</a>
                         <a href="#" class="list-group-item">Vennie Watkin</a>
-                    </div>
+                        <a href="#" class="list-group-item">Vennie Watkin</a>
+                        <a href="#" class="list-group-item">Vennie Watkin</a>
+                        <a href="#" class="list-group-item">Vennie Watkin</a>
+                        <a href="#" class="list-group-item">Vennie Watkin</a>
+                        <a href="#" class="list-group-item">Vennie Watkin</a>
+                        <a href="#" class="list-group-item">Vennie Watkin</a>
+                        <a href="#" class="list-group-item">Vennie Watkin</a>
+                        <a href="#" class="list-group-item">Vennie Watkin</a>
+                    </div><!--End of Funders column-->
                 </div>
             </div>
-
 
         </md-card-header>
         <md-card-title>
