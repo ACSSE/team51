@@ -3,9 +3,9 @@
     /** Remove the Http when calling the API**/
     app.controller('myCampaignsCtrl', myCampaignsCtrl);
 
-    myCampaignsCtrl.$inject = ['$scope', 'apiService', '$routeParams', 'notificationService', '$rootScope'];
+    myCampaignsCtrl.$inject = ['$scope', 'apiService', '$routeParams', 'notificationService', '$rootScope', '$mdDialog', '$mdMedia'];
 
-    function myCampaignsCtrl($scope, apiService, $routeParams, notificationService, $rootScope) {
+    function myCampaignsCtrl($scope, apiService, $routeParams, notificationService, $rootScope,$mdDialog,$mdMedia) {
         $scope.pageClass = 'page-home-my-campaigns';
 
         $scope.demo = {
@@ -18,7 +18,8 @@
                 $scope.removeCampaign = removeCampaign;
                 $scope.loadData = loadData;
                 $scope.canDelete = false;
-        
+                $scope.userPassword = "";
+                $scope.campaignId = "";
                
                 function loadData() {
                    
@@ -39,12 +40,18 @@
                     notificationService.displayError(response.data);
                 }
 
+                
+
                 function removeCampaign(campaign)
                 {
+                    $scope.campaignId = campaign.CampaignId;
+                
+                    $scope.showAdvanced();
+
                     //Call api
-                    apiService.post('/api/campaign/RemoveCampaign/?campaignId=' + campaign.CampaignId,
-                    addCampaignSucceded,
-                    addCampaignFailed);
+                    //apiService.post('/api/campaign/RemoveCampaign/?campaignId=' + campaign.CampaignId,
+                    //addCampaignSucceded,
+                    //addCampaignFailed);
                 }
 
                 function addCampaignSucceded(response) {
@@ -55,6 +62,61 @@
                     console.log(response);
                     notificationService.displayError(response.statusText);
                 }
+
+        //Confirm Delete or edit 
+                $scope.showAdvanced = function (ev) {
+                    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+                    $mdDialog.show({
+                        controller: 'myCampaignsCtrl',
+                        templateUrl: '/Scripts/spa/bursify/student/campaigns/dialog.tmpl.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+
+                        clickOutsideToClose: true
+                    })
+                    .then(function (answer) {
+                        $mdDialog.hide();
+                    }, function () {
+                        $scope.status = 'You cancelled the dialog.';
+                    });
+
+
+                    $scope.$watch(function () {
+                        return $mdMedia('xs') || $mdMedia('sm');
+                    }, function (wantsFullScreen) {
+                        $scope.customFullscreen = (wantsFullScreen === true);
+                    });
+                };
+
+                $scope.Approve = function () {
+                    apiService.post('/api/account/verifypassword/?userId=' + $rootScope.repository.loggedUser.userIden + '&password=' + $scope.userPassword, null, verified, verifiedFailed)
+                }
+
+                function verified(result) {
+                    if (result.data.success) {
+                        var x = $scope.campaignId;
+                        apiService.post('/api/campaign/DelCampaign/?campaignId=' + $scope.campaignId, null,
+                     approveSuccessful,
+                     approveFailed);
+                    } else {
+                        notificationService.displayError("Incorrect password !");
+                        $mdDialog.hide();
+                    }
+                }
+
+                function verifiedFailed(result) {
+                    notificationService.displayError("Could not verify password");
+                }
+
+                function approveSuccessful() {
+                    notificationService.displaySuccess("Approved.");
+                    $mdDialog.hide();
+                }
+
+                function approveFailed() {
+                    notificationService.displayError("Could not remove campaign at this moment in time. Try again later.")
+                }
+        //End of confirm password 
                 loadData();
 
 

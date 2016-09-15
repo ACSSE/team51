@@ -3,9 +3,9 @@
 
     app.controller('addCampaignCtrl', addCampaignCtrl);
 
-    addCampaignCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', 'fileUploadService','$rootScope'];
+    addCampaignCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', 'fileUploadService', '$rootScope', 'membershipService', '$timeout'];
 
-    function addCampaignCtrl($scope, $location,$routeParams, apiService, notificationService,fileUploadService,$rootScope) {
+                              function addCampaignCtrl($scope, $location,$routeParams, apiService, notificationService,fileUploadService,$rootScope,membershipService,$timeout) {
         $scope.pageClass = 'page-campaign-add';
 
         /*form input*/
@@ -29,28 +29,41 @@
         $scope.campaign.Status = 'Active';
         $scope.StudentName = $rootScope.repository.loggedUser.username;
         $scope.addStudentCampaign = addStudentCampaign;
+
+        $scope.CampaignId;
+
+        var ImageFile = null;
         
-        /* End of Form input */
-        $scope.prepareVideo = prepareVideo;
+        $scope.triggerUpload = function () {
+            var fileuploader = angular.element("#fileInput");
+            fileuploader.on('click', function () {
+                console.log("File upload triggered programatically");
+            })
+            fileuploader.trigger('click')
+        }
 
-        //Picture
-        var campaignFile = null;
-     
-        var campaignVideo = null;
-        function UploadPicture() {
+        $scope.prepareImage = function prepareImage($files) {
+            ImageFile = $files;
+            //UploadImage();
+        }
+
+        function UploadImage() {
             $scope.uploading = true;
-            fileUploadService.uploadCampImage(campaignVideo, $scope.campaign.StudentId, $scope.campaign.id, VideoUploadDone);
+            fileUploadService.uploadCampImage(ImageFile, $rootScope.repository.loggedUser.userIden, $scope.CampaignId, ImageUploadDone);
+
+            notificationService.displaySuccess(ImageFile.FileName);
         }
 
-        function VideoUploadDone() {
-            notificationService.displayInfo("Campaign Image has been uploaded.");
-            $scope.uploading = false;
+        function ImageUploadDone() {
+            
         }
 
-        function prepareVideo($files) {
-            campaignVideo = $files;
-           // UploadPicture();
-        }
+
+        $scope.nextTab = function () {
+
+            var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
+            $scope.selectedIndex = index;
+        };
 
         function addStudentCampaign()
         {
@@ -66,9 +79,8 @@
 
         function addCampaignSucceded(response) {
             notificationService.displaySuccess($scope.campaign.CampaignName + ' has been submitted to bursify campaign list');
-            $scope.campaign = response.data;
-
-            UploadPicture();
+            $scope.CampaignId = response.data.CampaignId;
+            UploadImage();
         }
 
         function addCampaignFailed(response) {

@@ -100,7 +100,7 @@
                         <div ng-repeat="campaign in campaigns" class="col-md-3">
                             <a ng-href="#/student/campaign-details/{{campaign.CampaignId}}">
                                 <md-card>
-                                    <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                                    <img style="height: 250px;" src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
                                     <md-card-title>
                                         <md-card-title-text>
                                             <span class="md-headline">{{campaign.CampaignName}}</span>
@@ -109,7 +109,7 @@
                                     </md-card-title>
                                     <md-card-content>
                                         <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
-                                        <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+                                        <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
 
                                         <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
                                         <div class="row">
@@ -145,7 +145,7 @@
                                     </md-card-title>
                                     <md-card-content>
                                         <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
-                                        <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+                                        <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
 
                                         <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
                                         <div class="row">

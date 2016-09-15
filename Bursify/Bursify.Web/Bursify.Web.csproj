@@ -463,6 +463,21 @@
     <Content Include="Content\bootstrap-additions.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BursifyUploads\102\images\847b411bacc11bef2cfe19c8d9b48df7.png" />
+    <Content Include="Content\BursifyUploads\102\images\asd.PNG" />
+    <Content Include="Content\BursifyUploads\102\images\b.JPG" />
+    <Content Include="Content\BursifyUploads\102\images\campaign.jpeg" />
+    <Content Include="Content\BursifyUploads\102\images\campaign.jpg" />
+    <Content Include="Content\BursifyUploads\102\images\campaign1.jpg" />
+    <Content Include="Content\BursifyUploads\102\images\default-campaign.jpg" />
+    <Content Include="Content\BursifyUploads\102\images\ic_close_48px-128.png" />
+    <Content Include="Content\BursifyUploads\102\images\t2.png" />
+    <Content Include="Content\BursifyUploads\102\images\Thabang.jpg" />
+    <Content Include="Content\BursifyUploads\102\images\Trade.JPG" />
+    <Content Include="Content\BursifyUploads\104\images\14114811_1398070353542681_2195040286647148746_o.png" />
+    <Content Include="Content\BursifyUploads\104\images\campaign1.jpg" />
+    <Content Include="Content\BursifyUploads\104\images\Capture.JPG" />
+    <Content Include="Content\BursifyUploads\1501\images\vlcsnap-2016-09-04-23h06m14s893.png" />
     <Content Include="Content\BursifyUploads\1\images\43fa8808141683597115653296_700w_0.jpg" />
     <Content Include="Content\BursifyUploads\default-campaign.jpg" />
     <Content Include="Content\css\blank.gif" />
@@ -681,6 +696,7 @@
     <Content Include="scripts\spa\bursify\student\campaigns\testCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\viewCampaigns.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\vode.html" />
+    <Content Include="scripts\spa\bursify\student\campaigns\dialog.tmpl.html" />
     <Content Include="scripts\spa\bursify\student\home\index.html" />
     <Content Include="scripts\spa\bursify\student\home\studentCtrl.js" />
     <Content Include="scripts\spa\bursify\student\messages\messages.html" />
@@ -866,6 +882,8 @@
     <None Include="Properties\PublishProfiles\bursify - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bursify - Web Deploy.pubxml" />
     <Content Include="scripts\vendors\bower.json" />
+    <None Include="Properties\PublishProfiles\bursifywebapp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bursifywebapp - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

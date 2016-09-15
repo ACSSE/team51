@@ -208,7 +208,7 @@ namespace Bursify.Web.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("IsEndorsed")]
         public HttpResponseMessage IsEndorsed(HttpRequestMessage request, int userId, int campaignId)
         {
@@ -260,6 +260,18 @@ namespace Bursify.Web.Controllers
             var sponsorNames = _studentApi.GetCampaignFunders(campaignId);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorNames);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("DelCampaign")]
+        public HttpResponseMessage DelCampaign(HttpRequestMessage request, int campaignId)
+        {
+            _studentApi.RemoveCampaign(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
 
             return response;
         }

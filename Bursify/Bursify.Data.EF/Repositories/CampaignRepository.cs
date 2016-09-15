@@ -3,6 +3,7 @@ using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.Entities.User;
 using System.Linq;
+using System;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -18,7 +19,7 @@ namespace Bursify.Data.EF.Repositories
         public List<Campaign> GetAllCampaigns()
         {
             var campaigns = _dataSession.UnitOfWork.Context.Set<Campaign>()
-                .Where(campaign => campaign.Status.Equals("Active"))
+                .Where(campaign => campaign.Status.Equals("Active", StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
             return campaigns;

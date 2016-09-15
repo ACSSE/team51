@@ -179,7 +179,11 @@
             </site>
             <site name="Bursify.Web" id="4">
                 <application path="/" applicationPool="Clr4IntegratedAppPool">
+<<<<<<< HEAD
                     <virtualDirectory path="/" physicalPath="C:\Users\Thomas-PC\Documents\Genesys\team51\Bursify\Bursify.Web" />
+=======
+                    <virtualDirectory path="/" physicalPath="C:\Users\Mack\Documents\ThirdYearProjectRepo\team51\Bursify\Bursify.Web" />
+>>>>>>> f8c2e45d03d81e2d9b9a8a5cf9064f2a14e74d9f
                     
                 </application>
                 <bindings>

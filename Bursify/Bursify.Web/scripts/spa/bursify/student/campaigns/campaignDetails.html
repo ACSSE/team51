@@ -30,7 +30,7 @@
                             }
                         </style>
                         <div class="row" style="margin-bottom:10px">
-                            <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left">{{campaign.Location}}</span></div>
+                            <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left"></span>{{campaign.Location}}</div>
                             <div class="col-lg-4"><span><i class="fa fa-tags" aria-hidden="true">{{campaign.CampaignType}}</i></span></div>
                             <div class="col-lg-4">
                                 <i class="upvote" ng-click="upvodeCampaign($event,campaign.CampaignId)" ng-disabled="isMyCampaign == true">
@@ -53,79 +53,73 @@
                         <md-button ng-click="fundCampaign($event,campaign)" ng-disabled="true" class="btn btn-success form-control full-opacity-hover" style="margin-top:10px">Fund this Campaign</md-button>
                     </md-card-header-text>
                 </div>
-                <div class="col-lg-4">
-                    <h4>Funders</h4>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">Kenda Murguia</a>
-                        <a href="#" class="list-group-item">Mirta Schnur</a>
-                        <a href="#" class="list-group-item">Entelect</a>
-                        <a href="#" class="list-group-item">Julianna Ayon</a>
-                        <a href="#" class="list-group-item">Ciera Sailor</a>
-                        <a href="#" class="list-group-item">Vennie Watkin</a>
-                    </div>
+                <div class="col-lg-4"><!--Start of Funders column-->
+                <h4>Funders</h4>
+                    <div class="list-group"   style="height:300px;overflow:scroll;">
+                        <p href="" class="list-group-item" ng-repeat="funder in funders track by $index">{{funder}}</p>
+                    </div><!--End of Funders column-->
                 </div>
             </div>
-
-
         </md-card-header>
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">Campaign Description:</span>
             </md-card-title-text>
         </md-card-title>
+
         <md-card-content>
-            <p><pre>{{campaign.Description}}</pre> </p>
+            <style>
+               code {
+          background-color: #EEEEEE;
+          font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+        }
+        pre {
+          background-color: #EEEEEE;
+          font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+          margin-bottom: 10px;
+          max-height: 600px;
+          overflow: auto;
+          padding: 5px;
+          width: auto;
+        }
+            </style>
+            <p><pre>{{campaign.Description}}</pre></p>
         </md-card-content>
-       
 
         <div id="content">
 
             <div class="col-md-12 text-left title" style="padding-bottom: 15px; padding-top: 15px;"><h2>You may also like</h2></div>
-            <div id="content" class="search-v1" style="padding-left: 0;">
-                <div class="col-md-12">
-                    <div class="col-md-12 tabs-area box-shadow-none">
-                        <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
-                            <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
 
-                                <div class="" ng-repeat="campaignDetail in SuggestedCampaigns">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a ng-href="#/student/campaign-details/{{campaignDetail.CampaignId}}">
-
-                                                <img ng-src="../../../../../Content/BursifyUploads/{{campaignDetail.StudentId}}/images/{{campaignDetail.PicturePath}}" class="media-object search-v1-avatar">
-                                            </a>
-                                        </div>
-
-
-                                        <div class="media-body">
-                                            <h4 class="media-heading"><a ng-href="#/student/campaign-details/{{campaignDetail.CampaignId}}">{{campaignDetail.CampaignName}}</a></h4>
-                                            <p>{{campaignDetail.Description}}</p>
-                                        </div>
-
-                                        <div class="pull-left">
-                                            <h4>Closing Date:</h4><p>{{campaignDetail.EndDate}}</p>
-                                            <md-progress-linear md-mode="determinate" value="{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}"></md-progress-linear>
-
-                                        </div>
-                                        <!--<md-progress-linear md-mode="determinate" value="{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}"></md-progress-linear>
-
-                                    <div class="pull-right">
-                                        <md-progress-linear md-mode="determinate" value="{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}"></md-progress-linear>
-                                    </div>-->
-
-                                    </div>
+            <div ng-repeat="campaignDetail in campaigns" class="col-md-4">
+                <a ng-href="#/student/campaign-details/{{campaignDetail.CampaignId}}">
+                    <md-card>
+                        <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaignDetail.StudentId}}/images/{{campaignDetail.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{campaignDetail.CampaignName}}</span>
+                                <small>{{campaignDetail.Name + ' '+  campaignDetail.Surname}}</small><br>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <p style="margin-top: -20px;height: 26px;">{{campaignDetail.Tagline}}</p>
+                            <p><span class="glyphicon glyphicon-map-marker">{{campaignDetail.Location}}</span></p>
+                            <md-progress-linear md-mode="determinate" value="{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <br />
+                                    <small>{{(campaignDetail.AmountContributed / campaignDetail.AmountRequired)*100 | number:0}}%</small>
+                                    <b><small>Funded</small></b>
                                 </div>
-                                <!--<div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area2" aria-labelledby="tabs-demo7-area2">
+                                <div class="col-md-5 pull-left">
+                                    <br />
+                                    <small>R{{campaignDetail.AmountContributed}}</small>
+                                    <b><small>Funded</small></b>
+                                </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade col-md-12 padding-0" id="tabs-demo7-area3" aria-labelledby="tabs-demo7-area3">
-                            </div>-->
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                        </md-card-content>
+                    </md-card>
+                </a>
             </div>
-
         </div>
     </md-card>
 </div>

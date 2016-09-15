@@ -27,7 +27,13 @@
 
         }, function (wantsFullScreen) {
 
+<<<<<<< HEAD
+                $scope.customFullscreen = (wantsFullScreen === true);
+            });
+        };
+=======
             $scope.customFullscreen = (wantsFullScreen === true);
         });
     };
+>>>>>>> f8c2e45d03d81e2d9b9a8a5cf9064f2a14e74d9f
 })(angular.module('BursifyApp'));

@@ -8,10 +8,7 @@
     <div ng-cloak>
        
             <form name="newCampaignForm" ng-submit="addStudentCampaign()">
-               
-
-            <md-tabs md-dynamic-height md-border-bottom>
-
+            <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
                 <md-tab label="Details" id="details">
                     <md-content class="md-padding">
                         <div class="col-lg-12">
@@ -87,24 +84,36 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Campaign Picture</label><br />
-                                                <div class="fileUpload btn btn-primary">
-                                                    <span>Upload</span>
-                                                    <input id="uploadIDBtn" type="file" ng-model="campaign.PicturePath" class="upload" ng-file-select="prepareVideo($files)" />
-                                                </div>
+                                                <span>
+                                                    <img ng-click="triggerUpload()" class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" alt="Student profile picture" />
+                                                </span>
+                                                <input type="file" ng-file-select="prepareImage($files)" style="display:none" id="fileInput" ng-model="campaign.PicturePath" name="filedata" />
 
-                                                <input id="uploadIDFile" type="text" ng-model="campaign.PicturePath" placeholder="Campaign Image" disabled="disabled" />
-                                                <label>File uploaded is {{campaign.PicturePath}}</label>
+                                                <script>
+                                                    $('#fileSelected').on('change', function (evt) {
+                                                        var files = $(evt.currentTarget).get(0).files;
+
+                                                        if (files.length > 0) {
+                                                            $('#fileInput').text(files[0].name);
+                                                            $('#fileSize').text(files[0].size);
+                                                            $('#filePath').text($('#fileSelected').val());
+                                                        }
+                                                    });
+                                                </script>
+
+                                                <!--<input id="uploadIDFile" type="text" ng-model="campaign.PicturePath" placeholder="Campaign Image" disabled="disabled" />
+                                               
                                             </div>
 
                                             <div class="col-md-6">
-                                                <label>Campaign Video</label><br />
+                                                <!--<label>Campaign Video</label><br />
                                                 <div class="fileUpload btn btn-primary">
                                                     <span>Upload</span>
                                                     <input id="uploadVideoBtn" type="file" ng-model="campaign.VideoPath" class="upload" ng-file-select="prepareVideo($files)" />
                                                 </div>
 
                                                 <input id="uploadIDVideoFile" type="text" ng-model="campaign.VideoPath" placeholder="Campaign Image" disabled="disabled" />
-                                                <label>File uploaded is {{campaign.VideoPath}}</label>
+                                                <label>File uploaded is {{campaign.VideoPath}}</label>-->
                                             </div>
 
                                         </div>
@@ -114,12 +123,12 @@
                             <div class="col-md-4">
                                 <div class="thumbnail" style="background-color:white">
 
-                                    <img class="img-rounded" ng-src="../../../../../Content/BursifyUploads/default-campaign.jpg" alt="campagin picture" style="width:100%;height:200px;">
+                                    <img class="img-rounded" ng-src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture" style="width:100%;height:200px;">
                                     <div class="caption">
                                         <b>{{campaign.CampaignName}}</b><br>
                                         <small>{{StudentName}}</small><br><br>
                                         <p style="margin-top:-20px">{{campaign.Tagline}}</p>
-                                        <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+                                        <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{campaign.AmountContributed}}" aria-valuemin="0" aria-valuemax="{{campaign.AmountRequired}}" style="width:{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}">
                                                 <span class="sr-only">{{(campaign.AmountContributed / campaign.AmountRequired) * 100 | number:0}}</span>
@@ -140,12 +149,7 @@
                                 </div>
                             </div>
 
-                                        <md-button   class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" href="#/student/add-campaign/#amount">Next</md-button>
-                            <script type="text/javascript">
-    $('.nexttab').click(function(){
-        $('.nav-tabs > .active').next('md-tab').find('a').trigger('click');
-});
-                            </script>
+                                        <md-button   class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
                         </div>
                     </md-content>
                 </md-tab> <!-- Campaign Details Section-->
@@ -182,7 +186,7 @@
                                         <b>{{campaign.CampaignName}}</b><br>
                                         <small>{{StudentName}}</small><br><br>
                                         <p style="margin-top:-20px">{{campaign.Tagline}}</p>
-                                        <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+                                        <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{campaign.AmountContributed}}" aria-valuemin="0" aria-valuemax="{{campaign.AmountRequired}}" style="width:{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}">
                                                 <span class="sr-only">{{(campaign.AmountContributed / campaign.AmountRequired) * 100 | number:0}}</span>
@@ -202,7 +206,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}">Next</md-button>
+                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
                         </div>
                     </md-content>
                 </md-tab><!--Campaign Target Amount Section-->
@@ -228,7 +232,7 @@
                                         <b>{{campaign.CampaignName}}</b><br>
                                         <small>{{StudentName}}</small><br><br>
                                         <p style="margin-top:-20px">{{campaign.Tagline}}</p>
-                                        <p><span class="glyphicon glyphicon-map-marker">{{campaign.Location}}</span></p>
+                                        <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{campaign.AmountContributed}}" aria-valuemin="0" aria-valuemax="{{campaign.AmountRequired}}" style="width:{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}">
                                                 <span class="sr-only">{{(campaign.AmountContributed / campaign.AmountRequired) * 100 | number:0}}</span>
@@ -248,7 +252,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}">Next</md-button>
+                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
                         </div>
                     </md-content>
                 </md-tab><!--Campaign story Section-->

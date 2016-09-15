@@ -126,5 +126,51 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("UploadCampaignImage")]
+        [MimeMultipart]
+        public async Task<HttpResponseMessage> UploadCampaignImage(HttpRequestMessage request, int userId, int campaignId)
+        {
+            var camapaign = _studentApi.GetSingleCampaign(campaignId);
+
+            if (camapaign == null) return null;
+
+            var imagePath = HttpContext.Current.Server.MapPath("~/Content/BursifyUploads/" + userId + "/images");
+
+            var directory = new DirectoryInfo(imagePath);
+
+            if (!directory.Exists) { directory.Create(); }
+
+            var multipartFormDataStreamProvider = new UploadMultipartFormProvider(directory.FullName);
+
+            // Read the MIME multipart asynchronously 
+            await Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
+
+            var localFileName = multipartFormDataStreamProvider
+                .FileData.Select(multiPartData => multiPartData.LocalFileName).ToList();
+
+            var nameOfFile = localFileName[0];
+
+            // Create response
+            if (nameOfFile == null) return null;
+            var fileUploadResult = new FileUploadResult
+            {
+                LocalFilePath = nameOfFile,
+                FileName = Path.GetFileName(nameOfFile),
+                FileLength = new FileInfo(nameOfFile).Length
+            };
+
+            
+
+            camapaign.PicturePath = fileUploadResult.FileName;
+
+            //update the user in the database
+            _studentApi.SaveCampaign(camapaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, fileUploadResult);
+
+            return response;
+        }
     }
 }
