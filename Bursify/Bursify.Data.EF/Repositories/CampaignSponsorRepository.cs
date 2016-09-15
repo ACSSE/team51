@@ -2,6 +2,7 @@
 using System.Linq;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.Campaigns;
+using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Uow;
 using Microsoft.Ajax.Utilities;
 
@@ -9,8 +10,11 @@ namespace Bursify.Data.EF.Repositories
 {
     public class CampaignSponsorRepository : Repository<CampaignSponsor>
     {
+        private readonly DataSession _dataSession;
+
         public CampaignSponsorRepository(DataSession dataSession) : base(dataSession)
         {
+            _dataSession = dataSession;
         }
 
         public List<Campaign> GetSupportedCamapigns(int sponsorId)
@@ -22,6 +26,21 @@ namespace Bursify.Data.EF.Repositories
         public int GetNumberOfSupportersOfCampaign(int Id)
         {
             return FindMany(x => x.CampaignId == Id).DistinctBy(x => x.SponsorId).Count();
+        }
+
+        public List<string> GetCampaignFunders(int campaignId)
+        {
+            var sponsors = FindMany(x => x.CampaignId == campaignId);
+
+            List<string> sponsorNames = sponsors.Select(sponsor => 
+            _dataSession.UnitOfWork.Context.Set<Sponsor>()
+            .Where(x => x.ID == sponsor.SponsorId)
+            .Select(x => x.CompanyName)
+            .FirstOrDefault())
+            .ToList();
+
+
+            return sponsorNames;
         }
 
         //saves by adding amount if has an entry already
