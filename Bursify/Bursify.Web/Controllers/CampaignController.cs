@@ -263,5 +263,17 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("DelCampaign")]
+        public HttpResponseMessage DelCampaign(HttpRequestMessage request, int campaignId)
+        {
+            _studentApi.RemoveCampaign(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
     }
 }

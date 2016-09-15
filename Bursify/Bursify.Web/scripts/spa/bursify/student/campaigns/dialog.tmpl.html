@@ -1,0 +1,31 @@
+﻿<md-dialog  >
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools" md-colors="{background: 'teal'}">
+                <h2>Delete campaign</h2>
+                <span flex></span>
+                
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <h2>You are about to delete a campaign</h2>
+                <p>
+                    This requires password confirmation to proceed. Please enter your password below to confirm the delete.
+                </p>
+
+                <div class="form-group">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" name="inputPassword" class="form-control" ng-model="userPassword"
+                           required required-message="'Password is required'">
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button md-colors="{background: 'green'}" ng-click="Approve()">
+               Approve
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

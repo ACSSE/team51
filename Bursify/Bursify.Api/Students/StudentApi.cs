@@ -188,6 +188,20 @@ namespace Bursify.Api.Students
             }
         }
 
+        public void RemoveCampaign(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var campaign = campaignRepository.LoadById(campaignId);
+
+                campaign.Status = "InActive";
+
+                SaveCampaign(campaign);
+
+                uow.Commit();
+            }
+        }
+
         #endregion
 
         #region Sponsor
