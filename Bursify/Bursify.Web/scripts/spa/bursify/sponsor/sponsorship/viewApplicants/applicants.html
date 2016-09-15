@@ -36,8 +36,8 @@
                     </thead>
                     <tbody md-body>
                         <tr md-row md-select="dessert" md-select-id="Name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect" data-ng-repeat="applicant in Applicants.data | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit">
-                            <td md-cell style="padding: 0;"><a href="#/sponsor/sponsorships/view/student/{{applicant.ID}}/{{sponsorshipId}}"><img class="" style="width: 105px; height: 95px;" ng-src="{{applicant.PicturePath}}" alt="Student profile picture" /></a></td>
-                            <td md-cell style="font-size: 14px;">{{applicant.Name}} </td>
+                            <td md-cell style="padding: 0;"><a href="#/sponsor/sponsorships/view/student/{{applicant.ID}}/{{sponsorshipId}}"><img class="" style="width: 105px; height: 95px;" ng-src="Content/BursifyUploads/{{applicant.ID}}/images/{{applicant.PicturePath}}" alt="Student profile picture" /></a></td>
+                            <td md-cell style="font-size: 14px;">{{applicant.Name}} {{applicant.Surname}} </td>
                             <td md-cell>{{applicant.Gender}}</td>
                             <td md-cell>{{applicant.Age}}</td>
                            

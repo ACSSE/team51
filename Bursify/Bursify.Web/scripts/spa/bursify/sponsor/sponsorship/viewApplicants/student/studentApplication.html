@@ -19,7 +19,7 @@
                 <!-- Profile Image -->
                 <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" style="width: 150px; height: 140px;" ng-src="/Content/images/student/student2.jpg" alt="Student profile picture">
+                        <img class="profile-user-img img-responsive img-circle" style="width: 150px; height: 140px;" ng-src="Content/BursifyUploads/{{Student.ID}}/images/{{Student.ProfilePicturePath}}" alt="Student profile picture">
                         <h3 class="profile-username text-center">{{Student.Student.Firstname}} {{Student.Student.Surname}}</h3>
                         <h4 class="text-muted text-center">{{Student.Student.Age}} yrs old.</h4>
 
@@ -96,26 +96,26 @@
                                     <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Analytics - Student Progress</md-subheader>
                                     <md-content class="md-padding">
 
-                                        <!--<div class="chart-container">
+                                        <div class="chart-container">
                                             <div fusioncharts
                                                  width="100%"
                                                  height="400"
                                                  type="line"
                                                  dataSource="{{myDataSource}}">
                                             </div>
-                                        </div>-->
+                                        </div>
 
                                     </md-content>
                                     <md-divider></md-divider>
                                     <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Subjects - Most Recent Results</md-subheader>
-                                    <!--<div class="chart-container">
+                                    <div class="chart-container">
                                         <div fusioncharts
                                              width="100%"
                                              height="350"
                                              type="bar2d"
                                              dataSource="{{myDataSource2}}">
                                         </div>
-                                    </div>-->
+                                    </div>
                                     <md-divider></md-divider>
                                 </md-list>
                             </md-content>
