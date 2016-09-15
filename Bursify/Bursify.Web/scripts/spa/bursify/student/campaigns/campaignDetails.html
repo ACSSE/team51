@@ -54,39 +54,36 @@
                     </md-card-header-text>
                 </div>
                 <div class="col-lg-4"><!--Start of Funders column-->
-                    <div class="list-group" style="height:300px;overflow:scroll;">
-                        <a href="" class="list-group-item-heading"><h4>Funders</h4></a>
-                        <a href="" class="list-group-item">Kenda Murguia</a>
-                        <a href="" class="list-group-item">Mirta Schnur</a>
-                        <a href="" class="list-group-item">Entelect</a>
-                        <a href="" class="list-group-item">Julianna Ayon</a>
-                        <a href="" class="list-group-item">Ciera Sailor</a>
-                        <a href="" class="list-group-item">Vennie Watkin</a>
-                        <a href="" class="list-group-item">Vennie Watkin</a>
-                        <a href="" class="list-group-item">Vennie Watkin</a>
-                        <a href="" class="list-group-item">Vennie Watkin</a>
-                        <a href="" class="list-group-item">Vennie Watkin</a>
-                        <a href="" class="list-group-item">Vennie Watkin</a>
-                        <a href="" class="list-group-item">Vennie Watkin</a>
-                        <a href="" class="list-group-item">Vennie Watkin</a>
-                        <a href="" class="list-group-item">Vennie Watkin</a>
+                <h4>Funders</h4>
+                    <div class="list-group"   style="height:300px;overflow:scroll;">
+                        <p href="" class="list-group-item" ng-repeat="funder in funders track by $index">{{funder}}</p>
                     </div><!--End of Funders column-->
                 </div>
             </div>
-
         </md-card-header>
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">Campaign Description:</span>
             </md-card-title-text>
         </md-card-title>
+
         <md-card-content>
             <style>
-                pre {
-                    white-space: pre-wrap;
-                }
+               code {
+          background-color: #EEEEEE;
+          font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+        }
+        pre {
+          background-color: #EEEEEE;
+          font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+          margin-bottom: 10px;
+          max-height: 600px;
+          overflow: auto;
+          padding: 5px;
+          width: auto;
+        }
             </style>
-            <p><pre width="150px">{{campaign.Description}}</pre></p>
+            <p><pre>{{campaign.Description}}</pre></p>
         </md-card-content>
 
         <div id="content">

@@ -8,10 +8,7 @@
     <div ng-cloak>
        
             <form name="newCampaignForm" ng-submit="addStudentCampaign()">
-               
-
-            <md-tabs md-dynamic-height md-border-bottom>
-
+            <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
                 <md-tab label="Details" id="details">
                     <md-content class="md-padding">
                         <div class="col-lg-12">
@@ -140,12 +137,7 @@
                                 </div>
                             </div>
 
-                                        <md-button   class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" href="#/student/add-campaign/#amount">Next</md-button>
-                            <script type="text/javascript">
-    $('.nexttab').click(function(){
-        $('.nav-tabs > .active').next('md-tab').find('a').trigger('click');
-});
-                            </script>
+                                        <md-button   class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
                         </div>
                     </md-content>
                 </md-tab> <!-- Campaign Details Section-->
@@ -202,7 +194,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}">Next</md-button>
+                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
                         </div>
                     </md-content>
                 </md-tab><!--Campaign Target Amount Section-->
@@ -248,7 +240,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}">Next</md-button>
+                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
                         </div>
                     </md-content>
                 </md-tab><!--Campaign story Section-->

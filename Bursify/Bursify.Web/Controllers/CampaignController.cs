@@ -193,7 +193,7 @@ namespace Bursify.Web.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("IsEndorsed")]
         public HttpResponseMessage IsEndorsed(HttpRequestMessage request, int userId, int campaignId)
         {

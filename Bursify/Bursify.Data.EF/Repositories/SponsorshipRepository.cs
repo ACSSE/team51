@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Uow;
-using System.Data.Entity;
 
 namespace Bursify.Data.EF.Repositories
 {

@@ -12,6 +12,7 @@
         //Default values 
         $scope.campaign = {};
         $scope.campaigns = [];
+        $scope.funders = [];
         $scope.loadingCampaign = true;
         $scope.vote = "upvote";
         $scope.upvoted = "black";
@@ -30,16 +31,31 @@
         $scope.loadCampaign = function () {
         };
 
+        function loadFunders() {
+            $scope.loadingCampaign = true;
+            apiService.get('/api/Campaign/GetCampaignFunders/?campaignId=' + $routeParams.campaignId, null,
+            myFundersLoadCompleted,
+            myFundersLoadFailed);
+        }
+
+        function myFundersLoadCompleted(response) {
+            $scope.funders = response.data;
+        }
+
+        function myFundersLoadFailed(response) {
+            notificationService.displayError(response.data);
+        }
+
         function loadCampaign() {
             $scope.loadingCampaign = true;
             apiService.get('/api/Campaign/GetCampaign/?campaignId=' + $routeParams.campaignId, null,
             myCampaignLoadCompleted,
             myCampaignLoadFailed);
 
-            //Load suppoters
-            //loadSupporters();
-
-            //Load suggested campaigns 
+            //Load funders
+            loadFunders();
+            //Voted or not
+            campaignUpvoted();
             //Load suggested campaigns
             $scope.loadingCampaign = true;
             apiService.get('/api/Campaign/GetSimilarCampaigns/?campaignId=' + $routeParams.campaignId, null,
@@ -64,6 +80,15 @@
         function campaignsLoadCompleted(result) {
             $scope.campaigns = result.data;
             $scope.loadingCampaigns = false;
+        }
+
+        function campaignUpvoted()
+        {
+            
+            if (apiService.get('/api/Student/GetNumberSupportedCampaign/?userId=' + $scope.sponsorId + "&campaignId=" + $routeParams.campaignId))
+            {
+                //$scope.upvoted = "green";
+            }
         }
 
         function campaignsLoadFailed(response) {
@@ -118,8 +143,8 @@
 
                 //api / SponsorSponsorCampaign
                 apiService.post('/api/Sponsor/SponsorCampaign/', sponsorCampaign,
-                null,
-                null);
+                myCampaignSponsorCompleted,
+                myCampaignSponsorFailed);
 
 
                 //Add Amount Contributed to the existing

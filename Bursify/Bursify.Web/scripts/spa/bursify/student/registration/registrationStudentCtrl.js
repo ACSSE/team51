@@ -26,8 +26,6 @@
 
             var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
             $scope.selectedIndex = index;
-
-
         };
 
         $scope.myDate = new Date();

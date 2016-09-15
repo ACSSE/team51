@@ -6,7 +6,7 @@
     confirmDeleteCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', 'fileUploadService', '$mdDialog', '$mdMedia', '$rootScope'];
 
     function confirmDeleteCtrl($scope, $location, $routeParams, apiService, notificationService, fileUploadService, $mdDialog, $mdMedia, $rootScope) {
-        $scope.pageClass = "page-campaign-details";
+        $scope.pageClass = "page-campaign-ConfirmDelete";
 
             $scope.cancelDelete = function () {
                 $mdDialog.cancel();
@@ -30,5 +30,4 @@
                 $scope.customFullscreen = (wantsFullScreen === true);
             });
         };
-    }
 })(angular.module('BursifyApp'));
