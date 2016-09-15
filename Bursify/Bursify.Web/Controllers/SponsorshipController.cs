@@ -31,6 +31,11 @@ namespace Bursify.Web.Controllers
 
             var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
+            foreach (var sponsorship in sponsorshipVm)
+            {
+                sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
+            }
+
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
             return response;
@@ -45,6 +50,11 @@ namespace Bursify.Web.Controllers
 
             var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
+            foreach(var sponsorship in sponsorshipVm)
+            {
+                sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
+            }
+
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
             return response;
@@ -58,6 +68,11 @@ namespace Bursify.Web.Controllers
             var sponsorships = _studentApi.GetAllSponsorships(type);
 
             var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
+
+            foreach (var sponsorship in sponsorshipVm)
+            {
+                sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
+            }
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
@@ -88,6 +103,8 @@ namespace Bursify.Web.Controllers
             var model = new SponsorshipViewModel();
 
             var sponsorshipVm = model.SingleSponsorshipMap(sponsorship);
+
+            sponsorshipVm.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorshipVm.ID).Count;
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
@@ -125,6 +142,8 @@ namespace Bursify.Web.Controllers
             var model = new SponsorshipViewModel();
 
             var sponsorshipVm = model.SingleSponsorshipMap(sponsorship);
+
+            sponsorshipVm.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorshipVm.ID).Count;
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 

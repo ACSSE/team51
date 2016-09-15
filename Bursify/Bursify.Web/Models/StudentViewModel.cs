@@ -65,7 +65,7 @@ namespace Bursify.Web.Models
             Race = student.Race;
             Gender = student.Gender;
             CurrentOccupation = student.CurrentOccupation;
-            StudyField = student.StudyField.Split(',');
+            StudyField = student.StudyField.Split(',').ToArray();
             HighestAcademicAchievement = student.HighestAcademicAchievement;
             YearOfAcademicAchievement = student.YearOfAcademicAchievement;
             DateOfBirth = student.DateOfBirth;

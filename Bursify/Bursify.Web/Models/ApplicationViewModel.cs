@@ -7,6 +7,7 @@ namespace Bursify.Web.Models
 {
     public class ApplicationViewModel
     {
+        public int SponsorshipId { get; set; }
         public string SponsorName { get; set; }
         public string SponsorshipName { get; set; }
         public DateTime ApplicationDate { get; set; }
@@ -14,8 +15,9 @@ namespace Bursify.Web.Models
         public string Status { get; set; }
         public bool SponsorshipOffered { get; set; }
 
-        public ApplicationViewModel(string sponsorName, string sponsorshipName, DateTime appDate, DateTime closingDate, string status)
+        public ApplicationViewModel(int sponsorshipId, string sponsorName, string sponsorshipName, DateTime appDate, DateTime closingDate, string status)
         {
+            SponsorshipId = sponsorshipId;
             SponsorName = sponsorName;
             SponsorshipName = sponsorshipName;
             ApplicationDate = appDate;

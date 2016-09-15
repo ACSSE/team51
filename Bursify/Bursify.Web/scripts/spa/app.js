@@ -98,7 +98,7 @@
                  // resolve: { isAuthenticated: isAuthenticated }
              })
 
-              .when("/sponsor/sponsorships/view/student/:StudentId", {
+              .when("/sponsor/sponsorships/view/student/:StudentId/:SponsorshipId", {
                   templateUrl: "scripts/spa/bursify/sponsor/sponsorship/ViewApplicants/student/studentapplication.html",
                   controller: "studentApplicationCtrl",
                   // resolve: { isAuthenticated: isAuthenticated }
