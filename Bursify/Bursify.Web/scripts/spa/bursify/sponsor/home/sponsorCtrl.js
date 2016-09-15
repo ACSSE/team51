@@ -10,15 +10,26 @@
         };
     });
 
-    sponsorCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$timeout'];
+    sponsorCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$timeout', '$rootScope'];
 
-    function sponsorCtrl($scope, apiService, notificationService, $timeout) {
+    function sponsorCtrl($scope, apiService, notificationService, $timeout, $rootScope) {
         $scope.pageClass = 'page-home-sponsor';
         
         apiService.get('/api/student/GetAllStudents/', null, CompletedStudent, FailedStudent);
 
         function CompletedStudent(result) {
             $scope.Students = result.data;
+            apiService.get('/api/student/Getstudentsuggestions/?sponsorId=' + $rootScope.repository.loggedUser.userIden, null, Completedsuggested, Failedsuggested);
+
+        }
+
+        $scope.Recco = {}
+        function Completedsuggested(result) {
+            $scope.Recco = result.data
+        }
+
+        function Failedsuggested() {
+            notificationService.displayError("Could not load suggested students at this time.");
         }
 
         function FailedStudent() {
