@@ -156,6 +156,19 @@ namespace Bursify.Web.Controllers
         {
             var students = _sponsorApi.GetStudentsApplying(sponsorshipId);
 
+            /*foreach (var student in students)
+            {
+                int id = student.ID;
+                string name = student.Firstname;
+                string surname = student.Surname;
+                string school = _studentApi.GetInstitution(student.InstitutionID).Name;
+                string image = _studentApi.GetUserInfo(student.ID).ProfilePicturePath;
+                int age = student.Age;
+                string province = _studentApi.GetAddress(student.ID, "Residential").Province;
+                string level = student.EducationLevel;
+                int average = _studentApi.GetMostRecentReport(student.ID).Average;
+                string gender = student.Gender;
+            }*/
            
             var data = students.Select(applicant =>
                                     new Applicant(applicant.ID, applicant.Firstname,

@@ -102,7 +102,11 @@ namespace Bursify.Web.Models
 
         public static List<SponsorshipViewModel> MultipleSponsorshipsMap(List<Sponsorship> sponsorships)
         {
+<<<<<<< HEAD
             return sponsorships.Select(sponsorship => new SponsorshipViewModel(sponsorship)).ToList();
+=======
+            return sponsorships.Select(sponsorship => (new SponsorshipViewModel()).SingleSponsorshipMap(sponsorship)).ToList();
+>>>>>>> 4a6931fd763af4494d2f28562b0e923404fcd73e
         }
     }
 }
