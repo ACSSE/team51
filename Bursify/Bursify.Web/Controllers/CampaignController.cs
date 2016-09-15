@@ -194,6 +194,18 @@ namespace Bursify.Web.Controllers
 
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("IsEndorsed")]
+        public HttpResponseMessage IsEndorsed(HttpRequestMessage request, int userId, int campaignId)
+        {
+            var success = _studentApi.IsEndorsed(userId, campaignId);
+                   
+            var response = request.CreateResponse(HttpStatusCode.OK, success);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetNumberCampaignsByStudent")]
         public HttpResponseMessage GetNumberCampaignsByStudent(HttpRequestMessage request, int Id)
         {
