@@ -148,7 +148,7 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
-
+       
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetCampaignAccount")]
@@ -204,5 +204,37 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetSimilarCampaigns")]
+        public HttpResponseMessage GetSimilarCampaigns(HttpRequestMessage request, int campaignId)
+        {
+            var campaigns = _studentApi.GetSimilarCampaigns(campaignId);
+
+            var campaignVm = CampaignViewModel.MultipleCampaignsMap(campaigns);
+
+            foreach (var c in campaignVm)
+            {
+                var student = _studentApi.GetStudent(c.StudentId);
+                c.Name = student.Firstname;
+                c.Surname = student.Surname;
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetCampaignFunders")]
+        public HttpResponseMessage GetCampaignFunders(HttpRequestMessage request, int campaignId)
+        {
+            var sponsorNames = _studentApi.GetCampaignFunders(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, sponsorNames);
+
+            return response;
+        }
     }
 }

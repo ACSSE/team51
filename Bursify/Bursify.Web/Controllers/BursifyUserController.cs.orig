@@ -7,9 +7,16 @@ using Bursify.Web.Utility;
 using System.Web;
 using System.Linq;
 using System.IO;
+<<<<<<< HEAD
+using Bursify.Api.Students;
+=======
 using System.Threading.Tasks;
 using Bursify.Api.Students;
 using Bursify.Api.Users;
+using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
+>>>>>>> 21f8ed14a9659b63d53b494edeea6db36bfa0ed0
 
 namespace Bursify.Web.Controllers
 {
@@ -17,6 +24,13 @@ namespace Bursify.Web.Controllers
     public class BursifyUserController : ApiController
     {
         private readonly MembershipApi _membershipApi;
+<<<<<<< HEAD
+        private readonly StudentApi _studentApi;
+
+        public BursifyUserController(MembershipApi membershipApi, StudentApi studentApi)
+        {
+            _membershipApi = membershipApi;
+=======
         private readonly UserApi _userApi;
         private readonly StudentApi _studentApi;
 
@@ -24,6 +38,7 @@ namespace Bursify.Web.Controllers
         {
             _membershipApi = membershipApi;
             _userApi = userApi;
+>>>>>>> 21f8ed14a9659b63d53b494edeea6db36bfa0ed0
             _studentApi = studentApi;
         }
 
@@ -31,11 +46,19 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetUser")]
         public HttpResponseMessage GetUser(HttpRequestMessage request, string email)
         {
-            var user = _membershipApi.GetUserByEmail(email);
+            BursifyUser user;
+            BursifyUser userVm = null;
 
-            var model = new BursifyUserViewModel();
-
-            var userVm = model.MapSingleBursifyUser(user);
+            if (_userApi.GetUserType(email).Equals("Student"))
+            {
+                user = _userApi.GetCompletStudentUser(email);
+                userVm = new BursifyUserViewModel().MapStudentUser(user);
+            }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(email);
+                userVm = new BursifyUserViewModel().MapSponsorUser(user);
+            }
 
             userVm.PasswordHash = null;
             userVm.PasswordSalt = null;
@@ -49,28 +72,22 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetUser")]
         public HttpResponseMessage GetUser(HttpRequestMessage request, int userId)
         {
-            var user = _userApi.GetCompleteUser(userId);
+            BursifyUser user;
+            BursifyUser userVm = null;
 
-            var model = new BursifyUserViewModel();
-
-            var userVm = model.MapSingleBursifyUser(user);
+            if (_userApi.GetUserType(userId).Equals("Student"))
+            {
+                user = _userApi.GetCompletStudentUser(userId);
+                userVm = new BursifyUserViewModel().MapStudentUser(user);
+            }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(userId);
+                userVm = new BursifyUserViewModel().MapSponsorUser(user);
+            }
 
             userVm.PasswordHash = null;
             userVm.PasswordSalt = null;
-
-            var report = _studentApi.GetMostRecentReport(userId);
-            var studentModel = new StudentViewModel(_studentApi.GetStudent(userId));
-
-            if (report != null)
-            {
-                studentModel.AverageMark = report.Average;
-            }
-
-<<<<<<< HEAD
-            //userVm.Student = studentModel.ReverseMap();
-=======
-            userVm.Student = studentModel.ReverseMap();
->>>>>>> 07ef1091b36463fdc3eec0c8f8d480b0f40d4919
 
             var response = request.CreateResponse(HttpStatusCode.OK, userVm);
 
@@ -95,13 +112,8 @@ namespace Bursify.Web.Controllers
             var multipartFormDataStreamProvider = new UploadMultipartFormProvider(directory.FullName);
 
             // Read the MIME multipart asynchronously 
-<<<<<<< HEAD
-            Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);//.ContinueWith(task => task.RunSynchronously());
-            
-=======
             await Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
            
->>>>>>> 07ef1091b36463fdc3eec0c8f8d480b0f40d4919
             var localFileName = multipartFormDataStreamProvider
                 .FileData.Select(multiPartData => multiPartData.LocalFileName).ToList();
 

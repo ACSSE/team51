@@ -61,13 +61,17 @@ namespace Bursify.Web
             #endregion
 
             #region Campaign
+                  "~/Scripts/spa/bursify/sponsor/campaigns/campaignsCtrl.js",
+                  "~/Scripts/spa/bursify/sponsor/campaigns/viewCampaignCtrl.js",
+
                   "~/Scripts/spa/bursify/student/campaigns/campaignsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/campaignDetailsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/addCampaignCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/editCampaignCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/myCampaignsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/addAccountCtrl.js",
-
+                  "~/Scripts/spa/bursify/student/campaigns/confirmDeleteCtrl.js",
+                  
             #endregion
 
                 "~/Scripts/spa/account/registerCtrl.js",

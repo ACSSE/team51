@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bursify.Api.Users;
+using System.Data.Entity;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.Entities.Campaigns;
@@ -171,6 +172,22 @@ namespace Bursify.Api.Students
             }
         }
 
+        public List<Campaign> GetSimilarCampaigns(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignRepository.GetSimilarCampaigns(campaignId);
+            }
+        }
+
+        public List<string> GetCampaignFunders(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetCampaignFunders(campaignId);
+            }
+        }
+
         #endregion
 
         #region Sponsor
@@ -284,8 +301,6 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                
-
                 return _studentSponsorshipRepository.LoadSponsorshipSuggestions(studentId);
             }
         }
@@ -391,6 +406,14 @@ namespace Bursify.Api.Students
                 uow.Commit();
 
                 return true;
+            }
+        }
+
+        public List<Student> GetStudentSuggestions(int sponsorId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentRepository.GetStudentSuggestions(sponsorId);
             }
         }
 

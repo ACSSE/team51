@@ -156,17 +156,31 @@ namespace Bursify.Web.Controllers
         {
             var students = _sponsorApi.GetStudentsApplying(sponsorshipId);
 
-            var data = students.Select(applicant => 
-                                    new Applicant(applicant.ID, applicant.Firstname, 
+            /*foreach (var student in students)
+            {
+                int id = student.ID;
+                string name = student.Firstname;
+                string surname = student.Surname;
+                string school = _studentApi.GetInstitution(student.InstitutionID).Name;
+                string image = _studentApi.GetUserInfo(student.ID).ProfilePicturePath;
+                int age = student.Age;
+                string province = _studentApi.GetAddress(student.ID, "Residential").Province;
+                string level = student.EducationLevel;
+                int average = _studentApi.GetMostRecentReport(student.ID).Average;
+                string gender = student.Gender;
+            }*/
+           
+            var data = students.Select(applicant =>
+                                    new Applicant(applicant.ID, applicant.Firstname,
                                     applicant.Surname,
                                     _studentApi.GetInstitution(applicant.InstitutionID).Name,
-                                    _studentApi.GetUserInfo(applicant.ID).ProfilePicturePath, 
-                                    applicant.Age, 
-                                    _studentApi.GetAddress(applicant.ID, "Residential").Province, 
-                                    applicant.EducationLevel, 
-                                    _studentApi.GetMostRecentReport(applicant.ID).Average, 
+                                    _studentApi.GetUserInfo(applicant.ID).ProfilePicturePath,
+                                    applicant.Age,
+                                    _studentApi.GetAddress(applicant.ID, "Residential").Province,
+                                    applicant.EducationLevel,
+                                    _studentApi.GetMostRecentReport(applicant.ID).Average,
                                     applicant.Gender)).ToList();
-          
+
             var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data });
 
             return response;

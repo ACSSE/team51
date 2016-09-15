@@ -10,6 +10,9 @@ using System.IO;
 using System.Threading.Tasks;
 using Bursify.Api.Students;
 using Bursify.Api.Users;
+using Bursify.Data.EF.Entities.SponsorUser;
+using Bursify.Data.EF.Entities.StudentUser;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Web.Controllers
 {
@@ -31,11 +34,19 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetUser")]
         public HttpResponseMessage GetUser(HttpRequestMessage request, string email)
         {
-            var user = _membershipApi.GetUserByEmail(email);
+            BursifyUser user;
+            BursifyUser userVm = null;
 
-            var model = new BursifyUserViewModel();
-
-            var userVm = model.MapSingleBursifyUser(user);
+            if (_userApi.GetUserType(email).Equals("Student"))
+            {
+                user = _userApi.GetCompletStudentUser(email);
+                userVm = new BursifyUserViewModel().MapStudentUser(user);
+            }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(email);
+                userVm = new BursifyUserViewModel().MapSponsorUser(user);
+            }
 
             userVm.PasswordHash = null;
             userVm.PasswordSalt = null;
@@ -49,24 +60,22 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetUser")]
         public HttpResponseMessage GetUser(HttpRequestMessage request, int userId)
         {
-            var user = _userApi.GetCompleteUser(userId);
+            BursifyUser user;
+            BursifyUser userVm = null;
 
-            var model = new BursifyUserViewModel();
-
-            var userVm = model.MapSingleBursifyUser(user);
+            if (_userApi.GetUserType(userId).Equals("Student"))
+            {
+                user = _userApi.GetCompletStudentUser(userId);
+                userVm = new BursifyUserViewModel().MapStudentUser(user);
+            }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(userId);
+                userVm = new BursifyUserViewModel().MapSponsorUser(user);
+            }
 
             userVm.PasswordHash = null;
             userVm.PasswordSalt = null;
-
-            var report = _studentApi.GetMostRecentReport(userId);
-            var studentModel = new StudentViewModel(_studentApi.GetStudent(userId));
-
-            if (report != null)
-            {
-                studentModel.AverageMark = report.Average;
-            }
-
-            userVm.Student = studentModel.ReverseMap();
 
             var response = request.CreateResponse(HttpStatusCode.OK, userVm);
 

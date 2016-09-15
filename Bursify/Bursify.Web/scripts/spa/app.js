@@ -179,6 +179,31 @@
                 controller: "addAccountCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
+            //Sponsor
+                        .when("/sponsor/campaign-details/:campaignId", {
+                            templateUrl: "scripts/spa/bursify/sponsor/campaigns/campaignDetails.html",
+                            controller: "viewCampaignCtrl"
+                            // resolve: { isAuthenticated: isAuthenticated }
+                        })
+                            .when("/sponsor/campaigns", {
+                                templateUrl: "scripts/spa/bursify/sponsor/campaigns/viewCampaigns.html",
+                                controller: "campaignsCtrl",
+                                resolve: { isAuthenticated: isAuthenticated }
+                            })
+
+                        .when("/sponsor/chart", {
+                            templateUrl: "scripts/spa/bursify/sponsor/chart/leaderboard.html",
+                            controller: "leaderboardCtrl",
+                            // resolve: { isAuthenticated: isAuthenticated}
+                        })
+
+                        .when("/sponsor/fund", {
+                            templateUrl: "scripts/spa/bursify/sponsor/campaigns/fundCampaign.html",
+                            controller: "fundCampaignCtrl",
+                            // resolve: { isAuthenticated: isAuthenticated }
+                        })
+
+            /* Campaigns start **/
             .otherwise({
                 redirectTo: function () {
                     window.location = "/index.html";

@@ -406,5 +406,19 @@ namespace Bursify.Web.Controllers
 
             return request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetStudentSuggestions")]
+        public HttpResponseMessage GetStudentSuggestions(HttpRequestMessage request, int sponsorId)
+        {
+            var suggestions = _studentApi.GetStudentSuggestions(sponsorId);
+
+            var data = StudentViewModel.MapMultipleStudents(suggestions);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, data);
+
+            return response;
+        }
     }
 }
