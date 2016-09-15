@@ -5,7 +5,7 @@
         <div class="md-toolbar-tools">
             <span>{{Student.Student.Firstname}} {{Student.Student.Surname}}'s Profile</span>
             <span flex></span>
-            <md-button md-colors="{background: 'green' }">Grant Sponsorship</md-button>
+            <md-button md-colors="{background: 'green' }" ng-click="showAdvanced()">Grant Sponsorship</md-button>
         </div>
     </md-toolbar>
 
@@ -96,26 +96,26 @@
                                     <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Analytics - Student Progress</md-subheader>
                                     <md-content class="md-padding">
 
-                                        <div class="chart-container">
+                                        <!--<div class="chart-container">
                                             <div fusioncharts
                                                  width="100%"
                                                  height="400"
                                                  type="line"
                                                  dataSource="{{myDataSource}}">
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                     </md-content>
                                     <md-divider></md-divider>
                                     <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Subjects - Most Recent Results</md-subheader>
-                                    <div class="chart-container">
+                                    <!--<div class="chart-container">
                                         <div fusioncharts
                                              width="100%"
                                              height="350"
                                              type="bar2d"
                                              dataSource="{{myDataSource2}}">
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <md-divider></md-divider>
                                 </md-list>
                             </md-content>
@@ -145,11 +145,9 @@
                                                     <p>Raised of R{{camp.AmountRequired}}.00</p>
                                                 </div>
 
-                                                <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
-
-
-                                            </div>
-                                            <md-button ng-href="#/student/campaign-details/{{camp.CampaignId}}">View</md-button>
+                                                <md-progress-linear md-mode="determinate" value="{{(camp.AmountContributed / camp.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                              </div>
+                                            <md-button ng-href="#/sponsor/campaign-details/{{camp.CampaignId}}">View</md-button>
                                         </md-card-actions>
                                     </md-card-title>
                                 </md-card>

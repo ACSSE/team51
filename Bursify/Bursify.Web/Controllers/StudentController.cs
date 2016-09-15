@@ -387,22 +387,24 @@ namespace Bursify.Web.Controllers
         {
            
             var applications = _studentApi.GetStudentApplications(studentId);
-            var appSponsorships = _studentApi.GetSponsorshipApplications(studentId);
+           // var appSponsorships = _studentApi.GetSponsorshipApplications(studentId);
 
             var data = new List<ApplicationViewModel>();
 
-            foreach (var s in appSponsorships)
-            {
-                foreach (var ss in applications)
+            //foreach (var s in appSponsorships)
+            //{
+                for(int i = 0; i < applications.Count; i++)
                 {
-                    var name = _sponsorApi.GetSponsor(s.SponsorId).CompanyName;
-                    var avm = new ApplicationViewModel(name, s.Name, ss.ApplicationDate, s.ClosingDate, ss.Status);
+                    var sponsorship = _studentApi.GetSponsorship(applications[i].SponsorshipId);
+                    var sponsor = _sponsorApi.GetSponsor(sponsorship.SponsorId);
+                    var status = applications[i].Status;
+                    var avm = new ApplicationViewModel(applications[i].SponsorshipId, sponsor.CompanyName, sponsorship.Name, applications[i].ApplicationDate, sponsorship.ClosingDate, status);
 
                     if (data.Contains(avm)) continue;
                     data.Add(avm);
-                    break;
+                    //break;
                 }
-            }
+           // }
 
             return request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
         }

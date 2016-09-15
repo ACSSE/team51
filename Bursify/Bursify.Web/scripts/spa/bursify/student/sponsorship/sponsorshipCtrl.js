@@ -42,6 +42,7 @@
             notificationService.displayError("Could not load similar.");
          }
        
+        $scope.myFields = {};
         function sponsorshipLoadCompleted(result) {
             $scope.Sponsorship = result.data;
 
@@ -55,6 +56,8 @@
             var expenses = $scope.Sponsorship.ExpensesCovered;
 
             $scope.expenses = expenses.split(",");
+            $scope.expenses.pop();
+            $scope.Sponsorship.StudyFields = $scope.Sponsorship.StudyFields.replace(",", " - - ");
             apiService.get('/api/student/Getstudent/?studentId=' + $rootScope.repository.loggedUser.userIden, null,
       studentLoadCompleted,
       studentLoadFailed);

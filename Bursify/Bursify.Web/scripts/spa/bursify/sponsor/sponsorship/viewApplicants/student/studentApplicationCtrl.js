@@ -3,10 +3,10 @@
 
     app.controller('studentApplicationCtrl', studentApplicationCtrl);
 
-    studentApplicationCtrl.$inject = ['$scope', '$rootScope', 'apiService', 'notificationService', 'membershipService', '$timeout', 'fileUploadService', '$routeParams'];
+    studentApplicationCtrl.$inject = ['$scope', '$rootScope', 'apiService', 'notificationService', 'membershipService', '$timeout', 'fileUploadService', '$routeParams', '$mdDialog', '$mdMedia'];
 
 
-    function studentApplicationCtrl($scope, $rootScope, apiService, notificationService, membershipService, $timeout, fileUploadService, $routeParams) {
+    function studentApplicationCtrl($scope, $rootScope, apiService, notificationService, membershipService, $timeout, fileUploadService, $routeParams, $mdDialog, $mdMedia) {
         $scope.pageClass = 'page-view-sponsorship';
         $scope.max = 2;
         $scope.selectedIndex = 0;
@@ -16,6 +16,30 @@
             $scope.selectedIndex = index;
 
         };
+        $scope.showAdvanced = function (ev) {
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+            $mdDialog.show({
+                controller: 'studentApplicationCtrl',
+                templateUrl: '/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/student/dialog.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+               
+                clickOutsideToClose: true
+            })
+            .then(function (answer) {
+                $mdDialog.hide();
+            }, function () {
+                $scope.status = 'You cancelled the dialog.';
+            });
+
+
+            $scope.$watch(function () {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function (wantsFullScreen) {
+                $scope.customFullscreen = (wantsFullScreen === true);
+            });
+        };
+
         $scope.Student = {};
       
 
@@ -68,6 +92,9 @@
             this.value = value;
         }
 
+        $scope.userPassword = "";
+
+    
         function reportLoadCompleted2(result) {
 
             $scope.recentReports = result.data;
@@ -180,6 +207,37 @@
         {
             notificationService.displayError("Error loading campaigns.");
         }
+
+
+        $scope.Approve = function() {
+            apiService.post('/api/account/verifypassword/?userId='+ $rootScope.repository.loggedUser.userIden + '&password=' + $scope.userPassword , null,   verified,  verifiedFailed)
+        }
+
+        function verified(result) {
+            if (result.data.success) {
+               
+                apiService.post('/api/sponsor/approvesponsorship/?studentId=' + $routeParams.StudentId + '&sponsorshipId=' + $routeParams.SponsorshipId, null, approveSuccessful, approveFailed)
+
+            } else {
+                notificationService.displayError("Incorrect password !");
+                $mdDialog.hide();
+            }
+        }
+
+        function verifiedFailed(result) {
+            notificationService.displayError("Could not verify password");
+        }
+
+        function approveSuccessful() {
+            notificationService.displaySuccess("Approved.");
+            $mdDialog.hide();
+        }
+
+        function approveFailed() {
+            notificationService.displayError("Could not approve sponsorship at this moment in time. Try again later.")
+        }
+
+
     
 
     }

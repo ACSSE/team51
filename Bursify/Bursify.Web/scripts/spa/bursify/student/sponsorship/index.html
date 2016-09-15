@@ -78,19 +78,24 @@
                     </ol>
 
                 </div>
-                <div class="col-md-12 text-left title"><h2>Field of Study: </h2></div>
+                <div class="col-md-12 text-left title"><h2>Fields of Study: </h2></div>
                 <div class="col-md-12 text-justify">
-                    <ol>
-                        <li>{{Sponsorship.StudyFields}}</li>
-                    </ol>
+                   
+                        <p>{{Sponsorship.StudyFields}}</p>
+                   
                 </div>
                 <div class="col-md-12 text-left title"><h2>Requirements: </h2></div>
                 <div class="col-md-12 text-justify">
 
                     <div class="col-md-6">
                         <div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{Sponsorship.AverageMarkRequired}}%">
+                            <div class="progress-bar  progress-bar-striped progress-bar-success" role="progressbar" aria-valuenow="{{Sponsorship.AverageMarkRequired}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Sponsorship.AverageMarkRequired}}%">
                                 {{Sponsorship.AverageMarkRequired}}% Overall Average Mark
+                            </div>
+                        </div>
+                        <div class="progress" ng-repeat="req in Sponsorship.Requirements">
+                            <div class="progress-bar progress-bar-striped progress-bar-light-blue" role="progressbar" aria-valuenow="{{req.MarkRequired}}" aria-valuemin="0" aria-valuemax="100" style="width: {{req.MarkRequired}}%">
+                                {{req.MarkRequired}}% {{req.Name}}
                             </div>
                         </div>
                     </div>
@@ -98,13 +103,11 @@
 
                 <div class="col-md-12 text-left title"><h2>Expenses Covered: </h2></div>
                 <div class="col-md-12 text-justify">
-
+                  
                     <div class="col-md-6">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{Sponsorship.AverageMarkRequired}}%">
-                                {{Sponsorship.AverageMarkRequired}}% Overall Average Mark
-                            </div>
-                        </div>
+                        <ul>
+                            <li ng-repeat="expense in expenses">{{expense}}</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -154,9 +157,9 @@
                         </div>
                         <div class="col-md-2 noPrint" style="margin-top: -10px; margin-left: -5px;">
                             <md-fab-speed-dial md-open="sponsorshipCtrl.isOpen" md-direction="right"
-                                               class="md-scale">
-                                <md-fab-trigger>
-                                    <input type="button" class="btn btn-info" value="Share">
+                                               class="md-scale" >
+                                <md-fab-trigger md-colors="{background: 'blue'}">
+                                    <input type="button" class="btn" md-colors="{background: 'blue'}" value="Share">
                                 </md-fab-trigger>
 
                                 <md-fab-actions>
