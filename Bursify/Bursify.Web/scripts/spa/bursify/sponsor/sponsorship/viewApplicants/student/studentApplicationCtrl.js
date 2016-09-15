@@ -103,26 +103,12 @@
 
                 },
                 data: [{
-                    label: "" + $scope.recentReports[0].ReportYear + "/" + $scope.recentReports[0].ReportPeriod,
-                    value: $scope.recentReports[0].Average
-                },
-                {
-                    label: "" + $scope.recentReports[1].ReportYear + "/" + $scope.recentReports[1].ReportPeriod,
-                    value: $scope.recentReports[1].Average
-                },
-                {
-                    label: "" + $scope.recentReports[2].ReportYear + "/" + $scope.recentReports[2].ReportPeriod,
-                    value: $scope.recentReports[2].Average
-                },
-                {
-                    label: "" + $scope.recentReports[3].ReportYear + "/" + $scope.recentReports[3].ReportPeriod,
-                    value: $scope.recentReports[3].Average
-                },
-                {
-                    label: "" + $scope.recentReports[4].ReportYear + "/" + $scope.recentReports[4].ReportPeriod,
-                    value: $scope.recentReports[4].Average
                 }]
             };
+
+            for (var i = 0; i < $scope.recentReports.length; i++) {
+                $scope.myDataSource.data.push(new dataItem($scope.recentReports[i].ReportYear + "/" + $scope.recentReports[i].ReportPeriod, $scope.recentReports[i].Average))
+            }
 
             $scope.myDataSource2 = {
                 "chart": {
@@ -156,6 +142,7 @@
 
                 "data": []
             };
+
 
             for (var i = 0; i < $scope.myReports[0].Subjects.length; i++){
                 $scope.myDataSource2.data.push(new dataItem($scope.myReports[0].Subjects[i].Name, $scope.myReports[0].Subjects[i].MarkAcquired))
