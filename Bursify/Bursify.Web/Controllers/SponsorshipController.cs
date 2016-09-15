@@ -140,6 +140,14 @@ namespace Bursify.Web.Controllers
 
             _studentApi.SaveSponsorship(newSponsorship);
 
+            var sponsor = _sponsorApi.GetSponsor(newSponsorship.SponsorId);
+
+            var points = newSponsorship.Rating*10;
+
+            sponsor.BursifyScore += points;
+
+            _sponsorApi.SaveSponsor(sponsor);
+
             var model = new SponsorshipViewModel();
 
             var sponsorshipVm = model.SingleSponsorshipMap(newSponsorship);

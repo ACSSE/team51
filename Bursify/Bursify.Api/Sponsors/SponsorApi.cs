@@ -29,7 +29,7 @@ namespace Bursify.Api.Sponsors
             this.sponsorRepository = sponsorRepository;
         }
 
-        public void AddSponsor(Sponsor s)
+        public void SaveSponsor(Sponsor s)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {

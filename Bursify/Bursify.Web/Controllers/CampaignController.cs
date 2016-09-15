@@ -1,7 +1,9 @@
-﻿using Bursify.Web.Models;
+﻿using System;
+using Bursify.Web.Models;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 
 namespace Bursify.Web.Controllers
@@ -10,10 +12,12 @@ namespace Bursify.Web.Controllers
     public class CampaignController : ApiController
     {
         private readonly StudentApi _studentApi;
+        private readonly SponsorApi _sponsorApi;
 
-        public CampaignController(StudentApi studentApi)
+        public CampaignController(StudentApi studentApi, SponsorApi sponsorApi)
         {
             _studentApi = studentApi;
+            _sponsorApi = sponsorApi;
         }
 
         //get all campaigns
@@ -183,6 +187,17 @@ namespace Bursify.Web.Controllers
         public HttpResponseMessage EndorseCampaign(HttpRequestMessage request,int userId, int campaignId)
         {
             var campaign = _studentApi.EndorseCampaign(userId, campaignId);
+
+            var user = _studentApi.GetUserInfo(userId);
+
+            if (user.UserType.Equals("Sponsor", StringComparison.OrdinalIgnoreCase))
+            {
+                var sponsor = _studentApi.GetSponsor(user.ID);
+
+                sponsor.BursifyScore += 1;
+
+                _sponsorApi.SaveSponsor(sponsor);
+            }
 
             CampaignViewModel campaignVM = new CampaignViewModel();
             campaignVM.SingleCampaignMap(campaign);
