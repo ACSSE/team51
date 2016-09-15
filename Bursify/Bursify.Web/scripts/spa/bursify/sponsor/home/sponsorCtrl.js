@@ -19,7 +19,7 @@
 
         function CompletedStudent(result) {
             $scope.Students = result.data;
-            apiService.get('/api/student/Getstudentsuggestions/?sponsorId=' + $rootScope.repository.loggedUser.userIden, null, Completedsuggested, Failedsuggested);
+            apiService.get('/api/student/GetStudentSuggestions/?sponsorId=' + $rootScope.repository.loggedUser.userIden, null, Completedsuggested, Failedsuggested);
 
         }
 

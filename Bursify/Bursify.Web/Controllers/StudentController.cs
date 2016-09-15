@@ -412,11 +412,22 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetStudentSuggestions")]
         public HttpResponseMessage GetStudentSuggestions(HttpRequestMessage request, int sponsorId)
         {
-            var suggestions = _studentApi.GetStudentSuggestions(sponsorId);
+            var students = _studentApi.GetStudentSuggestions(sponsorId);
 
-            var data = StudentViewModel.MapMultipleStudents(suggestions);
+            var studentsVm = StudentViewModel.MapMultipleStudents(students);
 
-            var response = request.CreateResponse(HttpStatusCode.OK, data);
+            foreach (var model in studentsVm)
+            {
+                var report = _studentApi.GetMostRecentReport(model.ID);
+                model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
+
+                if (report != null)
+                {
+                    model.AverageMark = report.Average;
+                }
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK, studentsVm);
 
             return response;
         }

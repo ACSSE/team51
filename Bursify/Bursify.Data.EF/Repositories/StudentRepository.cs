@@ -37,9 +37,9 @@ namespace Bursify.Data.EF.Repositories
                         .ThenByDescending(x => x.ReportPeriod)
                         .FirstOrDefault();
 
-                    if (report == null || sponsorship.AverageMarkRequired > report.Average ||
-                        !sponsorship.StudyFields.Contains(student.StudyField) ||
-                        !sponsorship.EducationLevel.Equals(student.EducationLevel)) continue;
+                    if ((report == null || sponsorship.AverageMarkRequired > report.Average ||
+                        !ContainsStudyField(sponsorship, student) ||
+                        !sponsorship.EducationLevel.Equals(student.CurrentOccupation))) continue;
 
                     if (!students.Contains(student))
                     {
@@ -49,6 +49,21 @@ namespace Bursify.Data.EF.Repositories
             }
 
             return students;
+        }
+
+        private bool ContainsStudyField(Sponsorship sponsorship, Student student)
+        {
+            string[] studentFields = student.StudyField.Split(',');
+
+            foreach(var field in studentFields)
+            {
+                if (sponsorship.StudyFields.Equals("Any", StringComparison.OrdinalIgnoreCase) || sponsorship.StudyFields.Contains(field))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

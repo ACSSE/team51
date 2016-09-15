@@ -20,8 +20,16 @@
                 <!-- Profile Image -->
                 <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" src=@Url.Content("~/Content/assets/img/mike.jpg") alt="User profile picture">
-                        <h3 class="profile-username text-center">{{usersa.Name}}</h3>
+                        <span>
+                            <img ng-click="triggerUpload()" class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" ng-src="Content/BursifyUploads/{{User.ID}}/images/{{User.ProfilePicturePath}}" alt="Sponsor profile picture" />
+                            <md-tooltip md-direction="left" style="padding-left: 105px;">
+                                Click to update
+                            </md-tooltip>
+                        </span>
+                        <input type="file" ng-file-select="prepareImage($files)" style="display:none" id="fileInput" name="filedata" />
+  
+                    
+                      <h3 class="profile-username text-center">{{usersa.Name}}</h3>
                         <p class="text-muted text-center"></p>
 
                         <!-- About Me Box -->

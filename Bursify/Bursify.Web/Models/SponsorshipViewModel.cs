@@ -30,6 +30,7 @@ namespace Bursify.Web.Models
         public int NumberOfViews { get; set; }
         public string AgeGroup { get; set; }
         public int Rating { get; set; }
+        public int ApplicantCount { get; set; }
         public List<RequirementViewModel> Requirements { get; set; }
 
         public SponsorshipViewModel()
