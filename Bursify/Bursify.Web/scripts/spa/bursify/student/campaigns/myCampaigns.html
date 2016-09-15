@@ -11,9 +11,9 @@
         .
         <div class="row">
             <form id="editform" ng-submit="">
-                <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="campaign in campaigns | " class="col-lg-4">
+                <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="campaign in campaigns" class="col-lg-4">
                     <md-card style="height: 520px;">
-                        <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                        <img style="height: 250px;" ng-src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
                         <md-card-title>
                             <md-card-title-text>
                                 <span class="md-headline">{{campaign.CampaignName}}</span>

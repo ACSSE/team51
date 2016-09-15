@@ -49,7 +49,7 @@
                 var $file = $files[i];
                 (function (index) {
                     $rootScope.upload[index] = $upload.upload({
-                        url: "/api/campaign/UploadImage/?userId=" + userId + '&campaignId=' + campId, // webapi url
+                        url: "/api/bursifyuser/UploadCampaignImage/?userId=" + userId + '&campaignId=' + campId, // webapi url
                         method: "POST",
                         file: $file
                     }).progress(function (evt) {

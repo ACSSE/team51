@@ -82,13 +82,18 @@
             $scope.loadingCampaigns = false;
         }
 
-        function campaignUpvoted()
-        {
-            
-            if (apiService.get('/api/Student/GetNumberSupportedCampaign/?userId=' + $scope.sponsorId + "&campaignId=" + $routeParams.campaignId))
-            {
-                //$scope.upvoted = "green";
+        function campaignUpvoted() {
+            apiService.post('/api/Campaign/IsEndorsed/?userId=' + $rootScope.repository.loggedUser.userIden + "&campaignId=" + $routeParams.campaignId, null, campaignVoted, campaignUnvoted);
+        }
+
+        function campaignVoted(response) {
+
+            if (response.data) {
+                $scope.upvoted = "green";
             }
+        }
+        function campaignUnvoted(response) {
+            notificationService.displayError(response.data);
         }
 
         function campaignsLoadFailed(response) {
