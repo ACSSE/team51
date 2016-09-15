@@ -32,8 +32,17 @@
         function editStudentCampaign()
         {
             apiService.post('/api/campaign/SaveCampaign/?campaign=', $scope.campaign,
-            EditCampaignSucceded,
-            EditCampaignFailed);
+                    EditCampaignSucceded,
+                    EditCampaignFailed);
+
+            //Check User password *******************************************************sdfsdfdsfdsfdsfsdf***************************************
+            //if(log)
+            // {
+            //    apiService.post('/api/campaign/SaveCampaign/?campaign=', $scope.campaign,
+            //    EditCampaignSucceded,
+            //    EditCampaignFailed);
+            // }
+           
         }
 
         function EditCampaignSucceded(response) {
