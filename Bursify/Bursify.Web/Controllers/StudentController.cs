@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Web.Http;
 using System.Web.Mvc;
 using Bursify.Api.Sponsors;
@@ -227,6 +228,14 @@ namespace Bursify.Web.Controllers
 
             _studentApi.ApplyForSponsorship(newApplication);
 
+            var sponsorship = _studentApi.GetSponsorship(newApplication.SponsorshipId);
+
+            var sponsor = _sponsorApi.GetSponsor(sponsorship.SponsorId);
+
+            sponsor.BursifyScore += 2;
+
+            _sponsorApi.SaveSponsor(sponsor);
+
             var model = new StudentSponsorshipViewModel();
 
             var applicationVm = model.MapSIngleStudentSponsorship(newApplication);
@@ -433,5 +442,6 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
     }
 }

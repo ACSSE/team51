@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -29,7 +30,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("SaveSponsor")]
         public HttpResponseMessage SaveSponsor(HttpRequestMessage request, SponsorViewModel sponsor)
         {
-            _sponsorApi.AddSponsor(sponsor.ReverseMap());
+            _sponsorApi.SaveSponsor(sponsor.ReverseMap());
 
             var response = request.CreateResponse(HttpStatusCode.Created);
 
@@ -91,9 +92,7 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
-        
-      
-
+              
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetStudent")]
@@ -156,6 +155,14 @@ namespace Bursify.Web.Controllers
         {
             bool status = _sponsorApi.ApproveSponsorship(studentId, sponsorshipId);
 
+            var sponsorship = _studentApi.GetSponsorship(sponsorshipId);
+
+            var sponsor = _sponsorApi.GetSponsor(sponsorship.SponsorId);
+
+            sponsor.BursifyScore += 15;
+
+            _sponsorApi.SaveSponsor(sponsor);
+
             HttpResponseMessage response = null;
 
             if (status)
@@ -179,11 +186,16 @@ namespace Bursify.Web.Controllers
             _sponsorApi.SponsorCampaign(sponsorCampaignVM.sponsorId, sponsorCampaignVM.Campaignid,
                 sponsorCampaignVM.amount);
 
+            var sponsor = _sponsorApi.GetSponsor(sponsorCampaignVM.sponsorId);
+
+            sponsor.BursifyScore += Convert.ToInt32(sponsorCampaignVM.amount/100);
+
+            _sponsorApi.SaveSponsor(sponsor);
+
             var response = request.CreateResponse(HttpStatusCode.OK, new {success = true});
 
             return response;
         }
-
 
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
