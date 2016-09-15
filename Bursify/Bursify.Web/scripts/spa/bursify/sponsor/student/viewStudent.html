@@ -19,7 +19,7 @@
                 <!-- Profile Image -->
                 <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" style="width: 190px; height: 140px;" ng-src="/Content/images/student/student2.jpg" alt="Student profile picture">
+                        <img class="profile-user-img img-responsive img-circle" style="width: 190px; height: 140px;" ng-src="Content/BursifyUploads/{{Student.ID}}/images/{{Student.ProfilePicturePath}}" alt="Student profile picture">
                         <h3 class="profile-username text-center">{{Student.Student.Firstname}} {{Student.Student.Surname}}</h3>
                         <h4 class="text-muted text-center">{{Student.Student.Age}} yrs old.</h4>
 
