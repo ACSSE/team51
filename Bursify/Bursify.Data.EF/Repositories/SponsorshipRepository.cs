@@ -107,15 +107,27 @@ namespace Bursify.Data.EF.Repositories
         {
             var current = LoadById(sponsorshipId);
 
+            var all = LoadAll();
+
             var sponsorships = new List<Sponsorship>();
 
             var fields = current.StudyFields.Split(',');
 
             foreach (var field in fields)
             {
-              
+                foreach (var s in all)
+                {
+                    if (s.StudyFields.Contains(field) && s.ID != current.ID)
+                    {
+                        sponsorships.Add(s);
+                        break;
+                    }
 
-
+                    //if (sponsorships.Count == 3)
+                    //{
+                    //    break;
+                    //}
+                }
                 if (sponsorships.Count == 3)
                 {
                     break;
@@ -123,7 +135,7 @@ namespace Bursify.Data.EF.Repositories
             }
 
             var data = GetSponsorshipsWithRequirements(sponsorships);
-            
+
             return data;
         }
 
