@@ -652,6 +652,7 @@
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndexCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicants.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicantsCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\dialog.tmpl.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\Form\Form.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\Form\formCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\student\studentApplication.html" />

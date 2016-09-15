@@ -318,8 +318,9 @@ namespace Bursify.Api.Students
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 List<Sponsorship> sponsorships = new List<Sponsorship>();
+                var applications = GetStudentApplications(studentId);
 
-                foreach (StudentSponsorship ss in GetStudentApplications(studentId))
+                foreach (StudentSponsorship ss in applications)
                 {
                     sponsorships.Add(GetSponsorship(ss.SponsorshipId));
                 }

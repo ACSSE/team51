@@ -70,7 +70,7 @@ namespace Bursify.Data.EF.Repositories
 
         public List<StudentSponsorship> GetStudentsApplications(int userId)
         {
-            return FindMany(application => application.StudentId == userId).Where(x => x.Status == "Pending").ToList();
+            return FindMany(application => application.StudentId == userId).ToList();
         }
 
         public List<StudentSponsorship> GetSponsorApplicants(int sponsorshipId)

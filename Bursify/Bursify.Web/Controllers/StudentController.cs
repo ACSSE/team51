@@ -396,22 +396,24 @@ namespace Bursify.Web.Controllers
         {
            
             var applications = _studentApi.GetStudentApplications(studentId);
-            var appSponsorships = _studentApi.GetSponsorshipApplications(studentId);
+           // var appSponsorships = _studentApi.GetSponsorshipApplications(studentId);
 
             var data = new List<ApplicationViewModel>();
 
-            foreach (var s in appSponsorships)
-            {
-                foreach (var ss in applications)
+            //foreach (var s in appSponsorships)
+            //{
+                for(int i = 0; i < applications.Count; i++)
                 {
-                    var name = _sponsorApi.GetSponsor(s.SponsorId).CompanyName;
-                    var avm = new ApplicationViewModel(name, s.Name, ss.ApplicationDate, s.ClosingDate, ss.Status);
+                    var sponsorship = _studentApi.GetSponsorship(applications[i].SponsorshipId);
+                    var sponsor = _sponsorApi.GetSponsor(sponsorship.SponsorId);
+                    var status = applications[i].Status;
+                    var avm = new ApplicationViewModel(applications[i].SponsorshipId, sponsor.CompanyName, sponsorship.Name, applications[i].ApplicationDate, sponsorship.ClosingDate, status);
 
                     if (data.Contains(avm)) continue;
                     data.Add(avm);
-                    break;
+                    //break;
                 }
-            }
+           // }
 
             return request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
         }
@@ -421,11 +423,22 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetStudentSuggestions")]
         public HttpResponseMessage GetStudentSuggestions(HttpRequestMessage request, int sponsorId)
         {
-            var suggestions = _studentApi.GetStudentSuggestions(sponsorId);
+            var students = _studentApi.GetStudentSuggestions(sponsorId);
 
-            var data = StudentViewModel.MapMultipleStudents(suggestions);
+            var studentsVm = StudentViewModel.MapMultipleStudents(students);
 
-            var response = request.CreateResponse(HttpStatusCode.OK, data);
+            foreach (var model in studentsVm)
+            {
+                var report = _studentApi.GetMostRecentReport(model.ID);
+                model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
+
+                if (report != null)
+                {
+                    model.AverageMark = report.Average;
+                }
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK, studentsVm);
 
             return response;
         }

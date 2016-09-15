@@ -75,10 +75,11 @@
         };
 
 
-
+        $scope.sponsorshipId = "";
         function applicantsLoadCompleted(result) {
      
             $scope.Applicants = result.data;
+            $scope.sponsorshipId = $routeParams.sponsorshipId;
         }
 
         function applicantsLoadFailed() {
