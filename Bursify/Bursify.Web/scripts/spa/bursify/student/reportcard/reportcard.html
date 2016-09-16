@@ -220,7 +220,7 @@
                     background-color: #4CAF50;
                 }
             </style>
-                <div class="col-md-6" style="padding-bottom: 15px;" ng-repeat="report in myReports | filter:searchB">
+                <div class="col-md-6" style="padding-bottom: 15px;" ng-repeat="report in myReports | filter: searchB">
                     <md-card class="_md" ng-class="{green: report.Average > 60, orange: report.Average >= 50,  red: report.Average > 0,}">
                         <md-card-header>
                             <md-card-header-text>
