@@ -38,6 +38,7 @@ namespace Bursify.Web.Models
         public string MatricCertificatePath { get; set; }
         public string CVPath { get; set; }
         public bool AgreeTandC { get; set; }
+        public string ImagePath { get; set; }
 
         public StudentViewModel()
         {
