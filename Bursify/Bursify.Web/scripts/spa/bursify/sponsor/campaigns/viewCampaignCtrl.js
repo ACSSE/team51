@@ -196,6 +196,13 @@
             });
         };
 
+        function myCampaignSponsorCompleted() {
+
+        }
+
+        function myCampaignSponsorFailed() {
+
+        }
         $scope.upvodeCampaign = function (ev, id) {
     
             apiService.post('/api/campaign/EndorseCampaign/?userId=' + $scope.sponsorId + '&campaignId=' + id, null,

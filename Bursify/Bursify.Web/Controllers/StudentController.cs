@@ -51,8 +51,7 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-        ///[System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.Authorize]
+        [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetStudent")]
         public HttpResponseMessage GetStudent(HttpRequestMessage request, int studentId)
@@ -120,8 +119,7 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-        //[System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.Authorize(Roles = "Student")]
+        [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.Route("SavePersonalDetails")]
         public HttpResponseMessage SavePersonalDetails(HttpRequestMessage request, PersonalDetails details)

@@ -1647,8 +1647,9 @@
 
 
 
-        function saveStudentFailed() {
+        function saveStudentFailed(result) {
             notificationService.displayError('Save Student Failed');
+            notificationService.displayError(result.data);
         }
 
 

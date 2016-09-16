@@ -85,7 +85,7 @@
                                             <div class="col-md-6">
                                                 <label>Campaign Picture</label><br />
                                                 <span>
-                                                    <img ng-click="triggerUpload()" class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" alt="Student profile picture" />
+                                                    <md-button ng-click="triggerUpload()" class="btn btn-primary" alt="Student profile picture">Upload</md-button>
                                                 </span>
                                                 <input type="file" ng-file-select="prepareImage($files)" style="display:none" id="fileInput" ng-model="campaign.PicturePath" name="filedata" />
 

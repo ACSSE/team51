@@ -34,7 +34,7 @@ namespace Bursify.Web.Controllers
             foreach (var sponsorship in sponsorshipVm)
             {
                 sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
-                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.ID).ProfilePicturePath;
+                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.SponsorId).ProfilePicturePath;
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
@@ -54,7 +54,7 @@ namespace Bursify.Web.Controllers
             foreach(var sponsorship in sponsorshipVm)
             {
                 sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
-                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.ID).ProfilePicturePath;
+                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.SponsorId).ProfilePicturePath;
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
@@ -74,7 +74,7 @@ namespace Bursify.Web.Controllers
             foreach (var sponsorship in sponsorshipVm)
             {
                 sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
-                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.ID).ProfilePicturePath;
+                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.SponsorId).ProfilePicturePath;
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
@@ -108,7 +108,7 @@ namespace Bursify.Web.Controllers
             var sponsorshipVm = model.SingleSponsorshipMap(sponsorship);
 
             sponsorshipVm.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorshipVm.ID).Count;
-            sponsorshipVm.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorshipVm.ID).ProfilePicturePath;
+            sponsorshipVm.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorshipVm.SponsorId).ProfilePicturePath;
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
@@ -148,7 +148,7 @@ namespace Bursify.Web.Controllers
             var sponsorshipVm = model.SingleSponsorshipMap(sponsorship);
 
             sponsorshipVm.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorshipVm.ID).Count;
-            sponsorshipVm.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorshipVm.ID).ProfilePicturePath;
+            sponsorshipVm.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorshipVm.SponsorId).ProfilePicturePath;
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 

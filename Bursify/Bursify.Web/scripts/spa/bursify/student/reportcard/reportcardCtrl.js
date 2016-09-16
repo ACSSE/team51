@@ -10,7 +10,7 @@
         $scope.loadReports = function () {
             apiService.get('/api/report/GetAllReports/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reportLoadCompleted, reportLoadFailed);
 
-            apiService.get('/api/report/GetSortedReports/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reportLoadCompleted2, reportLoadFailed2);
+            
         }
         $scope.myDataSource = {};
 
@@ -22,6 +22,7 @@
         function reportLoadCompleted(result) {
    
             $scope.myReports = result.data;
+            apiService.get('/api/report/GetSortedReports/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reportLoadCompleted2, reportLoadFailed2);
         }
 
         function reportLoadFailed() {
@@ -64,29 +65,21 @@
 
                 },
                 data: [{
-                    label: "" + $scope.recentReports[0].ReportYear + "/" + $scope.recentReports[0].ReportPeriod,
-                    value: $scope.recentReports[0].Average
-                },
-                {
-                    label: "" + $scope.recentReports[1].ReportYear + "/" + $scope.recentReports[1].ReportPeriod,
-                    value: $scope.recentReports[1].Average
-                },
-                {
-                    label: "" + $scope.recentReports[2].ReportYear + "/" + $scope.recentReports[2].ReportPeriod,
-                    value: $scope.recentReports[2].Average
-                },
-                {
-                    label: "" + $scope.recentReports[3].ReportYear + "/" + $scope.recentReports[3].ReportPeriod,
-                    value: $scope.recentReports[3].Average
-                },
-                {
-                    label: "" + $scope.recentReports[4].ReportYear + "/" + $scope.recentReports[4].ReportPeriod,
-                    value: $scope.recentReports[4].Average
-                }]
+                    
+                 }]
             };
+
+            for (var i = 0; i < $scope.recentReports.length; i++) {
+                $scope.myDataSource.data.push(new dataItem($scope.recentReports[i].ReportYear + "/" + $scope.recentReports[i].ReportPeriod, $scope.recentReports[i].Average))
+            }
 
         }
 
+
+        function dataItem(label, value) {
+            this.label = label;
+            this.value = value
+        }
 
 
         function reportLoadFailed2() {
