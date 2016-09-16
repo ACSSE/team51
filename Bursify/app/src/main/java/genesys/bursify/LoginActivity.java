@@ -146,6 +146,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view)
             {
+                //startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 attemptLogin();
             }
         });
@@ -411,7 +412,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params)
         {
-            // TODO: attempt authentication against a network service.
 
             JSONObject loginObject = new JSONObject();
             JSONObject response;

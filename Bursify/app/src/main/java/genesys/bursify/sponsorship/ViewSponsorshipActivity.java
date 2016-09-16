@@ -105,9 +105,9 @@ public class ViewSponsorshipActivity extends AppCompatActivity
             {
                 //sponsorshipName.setText(jsonObject.getString("Name"));
                 toolbarLayout.setTitle(jsonObject.getString("Name"));
-                sponsorshipDescription.setText(title("Description:") + "\n" + jsonObject.getString("Description") + "\n");
-                sponsorshipClosingDate.setText(title("Closing Date:") + "\n" + jsonObject.getString("ClosingDate").substring(0, 10).replaceAll("-", "/") + "\n");
-                sponsorshipTerms.setText(title("Terms And Conditions:") + "\n" + jsonObject.getString("TermsAndConditions"));
+                sponsorshipDescription.setText(title("Description:").toString() + "\n" + jsonObject.getString("Description") + "\n");
+                sponsorshipClosingDate.setText(title("Closing Date:").toString() + "\n" + jsonObject.getString("ClosingDate").substring(0, 10).replaceAll("-", "/") + "\n");
+                sponsorshipTerms.setText(title("Terms And Conditions:").toString() + "\n" + jsonObject.getString("TermsAndConditions"));
             }
             catch (JSONException e)
             {

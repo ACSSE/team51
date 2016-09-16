@@ -9,12 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import genesys.bursify.R;
+import genesys.bursify.entities.Sponsorship;
 
 /**
  * Created by genesys on 2016/04/03.
@@ -43,8 +42,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position)
     {
+
         holder.textView.setText(sponsorships.get(position).getName());
-        holder.txtSummary.setText(sponsorships.get(position).getDescription());
+        //holder.txtSummary.setText(sponsorships.get(position).getDescription());
 
         holder.ratingBar.setRating((position % 5 == 0) ? 5 : position % 5);
 
@@ -70,7 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView textView;
-        TextView txtSummary;
+        //TextView txtSummary;
         CardView card;
         RatingBar ratingBar;
 
@@ -79,7 +79,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(view);
 
             textView = (TextView) view.findViewById(R.id.info_text);
-            txtSummary = (TextView) view.findViewById(R.id.txtSummary);
+            //txtSummary = (TextView) view.findViewById(R.id.txtSummary);
             card = (CardView) view.findViewById(R.id.card_view);
             ratingBar = (RatingBar) view.findViewById(R.id.rating);
             ratingBar.setRating(5);

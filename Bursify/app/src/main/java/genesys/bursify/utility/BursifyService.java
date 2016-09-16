@@ -24,14 +24,14 @@ public class BursifyService
     private static final String API_URL = "http://bursify.azurewebsites.net/api/";
 
     //account api
-    public static final String LOGIN = API_URL + "account/authenticate";
+    public static final String LOGIN = API_URL + "account/login";
     public static final String REGISTER = API_URL + "account/register";
 
-    //student spi
+    //student api
     public static final String GET_USER = API_URL + "bursifyuser/getuser/?email=";
 
     //sponsor api
-    public static final String GET_SPOSNORSHIPS = API_URL + "Sponsorship/GetAllSponsorships";
+    public static final String GET_SPONSORSHIPS = API_URL + "Sponsorship/GetAllSponsorships";
     public static final String GET_SINGLE_SPONSORSHIP = API_URL + "Sponsorship/GetSponsorship/?sponsorshipId=";
 
     //general implementation of http post for the web api

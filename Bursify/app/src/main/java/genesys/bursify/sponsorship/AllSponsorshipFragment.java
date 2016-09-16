@@ -19,9 +19,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import genesys.bursify.R;
+import genesys.bursify.entities.Sponsorship;
 import genesys.bursify.utility.BursifyService;
 
 
@@ -66,6 +68,8 @@ public class AllSponsorshipFragment extends Fragment
 
     class GetSponsorshipTask extends AsyncTask<Void, Void, JSONArray>
     {
+        ArrayList<Sponsorship> sponsorshipList = new ArrayList<>();
+
         @Override
         protected void onPreExecute()
         {
@@ -76,7 +80,7 @@ public class AllSponsorshipFragment extends Fragment
         @Override
         protected JSONArray doInBackground(Void... params)
         {
-            sponsorships = BursifyService.getMultipleService(BursifyService.GET_SPOSNORSHIPS);
+            sponsorships = BursifyService.getMultipleService(BursifyService.GET_SPONSORSHIPS);
 
             return sponsorships;
         }
@@ -94,15 +98,14 @@ public class AllSponsorshipFragment extends Fragment
             super.onPostExecute(jsonArray);
             progressBar.setVisibility(View.GONE);
 
-            ArrayList<Sponsorship> sponsorshipList = new ArrayList<>();
-
             for(int i = 0; i < jsonArray.length(); i++)
             {
                 try
                 {
                     JSONObject current = jsonArray.getJSONObject(i);
 
-                    sponsorshipList.add(createSponsorship(current));
+                    Sponsorship sp = createSponsorship(current);
+                    sponsorshipList.add(sp);
                 }
                 catch (JSONException | ParseException e)
                 {
@@ -120,8 +123,11 @@ public class AllSponsorshipFragment extends Fragment
             String rawDate = jsonObject.getString("ClosingDate").substring(0, 10).replaceAll("-", "/");
 
             Date closingDate = sdf.parse(rawDate);
+            //jsonObject.na
 
-            return new Sponsorship(jsonObject.getInt("ID"), jsonObject.getInt("SponsorId"), jsonObject.getString("Name"), jsonObject.getString("Description"), closingDate, jsonObject.getBoolean("EssayRequired"), jsonObject.getDouble("SponsorshipValue"), jsonObject.getString("StudyFields"), jsonObject.getString("Province"), jsonObject.getInt("AverageMarkRequired"), jsonObject.getString("EducationLevel"), jsonObject.getString("PreferredInstitutions"), jsonObject.getString("ExpensesCovered"), jsonObject.getString("TermsAndConditions"), jsonObject.getString("SponsorshipType"));
+            Sponsorship s = new Sponsorship(jsonObject.getInt("ID"), jsonObject.getInt("SponsorId"), jsonObject.getString("Name"), jsonObject.getString("Description"), closingDate, jsonObject.getBoolean("EssayRequired"), jsonObject.getDouble("SponsorshipValue"), jsonObject.getString("StudyFields"), jsonObject.getString("Province"), jsonObject.getInt("AverageMarkRequired"), jsonObject.getString("EducationLevel"), jsonObject.getString("InstitutionPreference"), jsonObject.getString("ExpensesCovered"), jsonObject.getString("TermsAndConditions"), jsonObject.getString("SponsorshipType"));
+            //sponsorshipList.add(s);
+            return s;
         }
     }
 }

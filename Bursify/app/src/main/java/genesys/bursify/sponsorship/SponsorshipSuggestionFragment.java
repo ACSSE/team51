@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import genesys.bursify.R;
+import genesys.bursify.entities.Sponsorship;
 import genesys.bursify.utility.BursifyService;
 
 
@@ -60,6 +61,7 @@ public class SponsorshipSuggestionFragment extends Fragment
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        new GetSponsorshipTask().execute();
 
         return view;
     }
@@ -76,7 +78,7 @@ public class SponsorshipSuggestionFragment extends Fragment
         @Override
         protected JSONArray doInBackground(Void... params)
         {
-            sponsorships = BursifyService.getMultipleService(BursifyService.GET_SPOSNORSHIPS);
+            sponsorships = BursifyService.getMultipleService(BursifyService.GET_SPONSORSHIPS);
 
             return sponsorships;
         }
@@ -117,9 +119,14 @@ public class SponsorshipSuggestionFragment extends Fragment
         private Sponsorship createSponsorship(JSONObject jsonObject) throws JSONException, ParseException
         {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
-            Date closingDate = sdf.parse(jsonObject.getString("ClosingDate"));
+            String rawDate = jsonObject.getString("ClosingDate").substring(0, 10).replaceAll("-", "/");
 
-            return new Sponsorship(jsonObject.getInt("ID"), jsonObject.getInt("SponsorId"), jsonObject.getString("Name"), jsonObject.getString("Description"), closingDate, jsonObject.getBoolean("EssayRequired"), jsonObject.getDouble("SponsorshipValue"), jsonObject.getString("StudyFields"), jsonObject.getString("Province"), jsonObject.getInt("AverageMarkRequired"), jsonObject.getString("EducationLevel"), jsonObject.getString("PreferredInstitutions"), jsonObject.getString("ExpensesCovered"), jsonObject.getString("TermsAndConditions"), jsonObject.getString("SponsorshipType"));
+            Date closingDate = sdf.parse(rawDate);
+            //jsonObject.na
+
+            Sponsorship s = new Sponsorship(jsonObject.getInt("ID"), jsonObject.getInt("SponsorId"), jsonObject.getString("Name"), jsonObject.getString("Description"), closingDate, jsonObject.getBoolean("EssayRequired"), jsonObject.getDouble("SponsorshipValue"), jsonObject.getString("StudyFields"), jsonObject.getString("Province"), jsonObject.getInt("AverageMarkRequired"), jsonObject.getString("EducationLevel"), jsonObject.getString("InstitutionPreference"), jsonObject.getString("ExpensesCovered"), jsonObject.getString("TermsAndConditions"), jsonObject.getString("SponsorshipType"));
+            //sponsorshipList.add(s);
+            return s;
         }
     }
 }

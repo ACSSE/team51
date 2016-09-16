@@ -1,6 +1,7 @@
-package genesys.bursify.sponsorship;
+package genesys.bursify.entities;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Brandon on 2016/08/09.
@@ -23,7 +24,7 @@ public class Sponsorship
     private String TermsAndConditions;
     private String SponsorshipType;
 
-    public Sponsorship(){}
+    public Sponsorship() {}
 
     public Sponsorship(int ID, int sponsorId, String name, String description, Date closingDate, boolean essayRequired, double sponsorshipValue, String studyFields, String province, int averageMarkRequired, String educationLevel, String preferredInstitutions, String expensesCovered, String termsAndConditions, String sponsorshipType)
     {
@@ -193,4 +194,5 @@ public class Sponsorship
     {
         SponsorshipType = sponsorshipType;
     }
+
 }
