@@ -96,6 +96,7 @@ namespace Bursify.Web
                  "~/Scripts/spa/bursify/student/applications/myApplicationsCtrl.js",
                     "~/Scripts/spa/bursify/student/reportcard/reportcardCtrl.js",
                     "~/Scripts/spa/bursify/student/reportcard/addReport/addreportCtrl.js",
+                   "~/Scripts/spa/bursify/student/reportcard/viewReport/viewreportcardCtrl.js",
                      "~/Scripts/spa/bursify/sponsor/student/viewStudentCtrl.js",
                  "~/Scripts/spa/layout/navBar.directive.js",
                    "~/Scripts/spa/layout/spnavBar.directive.js"

@@ -117,13 +117,13 @@
                                         <!-- Use floating label instead of placeholder -->
                                         <label>Phone Number</label>
                                         <md-icon md-svg-src="/content/img/icons/ic_phone_24px.svg" class="name"></md-icon>
-                                        <input value="" type="text"></>
+                                        <input ng-model="BursifyUser.CellphoneNumber" type="text"></>
                                     </md-input-container>
                                     <md-input-container    class="md-icon-float md-block">
                                         <!-- Use floating label instead of placeholder -->
                                         <label>Email Address</label>
                                         <md-icon md-svg-src="/content/img/icons/ic_email_24px.svg" class="name"></md-icon>
-                                        <input ng-model="Student.Email" type="text"></>
+                                        <input  ng-model="BursifyUser.Email" type="text"></>
                                     </md-input-container>
 
                                     <div class="row">
@@ -226,8 +226,8 @@
                                                 <div class="col-md-12" ng-if="Student.CurrentOccupation == 'High School'">
                                                     <div class="col-md-8">
                                                         <md-input-container class="md-block">
-                                                            <md-select placeholder="School" ng-model="Student.ResProvince" md-on-open="loadProvinces()" style="min-width: 200px;" required>
-                                                                <md-option ng-value="province" ng-repeat="province in provinces">{{province.name}}</md-option>
+                                                            <md-select placeholder="{{Student.InstitutionName}}" ng-model="Student.InstitutionName" md-on-open="loadSchools()" style="min-width: 200px;" required>
+                                                                <md-option ng-value="school.name" ng-repeat="school in schools">{{school.name}}</md-option>
                                                             </md-select>
                                                         </md-input-container>
                                                     </div>
@@ -244,21 +244,30 @@
                                                 <div class="col-md-12" ng-if="Student.CurrentOccupation == 'Tertiary'">
                                                     <div class="col-md-6">
                                                         <md-input-container class="md-block">
-                                                            <md-select placeholder="Varsity" ng-model="Student.ResProvince" md-on-open="loadProvinces()" style="min-width: 200px;" required>
-                                                                <md-option ng-value="province" ng-repeat="province in provinces">{{province.name}}</md-option>
+                                                            <md-select placeholder="Varsity" ng-model="Student.InstitutionName" md-on-open="loadVarsity()" style="min-width: 200px;" required>
+                                                                <md-option ng-value="varsity.name" ng-repeat="varsity in varsity">{{varsity.name}}</md-option>
                                                             </md-select>
                                                         </md-input-container>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <md-input-container class="md-icon-float md-block">
-                                                            <md-select placeholder="{{Student.EducationLevel}}" ng-model="Student.ResProvince" md-on-open="loadLevels()" style="min-width: 200px;" required>
+                                                            <md-select placeholder="Level" ng-model="Student.ResProvince" md-on-open="loadLevels()" style="min-width: 200px;" required>
                                                                 <md-option ng-value="level.name" ng-repeat="level in levels">{{level.name}}</md-option>
                                                             </md-select>
                                                         </md-input-container>
                                                     </div>
                                                  
                                                 </div>
-                                            </div>
+                                                <div class="col-md-12" ng-show="Student.InstitutionName == 'Other'">
+                                                    <md-input-container class="md-icon-float md-block">
+                                                        <!-- Use floating label instead of placeholder -->
+                                                        <label>Name of Institution</label>
+
+                                                        <input ng-value="Student.InstitutionName" />
+
+                                                    </md-input-container>
+                                                    </div>
+                                                </div>
 
                                         </div>
 
