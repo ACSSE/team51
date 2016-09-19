@@ -71,13 +71,13 @@
 
                                                     <div class="media-body">
                                                         <h4 class="media-heading"><a href="#/student/sponsorship/{{Sponsorship.ID}}">{{Sponsorship.Name}}</a></h4>
-                                                        <p style="height: 120px;">{{Sponsorship.Description | limitTo: 180}}</p>
-
+                                                        <p style="height: 120px;">{{Sponsorship.Description | limitTo: 250}}</p>
+                                                        <div class="pull-left">
+                                                            <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
+                                                        </div>
                                                     </div>
 
-                                                    <div class="pull-left">
-                                                        <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
-                                                    </div>
+                                                   
 
                                                     <div class="pull-right" style="color: rgb(240, 173, 78)">
                                                         <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 1 "></span>
@@ -137,7 +137,7 @@
                                                 </div>
 
                                                 <div class="media" ng-repeat="Sponsorship in Sponsorships | filter: searchB" >
-                                                    <div class="media-left">
+                                                    <div class="media-left" style="padding-top: 10px;">
                                                         <a href="/Sponsorship/ViewBursary">
 
 
@@ -148,24 +148,26 @@
 
                                                     <div class="media-body">
                                                         <h4 class="media-heading"><a href="#/student/sponsorship/{{Sponsorship.ID}}">{{Sponsorship.Name}}</a></h4>
-                                                        <p style="height: 120px;">{{Sponsorship.Description | limitTo: 180}}</p>
+                                                        <p style="height: 120px;">{{Sponsorship.Description | limitTo: 900}}...</p>
 
+                                                        <div class="pull-left">
+                                                            <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
+                                                        </div>
+
+
+                                                        <div class="pull-right" style="color: rgb(240, 173, 78); padding-top: 15px;">
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 1 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 2 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 3 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 4 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 5 "></span>
+
+                                                        </div>
                                                     </div>
-
-                                                    <div class="pull-left">
-                                                        <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
-                                                    </div>
-
-                                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 1 "></span>
-                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 2 "></span>
-                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 3 "></span>
-                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 4 "></span>
-                                                        <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 5 "></span>
-
-                                                    </div>
-
+                                                    <hr style="width: 100%; height: 10px;" />
+                                                   
                                                 </div>
+                                              
                                             </div>
                                         </div>
 
