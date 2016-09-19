@@ -61,10 +61,12 @@
                                                 
                                                 <div class="media" ng-repeat="Sponsorship in Sponsorships | filter: searchB">
                                                     <div class="media-left" style="padding-top: 10px;">
-                                                        <a href="/Sponsorship/ViewBursary">
+                                                        <a  href="#/student/sponsorship/{{Sponsorship.ID}}">
 
 
-                                                            <img ng-src="Content/images/user/elogo.jpg" width="55" height="55" class="media-object search-v1-avatar">
+                                                            <img  ng-if="Sponsorship.SponsorPicturePath == 'def'" ng-src="Content/default.png" width="55" height="55" class="media-object search-v1-avatar">
+                                                            <img  ng-if="Sponsorship.SponsorPicturePath != 'def'" ng-src="Content/BursifyUploads/{{Sponsorship.sponsorId}}/images/{{Sponsorship.SponsorPicturePath}}" width="55" height="55" class="media-object search-v1-avatar">
+
                                                         </a>
                                                     </div>
 
@@ -138,12 +140,15 @@
 
                                                 </div>
 
-                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | filter: searchB" >
+
+                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | filter: searchB">
                                                     <div class="media-left" style="padding-top: 10px;">
-                                                        <a href="/Sponsorship/ViewBursary">
+                                                        <a href="#/student/sponsorship/{{Sponsorship.ID}}">
 
 
-                                                            <img ng-src="Content/images/user/elogo.jpg" width="55" height="55" class="media-object search-v1-avatar">
+                                                            <img ng-if="Sponsorship.SponsorPicturePath == 'def'" ng-src="Content/default.png" width="55" height="55" class="media-object search-v1-avatar">
+                                                            <img ng-if="Sponsorship.SponsorPicturePath != 'def'" ng-src="Content/BursifyUploads/{{Sponsorship.sponsorId}}/images/{{Sponsorship.SponsorPicturePath}}" width="55" height="55" class="media-object search-v1-avatar">
+
                                                         </a>
                                                     </div>
 
@@ -167,7 +172,7 @@
                                                         </div>
                                                     </div>
                                                     <hr style="width: 100%; height: 10px;" />
-                                                   
+
                                                 </div>
                                               
                                             </div>

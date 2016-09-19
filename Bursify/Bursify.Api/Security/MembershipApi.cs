@@ -60,7 +60,8 @@ namespace Bursify.Api.Security
                     PasswordSalt = salt,
                     UserType = userType,
                     AccountStatus = "Active",
-                    RegistrationDate = DateTime.UtcNow
+                    RegistrationDate = DateTime.UtcNow,
+                    ProfilePicturePath = "def"
                 };
 
                 _userRepository.Save(user);

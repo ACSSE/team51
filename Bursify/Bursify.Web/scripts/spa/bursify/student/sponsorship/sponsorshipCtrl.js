@@ -53,11 +53,35 @@
             var x = Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay));
             $scope.diffDays = ~~x;
 
-            var expenses = $scope.Sponsorship.ExpensesCovered;
+            //var expenses = $scope.Sponsorship.ExpensesCovered;
 
-            $scope.expenses = expenses.split(",");
-            $scope.expenses.pop();
-            $scope.Sponsorship.StudyFields = $scope.Sponsorship.StudyFields.replace(",", " - - ");
+            //$scope.expenses = expenses.split(",");
+            //$scope.expenses.pop();
+       
+            if ($scope.Sponsorship.StudyFields != 'All') {
+                $scope.x = $scope.Sponsorship.StudyFields;
+                $scope.Sponsorship.StudyFields = $scope.x.split(",");
+                $scope.Sponsorship.StudyFields.pop();
+            }
+         
+
+
+            $scope.items = ['Registration', 'Examination Fees', 'Tuition Fees', 'Textbooks', 'Accommodation', 'Living Allowance', 'Laptop Allowance', 'Transport'];
+            $scope.selected = [];
+            $scope.toggle = function (item, list) {
+                var idx = list.indexOf(item);
+                if (idx > -1) {
+                    list.splice(idx, 1);
+                }
+                else {
+                    list.push(item);
+                }
+            };
+            $scope.exists = function (item, list) {
+                return list.indexOf(item) > -1;
+            };
+
+
             apiService.get('/api/student/Getstudent/?studentId=' + $rootScope.repository.loggedUser.userIden, null,
       studentLoadCompleted,
       studentLoadFailed);

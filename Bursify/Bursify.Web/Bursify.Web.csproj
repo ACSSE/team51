@@ -474,6 +474,7 @@
     <Content Include="Content\css\morris.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\toastr.css" />
+    <Content Include="Content\default.png" />
     <Content Include="Content\dist\css\AdminLTE.css" />
     <Content Include="Content\dist\css\AdminLTE.min.css" />
     <Content Include="Content\dist\img\credit\american-express.png" />

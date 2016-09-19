@@ -17,7 +17,10 @@
                 <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                     <div class="box-body box-profile">
                         <span>
-                            <img ng-click="triggerUpload()" class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" ng-src="Content/BursifyUploads/{{BursifyUser.ID}}/images/{{BursifyUser.ProfilePicturePath}}" alt="Student profile picture" />
+                            <img ng-click="triggerUpload()" class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" ng-if="BursifyUser.ProfilePicturePath == 'def'" ng-src="Content/default.png" alt="Student profile picture" />
+
+                            <img ng-click="triggerUpload()" class="profile-user-img img-responsive img-circle" style="width: 75px; height: 75px;" ng-if="BursifyUser.ProfilePicturePath != 'def'" ng-src="Content/BursifyUploads/{{BursifyUser.ID}}/images/{{BursifyUser.ProfilePicturePath}}" alt="Student profile picture" />
+                         
                             <md-tooltip md-direction="left" style="padding-left: 105px;">
                                 Click to update
                             </md-tooltip>
