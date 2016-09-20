@@ -11,6 +11,7 @@
         $scope.max = 2;
         $scope.selectedIndex = 0;
         $scope.secondLocked = false;
+        $scope.userPassword = "";
         $scope.nextTab = function () {
             var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
             $scope.selectedIndex = index;
@@ -46,7 +47,7 @@
         $scope.loadStudent = function () {
           
             apiService.get('/api/bursifyUser/getuser/?userId=' + $routeParams.StudentId, null, profileLoaded, profileLoadFailed);
-           
+            $scope.spID = $routeParams.SponsorshipId;
         }
 
         $scope.Fields = [];
@@ -91,8 +92,6 @@
             this.label = label;
             this.value = value;
         }
-
-        $scope.userPassword = "";
 
     
         function reportLoadCompleted2(result) {

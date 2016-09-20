@@ -1,64 +1,142 @@
-﻿
-<div class="container md-padding" width="800px" id="invoice" ng-init="LoadData()">
+﻿<style>
+    h1{
+        font-family: Georgia, serif;
+    }
+
+    h2{
+        color: #999;
+    }
+
+    h3{
+        font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .container{
+        background-color: white;
+    }
+
+    hr.style2 {
+	border-top: 3px double #8c8b8b;
+    }
+
+    .body{
+        text-align: justify;
+    }
+</style>
+<div class="md-padding container" width="800px" id="invoice" ng-init="LoadData()">
    
-    <div class="row branding md-padding" ng-init="printMode = 'true'">
-        <div class="col-xs-6">
-            <div>
-                <h2 style="padding-top: 5px;">{{Sponsorship.Name}}</h2>
-            </div>
-        </div>
-        <div class="col-xs-offset-9">
-            <input type="file" id="imgInp" />
+    <div class="row" ng-init="printMode = 'true'">
+        <div class="col-md-9 pull-left">
             <img id="company_logo" ng-src="/Content/images/bursify.png" alt="your image" style="width: 200px; padding-left: -250px; padding-top: 25px;" />
-            <div>
 
+        </div>
+        <div class="col-md-3 pull-right">
+            <h1>{{Sponsorship.Name}}</h1>
+        </div>
+  
+    </div>
+  
+    <div class="row">
+        <hr />
+        <div class="col-md-9 pull-left">
+            <h1>{{Student.Firstname}} {{Student.Surname}}</h1>
+            <h4 class="text-muted">{{Student.EducationLevel}} student at {{Student.InstitutionName}}</h4>
+            <h5 class="text-muted">{{User.Email}}</h5>
+            <h5 class="text-muted">{{User.CellphoneNumber}}</h5>
+        </div>
+        <div class="col-md-3 pull-right">
+            <img class="" style="width: 200px; height: 140px; padding-top: 2px; padding-left: -10px;" ng-src="Content/BursifyUploads/{{Student.ID}}/images/{{User.ProfilePicturePath}}" alt="Student profile picture" />
+        </div>
+    </div>
+    <hr class="style2"/>
+    <div class="row container">
+        <h2 style="color: #999;">Summary</h2>
+        <p>{{Student.Headline}}</p>
+        <p>{{User.Biography}}</p>
+    
+    </div>
+    <hr class="style2" />
+    <div class="row container">
+        <h2 style="color: #999;">Personal Deatils</h2>
+        <label for="idnumber">ID Number: </label> {{Student.IDNumber}}<br/>
+        <label >Student Number: </label> {{Student.IDNumber}}<br />
+        <label>Age: </label> {{Student.Age}} yrs. old<br />
+        <label>Date of Birth: </label> {{Student.DateOfBirth | date: "MMMM d, y"}}<br />
+        <label>Gender: </label> {{Student.Gender}}<br />
+        <label>Race: </label> {{Student.Race}}<br />
+        <label>Disability: </label> {{Student.DisabilityDescription}}<br />
+        <label>This year I am in: </label> {{Student.CurrentOccupation}}<br />
+        <label>Highest Academic Level Attained: </label> {{Student.HighestAcademicAchievement}}  student in {{Student.YearOfAcademicAchievement}} <br />
+        
+
+      
+
+    </div>
+    <hr class="style2" />
+ 
+    <div class="row container" style="page-break-before: always;">
+        <h2 style="color: #999;">Residential Details</h2>
+        <label for="idnumber">Province: </label> {{User.Addresses[0].Province}}<br />
+        <label>City: </label> {{User.Addresses[0].City}}<br />
+        <label>Street Address: </label> {{User.Addresses[0].StreetAddress}}<br />
+        <label>Postal Code: </label> {{User.Addresses[0].PostalCode}}<br />
+       
+        <div ng-if="User.Addresses.$length > 1">
+            <h2 style="color: #999;">Postal Address</h2>
+            <label for="idnumber">Province: </label> {{Student.IDNumber}}<br />
+            <label>City: </label> {{Student.IDNumber}}<br />
+            <label>Street Address: </label> {{Student.DateOfBirth | date: "MMMM d, y"}}<br />
+            <label>Postal Code: </label> {{Student.Gender}}<br />
+            <label>Disability: </label> {{Student.DisabilityDescription}}<br />
+        </div>
+    </div>
+    <hr class="style2" />
+    <div class="row container">
+        <h2 style="color: #999;">Gaurdian Details</h2>
+        <label for="idnumber">Relationship: </label> {{Student.GuardianRelationship}}<br />
+        <label>Email: </label> {{Student.GuardianEmail}}<br />
+        <label>Phone: </label> {{Student.GuardianPhone}}<br />
+     
+    </div>
+    <hr class="style2" />
+    <div class="row container">
+        <h2 style="color: #999; page-break-before: always;">Academic Record</h2>
+        <md-divider></md-divider>
+        <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Lastest Overall Averages</md-subheader>
+
+         <div class="chart-container">
+            <div fusioncharts
+                 width="100%"
+                 height="700"
+                 type="line"
+                 dataSource="{{myDataSource}}">
             </div>
         </div>
-        
-      
-    </div>
-    <div class="row infos md-padding">
+        <md-divider style="page-break-before: always;"></md-divider>
+        <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Lastest Report Marks</md-subheader>
+
+        <div class="chart-container">
+            <div fusioncharts
+                 width="100%"
+                 height="700"
+                 type="bar2d"
+                 dataSource="{{myDataSource2}}">
+            </div>
+        </div>
        
-        <div class="col-md-6">
-            <img class="" style="width: 200px; height: 140px; padding-top: 2px; padding-left: -10px;" ng-src="/Content/images/p1.jpeg" alt="Student profile picture" />
-        </div>
-        <div class="col-md-6 right">
-            <div class="input-container" style="line-height:0.5; padding-top: 0.5pc" ><p>{{Student.Firstname}} {{Student.Surname}}</p></div>
-            <div class="input-container" style="line-height:0.5;"><p> {{Student.Age}} yrs old</p></div>
-            <div class="input-container" style="line-height:0.5;"><p>Date of Birth: {{Student.DateOfBirth | date: "MMM d, y"}}</p></div>
-            <div class="input-container" style="line-height:0.5;"><p>ID-Number: {{Student.IDNumber}}</p></div>
-            <div class="input-container" style="line-height:0.5;"><p>Gender: {{Student.Gender}}</p></div>
-            <div class="input-container" style="line-height:0.5;"><p>Race: {{Student.Race}}</p></div>
-            <div class="input-container" style="line-height:0.5;"><p>Disabilities: {{Student.DisabilityDescription}}</p></div>
 
 
-        </div>
-    </div>
-    <div class="row branding md-padding">
-        <h3>Academic Details</h3>
-        <div class="input-container" style="line-height:0.5; padding-top: 0.5pc"><p>{{Student.Firstname}} {{Student.Surname}}</p></div>
-        <div class="input-container" style="line-height:0.5;"><p> {{Student.Age}} yrs old</p></div>
-        <div class="input-container" style="line-height:0.5;"><p>Date of Birth: {{Student.DateOfBirth | date: "MMM d, y"}}</p></div>
-        <div class="input-container" style="line-height:0.5;"><p>ID-Number: {{Student.IDNumber}}</p></div>
-        <div class="input-container" style="line-height:0.5;"><p>Gender: {{Student.Gender}}</p></div>
-        <div class="input-container" style="line-height:0.5;"><p>Race: {{Student.Race}}</p></div>
-        <div class="input-container" style="line-height:0.5;"><p>Disabilities: {{Student.DisabilityDescription}}</p></div>
+            
 
     </div>
-
-    <div class="row branding md-padding">
-        <h3>Address</h3>
-    </div>
-
-    <div class="row branding md-padding">
-        <h3>Gaurdian</h3>
+    <hr class="style2" />
+    <div class="row container" style="page-break-before: always;">
+        <h2 style="color: #999;">Essay</h2>
+        <pre class="container" style="width: 100%;text-align: justify;">{{Student.Essay}}</pre>
     </div>
  
 
 
-    <div class="row branding md-padding">
-        <h3>Study Details</h3>
-    </div>
 
     <div class="row noPrint actions">
         <a class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>

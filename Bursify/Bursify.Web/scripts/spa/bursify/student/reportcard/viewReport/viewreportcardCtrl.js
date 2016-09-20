@@ -119,7 +119,7 @@
                     ]
                 }
             ]
-        }
+        };
 
         function dataItem(label, value) {
             this.label = label;
