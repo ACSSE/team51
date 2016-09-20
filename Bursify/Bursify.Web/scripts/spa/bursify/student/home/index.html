@@ -30,6 +30,7 @@
                                                             <span class="bar"></span>
          
                                                         </div>
+                                                
                                                     </div>
                                                     <div class="col-md-8">
 
@@ -59,7 +60,7 @@
 
                                                 </div>
                                                 
-                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | filter: searchB">
+                                                <div class="media" ng-repeat="Sponsorship in Recco | filter: searchA">
                                                     <div class="media-left" style="padding-top: 10px;">
                                                         <a  href="#/student/sponsorship/{{Sponsorship.ID}}">
 
@@ -107,41 +108,50 @@
                                         <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
                                             <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-12">
                                                         <div class="form-group form-animate-text">
                                                             <input type="text" class="form-text" ng-model="searchB" placeholder="Type here to search">
                                                             <span class="bar"></span>
-                                                          </div>
-                                                    </div>
-                                                    <div class="col-md-8">
+                                                        </div>
+                                                        </div>
+                                                    <div class="row col-sm-offset-1" >
+                                                        <div class="col-md-4">
+                                                            <md-input-container>
+                                                                <label>Filter by study fields:</label>
+                                                                <md-select  ng-model="searchFields" style="min-width: 250px;" multiple>
+                                                                    <md-option ng-value="field" ng-repeat="field in fields | orderBy">{{field}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
 
-                                                        <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>Closing Date</label>
-                                                            </div>
+
                                                         </div>
                                                         <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>Rating</label>
-                                                            </div>
+                                                            <md-input-container>
+                                                                <label>Filter by offerings:</label>
+                                                                <md-select ng-model="searchItem" style="min-width: 250px;" multiple>
+                                                                    <md-option ng-value="item.value" ng-repeat="item in items | orderBy: 'name'">{{item.name}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+
+
                                                         </div>
                                                         <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>A-Z</label>
-                                                            </div>
-                                                        </div>
+                                                            <md-input-container>
+                                                                <label>Sort by:</label>
+                                                                <md-select placeholder="Sort by" ng-model="sortA" style="min-width: 250px;">
+                                                                    <md-option ng-value="sort.value" ng-repeat="sort in sorts | orderBy">{{sort.name}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+                                                         </div>
                                                     </div>
+                                                  
 
                                                 </div>
 
+                                                <hr/>
 
-                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | filter: searchB">
+
+                                                <div class="media" data-ng-repeat="Sponsorship in Sponsorships | filter: searchB | itemFilter:searchItem | orderBy: sortA | limitTo: query.limit : (query.page - 1) * query.limit">
                                                     <div class="media-left" style="padding-top: 10px;">
                                                         <a href="#/student/sponsorship/{{Sponsorship.ID}}">
 
