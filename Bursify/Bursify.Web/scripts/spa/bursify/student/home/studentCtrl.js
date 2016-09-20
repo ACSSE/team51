@@ -10,28 +10,50 @@
                 return items;
             }
 
-           // console.log(items[0].Name);
-
             return items.filter(function (element, index, array) {
-                var x = element.ExpensesCovered;
+                var x = element.ExpensesCovered + " ";
+              
                 var z = searchItem + "";
                 var y = z.split(',');
-                var ret = false;
+                var ret = true;
+                
 
                 for (var i = 0; i < y.length; i++) {
-                    if (x.includes(y[i])) {
-                        ret = true;
+                    if(x.includes(y[i])){
+
+                    } else {
+                        ret = false;
                     }
                 }
 
                 if (ret) {
                     return element;
                 }
-                
-                  
                     
-                
                
+            });
+
+        };
+    });
+
+    app.filter('fieldFilter', function () {
+        return function (items, searchField) {
+            if (!searchField || searchField == '*All Fields') {
+                return items;
+            }
+
+            return items.filter(function (element, index, array) {
+               
+                var ret = false;
+                if (element.StudyFields.includes(searchField)) {
+                    ret = true
+                }
+
+                if (ret) {
+                    return element;
+                }
+
+
             });
 
         };
@@ -50,9 +72,10 @@
             count: 0,
             selectedDirection: 'left'
         };
-
+        $scope.sortB = "";
 
         $scope.fields = [
+            '*All Fields',
           'Art',
           'Design',
           'Architecture',
@@ -111,6 +134,24 @@
            'Applied Mathematics',
            'Computer Science'];
 
+        $scope.sortSPA = function () {
+            $scope.sortDate = true;
+            $scope.sortRating = false;
+            $scope.sortAZ = false;
+        }
+
+        $scope.sortSPB = function () {
+            $scope.sortDate = false;
+            $scope.sortRating = true;
+            $scope.sortAZ = false;
+          
+        }
+
+        $scope.sortSPC = function () {
+            $scope.sortRating = false;
+            $scope.sortDate = false;
+            $scope.sortAZ = true;
+        }
 
         $scope.items = ['Registration', 'Examination Fees', 'Tuition Fees', 'Textbooks', 'Accommodation', 'Living Allowance', 'Laptop Allowance', 'Transport'];
 
@@ -146,6 +187,13 @@
        
         function CompletedSponsorship(result) {
             $scope.Sponsorships = result.data;
+            //for (var i = 0; i < $scope.Sponsorships.length; i++) {
+            //    var s = $scope.Sponsorships[i].ExpensesCovered;
+            //    s = s.split(',');
+            //    s.pop();
+            //    s.sort();
+            //    $scope.Sponsorships[i].ExpensesCovered = s;
+            //}
             loadReccommended();
         }
 

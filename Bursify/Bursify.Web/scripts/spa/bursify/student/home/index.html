@@ -32,35 +32,20 @@
                                                         </div>
                                                 
                                                     </div>
-                                                    <div class="col-md-8">
-
-                                                        <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>Closing Date</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>Rating</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>A-Z</label>
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-md-offset-5">
+                                                       <label>Sort by: </label>
+                                                        <md-radio-group ng-model="sortB" layout="row" required>
+                                                            <md-radio-button value="Name" class="md-primary">A - Z</md-radio-button>
+                                                            <md-radio-button value="ClosingDate" class="md-primary"> Closing Date </md-radio-button>
+                                                            <md-radio-button value="-Rating" class="md-primary"> Rating </md-radio-button>
+             
+                                                        </md-radio-group>
                                                     </div>
                                               
 
                                                 </div>
                                                 
-                                                <div class="media" ng-repeat="Sponsorship in Recco | filter: searchA">
+                                                <div class="media"  data-ng-repeat="Sponsorship in Recco | filter: searchA | orderBy: sortB | limitTo: query.limit : (query.page - 1) * query.limit">
                                                     <div class="media-left" style="padding-top: 10px;">
                                                         <a  href="#/student/sponsorship/{{Sponsorship.ID}}">
 
@@ -118,7 +103,7 @@
                                                         <div class="col-md-4">
                                                             <md-input-container>
                                                                 <label>Filter by study fields:</label>
-                                                                <md-select  ng-model="searchFields" style="min-width: 250px;" multiple>
+                                                                <md-select  ng-model="searchField" style="min-width: 250px;">
                                                                     <md-option ng-value="field" ng-repeat="field in fields | orderBy">{{field}}</md-option>
                                                                 </md-select>
                                                             </md-input-container>
@@ -151,7 +136,7 @@
                                                 <hr/>
 
 
-                                                <div class="media" data-ng-repeat="Sponsorship in Sponsorships | filter: searchB | itemFilter:searchItem | orderBy: sortA | limitTo: query.limit : (query.page - 1) * query.limit">
+                                                <div class="media" data-ng-repeat="Sponsorship in Sponsorships | filter: searchB | itemFilter:searchItem | fieldFilter: searchField | orderBy: sortA | limitTo: query.limit : (query.page - 1) * query.limit">
                                                     <div class="media-left" style="padding-top: 10px;">
                                                         <a href="#/student/sponsorship/{{Sponsorship.ID}}">
 
