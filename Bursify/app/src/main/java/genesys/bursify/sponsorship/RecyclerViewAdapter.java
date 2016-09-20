@@ -25,6 +25,7 @@ import java.util.Locale;
 import genesys.bursify.R;
 import genesys.bursify.data.entities.Sponsorship;
 import genesys.bursify.data.models.SponsorshipResponse;
+import genesys.bursify.utility.FragmentUtility;
 
 /**
  * Created by genesys on 2016/04/03.
@@ -58,7 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.textView.setTypeface(Typeface.createFromAsset(context.getAssets(), "Roboto-Regular.ttf"));
         holder.txtDescription.setText(sponsorships.get(position).getDescription());
         holder.txtDescription.setTypeface(Typeface.createFromAsset(context.getAssets(), "Roboto-Light.ttf"));
-        holder.txtClosingDate.setText(createDate(sponsorships.get(position).getClosingDate()));
+        holder.txtClosingDate.setText(FragmentUtility.createDate(sponsorships.get(position).getClosingDate()));
 
         holder.ratingBar.setRating(sponsorships.get(position).getRating());
         LayerDrawable stars = (LayerDrawable) holder.ratingBar.getProgressDrawable();
@@ -77,24 +78,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
 
-    }
-
-    private String createDate(String date)
-    {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
-        String rawDate = date.substring(0, 10).replaceAll("-", "/");
-
-        Date closingDate = null;
-        try
-        {
-            closingDate = sdf.parse(rawDate);
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-
-        return (new SimpleDateFormat("MMMM dd, yyyy").format(closingDate));
     }
 
     @Override

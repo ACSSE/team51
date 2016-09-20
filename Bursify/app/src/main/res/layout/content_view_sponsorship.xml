@@ -23,7 +23,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:background="#454254"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <TextView
+                    android:id="@+id/bursaryTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Entelect Bursary"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"/>
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:max="100"
+                    android:numStars="5"
+                    android:paddingBottom="10dp"
+                    android:rating="0.0"
+                    android:stepSize="0.0"/>
+
+                <TextView
+                    android:id="@+id/closingDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:text="Closing date: 20 December, 2016"/>
+
+            </LinearLayout>
+
+
             <TextView
                 android:id="@+id/sponsorship_description"
                 android:layout_width="wrap_content"
