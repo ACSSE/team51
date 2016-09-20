@@ -1,11 +1,8 @@
-package genesys.bursify.entities;
+package genesys.bursify.data.entities;
 
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Brandon on 2016/08/09.
- */
 public class Sponsorship
 {
     private int ID;

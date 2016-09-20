@@ -39,5 +39,6 @@ dependencies {
     compile 'com.github.gabrielemariotti.cards:cardslib-recyclerview:2.1.0'
     compile 'com.borax12.materialdaterangepicker:library:1.6'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
 }

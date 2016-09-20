@@ -1,4 +1,4 @@
-package genesys.bursify.entities;
+package genesys.bursify.data.entities;
 
 import java.util.Date;
 

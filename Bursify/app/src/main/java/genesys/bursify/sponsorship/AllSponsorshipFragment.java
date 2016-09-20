@@ -1,8 +1,10 @@
 package genesys.bursify.sponsorship;
 
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,11 +21,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import genesys.bursify.R;
-import genesys.bursify.entities.Sponsorship;
+import genesys.bursify.data.entities.Sponsorship;
 import genesys.bursify.utility.BursifyService;
 
 
@@ -46,6 +47,10 @@ public class AllSponsorshipFragment extends Fragment
     }
 
 
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -54,68 +59,52 @@ public class AllSponsorshipFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_all_sponsorships, container, false);
 
         progressBar = (ProgressBar) view.findViewById(R.id.sponsorship_progress);
-        progressBar.setVisibility(View.GONE);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.scrollableview);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
+        progressBar.setVisibility(View.VISIBLE);
+        //new GetSponsorshipTask().execute();
+        genesys.bursify.sponsorship.api.Sponsorship sponsorship = new genesys.bursify.sponsorship.api.Sponsorship();
 
-        new GetSponsorshipTask().execute();
+        sponsorship.getAllSponsorships(recyclerView, progressBar);
+
+        //progressBar.setVisibility(View.GONE);
 
         return view;
     }
 
-    class GetSponsorshipTask extends AsyncTask<Void, Void, JSONArray>
+    class GetSponsorshipTask extends AsyncTask<Void, Void, Void>
     {
-        ArrayList<Sponsorship> sponsorshipList = new ArrayList<>();
-
         @Override
         protected void onPreExecute()
         {
             super.onPreExecute();
-            progressBar.setVisibility(View.VISIBLE);
+
         }
 
         @Override
-        protected JSONArray doInBackground(Void... params)
+        protected Void doInBackground(Void... params)
         {
-            sponsorships = BursifyService.getMultipleService(BursifyService.GET_SPONSORSHIPS);
 
-            return sponsorships;
+            return null;
         }
 
         @Override
         protected void onProgressUpdate(Void... values)
         {
             super.onProgressUpdate(values);
-            progressBar.setVisibility(View.VISIBLE);
+
         }
 
         @Override
-        protected void onPostExecute(JSONArray jsonArray)
+        protected void onPostExecute(Void aVoid)
         {
-            super.onPostExecute(jsonArray);
-            progressBar.setVisibility(View.GONE);
+            super.onPostExecute(aVoid);
 
-            for(int i = 0; i < jsonArray.length(); i++)
-            {
-                try
-                {
-                    JSONObject current = jsonArray.getJSONObject(i);
-
-                    Sponsorship sp = createSponsorship(current);
-                    sponsorshipList.add(sp);
-                }
-                catch (JSONException | ParseException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-
-            adapter = new RecyclerViewAdapter(sponsorshipList);
-            recyclerView.setAdapter(adapter);
         }
+
 
         private Sponsorship createSponsorship(JSONObject jsonObject) throws JSONException, ParseException
         {

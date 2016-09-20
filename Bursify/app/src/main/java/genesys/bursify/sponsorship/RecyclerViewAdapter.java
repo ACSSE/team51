@@ -2,18 +2,29 @@ package genesys.bursify.sponsorship;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import genesys.bursify.R;
-import genesys.bursify.entities.Sponsorship;
+import genesys.bursify.data.entities.Sponsorship;
+import genesys.bursify.data.models.SponsorshipResponse;
 
 /**
  * Created by genesys on 2016/04/03.
@@ -22,9 +33,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 {
     Context context;
 
-    private ArrayList<Sponsorship> sponsorships;
+    private ArrayList<SponsorshipResponse> sponsorships;
 
-    public RecyclerViewAdapter(ArrayList<Sponsorship> sponsorships)
+    public RecyclerViewAdapter(ArrayList<SponsorshipResponse> sponsorships)
     {
         this.sponsorships = sponsorships;
     }
@@ -44,9 +55,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     {
 
         holder.textView.setText(sponsorships.get(position).getName());
-        //holder.txtSummary.setText(sponsorships.get(position).getDescription());
+        holder.textView.setTypeface(Typeface.createFromAsset(context.getAssets(), "Roboto-Regular.ttf"));
+        holder.txtDescription.setText(sponsorships.get(position).getDescription());
+        holder.txtDescription.setTypeface(Typeface.createFromAsset(context.getAssets(), "Roboto-Light.ttf"));
+        holder.txtClosingDate.setText(createDate(sponsorships.get(position).getClosingDate()));
 
-        holder.ratingBar.setRating((position % 5 == 0) ? 5 : position % 5);
+        holder.ratingBar.setRating(sponsorships.get(position).getRating());
+        LayerDrawable stars = (LayerDrawable) holder.ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(context.getResources().getColor(R.color.amber), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(0).setColorFilter(context.getResources().getColor(R.color.amber), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(1).setColorFilter(context.getResources().getColor(R.color.amber), PorterDuff.Mode.SRC_ATOP);
 
         holder.card.setOnClickListener(new View.OnClickListener()
         {
@@ -61,6 +79,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     }
 
+    private String createDate(String date)
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        String rawDate = date.substring(0, 10).replaceAll("-", "/");
+
+        Date closingDate = null;
+        try
+        {
+            closingDate = sdf.parse(rawDate);
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        return (new SimpleDateFormat("MMMM dd, yyyy").format(closingDate));
+    }
+
     @Override
     public int getItemCount()
     {
@@ -69,8 +105,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView textView;
-        //TextView txtSummary;
+        TextView textView, txtDescription, txtClosingDate;
         CardView card;
         RatingBar ratingBar;
 
@@ -79,11 +114,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(view);
 
             textView = (TextView) view.findViewById(R.id.info_text);
-            //txtSummary = (TextView) view.findViewById(R.id.txtSummary);
+            txtDescription = (TextView) view.findViewById(R.id.txtDescription);
+            txtClosingDate = (TextView) view.findViewById(R.id.txtClosingDate);
             card = (CardView) view.findViewById(R.id.card_view);
             ratingBar = (RatingBar) view.findViewById(R.id.rating);
-            ratingBar.setRating(5);
+
+
+            //ratingBar.setRating(5);
         }
+    }
+
+    public Context getContext()
+    {
+        return context;
     }
 
     private void viewSponsorship(String sponsorshipName)
@@ -91,12 +134,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Intent intent = new Intent(context, ViewSponsorshipActivity.class);
 
         int sponsorshipId;
-        for (Sponsorship sponsorship : sponsorships)
+        for (SponsorshipResponse sponsorship : sponsorships)
         {
             if(sponsorship.getName().equalsIgnoreCase(sponsorshipName))
             {
                 //sponsorshipId = ;
-                intent.putExtra("sponsorshipId", sponsorship.getID());
+                intent.putExtra("sponsorshipId", sponsorship.getId());
                 context.startActivity(intent);
                 return;
             }

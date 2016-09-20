@@ -7,6 +7,7 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -146,15 +147,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view)
             {
-                //startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                attemptLogin();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                //attemptLogin();
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-
 
     }
 
@@ -423,6 +422,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 response = BursifyService.postService(BursifyService.LOGIN, loginObject);
 
+                SharedPreferences.Editor editor = getSharedPreferences("userId", MODE_PRIVATE).edit();
+                editor.putInt("id", response.getJSONObject("user").getInt("ID"));
+                editor.commit();
+
                 return response.getBoolean("success");
             }
             catch (JSONException e)
@@ -459,5 +462,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
     }
+
 }
 

@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import genesys.bursify.R;
-import genesys.bursify.entities.Sponsorship;
+import genesys.bursify.data.entities.Sponsorship;
 import genesys.bursify.utility.BursifyService;
 
 
@@ -61,7 +61,7 @@ public class SponsorshipSuggestionFragment extends Fragment
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        new GetSponsorshipTask().execute();
+        //new GetSponsorshipTask().execute();
 
         return view;
     }
@@ -112,8 +112,8 @@ public class SponsorshipSuggestionFragment extends Fragment
                 }
             }
 
-            adapter = new RecyclerViewAdapter(sponsorshipList);
-            recyclerView.setAdapter(adapter);
+            //adapter = new RecyclerViewAdapter(sponsorshipList);
+            //recyclerView.setAdapter(adapter);
         }
 
         private Sponsorship createSponsorship(JSONObject jsonObject) throws JSONException, ParseException

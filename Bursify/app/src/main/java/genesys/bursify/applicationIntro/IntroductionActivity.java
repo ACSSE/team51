@@ -14,6 +14,7 @@ import com.github.paolorotolo.appintro.AppIntro2;
 
 import genesys.bursify.LoginActivity;
 import genesys.bursify.R;
+import genesys.bursify.sponsorship.api.Sponsorship;
 
 public class IntroductionActivity extends AppIntro2
 {
@@ -25,7 +26,6 @@ public class IntroductionActivity extends AppIntro2
         addSlide(new FirstIntroductionFragment());
         addSlide(new SecondIntroductionFragment());
         addSlide(new ThirdIntroductionFragment());
-
 
         setProgressButtonEnabled(true);
         showStatusBar(true);
