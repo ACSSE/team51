@@ -22,7 +22,36 @@
     .body{
         text-align: justify;
     }
+    pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+    @media print
+{    
+    .noPrint, .noPrint *
+    {
+        display: none !important;
+    }
+}
 </style>
+
+<div class="row noPrint actions md-padding">
+    <div class="col-md-6">
+        <label>Include: </label>
+
+        <md-checkbox value="Name" class="md-primary">ID Document</md-checkbox>
+        <md-checkbox value="ClosingDate" class="md-primary"> Matric Certificate </md-checkbox>
+        <md-checkbox value="-Rating" class="md-primary"> CV </md-checkbox>
+
+
+    </div>
+    <button class="btn btn-primary col-md-3" ng-click="printInfo()">Print</button>
+  
+</div>
 <div class="md-padding container" width="800px" id="invoice" ng-init="LoadData()">
    
     <div class="row" ng-init="printMode = 'true'">
@@ -55,26 +84,10 @@
         <p>{{User.Biography}}</p>
     
     </div>
-    <hr class="style2" />
-    <div class="row container">
-        <h2 style="color: #999;">Personal Deatils</h2>
-        <label for="idnumber">ID Number: </label> {{Student.IDNumber}}<br/>
-        <label >Student Number: </label> {{Student.IDNumber}}<br />
-        <label>Age: </label> {{Student.Age}} yrs. old<br />
-        <label>Date of Birth: </label> {{Student.DateOfBirth | date: "MMMM d, y"}}<br />
-        <label>Gender: </label> {{Student.Gender}}<br />
-        <label>Race: </label> {{Student.Race}}<br />
-        <label>Disability: </label> {{Student.DisabilityDescription}}<br />
-        <label>This year I am in: </label> {{Student.CurrentOccupation}}<br />
-        <label>Highest Academic Level Attained: </label> {{Student.HighestAcademicAchievement}}  student in {{Student.YearOfAcademicAchievement}} <br />
-        
 
-      
-
-    </div>
     <hr class="style2" />
  
-    <div class="row container" style="page-break-before: always;">
+    <div class="row container">
         <h2 style="color: #999;">Residential Details</h2>
         <label for="idnumber">Province: </label> {{User.Addresses[0].Province}}<br />
         <label>City: </label> {{User.Addresses[0].City}}<br />
@@ -97,6 +110,21 @@
         <label>Email: </label> {{Student.GuardianEmail}}<br />
         <label>Phone: </label> {{Student.GuardianPhone}}<br />
      
+    </div>
+    <hr class="style2" />
+    <div class="row container" style="page-break-before: always;">
+        <h2 style="color: #999;">Personal Deatils</h2>
+        <label for="idnumber">ID Number: </label> {{Student.IDNumber}}<br />
+        <label>Student Number: </label> {{Student.IDNumber}}<br />
+        <label>Age: </label> {{Student.Age}} yrs. old<br />
+        <label>Date of Birth: </label> {{Student.DateOfBirth | date: "MMMM d, y"}}<br />
+        <label>Gender: </label> {{Student.Gender}}<br />
+        <label>Race: </label> {{Student.Race}}<br />
+        <label>Disability: </label> {{Student.DisabilityDescription}}<br />
+        <label>This year I am in: </label> {{Student.CurrentOccupation}}<br />
+        <label>Highest Academic Level Attained: </label> {{Student.HighestAcademicAchievement}}  student in {{Student.YearOfAcademicAchievement}} <br />
+
+
     </div>
     <hr class="style2" />
     <div class="row container">
@@ -134,12 +162,5 @@
         <h2 style="color: #999;">Essay</h2>
         <pre class="container" style="width: 100%;text-align: justify;">{{Student.Essay}}</pre>
     </div>
- 
 
-
-
-    <div class="row noPrint actions">
-        <a class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>
-     
-    </div>
 </div>

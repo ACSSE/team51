@@ -170,9 +170,7 @@
               $scope.myDataSource2.data.push(new dataItem($scope.myReports[0].Subjects[i].Name, $scope.myReports[0].Subjects[i].MarkAcquired))
           }
 
-
-          apiService.get('/api/campaign/GetAllCampaigns/?userId=' + $routeParams.StudentId, null, campLoadCompleted, campLoadFailed);
-      }
+  }
 
 
 
