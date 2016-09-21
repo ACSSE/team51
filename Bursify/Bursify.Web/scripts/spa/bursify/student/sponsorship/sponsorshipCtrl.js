@@ -138,7 +138,7 @@
             $scope.ReportSubs = result.data;
            for (var i = 0; i < $scope.Sponsorship.Requirements.length; i++) {
 
-                }
+           }
             
         }
 
