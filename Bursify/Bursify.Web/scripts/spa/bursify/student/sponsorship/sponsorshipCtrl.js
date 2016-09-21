@@ -111,7 +111,39 @@
                 }
             }
 
+          
+            if ($scope.level && $scope.Quali) {
+                apiService.get('/api/report/GetMostRecentReport/?studentId=' + $rootScope.repository.loggedUser.userIden, null,
+         reportCompleted,
+         reportFailed);
+            }
+        
 
+
+        }
+
+
+        function dataSubject(name, mark) {
+            this.name = name;
+            this.mark = mark;
+            this.Quali = false;
+        }
+
+        $scope.CompareSubs = [];
+        $scope.ReportSubs = {};
+        //checking subjects now 
+
+        function reportCompleted(result) {
+           
+            $scope.ReportSubs = result.data;
+           for (var i = 0; i < $scope.Sponsorship.Requirements.length; i++) {
+
+                }
+            
+        }
+
+        function reportFailed() {
+            notificationService.displayError('Could not load student report.')
         }
 
         function studentLoadFailed() {

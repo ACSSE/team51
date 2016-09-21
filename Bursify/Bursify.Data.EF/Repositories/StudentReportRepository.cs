@@ -67,6 +67,7 @@ namespace Bursify.Data.EF.Repositories
                 .Where(x => x.StudentId == studentId)
                 .OrderByDescending(x => x.ReportYear)
                 .ThenByDescending(x => x.ReportPeriod)
+                .Include(x => x.Subjects)
                 .FirstOrDefault();
 
             return report;
