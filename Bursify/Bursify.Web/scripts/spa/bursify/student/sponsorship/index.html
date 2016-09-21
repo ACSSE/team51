@@ -58,11 +58,39 @@
     </div>
     <div class="col-md-12">
         <div class="panel">
-            <div class="pull-right article-v1-time">
+            <div class="pull-right article-v1-time" style="padding-right: 10px;">
                 <em>Closing Date - {{Sponsorship.ClosingDate | date: "MMM d, y"}}</em>
             </div>
             <div class="panel-body">
-                <div class="col-md-12 text-left title" ng-if="Student.AverageMark < Sponsorship.AverageMarkRequired"><p style="color: lightcoral;">Unfortunately at this moment you do not reach the requirements for this sponsorship and will not be able to apply. You are still able to share this sposonship with fellow students. Make use of the reccommended section on the home page where you will be able to find sponsorships better suited for you. (Contact admin for any queries)</p></div>
+              <br/>
+                <div>
+                <md-list ng-if="!Quali || !level">
+                    
+                    <md-subheader class="md-no-sticky" style="background-color: lightsalmon; color: white; font-size: 16px;">Unfortunately you do not currently qualify for this sponsorship.</md-subheader>
+                    <div ng-if="!level">
+                        <md-list-item style="font-family: Verdana, Geneva, Tahoma, sans-serif" >
+
+                            <p ng-if="Sponsorship.EducationLevel == 'Tertiary'">
+                               This sponsorship is only for <span style="color: deeppink; font-style: italic; font-size: 14px;">Tertiary</span> students.
+</p>
+                            <p ng-if="Sponsorship.EducationLevel == 'High School'">
+                                This sponsorship is only for <span style="color: deeppink; font-style: italic; font-size: 14px;">High School</span> students.
+</p>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </div>
+                    <div ng-if="!Quali && level">
+                        <md-list-item style="font-family: Verdana, Geneva, Tahoma, sans-serif" ng-if="Student.AverageMark < Sponsorship.AverageMarkRequired">
+
+                            <p>
+                                The Average Mark required for this Bursary is <span style="color: forestgreen; font-style: italic; font-size: 14px;">{{Sponsorship.AverageMarkRequired}}%</span> and yours is <span style="color: orangered; font-style: italic; font-size: 14px;">{{Student.AverageMark}}%.</span>
+                                Increase your overall average by and yours is <span style="color: goldenrod; font-style: italic; font-size: 14px;">{{Sponsorship.AverageMarkRequired - Student.AverageMark}}%</span> to be able to apply for this sponsorship.
+                            </p>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </div>
+                </md-list>
+                    </div>
              
                 <div class="col-md-12 text-left title"><h2>About</h2></div>
                 <div class="col-md-12 text-justify">

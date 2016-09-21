@@ -27,9 +27,7 @@
         apiService.get('/api/sponsorship/GetSponsorship/?sponsorshipId=' + $routeParams.sponsorshipId, null,
         sponsorshipLoadCompleted,
         sponsorshipLoadFailed);
-        apiService.get('/api/sponsorship/GetSimilar/?sponsorshipId=' + $routeParams.sponsorshipId, null,
-        similarLoadCompleted,
-        similarLoadFailed);
+    
 
         $scope.diffDays = {};
 
@@ -45,7 +43,9 @@
         $scope.myFields = {};
         function sponsorshipLoadCompleted(result) {
             $scope.Sponsorship = result.data;
-
+            apiService.get('/api/sponsorship/GetSimilar/?sponsorshipId=' + $routeParams.sponsorshipId, null,
+            similarLoadCompleted,
+            similarLoadFailed);
             var oneDay = 24*60*60*1000;	// hours*minutes*seconds*milliseconds
             var firstDate = new Date();
             var secondDate = new Date($scope.Sponsorship.ClosingDate);
@@ -53,10 +53,7 @@
             var x = Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay));
             $scope.diffDays = ~~x;
 
-            //var expenses = $scope.Sponsorship.ExpensesCovered;
-
-            //$scope.expenses = expenses.split(",");
-            //$scope.expenses.pop();
+          
        
             if ($scope.Sponsorship.StudyFields != 'All') {
                 $scope.x = $scope.Sponsorship.StudyFields;
@@ -83,13 +80,38 @@
 
 
             apiService.get('/api/student/Getstudent/?studentId=' + $rootScope.repository.loggedUser.userIden, null,
-      studentLoadCompleted,
-      studentLoadFailed);
+            studentLoadCompleted,
+            studentLoadFailed);
         }
 
         $scope.Student = {};
+        $scope.Quali = true;
+        $scope.level = true;
         function studentLoadCompleted(result) {
             $scope.Student = result.data;
+
+            if ($scope.Student.AverageMark < $scope.Sponsorship.AverageMarkRequired) {
+                $scope.Quali = false;
+            }
+
+            if ($scope.Sponsorship.EducationLevel == 'High School') {
+                if ($scope.Student.CurrentOccupation != 'High School') {
+                    $scope.level = false;
+                } 
+            }
+
+
+            if ($scope.Sponsorship.EducationLevel == 'Tertiary') {
+                if ($scope.Student.CurrentOccupation != 'Tetiary') {
+                    $scope.level = false;
+                }
+                
+                if ($scope.Student.EducationLevel == 'Grade 12') {
+                    $scope.level = true;
+                }
+            }
+
+
         }
 
         function studentLoadFailed() {
