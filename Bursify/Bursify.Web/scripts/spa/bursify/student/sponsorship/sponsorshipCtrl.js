@@ -102,7 +102,7 @@
 
 
             if ($scope.Sponsorship.EducationLevel == 'Tertiary') {
-                if ($scope.Student.CurrentOccupation != 'Tetiary') {
+                if ($scope.Student.CurrentOccupation == 'High School') {
                     $scope.level = false;
                 }
                 
@@ -114,8 +114,8 @@
           
             if ($scope.level && $scope.Quali) {
                 apiService.get('/api/report/GetMostRecentReport/?studentId=' + $rootScope.repository.loggedUser.userIden, null,
-         reportCompleted,
-         reportFailed);
+                reportCompleted,
+                reportFailed);
             }
         
 
@@ -126,19 +126,43 @@
         function dataSubject(name, mark) {
             this.name = name;
             this.mark = mark;
-            this.Quali = false;
         }
 
-        $scope.CompareSubs = [];
+        function dataSubject(name, mark, sMark) {
+            this.name = name;
+            this.mark = mark;
+            this.smark = sMark;
+        }
+
+        $scope.nSubs = false;
+        $scope.fSubs = false;
+        $scope.NotSubs = [];
+        $scope.FoundSubs = [];
         $scope.ReportSubs = {};
         //checking subjects now 
 
         function reportCompleted(result) {
            
             $scope.ReportSubs = result.data;
-           for (var i = 0; i < $scope.Sponsorship.Requirements.length; i++) {
-
-           }
+            if (!$scope.level && !$scope.Quali) {
+                for (var i = 0; i < $scope.Sponsorship.Requirements.length; i++) {
+                    for (var k = 0; k < $scope.ReportSubs.Subjects.length; k++) {
+                        if ($scope.Sponsorship.Requirements[i].Name == $scope.ReportSubs.Subjects[k].Name) {
+                            console.log("Found: " + $scope.Sponsorship.Requirements[i].Name);
+                            if ($scope.Sponsorship.Requirements[i].MarkRequired > $scope.ReportSubs.Subjects[k].MarkAcquired) {
+                                $scope.fSubs = true;
+                                $scope.FoundSubs.push(new dataSubject($scope.Sponsorship.Requirements[i].Name, $scope.Sponsorship.Requirements[i].MarkRequired, $scope.ReportSubs.Subjects[k].MarkAcquired));
+                                break;
+                            }
+                        } else {
+                            console.log("Not: " + $scope.Sponsorship.Requirements[i].Name);
+                            $scope.nSubs = true;
+                            $scope.NotSubs.push(new dataSubject($scope.Sponsorship.Requirements[i].Name, $scope.Sponsorship.Requirements[i].MarkRequired));
+                            break;
+                        }
+                    }
+                }
+            }
             
         }
 
