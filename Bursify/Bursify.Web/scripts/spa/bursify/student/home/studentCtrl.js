@@ -53,6 +53,8 @@
                     return element;
                 }
 
+               
+
 
             });
 
@@ -201,7 +203,7 @@
             apiService.get('/api/student/getsponsorshipsuggestions/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reccoCompleted, reccoFailed);
         }
 
-        $scope.Recco = {};
+      
         function reccoCompleted(result) {
             $scope.Recco = result.data;
         }

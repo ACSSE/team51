@@ -49,9 +49,9 @@
                                                     <div class="media-left" style="padding-top: 10px;">
                                                         <a  href="#/student/sponsorship/{{Sponsorship.ID}}">
 
-
-                                                            <img  ng-if="Sponsorship.SponsorPicturePath == 'def'" ng-src="Content/default.png" width="55" height="55" class="media-object search-v1-avatar">
-                                                            <img  ng-if="Sponsorship.SponsorPicturePath != 'def'" ng-src="Content/BursifyUploads/{{Sponsorship.sponsorId}}/images/{{Sponsorship.SponsorPicturePath}}" width="55" height="55" class="media-object search-v1-avatar">
+                                                            
+                                                            <img ng-if="Sponsorship.SponsorPicturePath == 'def'" ng-src="Content/default.png" width="55" height="55" class="media-object search-v1-avatar">
+                                                            <img ng-if="Sponsorship.SponsorPicturePath != 'def'" ng-src="Content/BursifyUploads/{{Sponsorship.SponsorId}}/images/{{Sponsorship.SponsorPicturePath}}" width="55" height="55" class="box-v7-avatar">
 
                                                         </a>
                                                     </div>
@@ -88,6 +88,7 @@
                         </md-tab>
                         <md-tab label="ALL BURSARIES">                
                             <md-content class="md-padding">
+                                
                                 <div class="col-md-12">
                                     <div class="col-md-12 tabs-area box-shadow-none">
                                         <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
@@ -137,12 +138,14 @@
 
 
                                                 <div class="media" data-ng-repeat="Sponsorship in Sponsorships | filter: searchB | itemFilter:searchItem | fieldFilter: searchField | orderBy: sortA | limitTo: query.limit : (query.page - 1) * query.limit">
-                                                    <div class="media-left" style="padding-top: 10px;">
+                                                   
+                                              
+                                                     <div class="media-left" style="padding-top: 10px;">
                                                         <a href="#/student/sponsorship/{{Sponsorship.ID}}">
 
 
                                                             <img ng-if="Sponsorship.SponsorPicturePath == 'def'" ng-src="Content/default.png" width="55" height="55" class="media-object search-v1-avatar">
-                                                            <img ng-if="Sponsorship.SponsorPicturePath != 'def'" ng-src="Content/BursifyUploads/{{Sponsorship.sponsorId}}/images/{{Sponsorship.SponsorPicturePath}}" width="55" height="55" class="media-object search-v1-avatar">
+                                                            <img ng-if="Sponsorship.SponsorPicturePath != 'def'" ng-src="Content/BursifyUploads/{{Sponsorship.SponsorId}}/images/{{Sponsorship.SponsorPicturePath}}" width="55" height="55" class="media-object search-v1-avatar">
 
                                                         </a>
                                                     </div>

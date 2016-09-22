@@ -5,7 +5,10 @@
         <div class="md-toolbar-tools">
             <span>{{Student.Student.Firstname}} {{Student.Student.Surname}}'s Profile</span>
             <span flex></span>
+       
+            <md-button md-colors="{background: 'blue' }" ng-click="showCompare()">Compare</md-button>
             <md-button md-colors="{background: 'green' }" ng-click="showAdvanced()">Grant Sponsorship</md-button>
+          
         </div>
     </md-toolbar>
 
@@ -62,6 +65,52 @@
             </div><!-- /.col -->
             <div class="col-md-8">
                 <div class="panel">
+                
+                    <md-content laout="column" flex>
+
+                      
+                        <md-subheader ng-if="compare" class="md-no-sticky" style="background-color: #3f51b5; color: white; font-size: 14px;">Select a student to compare against:</md-subheader>
+
+
+                            <md-table-container ng-if="compare">
+                                <table data-md-table data-ng-model="selected" md-progress="promise">
+
+                                    <thead ng-if="!options.decapitate" md-head data-md-order="query.order" md-colors="{background: 'teal'}" md-on-reorder="onReorder">
+                                        <tr md-row style="color: white">
+                                            <th md-column style="color: white"><span>Profile</span></th>
+                                            <th md-column data-md-order-by="Name" style="color: white"><span>Name</span></th>
+   
+                                            <th md-column data-md-numeric data-md-order-by="school" style="color: white; text-align: center"><span>School</span></th>
+
+                                            <th md-column data-md-numeric data-md-order-by="Level" data-hide-sm style="color: white"><span>Level</span></th>
+                                            <th md-column data-md-numeric data-md-order-by="Average" data-hide-sm style="color: white"><span>Average</span></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row md-select="dessert" md-select-id="Name" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="options.autoSelect" data-ng-repeat="applicant in Applicants | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit">
+                                            <td md-cell style="padding: 0;"><img class="box-v7-avatar" style="width: 105px; height: 95px;" ng-src="Content/BursifyUploads/{{applicant.ID}}/images/{{applicant.PicturePath}}" alt="Student profile picture" /></td>
+                                            <td md-cell style="font-size: 14px;">{{applicant.Name}} {{applicant.Surname}} </td>
+                                   
+
+                                            <td md-cell>{{applicant.School}}</td>
+
+                                    
+
+                                            <td md-cell hide-sm>{{applicant.Level}}</td>
+                                            <td md-cell hide-sm style="font-size: 15px;">{{applicant.Average}}%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+
+                            <data-md-table-pagination ng-if="compare" md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{Applicants.count}}" md-on-paginate="onPaginate" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks"></data-md-table-pagination>
+
+
+
+                    </md-content>
+                </div>
+                <div class="panel">
                     <md-tabs md-dynamic-height md-border-bottom>
                         <md-tab label="About">
                             <md-content class="md-padding">
@@ -94,26 +143,26 @@
                                     <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Analytics - Student Progress</md-subheader>
                                     <md-content class="md-padding">
 
-                                        <div class="chart-container">
+                                        <!--<div class="chart-container">
                                             <div fusioncharts
                                                  width="100%"
                                                  height="400"
                                                  type="line"
                                                  dataSource="{{myDataSource}}">
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                     </md-content>
                                     <md-divider></md-divider>
                                     <md-subheader class="md-no-sticky" style="background-color: cadetblue; color: white; font-size: 14px;">Subjects - Most Recent Results</md-subheader>
-                                    <div class="chart-container">
+                                    <!--<div class="chart-container">
                                         <div fusioncharts
                                              width="100%"
                                              height="350"
                                              type="bar2d"
                                              dataSource="{{myDataSource2}}">
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <md-divider></md-divider>
                                 </md-list>
                             </md-content>
@@ -153,6 +202,7 @@
                         </md-tab>
                     </md-tabs>
                 </div>
+           
             </div><!-- /.col -->
         </div><!-- /.row -->
     </section>

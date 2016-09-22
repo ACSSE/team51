@@ -17,6 +17,7 @@
             $scope.selectedIndex = index;
 
         };
+
         $scope.showAdvanced = function (ev) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
             $mdDialog.show({
@@ -40,6 +41,35 @@
                 $scope.customFullscreen = (wantsFullScreen === true);
             });
         };
+
+      
+        $scope.compare = false;
+
+        $scope.showCompare = function () {
+          
+            $scope.compare = !$scope.compare;
+        }
+
+        $scope.Applicants = [];
+
+        function applicantsLoadCompleted(result) {
+
+            $scope.Applicants = result.data.data;
+            var x = [];
+            for (var i = 0; i < $scope.Applicants.length; i++) {
+                if ($scope.Applicants[i].ID != $routeParams.StudentId) {
+                    x.push($scope.Applicants[i]);
+                }
+            }
+
+            $scope.Applicants = x;
+           
+        
+        }
+
+        function applicantsLoadFailed() {
+            notificationService.displayError("Failed");
+        }
 
         $scope.Student = {};
       
@@ -200,6 +230,8 @@
         $scope.Campaigns = {}
         function campLoadCompleted(result) {
             $scope.Campaigns = result.data;
+            apiService.get('/api/sponsorship/GetApplicants/?SponsorshipId=' + $routeParams.SponsorshipId, null, applicantsLoadCompleted, applicantsLoadFailed);
+
         }
 
         function campLoadFailed()
@@ -235,6 +267,70 @@
         function approveFailed() {
             notificationService.displayError("Could not approve sponsorship at this moment in time. Try again later.")
         }
+
+
+        $scope.selected = [];
+        $scope.query = {
+            order: '-Average',
+            limit: 5,
+            page: 1
+        };
+
+
+        $scope.options = {
+            rowSelection: true,
+            multiSelect: true,
+            autoSelect: true,
+            decapitate: false,
+            largeEditDialog: false,
+            boundaryLinks: false,
+            limitSelect: true,
+            pageSelect: true
+        };
+
+        $scope.selected = [];
+        $scope.limitOptions = [5, 10, 15, {
+            label: 'All',
+            value: function () {
+                return $scope.Applicants ? $scope.Applicants.count : 0;
+            }
+        }];
+
+        $scope.toggleLimitOptions = function () {
+            $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
+        };
+
+
+
+        $scope.onPaginate = function (page, limit) {
+            console.log('Scope Page: ' + $scope.query.page + ' Scope Limit: ' + $scope.query.limit);
+            console.log('Page: ' + page + ' Limit: ' + limit);
+
+            $scope.promise = $timeout(function () {
+
+            }, 2000);
+        };
+
+
+        $scope.log = function (item) {
+            console.log(item.name, 'was selected');
+        };
+
+        $scope.loadStuff = function () {
+            $scope.promise = $timeout(function () {
+
+            }, 2000);
+        };
+
+        $scope.onReorder = function (order) {
+
+            console.log('Scope Order: ' + $scope.query.order);
+            console.log('Order: ' + order);
+
+            $scope.promise = $timeout(function () {
+
+            }, 2000);
+        };
 
 
     
