@@ -1,103 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="genesys.bursify.sponsorship.ViewSponsorshipActivity"
     tools:showIn="@layout/activity_view_sponsorship">
 
     <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/sideView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="#454254"
+        android:orientation="vertical"
+        android:padding="12dp">
 
-        <ProgressBar
-            android:id="@+id/view_sponsorship_progress"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/bursaryTitle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:text="Entelect Bursary"
+            android:textColor="#ffffff"
+            android:textSize="20sp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp"
-                android:background="#454254"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:max="100"
+            android:numStars="5"
+            android:paddingBottom="10dp"
+            android:rating="0.0"
+            android:stepSize="0.0"/>
 
-                <TextView
-                    android:id="@+id/bursaryTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Entelect Bursary"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/closingDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Closing date: 20 December, 2016"
+            android:textColor="#ffffff"/>
 
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
-                    android:max="100"
-                    android:numStars="5"
-                    android:paddingBottom="10dp"
-                    android:rating="0.0"
-                    android:stepSize="0.0"/>
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/closingDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
-                    android:text="Closing date: 20 December, 2016"/>
-
-            </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/sponsorship_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:text="Sponsorship Description"
-                android:textAlignment="textStart"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/sponsorship_closing_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:text="Sponsorship Closing Date"
-                android:textAlignment="textStart"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/sponsorship_terms_and_conditions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:text="Sponsorship Terms And Conditions"
-                android:textAlignment="textStart"
-                android:textSize="20sp"/>
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnApply"
+            android:theme="@style/AppTheme.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="5dp"
+            android:text="Apply"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@id/sideView"/>
 
     </RelativeLayout>
 
+    <android.support.v4.widget.NestedScrollView
 
-</android.support.v4.widget.NestedScrollView>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#454254"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/view_sponsorship_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/blueGrey"/>
+
+                <it.gmariotti.cardslib.library.view.CardViewNative
+                    android:id="@+id/sponsorshipDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#454254"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/blueGrey"/>
+
+                <it.gmariotti.cardslib.library.view.CardViewNative
+                    android:id="@+id/sponsorshipExpenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#454254"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/blueGrey"/>
+
+                <it.gmariotti.cardslib.library.view.CardViewNative
+                    android:id="@+id/sponsorshipRequirements"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#454254"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/blueGrey"/>
+
+                <it.gmariotti.cardslib.library.view.CardViewNative
+                    android:id="@+id/sponsorshipStudyFields"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#454254"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/blueGrey"/>
+
+                <it.gmariotti.cardslib.library.view.CardViewNative
+                    android:id="@+id/sponsorshipTerms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#454254"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/blueGrey"/>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

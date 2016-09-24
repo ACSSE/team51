@@ -19,4 +19,7 @@
     <color name="orange">#ff9800</color>
     <color name="deepOrange">#ff5722</color>
     <color name="blueGrey">#607d8b</color>
+    <color name="card_backgroundExpand">#ffffff</color>
+    <color name="card_text_color_header">#ffffff</color>
+    <color name="card_expand_title_color">#000000</color>
 </resources>

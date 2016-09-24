@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -147,8 +148,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view)
             {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                //attemptLogin();
+                //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                attemptLogin();
             }
         });
 
@@ -422,9 +423,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 response = BursifyService.postService(BursifyService.LOGIN, loginObject);
 
-                SharedPreferences.Editor editor = getSharedPreferences("userId", MODE_PRIVATE).edit();
-                editor.putInt("id", response.getJSONObject("user").getInt("ID"));
-                editor.commit();
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("userId", response.getJSONObject("user").getInt("ID"));
+                editor.apply();
 
                 return response.getBoolean("success");
             }

@@ -26,4 +26,9 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/pink</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
 </resources>

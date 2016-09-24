@@ -8,4 +8,18 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="card_base_empty_height">0dp</dimen>
+    <dimen name="card_header_native_simple_title_text_size">25sp</dimen>
+    <dimen name="card_header_native_simple_height">5dp</dimen>
+    <dimen name="card_expand_native_simple_title_text_size">15sp</dimen>
+
+    <dimen name="card_header_native_default_paddingLeft">18dp</dimen>
+    <dimen name="card_header_native_default_paddingRight">0dp</dimen>
+    <dimen name="card_header_native_default_paddingTop">0dp</dimen>
+    <dimen name="card_header_native_default_paddingBottom">0dp</dimen>
+
+    <dimen name="card_expand_native_layout_padding_left">12dp</dimen>
+    <dimen name="card_expand_native_layout_padding_right">12dp</dimen>
+    <dimen name="card_expand_native_layout_padding_top">12dp</dimen>
+    <dimen name="card_expand_native_layout_padding_bottom">5dp</dimen>
 </resources>

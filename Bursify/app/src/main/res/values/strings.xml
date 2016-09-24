@@ -116,4 +116,6 @@
     </string>
     <string name="title_activity_main2">Main2Activity</string>
 
+    <string name="card_native_font_fontFamily_expand">Roboto-Regular</string>
+
 </resources>

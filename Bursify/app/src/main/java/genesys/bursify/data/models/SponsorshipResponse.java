@@ -9,7 +9,6 @@ import java.util.Date;
  */
 public class SponsorshipResponse
 {
-
     @SerializedName("ID")
     private int id;
     @SerializedName("SponsorId")
