@@ -474,6 +474,7 @@
     <Content Include="Content\css\morris.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\toastr.css" />
+    <Content Include="Content\default.png" />
     <Content Include="Content\dist\css\AdminLTE.css" />
     <Content Include="Content\dist\css\AdminLTE.min.css" />
     <Content Include="Content\dist\img\credit\american-express.png" />
@@ -692,6 +693,8 @@
     <Content Include="scripts\spa\bursify\student\reportcard\AddReport\addReportCtrl.js" />
     <Content Include="scripts\spa\bursify\student\reportcard\reportcard.html" />
     <Content Include="scripts\spa\bursify\student\reportcard\reportcardCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\reportcard\viewReport\viewreportcard.html" />
+    <Content Include="scripts\spa\bursify\student\reportcard\viewReport\viewreportcardCtrl.js" />
     <Content Include="scripts\spa\bursify\student\sponsorship\sheet.tmpl.html" />
     <Content Include="scripts\spa\bursify\student\sponsorship\dialog.tmpl.html" />
     <Content Include="scripts\spa\bursify\student\sponsorship\index.html" />

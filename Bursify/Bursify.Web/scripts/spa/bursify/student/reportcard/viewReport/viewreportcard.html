@@ -1,0 +1,33 @@
+﻿
+
+
+
+<nav-bar></nav-bar>
+<div id="loadingbarContainer"></div>
+<div id="content" class="bg"  ng-init="init()">
+  
+    
+    
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'indigo'}">
+        <div class="md-toolbar-tools">
+            <span>My Reportcard </span>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+
+    <md-content class="md-padding">
+     
+        
+        <div class="chart-container">
+            <div fusioncharts
+                 width="100%"
+                 height="500"
+                 type="mscolumn2d"
+                 dataSource="{{myDataSource}}">
+            </div>
+        </div>
+
+    </md-content>
+ 
+
+</div>

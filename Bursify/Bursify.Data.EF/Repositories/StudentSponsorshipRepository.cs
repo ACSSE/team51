@@ -148,8 +148,8 @@ namespace Bursify.Data.EF.Repositories
             var suggestionList = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
                 .Where(sponsorship => 
                                  //student != null && school != null && latestReport != null
-                                  sponsorship.StudyFields.Contains(student.StudyField)
-                                 && sponsorship.AverageMarkRequired <= latestReport.Average
+                                 // sponsorship.StudyFields.Contains(student.StudyField)
+                                  sponsorship.AverageMarkRequired <= latestReport.Average
                                  )                                
                 .Include(x => x.Requirements)
                 .ToList();
