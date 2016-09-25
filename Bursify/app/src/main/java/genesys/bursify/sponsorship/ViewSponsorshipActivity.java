@@ -46,6 +46,7 @@ import it.gmariotti.cardslib.library.view.CardViewNative;
 public class ViewSponsorshipActivity extends AppCompatActivity
 {
     private CollapsingToolbarLayout toolbarLayout;
+    private CoordinatorLayout viewSponsorshipLayout;
     private AppBarLayout appBarLayout;
     private RatingBar ratingBar;
     private CardExpand aboutExpand, termExpand, expenseExpand, requirementExpand, studyFieldExpand;
@@ -66,6 +67,7 @@ public class ViewSponsorshipActivity extends AppCompatActivity
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        viewSponsorshipLayout = (CoordinatorLayout) findViewById(R.id.viewSponsorshipLayout);
         id = ViewSponsorshipActivity.this.getIntent().getIntExtra("sponsorshipId", 1);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -86,6 +88,8 @@ public class ViewSponsorshipActivity extends AppCompatActivity
             {
                 applicationTask = new ApplyForSponsorshipTask(userId, id);
                 applicationTask.execute();
+
+
             }
         });
 
@@ -379,6 +383,7 @@ public class ViewSponsorshipActivity extends AppCompatActivity
         protected void onPostExecute(JSONObject jsonObject)
         {
             super.onPostExecute(jsonObject);
+            Snackbar.make(viewSponsorshipLayout, "Application successful", Snackbar.LENGTH_LONG).show();
         }
     }
 }
