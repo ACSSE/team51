@@ -287,5 +287,17 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetNumberOfFunders")]
+        public HttpResponseMessage GetNumberOfFunders(HttpRequestMessage request, int campaignId)
+        {
+            var numberOfFunders = _studentApi.GetNumberOfFunders(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, new { count = numberOfFunders });
+
+            return response;
+        }
     }
 }

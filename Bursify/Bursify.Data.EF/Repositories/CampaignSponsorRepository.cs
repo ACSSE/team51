@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.Campaigns;
@@ -19,7 +20,8 @@ namespace Bursify.Data.EF.Repositories
 
         public List<Campaign> GetSupportedCamapigns(int sponsorId)
         {
-            var campaigns = FindMany(x => x.SponsorId == sponsorId).DistinctBy(x => x.CampaignId).Select(x => x.Campaign).ToList();
+            var campaigns =
+                FindMany(x => x.SponsorId == sponsorId).DistinctBy(x => x.CampaignId).Select(x => x.Campaign).ToList();
             return campaigns;
         }
 
@@ -32,17 +34,32 @@ namespace Bursify.Data.EF.Repositories
         {
             var sponsors = FindMany(x => x.CampaignId == campaignId);
 
-            List<string> sponsorNames = sponsors.Select(sponsor => 
-            _dataSession.UnitOfWork.Context.Set<Sponsor>()
-            .Where(x => x.ID == sponsor.SponsorId)
-            .Select(x => x.CompanyName)
-            .FirstOrDefault())
-            .ToList();
-
+            List<string> sponsorNames = sponsors.Select(sponsor =>
+                _dataSession.UnitOfWork.Context.Set<Sponsor>()
+                    .Where(x => x.ID == sponsor.SponsorId)
+                    .Select(x => x.CompanyName)
+                    .FirstOrDefault())
+                .ToList();
 
             return sponsorNames;
         }
 
+        public int GetNumberOfFunders(int campaignId)
+        {
+            var count = FindMany(x => x.CampaignId == campaignId).DistinctBy(x => x.SponsorId).Count();
+
+            return count;
+        }
+
+        public Dictionary<int?, double> GetFundingPerDay(int campaignId)
+        {
+            var dailyFunding = _dataSession.UnitOfWork.Context.Set<CampaignSponsor>()
+                .Where(x => x.CampaignId == campaignId)
+                .GroupBy(x => SqlFunctions.DatePart("day", x.DateOfContribution))
+                .ToDictionary(v => v.Key, v => v.Sum(c => c.AmountContributed));
+
+            return dailyFunding;
+        }
 
         //saves by adding amount if has an entry already
         //public void SaveByAdding(CampaignSponsor entity)

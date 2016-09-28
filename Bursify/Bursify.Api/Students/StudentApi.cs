@@ -206,7 +206,15 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return campaignRepository.GetFundingPerDay(campaignId);
+                return campaignSponsorRepository.GetFundingPerDay(campaignId);
+            }
+        }
+
+        public int GetNumberOfFunders(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetNumberOfFunders(campaignId);
             }
         }
 

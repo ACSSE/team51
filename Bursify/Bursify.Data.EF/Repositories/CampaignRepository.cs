@@ -101,20 +101,5 @@ namespace Bursify.Data.EF.Repositories
 
             return campaigns;
         }
-
-        public Dictionary<int?, double> GetFundingPerDay(int campaignId)
-        {
-            /*var applications = _dataSession.UnitOfWork.Context.Set<StudentSponsorship>()
-                .Where(x => x.SponsorshipId == sponsorshipId)
-                .GroupBy(x => SqlFunctions.DatePart("week", x.ApplicationDate))
-                .ToDictionary(v => v.Key, v => v.Count());*/
-
-            var dailyFunding = _dataSession.UnitOfWork.Context.Set<CampaignSponsor>()
-                .Where(x => x.CampaignId == campaignId)
-                .GroupBy(x => SqlFunctions.DatePart("day", x.DateOfContribution))
-                .ToDictionary(v => v.Key, v => v.Sum(c => c.AmountContributed));
-
-            return dailyFunding;
-        }
     }
 }
