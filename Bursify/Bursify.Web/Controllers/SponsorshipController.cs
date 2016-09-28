@@ -231,5 +231,17 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetMaleFemaleRatio")]
+        public HttpResponseMessage GetMaleFemaleRatio(HttpRequestMessage request, int sponsorshipId)
+        {
+            var ratio = _studentApi.GetMaleFemaleRatio(sponsorshipId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, ratio);
+
+            return response;
+        }
     }
 }

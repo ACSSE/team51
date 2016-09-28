@@ -94,6 +94,38 @@ namespace Bursify.Data.EF.Repositories
             return applications;
         }
 
+        public Dictionary<string, int> GetMaleFemaleRatio(int sponsorshipId)
+        {
+            var applicantions = FindMany(x => x.SponsorshipId == sponsorshipId);
+
+            int maleCount = 0, femaleCount = 0;
+
+            foreach (var applicantion in applicantions)
+            {
+                var student = _dataSession.UnitOfWork.Context
+                    .Set<Student>()
+                    .FirstOrDefault(x => x.ID == applicantion.StudentId);
+
+                if (student != null && student.Gender.Equals("Male", StringComparison.OrdinalIgnoreCase))
+                {
+                    maleCount++;
+                }
+                else
+                {
+                    femaleCount++;
+                }
+            }
+
+            var dictionary = new Dictionary<string, int>
+            {
+                {"Male", maleCount},
+                {"Female", femaleCount},
+                {"Total", maleCount + femaleCount}
+            };
+
+            return dictionary;
+        }
+
         public List<Sponsorship> GetStudentsAppliedSponsorships(int userId)
         {
             var sponsorships =

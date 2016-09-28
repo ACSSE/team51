@@ -335,6 +335,14 @@ namespace Bursify.Api.Students
             }
         }
 
+        public Dictionary<string, int> GetMaleFemaleRatio(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetMaleFemaleRatio(sponsorshipId);
+            }
+        }
+
         public List<Sponsorship> GetSponsorshipApplications(int studentId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
