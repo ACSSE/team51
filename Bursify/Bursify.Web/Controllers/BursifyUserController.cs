@@ -65,6 +65,10 @@ namespace Bursify.Web.Controllers
 
             if (_userApi.GetUserType(userId).Equals("Student"))
             {
+                var student = _studentApi.GetStudent(userId);
+                student.NumberOfViews += 1;
+                _studentApi.SaveStudent(student);
+
                 user = _userApi.GetCompletStudentUser(userId);
                 userVm = new BursifyUserViewModel().MapStudentUser(user);
             }

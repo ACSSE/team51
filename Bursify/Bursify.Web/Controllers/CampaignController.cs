@@ -188,6 +188,10 @@ namespace Bursify.Web.Controllers
         {
             var campaign = _studentApi.EndorseCampaign(userId, campaignId);
 
+            var camp = _studentApi.GetSingleCampaign(campaignId);
+            camp.NumberOfUpVotes += 1;
+            _studentApi.SaveCampaign(camp);
+
             var user = _studentApi.GetUserInfo(userId);
 
             if (user.UserType.Equals("Sponsor", StringComparison.OrdinalIgnoreCase))
@@ -199,7 +203,7 @@ namespace Bursify.Web.Controllers
                 _sponsorApi.SaveSponsor(sponsor);
             }
 
-            CampaignViewModel campaignVM = new CampaignViewModel();
+            var campaignVM = new CampaignViewModel();
             campaignVM.SingleCampaignMap(campaign);
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVM);

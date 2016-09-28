@@ -103,6 +103,9 @@ namespace Bursify.Web.Controllers
         {
             var sponsorship = _studentApi.GetSponsorship(sponsorshipId);
 
+            sponsorship.NumberOfViews += 1;
+            _studentApi.SaveSponsorship(sponsorship);
+
             var model = new SponsorshipViewModel();
 
             var sponsorshipVm = model.SingleSponsorshipMap(sponsorship);
@@ -111,6 +114,8 @@ namespace Bursify.Web.Controllers
             sponsorshipVm.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorshipVm.SponsorId).ProfilePicturePath;
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
+
+            
 
             return response;
         }
