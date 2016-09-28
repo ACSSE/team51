@@ -218,6 +218,14 @@ namespace Bursify.Api.Students
             }
         }
 
+        public Dictionary<string, int> GetFundersPerProvince(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetFundersPerProvince(campaignId);
+            }
+        }
+
         #endregion
 
         #region Sponsor

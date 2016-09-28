@@ -299,5 +299,17 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetFundersPerProvince")]
+        public HttpResponseMessage GetFundersPerProvince(HttpRequestMessage request, int campaignId)
+        {
+            var funders = _studentApi.GetFundersPerProvince(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
     }
 }
