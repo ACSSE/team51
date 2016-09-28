@@ -230,9 +230,9 @@ namespace Bursify.Web.Controllers
         {
             var applicantions = _studentApi.GetSponsorApplicantsPerWeek(sponsorshipId);
 
-            var applicantVm = WeekApplicant.MapApplicants(applicantions);
+            var data = WeekApplicant.MapApplicants(applicantions);
 
-            var response = request.CreateResponse(HttpStatusCode.OK, applicantVm);
+            var response = request.CreateResponse(HttpStatusCode.OK, new {count = data.Count, data});
 
             return response;
         }
@@ -245,6 +245,18 @@ namespace Bursify.Web.Controllers
             var ratio = _studentApi.GetMaleFemaleRatio(sponsorshipId);
 
             var response = request.CreateResponse(HttpStatusCode.OK, ratio);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetApplicantsPerprovince")]
+        public HttpResponseMessage GetApplicantsPerprovince(HttpRequestMessage request, int sponsorshipId)
+        {
+            var data = _studentApi.GetApplicantsPerprovince(sponsorshipId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
 
             return response;
         }

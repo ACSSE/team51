@@ -10,6 +10,7 @@ using Bursify.Data.EF.Uow;
 using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 using System.Globalization;
+using Microsoft.Ajax.Utilities;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -122,6 +123,39 @@ namespace Bursify.Data.EF.Repositories
                 {"Female", femaleCount},
                 {"Total", maleCount + femaleCount}
             };
+
+            return dictionary;
+        }
+
+        public Dictionary<string, int> GetApplicantsPerprovince(int sponsorshipId)
+        {
+            var applications = _dataSession.UnitOfWork.Context.Set<StudentSponsorship>()
+                .Where(x => x.SponsorshipId == sponsorshipId)
+                .DistinctBy(x => x.StudentId)
+                .ToList();
+
+            var dictionary = new Dictionary<string, int>
+            {
+                {"Eastern Cape", 0},
+                {"Free State", 0},
+                {"Gauteng", 0},
+                {"Kwa-Zulu Natal", 0},
+                {"Limpopo", 0},
+                {"Mpumalanga", 0},
+                {"Northern Cape", 0},
+                {"North West", 0},
+                {"Western Cape", 0}
+            };
+
+            foreach (var application in applications)
+            {
+                var address = _dataSession.UnitOfWork.Context.Set<UserAddress>()
+                    .FirstOrDefault(x => x.BursifyUserId == application.StudentId);
+
+                if (address == null || !dictionary.ContainsKey(address.Province)) continue;
+                string province = address.Province;
+                dictionary[province] += 1;
+            }
 
             return dictionary;
         }

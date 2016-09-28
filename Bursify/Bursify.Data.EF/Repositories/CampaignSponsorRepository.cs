@@ -69,16 +69,18 @@ namespace Bursify.Data.EF.Repositories
                 .DistinctBy(x => x.SponsorId)
                 .ToList();
 
-            var dictionary = new Dictionary<string, int>();
-            dictionary.Add("Eastern Cape", 0);
-            dictionary.Add("Free State", 0);
-            dictionary.Add("Gauteng", 0);
-            dictionary.Add("Kwa-Zulu Natal", 0);
-            dictionary.Add("Limpopo", 0);
-            dictionary.Add("Mpumalanga", 0);
-            dictionary.Add("Northern Cape", 0);
-            dictionary.Add("North West", 0);
-            dictionary.Add("Western Cape", 0);
+            var dictionary = new Dictionary<string, int>
+            {
+                {"Eastern Cape", 0},
+                {"Free State", 0},
+                {"Gauteng", 0},
+                {"Kwa-Zulu Natal", 0},
+                {"Limpopo", 0},
+                {"Mpumalanga", 0},
+                {"Northern Cape", 0},
+                {"North West", 0},
+                {"Western Cape", 0}
+            };
 
             foreach (var funder in funders)
             {
