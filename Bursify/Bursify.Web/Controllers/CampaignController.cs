@@ -275,5 +275,17 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetFundingPerDay")]
+        public HttpResponseMessage GetFundingPerDay(HttpRequestMessage request, int campaignId)
+        {
+            var dailyFunding = _studentApi.GetFundingPerDay(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, dailyFunding);
+
+            return response;
+        }
     }
 }

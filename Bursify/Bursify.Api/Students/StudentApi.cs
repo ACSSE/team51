@@ -202,6 +202,14 @@ namespace Bursify.Api.Students
             }
         }
 
+        public Dictionary<int?, double> GetFundingPerDay(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignRepository.GetFundingPerDay(campaignId);
+            }
+        }
+
         #endregion
 
         #region Sponsor
