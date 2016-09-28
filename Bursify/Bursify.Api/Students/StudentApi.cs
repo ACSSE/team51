@@ -202,11 +202,11 @@ namespace Bursify.Api.Students
             }
         }
 
-        public Dictionary<int?, double> GetFundingPerDay(int campaignId)
+        public Dictionary<int?, double> GetFundingPerDay(int campaignId, int month)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return campaignSponsorRepository.GetFundingPerDay(campaignId);
+                return campaignSponsorRepository.GetFundingPerDay(campaignId, month);
             }
         }
 

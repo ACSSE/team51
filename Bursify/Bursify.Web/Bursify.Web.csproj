@@ -780,6 +780,7 @@
     <Compile Include="Models\BursifyUserViewModel.cs" />
     <Compile Include="Models\CampaignSponsorViewModel.cs" />
     <Compile Include="Models\CampaignViewModel.cs" />
+    <Compile Include="Models\DailyFunding.cs" />
     <Compile Include="Models\InstitutionViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\PersonalDetailsViewModel.cs" />

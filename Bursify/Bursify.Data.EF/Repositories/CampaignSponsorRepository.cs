@@ -52,10 +52,10 @@ namespace Bursify.Data.EF.Repositories
             return count;
         }
 
-        public Dictionary<int?, double> GetFundingPerDay(int campaignId)
+        public Dictionary<int?, double> GetFundingPerDay(int campaignId, int month)
         {
             var dailyFunding = _dataSession.UnitOfWork.Context.Set<CampaignSponsor>()
-                .Where(x => x.CampaignId == campaignId)
+                .Where(x => x.CampaignId == campaignId && SqlFunctions.DatePart("month", x.DateOfContribution) == month)
                 .GroupBy(x => SqlFunctions.DatePart("day", x.DateOfContribution))
                 .ToDictionary(v => v.Key, v => v.Sum(c => c.AmountContributed));
 
