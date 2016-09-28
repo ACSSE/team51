@@ -226,6 +226,14 @@ namespace Bursify.Api.Students
             }
         }
 
+        public int GetUpVotes(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignRepository.GetUpVotes(campaignId);
+            }
+        }
+
         #endregion
 
         #region Sponsor

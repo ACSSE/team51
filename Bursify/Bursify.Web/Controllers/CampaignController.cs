@@ -313,5 +313,17 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetUpVotes")]
+        public HttpResponseMessage GetUpVotes(HttpRequestMessage request, int campaignId)
+        {
+            var count = _studentApi.GetUpVotes(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, new {upVotes = count});
+
+            return response;
+        }
     }
 }

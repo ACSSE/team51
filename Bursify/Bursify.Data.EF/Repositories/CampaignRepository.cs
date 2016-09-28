@@ -101,5 +101,12 @@ namespace Bursify.Data.EF.Repositories
 
             return campaigns;
         }
+
+        public int GetUpVotes(int campaignId)
+        {
+            var upvotes = FindSingle(x => x.ID == campaignId).NumberOfUpVotes;
+
+            return upvotes;
+        }
     }
 }
