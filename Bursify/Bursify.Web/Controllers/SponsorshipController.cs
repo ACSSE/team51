@@ -217,5 +217,19 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetApplicantsPerWeek")]
+        public HttpResponseMessage GetApplicantsPerWeek(HttpRequestMessage request, int sponsorshipId)
+        {
+            var applicantions = _studentApi.GetSponsorApplicantsPerWeek(sponsorshipId);
+
+            var applicantVm = WeekApplicant.MapApplicants(applicantions);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, applicantVm);
+
+            return response;
+        }
     }
 }

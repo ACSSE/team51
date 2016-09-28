@@ -327,6 +327,14 @@ namespace Bursify.Api.Students
             }
         }
 
+        public Dictionary<int?, int> GetSponsorApplicantsPerWeek(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetSponsorApplicantsPerWeek(sponsorshipId);
+            }
+        }
+
         public List<Sponsorship> GetSponsorshipApplications(int studentId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())

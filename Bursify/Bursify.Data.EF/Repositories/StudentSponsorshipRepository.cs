@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bursify.Data.EF.Entities.Bridge;
@@ -7,6 +8,8 @@ using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
+using System.Globalization;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -81,6 +84,16 @@ namespace Bursify.Data.EF.Repositories
                     .ToList();
         }
 
+        public Dictionary<int?, int> GetSponsorApplicantsPerWeek(int sponsorshipId)
+        {
+            var applications = _dataSession.UnitOfWork.Context.Set<StudentSponsorship>()
+                .Where(x => x.SponsorshipId == sponsorshipId)
+                .GroupBy(x => SqlFunctions.DatePart("week", x.ApplicationDate))
+                .ToDictionary(v => v.Key, v => v.Count());
+
+            return applications;
+        }
+
         public List<Sponsorship> GetStudentsAppliedSponsorships(int userId)
         {
             var sponsorships =
@@ -124,13 +137,14 @@ namespace Bursify.Data.EF.Repositories
             var student = _dataSession.UnitOfWork.Context.Set<Student>()
                 .FirstOrDefault(x => x.ID == studentId);
 
-            if (student != null && student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase)) return null;
-                
+            if (student != null && student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase))
+                return null;
+
             //var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
             //    .Where(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase))
             //    .ToList();
 
-            var latestReport = DbContext/*_dataSession.UnitOfWork.Context*/.Set<StudentReport>()
+            var latestReport = DbContext /*_dataSession.UnitOfWork.Context*/.Set<StudentReport>()
                 .Where(x => x.StudentId == student.ID)
                 .OrderByDescending(x => x.ReportYear)
                 .ThenByDescending(x => x.ReportPeriod)
@@ -142,15 +156,17 @@ namespace Bursify.Data.EF.Repositories
 
             var address = _dataSession.UnitOfWork.Context
                 .Set<UserAddress>()
-                .FirstOrDefault(userAddress => userAddress.BursifyUserId == student.ID && userAddress.PreferredAddress.Contains("Residential"));
+                .FirstOrDefault(
+                    userAddress =>
+                        userAddress.BursifyUserId == student.ID && userAddress.PreferredAddress.Contains("Residential"));
             //FindMany(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase));
 
             var suggestionList = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
-                .Where(sponsorship => 
-                                 //student != null && school != null && latestReport != null
-                                 // sponsorship.StudyFields.Contains(student.StudyField)
-                                  sponsorship.AverageMarkRequired <= latestReport.Average
-                                 )                                
+                .Where(sponsorship =>
+                    //student != null && school != null && latestReport != null
+                    // sponsorship.StudyFields.Contains(student.StudyField)
+                    sponsorship.AverageMarkRequired <= latestReport.Average
+                )
                 .Include(x => x.Requirements)
                 .ToList();
 
