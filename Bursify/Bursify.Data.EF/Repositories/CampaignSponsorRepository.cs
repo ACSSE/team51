@@ -43,6 +43,11 @@ namespace Bursify.Data.EF.Repositories
             return sponsorNames;
         }
 
+        public List<CampaignSponsor> GetCampaignSponsors(int campaignId)
+        {
+            return FindMany(campaign => campaign.CampaignId == campaignId);
+        }
+
 
         //saves by adding amount if has an entry already
         //public void SaveByAdding(CampaignSponsor entity)

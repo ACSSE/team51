@@ -1,0 +1,65 @@
+﻿<nav-bar></nav-bar>
+<div id="content">
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'teal-300'}">
+        <div class="md-toolbar-tools">
+            <span>Campaign Report</span>
+        </div>
+    </md-toolbar>
+
+    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">  <!-- Tabs-->
+        <md-tab label="Finance" id="finance">
+            <md-content class="md-padding">
+                            <md-divider></md-divider>
+                            <md-content class="md-padding">
+                                <div class="chart-container">
+                                    <div fusioncharts
+                                         width="100%"
+                                         height="350"
+                                         type="line"
+                                         dataSource="{{financeDataSource}}">
+                                    </div>
+                                </div>
+
+                            </md-content>
+                            <md-divider></md-divider>
+                    <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
+            </md-content>
+        </md-tab>
+
+        <md-tab label="People" id="people">
+            <md-content class="md-padding">
+                        <md-content class="md-padding">
+                            <div class="chart-container">
+                                <div fusioncharts
+                                     width="100%"
+                                     height="350"
+                                     type="line"
+                                     dataSource="{{fundersDataSource}}">
+                                </div>
+                            </div>
+
+                        </md-content>
+                        <md-divider></md-divider>
+                <md-button class="md-raised md-success pull-Left" md-colors="{backgroundColor: 'green'}" ng-click="prevTab()">Previous</md-button>
+                    <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
+            </md-content>
+        </md-tab>
+
+        <md-tab label="Insights" id="Insights">
+            <md-content class="md-padding">
+                        <md-content class="md-padding">
+                            <div class="chart-container">
+                                <div fusioncharts
+                                     width="100%"
+                                     height="350"
+                                     type="line"
+                                     dataSource="{{upvotesDataSource}}">
+                                </div>
+                            </div>
+                        </md-content>
+                        <md-divider></md-divider>
+                <md-button class="md-raised md-success pull-Left" md-colors="{backgroundColor: 'green'}" ng-click="prevTab()">Previous</md-button>
+            </md-content>
+        </md-tab>
+    </md-tabs> <!--/Tabs-->
+</div>
