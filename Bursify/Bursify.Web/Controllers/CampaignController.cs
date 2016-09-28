@@ -254,6 +254,20 @@ namespace Bursify.Web.Controllers
 
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetCampaignSponsors")]
+        public HttpResponseMessage GetCampaignSponsors(HttpRequestMessage request, int campaignId)
+        {
+            var sponsors = _studentApi.GetCampaignSponsors(campaignId);
+
+            var sponsorsVm = CampaignSponsorViewModel.MapMultiple(sponsors);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, sponsorsVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetCampaignFunders")]
         public HttpResponseMessage GetCampaignFunders(HttpRequestMessage request, int campaignId)
         {
