@@ -11,6 +11,7 @@ namespace Bursify.Web.Models
         public int SponsorId { get; set; }
         public double AmountContributed { get; set; }
         public DateTime DateOfContribution { get; set; }
+        public string Name { get; set; }
 
         public CampaignSponsorViewModel(CampaignSponsor campaignSponsor)
         {

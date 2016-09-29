@@ -138,7 +138,7 @@
 
 
             funds.forEach(function (entry) {
-                $scope.fundersDataSource.data.push(new dataItem("SponsorId " + entry.SponsorId, entry.AmountContributed));
+                $scope.fundersDataSource.data.push(new dataItem(entry.SponsorId, entry.AmountContributed));
                 i++
             });
             

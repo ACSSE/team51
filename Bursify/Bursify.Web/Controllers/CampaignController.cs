@@ -261,6 +261,11 @@ namespace Bursify.Web.Controllers
 
             var sponsorsVm = CampaignSponsorViewModel.MapMultiple(sponsors);
 
+            foreach(var sponsor in sponsorsVm)
+            {
+                sponsor.Name = _sponsorApi.GetSponsor(sponsor.SponsorId).CompanyName;
+            }
+
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorsVm);
 
             return response;
