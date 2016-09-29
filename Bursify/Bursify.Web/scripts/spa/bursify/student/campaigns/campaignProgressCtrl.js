@@ -138,7 +138,7 @@
 
 
             funds.forEach(function (entry) {
-                $scope.fundersDataSource.data.push(new dataItem(entry.SponsorId, entry.AmountContributed));
+                $scope.fundersDataSource.data.push(new dataItem(entry.Name, entry.AmountContributed));
                 i++
             });
             
@@ -185,7 +185,6 @@
                     "xAxisLineThickness": "1",
                     "xAxisLineColor": "#999999",
                     "showAlternateHGridColor": "0",
-
                 },
                 data: [{}]
             };
