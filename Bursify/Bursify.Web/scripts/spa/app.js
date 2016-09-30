@@ -66,6 +66,11 @@
                 controller: "addReportCtrl",
                 // resolve: { isAuthenticated: isAuthenticated }
             })
+              .when("/student/report/view/:reportID", {
+                  templateUrl: "scripts/spa/bursify/student/reportcard/viewreport/viewreportcard.html",
+                  controller: "viewreportcardCtrl",
+                  // resolve: { isAuthenticated: isAuthenticated }
+              })
             .when("/sponsor/profile", {
                 templateUrl: "scripts/spa/bursify/sponsor/profile/profile.html",
                 controller: "sponsorProfileCtrl",

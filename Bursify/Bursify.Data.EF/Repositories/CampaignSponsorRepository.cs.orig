@@ -45,6 +45,13 @@ namespace Bursify.Data.EF.Repositories
             return sponsorNames;
         }
 
+<<<<<<< HEAD
+        public List<CampaignSponsor> GetCampaignSponsors(int campaignId)
+        {
+            return FindMany(campaign => campaign.CampaignId == campaignId);
+        }
+
+=======
         public int GetNumberOfFunders(int campaignId)
         {
             var count = FindMany(x => x.CampaignId == campaignId).DistinctBy(x => x.SponsorId).Count();
@@ -94,6 +101,7 @@ namespace Bursify.Data.EF.Repositories
 
             return dictionary;
         }
+>>>>>>> 0a0ecd863e3665dc6d0e9b246b074f6ba9310de1
 
         //saves by adding amount if has an entry already
         //public void SaveByAdding(CampaignSponsor entity)

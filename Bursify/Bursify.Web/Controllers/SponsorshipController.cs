@@ -103,6 +103,9 @@ namespace Bursify.Web.Controllers
         {
             var sponsorship = _studentApi.GetSponsorship(sponsorshipId);
 
+            sponsorship.NumberOfViews += 1;
+            _studentApi.SaveSponsorship(sponsorship);
+
             var model = new SponsorshipViewModel();
 
             var sponsorshipVm = model.SingleSponsorshipMap(sponsorship);
@@ -111,6 +114,8 @@ namespace Bursify.Web.Controllers
             sponsorshipVm.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorshipVm.SponsorId).ProfilePicturePath;
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
+
+            
 
             return response;
         }
@@ -214,6 +219,44 @@ namespace Bursify.Web.Controllers
             var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetApplicantsPerWeek")]
+        public HttpResponseMessage GetApplicantsPerWeek(HttpRequestMessage request, int sponsorshipId)
+        {
+            var applicantions = _studentApi.GetSponsorApplicantsPerWeek(sponsorshipId);
+
+            var data = WeekApplicant.MapApplicants(applicantions);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, new {count = data.Count, data});
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetMaleFemaleRatio")]
+        public HttpResponseMessage GetMaleFemaleRatio(HttpRequestMessage request, int sponsorshipId)
+        {
+            var ratio = _studentApi.GetMaleFemaleRatio(sponsorshipId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, ratio);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetApplicantsPerprovince")]
+        public HttpResponseMessage GetApplicantsPerprovince(HttpRequestMessage request, int sponsorshipId)
+        {
+            var data = _studentApi.GetApplicantsPerprovince(sponsorshipId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
 
             return response;
         }

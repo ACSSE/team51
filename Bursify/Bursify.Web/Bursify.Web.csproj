@@ -474,6 +474,7 @@
     <Content Include="Content\css\morris.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\toastr.css" />
+    <Content Include="Content\default.png" />
     <Content Include="Content\dist\css\AdminLTE.css" />
     <Content Include="Content\dist\css\AdminLTE.min.css" />
     <Content Include="Content\dist\img\credit\american-express.png" />
@@ -694,6 +695,8 @@
     <Content Include="scripts\spa\bursify\student\reportcard\AddReport\addReportCtrl.js" />
     <Content Include="scripts\spa\bursify\student\reportcard\reportcard.html" />
     <Content Include="scripts\spa\bursify\student\reportcard\reportcardCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\reportcard\viewReport\viewreportcard.html" />
+    <Content Include="scripts\spa\bursify\student\reportcard\viewReport\viewreportcardCtrl.js" />
     <Content Include="scripts\spa\bursify\student\sponsorship\sheet.tmpl.html" />
     <Content Include="scripts\spa\bursify\student\sponsorship\dialog.tmpl.html" />
     <Content Include="scripts\spa\bursify\student\sponsorship\index.html" />
@@ -779,6 +782,7 @@
     <Compile Include="Models\BursifyUserViewModel.cs" />
     <Compile Include="Models\CampaignSponsorViewModel.cs" />
     <Compile Include="Models\CampaignViewModel.cs" />
+    <Compile Include="Models\DailyFunding.cs" />
     <Compile Include="Models\InstitutionViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\PersonalDetailsViewModel.cs" />
@@ -793,6 +797,7 @@
     <Compile Include="Models\StudentViewModel.cs" />
     <Compile Include="Models\SubjectViewModel.cs" />
     <Compile Include="Models\UserAddressViewModel.cs" />
+    <Compile Include="Models\WeekApplicant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\FileUploadResult.cs" />
     <Compile Include="Utility\MimeMultipart.cs" />

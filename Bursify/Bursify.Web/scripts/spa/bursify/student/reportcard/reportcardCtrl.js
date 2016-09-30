@@ -89,6 +89,12 @@
             $location.path('/student/report/add');
         }
 
+
+        $scope.gotoReport = function (id) {
+       
+            $location.path('/student/report/view/' + id);
+        }
+
     }
 
 })(angular.module('BursifyApp'));

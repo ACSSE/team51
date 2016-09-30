@@ -4,6 +4,8 @@ using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.Entities.User;
 using System.Linq;
 using System;
+using System.Data.Entity.SqlServer;
+using Bursify.Data.EF.Entities.Bridge;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -98,6 +100,13 @@ namespace Bursify.Data.EF.Repositories
                 .ToList();
 
             return campaigns;
+        }
+
+        public int GetUpVotes(int campaignId)
+        {
+            var upvotes = FindSingle(x => x.ID == campaignId).NumberOfUpVotes;
+
+            return upvotes;
         }
     }
 }

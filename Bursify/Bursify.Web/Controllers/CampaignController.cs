@@ -188,6 +188,10 @@ namespace Bursify.Web.Controllers
         {
             var campaign = _studentApi.EndorseCampaign(userId, campaignId);
 
+            var camp = _studentApi.GetSingleCampaign(campaignId);
+            camp.NumberOfUpVotes += 1;
+            _studentApi.SaveCampaign(camp);
+
             var user = _studentApi.GetUserInfo(userId);
 
             if (user.UserType.Equals("Sponsor", StringComparison.OrdinalIgnoreCase))
@@ -199,7 +203,7 @@ namespace Bursify.Web.Controllers
                 _sponsorApi.SaveSponsor(sponsor);
             }
 
-            CampaignViewModel campaignVM = new CampaignViewModel();
+            var campaignVM = new CampaignViewModel();
             campaignVM.SingleCampaignMap(campaign);
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVM);
@@ -291,6 +295,56 @@ namespace Bursify.Web.Controllers
             _studentApi.RemoveCampaign(campaignId);
 
             var response = request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetFundingPerDay")]
+        public HttpResponseMessage GetFundingPerDay(HttpRequestMessage request, int campaignId, int month)
+        {
+            var dailyFunding = _studentApi.GetFundingPerDay(campaignId, month);
+
+            var fundingVm = DailyFunding.MapDailyFundings(dailyFunding);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, fundingVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetNumberOfFunders")]
+        public HttpResponseMessage GetNumberOfFunders(HttpRequestMessage request, int campaignId)
+        {
+            var numberOfFunders = _studentApi.GetNumberOfFunders(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, new { count = numberOfFunders });
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetFundersPerProvince")]
+        public HttpResponseMessage GetFundersPerProvince(HttpRequestMessage request, int campaignId)
+        {
+            var funders = _studentApi.GetFundersPerProvince(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, funders);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetUpVotes")]
+        public HttpResponseMessage GetUpVotes(HttpRequestMessage request, int campaignId)
+        {
+            var count = _studentApi.GetUpVotes(campaignId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, new {upVotes = count});
 
             return response;
         }

@@ -202,11 +202,35 @@ namespace Bursify.Api.Students
             }
         }
 
-        public List<CampaignSponsor> GetCampaignSponsors(int campaignId)
+        public Dictionary<int?, double> GetFundingPerDay(int campaignId, int month)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return campaignSponsorRepository.GetCampaignSponsors(campaignId);
+                return campaignSponsorRepository.GetFundingPerDay(campaignId, month);
+            }
+        }
+
+        public int GetNumberOfFunders(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetNumberOfFunders(campaignId);
+            }
+        }
+
+        public Dictionary<string, int> GetFundersPerProvince(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetFundersPerProvince(campaignId);
+            }
+        }
+
+        public int GetUpVotes(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignRepository.GetUpVotes(campaignId);
             }
         }
 
@@ -332,6 +356,30 @@ namespace Bursify.Api.Students
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 return _studentSponsorshipRepository.GetStudentsApplications(studentId);
+            }
+        }
+
+        public Dictionary<int?, int> GetSponsorApplicantsPerWeek(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetSponsorApplicantsPerWeek(sponsorshipId);
+            }
+        }
+
+        public Dictionary<string, int> GetMaleFemaleRatio(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetMaleFemaleRatio(sponsorshipId);
+            }
+        }
+
+        public Dictionary<string, int> GetApplicantsPerprovince(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetApplicantsPerprovince(sponsorshipId);
             }
         }
 

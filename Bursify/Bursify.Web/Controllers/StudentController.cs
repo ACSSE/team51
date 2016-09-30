@@ -39,6 +39,7 @@ namespace Bursify.Web.Controllers
             {
                 var report = _studentApi.GetMostRecentReport(model.ID);
                 model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
+                model.ImagePath = _studentApi.GetUserInfo(model.ID).ProfilePicturePath;
 
                 if (report != null)
                 {
@@ -277,6 +278,13 @@ namespace Bursify.Web.Controllers
 
             var sponsorshipsVm = SponsorshipViewModel.MultipleSponsorshipsMap(suggestions);
 
+            foreach (var sponsorship in sponsorshipsVm)
+            {
+                sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
+                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.SponsorId).ProfilePicturePath;
+            }
+
+
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipsVm);
 
             return response;
@@ -429,6 +437,7 @@ namespace Bursify.Web.Controllers
             {
                 var report = _studentApi.GetMostRecentReport(model.ID);
                 model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
+                model.ImagePath = _studentApi.GetUserInfo(model.ID).ProfilePicturePath;
 
                 if (report != null)
                 {
