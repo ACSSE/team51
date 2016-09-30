@@ -160,6 +160,31 @@ namespace Bursify.Data.EF.Repositories
             return dictionary;
         }
 
+        public double GetApplicantOverallAverage(int sponsorshipId)
+        {
+            var applications = FindMany(x => x.SponsorshipId == sponsorshipId);
+
+            var studentReports =
+                applications.Select(
+                    application =>
+                        _dataSession.UnitOfWork.Context.Set<StudentReport>()
+                            .Where(x => x.StudentId == application.StudentId)
+                            .OrderByDescending(x => x.ReportYear)
+                            .ThenBy(x => x.ReportPeriod.Equals("Semester 2") ? 1 : 
+                                         x.ReportPeriod.Equals("Semester 1") ? 2 : 
+                                         x.ReportPeriod.Equals("Term 4") ? 3 :
+                                         x.ReportPeriod.Equals("Term 3") ? 4 :
+                                         x.ReportPeriod.Equals("Term 2") ? 5 :
+                                         x.ReportPeriod.Equals("Term 1") ? 6 : 7)
+                            .FirstOrDefault()).ToList();
+
+            double total = studentReports.Aggregate<StudentReport, double>(0,
+                (current, report) => current + report.Average);
+
+
+            return total / studentReports.Count;
+        }
+
         public List<Sponsorship> GetStudentsAppliedSponsorships(int userId)
         {
             var sponsorships =

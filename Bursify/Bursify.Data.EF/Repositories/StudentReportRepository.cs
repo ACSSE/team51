@@ -52,9 +52,14 @@ namespace Bursify.Data.EF.Repositories
         public List<StudentReport> GetFiveMostRecentReports(int studentId)
         {
             var reports = _dataSession.UnitOfWork.Context.Set<StudentReport>()
-                .Where(x => x.StudentId == studentId)
-                .OrderByDescending(x => x.ReportYear)
-                .ThenByDescending(x => x.ReportPeriod)
+                            .Where(x => x.StudentId == studentId)
+                            .OrderByDescending(x => x.ReportYear)
+                            .ThenBy(x => x.ReportPeriod.Equals("Semester 2") ? 1 :
+                                         x.ReportPeriod.Equals("Semester 1") ? 2 :
+                                         x.ReportPeriod.Equals("Term 4") ? 3 :
+                                         x.ReportPeriod.Equals("Term 3") ? 4 :
+                                         x.ReportPeriod.Equals("Term 2") ? 5 :
+                                         x.ReportPeriod.Equals("Term 1") ? 6 : 7)
                 .Include(x => x.Subjects)
                 .Take(5)
                 .ToList();
@@ -65,11 +70,15 @@ namespace Bursify.Data.EF.Repositories
         public StudentReport GetMostRecentReport(int studentId)
         {
             var report = _dataSession.UnitOfWork.Context.Set<StudentReport>()
-                .Where(x => x.StudentId == studentId)
-                .OrderByDescending(x => x.ReportYear)
-                .ThenByDescending(x => x.ReportPeriod)
-                .Include(x => x.Subjects)
-                .FirstOrDefault();
+                            .Where(x => x.StudentId == studentId)
+                            .OrderByDescending(x => x.ReportYear)
+                            .ThenBy(x => x.ReportPeriod.Equals("Semester 2") ? 1 :
+                                         x.ReportPeriod.Equals("Semester 1") ? 2 :
+                                         x.ReportPeriod.Equals("Term 4") ? 3 :
+                                         x.ReportPeriod.Equals("Term 3") ? 4 :
+                                         x.ReportPeriod.Equals("Term 2") ? 5 :
+                                         x.ReportPeriod.Equals("Term 1") ? 6 : 7)
+                            .FirstOrDefault();
 
             return report;
         }
