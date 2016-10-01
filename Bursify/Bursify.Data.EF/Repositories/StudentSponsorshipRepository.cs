@@ -225,45 +225,29 @@ namespace Bursify.Data.EF.Repositories
 
         public List<Sponsorship> LoadSponsorshipSuggestions(int studentId)
         {
-            var student = _dataSession.UnitOfWork.Context.Set<Student>()
-                .FirstOrDefault(x => x.ID == studentId);
+            //get student
 
-            if (student != null && student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase))
-                return null;
+            //get student report
 
-            //var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
-            //    .Where(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase))
-            //    .ToList();
+            //get student address
 
-            var latestReport = DbContext /*_dataSession.UnitOfWork.Context*/.Set<StudentReport>()
-                .Where(x => x.StudentId == student.ID)
-                .OrderByDescending(x => x.ReportYear)
-                .ThenByDescending(x => x.ReportPeriod)
-                .FirstOrDefault();
+            //get sponsorships based on education level
 
-            var school = _dataSession.UnitOfWork.Context
-                .Set<Institution>()
-                .FirstOrDefault(x => x.ID == student.InstitutionID);
+            //check study field
 
-            var address = _dataSession.UnitOfWork.Context
-                .Set<UserAddress>()
-                .FirstOrDefault(
-                    userAddress =>
-                        userAddress.BursifyUserId == student.ID && userAddress.PreferredAddress.Contains("Residential"));
-            //FindMany(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase));
+            //check average
 
-            var suggestionList = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
-                .Where(sponsorship =>
-                    //student != null && school != null && latestReport != null
-                    // sponsorship.StudyFields.Contains(student.StudyField)
-                    sponsorship.AverageMarkRequired <= latestReport.Average
-                )
-                .Include(x => x.Requirements)
-                .ToList();
+            /*--------advanced preferences----------*/
 
-            //check disability preference
+                //check gender
 
-            return suggestionList;
+                //check race
+
+                //check disability
+
+                //check institution
+
+            return null;
         }
 
         private static bool CheckAge(string ageGroup, int studentAge)

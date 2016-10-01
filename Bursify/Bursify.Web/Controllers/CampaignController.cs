@@ -97,6 +97,9 @@ namespace Bursify.Web.Controllers
         {
             var campaign = _studentApi.GetSingleCampaign(campaignId);
 
+            campaign.NumberOfViews += 1;
+            _studentApi.SaveCampaign(campaign);
+
             var model = new CampaignViewModel(campaign);
 
             var student = _studentApi.GetStudent(campaign.StudentId);
