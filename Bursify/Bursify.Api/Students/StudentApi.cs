@@ -306,7 +306,7 @@ namespace Bursify.Api.Students
                 return _sponsorshipRepository.GetAllSponsorships(type);
             }
         }
-
+         
         //done
         public Sponsorship GetSponsorship(int id, int userId)
         {

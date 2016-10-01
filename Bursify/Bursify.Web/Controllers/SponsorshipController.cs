@@ -268,7 +268,7 @@ namespace Bursify.Web.Controllers
         public HttpResponseMessage GetApplicantOverallAverage(HttpRequestMessage request, int sponsorshipId)
         {
             var applicantAverage = Math.Round(_studentApi.GetApplicantOverallAverage(sponsorshipId), 2);
-
+            
             var response = request.CreateResponse(HttpStatusCode.OK, new { average = applicantAverage });
 
             return response;
