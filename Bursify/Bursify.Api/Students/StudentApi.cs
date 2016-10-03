@@ -306,7 +306,7 @@ namespace Bursify.Api.Students
                 return _sponsorshipRepository.GetAllSponsorships(type);
             }
         }
-
+         
         //done
         public Sponsorship GetSponsorship(int id, int userId)
         {
@@ -380,6 +380,14 @@ namespace Bursify.Api.Students
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 return _studentSponsorshipRepository.GetApplicantsPerprovince(sponsorshipId);
+            }
+        }
+
+        public double GetApplicantOverallAverage(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetApplicantOverallAverage(sponsorshipId);
             }
         }
 
