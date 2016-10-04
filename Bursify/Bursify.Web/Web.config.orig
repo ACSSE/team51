@@ -111,10 +111,10 @@
   </entityFramework>
   <connectionStrings>
 <<<<<<< HEAD
-    <add name="BursifyDB" connectionString="Data Source=.\SQL2012;Initial Catalog=BursifyDB;Integrated Security=SSPI;" />
+    <add name="BursifyDB" connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=BursifyDB;Integrated Security=SSPI;" />
 =======
-    <add name="BursifyDB" connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=BursifyDB;Integrated Security=SSPI" />
->>>>>>> 295f17f0556ea469c4899d7bd6d1c92e08f6ae6a
+    <add name="BursifyDB" connectionString="Data Source=.\SQL2012;Initial Catalog=BursifyDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" providerName="System.Data.SqlClient" />
+>>>>>>> 071187c4786a8bac61103dc4aaaf4cba6c64eafe
   </connectionStrings>
   
 

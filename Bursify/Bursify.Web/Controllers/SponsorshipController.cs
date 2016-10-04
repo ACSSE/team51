@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -218,6 +219,13 @@ namespace Bursify.Web.Controllers
 
             var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
+            foreach (var sponsorship in sponsorshipVm)
+            {
+                sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
+                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.SponsorId).ProfilePicturePath;
+            }
+
+
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
             return response;
@@ -257,6 +265,18 @@ namespace Bursify.Web.Controllers
             var data = _studentApi.GetApplicantsPerprovince(sponsorshipId);
 
             var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetApplicantOverallAverage")]
+        public HttpResponseMessage GetApplicantOverallAverage(HttpRequestMessage request, int sponsorshipId)
+        {
+            var applicantAverage = Math.Round(_studentApi.GetApplicantOverallAverage(sponsorshipId), 2);
+            
+            var response = request.CreateResponse(HttpStatusCode.OK, new { average = applicantAverage });
 
             return response;
         }

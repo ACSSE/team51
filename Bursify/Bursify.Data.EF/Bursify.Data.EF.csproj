@@ -121,13 +121,9 @@
     <Compile Include="EntityMappings\UserActivityMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
-    <Compile Include="Migrations\201608311433560_init.cs" />
-    <Compile Include="Migrations\201608311433560_init.Designer.cs">
-      <DependentUpon>201608311433560_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609041335310_update.cs" />
-    <Compile Include="Migrations\201609041335310_update.Designer.cs">
-      <DependentUpon>201609041335310_update.cs</DependentUpon>
+    <Compile Include="Migrations\201610041432095_i.cs" />
+    <Compile Include="Migrations\201610041432095_i.Designer.cs">
+      <DependentUpon>201610041432095_i.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -165,11 +161,8 @@
     <Content Include="uk\MockData.resources.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608311433560_init.resx">
-      <DependentUpon>201608311433560_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609041335310_update.resx">
-      <DependentUpon>201609041335310_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610041432095_i.resx">
+      <DependentUpon>201610041432095_i.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
