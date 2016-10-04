@@ -60,19 +60,8 @@
                     "showXAxisLine": "1",
                     "xAxisLineThickness": "1",
                     "xAxisLineColor": "#999999",
-                    "showAlternateHGridColor": "0",
-                    "trendlines": [
-           {
-               "line": [
-                   {
-                       "startvalue": "50",
-                       "color": "#0075c2",
-                       "displayvalue": "Current{br}Average",
-                       "valueOnRight": "1",
-                       "thickness": "1",
-                       "showBelow": "1",
-                       "tooltext": "Previous year quarterly target  : $13.5K"
-                   }]}]
+                    "showAlternateHGridColor": "0"
+ 
 
                 },
                 data: [{
@@ -85,6 +74,8 @@
             for (var i = 0; i < $scope.Report.Subjects.length; i++) {
                 $scope.myDataSource.data.push(new dataItem($scope.Report.Subjects[i].Name, $scope.Report.Subjects[i].MarkAcquired))
             }
+            $scope.myDataSource.chart.caption = $scope.Report.ReportLevel + "/" + $scope.Report.ReportPeriod;
+
  
         }
 
