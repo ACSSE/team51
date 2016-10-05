@@ -15,9 +15,10 @@
         $scope.funders = [];
         $scope.loadingCampaign = true;
         $scope.vote = "upvote";
-        $scope.upvoted = "black";
+        $scope.upvoted = false;
         $scope.numberOfSupporter = 2;
         $scope.studentId = $rootScope.repository.loggedUser.userIden;
+        $scope.upVoteColor= "black";
         //For Payments
         $scope.cardNumber = '';
         $scope.CardType = '';
@@ -82,7 +83,8 @@
             
             if (response.data)
             {
-                $scope.upvoted = "green";
+                $scope.upvoted = true;
+                $scope.upVoteColor = "green";
             }
         }
         function campaignUnvoted(response)
@@ -107,6 +109,7 @@
         function myCampaignLoadFailed(response) {
             notificationService.displayError(response.data);
         }
+
         function campaignsLoadCompleted(result) {
             $scope.campaigns = result.data;
             $scope.loadingCampaigns = false;

@@ -33,10 +33,17 @@
                             <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left"></span>{{campaign.Location}}</div>
                             <div class="col-lg-4"><span><i class="fa fa-tags" aria-hidden="true">{{campaign.CampaignType}}</i></span></div>
                             <div class="col-lg-4">
-                                <i class="upvote" ng-click="upvodeCampaign($event,campaign.CampaignId)" ng-disabled="isMyCampaign == true">
-                                    <i class="fa fa-thumbs-up" style="color:{{upvoted}}" aria-hidden="true">
+                                <i class="upvote" type="button" ng-click="upvodeCampaign($event,campaign.CampaignId)" ng-if="!(upvoted == true)">
+                                    <i class="fa fa-thumbs-up" style="color:{{upVoteColor}}" aria-hidden="true">
                                         <md-tooltip md-direction="top" style="margin-top:50px">
-                                            {{vote}}
+                                            upvote
+                                        </md-tooltip>
+                                    </i>
+                                </i>
+                                <i class="upvote">
+                                    <i class="fa fa-thumbs-up" style="color:green" aria-hidden="true" ng-if="upvoted == true">
+                                        <md-tooltip md-direction="top" style="margin-top:50px">
+                                            upvoted
                                         </md-tooltip>
                                     </i>
                                 </i>
@@ -50,7 +57,7 @@
                             <div class="col-lg-4">{{daysleft}}<br />days to go</div>
                         </div>
                         <br />
-                        <md-button ng-click="fundCampaign($event,campaign)" ng-disabled="true" class="btn btn-success form-control full-opacity-hover" style="margin-top:10px">Fund this Campaign</md-button>
+                        <!--<md-button ng-click="fundCampaign($event,campaign)" ng-disabled="true" class="btn btn-success form-control full-opacity-hover" style="margin-top:10px">Fund this Campaign</md-button>-->
                     </md-card-header-text>
                 </div>
                 <div class="col-lg-4"><!--Start of Funders column-->
