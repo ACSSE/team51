@@ -89,7 +89,7 @@
         }
 
         function redirectToCampaigns() {
-            $location.path('/student/myCampaigns/');
+            $location.path('/student/campaigns');
         }
     }
 })(angular.module('BursifyApp'));

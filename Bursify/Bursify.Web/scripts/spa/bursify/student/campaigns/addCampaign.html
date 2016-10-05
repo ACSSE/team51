@@ -28,17 +28,16 @@
                                                 <div class="form-group">
                                                     <label>Campaign Type</label>
                                                     <select class="form-control" style="width: 100%;" ng-model="campaign.CampaignType" tabindex="-1" aria-hidden="true">
-                                                        <option>Select Account Type</option>
-                                                        <option>Art</option>
-                                                        <option>Books</option>
-                                                        <option>Excursion</option>
-                                                        <option>Food</option>
-                                                        <option>Journalism</option>
-                                                        <option>Music</option>
-                                                        <option>Publishing</option>
-                                                        <option>Sports</option>
-                                                        <option>Theater</option>
-                                                        <option>Technology</option>
+                                                        <option value="Art">Art</option>
+                                                        <option value="Books">Books</option>
+                                                        <option value="Excursion">Excursion</option>
+                                                        <option value="Food">Food</option>
+                                                        <option value="Journalism">Journalism</option>
+                                                        <option value="Music">Music</option>
+                                                        <option value="Publishing">Publishing</option>
+                                                        <option value="Sports">Sports</option>
+                                                        <option value="Theater">Theater</option>
+                                                        <option value="Technology">Technology</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -47,7 +46,6 @@
                                                 <div class="form-group">
                                                     <label>Location</label>
                                                     <select class="form-control" style="width: 100%;" ng-model="campaign.Location" tabindex="-1" aria-hidden="true">
-                                                        <option value="Province">Province</option>
                                                         <option value="Eastern Cape">Eastern Cape</option>
                                                         <option value="Free State">Free State</option>
                                                         <option value="Gauteng">Gauteng</option>
@@ -100,20 +98,6 @@
                                                         }
                                                     });
                                                 </script>
-
-                                                <!--<input id="uploadIDFile" type="text" ng-model="campaign.PicturePath" placeholder="Campaign Image" disabled="disabled" />
-                                               
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <!--<label>Campaign Video</label><br />
-                                                <div class="fileUpload btn btn-primary">
-                                                    <span>Upload</span>
-                                                    <input id="uploadVideoBtn" type="file" ng-model="campaign.VideoPath" class="upload" ng-file-select="prepareVideo($files)" />
-                                                </div>
-
-                                                <input id="uploadIDVideoFile" type="text" ng-model="campaign.VideoPath" placeholder="Campaign Image" disabled="disabled" />
-                                                <label>File uploaded is {{campaign.VideoPath}}</label>-->
                                             </div>
 
                                         </div>
