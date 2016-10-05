@@ -4,17 +4,20 @@
     app.controller('campaignDetailsCtrl', campaignDetailsCtrl);
 
     //Single Campaign view
-    campaignDetailsCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', 'fileUploadService', '$mdDialog', '$mdMedia'];
+    campaignDetailsCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', 'fileUploadService', '$mdDialog', '$mdMedia', '$rootScope'];
 
-    function campaignDetailsCtrl($scope, $location, $routeParams, apiService, notificationService, fileUploadService, $mdDialog, $mdMedia) {
+    function campaignDetailsCtrl($scope, $location, $routeParams, apiService, notificationService, fileUploadService, $mdDialog, $mdMedia, $rootScope) {
         $scope.pageClass = "page-campaign-details";
 
         //Default values 
         $scope.campaign = {};
+        $scope.campaigns = [];
+        $scope.funders = [];
         $scope.loadingCampaign = true;
-        $scope.vote = "Upvode this Campaign";
+        $scope.vote = "upvote";
+        $scope.upvoted = "black";
         $scope.numberOfSupporter = 2;
-        $scope.studentId = 1;
+        $scope.studentId = $rootScope.repository.loggedUser.userIden;
         //For Payments
         $scope.cardNumber = '';
         $scope.CardType = '';
@@ -23,32 +26,101 @@
         $scope.month;
         $scope.year = 0;
         $scope.amount = 0;
+        $scope.isMyCampaign = false;
 
         $scope.loadCampaign = function () {
         };
+
+        function loadFunders()
+        {
+            $scope.loadingCampaign = true;
+            apiService.get('/api/Campaign/GetCampaignFunders/?campaignId=' + $routeParams.campaignId, null,
+            myFundersLoadCompleted,
+            myFundersLoadFailed);
+        }
+
+        function myFundersLoadCompleted(response)
+        {
+            $scope.funders = response.data;
+        }
+
+        function myFundersLoadFailed(response)
+        {
+            notificationService.displayError(response.data);
+        }
 
         function loadCampaign() {
             $scope.loadingCampaign = true;
             apiService.get('/api/Campaign/GetCampaign/?campaignId=' + $routeParams.campaignId, null,
             myCampaignLoadCompleted,
             myCampaignLoadFailed);
+            //Load funders
+            loadFunders();
+            //load upvoters
+            campaignUpvoted();
+
+            //Load suggested campaigns 
+            //Load suggested campaigns
+            $scope.loadingCampaign = true;
+            apiService.get('/api/Campaign/GetSimilarCampaigns/?campaignId=' + $routeParams.campaignId, null,
+                campaignsLoadCompleted,
+                campaignsLoadFailed);
+        }
+        function upvodeCampaignSucceded(response) {
+            notificationService.displaySuccess('Campaign has been successfully upvoted');
+            $scope.vote = "upvoted";
+            $scope.upvoted = "green";
+            //redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
+        }
+
+        function campaignUpvoted() {
+            apiService.post('/api/Campaign/IsEndorsed/?userId=' + $rootScope.repository.loggedUser.userIden + "&campaignId=" + $routeParams.campaignId, null, campaignVoted, campaignUnvoted);
+        }
+
+        function campaignVoted(response)
+        {
+            
+            if (response.data)
+            {
+                $scope.upvoted = "green";
+            }
+        }
+        function campaignUnvoted(response)
+        {
+            notificationService.displayError(response.data);
         }
 
         function myCampaignLoadCompleted(result) {
             $scope.campaign = result.data;
             $scope.loadingCampaign = false;
+
+            if ($scope.campaign.StudentId == $scope.studentId)
+            {
+                $scope.isMyCampaign = false;
+            }
+            else
+            {
+                $scope.isMyCampaign = true;
+            }
         }
 
         function myCampaignLoadFailed(response) {
             notificationService.displayError(response.data);
         }
+        function campaignsLoadCompleted(result) {
+            $scope.campaigns = result.data;
+            $scope.loadingCampaigns = false;
+        }
 
+        function campaignsLoadFailed(response) {
+            notificationService.displayError(response.data);
+        }
         loadCampaign();
        
         //Fund Campaign
         $scope.fundCampaign = function (ev,campaign) {
 
-            $scope.StudentName = "Mike Ross";
+            $scope.StudentName = campaign.Name + ' ' + campaign.Surname;
             $scope.CampaignName = campaign.CampaignName;
             $scope.CampaignLocation = campaign.Location;
             $scope.CampaignId = campaign.CampaignId;
@@ -73,7 +145,6 @@
                 //Get Campaign ID 
                 //Amount funded
                 //Date funded
-
                 //Add Amount Contributed to the existing
                 campaign.AmountContributed = parseInt(campaign.AmountContributed) + parseInt($scope.amount);
                 apiService.post('/api/campaign/SaveCampaign', campaign,
@@ -123,16 +194,7 @@
             apiService.post('/api/campaign/EndorseCampaign/?userId=' + $scope.studentId + '&campaignId=' + id, null,
             upvodeCampaignSucceded,
             upvodeCampaignFailed);
-
         };
-
-        function upvodeCampaignSucceded(response) {
-            notificationService.displaySuccess('Campaign has been successfully upvoted');
-            $scope.campaign = response.data;
-
-            $scope.vote = "upvoded";
-            //redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
-        }
 
         function upvodeCampaignFailed(response) {
             console.log(response);

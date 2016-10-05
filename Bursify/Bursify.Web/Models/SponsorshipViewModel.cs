@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Bursify.Data.EF.Entities.SponsorUser;
+using System.Linq;
 
 namespace Bursify.Web.Models
 {
@@ -28,6 +30,9 @@ namespace Bursify.Web.Models
         public int NumberOfViews { get; set; }
         public string AgeGroup { get; set; }
         public int Rating { get; set; }
+        public int ApplicantCount { get; set; }
+        public string SponsorPicturePath { get; set; }
+        public List<RequirementViewModel> Requirements { get; set; }
 
         public SponsorshipViewModel()
         {
@@ -60,12 +65,14 @@ namespace Bursify.Web.Models
             ExpensesCovered = sponsorship.ExpensesCovered;
             TermsAndConditions = sponsorship.TermsAndConditions;
             SponsorshipType = SponsorshipType;
+            NumberOfViews = sponsorship.NumberOfViews;
             AgeGroup = sponsorship.AgeGroup;
             Rating = sponsorship.Rating;
+            Requirements = RequirementViewModel.ReverseMapSubjects((List<Requirement>) sponsorship.Requirements);
             return this;
 
         }
-
+        
         public Sponsorship ReverseMap()
         {
             var sponsorship = new Sponsorship
@@ -88,6 +95,7 @@ namespace Bursify.Web.Models
                 SponsorshipType = this.SponsorshipType,
                 StudyFields = this.StudyFields,
                 TermsAndConditions = this.TermsAndConditions,
+                NumberOfViews = this.NumberOfViews,
                 AgeGroup = this.AgeGroup,
                 Rating = this.Rating
             };
@@ -96,13 +104,7 @@ namespace Bursify.Web.Models
 
         public static List<SponsorshipViewModel> MultipleSponsorshipsMap(List<Sponsorship> sponsorships)
         {
-            List<SponsorshipViewModel> sponsorshipVM = new List<SponsorshipViewModel>();
-            foreach (var s in sponsorships)
-            {
-                SponsorshipViewModel sVm = new SponsorshipViewModel(s);
-                sponsorshipVM.Add(sVm);
-            }
-            return sponsorshipVM;
+            return sponsorships.Select(sponsorship => new SponsorshipViewModel(sponsorship)).ToList();
         }
     }
 }

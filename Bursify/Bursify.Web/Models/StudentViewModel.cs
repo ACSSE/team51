@@ -3,6 +3,7 @@
 using Bursify.Data.EF.Entities.StudentUser;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bursify.Web.Models
 {
@@ -24,7 +25,7 @@ namespace Bursify.Web.Models
         public string Race { get; set; }
         public string Gender { get; set; }
         public string CurrentOccupation { get; set; }
-        public string StudyField { get; set; }
+        public string[] StudyField { get; set; }
         public string HighestAcademicAchievement { get; set; }
         public long YearOfAcademicAchievement { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -37,6 +38,7 @@ namespace Bursify.Web.Models
         public string MatricCertificatePath { get; set; }
         public string CVPath { get; set; }
         public bool AgreeTandC { get; set; }
+        public string ImagePath { get; set; }
 
         public StudentViewModel()
         {
@@ -64,7 +66,7 @@ namespace Bursify.Web.Models
             Race = student.Race;
             Gender = student.Gender;
             CurrentOccupation = student.CurrentOccupation;
-            StudyField = student.StudyField;
+            StudyField = student.StudyField.Split(',').ToArray();
             HighestAcademicAchievement = student.HighestAcademicAchievement;
             YearOfAcademicAchievement = student.YearOfAcademicAchievement;
             DateOfBirth = student.DateOfBirth;
@@ -79,6 +81,11 @@ namespace Bursify.Web.Models
             AgreeTandC = student.AgreeTandC;
            
             return this;
+        }
+
+        private string ArrayToString(string[] array)
+        {
+            return array.Length > 1 ? array.Aggregate("", (current, s) => current + (s + ",")) : array[0];
         }
 
         public Student ReverseMap()
@@ -99,7 +106,7 @@ namespace Bursify.Web.Models
                 Race = this.Race,
                 Gender = this.Gender,
                 CurrentOccupation = this.CurrentOccupation,
-                StudyField = this.StudyField,
+                StudyField = ArrayToString(this.StudyField),
                 HighestAcademicAchievement = this.HighestAcademicAchievement,
                 YearOfAcademicAchievement = this.YearOfAcademicAchievement,
                 DateOfBirth = this.DateOfBirth,
@@ -112,10 +119,12 @@ namespace Bursify.Web.Models
                 MatricCertificatePath = this.MatricCertificatePath,
                 CVPath = this.CVPath,
                 AgreeTandC = this.AgreeTandC
+                //Average = this.AverageMark
                
             };
         }
 
+        //only use this method for an already existing user
         public Student ReverseMap(Student model)
         {
             return new Student()
@@ -154,10 +163,14 @@ namespace Bursify.Web.Models
         public static List<StudentViewModel> MapMultipleStudents(List<Student> students)
         {
             List<StudentViewModel> studentsVM = new List<StudentViewModel>();
-            foreach (var s in students)
+
+            if (students.Count > 0)
             {
-                StudentViewModel sVm = new StudentViewModel(s);
-                studentsVM.Add(sVm);
+                foreach (var s in students)
+                {
+                    StudentViewModel sVm = new StudentViewModel(s);
+                    studentsVM.Add(sVm);
+                }
             }
             return studentsVM;
         }

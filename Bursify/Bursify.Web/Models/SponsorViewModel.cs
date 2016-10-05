@@ -60,6 +60,24 @@ namespace Bursify.Web.Models
             };
         }
 
+        public Sponsor ReverseMap(Sponsor model)
+        {
+            return new Sponsor()
+            {
+                ID = model.ID,
+                CompanyName = model.CompanyName,
+                NumberOfStudentsSponsored = model.NumberOfStudentsSponsored,
+                NumberOfSponsorships = model.NumberOfSponsorships,
+                NumberOfApplicants = model.NumberOfApplicants,
+                BursifyRank = model.BursifyRank,
+                BursifyScore = model.BursifyScore,
+                CompanyEmail = model.CompanyEmail,
+                Website = model.Website,
+                Industry = model.Industry,
+                Location = model.Location
+            };
+        }
+
         public static List<SponsorViewModel> MultipleSponsorsMap(List<Sponsor> sponsors)
         {
             List<SponsorViewModel> sponsorsVm = new List<SponsorViewModel>();

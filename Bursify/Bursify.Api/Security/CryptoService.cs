@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Bursify.Services
+namespace Bursify.Api.Security
 {
     public class CryptoService : ICryptoService
     {

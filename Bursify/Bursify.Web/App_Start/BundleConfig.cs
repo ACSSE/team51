@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Bursify.Web.App_Start
+namespace Bursify.Web
 {
     public class BundleConfig
     {
@@ -61,13 +61,17 @@ namespace Bursify.Web.App_Start
             #endregion
 
             #region Campaign
+                  "~/Scripts/spa/bursify/sponsor/campaigns/campaignsCtrl.js",
+                  "~/Scripts/spa/bursify/sponsor/campaigns/viewCampaignCtrl.js",
+
                   "~/Scripts/spa/bursify/student/campaigns/campaignsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/campaignDetailsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/addCampaignCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/editCampaignCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/myCampaignsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/addAccountCtrl.js",
-
+                  "~/Scripts/spa/bursify/student/campaigns/confirmDeleteCtrl.js",
+                  
             #endregion
 
                 "~/Scripts/spa/account/registerCtrl.js",
@@ -81,7 +85,10 @@ namespace Bursify.Web.App_Start
                      "~/Scripts/spa/bursify/student/registration/registrationStudentCtrl.js",
                     "~/Scripts/spa/bursify/sponsor/sponsorship/sponsorshipIndexCtrl.js",
                     "~/Scripts/spa/bursify/sponsor/sponsorship/addSponsorship/addSponsorshipCtrl.js",
-                    "~/Scripts/spa/bursify/sponsor/sponsorship/addSponsorship/addTSponsorshipCtrl.js",
+                      "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/applicantsCtrl.js",
+                       "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/student/studentApplicationCtrl.js",
+                         "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/student/form/formctrl.js",
+
                 "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/chart/leaderboardCtrl.js",
@@ -89,6 +96,8 @@ namespace Bursify.Web.App_Start
                  "~/Scripts/spa/bursify/student/applications/myApplicationsCtrl.js",
                     "~/Scripts/spa/bursify/student/reportcard/reportcardCtrl.js",
                     "~/Scripts/spa/bursify/student/reportcard/addReport/addreportCtrl.js",
+                   "~/Scripts/spa/bursify/student/reportcard/viewReport/viewreportcardCtrl.js",
+                     "~/Scripts/spa/bursify/sponsor/student/viewStudentCtrl.js",
                  "~/Scripts/spa/layout/navBar.directive.js",
                    "~/Scripts/spa/layout/spnavBar.directive.js"
 

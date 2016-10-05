@@ -5,18 +5,11 @@
     <!--[if IE]><![endif]-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
- 
+  
     <title>Bursify</title>
 
-    <link href="Content/landing/wp-content/plugins/contact-form-7/includes/css/styles5b31.css" rel="stylesheet" />
-    <link href="Content/landing/wp-content/plugins/easy-digital-downloads/templates/edd.min2a47.css" rel="stylesheet" />
-    <link href="Content/landing/wp-content/plugins/pirate-forms/css/front.css" rel="stylesheet" />
+ 
     <link href="Content/landing/wp-content/plugins/woocommerce/assets/css/woocommerce-layout4468.css" rel="stylesheet" />
-
-    <link href="Content/landing/wp-content/plugins/woocommerce/assets/css/woocommerce-layout4468.css" rel="stylesheet" media="all" />
-    <link href="Content/landing/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen4468.css" rel="stylesheet" media='only screen and (max-width: 768px)' />
-    <link href="Content/landing/wp-content/plugins/woocommerce/assets/css/woocommerce4468.css" rel="stylesheet" media="all" />
 
 
     <link href="Content/landing/wp-includes/css/dashicons.min.css" rel="stylesheet" />
@@ -35,6 +28,36 @@
     <script src="Content/landing/wp-content/plugins/pirate-forms/js/scripts-general.js"></script>
   
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+        .bounce {
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            -webkit-animation: bounce 3s infinite;
+        }
+
+        @-webkit-keyframes bounce {
+            0% {
+                bottom: 5px;
+            }
+
+            25%, 75% {
+                bottom: 15px;
+            }
+
+            50% {
+                bottom: 20px;
+            }
+
+            100% {
+                bottom: 0;
+            }
+        }
+
+        .page-scroll:hover {
+            color: #8DC153;
+        }
+    </style>
 
 </head>
 <body itemscope class="home blog" dir="ltr">
@@ -95,9 +118,11 @@
                                         <div class="only-logo" style="padding-top: 70px;">
                                             <div id="only-logo-inner" class="navbar">
                                                 <div id="parallax_only_logo" class="navbar-header">
-
-
-                                                    <a id="site-navigation" class="main-navigation" role="navigation" href="#services"><img src="Content/images/system/Double Down-64.png" alt="Caret" /></a>
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <a href="#services" class="page-scroll"><ul class="text-center" style="color:black;"><li><i class="bounce fa fa-angle-double-down fa-2x"><img style="margin-left:-20px" src="Content/images/system/Double Down-64.png" alt="Caret" /></i></li></ul></a>
+                                                    <!--<a id="site-navigation" class="main-navigation" role="navigation" href="#services"><img src="Content/images/system/Double Down-64.png" alt="Caret" /></a>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -108,6 +133,8 @@
                     </div>
                 </div>
             </header>
+
+            
             <div itemprop id="content" class="content-warp" role="main">
 
                 <section class="services" id="services" role="region" aria-label="Services" style="height: 100vh;">
@@ -186,12 +213,11 @@
                                 <div class="testimonials-box">
                                     <div class="feedback border-bottom-hover">
                                         <div class="pic-container">
-                                            <div class="pic-container-inner"> <img src="wp-content/uploads/sites/38/2015/12/1-1.jpg" alt="Eusebia Bărlâdeanu"></div>
+                                            <div class="pic-container-inner"> <img src="wp-content/uploads/sites/38/2015/12/1-1.jpg" alt="Malcolm Kumwenda"></div>
                                         </div>
                                         <div class="feedback-text-wrap">
-                                            <h5 class="colored-text"> Eusebia Bărlâdeanu</h5>
-                                            <div class="small-text"> XYZ Interactive</div>
-                                            <p> "I was supposed to send this testimonial but I forgot! I&#039;m sure they will figure something out. A great company nonetheless."</p>
+                                            <h5 class="colored-text"> Malcolm Kumwenda </h5>
+                                            <div class="small-text"> AngularJS</div>
                                         </div>
                                     </div>
                                 </div>
@@ -201,9 +227,8 @@
                                             <div class="pic-container-inner"> <img src="wp-content/uploads/sites/38/2015/12/2-1.jpg" alt="Eusebia Bărlâdeanu"></div>
                                         </div>
                                         <div class="feedback-text-wrap">
-                                            <h5 class="colored-text"> Eusebia Bărlâdeanu</h5>
-                                            <div class="small-text"> AbZ Network</div>
-                                            <p> "I was supposed to send this testimonial but I forgot! I&#039;m sure they will figure something out. A great company nonetheless."</p>
+                                            <h5 class="colored-text"> Thabang Lekwadi </h5>
+                                            <div class="small-text"> AngularJS </div>
                                         </div>
                                     </div>
                                 </div>
@@ -213,9 +238,8 @@
                                             <div class="pic-container-inner"> <img src="wp-content/uploads/sites/38/2015/12/3-1.jpg" alt="Georgian Hrușcă"></div>
                                         </div>
                                         <div class="feedback-text-wrap">
-                                            <h5 class="colored-text"> Georgian Hrușcă</h5>
-                                            <div class="small-text"> ZyX LLC</div>
-                                            <p> "I was supposed to send this testimonial but I forgot! I&#039;m sure they will figure something out. A great company nonetheless."</p>
+                                            <h5 class="colored-text"> Brandon Sibanda</h5>
+                                            <div class="small-text"> Andriod </div>
                                         </div>
                                     </div>
                                 </div>
@@ -225,9 +249,8 @@
                                             <div class="pic-container-inner"> <img src="wp-content/uploads/sites/38/2015/12/3-1.jpg" alt="Georgian Hrușcă"></div>
                                         </div>
                                         <div class="feedback-text-wrap">
-                                            <h5 class="colored-text"> Georgian Hrușcă</h5>
-                                            <div class="small-text"> ZyX LLC</div>
-                                            <p> "I was supposed to send this testimonial but I forgot! I&#039;m sure they will figure something out. A great company nonetheless."</p>
+                                            <h5 class="colored-text"> Kieth Kwan</h5>
+                                            <div class="small-text"> Backend </div>
                                         </div>
                                     </div>
                                 </div>
@@ -485,8 +508,7 @@
     </script>
 
 
-    <script src="Content/landing/wp-content/plugins/contact-form-7/includes/js/jquery.form.mind03d.js"></script>
-
+    
 
 
     <script type='text/javascript'>

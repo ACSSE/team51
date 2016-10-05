@@ -2,12 +2,15 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Web.Http;
+using System.Web.Mvc;
+using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.Bridge;
+using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Web.Models;
-using Bursify.Web.Utility.ModelClasses;
 
 namespace Bursify.Web.Controllers
 {
@@ -15,10 +18,12 @@ namespace Bursify.Web.Controllers
     public class StudentController : ApiController
     {
         private readonly StudentApi _studentApi;
+        private readonly SponsorApi _sponsorApi;
 
-        public StudentController(StudentApi studentApi)
+        public StudentController(StudentApi studentApi, SponsorApi sponsorApi)
         {
             _studentApi = studentApi;
+            _sponsorApi = sponsorApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -34,6 +39,7 @@ namespace Bursify.Web.Controllers
             {
                 var report = _studentApi.GetMostRecentReport(model.ID);
                 model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
+                model.ImagePath = _studentApi.GetUserInfo(model.ID).ProfilePicturePath;
 
                 if (report != null)
                 {
@@ -221,6 +227,14 @@ namespace Bursify.Web.Controllers
 
             _studentApi.ApplyForSponsorship(newApplication);
 
+            var sponsorship = _studentApi.GetSponsorship(newApplication.SponsorshipId);
+
+            var sponsor = _sponsorApi.GetSponsor(sponsorship.SponsorId);
+
+            sponsor.BursifyScore += 2;
+
+            _sponsorApi.SaveSponsor(sponsor);
+
             var model = new StudentSponsorshipViewModel();
 
             var applicationVm = model.MapSIngleStudentSponsorship(newApplication);
@@ -263,6 +277,13 @@ namespace Bursify.Web.Controllers
             var suggestions = _studentApi.LoadSponsorshipSuggestions(studentId);
 
             var sponsorshipsVm = SponsorshipViewModel.MultipleSponsorshipsMap(suggestions);
+
+            foreach (var sponsorship in sponsorshipsVm)
+            {
+                sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
+                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.SponsorId).ProfilePicturePath;
+            }
+
 
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipsVm);
 
@@ -374,26 +395,60 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("GetStudyFields")]
-        public HttpResponseMessage GetStudyFields(HttpRequestMessage request, int studentId)
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetMyApplications")]
+        public HttpResponseMessage GetMyApplications(HttpRequestMessage request, int studentId)
         {
-            var student = _studentApi.GetStudent(studentId);
-            var studyFields = new List<string>();
+           
+            var applications = _studentApi.GetStudentApplications(studentId);
+           // var appSponsorships = _studentApi.GetSponsorshipApplications(studentId);
 
-            if (student.StudyField.Contains(","))
+            var data = new List<ApplicationViewModel>();
+
+            //foreach (var s in appSponsorships)
+            //{
+                for(int i = 0; i < applications.Count; i++)
+                {
+                    var sponsorship = _studentApi.GetSponsorship(applications[i].SponsorshipId);
+                    var sponsor = _sponsorApi.GetSponsor(sponsorship.SponsorId);
+                    var status = applications[i].Status;
+                    var avm = new ApplicationViewModel(applications[i].SponsorshipId, sponsor.CompanyName, sponsorship.Name, applications[i].ApplicationDate, sponsorship.ClosingDate, status);
+
+                    if (data.Contains(avm)) continue;
+                    data.Add(avm);
+                    //break;
+                }
+           // }
+
+            return request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetStudentSuggestions")]
+        public HttpResponseMessage GetStudentSuggestions(HttpRequestMessage request, int sponsorId)
+        {
+            var students = _studentApi.GetStudentSuggestions(sponsorId);
+
+            var studentsVm = StudentViewModel.MapMultipleStudents(students);
+
+            foreach (var model in studentsVm)
             {
-                studyFields = student.StudyField.Split(',').ToList();
-            }
-            else
-            {
-                studyFields.Add(student.StudyField);
+                var report = _studentApi.GetMostRecentReport(model.ID);
+                model.InstitutionName = _studentApi.GetInstitution(model.InstitutionID).Name;
+                model.ImagePath = _studentApi.GetUserInfo(model.ID).ProfilePicturePath;
+
+                if (report != null)
+                {
+                    model.AverageMark = report.Average;
+                }
             }
 
-            var response = request.CreateResponse(HttpStatusCode.OK, studyFields);
+            var response = request.CreateResponse(HttpStatusCode.OK, studentsVm);
 
             return response;
         }
+
     }
 }

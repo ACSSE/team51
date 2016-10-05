@@ -10,17 +10,20 @@
         $rootScope.upload = [];
 
         var service = {
-            uploadFile: uploadFile
+            uploadFile: uploadFile,
+            uploadCampImage: uploadCampImage
         }
 
         function uploadFile($files, userId, callback) {
             //$files: an array of files selected
-          
+           
             for (var i = 0; i < $files.length; i++) {
                 var $file = $files[i];
+               
+             
                 (function (index) {
                     $rootScope.upload[index] = $upload.upload({
-                        url: "/api/bursifyuser/UploadImage/?userId=" + userId, // webapi url
+                        url: "/api/bursifyuser/UploadImage/?userId=" + userId, 
                         method: "POST",
                         file: $file
                     }).progress(function (evt) {
@@ -33,7 +36,33 @@
                     });
                 })(i);
             }
+
+          
            
+        }
+
+
+        function uploadCampImage($files, userId, campId, callback) {
+            //$files: an array of files selected
+         
+            for (var i = 0; i < $files.length; i++) {
+                var $file = $files[i];
+                (function (index) {
+                    $rootScope.upload[index] = $upload.upload({
+                        url: "/api/bursifyuser/UploadCampaignImage/?userId=" + userId + '&campaignId=' + campId, // webapi url
+                        method: "POST",
+                        file: $file
+                    }).progress(function (evt) {
+                    }).success(function (data, status, headers, config) {
+                        // file is uploaded successfully
+                        notificationService.displaySuccess(data.FileName + ' uploaded successfully');
+                        callback();
+                    }).error(function (data, status, headers, config) {
+                        notificationService.displayError(data.Message);
+                    });
+                })(i);
+            }
+
         }
 
         return service;

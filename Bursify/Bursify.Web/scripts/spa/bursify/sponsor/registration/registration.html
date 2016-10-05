@@ -3,6 +3,7 @@
 
 <div id="content">
     <spnav-bar></spnav-bar>
+    <div id="loadingbarContainer"></div>
     <form>
     <div class="panel">
         <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
@@ -52,7 +53,7 @@
                         <md-input-container class="md-block">
                             <label>Description</label>
                           
-                            <textarea ng-model="BursifySponsor.Description" md-maxlength="150" rows="5" md-select-on-focus placeholder="Tell us about your company..." required></textarea>
+                            <textarea ng-model="Sponsor.Description" md-maxlength="150" rows="5" md-select-on-focus placeholder="Tell us about your company..." required></textarea>
                         </md-input-container>
 
                         <div class="col-md-4">
@@ -67,14 +68,163 @@
                             <md-input-container class="md-icon-float md-block">
                                 <!-- Use floating label instead of placeholder -->
                                 <label style="font-size: 18px;">City</label>
-                                <input id="companyName" type="text" ng-model="Location.City" required/>
+                                <input id="companyName" type="text" ng-model="Location.City"  ng-init="Location.City= 'Johannesburg'" required/>
                             </md-input-container>
                         </div>
 
                         <div class="col-md-4">
                             <md-input-container class="md-block">
                                 <md-select placeholder="Company Industry" ng-model="Sponsor.Industry" md-on-open="loadFields()" style="min-width: 200px;" required>
-                                    <md-option ng-value="field" ng-repeat="field in fields">{{field.name}}</md-option>
+                                 
+                                        <md-md-option value="" selected=""></md-md-option>
+                                        <md-option value="ACCOUNTING">Accounting</md-option>
+                                        <md-option value="AIRLINES_AVIATION">Airlines/Aviation</md-option>
+                                        <md-option value="ALTERNATIVE_DISPUTE_RESOLUTION">Alternative Dispute Resolution</md-option>
+                                        <md-option value="ALTERNATIVE_MEDICINE">Alternative Medicine</md-option>
+                                        <md-option value="ANIMATION">Animation</md-option>
+                                        <md-option value="APPAREL_AND_FASHION">Apparel &amp; Fashion</md-option>
+                                        <md-option value="ARCHITECTURE_AND_PLANNING">Architecture &amp; Planning</md-option>
+                                        <md-option value="ARTS_AND_CRAFTS">Arts &amp; Crafts</md-option>
+                                        <md-option value="AUTOMOTIVE">Automotive</md-option>
+                                        <md-option value="AVIATION_AND_AEROSPACE">Aviation &amp; Aerospace</md-option>
+                                        <md-option value="BANKING">Banking</md-option>
+                                        <md-option value="BIOTECHNOLOGY">Biotechnology</md-option>
+                                        <md-option value="BROADCAST_MEDIA">Broadcast Media</md-option>
+                                        <md-option value="BUILDING_MATERIALS">Building Materials</md-option>
+                                        <md-option value="BUSINESS_SUPPLIES_AND_EQUIPMENT">Business Supplies &amp; Equipment</md-option>
+                                        <md-option value="CAPITAL_MARKETS">Capital Markets</md-option>
+                                        <md-option value="CHEMICALS">Chemicals</md-option>
+                                        <md-option value="CIVIC_AND_SOCIAL_ORGANIZATION">Civic &amp; Social Organization</md-option>
+                                        <md-option value="CIVIL_ENGINEERING">Civil Engineering</md-option>
+                                        <md-option value="COMMERCIAL_REAL_ESTATE">Commercial Real Estate</md-option>
+                                        <md-option value="COMPUTER_AND_NETWORK_SECURITY">Computer &amp; Network Security</md-option>
+                                        <md-option value="COMPUTER_GAMES">Computer Games</md-option>
+                                        <md-option value="COMPUTER_HARDWARE">Computer Hardware</md-option>
+                                        <md-option value="COMPUTER_NETWORKING">Computer Networking</md-option>
+                                        <md-option value="COMPUTER_SOFTWARE">Computer Software</md-option>
+                                        <md-option value="CONSTRUCTION">Construction</md-option>
+                                        <md-option value="CONSUMER_ELECTRONICS">Consumer Electronics</md-option>
+                                        <md-option value="CONSUMER_GOODS">Consumer Goods</md-option>
+                                        <md-option value="CONSUMER_SERVICES">Consumer Services</md-option>
+                                        <md-option value="COSMETICS">Cosmetics</md-option>
+                                        <md-option value="DAIRY">Dairy</md-option>
+                                        <md-option value="DEFENSE_AND_SPACE">Defense &amp; Space</md-option>
+                                        <md-option value="DESIGN">Design</md-option>
+                                        <md-option value="EDUCATION_MANAGEMENT">Education Management</md-option>
+                                        <md-option value="E_LEARNING">E-learning</md-option>
+                                        <md-option value="ELECTRICAL_AND_ELECTRONIC_MANUFACTURING">Electrical &amp; Electronic Manufacturing</md-option>
+                                        <md-option value="ENTERTAINMENT">Entertainment</md-option>
+                                        <md-option value="ENVIRONMENTAL_SERVICES">Environmental Services</md-option>
+                                        <md-option value="EVENTS_SERVICES">Events Services</md-option>
+                                        <md-option value="EXECUTIVE_OFFICE">Executive Office</md-option>
+                                        <md-option value="FACILITIES_SERVICES">Facilities Services</md-option>
+                                        <md-option value="FARMING">Farming</md-option>
+                                        <md-option value="FINANCIAL_SERVICES">Financial Services</md-option>
+                                        <md-option value="FINE_ART">Fine Art</md-option>
+                                        <md-option value="FISHERY">Fishery</md-option>
+                                        <md-option value="FOOD_AND_BEVERAGES">Food &amp; Beverages</md-option>
+                                        <md-option value="FOOD_PRODUCTION">Food Production</md-option>
+                                        <md-option value="FUNDRAISING">Fundraising</md-option>
+                                        <md-option value="FURNITURE">Furniture</md-option>
+                                        <md-option value="GAMBLING_AND_CASINOS">Gambling &amp; Casinos</md-option>
+                                        <md-option value="GLASS_CERAMICS_AND_CONCRETE">Glass, Ceramics &amp; Concrete</md-option>
+                                        <md-option value="GOVERNMENT_ADMINISTRATION">Government Administration</md-option>
+                                        <md-option value="GOVERNMENT_RELATIONS">Government Relations</md-option>
+                                        <md-option value="GRAPHIC_DESIGN">Graphic Design</md-option>
+                                        <md-option value="HEALTH_WELLNESS_AND_FITNESS">Health, Wellness &amp; Fitness</md-option>
+                                        <md-option value="HIGHER_EDUCATION">Higher Education</md-option>
+                                        <md-option value="HOSPITAL_AND_HEALTH_CARE">Hospital &amp; Health Care</md-option>
+                                        <md-option value="HOSPITALITY">Hospitality</md-option>
+                                        <md-option value="HUMAN_RESOURCES">Human Resources</md-option>
+                                        <md-option value="IMPORT_AND_EXPORT">Import &amp; Export</md-option>
+                                        <md-option value="INDIVIDUAL_AND_FAMILY_SERVICES">Individual &amp; Family Services</md-option>
+                                        <md-option value="INDUSTRIAL_AUTOMATION">Industrial Automation</md-option>
+                                        <md-option value="INFORMATION_SERVICES">Information Services</md-option>
+                                        <md-option value="INFORMATION_TECHNOLOGY_AND_SERVICES">Information Technology &amp; Services</md-option>
+                                        <md-option value="INSURANCE">Insurance</md-option>
+                                        <md-option value="INTERNATIONAL_AFFAIRS">International Affairs</md-option>
+                                        <md-option value="INTERNATIONAL_TRADE_AND_DEVELOPMENT">International Trade &amp; Development</md-option>
+                                        <md-option value="INTERNET">Internet</md-option>
+                                        <md-option value="INVESTMENT_BANKING_AND_VENTURE">Investment Banking/Venture</md-option>
+                                        <md-option value="INVESTMENT_MANAGEMENT">Investment Management</md-option>
+                                        <md-option value="JUDICIARY">Judiciary</md-option>
+                                        <md-option value="LAW_ENFORCEMENT">Law Enforcement</md-option>
+                                        <md-option value="LAW_PRACTICE">Law Practice</md-option>
+                                        <md-option value="LEGAL_SERVICES">Legal Services</md-option>
+                                        <md-option value="LEGISLATIVE_OFFICE">Legislative Office</md-option>
+                                        <md-option value="LEISURE_AND_TRAVEL">Leisure &amp; Travel</md-option>
+                                        <md-option value="LIBRARIES">Libraries</md-option>
+                                        <md-option value="LOGISTICS_AND_SUPPLY_CHAIN">Logistics &amp; Supply Chain</md-option>
+                                        <md-option value="LUXURY_GOODS_AND_JEWELRY">Luxury Goods &amp; Jewelry</md-option>
+                                        <md-option value="MACHINERY">Machinery</md-option>
+                                        <md-option value="MANAGEMENT_CONSULTING">Management Consulting</md-option>
+                                        <md-option value="MARITIME">Maritime</md-option>
+                                        <md-option value="MARKETING_AND_ADVERTISING">Marketing &amp; Advertising</md-option>
+                                        <md-option value="MARKET_RESEARCH">Market Research</md-option>
+                                        <md-option value="MECHANICAL_OR_INDUSTRIAL_ENGINEERING">Mechanical or Industrial Engineering</md-option>
+                                        <md-option value="MEDIA_PRODUCTION">Media Production</md-option>
+                                        <md-option value="MEDICAL_DEVICE">Medical Device</md-option>
+                                        <md-option value="MEDICAL_PRACTICE">Medical Practice</md-option>
+                                        <md-option value="MENTAL_HEALTH_CARE">Mental Health Care</md-option>
+                                        <md-option value="MILITARY">Military</md-option>
+                                        <md-option value="MINING_AND_METALS">Mining &amp; Metals</md-option>
+                                        <md-option value="MOTION_PICTURES_AND_FILM">Motion Pictures &amp; Film</md-option>
+                                        <md-option value="MUSEUMS_AND_INSTITUTIONS">Museums &amp; Institutions</md-option>
+                                        <md-option value="MUSIC">Music</md-option>
+                                        <md-option value="NANOTECHNOLOGY">Nanotechnology</md-option>
+                                        <md-option value="NEWSPAPERS">Newspapers</md-option>
+                                        <md-option value="NON_PROFIT_ORGANIZATION_MANAGEMENT">Nonprofit Organization Management</md-option>
+                                        <md-option value="OIL_AND_ENERGY">Oil &amp; Energy</md-option>
+                                        <md-option value="ONLINE_PUBLISHING">Online Publishing</md-option>
+                                        <md-option value="OUTSOURCING_OFFSHORING">Outsourcing/Offshoring</md-option>
+                                        <md-option value="PACKAGE_AND_FREIGHT_DELIVERY">Package/Freight Delivery</md-option>
+                                        <md-option value="PACKAGING_AND_CONTAINERS">Packaging &amp; Containers</md-option>
+                                        <md-option value="PAPER_AND_FOREST_PRODUCTS">Paper &amp; Forest Products</md-option>
+                                        <md-option value="PERFORMING_ARTS">Performing Arts</md-option>
+                                        <md-option value="PHARMACEUTICALS">Pharmaceuticals</md-option>
+                                        <md-option value="PHILANTHROPY">Philanthropy</md-option>
+                                        <md-option value="PHOTOGRAPHY">Photography</md-option>
+                                        <md-option value="PLASTICS">Plastics</md-option>
+                                        <md-option value="POLITICAL_ORGANIZATION">Political Organization</md-option>
+                                        <md-option value="PRIMARY_SECONDARY">Primary/Secondary</md-option>
+                                        <md-option value="PRINTING">Printing</md-option>
+                                        <md-option value="PROFESSIONAL_TRAINING">Professional Training</md-option>
+                                        <md-option value="PROGRAM_DEVELOPMENT">Program Development</md-option>
+                                        <md-option value="PUBLIC_POLICY">Public Policy</md-option>
+                                        <md-option value="PUBLIC_RELATIONS">Public Relations</md-option>
+                                        <md-option value="PUBLIC_SAFETY">Public Safety</md-option>
+                                        <md-option value="PUBLISHING">Publishing</md-option>
+                                        <md-option value="RAILROAD_MANUFACTURE">Railroad Manufacture</md-option>
+                                        <md-option value="RANCHING">Ranching</md-option>
+                                        <md-option value="REAL_ESTATE">Real Estate</md-option>
+                                        <md-option value="RECREATIONAL_FACILITIES_AND_SERVICES">Recreational Facilities &amp; Services</md-option>
+                                        <md-option value="RELIGIOUS_INSTITUTIONS">Religious Institutions</md-option>
+                                        <md-option value="RENEWABLES_AND_ENVIRONMENT">Renewables &amp; Environment</md-option>
+                                        <md-option value="RESEARCH">Research</md-option>
+                                        <md-option value="RESTAURANTS">Restaurants</md-option>
+                                        <md-option value="RETAIL">Retail</md-option>
+                                        <md-option value="SECURITY_AND_INVESTIGATIONS">Security &amp; Investigations</md-option>
+                                        <md-option value="SEMICONDUCTORS">Semiconductors</md-option>
+                                        <md-option value="SHIPBUILDING">Shipbuilding</md-option>
+                                        <md-option value="SPORTING_GOODS">Sporting Goods</md-option>
+                                        <md-option value="SPORTS">Sports</md-option>
+                                        <md-option value="STAFFING_AND_RECRUITING">Staffing &amp; Recruiting</md-option>
+                                        <md-option value="SUPERMARKETS">Supermarkets</md-option>
+                                        <md-option value="TELECOMMUNICATIONS">Telecommunications</md-option>
+                                        <md-option value="TEXTILES">Textiles</md-option>
+                                        <md-option value="THINK_TANKS">Think Tanks</md-option>
+                                        <md-option value="TOBACCO">Tobacco</md-option>
+                                        <md-option value="TRANSLATION_AND_LOCALIZATION">Translation &amp; Localization</md-option>
+                                        <md-option value="TRANSPORTATION_TRUCKING_AND_RAILROAD">Transportation/Trucking/Railroad</md-option>
+                                        <md-option value="UTILITIES">Utilities</md-option>
+                                        <md-option value="VENTURE_CAPITAL">Venture Capital</md-option>
+                                        <md-option value="VETERINARY">Veterinary</md-option>
+                                        <md-option value="WAREHOUSING">Warehousing</md-option>
+                                        <md-option value="WHOLESALE">Wholesale</md-option>
+                                        <md-option value="WINE_AND_SPIRITS">Wine &amp; Spirits</md-option>
+                                        <md-option value="WIRELESS">Wireless</md-option>
+                                        <md-option value="WRITING_AND_EDITING">Writing &amp; Editing</md-option>
+                                    
                                 </md-select>
                             </md-input-container>
                            

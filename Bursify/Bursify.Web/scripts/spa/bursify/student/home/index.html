@@ -1,82 +1,84 @@
 ﻿
 <nav-bar></nav-bar>
+<div id="loadingbarContainer"></div>
 
-<div id="content">
+<div id="content" ng-init="loadSponsorships()">
     
     <div ng-cloak>
                 <md-content class="md-padding">
                     <md-tabs md-dynamic-height md-border-bottom>
-                        <md-tab label="BURSARIES">
+                        <md-tab label="RECCOMMENDED">
                             <md-content class="md-padding">
-                                <div class="col-md-12">
+                                <div class="col-md-12" ng-if="!Recco[0]">
+                                    <div class="alert alert-info col-md-12 col-sm-12  alert-icon alert-dismissible fade in" role="alert">
+                                        <div class="col-md-2 col-sm-2 icon-wrapper text-center">
+                                            <span class="fa fa-info fa-2x"></span>
+                                        </div>
+                                        <div class="col-md-10 col-sm-10">
+                                            <p><strong>Info !</strong> Unfortunately the system could not find any sponsorships for you at this time. Go to the all tab to find sponsorships manualy.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" ng-if="Recco.length > 0">
                                     <div class="col-md-12 tabs-area box-shadow-none">
                                         <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
                                             <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group form-animate-text">
-                                                            <input type="text" class="form-text" ng-model="searchB" required>
+                                                            <input type="text" class="form-text" ng-model="searchA" placeholder="Type here to search">
                                                             <span class="bar"></span>
-                                                            <label class="label-search" style="color: black;">Type here to <b>Search</b> </label>
-
+         
                                                         </div>
+                                                
                                                     </div>
-                                                    <div class="col-md-8">
-
-                                                        <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>Closing Date</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>Rating</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>A-Z</label>
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-md-offset-5">
+                                                       <label>Sort by: </label>
+                                                        <md-radio-group ng-model="sortB" layout="row" required>
+                                                            <md-radio-button value="Name" class="md-primary">A - Z</md-radio-button>
+                                                            <md-radio-button value="ClosingDate" class="md-primary"> Closing Date </md-radio-button>
+                                                            <md-radio-button value="-Rating" class="md-primary"> Rating </md-radio-button>
+             
+                                                        </md-radio-group>
                                                     </div>
+                                              
 
                                                 </div>
+                                                
+                                                <div class="media"  data-ng-repeat="Sponsorship in Recco | filter: searchA | orderBy: sortB | limitTo: query.limit : (query.page - 1) * query.limit">
+                                                    <div class="media-left" style="padding-top: 10px;">
+                                                        <a  href="#/student/sponsorship/{{Sponsorship.ID}}">
 
-                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | orderBy:sortType:sortReverse | filter:searchB">
-                                                    <div class="media-left">
-                                                        <a href="/Sponsorship/ViewBursary">
+                                                            
+                                                            <img ng-if="Sponsorship.SponsorPicturePath == 'def'" ng-src="Content/default.png" width="55" height="55" class="media-object search-v1-avatar">
+                                                            <img ng-if="Sponsorship.SponsorPicturePath != 'def'" ng-src="Content/BursifyUploads/{{Sponsorship.SponsorId}}/images/{{Sponsorship.SponsorPicturePath}}" width="55" height="55" class="box-v7-avatar">
 
-
-                                                            <img ng-src="Content/images/user/elogo.jpg" width="55" height="55" class="media-object search-v1-avatar">
                                                         </a>
                                                     </div>
 
 
                                                     <div class="media-body">
                                                         <h4 class="media-heading"><a href="#/student/sponsorship/{{Sponsorship.ID}}">{{Sponsorship.Name}}</a></h4>
-                                                        <p style="height: 120px;">{{Sponsorship.Description | limitTo: 180}}</p>
+                                                        <p style="height: 120px;">{{Sponsorship.Description | limitTo: 900}}...</p>
 
-                                                    </div>
+                                                        <div class="pull-left">
+                                                            <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
+                                                        </div>
 
-                                                    <div class="pull-left">
-                                                        <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
-                                                    </div>
 
-                                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <div class="pull-right" style="color: rgb(240, 173, 78); padding-top: 15px;">
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 1 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 2 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 3 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 4 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 5 "></span>
+
+                                                        </div>
                                                     </div>
+                                                    <hr style="width: 100%; height: 10px;" />
 
                                                 </div>
+
                                             </div>
                                         </div>
 
@@ -84,77 +86,93 @@
                                 </div>
                             </md-content>
                         </md-tab>
-                        <md-tab label="RECCOMMENDED">                
+                        <md-tab label="ALL BURSARIES">                
                             <md-content class="md-padding">
+                                
                                 <div class="col-md-12">
                                     <div class="col-md-12 tabs-area box-shadow-none">
                                         <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
                                             <div role="tabpanel" class="tab-pane search-v1-menu1 fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-12">
                                                         <div class="form-group form-animate-text">
-                                                            <input type="text" class="form-text" required>
+                                                            <input type="text" class="form-text" ng-model="searchB" placeholder="Type here to search">
                                                             <span class="bar"></span>
-                                                            <label class="label-search" style="color: black;">Type here to <b>Search</b> </label>
+                                                        </div>
+                                                        </div>
+                                                    <div class="row col-sm-offset-1" >
+                                                        <div class="col-md-4">
+                                                            <md-input-container>
+                                                                <label>Filter by study fields:</label>
+                                                                <md-select  ng-model="searchField" style="min-width: 250px;">
+                                                                    <md-option ng-value="field" ng-repeat="field in fields | orderBy">{{field}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+
 
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-8">
+                                                        <div class="col-md-4">
+                                                            <md-input-container>
+                                                                <label>Filter by offerings:</label>
+                                                                <md-select ng-model="searchItem" style="min-width: 250px;" multiple>
+                                                                    <md-option ng-value="item.value" ng-repeat="item in items | orderBy: 'name'">{{item.name}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
 
-                                                        <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>Closing Date</label>
-                                                            </div>
+
                                                         </div>
                                                         <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>Rating</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            Sort by:
-                                                            <div class="form-group form-animate-checkbox">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <label>A-Z</label>
-                                                            </div>
-                                                        </div>
+                                                            <md-input-container>
+                                                                <label>Sort by:</label>
+                                                                <md-select placeholder="Sort by" ng-model="sortA" style="min-width: 250px;">
+                                                                    <md-option ng-value="sort.value" ng-repeat="sort in sorts | orderBy">{{sort.name}}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+                                                         </div>
                                                     </div>
+                                                  
 
                                                 </div>
 
-                                                <div class="media" ng-repeat="Sponsorship in Sponsorships | orderBy:'ClosingDate'">
-                                                    <div class="media-left">
-                                                        <a href="/Sponsorship/ViewBursary">
+                                                <hr/>
 
 
-                                                            <img ng-src="Content/images/user/elogo.jpg" width="55" height="55" class="media-object search-v1-avatar">
+                                                <div class="media" data-ng-repeat="Sponsorship in Sponsorships | filter: searchB | itemFilter:searchItem | fieldFilter: searchField | orderBy: sortA | limitTo: query.limit : (query.page - 1) * query.limit">
+                                                   
+                                              
+                                                     <div class="media-left" style="padding-top: 10px;">
+                                                        <a href="#/student/sponsorship/{{Sponsorship.ID}}">
+
+
+                                                            <img ng-if="Sponsorship.SponsorPicturePath == 'def'" ng-src="Content/default.png" width="55" height="55" class="media-object search-v1-avatar">
+                                                            <img ng-if="Sponsorship.SponsorPicturePath != 'def'" ng-src="Content/BursifyUploads/{{Sponsorship.SponsorId}}/images/{{Sponsorship.SponsorPicturePath}}" width="55" height="55" class="media-object search-v1-avatar">
+
                                                         </a>
                                                     </div>
 
 
                                                     <div class="media-body">
                                                         <h4 class="media-heading"><a href="#/student/sponsorship/{{Sponsorship.ID}}">{{Sponsorship.Name}}</a></h4>
-                                                        <p style="height: 120px;">{{Sponsorship.Description | limitTo: 180}}</p>
+                                                        <p style="height: 120px;">{{Sponsorship.Description | limitTo: 900}}...</p>
 
-                                                    </div>
+                                                        <div class="pull-left">
+                                                            <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
+                                                        </div>
 
-                                                    <div class="pull-left">
-                                                        <h4>Closing Date:</h4><p>{{Sponsorship.ClosingDate | date: "MMM d, y"}}</p>
-                                                    </div>
 
-                                                    <div class="pull-right" style="color: rgb(240, 173, 78)">
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
-                                                        <span class="rate fa-star fa fa-2x"></span>
+                                                        <div class="pull-right" style="color: rgb(240, 173, 78); padding-top: 15px;">
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 1 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 2 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 3 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 4 "></span>
+                                                            <span class="rate fa-star fa fa-2x" ng-if="Sponsorship.Rating >= 5 "></span>
+
+                                                        </div>
                                                     </div>
+                                                    <hr style="width: 100%; height: 10px;" />
 
                                                 </div>
+                                              
                                             </div>
                                         </div>
 
@@ -169,20 +187,5 @@
                 </div>
         
 
-            <!--<div id="content" class="search-v1" style="padding-left: 0;">
-                <div class="panel">
-                    <div class="panel-body">
-                        <ul id="tabs-demo6" class="nav nav-tabs nav-tabs-v6 masonry-tabs" role="tablist">
-                            <li role="presentation" class="">
-                                <a href="#tabs-demo7-area1" id="tabs-demo6-1" role="tab" data-toggle="tab" aria-expanded="false">Bursaries</a>
-                            </li>
-                            <li role="presentation" class="active">
-                                <a href="#tabs-demo7-area2" role="tab" id="tabs-demo6-2" data-toggle="tab" aria-expanded="true">Scholarships</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-
-            </div>-->
+ 
         </div>

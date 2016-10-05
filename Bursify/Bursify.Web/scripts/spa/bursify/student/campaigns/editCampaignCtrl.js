@@ -12,8 +12,8 @@
 
         $scope.campaign.StudentId = $rootScope.repository.loggedUser.userIden;
         $scope.StudentName = $rootScope.repository.loggedUser.username;
-
         $scope.loadMyCampaign = loadMyCampaign;
+        $scope.editStudentCampaign = editStudentCampaign;
 
         /* End of Form input */
 
@@ -31,11 +31,18 @@
         }
         function editStudentCampaign()
         {
-            alert("Seding data to the api");
-            alert("Changes saved to campaign ");
             apiService.post('/api/campaign/SaveCampaign/?campaign=', $scope.campaign,
-            EditCampaignSucceded,
-            EditCampaignFailed);
+                    EditCampaignSucceded,
+                    EditCampaignFailed);
+
+            //Check User password *******************************************************sdfsdfdsfdsfdsfsdf***************************************
+            //if(log)
+            // {
+            //    apiService.post('/api/campaign/SaveCampaign/?campaign=', $scope.campaign,
+            //    EditCampaignSucceded,
+            //    EditCampaignFailed);
+            // }
+           
         }
 
         function EditCampaignSucceded(response) {

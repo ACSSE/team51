@@ -29,7 +29,7 @@ namespace Bursify.Api.Sponsors
             this.sponsorRepository = sponsorRepository;
         }
 
-        public void AddSponsor(Sponsor s)
+        public void SaveSponsor(Sponsor s)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
@@ -125,11 +125,11 @@ namespace Bursify.Api.Sponsors
             }
         }*/
 
-        public Student GetStudent(int Id)
+        public Sponsor GetSponsor(int sponsorId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return studentRepository.LoadById(Id);
+                return sponsorRepository.GetSponsor(sponsorId);
             }
         }
 
@@ -159,11 +159,11 @@ namespace Bursify.Api.Sponsors
             }
         }
 
-        public bool ApproveSponsorship(int userId, int sponsorshipId, string confirmationMessage)
+        public bool ApproveSponsorship(int studentId, int sponsorshipId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                bool status = studentSponsorshipRepository.ConfirmSponsorship(userId, sponsorshipId, confirmationMessage);
+                bool status = studentSponsorshipRepository.ConfirmSponsorship(studentId, sponsorshipId);
                 uow.Commit();
                 return status;
             }

@@ -1,8 +1,4 @@
-﻿using System;
-using Bursify.Data.EF.Entities.Campaigns;
-using Bursify.Data.EF.Entities.SponsorUser;
-
-namespace Bursify.Data.EF.Entities.User
+﻿namespace Bursify.Data.EF.Entities.SponsorUser
 {
     public class Account : IEntity 
     {

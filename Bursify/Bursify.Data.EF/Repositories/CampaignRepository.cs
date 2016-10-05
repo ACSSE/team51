@@ -3,24 +3,28 @@ using Bursify.Data.EF.Entities.Campaigns;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.Entities.User;
 using System.Linq;
+using System;
+using System.Data.Entity.SqlServer;
+using Bursify.Data.EF.Entities.Bridge;
 
 namespace Bursify.Data.EF.Repositories
 {
     public class CampaignRepository : Repository<Campaign>
     {
+        private readonly DataSession _dataSession;
+
         public CampaignRepository(DataSession dataSession) : base(dataSession)
         {
+            _dataSession = dataSession;
         }
 
         public List<Campaign> GetAllCampaigns()
         {
-            return LoadAll();
-        }
+            var campaigns = _dataSession.UnitOfWork.Context.Set<Campaign>()
+                .Where(campaign => campaign.Status.Equals("Active", StringComparison.OrdinalIgnoreCase))
+                .ToList();
 
-
-        public List<Campaign> GetActiveCampaigns()
-        {
-            return LoadAll().Where(x => x.Status == "Active").ToList();
+            return campaigns;
         }
 
         public Campaign GetCampaign(int campaignId)
@@ -57,7 +61,6 @@ namespace Bursify.Data.EF.Repositories
             return userCampaigns;
         }
 
-
         public Campaign EndorseCampaign(BursifyUser user, int campaignId)
         {
                 var campaign = user.Upvotes.FirstOrDefault(x => x.ID == campaignId);
@@ -85,6 +88,25 @@ namespace Bursify.Data.EF.Repositories
         public int GetCampaignNumbersByStatus(string status)
         {
             return FindMany(x => x.Status.ToUpper().Equals(status.ToUpper())).Count;
+        }
+
+        public List<Campaign> GetSimilarCampaigns(int campaignId)
+        {
+            var current = LoadById(campaignId);
+
+            var campaigns = _dataSession.UnitOfWork.Context.Set<Campaign>()
+                .Where(campaign => campaign.CampaignType.Equals(current.CampaignType) && campaign.ID != current.ID)
+                .Take(3)
+                .ToList();
+
+            return campaigns;
+        }
+
+        public int GetUpVotes(int campaignId)
+        {
+            var upvotes = FindSingle(x => x.ID == campaignId).NumberOfUpVotes;
+
+            return upvotes;
         }
     }
 }

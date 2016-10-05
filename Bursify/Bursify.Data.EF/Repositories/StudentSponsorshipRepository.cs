@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Uow;
+using System.Data.Entity;
+using System.Data.Entity.SqlServer;
+using System.Globalization;
+using Microsoft.Ajax.Utilities;
 
 namespace Bursify.Data.EF.Repositories
 {
@@ -20,11 +25,11 @@ namespace Bursify.Data.EF.Repositories
         }
 
         //for student
-        public void ApplyForSponsorship(int userId, int sponsorshipId)
+        public void ApplyForSponsorship(int studentId, int sponsorshipId)
         {
             var newApplication = new StudentSponsorship()
             {
-                StudentId = userId,
+                StudentId = studentId,
                 SponsorshipId = sponsorshipId,
                 ApplicationDate = DateTime.UtcNow,
                 Status = "Pending",
@@ -35,16 +40,16 @@ namespace Bursify.Data.EF.Repositories
         }
 
         //for sponsor
-        public bool ConfirmSponsorship(int userId, int sponsorshipId, string statusMessage)
+        public bool ConfirmSponsorship(int studentId, int sponsorshipId)
         {
-            var application = LoadByIds(userId, sponsorshipId);
+            var application = LoadByIds(studentId, sponsorshipId);
 
             if (application == null)
             {
                 return false;
             }
 
-            application.Status = statusMessage;
+            application.Status = "Approved";
 
             Save(application);
 
@@ -68,7 +73,7 @@ namespace Bursify.Data.EF.Repositories
 
         public List<StudentSponsorship> GetStudentsApplications(int userId)
         {
-            return FindMany(application => application.StudentId == userId).Where(x => x.Status == "Pending").ToList();
+            return FindMany(application => application.StudentId == userId).ToList();
         }
 
         public List<StudentSponsorship> GetSponsorApplicants(int sponsorshipId)
@@ -77,6 +82,111 @@ namespace Bursify.Data.EF.Repositories
                 FindMany(applicant => applicant.SponsorshipId == sponsorshipId)
                     .Where(x => x.Status == "Pending")
                     .ToList();
+        }
+
+        public Dictionary<int?, int> GetSponsorApplicantsPerWeek(int sponsorshipId)
+        {
+            var applications = _dataSession.UnitOfWork.Context.Set<StudentSponsorship>()
+                .Where(x => x.SponsorshipId == sponsorshipId)
+                .GroupBy(x => SqlFunctions.DatePart("week", x.ApplicationDate))
+                .ToDictionary(v => v.Key, v => v.Count());
+
+            return applications;
+        }
+
+        public Dictionary<string, int> GetMaleFemaleRatio(int sponsorshipId)
+        {
+            var applicantions = FindMany(x => x.SponsorshipId == sponsorshipId);
+
+            int maleCount = 0, femaleCount = 0;
+
+            foreach (var applicantion in applicantions)
+            {
+                var student = _dataSession.UnitOfWork.Context
+                    .Set<Student>()
+                    .FirstOrDefault(x => x.ID == applicantion.StudentId);
+
+                if (student != null && student.Gender.Equals("Male", StringComparison.OrdinalIgnoreCase))
+                {
+                    maleCount++;
+                }
+                else
+                {
+                    femaleCount++;
+                }
+            }
+
+            var dictionary = new Dictionary<string, int>
+            {
+                {"Male", maleCount},
+                {"Female", femaleCount},
+                {"Total", maleCount + femaleCount}
+            };
+
+            return dictionary;
+        }
+
+        public Dictionary<string, int> GetApplicantsPerprovince(int sponsorshipId)
+        {
+            var applications = _dataSession.UnitOfWork.Context.Set<StudentSponsorship>()
+                .Where(x => x.SponsorshipId == sponsorshipId)
+                .DistinctBy(x => x.StudentId)
+                .ToList();
+
+            var dictionary = new Dictionary<string, int>
+            {
+                {"Eastern Cape", 0},
+                {"Free State", 0},
+                {"Gauteng", 0},
+                {"Kwa-Zulu Natal", 0},
+                {"Limpopo", 0},
+                {"Mpumalanga", 0},
+                {"Northern Cape", 0},
+                {"North West", 0},
+                {"Western Cape", 0}
+            };
+
+            foreach (var application in applications)
+            {
+                var address = _dataSession.UnitOfWork.Context.Set<UserAddress>()
+                    .FirstOrDefault(x => x.BursifyUserId == application.StudentId);
+
+                if (address == null || !dictionary.ContainsKey(address.Province)) continue;
+                string province = address.Province;
+                dictionary[province] += 1;
+            }
+
+            return dictionary;
+        }
+
+        public double GetApplicantOverallAverage(int sponsorshipId)
+        {
+            var applications = FindMany(x => x.SponsorshipId == sponsorshipId);
+
+            var studentReports =
+                applications.Select(
+                    application =>
+                        _dataSession.UnitOfWork.Context.Set<StudentReport>()
+                            .Where(x => x.StudentId == application.StudentId)
+                            .OrderByDescending(x => x.ReportYear)
+                            .ThenBy(x => x.ReportPeriod.Equals("Semester 2")
+                                ? 1
+                                : x.ReportPeriod.Equals("Semester 1")
+                                    ? 2
+                                    : x.ReportPeriod.Equals("Term 4")
+                                        ? 3
+                                        : x.ReportPeriod.Equals("Term 3")
+                                            ? 4
+                                            : x.ReportPeriod.Equals("Term 2")
+                                                ? 5
+                                                : x.ReportPeriod.Equals("Term 1") ? 6 : 7)
+                            .FirstOrDefault()).ToList();
+
+            double total = studentReports.Aggregate<StudentReport, double>(0,
+                (current, report) => current + report.Average);
+
+
+            return total/studentReports.Count;
         }
 
         public List<Sponsorship> GetStudentsAppliedSponsorships(int userId)
@@ -117,64 +227,146 @@ namespace Bursify.Data.EF.Repositories
                     && sponsorship.rightId == sponsorshipId);
         }
 
-        public List<Sponsorship> LoadSponsorshipSuggestions(Student student)
+        public List<Sponsorship> LoadSponsorshipSuggestions(int studentId)
         {
-            if (student.CurrentOccupation.Equals("Unemployed", StringComparison.OrdinalIgnoreCase)) return null;
+            //get student
+            var student = _dataSession.UnitOfWork.Context
+                .Set<Student>()
+                .FirstOrDefault(x => x.ID == studentId);
 
-            var sponsorships = _dataSession.UnitOfWork.Context.Set<Sponsorship>()
-                .Where(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            var latestReport = _dataSession.UnitOfWork.Context.Set<StudentReport>()
-                .Where(x => x.StudentId == student.ID)
+            //get most recent student report
+            var report = _dataSession.UnitOfWork.Context.Set<StudentReport>()
+                .Where(x => x.StudentId == studentId)
                 .OrderByDescending(x => x.ReportYear)
-                .ThenByDescending(x => x.ReportPeriod)
+                .ThenBy(x => x.ReportPeriod.Equals("Semester 2")
+                    ? 1
+                    : x.ReportPeriod.Equals("Semester 1")
+                        ? 2
+                        : x.ReportPeriod.Equals("Term 4")
+                            ? 3
+                            : x.ReportPeriod.Equals("Term 3")
+                                ? 4
+                                : x.ReportPeriod.Equals("Term 2")
+                                    ? 5
+                                    : x.ReportPeriod.Equals("Term 1") ? 6 : 7)
                 .FirstOrDefault();
 
-            var school = _dataSession.UnitOfWork.Context
+            //get student address
+            var address = _dataSession.UnitOfWork.Context
+                .Set<UserAddress>()
+                .FirstOrDefault(x => x.BursifyUserId == studentId);
+
+            //get sponsorships based on education level
+            var sponsorships = _dataSession.UnitOfWork.Context
+                .Set<Sponsorship>()
+                .Where(x => student.CurrentOccupation.Equals(x.EducationLevel))
+                .Include(x => x.Requirements)
+                .ToList();
+
+            var addressList =
+                sponsorships.Where(
+                    sponsorship =>
+                        address != null &&
+                        (sponsorship.Province.Contains(address.Province) ||
+                         sponsorship.Province.Equals("All", StringComparison.OrdinalIgnoreCase))).ToList();
+
+            //check study field
+            var fieldList = CheckStudyFields(sponsorships, student);
+
+            //check average
+            var averageList =
+                sponsorships.Where(sponsorship => report != null
+                                                  && report.Average >= sponsorship.AverageMarkRequired)
+                    .ToList();
+
+            var ageList = CheckAge(sponsorships, student);
+
+            /*--------advanced preferences----------*/
+            var prefList = CheckAdvancedPreferences(sponsorships, student);
+
+            var finalList = sponsorships.Union(addressList).Union(fieldList).Union(averageList).Union(prefList).Union(ageList).ToList();
+
+
+
+            return finalList;
+        }
+
+        private List<Sponsorship> CheckStudyFields(List<Sponsorship> sponsorships, Student student)
+        {
+            var sponsorshipList = new List<Sponsorship>();
+
+            if (student.StudyField.Contains(","))
+            {
+                var studentFields = student.StudyField.Split(',');
+
+                sponsorshipList.AddRange(from field in studentFields
+                    from sponsorship in sponsorships
+                    where sponsorship.StudyFields.Contains(field)
+                    select sponsorship);
+            }
+            else
+            {
+                var studentField = student.StudyField;
+
+                sponsorshipList.AddRange(
+                    sponsorships.Where(sponsorship => sponsorship.StudyFields.Contains(studentField)));
+            }
+
+            return sponsorshipList;
+        }
+
+        private List<Sponsorship> CheckAdvancedPreferences(List<Sponsorship> sponsorships, Student student)
+        {
+            var institution = _dataSession.UnitOfWork.Context
                 .Set<Institution>()
                 .FirstOrDefault(x => x.ID == student.InstitutionID);
 
-            var address = _dataSession.UnitOfWork.Context
-                .Set<UserAddress>()
-                .FirstOrDefault(userAddress => userAddress.BursifyUserId == student.ID && userAddress.PreferredAddress.Contains("Residential"));
-            //FindMany(x => x.EducationLevel.Equals(student.CurrentOccupation, StringComparison.OrdinalIgnoreCase));
+            //check gender
+            var genderList =
+                sponsorships.Where(
+                    sponsorship =>
+                        !sponsorship.GenderPreference.IsNullOrWhiteSpace() &&
+                        student.Gender.Equals(sponsorship.GenderPreference) ||
+                        sponsorship.GenderPreference.Equals("All", StringComparison.OrdinalIgnoreCase))
+                    .ToList();
 
-            var suggestionList = sponsorships.Where(sponsorship => 
-                                 school != null && latestReport != null && address != null
-                                 && 
-                                 (sponsorship.StudyFields.Contains(student.StudyField)
-                                 && sponsorship.AverageMarkRequired <= latestReport.Average)
-                                 &&(CheckAge(sponsorship.AgeGroup, student.Age)
-                                 || sponsorship.GenderPreference.Equals(student.Gender)
-                                 || sponsorship.RacePreference.Equals(student.Race)
-                                 || sponsorship.InstitutionPreference.Contains(school.Name)
-                                 || sponsorship.Province.Contains(address.Province))
-                                 ).ToList();
+            //check race
+            var raceList =
+                sponsorships.Where(
+                    sponsorship =>
+                        !sponsorship.RacePreference.IsNullOrWhiteSpace() &&
+                        (sponsorship.RacePreference.Equals(student.Race) ||
+                         sponsorship.RacePreference.Equals("All", StringComparison.OrdinalIgnoreCase))).ToList();
 
-            //check disability preference
+            //check disability
+            var disabilityList =
+                sponsorships.Where(sponsorship =>
+                    sponsorship.DisabilityPreference).ToList();
 
-            return suggestionList;
+            //check institution
+            var schoolList =
+                sponsorships.Where(
+                    sponsorship => 
+                    !sponsorship.InstitutionPreference.IsNullOrWhiteSpace() &&
+                    institution != null
+                                   && sponsorship.InstitutionPreference.Contains(institution.Name))
+                    .ToList();
+
+            var finalList = genderList.Union(raceList).Union(disabilityList).Union(schoolList).ToList();
+
+            return finalList;
         }
 
-        private static bool CheckAge(string ageGroup, int studentAge)
+        private List<Sponsorship> CheckAge(List<Sponsorship> sponsorships, Student student)
         {
-            var age = ageGroup.Split('-');
+            var ageList = (from sponsorship in sponsorships
+                let age = sponsorship.AgeGroup.Split('-')
+                where
+                    sponsorship.AgeGroup.Equals("All", StringComparison.OrdinalIgnoreCase) ||
+                    (student.Age >= Convert.ToInt32(age[0]) && student.Age <= Convert.ToInt32(age[1]))
+                select sponsorship).ToList();
 
-            if (ageGroup.Equals("Any", StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-
-            return studentAge >= Convert.ToInt32(age[0]) && studentAge <= Convert.ToInt32(age[1]);
+            return ageList;
         }
-
-        //done in api using generic repo
-        //public Student GetApplicant(int userId)
-        //{
-        //    var student = new StudentRepository(_dataSession);
-
-        //    return student.GetStudent(userId);
-        //}
     }
 }

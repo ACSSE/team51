@@ -28,10 +28,20 @@ namespace Bursify.Data.EF.Repositories
         {
             var reportCard = _dataSession.UnitOfWork.Context.Set<StudentReport>()
                 .Where(x => x.ID == reportId && x.StudentId == studentId)
-                .Include("Subjects")
+                .Include(x => x.Subjects)
                 .FirstOrDefault();
 
             return reportCard;
+        }
+
+        public List<StudentReport> GetAllReportsWithSubjects(int studentId)
+        {
+            var reports = _dataSession.UnitOfWork.Context.Set<StudentReport>()
+                .Where(x => x.StudentId == studentId)
+                .Include(x => x.Subjects)
+                .ToList();
+
+            return reports;
         }
 
         public List<StudentReport> GetStudentReports(int studentId)
@@ -44,7 +54,18 @@ namespace Bursify.Data.EF.Repositories
             var reports = _dataSession.UnitOfWork.Context.Set<StudentReport>()
                 .Where(x => x.StudentId == studentId)
                 .OrderByDescending(x => x.ReportYear)
-                .ThenByDescending(x => x.ReportPeriod)
+                .ThenBy(x => x.ReportPeriod.Equals("Semester 2")
+                    ? 1
+                    : x.ReportPeriod.Equals("Semester 1")
+                        ? 2
+                        : x.ReportPeriod.Equals("Term 4")
+                            ? 3
+                            : x.ReportPeriod.Equals("Term 3")
+                                ? 4
+                                : x.ReportPeriod.Equals("Term 2")
+                                    ? 5
+                                    : x.ReportPeriod.Equals("Term 1") ? 6 : 7)
+                .Include(x => x.Subjects)
                 .Take(5)
                 .ToList();
 
@@ -56,7 +77,17 @@ namespace Bursify.Data.EF.Repositories
             var report = _dataSession.UnitOfWork.Context.Set<StudentReport>()
                 .Where(x => x.StudentId == studentId)
                 .OrderByDescending(x => x.ReportYear)
-                .ThenByDescending(x => x.ReportPeriod)
+                .ThenBy(x => x.ReportPeriod.Equals("Semester 2")
+                    ? 1
+                    : x.ReportPeriod.Equals("Semester 1")
+                        ? 2
+                        : x.ReportPeriod.Equals("Term 4")
+                            ? 3
+                            : x.ReportPeriod.Equals("Term 3")
+                                ? 4
+                                : x.ReportPeriod.Equals("Term 2")
+                                    ? 5
+                                    : x.ReportPeriod.Equals("Term 1") ? 6 : 7)
                 .FirstOrDefault();
 
             return report;

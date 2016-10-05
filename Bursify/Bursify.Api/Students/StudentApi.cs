@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bursify.Api.Users;
+using System.Data.Entity;
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Uow;
 using Bursify.Data.EF.Entities.Campaigns;
@@ -20,7 +21,7 @@ namespace Bursify.Api.Students
             SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository,
             StudentRepository studentRepository, InstitutionRepository institutionRepository,
             SubjectRepository subjectRepository, StudentSponsorshipRepository studentSponsorshipRepository,
-            StudentReportRepository studentReportRepository)
+            StudentReportRepository studentReportRepository, RequirementRepository requirementRepository)
             : base(
                 unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository)
         {
@@ -32,6 +33,7 @@ namespace Bursify.Api.Students
             _subjectRepository = subjectRepository;
             _studentSponsorshipRepository = studentSponsorshipRepository;
             _studentReportRepository = studentReportRepository;
+            _requirementRepository = requirementRepository;
         }
 
         #region Variables
@@ -44,6 +46,7 @@ namespace Bursify.Api.Students
         private readonly InstitutionRepository _institutionRepository;
         private readonly SubjectRepository _subjectRepository;
         private readonly StudentReportRepository _studentReportRepository;
+        private readonly RequirementRepository _requirementRepository;
 
         //bridging entities
         private readonly StudentSponsorshipRepository _studentSponsorshipRepository;
@@ -169,6 +172,68 @@ namespace Bursify.Api.Students
             }
         }
 
+        public List<Campaign> GetSimilarCampaigns(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignRepository.GetSimilarCampaigns(campaignId);
+            }
+        }
+
+        public List<string> GetCampaignFunders(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetCampaignFunders(campaignId);
+            }
+        }
+
+        public void RemoveCampaign(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var campaign = campaignRepository.LoadById(campaignId);
+
+                campaign.Status = "InActive";
+
+                SaveCampaign(campaign);
+
+                uow.Commit();
+            }
+        }
+
+        public Dictionary<int?, double> GetFundingPerDay(int campaignId, int month)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetFundingPerDay(campaignId, month);
+            }
+        }
+
+        public int GetNumberOfFunders(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetNumberOfFunders(campaignId);
+            }
+        }
+
+        public Dictionary<string, int> GetFundersPerProvince(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetFundersPerProvince(campaignId);
+            }
+        }
+
+        public int GetUpVotes(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignRepository.GetUpVotes(campaignId);
+            }
+        }
+
         #endregion
 
         #region Sponsor
@@ -241,7 +306,7 @@ namespace Bursify.Api.Students
                 return _sponsorshipRepository.GetAllSponsorships(type);
             }
         }
-
+         
         //done
         public Sponsorship GetSponsorship(int id, int userId)
         {
@@ -260,6 +325,14 @@ namespace Bursify.Api.Students
             }
         }
 
+        public List<Sponsorship> GetSimilarSponsorships(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _sponsorshipRepository.GetSimilarSponsorships(sponsorshipId);
+            }
+        }
+
         //done
         public List<Sponsorship> SearchSponsorships(string criteria)
         {
@@ -274,9 +347,63 @@ namespace Bursify.Api.Students
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                var student = GetStudent(studentId);
+                return _studentSponsorshipRepository.LoadSponsorshipSuggestions(studentId);
+            }
+        }
 
-                return _studentSponsorshipRepository.LoadSponsorshipSuggestions(student);
+        public List<StudentSponsorship> GetStudentApplications(int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetStudentsApplications(studentId);
+            }
+        }
+
+        public Dictionary<int?, int> GetSponsorApplicantsPerWeek(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetSponsorApplicantsPerWeek(sponsorshipId);
+            }
+        }
+
+        public Dictionary<string, int> GetMaleFemaleRatio(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetMaleFemaleRatio(sponsorshipId);
+            }
+        }
+
+        public Dictionary<string, int> GetApplicantsPerprovince(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetApplicantsPerprovince(sponsorshipId);
+            }
+        }
+
+        public double GetApplicantOverallAverage(int sponsorshipId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentSponsorshipRepository.GetApplicantOverallAverage(sponsorshipId);
+            }
+        }
+
+        public List<Sponsorship> GetSponsorshipApplications(int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                List<Sponsorship> sponsorships = new List<Sponsorship>();
+                var applications = GetStudentApplications(studentId);
+
+                foreach (StudentSponsorship ss in applications)
+                {
+                    sponsorships.Add(GetSponsorship(ss.SponsorshipId));
+                }
+
+                return sponsorships;
             }
         }
 
@@ -358,6 +485,14 @@ namespace Bursify.Api.Students
                 uow.Commit();
 
                 return true;
+            }
+        }
+
+        public List<Student> GetStudentSuggestions(int sponsorId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return _studentRepository.GetStudentSuggestions(sponsorId);
             }
         }
 
@@ -450,6 +585,16 @@ namespace Bursify.Api.Students
             }
         }
 
+        public List<StudentReport> GetAllReportsWithSubjects(int studentId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var reports = _studentReportRepository.GetAllReportsWithSubjects(studentId);
+
+                return reports;
+            }
+        }
+
         public List<StudentReport> GetStudentReports(int studentId)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
@@ -479,6 +624,16 @@ namespace Bursify.Api.Students
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 _subjectRepository.Save(subjects);
+
+                uow.Commit();
+            }
+        }
+
+        public void AddRequirements(List<Requirement> requirements)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                _requirementRepository.Save(requirements);
 
                 uow.Commit();
             }

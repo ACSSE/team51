@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Bursify.Data.EF.Entities.StudentUser;
-using Bursify.Web.Utility.ModelClasses;
 
 namespace Bursify.Web.Models
 {
