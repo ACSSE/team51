@@ -10,6 +10,7 @@ using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 using System.Globalization;
 using Microsoft.Ajax.Utilities;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Data.EF.Repositories
 {

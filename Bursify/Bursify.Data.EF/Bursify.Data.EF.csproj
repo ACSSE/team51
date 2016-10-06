@@ -88,7 +88,6 @@
   <ItemGroup>
     <Compile Include="Entities\Bridge\CampaignReport.cs" />
     <Compile Include="Entities\Bridge\CampaignSponsor.cs" />
-    <Compile Include="Entities\Bridge\SponsorStudentNotification.cs" />
     <Compile Include="Entities\Bridge\StudentSponsorship.cs" />
     <Compile Include="Entities\Campaigns\CampaignAccount.cs" />
     <Compile Include="Entities\SponsorUser\Account.cs" />
@@ -101,6 +100,7 @@
     <Compile Include="Entities\User\BursifyUser.cs" />
     <Compile Include="Entities\StudentUser\StudentReport.cs" />
     <Compile Include="Entities\StudentUser\Subject.cs" />
+    <Compile Include="Entities\User\Notification.cs" />
     <Compile Include="Entities\User\UserActivity.cs" />
     <Compile Include="Entities\User\UserAddress.cs" />
     <Compile Include="EntityMappings\AccountMapping.cs" />
@@ -110,10 +110,10 @@
     <Compile Include="EntityMappings\CampaignReportMapping.cs" />
     <Compile Include="EntityMappings\CampaignSponsorMapping.cs" />
     <Compile Include="EntityMappings\InstitutionMapping.cs" />
+    <Compile Include="EntityMappings\NotificationMapping.cs" />
     <Compile Include="EntityMappings\RequirementMapping.cs" />
     <Compile Include="EntityMappings\SponsorMapping.cs" />
     <Compile Include="EntityMappings\SponsorshipMapping.cs" />
-    <Compile Include="EntityMappings\SponsorStudentNotificationMapping.cs" />
     <Compile Include="EntityMappings\StudentMapping.cs" />
     <Compile Include="EntityMappings\StudentReportMapping.cs" />
     <Compile Include="EntityMappings\StudentSponsorshipMapping.cs" />
@@ -121,6 +121,10 @@
     <Compile Include="EntityMappings\UserActivityMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
+    <Compile Include="Migrations\201610051526140_addNotification.cs" />
+    <Compile Include="Migrations\201610051526140_addNotification.Designer.cs">
+      <DependentUpon>201610051526140_addNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
@@ -130,6 +134,7 @@
     <Compile Include="Repositories\CampaignRepository.cs" />
     <Compile Include="Repositories\CampaignSponsorRepository.cs" />
     <Compile Include="Repositories\InstitutionRepository.cs" />
+    <Compile Include="Repositories\NotificationRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RequirementRepository.cs" />
     <Compile Include="Repositories\SponsorRepository.cs" />
@@ -155,6 +160,11 @@
   <ItemGroup>
     <Content Include="it\MockData.resources.dll" />
     <Content Include="uk\MockData.resources.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610051526140_addNotification.resx">
+      <DependentUpon>201610051526140_addNotification.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
