@@ -3,7 +3,6 @@ package genesys.bursify.sponsorship;
 
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -13,14 +12,11 @@ import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import genesys.bursify.ViewPagerAdapter;
 import genesys.bursify.R;
-import genesys.bursify.utility.BursifyService;
+import genesys.bursify.ViewPagerAdapter;
 
 
 /**

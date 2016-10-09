@@ -5,20 +5,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import genesys.bursify.R;
+import genesys.bursify.data.entities.Application;
 import genesys.bursify.data.models.ApplicationResponse;
 
 public class ApplicationRecyclerViewAdapter extends RecyclerView.Adapter<ApplicationRecyclerViewAdapter.ViewHolder>
 {
     private Context context;
-    private ArrayList<ApplicationResponse> applications;
+    private ArrayList<Application> applications;
+    private String[] apps = {"app1", "app2", "app3", "app4", "app5"};
 
-    public ApplicationRecyclerViewAdapter(ArrayList<ApplicationResponse> applications)
+    public ApplicationRecyclerViewAdapter(ArrayList<Application> applications)
     {
         this.applications = applications;
+    }
+
+    public ApplicationRecyclerViewAdapter()
+    {
     }
 
     @Override
@@ -33,7 +40,7 @@ public class ApplicationRecyclerViewAdapter extends RecyclerView.Adapter<Applica
     @Override
     public void onBindViewHolder(ViewHolder holder, int position)
     {
-
+        holder.textView.setText(applications.get(position).getSponsorshipName());
     }
 
     @Override
@@ -44,10 +51,13 @@ public class ApplicationRecyclerViewAdapter extends RecyclerView.Adapter<Applica
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
+        TextView textView;
 
-        public ViewHolder(View itemView)
+        public ViewHolder(View view)
         {
-            super(itemView);
+            super(view);
+
+            textView = (TextView) view.findViewById(R.id.applicationTitle);
         }
     }
 }

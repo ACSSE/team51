@@ -383,7 +383,19 @@ public class ViewSponsorshipActivity extends AppCompatActivity
         protected void onPostExecute(JSONObject jsonObject)
         {
             super.onPostExecute(jsonObject);
-            Snackbar.make(viewSponsorshipLayout, "Application successful", Snackbar.LENGTH_LONG).show();
+
+            Snackbar snackbar = Snackbar
+                    .make(viewSponsorshipLayout, "Application successful", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Snackbar action = Snackbar.make(viewSponsorshipLayout, "", Snackbar.LENGTH_INDEFINITE);
+                            action.dismiss();
+                        }
+                    });
+
+            snackbar.setActionTextColor(getResources().getColor(R.color.green));
+            snackbar.show();
         }
     }
 }

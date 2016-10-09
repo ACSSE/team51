@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_height="160dp"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/school_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center_horizontal|top"
+                android:maxLines="1"
+                android:paddingStart="10dp"
+                android:text="Item one"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/report_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|end"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:padding="8dp"
+                android:text="Semester 1"/>
+
+            <TextView
+                android:id="@+id/subject_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Computer Science\nInformatics\nMaths\nEnglish"
+                android:textSize="18sp"/>
+            
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/report_average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="85%"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    </android.support.v7.widget.CardView>

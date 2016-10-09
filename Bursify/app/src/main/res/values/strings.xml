@@ -122,4 +122,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
+    <string name="fa_icon_linechart">&#xf201;</string>
+    <string name="menu_applications">Applications</string>
+    <string name="report_card">Report Card</string>
 </resources>

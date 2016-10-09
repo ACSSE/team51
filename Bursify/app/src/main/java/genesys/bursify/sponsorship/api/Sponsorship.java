@@ -79,31 +79,4 @@ public class Sponsorship
         });
 
     }
-
-    public void getAllApplications(final RecyclerView recyclerView, final ProgressBar progressBar, int studentId)
-    {
-        Call<ArrayList<ApplicationResponse>> responseCall = service.getAllApplications(studentId);
-        responseCall.enqueue(new Callback<ArrayList<ApplicationResponse>>()
-        {
-            @Override
-            public void onResponse(Call<ArrayList<ApplicationResponse>> call, Response<ArrayList<ApplicationResponse>> response)
-            {
-                progressBar.setVisibility(View.VISIBLE);
-
-                if (response.code() == 200)
-                {
-
-
-                    return;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<ApplicationResponse>> call, Throwable t)
-            {
-
-            }
-        });
-
-    }
 }

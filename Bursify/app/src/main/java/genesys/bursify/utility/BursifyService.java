@@ -30,6 +30,7 @@ public class BursifyService
     //student api
     public static final String GET_USER = API_URL + "bursifyuser/getuser/?email=";
     public static final String APPLY_FOR_SPONSORSHIP = API_URL + "Student/ApplyForSponsorship";
+    public static final String GET_APPLICATIONS = API_URL + "Student/GetMyApplications/?studentId=";
 
     //sponsor api
     public static final String GET_SPONSORSHIPS = API_URL + "Sponsorship/GetAllSponsorships";
