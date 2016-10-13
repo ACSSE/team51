@@ -28,6 +28,7 @@
         $scope.year = 0;
         $scope.amount = 0;
         $scope.isMyCampaign = false;
+        $scope.embeded = '';
 
         $scope.loadCampaign = function () {
         };
@@ -38,6 +39,19 @@
             apiService.get('/api/Campaign/GetCampaignFunders/?campaignId=' + $routeParams.campaignId, null,
             myFundersLoadCompleted,
             myFundersLoadFailed);
+        }
+
+        function isVideo()
+        {
+            
+            if ($scope.campaign.VideoPath == 'xxx') {
+                alert($scope.campaign.VideoPath);
+            }
+            else {
+                alert("User Sumitted a video");
+                $scope.embeded = "EpGOFmAlniw";
+            }
+            return true;
         }
 
         function myFundersLoadCompleted(response)
@@ -59,8 +73,6 @@
             loadFunders();
             //load upvoters
             campaignUpvoted();
-
-            //Load suggested campaigns 
             //Load suggested campaigns
             $scope.loadingCampaign = true;
             apiService.get('/api/Campaign/GetSimilarCampaigns/?campaignId=' + $routeParams.campaignId, null,
@@ -104,6 +116,10 @@
             {
                 $scope.isMyCampaign = true;
             }
+
+            //Check whether there's a video link or not 
+            isVideo();
+
         }
 
         function myCampaignLoadFailed(response) {
