@@ -219,6 +219,12 @@ namespace Bursify.Web.Controllers
 
             var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
+            foreach (var sponsorship in sponsorshipVm)
+            {
+                sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
+                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.SponsorId).ProfilePicturePath;
+            }
+
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
             return response;
