@@ -93,8 +93,8 @@ public class SponsorshipFragment extends Fragment
     {
         List<Fragment> viewList = new ArrayList<>();
 
-        viewList.add(new AllSponsorshipFragment());
         viewList.add(new SponsorshipSuggestionFragment());
+        viewList.add(new AllSponsorshipFragment());
 
         return viewList;
     }
@@ -103,8 +103,8 @@ public class SponsorshipFragment extends Fragment
     {
         List<String> viewListTitles = new ArrayList<>();
 
-        viewListTitles.add("All");
         viewListTitles.add("Recommended");
+        viewListTitles.add("All");
 
         return viewListTitles;
     }

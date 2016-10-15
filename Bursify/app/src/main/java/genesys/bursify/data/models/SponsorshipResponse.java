@@ -42,6 +42,26 @@ public class SponsorshipResponse
     @SerializedName("Rating")
     private int rating;
 
+    public SponsorshipResponse(int id, int sponsorId, String name, String description, String closingDate, boolean essayRequired, double sponsorshipValue, String studyFields, String province, int averageMarkRequired, String educationLevel, String preferredInstitutions, String expensesCovered, String termsAndConditions, String sponsorshipType, int rating)
+    {
+        this.id = id;
+        this.sponsorId = sponsorId;
+        this.name = name;
+        this.description = description;
+        this.closingDate = closingDate;
+        this.essayRequired = essayRequired;
+        this.sponsorshipValue = sponsorshipValue;
+        this.studyFields = studyFields;
+        this.province = province;
+        this.averageMarkRequired = averageMarkRequired;
+        this.educationLevel = educationLevel;
+        this.preferredInstitutions = preferredInstitutions;
+        this.expensesCovered = expensesCovered;
+        this.termsAndConditions = termsAndConditions;
+        this.sponsorshipType = sponsorshipType;
+        this.rating = rating;
+    }
+
     public int getId()
     {
         return id;

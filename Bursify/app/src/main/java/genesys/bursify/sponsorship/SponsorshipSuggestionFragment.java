@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +24,7 @@ import java.util.Locale;
 
 import genesys.bursify.R;
 import genesys.bursify.data.entities.Sponsorship;
+import genesys.bursify.data.models.SponsorshipResponse;
 import genesys.bursify.utility.BursifyService;
 
 
@@ -35,6 +37,8 @@ public class SponsorshipSuggestionFragment extends Fragment
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    private TextView txtSuggestionInfo;
 
     private ProgressBar progressBar;
 
@@ -61,7 +65,9 @@ public class SponsorshipSuggestionFragment extends Fragment
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        //new GetSponsorshipTask().execute();
+        txtSuggestionInfo = (TextView) view.findViewById(R.id.txtSuggestionInfo);
+
+        new GetSponsorshipTask().execute();
 
         return view;
     }
@@ -78,7 +84,7 @@ public class SponsorshipSuggestionFragment extends Fragment
         @Override
         protected JSONArray doInBackground(Void... params)
         {
-            sponsorships = BursifyService.getMultipleService(BursifyService.GET_SPONSORSHIPS);
+            sponsorships = BursifyService.getMultipleService(BursifyService.GET_SPONSORSHIP_SUGGESTIONS + 7);
 
             return sponsorships;
         }
@@ -96,35 +102,37 @@ public class SponsorshipSuggestionFragment extends Fragment
             super.onPostExecute(jsonArray);
             progressBar.setVisibility(View.GONE);
 
-            ArrayList<Sponsorship> sponsorshipList = new ArrayList<>();
-
-            for(int i = 0; i < jsonArray.length(); i++)
+            if(jsonArray.length() == 0)
             {
-                try
-                {
-                    JSONObject current = jsonArray.getJSONObject(i);
-
-                    sponsorshipList.add(createSponsorship(current));
-                }
-                catch (JSONException | ParseException e)
-                {
-                    e.printStackTrace();
-                }
+                txtSuggestionInfo.setVisibility(View.VISIBLE);
             }
+            else
+            {
 
-            //adapter = new RecyclerViewAdapter(sponsorshipList);
-            //recyclerView.setAdapter(adapter);
+                ArrayList<SponsorshipResponse> sponsorshipList = new ArrayList<>();
+
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    try
+                    {
+                        JSONObject current = jsonArray.getJSONObject(i);
+
+                        sponsorshipList.add(createSponsorship(current));
+                    }
+                    catch (JSONException | ParseException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+
+                adapter = new RecyclerViewAdapter(sponsorshipList);
+                recyclerView.setAdapter(adapter);
+            }
         }
 
-        private Sponsorship createSponsorship(JSONObject jsonObject) throws JSONException, ParseException
+        private SponsorshipResponse createSponsorship(JSONObject jsonObject) throws JSONException, ParseException
         {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
-            String rawDate = jsonObject.getString("ClosingDate").substring(0, 10).replaceAll("-", "/");
-
-            Date closingDate = sdf.parse(rawDate);
-            //jsonObject.na
-
-            Sponsorship s = new Sponsorship(jsonObject.getInt("ID"), jsonObject.getInt("SponsorId"), jsonObject.getString("Name"), jsonObject.getString("Description"), closingDate, jsonObject.getBoolean("EssayRequired"), jsonObject.getDouble("SponsorshipValue"), jsonObject.getString("StudyFields"), jsonObject.getString("Province"), jsonObject.getInt("AverageMarkRequired"), jsonObject.getString("EducationLevel"), jsonObject.getString("InstitutionPreference"), jsonObject.getString("ExpensesCovered"), jsonObject.getString("TermsAndConditions"), jsonObject.getString("SponsorshipType"));
+            SponsorshipResponse s = new SponsorshipResponse(jsonObject.getInt("ID"), jsonObject.getInt("SponsorId"), jsonObject.getString("Name"), jsonObject.getString("Description"), jsonObject.getString("ClosingDate"), jsonObject.getBoolean("EssayRequired"), jsonObject.getDouble("SponsorshipValue"), jsonObject.getString("StudyFields"), jsonObject.getString("Province"), jsonObject.getInt("AverageMarkRequired"), jsonObject.getString("EducationLevel"), jsonObject.getString("InstitutionPreference"), jsonObject.getString("ExpensesCovered"), jsonObject.getString("TermsAndConditions"), jsonObject.getString("SponsorshipType"), jsonObject.getInt("Rating"));
             //sponsorshipList.add(s);
             return s;
         }

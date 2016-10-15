@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.AppBarLayout;
@@ -25,11 +26,14 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import genesys.bursify.R;
 import genesys.bursify.data.models.SponsorshipResponse;
@@ -234,7 +238,25 @@ public class ViewSponsorshipActivity extends AppCompatActivity
                 aboutExpand.setTitle(info);
                 termExpand.setTitle(jsonObject.getString("TermsAndConditions"));
                 expenseExpand.setTitle(formatInfo(jsonObject.getString("ExpensesCovered")));
-                //requirementExpand.setTitle();
+
+                //List<SponsorshipRequirement> requirements = new ArrayList<>();
+                JSONArray jsonArray = jsonObject.getJSONArray("Requirements");
+
+                String tab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+
+                String requirements = "<p><b>" + jsonObject.getInt("AverageMarkRequired") + "%  " + tab + " Average</b></p>";
+
+                for(int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject subject = jsonArray.getJSONObject(i);
+
+                    requirements += "<p>" + subject.getInt("MarkRequired") + "%  " + tab + subject.getString("Name") + "</p>";
+                }
+
+                Spanned spanned = Html.fromHtml(requirements);
+
+                requirementExpand.setTitle(spanned.toString());
+
                 studyFieldExpand.setTitle(formatInfo(jsonObject.getString("StudyFields")));
                 //card.setExpanded(true);
                 aboutCard.addCardExpand(aboutExpand);

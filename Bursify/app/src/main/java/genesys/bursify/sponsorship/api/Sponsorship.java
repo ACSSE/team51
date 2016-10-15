@@ -79,4 +79,33 @@ public class Sponsorship
         });
 
     }
+
+    public void getSponsorshipSuggestions(final RecyclerView recyclerView, final ProgressBar progressBar)
+    {
+        Call<ArrayList<SponsorshipResponse>> responseCall = service.getAllSponsorships();
+        responseCall.enqueue(new Callback<ArrayList<SponsorshipResponse>>()
+        {
+            @Override
+            public void onResponse(Call<ArrayList<SponsorshipResponse>> call, Response<ArrayList<SponsorshipResponse>> response)
+            {
+                progressBar.setVisibility(View.VISIBLE);
+
+                if (response.code() == 200)
+                {
+                    RecyclerView.Adapter adapter = new RecyclerViewAdapter(response.body());
+                    recyclerView.setAdapter(adapter);
+                    progressBar.setVisibility(View.GONE);
+
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<SponsorshipResponse>> call, Throwable t)
+            {
+
+            }
+        });
+
+    }
 }

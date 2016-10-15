@@ -122,7 +122,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
-    <string name="fa_icon_linechart">&#xf201;</string>
     <string name="menu_applications">Applications</string>
     <string name="report_card">Report Card</string>
+    <string name="sponsorship_info">Unfortunately the system could not find any sponsorships for you at this time. Go to the all tab to find sponsorships manualy.</string>
 </resources>

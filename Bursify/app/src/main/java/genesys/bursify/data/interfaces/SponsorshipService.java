@@ -20,6 +20,9 @@ public interface SponsorshipService
     @GET("Sponsorship/GetAllSponsorships")
     Call<ArrayList<SponsorshipResponse>> getAllSponsorships();
 
+    @GET("Student/GetSponsorshipSuggestions")
+    Call<ArrayList<SponsorshipResponse>> getSponsorshipSuggestions();
+
     @GET("Sponsorship/GetSponsorship")
     Call<SponsorshipResponse> getSponsorship(@Query("sponsorshipId") int sponsorshipId);
 

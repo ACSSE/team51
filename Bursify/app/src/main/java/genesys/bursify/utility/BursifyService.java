@@ -35,6 +35,7 @@ public class BursifyService
     //sponsor api
     public static final String GET_SPONSORSHIPS = API_URL + "Sponsorship/GetAllSponsorships";
     public static final String GET_SINGLE_SPONSORSHIP = API_URL + "Sponsorship/GetSponsorship/?sponsorshipId=";
+    public static final String GET_SPONSORSHIP_SUGGESTIONS = API_URL + "Student/GetSponsorshipSuggestions/?studentId=";
 
     //general implementation of http post for the web api
     public static JSONObject postService(String urlPath, JSONObject jsonPost)
