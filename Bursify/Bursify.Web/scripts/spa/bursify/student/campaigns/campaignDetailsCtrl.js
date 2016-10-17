@@ -29,6 +29,8 @@
         $scope.amount = 0;
         $scope.isMyCampaign = false;
         $scope.embeded = '';
+        $scope.displayImage = false;
+        $scope.displayVideo = false;
 
         $scope.loadCampaign = function () {
         };
@@ -43,15 +45,16 @@
 
         function isVideo()
         {
-            
-            if ($scope.campaign.VideoPath == 'xxx') {
-                alert($scope.campaign.VideoPath);
+            if ($scope.campaign.VideoPath == 'xxx')
+            {
+                $scope.displayImage = true;
             }
-            else {
-                alert("User Sumitted a video");
-                $scope.embeded = "EpGOFmAlniw";
+            else
+            {
+                URL = "EpGOFmAlniw";
+                $scope.embeded = URL;
+                $scope.displayVideo = true
             }
-            return true;
         }
 
         function myFundersLoadCompleted(response)
