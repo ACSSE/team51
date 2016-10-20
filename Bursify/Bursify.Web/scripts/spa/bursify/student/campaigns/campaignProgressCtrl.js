@@ -16,7 +16,68 @@
         /*** Load Campaign Finance Report ***/
         $scope.financeDataSource = {};
         $scope.financeReports = {};
+        
+        /** Load Campaign Province Report **/
 
+        $scope.provinceDataSource = {};
+        $scope.provinceReport = {};
+
+        
+        function provinceLoadCompleted(result) {
+
+            $scope.provinceDataSource = {
+                chart: {
+                    caption: "This Campaign's money coming in lol :)",
+                    subCaption: "",
+                    numberPrefix: "R",
+                    //numberSuffix: ".00",
+                    //Cosmetics
+                    "lineThickness": "2",
+                    "paletteColors": "#0075c2",
+                    "baseFontColor": "#333333",
+                    "baseFont": "Helvetica Neue,Arial",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0",
+                    "showBorder": "0",
+                    "bgColor": "#ffffff",
+                    "showShadow": "0",
+                    "canvasBgColor": "#ffffff",
+                    "canvasBorderAlpha": "0",
+                    "divlineAlpha": "100",
+                    "divlineColor": "#999999",
+                    "divlineThickness": "1",
+                    "divLineIsDashed": "1",
+                    "divLineDashLen": "1",
+                    "divLineGapLen": "1",
+                    "showXAxisLine": "1",
+                    "xAxisLineThickness": "1",
+                    "xAxisLineColor": "#999999",
+                    "showAlternateHGridColor": "0",
+
+                },
+                data: [{}]
+            };
+
+            var funds = result.data;
+            var i = 1;
+
+
+            var currentDate = new Date();//Get todays date
+
+            alert((currentDate + "\n" + $scope.campaign.StartDate));
+
+            funds.forEach(function (entry) {
+                $scope.financeDataSource.data.push(new dataItem("Day " + (i), entry.AmountContributed));
+                i++
+            });
+        }
+
+        function financeLoadFailed(result) {
+            notificationService.displayError("Finance reports: " + result.data);
+        }
+
+        /**End of Province Report**/
         function financeLoadCompleted(result) {
 
             //var financeDataSource = result.data;
