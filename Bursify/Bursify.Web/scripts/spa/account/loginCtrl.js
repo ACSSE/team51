@@ -55,10 +55,9 @@
 
             } else if ($scope.user.UserType == "Admin") {
                 $location.path('/admin/home');
-                notificationService.displaySuccess('Admin ' + $scope.user.Name);
-
-            }
-        }
+                notificationService.displaySuccess('Welcome Admin.');
+         }
+       }
     }
 
 })(angular.module('common.core'));

@@ -627,8 +627,16 @@
     <Content Include="scripts\spa\account\register.html" />
     <Content Include="scripts\spa\account\registerCtrl.js" />
     <Content Include="scripts\spa\app.js" />
+    <Content Include="scripts\spa\bursify\admin\home\campaign\adminCampaignCtrl.js" />
+    <Content Include="scripts\spa\bursify\admin\home\campaign\index.html" />
     <Content Include="scripts\spa\bursify\admin\home\index.html" />
     <Content Include="scripts\spa\bursify\admin\home\adminCtrl.js" />
+    <Content Include="scripts\spa\bursify\admin\home\insight\adminInsightCtrl.js" />
+    <Content Include="scripts\spa\bursify\admin\home\insight\index.html" />
+    <Content Include="scripts\spa\bursify\admin\home\sponsor\adminSponsorCtrl.js" />
+    <Content Include="scripts\spa\bursify\admin\home\sponsor\index.html" />
+    <Content Include="scripts\spa\bursify\admin\home\student\adminStudentCtrl.js" />
+    <Content Include="scripts\spa\bursify\admin\home\student\index.html" />
     <Content Include="scripts\spa\bursify\sponsor\campaigns\campaignDetails.html" />
     <Content Include="scripts\spa\bursify\sponsor\campaigns\viewCampaignCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\campaigns\campaignsCtrl.js" />
@@ -704,6 +712,8 @@
     <Content Include="scripts\spa\home\rootCtrl.js" />
     <Content Include="scripts\spa\layout\navBar.directive.js" />
     <Content Include="scripts\spa\layout\navBar.html" />
+    <Content Include="scripts\spa\layout\adnavBar.html" />
+    <Content Include="scripts\spa\layout\adnavBar.directive.js" />
     <Content Include="scripts\spa\layout\spnavBar.directive.js" />
     <Content Include="scripts\spa\layout\spnavBar.html" />
     <Content Include="scripts\spa\layout\topBar.directive.js" />

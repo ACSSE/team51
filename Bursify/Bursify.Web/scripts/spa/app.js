@@ -41,6 +41,26 @@
                 controller: "adminCtrl",
                 // resolve: { isAuthenticated: isAuthenticated }
             })
+             .when("/admin/student", {
+                 templateUrl: "scripts/spa/bursify/admin/home/student/index.html",
+                 controller: "adminStudentCtrl",
+                 // resolve: { isAuthenticated: isAuthenticated }
+             })
+             .when("/admin/sponsor", {
+                 templateUrl: "scripts/spa/bursify/admin/home/sponsor/index.html",
+                 controller: "adminSponsorCtrl",
+                 // resolve: { isAuthenticated: isAuthenticated }
+             })
+             .when("/admin/campaign", {
+                 templateUrl: "scripts/spa/bursify/admin/home/campaign/index.html",
+                 controller: "adminCampaignCtrl",
+                 // resolve: { isAuthenticated: isAuthenticated }
+             })
+             .when("/admin/insight", {
+                 templateUrl: "scripts/spa/bursify/admin/home/sponsor/index.html",
+                 controller: "adminSponsorCtrl",
+                 // resolve: { isAuthenticated: isAuthenticated }
+             })
             .when("/sponsorship/view", {
                 templateUrl: "scripts/spa/bursify/student/sponsorship/index.html",
                 controller: "sponsorshipCtrl",
