@@ -51,8 +51,8 @@
             }
             else
             {
-                URL = "EpGOFmAlniw";
-                $scope.embeded = URL;
+                //URL = "https://youtu.be/vbNib_NsVRU";
+                $scope.embeded = "https://youtu.be/vbNib_NsVRU";
                 $scope.displayVideo = true
             }
         }
