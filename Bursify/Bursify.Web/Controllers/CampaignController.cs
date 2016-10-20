@@ -89,7 +89,7 @@ namespace Bursify.Web.Controllers
             return response;
         }
         
-        //get a single campaign
+        //get a campaign with increment number of views
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetCampaign")]
@@ -109,6 +109,41 @@ namespace Bursify.Web.Controllers
             var campaignVm = model.SingleCampaignMap(campaign);
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
+        //get a single campaign without incrementing number of views
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetSingleCampaign")]
+        public HttpResponseMessage GetSingleCampaign(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId);
+
+            var model = new CampaignViewModel(campaign);
+
+            var student = _studentApi.GetStudent(campaign.StudentId);
+            model.Name = student.Firstname;
+            model.Surname = student.Surname;
+
+            var response = request.CreateResponse(HttpStatusCode.OK, model);
+
+            return response;
+        }
+
+        //increment number of views for a campaign
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("IncrementCampaignViews")]
+        public HttpResponseMessage IncrementCampaignViews(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId);
+
+            campaign.NumberOfViews += 1;
+            _studentApi.SaveCampaign(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
 
             return response;
         }

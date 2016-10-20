@@ -2,6 +2,8 @@
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Uow;
+using Bursify.Api.Users;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.DataTests
 {

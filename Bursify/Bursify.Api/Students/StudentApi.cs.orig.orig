@@ -21,9 +21,9 @@ namespace Bursify.Api.Students
             SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository,
             StudentRepository studentRepository, InstitutionRepository institutionRepository,
             SubjectRepository subjectRepository, StudentSponsorshipRepository studentSponsorshipRepository,
-            StudentReportRepository studentReportRepository, RequirementRepository requirementRepository, NotificationRepository notificationRepository)
+            StudentReportRepository studentReportRepository, RequirementRepository requirementRepository)
             : base(
-                unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository, notificationRepository)
+                unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository)
         {
             _accountRepository = accountRepository;
             _sponsorshipRepository = sponsorshipRepository;
@@ -202,6 +202,13 @@ namespace Bursify.Api.Students
             }
         }
 
+<<<<<<< HEAD
+        public List<CampaignSponsor> GetCampaignSponsors(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetCampaignSponsors(campaignId);
+=======
         public Dictionary<int?, double> GetFundingPerDay(int campaignId, int month)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
@@ -231,14 +238,7 @@ namespace Bursify.Api.Students
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 return campaignRepository.GetUpVotes(campaignId);
-            }
-        }
-
-        public List<CampaignSponsor> GetCampaignSponsors(int campaignId)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                return campaignSponsorRepository.GetCampaignSponsors(campaignId);
+>>>>>>> 0a0ecd863e3665dc6d0e9b246b074f6ba9310de1
             }
         }
 
@@ -314,7 +314,7 @@ namespace Bursify.Api.Students
                 return _sponsorshipRepository.GetAllSponsorships(type);
             }
         }
-         
+
         //done
         public Sponsorship GetSponsorship(int id, int userId)
         {
@@ -388,14 +388,6 @@ namespace Bursify.Api.Students
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 return _studentSponsorshipRepository.GetApplicantsPerprovince(sponsorshipId);
-            }
-        }
-
-        public double GetApplicantOverallAverage(int sponsorshipId)
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                return _studentSponsorshipRepository.GetApplicantOverallAverage(sponsorshipId);
             }
         }
 

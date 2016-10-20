@@ -34,12 +34,22 @@ namespace Bursify.Data.EF.Repositories
                     var report = _dataSession.UnitOfWork.Context.Set<StudentReport>()
                         .Where(x => x.StudentId == student.ID)
                         .OrderByDescending(x => x.ReportYear)
-                        .ThenByDescending(x => x.ReportPeriod)
+                        .ThenBy(x => x.ReportPeriod.Equals("Semester 2")
+                            ? 1
+                            : x.ReportPeriod.Equals("Semester 1")
+                                ? 2
+                                : x.ReportPeriod.Equals("Term 4")
+                                    ? 3
+                                    : x.ReportPeriod.Equals("Term 3")
+                                        ? 4
+                                        : x.ReportPeriod.Equals("Term 2")
+                                            ? 5
+                                            : x.ReportPeriod.Equals("Term 1") ? 6 : 7)
                         .FirstOrDefault();
 
                     if ((report == null || sponsorship.AverageMarkRequired > report.Average ||
-                        !ContainsStudyField(sponsorship, student) ||
-                        !sponsorship.EducationLevel.Equals(student.CurrentOccupation))) continue;
+                         !ContainsStudyField(sponsorship, student) ||
+                         !sponsorship.EducationLevel.Equals(student.CurrentOccupation))) continue;
 
                     if (!students.Contains(student))
                     {
@@ -55,9 +65,10 @@ namespace Bursify.Data.EF.Repositories
         {
             string[] studentFields = student.StudyField.Split(',');
 
-            foreach(var field in studentFields)
+            foreach (var field in studentFields)
             {
-                if (sponsorship.StudyFields.Equals("Any", StringComparison.OrdinalIgnoreCase) || sponsorship.StudyFields.Contains(field))
+                if (sponsorship.StudyFields.Equals("Any", StringComparison.OrdinalIgnoreCase) ||
+                    sponsorship.StudyFields.Contains(field))
                 {
                     return true;
                 }
