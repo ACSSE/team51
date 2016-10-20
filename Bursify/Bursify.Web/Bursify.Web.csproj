@@ -655,6 +655,8 @@
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\addSponsorship\dialog.tmpl.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\edit.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\editSponsorshipCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\metrics\metric.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\metrics\metricCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndex.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndexCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicants.html" />
@@ -785,6 +787,7 @@
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\AdminCampaignReport.cs" />
     <Compile Include="Models\AdminUserReport.cs" />
+    <Compile Include="Models\ApplicantsPerProvince.cs" />
     <Compile Include="Models\ApplicationViewModel.cs" />
     <Compile Include="Models\ApproveSponsorshipViewModel.cs" />
     <Compile Include="Models\BursifyUserViewModel.cs" />

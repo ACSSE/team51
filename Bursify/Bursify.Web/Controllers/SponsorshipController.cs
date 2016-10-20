@@ -262,7 +262,9 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetApplicantsPerprovince")]
         public HttpResponseMessage GetApplicantsPerprovince(HttpRequestMessage request, int sponsorshipId)
         {
-            var data = _studentApi.GetApplicantsPerprovince(sponsorshipId);
+            var applicants = _studentApi.GetApplicantsPerprovince(sponsorshipId);
+
+            var data = ApplicantsPerProvince.MapApplicantsPerProvince(applicants);
 
             var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
 

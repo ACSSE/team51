@@ -123,6 +123,12 @@
                  // resolve: { isAuthenticated: isAuthenticated }
              })
 
+             .when("/sponsor/sponsorships/metric/:sponsorshipId", {
+                 templateUrl: "scripts/spa/bursify/sponsor/sponsorship/metrics/metric.html",
+                 controller: "metricCtrl",
+                 // resolve: { isAuthenticated: isAuthenticated }
+             })
+
               .when("/sponsor/sponsorships/view/student/:StudentId/:SponsorshipId", {
                   templateUrl: "scripts/spa/bursify/sponsor/sponsorship/ViewApplicants/student/studentapplication.html",
                   controller: "studentApplicationCtrl",

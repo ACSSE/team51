@@ -5,7 +5,8 @@
    
     <md-toolbar md-colors="{background: 'blue'}">
         <div class="md-toolbar-tools">
-           
+            <a ng-href="/#/sponsor/home"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
+
             <h2>
                 <span>Your Sponsorships</span>
             </h2>
@@ -38,20 +39,20 @@
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="start center" class="layout-align-start-center layout-row">
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/menu.svg"></md-icon>
+                    <md-button class="md-icon-button md-primary" aria-label="Settings" href="#/sponsor/sponsorships/metric/{{Sponsorship.ID}}">
+                        <md-icon><i class="fa fa-stack-2x fa-bar-chart-o"></i></md-icon>
                         <md-tooltip md-direction="bottom">
-                           Edit
+                           Metrics
                         </md-tooltip>
                     </md-button>
                     <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/launch.svg"></md-icon>
+                        <md-icon><i class="fa fa-stack-2x fa-edit"></i></md-icon>
                         <md-tooltip md-direction="bottom">
-                            Reccommend 
+                            Edit 
                         </md-tooltip>
                     </md-button>
                     <md-button class="md-icon-button md-primary" aria-label="Settings" href="#/sponsor/sponsorships/view/{{Sponsorship.ID}}">
-                        <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
+                        <md-icon ><i class="fa fa-stack-2x fa-users"></i></md-icon>
                         <md-tooltip md-direction="bottom">
                            View Applicants
                         </md-tooltip>
