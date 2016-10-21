@@ -9,7 +9,7 @@
         $scope.pageClass = 'page-home-CampaignReport';
 
         $scope.campaign = {};
-        $scope.campaignId = 77;
+        $scope.campaignId = $routeParams.campaignId;
         /** Headers **/
         $scope.loadReports = loadReports();
 
@@ -24,53 +24,101 @@
 
         
         function provinceLoadCompleted(result) {
+            alert(result.data);
 
             $scope.provinceDataSource = {
                 chart: {
-                    caption: "This Campaign's money coming in lol :)",
-                    subCaption: "",
-                    numberPrefix: "R",
-                    //numberSuffix: ".00",
-                    //Cosmetics
-                    "lineThickness": "2",
-                    "paletteColors": "#0075c2",
-                    "baseFontColor": "#333333",
-                    "baseFont": "Helvetica Neue,Arial",
-                    "captionFontSize": "14",
-                    "subcaptionFontSize": "14",
-                    "subcaptionFontBold": "0",
-                    "showBorder": "0",
-                    "bgColor": "#ffffff",
-                    "showShadow": "0",
-                    "canvasBgColor": "#ffffff",
-                    "canvasBorderAlpha": "0",
-                    "divlineAlpha": "100",
-                    "divlineColor": "#999999",
-                    "divlineThickness": "1",
-                    "divLineIsDashed": "1",
-                    "divLineDashLen": "1",
-                    "divLineGapLen": "1",
-                    "showXAxisLine": "1",
-                    "xAxisLineThickness": "1",
-                    "xAxisLineColor": "#999999",
-                    "showAlternateHGridColor": "0",
-
+                    "animation": "0",
+                    "showbevel": "0",
+                    "usehovercolor": "1",
+                    "canvasbordercolor": "FFFFFF",
+                    "bordercolor": "FFFFFF",
+                    "showlegend": "1",
+                    "showshadow": "0",
+                    "legendposition": "BOTTOM",
+                    "legendborderalpha": "0",
+                    "legendbordercolor": "ffffff",
+                    "legendallowdrag": "0",
+                    "legendshadow": "0",
+                    "caption": "Campaign Contributions Per Province",
+                    "connectorcolor": "000000",
+                    "fillalpha": "80",
+                    "hovercolor": "CCCCCC",
+                    "showborder": 0
                 },
-                data: [{}]
+                "colorrange": {
+                    "minvalue": "0",
+                    "startlabel": "Low",
+                    "endlabel": "High",
+                    "code": "e44a00",
+                    "gradient": "1",
+                    "color": [
+                        {
+                            "maxvalue": 30000,
+                            "displayvalue": "Average",
+                            "code": "f8bd19"
+                        },
+                        {
+                            "maxvalue": 100000,
+                            "code": "6baa01"
+                        }
+                    ],
+                    "maxvalue": 0
+                },
+                data: [
+                    {
+                        "data": [
+                            {
+                                label: "Gauteng",
+                                value: "2515"
+                            },
+                            {
+                                "id": "11",
+                                "value": "64406"
+                            },
+                            {
+                                "id": "09",
+                                "value": "60725"
+                            },
+                            {
+                                "id": "07",
+                                "value": "36101"
+                            },
+                            {
+                                "id": "06",
+                                "value": "69620"
+                            },
+                            {
+                                "id": "02",
+                                "value": "60419"
+                            },
+                            {
+                                "id": "03",
+                                "value": "63140"
+                            },
+                            {
+                                "id": "08",
+                                "value": "94861"
+                            },
+                            {
+                                "id": "05",
+                                "value": "94861"
+                            }
+                        ]
+                    }
+                ]
             };
 
-            var funds = result.data;
-            var i = 1;
+         
+        }
 
+        function dataItem(label, value) {
+            this.label = label;
+            this.value = value
+        }
 
-            var currentDate = new Date();//Get todays date
-
-            alert((currentDate + "\n" + $scope.campaign.StartDate));
-
-            funds.forEach(function (entry) {
-                $scope.financeDataSource.data.push(new dataItem("Day " + (i), entry.AmountContributed));
-                i++
-            });
+        function provinceLoadFailed(result) {
+            notificationService.displayError("Province reports: " + result.data);
         }
 
         function financeLoadFailed(result) {
@@ -128,7 +176,7 @@
             
             var currentDate = new Date();//Get todays date
 
-            alert((currentDate + "\n" + $scope.campaign.StartDate));
+           // alert((currentDate + "\n" + $scope.campaign.StartDate));
 
             funds.forEach(function (entry)
             {
@@ -260,7 +308,7 @@
         }
 
         function upvotesLoadFailed() {
-            notificationService.displayError("Failed to load funders reports");
+            notificationService.displayError("Failed to load Upvotes reports");
         }
         /** End of upvotes report **/
 
@@ -268,7 +316,7 @@
         /** Load all Reports **/
         function loadReports() {
             //Call Api to get a campaign so that this function can get the date the campaign was created 
-            apiService.get('/api/Campaign/GetCampaign/?campaignId=' + $scope.campaignId, null,
+            apiService.get('/api/Campaign/GetReportCampaign/?campaignId=' + $scope.campaignId, null,
             campaignLoadCompleted,
             campaignLoadFailed);
 
@@ -276,18 +324,20 @@
             apiService.get('/api/Campaign/GetCampaignSponsors/?campaignId= ' + $scope.campaignId, null,
             financeLoadCompleted,
             financeLoadFailed);
-            
 
             //Funders Report
             apiService.get('/api/Campaign/GetCampaignSponsors/?campaignId= ' + $scope.campaignId, null,
                 fundersLoadCompleted,
                 fundersLoadFailed);
             
+            apiService.get('/api/Campaign/GetFundersPerProvince/?campaignId= ' + $scope.campaignId, null,
+            provinceLoadCompleted,
+            provinceLoadFailed);
+
             //upvotes report
-            apiService.get('/api/Campaign/', null,
+            apiService.get('/api/Campaign/GetUpVotes/?campaignId=' + $scope.campaignId, null,
                 upvotesLoadCompleted,
                 upvotesLoadFailed);
-
         }
 
         //Adding data to the chart dynamically 
@@ -297,21 +347,6 @@
             this.value = value;
         }
         /** End Load Reports **/
-
-
-        //Next button 
-        $scope.nextTab = function () {
-
-            var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
-            $scope.selectedIndex = index;
-        };
-
-        //Previous button 
-        $scope.prevTab = function () {
-
-            var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex - 1;
-            $scope.selectedIndex = index;
-        };
     }
 
 })(angular.module('BursifyApp'));

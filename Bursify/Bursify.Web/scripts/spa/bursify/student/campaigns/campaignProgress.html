@@ -22,7 +22,6 @@
 
                             </md-content>
                             <md-divider></md-divider>
-                    <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
             </md-content>
         </md-tab>
 
@@ -40,8 +39,6 @@
 
                         </md-content>
                         <md-divider></md-divider>
-                <md-button class="md-raised md-success pull-Left" md-colors="{backgroundColor: 'green'}" ng-click="prevTab()">Previous</md-button>
-                    <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
             </md-content>
         </md-tab>
 
@@ -58,7 +55,22 @@
                             </div>
                         </md-content>
                         <md-divider></md-divider>
-                <md-button class="md-raised md-success pull-Left" md-colors="{backgroundColor: 'green'}" ng-click="prevTab()">Previous</md-button>
+            </md-content>
+        </md-tab>
+        
+        <md-tab label="Contributers Per Province" id="contributersPerProvince">
+            <md-content class="md-padding">
+                <md-content class="md-padding">
+                    <div class="chart-container">
+                        <div fusioncharts
+                             width="1080"
+                             height="480"
+                             type="Southafrica"
+                             dataSource="{{provinceDataSource}}">
+                        </div>
+                    </div>
+                </md-content>
+                <md-divider></md-divider>
             </md-content>
         </md-tab>
     </md-tabs> <!--/Tabs-->

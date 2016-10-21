@@ -113,6 +113,26 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetReportCampaign")]
+        public HttpResponseMessage GetReportCampaign(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId);
+      
+            var model = new CampaignViewModel(campaign);
+
+            var student = _studentApi.GetStudent(campaign.StudentId);
+            model.Name = student.Firstname;
+            model.Surname = student.Surname;
+
+            var campaignVm = model.SingleCampaignMap(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
         //get a single campaign for a user
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]

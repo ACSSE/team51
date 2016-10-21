@@ -179,7 +179,7 @@
                 // resolve: { isAuthenticated: isAuthenticated }
             })
 
-            .when("/student/campaign-progress", {
+            .when("/student/campaign-progress/:campaignId", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/campaignProgress.html",
                 controller: "campaignProgressCtrl",
                 // resolve: { isAuthenticated: isAuthenticated }
@@ -190,6 +190,8 @@
                 controller: "addAccountCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
+
+
             //Sponsor
                         .when("/sponsor/campaign-details/:campaignId", {
                             templateUrl: "scripts/spa/bursify/sponsor/campaigns/campaignDetails.html",
