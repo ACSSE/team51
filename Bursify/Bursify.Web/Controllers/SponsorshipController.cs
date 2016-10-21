@@ -269,7 +269,7 @@ namespace Bursify.Web.Controllers
         {
             var applicants = _studentApi.GetApplicantsPerprovince(sponsorshipId);
 
-            var data = ApplicantsPerProvince.MapApplicantsPerProvince(applicants);
+            var data = ProvinceCount.MapProvinceCount(applicants);
 
             var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
 
