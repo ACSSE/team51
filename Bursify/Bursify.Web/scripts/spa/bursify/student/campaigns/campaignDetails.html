@@ -2,20 +2,19 @@
 <div id="content">
     <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'teal-300'}">
         <div class="md-toolbar-tools">
+            <a ng-href="#/student/campaigns"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
             <span>View Campaign</span>
         </div>
     </md-toolbar>
     <md-card>
-        <a href="#/student/campaigns"><span style="margin-left:20px"><i class="fa fa-arrow-left btn btn-round"> Back</i></span></a>
+
+
         <md-card-header>
             <md-card-header-text>
                 <md-card>
                     <a href="#/student/campaigns">
-                        <img style="height:300px; width:500px"  ng-if="displayImage == true" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
+                        <img style="height:300px; width:500px" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
                     </a>
-                    <!--ng-frame-->
-                    <!--<iframe width="500" height="300" ng-if="displayVideo == true" ng-src="https://www.youtube.com/embed/-c-OTfRgJtY"  frameborder="0" allowfullscreen></iframe>-->
-                    <iframe width="500" height="300" ng-if="displayVideo == true" src="{{embeded}}" frameborder="0" allowfullscreen></iframe>
                 </md-card>
             </md-card-header-text>
             <div class="col-lg-12">

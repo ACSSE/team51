@@ -20,6 +20,8 @@ namespace Bursify.Web
 
                 "~/Scripts/Vendors/fusionchart.js",
                  "~/Scripts/Vendors/fusioncharts.charts.js",
+                "~/Scripts/Vendors/fusioncharts.maps.js",
+                "~/Scripts/Vendors/fusioncharts.southafrica.js",
                 "~/Scripts/Vendors/angular.js",
                 "~/Scripts/Vendors/angular-fusionchart.js",
                 "~/Scripts/Vendors/angular-route.js",

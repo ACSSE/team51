@@ -28,9 +28,6 @@
         $scope.year = 0;
         $scope.amount = 0;
         $scope.isMyCampaign = false;
-        $scope.embeded = '';
-        $scope.displayImage = false;
-        $scope.displayVideo = false;
 
         $scope.loadCampaign = function () {
         };
@@ -41,20 +38,6 @@
             apiService.get('/api/Campaign/GetCampaignFunders/?campaignId=' + $routeParams.campaignId, null,
             myFundersLoadCompleted,
             myFundersLoadFailed);
-        }
-
-        function isVideo()
-        {
-            if ($scope.campaign.VideoPath == 'xxx')
-            {
-                $scope.displayImage = true;
-            }
-            else
-            {
-                //URL = "https://youtu.be/vbNib_NsVRU";
-                $scope.embeded = "https://youtu.be/vbNib_NsVRU";
-                $scope.displayVideo = true
-            }
         }
 
         function myFundersLoadCompleted(response)

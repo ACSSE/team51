@@ -738,6 +738,8 @@
     <Content Include="scripts\vendors\file-input.js" />
     <Content Include="scripts\vendors\fusionchart.js" />
     <Content Include="scripts\vendors\fusioncharts.charts.js" />
+    <Content Include="scripts\vendors\fusioncharts.maps.js" />
+    <Content Include="scripts\vendors\fusioncharts.southafrica.js" />
     <Content Include="scripts\vendors\jquery.fancybox-media.js" />
     <Content Include="scripts\vendors\jquery.fancybox.js" />
     <Content Include="scripts\vendors\jquery.js" />
