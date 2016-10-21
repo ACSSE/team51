@@ -1,101 +1,43 @@
-﻿<spnav-bar></spnav-bar>
+﻿<div id="content">
+    <spnav-bar ng-init="loadSponsors()"></spnav-bar>
+    <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">Bursify Sponsor Leaderboard</div>
+    </md-toolbar>
+    <md-content style="height: 600px;" md-theme="altTheme" class="md-padding">
+        <section>
 
-<div id="content">
-    <div id="loadingbarContainer"></div>
-    <div class="panel box-shadow-none content-header" >
-        <div class="panel-body" style="background-color: royalblue;">
-            <h3 class="animate fadeInleft" style="text-align:center; color:white">Sponsors Leaderboard</h3>
-        </div>
-    </div>
+            <md-list layout-padding>
+                <md-list-item class="md-3-line">
+                    
+                    <img src="../../../../../Content/chart/num1.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px;">{{Sponsors[0].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2>+{{Sponsors[0].BursifyScore}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </md-list-item>
 
-    <div class="row">
-        <div class="col-lg-12">
+                <md-list-item class="md-3-line">
 
-            <table class="table table-striped table-bordered table-hover" style="background-color:white">
-                <thead>
-                    <tr style="background-color:aquamarine">
-                        <th style="font-size:large;text-align:center">Rank</th>
-                        <th style="font-size:large;text-align:center">Logo</th>
-                        <th style="font-size:large;text-align:center">Comapany</th>
-                        <th style="font-size:large;text-align:center">Number of students sponsored</th>
-                        <th style="font-size:large;text-align:center">Score</th>
-                    </tr>
-                </thead>
+                    <img src="../../../../../Content/chart/num1.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="col-md-8" >
+                            <h1 style="padding-left: 20px; padding-bottom: 20px;">{{Sponsors[1].CompanyName}}</h1>
+                        </div>
+                        <div class="pull-right">
+                            <h2>+{{Sponsors[1].BursifyScore}}</h2>
+                        </div>
+                    </div>
 
-                <tbody>
-                    <tr>
-                        <th scope="row" style="text-align:center;font-size:x-large">1</th>
-                        <td><img class="img-rounded" src="~/Content/images/company/Leaderboard/entelect.png" alt="logo"></td>
-                        <td style="text-align:center;font-size:x-large;">Entelect</td>
-                        <th style="text-align:center;font-size:xx-large">109</th>
-                        <td style="text-align:center;font-size:xx-large">99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="text-align:center;font-size:x-large">2</th>
-                        <td><img class="img-rounded" src="~/Content/images/company/Leaderboard/kpmg.jpg" alt="logo"></td>
-                        <td style="text-align:center;font-size:x-large">KPMG</td>
-                        <th style="text-align:center;font-size:xx-large">100</th>
-                        <td style="text-align:center;font-size:xx-large">95</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="text-align:center;font-size:x-large">3</th>
-                        <td><img class="img-rounded" src="~/Content/images/company/Leaderboard/EY.png" alt="logo"></td>
-                        <td style="text-align:center;font-size:x-large">ERNEST AND YOUNG</td>
-                        <th style="text-align:center;font-size:xx-large">95</th>
-                        <td style="text-align:center;font-size:xx-large">90</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="text-align:center;font-size:x-large">4</th>
-                        <td><img class="img-rounded" src="~/Content/images/company/Leaderboard/pwc.png" alt="logo"></td>
-                        <td style="text-align:center;font-size:x-large">PricewaterhouseCoopers</td>
-                        <th style="text-align:center;font-size:xx-large">90</th>
-                        <td style="text-align:center;font-size:xx-large">85</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="text-align:center;font-size:x-large">5</th>
-                        <td><img class="img-rounded" src="~/Content/images/company/Leaderboard/Absa.png" alt="logo"></td>
-                        <td style="text-align:center;font-size:x-large">ABSA BANK</td>
-                        <th style="text-align:center;font-size:xx-large">80</th>
-                        <td style="text-align:center;font-size:xx-large">83</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="text-align:center;font-size:x-large">6</th>
-                        <td><img class="img-rounded" src="~/Content/images/company/Leaderboard/nedbank.jpg" alt="logo"></td>
-                        <td style="text-align:center;font-size:x-large">Nedbank Limited</td>
-                        <th style="text-align:center;font-size:xx-large">75</th>
-                        <td style="text-align:center;font-size:xx-large">80</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="text-align:center;font-size:x-large">7</th>
-                        <td><img class="img-rounded" src="~/Content/images/company/Leaderboard/Investec.png" alt="logo"></td>
-                        <td style="text-align:center;font-size:x-large">Investec Bank</td>
-                        <th style="text-align:center;font-size:xx-large">70</th>
-                        <td style="text-align:center;font-size:xx-large">78</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="text-align:center;font-size:x-large">8</th>
-                        <td><img class="img-rounded" src="~/Content/images/company/Leaderboard/deloitte.png" alt="logo"></td>
-                        <td style="text-align:center;font-size:x-large">Deloitte</td>
-                        <th style="text-align:center;font-size:xx-large">65</th>
-                        <td style="text-align:center;font-size:xx-large">75</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="text-align:center;font-size:x-large">9</th>
-                        <td><img class="img-rounded" src="~/Content/images/company/Leaderboard/grantThornton.png" alt="logo" /></td>
-                        <td style="text-align:center;font-size:x-large">Grand Thornton</td>
-                        <th style="text-align:center;font-size:xx-large">30</th>
-                        <td style="text-align:center;font-size:xx-large">70</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="text-align:center;font-size:x-large">10</th>
-                        <td><img class="img-rounded" src="~/Content/images/company/Leaderboard/sasol.png" alt="logo" /></td>
-                        <td style="text-align:center;font-size:x-large">Sasol</td>
-                        <th style="text-align:center;font-size:xx-large">10</th>
-                        <td style="text-align:center;font-size:xx-large">20</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
+                </md-list-item>
+              
+            </md-list>
+        </section>
+    </md-content>
 </div>

@@ -96,6 +96,11 @@
                 controller: "sponsorProfileCtrl",
                  // resolve: { isAuthenticated: isAuthenticated }
             })
+             .when("/sponsor/leaderboard", {
+                 templateUrl: "scripts/spa/bursify/sponsor/chart/leaderboard.html",
+                 controller: "leaderboardCtrl",
+                 // resolve: { isAuthenticated: isAuthenticated }
+             })
             .when("/sponsor/registration", {
                 templateUrl: "scripts/spa/bursify/sponsor/registration/registration.html",
                 controller: "registrationCtrl",
