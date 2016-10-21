@@ -9731,3 +9731,10 @@ html {
 ::-webkit-scrollbar { 
     display: none; 
 }
+
+
+
+
+    .backarrow:hover{
+        color: #c6ff00;
+    }

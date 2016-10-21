@@ -279,7 +279,7 @@
 
         function completed1() {
             notificationService.displaySuccess("Sponsorship Successfuly Submitted");
-            $location.path('/sponsor/s');
+            $location.path('/sponsor/sponsorships');
         }
 
         function failed() {

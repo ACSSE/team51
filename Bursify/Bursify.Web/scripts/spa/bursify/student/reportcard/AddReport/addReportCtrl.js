@@ -1163,6 +1163,37 @@
                  { "grade": "Honours" },
                  { "grade": "Masters" },
                    ],
+                   "places": [
+                { "name": "University of Fort Hare" },
+                { "name": "University of Cape Town" },
+                { "name": "University of the Free State" },
+                { "name": "University of KwaZulu-Natal" },
+                { "name": "University of Limpopo" },
+                { "name": "North-West University" },
+                { "name": "University of Pretoria" },
+                { "name": "Rhodes University" },
+                { "name": "University of Stellenbosch" },
+                { "name": "University of the Western Cape" },
+                { "name": "University of Johannesburg" },
+                { "name": "Nelson Mandela Metropolitan University" },
+                { "name": "University of South Africa" },
+                { "name": "University of Venda" },
+                { "name": "University of Zululand" },
+                { "name": "Cape Peninsula University of Technology" },
+                { "name": "Walter Sisulu University" },
+                { "name": "Central University of Technology" },
+                { "name": "Durban University of Technology" },
+                { "name": "Mangosuthu University of Technology" },
+                { "name": "University of Mpumalanga" },
+                { "name": "Sol Plaatje University" },
+                { "name": "Tshwane University of Technology" },
+                { "name": "Vaal University of Technology" },
+                { "name": "Other" }
+
+
+
+
+                   ]
                },
                {
                    name: 'Private University/College',
@@ -1178,6 +1209,29 @@
                  { "grade": "Honours" },
                  { "grade": "Masters" },
                    ],
+                   "places": [
+                 { "name": "AFDA" },
+                 { "name": "Akademia" },
+                 { "name": "Aros" },
+                 { "name": "Boston City Campus & Business College" },
+                 { "name": "Cornerstone Institute" },
+                 { "name": "Centurion Academy" },
+                 { "name": "CTI Education Group" },
+                 { "name": "Damelin" },
+                 { "name": "Helderberg College" },
+                 { "name": "IMM Graduate School of Marketing" },
+                 { "name": "Inscape Design College" },
+                 { "name": "Management College of Southern Africa" },
+                 { "name": "Midrand Graduate Institute" },
+                 { "name": "Milpark Business School" },
+                 { "name": "Monash South Africa" },
+                 { "name": "Oval Campus" },
+                 { "name": "Rosebank College" },
+                 { "name": "Varsity College" },
+                 { "name": "Vega" },
+                 { "name": "Other" }
+                   ],
+
                }
            
         ];
