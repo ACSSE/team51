@@ -26,6 +26,10 @@
                 templateUrl: "scripts/spa/account/register.html",
                 controller: "registerCtrl"
             })
+             .when("/fmp", {
+                 templateUrl: "scripts/spa/account/fmp.html",
+                 controller: "fmpCtrl"
+             })
             .when("/student/home", {
                 templateUrl: "scripts/spa/bursify/student/home/index.html",
                 controller: "studentCtrl",
@@ -66,6 +70,7 @@
                 controller: "sponsorshipCtrl",
                 // resolve: { isAuthenticated: isAuthenticated }
             })
+
             .when("/student/profile", {
                 templateUrl: "scripts/spa/bursify/student/profile/profile.html",
                 controller: "studentProfileCtrl",
@@ -125,6 +130,12 @@
              .when("/sponsor/sponsorships/view/:sponsorshipId", {
                  templateUrl: "scripts/spa/bursify/sponsor/sponsorship/ViewApplicants/applicants.html",
                  controller: "applicantsCtrl",
+                 // resolve: { isAuthenticated: isAuthenticated }
+             })
+
+             .when("/sponsor/sponsorships/edit/:sponsorshipId", {
+                 templateUrl: "scripts/spa/bursify/sponsor/sponsorship/editSponsorship/edit.html",
+                 controller: "editSponsorshipCtrl",
                  // resolve: { isAuthenticated: isAuthenticated }
              })
 

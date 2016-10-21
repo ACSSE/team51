@@ -1,142 +1,143 @@
-﻿<div id="content">
+﻿<div id="content" class="md-padding">
     <spnav-bar></spnav-bar>
     <div id="loadingbarContainer"></div>
-    <md-toolbar>
-        <div class="md-toolbar-tools">
 
-            <h2>
-                <span>Your Sponsorships</span>
-            </h2>
-            <span flex></span>
-            <md-button class="md-raised">
-                Add A Sponsorship
-            </md-button>
-        </div>
-    </md-toolbar>
-    <div class="col-md-12">
-        <div class="col-md-4">
-            <md-card class="_md">
+    <style>
+        .panel {
+            margin-bottom: 0px;
+        }
 
-                <img ng-src="Content/images/campaign/1.JPG" class="md-card-image" alt="Washed Out" src="img/washedout.png">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Bursify Bursary 2016</span>
-                        <span class="md-title">85 applicants</span>
-                        <span class="md-subhead">5 days left</span>
+        .selectdemoSelectHeader {
+            /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */
+        }
 
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="start center" class="layout-align-start-center layout-row">
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/menu.svg"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            Edit
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/launch.svg"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            Share
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            View Applicants
-                        </md-tooltip>
-                    </md-button>
+            .selectdemoSelectHeader .demo-header-searchbox {
+                border: none;
+                outline: none;
+                height: 100%;
+                width: 100%;
+                padding: 0;
+            }
 
-                </md-card-actions>
-                <md-card-content>
-                    <p>
-                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                    </p>
-                </md-card-content>
-            </md-card>
-        </div>
-        <div class="col-md-4">
-            <md-card class="_md">
+            .selectdemoSelectHeader .demo-select-header {
+                box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+                padding-left: 10.667px;
+                height: 48px;
+                cursor: pointer;
+                position: relative;
+                display: flex;
+                align-items: center;
+                width: auto;
+            }
 
-                <img ng-src="Content/images/campaign/1.JPG" class="md-card-image" alt="Washed Out" src="img/washedout.png">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Bursify Bursary 2016</span>
-                        <span class="md-title">85 applicants</span>
-                        <span class="md-subhead">5 days left</span>
+            .selectdemoSelectHeader md-content._md {
+                max-height: 240px;
+            }
+    </style>
 
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="start center" class="layout-align-start-center layout-row">
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/menu.svg"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            Edit
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/launch.svg"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            Share
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            View Applicants
-                        </md-tooltip>
-                    </md-button>
+    <md-content class="md-padding" ng-init="loadAll()">
+        <form name="addSP">
+            <div id="details">
+                <md-toolbar>
+                    <div class="md-toolbar-tools" md-colors="{background: 'cyan'}">
+                        <a ng-href="/#/sponsor/sponsorships/"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
 
-                </md-card-actions>
-                <md-card-content>
-                    <p>
-                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                    </p>
-                </md-card-content>
-            </md-card>
-        </div>
-        <div class="col-md-4">
-            <md-card class="_md">
+                        <h2>
+                            <span>Edit Sponsorship</span>
+                        </h2>
+                        <span flex></span>
+                    </div>
+                </md-toolbar>
+                <div class="panel-heading bg-white border-none">
+                    <h4><span class="icon-notebook icons"></span> Edit sponsorship details below.</h4>
+                </div>
+                <div class="col-md-12">
 
-                <img ng-src="Content/images/campaign/1.JPG" class="md-card-image" alt="Washed Out" src="img/washedout.png">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Bursify Bursary 2016</span>
-                        <span class="md-title">85 applicants</span>
-                        <span class="md-subhead">5 days left</span>
+                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                        <input type="text" class="form-text" ng-model="Sponsorship.Name" id="validate_firstname" name="validate_firstname" required="">
+                        <span class="bar"></span>
+                        <label>Sponsorship Name</label>
+                    </div>
+                </div>
 
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="start center" class="layout-align-start-center layout-row">
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/menu.svg"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            Edit
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="Content/img/icons/launch.svg"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            Share
-                        </md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary" aria-label="Settings">
-                        <md-icon md-svg-icon="social:people" style="color: #00F;" class="s48" aria-label="People Icon"></md-icon>
-                        <md-tooltip md-direction="bottom">
-                            View Applicants
-                        </md-tooltip>
-                    </md-button>
+                <div class="col-md-12">
+                    <div class="form-group form-animate-text" style="margin-top:5px !important;">
+                        <textarea type="text" ng-model="Sponsorship.Description" class="form-text" id="validate_firstname" name="validate_firstname" required="" rows="5" />
+                        <span class="bar"></span>
+                        <label>Give a brief description of the sponsorship</label>
+                    </div>
+                </div>
 
-                </md-card-actions>
-                <md-card-content>
-                    <p>
-                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                    </p>
-                </md-card-content>
-            </md-card>
-        </div>
 
-    </div>
+
+
+                
+
+
+
+                <div id="submit1">
+
+                    <div class="col-md-12">
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="Sponsorship.EssayRequired" class="md-primary">
+                            Motivational Essay Required
+                        </md-checkbox>
+
+
+                    </div>
+                   
+                </div>
+            </div>
+
+
+            <div id="Closing">
+                <md-toolbar md-colors="{background: 'green'}">
+                    <div class="md-toolbar-tools">
+
+                        <h2>
+                            <span>Closing Date</span>
+                        </h2>
+                        <span flex></span>
+                    </div>
+
+
+                </md-toolbar>
+
+
+                <div class="panel box-v2">
+                    <div class="panel-heading bg-white border-none">
+                        <h4><span class="icon-notebook icons"></span> Date to stop accepting applications.</h4>
+                    </div>
+
+                    <div class="col-md-6">
+                        <md-input-container>
+                            <md-datepicker ng-model="Sponsorship.ClosingDate" required md-placeholder="Closing date"></md-datepicker>
+
+                        </md-input-container>
+                      
+                    </div>
+
+                    <div class="col-md-6">
+
+                      
+                    </div>
+
+                    <div id="submit1">
+
+                        <div class="col-md-offset-10">
+
+                            <md-button type="submit" class="md-raised" md-colors="{background: 'blue'}" ng-click="Edit()">Edit Sponsorship</md-button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </form>
+    </md-content>
+
+
+
+
 </div>

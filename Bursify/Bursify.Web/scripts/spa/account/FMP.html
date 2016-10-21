@@ -14,26 +14,27 @@
                 <div id="loadingbarContainer"></div>
             </div><!-- /.login-logo -->
             <div class="login-box-body">
-
+            <div>Please enter your email to reset your password.</div>
                 <div class="form-group">
                     <label for="inputUsername" class="sr-only">Email</label>
                     <input type="text" id="inputUsername" name="inputUsername" class="form-control" ng-model="user.useremail" placeholder="Email"
                            validate-on="blur" required required-message="'Email is required'">
                 </div>
-                <div class="form-group">
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" id="inputPassword" name="inputPassword" class="form-control" ng-model="user.password" placeholder="Password"
-                           validate-on="blur" required required-message="'Password is required'">
-                </div>
+      
                 <div class="row">
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Request Reset</button>
                     </div><!-- /.col -->
                 </div>
 
+
+
+
+         
+
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="#/fmp">I forgot my password</a><br>
+                        <a href="#/login">Login</a><br>
                     </div>
                     <div class="col-md-6">
                         <a href="#/register" class="text-center" style="float: right">New User ?</a>

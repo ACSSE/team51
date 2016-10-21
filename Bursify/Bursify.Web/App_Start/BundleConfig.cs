@@ -58,6 +58,7 @@ namespace Bursify.Web
                 "~/Scripts/spa/services/membershipService.js",
                 "~/Scripts/spa/services/fileUploadService.js",
                 "~/Scripts/spa/account/loginCtrl.js",
+                "~/Scripts/spa/account/fmpCtrl.js",
             #endregion
 
             #region Campaign
@@ -87,6 +88,7 @@ namespace Bursify.Web
                     "~/Scripts/spa/bursify/sponsor/chart/leaderboardCtrl.js",
                     "~/Scripts/spa/bursify/sponsor/sponsorship/addSponsorship/addSponsorshipCtrl.js",
                       "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/applicantsCtrl.js",
+                        "~/Scripts/spa/bursify/sponsor/sponsorship/editSponsorship/editSponsorshipCtrl.js",
                           "~/Scripts/spa/bursify/sponsor/sponsorship/metrics/metricCtrl.js",
                        "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/student/studentApplicationCtrl.js",
                          "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/student/form/formctrl.js",

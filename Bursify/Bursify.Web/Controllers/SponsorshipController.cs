@@ -168,15 +168,20 @@ namespace Bursify.Web.Controllers
         {
             var newSponsorship = sponsorship.ReverseMap();
 
+            var existing = _studentApi.GetSponsorship(sponsorship.ID);
+
             _studentApi.SaveSponsorship(newSponsorship);
 
-            var sponsor = _sponsorApi.GetSponsor(newSponsorship.SponsorId);
+            if (existing == null)
+            {
+                var sponsor = _sponsorApi.GetSponsor(newSponsorship.SponsorId);
 
-            var points = newSponsorship.Rating*10;
+                var points = newSponsorship.Rating * 10;
 
-            sponsor.BursifyScore += points;
+                sponsor.BursifyScore += points;
 
-            _sponsorApi.SaveSponsor(sponsor);
+                _sponsorApi.SaveSponsor(sponsor);
+            }
 
             var model = new SponsorshipViewModel();
 

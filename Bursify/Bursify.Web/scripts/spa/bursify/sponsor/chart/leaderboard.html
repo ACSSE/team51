@@ -4,40 +4,199 @@
         <div class="md-toolbar-tools">Bursify Sponsor Leaderboard</div>
     </md-toolbar>
     <md-content style="height: 600px;" md-theme="altTheme" class="md-padding">
-        <section>
+      
 
-            <md-list layout-padding>
-                <md-list-item class="md-3-line">
+         
+                <md-list-item class="md-3-line" ng-if="Sponsors[0]">
                     
                     <img src="../../../../../Content/chart/1.png" width="50" height="64" alt="{{message.who}}">
                     <div class="md-list-item-text">
                         <div class="row">
                             <div class="col-md-10">
-                                <h1 style="margin-left: 200px; padding-bottom: 20px;">{{Sponsors[0].CompanyName}}</h1>
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[0].CompanyName}}</h1>
                             </div>
                             <div class="col-md-offset-11">
-                                <h2>+{{Sponsors[0].BursifyScore}}</h2>
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[0].BursifyScore}}</h2>
                             </div>
                         </div>
                     </div>
                    
                 </md-list-item>
 
-                <md-list-item class="md-3-line">
+                <md-list-item class="md-3-line" ng-if="Sponsors[0]">
 
-                    <img src="../../../../../Content/chart/num1.png" width="50" height="64" alt="{{message.who}}">
+                    <img src="../../../../../Content/chart/2.png" width="50" height="64" alt="{{message.who}}">
                     <div class="md-list-item-text">
-                        <div class="col-md-8" >
-                            <h1 style="padding-left: 20px; padding-bottom: 20px;">{{Sponsors[1].CompanyName}}</h1>
-                        </div>
-                        <div class="pull-right">
-                            <h2>+{{Sponsors[1].BursifyScore}}</h2>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[1].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[1].BursifyScore}}</h2>
+                            </div>
                         </div>
                     </div>
 
                 </md-list-item>
-              
-            </md-list>
-        </section>
+
+                <md-list-item class="md-3-line" ng-if="Sponsors[1]">
+
+                    <img src="../../../../../Content/chart/2.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[2].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[2].BursifyScore}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+
+                <md-list-item class="md-3-line" ng-if="Sponsors[1]">
+
+                    <img src="../../../../../Content/chart/3.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[2].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[2].BursifyScore}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+
+                <md-list-item class="md-3-line" ng-if="Sponsors[1]">
+
+                    <img src="../../../../../Content/chart/4.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[2].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[2].BursifyScore}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+
+                <md-list-item class="md-3-line" ng-if="Sponsors[1]">
+
+                    <img src="../../../../../Content/chart/5.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[2].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[2].BursifyScore}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+                <md-list-item class="md-3-line" ng-if="Sponsors[1]">
+
+                    <img src="../../../../../Content/chart/6.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[2].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[2].BursifyScore}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+
+                <md-list-item class="md-3-line" ng-if="Sponsors[1]">
+
+                    <img src="../../../../../Content/chart/7.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[2].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[2].BursifyScore}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+
+                <md-list-item class="md-3-line" ng-if="Sponsors[1]">
+
+                    <img src="../../../../../Content/chart/8.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[2].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[2].BursifyScore}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+
+                <md-list-item class="md-3-line" ng-if="Sponsors[1]">
+
+                    <img src="../../../../../Content/chart/9.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[2].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[2].BursifyScore}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+
+                <md-list-item class="md-3-line" ng-if="Sponsors[1]">
+
+                    <img src="../../../../../Content/chart/10.png" width="50" height="64" alt="{{message.who}}">
+                    <div class="md-list-item-text">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 style="margin-left: 200px; padding-bottom: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{Sponsors[2].CompanyName}}</h1>
+                            </div>
+                            <div class="col-md-offset-11">
+                                <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">+{{Sponsors[2].BursifyScore}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-list-item>
+
+            
+    <div style="text-align: justify;">Points are granted to sponsors according to their activity on the system. A number of actions on the system grant the sponsor points. The more active and supportive sponsors are the more points they gain from the system. Below is a brief break down of the points system:
+     <ol>
+         <li>Create an account = 5 points</li>
+         <li>Create a Bursify Sponsorship = 5 points</li>
+     </ol>   
+        We at the Bursify team would like to express our gratitude to all sponsors on the system that have contributed greatly to the cause of student funding. We know without your support this sytem would not reach it's full potential.
+     </div>
     </md-content>
 </div>
