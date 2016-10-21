@@ -669,6 +669,13 @@
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\editSponsorshipCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\metrics\metric.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\metrics\metricCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\sponsored.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\sponsoredCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\dialog.tmpl.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\Form\Form.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\Form\formCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\studentSponsored.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\studentSponsoredCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndex.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndexCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicants.html" />
@@ -799,7 +806,6 @@
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\AdminCampaignReport.cs" />
     <Compile Include="Models\AdminUserReport.cs" />
-    <Compile Include="Models\ApplicantsPerProvince.cs" />
     <Compile Include="Models\ApplicationViewModel.cs" />
     <Compile Include="Models\ApproveSponsorshipViewModel.cs" />
     <Compile Include="Models\BursifyUserViewModel.cs" />
@@ -809,6 +815,7 @@
     <Compile Include="Models\InstitutionViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\PersonalDetailsViewModel.cs" />
+    <Compile Include="Models\ProvinceCount.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Models\ReportCampaignModel.cs" />
     <Compile Include="Models\RequirementViewModel.cs" />

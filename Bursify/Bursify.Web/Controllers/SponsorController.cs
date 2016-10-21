@@ -128,6 +128,16 @@ namespace Bursify.Web.Controllers
             var students = _sponsorApi.GetStudentsSponsored(sponsorshipId);
 
             var s = StudentViewModel.MapMultipleStudents(students);
+
+            foreach(var current in s)
+            {
+                var report = _studentApi.GetMostRecentReport(current.ID);
+                var address = _studentApi.GetAddress(current.ID, "Residential");
+
+                current.Average = report.Average;
+                current.School = report.ReportInstitution;
+                current.Province = address.Province;
+            }
             
             var response = request.CreateResponse(HttpStatusCode.OK, s);
 
