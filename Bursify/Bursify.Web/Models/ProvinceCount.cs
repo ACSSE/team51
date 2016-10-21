@@ -8,12 +8,12 @@ namespace Bursify.Web.Models
     public class ProvinceCount
     {
         public string Province { get; set; }
-        public int ApplicantCount { get; set; }
+        public int Count { get; set; }
 
-        public ProvinceCount(string province, int applicantCount)
+        public ProvinceCount(string province, int count)
         {
             Province = province;
-            ApplicantCount = applicantCount;
+            Count = count;
         }
 
         public static List<ProvinceCount> MapProvinceCount(Dictionary<string, int> dictionary)
