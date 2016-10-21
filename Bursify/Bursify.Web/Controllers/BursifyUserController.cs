@@ -7,6 +7,7 @@ using Bursify.Web.Utility;
 using System.Web;
 using System.Linq;
 using System.IO;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Bursify.Api.Students;
 using Bursify.Api.Users;
@@ -181,6 +182,29 @@ namespace Bursify.Web.Controllers
             var response = request.CreateResponse(HttpStatusCode.OK, fileUploadResult);
 
             return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("SendEmail")]
+        public HttpResponseMessage SendEmail(HttpRequestMessage request, string email)
+        {
+            using (var mail = new MailMessage("brandonsibbs@gmail.com", "malcolmcollin@gmail.com"))
+            {
+
+                var client = new SmtpClient
+                {
+                    Port = 25,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Host = "smtp.google.com"
+                };
+
+                mail.Subject = "this is a test email.";
+                mail.Body = "this is my test email body";
+                client.Send(mail);
+
+                return request.CreateResponse(HttpStatusCode.OK, new {sent = true});
+            }
         }
 
         //use sender Id = -1 for notification sent from system/bursify

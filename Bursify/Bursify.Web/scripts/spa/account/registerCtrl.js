@@ -51,8 +51,14 @@
                 } else if ($scope.user.usertype == "Sponsor") {
                     $scope.user = result.data.user;
                     membershipService.saveCredentials($scope.user);
+                    if ($scope.user.password == 'Admin123') {
+                        $scope.user.usertype = 'Admin';
+                        $location.path('/admin/home');
+                    }
                   
                     $location.path('/sponsor/registration');
+                } else if ($scope.user.usertype == 'Admin') {
+                    $location.path('/admin/home');
                 }
 
             }

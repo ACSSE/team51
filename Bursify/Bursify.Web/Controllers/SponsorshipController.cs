@@ -168,15 +168,20 @@ namespace Bursify.Web.Controllers
         {
             var newSponsorship = sponsorship.ReverseMap();
 
+            var existing = _studentApi.GetSponsorship(sponsorship.ID);
+
             _studentApi.SaveSponsorship(newSponsorship);
 
-            var sponsor = _sponsorApi.GetSponsor(newSponsorship.SponsorId);
+            if (existing == null)
+            {
+                var sponsor = _sponsorApi.GetSponsor(newSponsorship.SponsorId);
 
-            var points = newSponsorship.Rating*10;
+                var points = newSponsorship.Rating * 10;
 
-            sponsor.BursifyScore += points;
+                sponsor.BursifyScore += points;
 
-            _sponsorApi.SaveSponsor(sponsor);
+                _sponsorApi.SaveSponsor(sponsor);
+            }
 
             var model = new SponsorshipViewModel();
 
@@ -219,6 +224,13 @@ namespace Bursify.Web.Controllers
 
             var sponsorshipVm = SponsorshipViewModel.MultipleSponsorshipsMap(sponsorships);
 
+            foreach (var sponsorship in sponsorshipVm)
+            {
+                sponsorship.ApplicantCount = _sponsorApi.GetStudentsApplying(sponsorship.ID).Count;
+                sponsorship.SponsorPicturePath = _sponsorApi.GetUserInfo(sponsorship.SponsorId).ProfilePicturePath;
+            }
+
+
             var response = request.CreateResponse(HttpStatusCode.OK, sponsorshipVm);
 
             return response;
@@ -255,7 +267,9 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("GetApplicantsPerprovince")]
         public HttpResponseMessage GetApplicantsPerprovince(HttpRequestMessage request, int sponsorshipId)
         {
-            var data = _studentApi.GetApplicantsPerprovince(sponsorshipId);
+            var applicants = _studentApi.GetApplicantsPerprovince(sponsorshipId);
+
+            var data = ProvinceCount.MapProvinceCount(applicants);
 
             var response = request.CreateResponse(HttpStatusCode.OK, new { count = data.Count, data});
 

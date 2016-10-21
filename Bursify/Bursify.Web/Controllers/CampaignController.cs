@@ -390,7 +390,9 @@ namespace Bursify.Web.Controllers
         {
             var funders = _studentApi.GetFundersPerProvince(campaignId);
 
-            var response = request.CreateResponse(HttpStatusCode.OK, funders);
+            var data = ProvinceCount.MapProvinceCount(funders);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, data);
 
             return response;
         }

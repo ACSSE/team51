@@ -63,18 +63,19 @@ namespace Bursify.Data.EF.Repositories
 
         private bool ContainsStudyField(Sponsorship sponsorship, Student student)
         {
-            string[] studentFields = student.StudyField.Split(',');
-
-            foreach (var field in studentFields)
+            if (!student.StudyField.Contains(","))
             {
-                if (sponsorship.StudyFields.Equals("Any", StringComparison.OrdinalIgnoreCase) ||
-                    sponsorship.StudyFields.Contains(field))
-                {
-                    return true;
-                }
+                return sponsorship.StudyFields.Equals("Any", StringComparison.OrdinalIgnoreCase) ||
+                       sponsorship.StudyFields.Contains(student.StudyField);
             }
 
-            return false;
+            var studentFields = student.StudyField.Split(',');
+
+            return
+                studentFields.Any(
+                    field =>
+                        sponsorship.StudyFields.Equals("Any", StringComparison.OrdinalIgnoreCase) ||
+                        sponsorship.StudyFields.Contains(field));
         }
     }
 }

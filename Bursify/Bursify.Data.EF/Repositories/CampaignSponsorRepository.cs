@@ -100,24 +100,6 @@ namespace Bursify.Data.EF.Repositories
 
             return dictionary;
         }
-
-        //saves by adding amount if has an entry already
-        //public void SaveByAdding(CampaignSponsor entity)
-        //{
-        //    var existing = LoadById(entity.ID);
-
-        //    if (existing == null)
-        //    {
-        //        DbContext.Set<CampaignSponsor>().Add(entity);
-        //    }
-        //    else
-        //    {
-        //        string entitySetName = GetEntitySetName<CampaignSponsor>();
-        //        entity.AmountContributed += existing.AmountContributed;
-        //        ObjectContext.ApplyCurrentValues(entitySetName, entity);
-        //    }
-
-        //    ObjectContext.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
-        //}
+        
     }
 }

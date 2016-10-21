@@ -186,14 +186,6 @@ namespace Bursify.Api.Sponsors
             }
         }
 
-        public List<Campaign> GetCampaigns()
-        {
-            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
-            {
-                return campaignRepository.LoadAll();
-            }
-        }
-
         public List<Campaign> GetSupportedCampaigns(int sponsorID)
         {
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
@@ -224,5 +216,6 @@ namespace Bursify.Api.Sponsors
                 return sponsorRepository.LoadById(SponsorId).Sponsorhips.ToList();
             }
         }
+
     }
 }

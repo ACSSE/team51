@@ -3,6 +3,8 @@
     <spnav-bar></spnav-bar>
     <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'blue'}">
         <div class="md-toolbar-tools">
+            <a ng-href="/#/sponsor/home"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
+
             <span>{{Student.Student.Firstname}} {{Student.Student.Surname}}'s Profile</span>
             <span flex></span>
            
@@ -34,7 +36,7 @@
                                     High School student at {{recentReports[0].ReportInstitution}}
                                 </p>
                                 <p class="text-muted" ng-if="Student.Student.CurrentOccupation == 'Tertiary'">
-                                    {Qualification} student at {Insti}
+                                    Student at {{recentReports[0].ReportInstitution}}
                                 </p>
                                 <hr>
 
@@ -52,10 +54,7 @@
 
                         
                     </div><!-- /.box-body -->
-                    <md-button class="md-primary" style="width: 96%">
-                        <md-icon md-svg-src="/content/img/icons/application-form.svg" class="name"></md-icon>
-                        Reccommend Sponsorship
-                    </md-button>
+                 
                 </md-card>
 
 
@@ -121,22 +120,7 @@
                             </md-content>
                         </md-tab>
 
-                        <md-tab label="Reports">
-
-                            <md-content class="md-padding">
-
-
-                            </md-content>
-                        </md-tab>
-
-
-                        <md-tab label="Contact Details">
-
-                            <md-content class="md-padding">
-
-
-                            </md-content>
-                        </md-tab>
+              
 
                                 <md-tab label="Campaigns">
 

@@ -22,8 +22,9 @@ namespace Bursify.Web.Models
         public DateTime EndDate { get; set; }
         public double AmountContributed { get; set; }
         public string FundUsage { get; set; }
-        public string ReasonsToSupport { get; set; }
+        public string ReasonsToSupport { get; set; }       
         public string Status { get; set; }
+        public int NumberOfViews { get; set; }
 
         public CampaignViewModel()
         {
@@ -52,6 +53,7 @@ namespace Bursify.Web.Models
             FundUsage = campaign.FundUsage;
             ReasonsToSupport = campaign.ReasonsToSupport;
             Status = campaign.Status;
+            NumberOfViews = campaign.NumberOfViews;
       
             return this;
         }
@@ -75,7 +77,8 @@ namespace Bursify.Web.Models
                 AmountContributed = this.AmountContributed,
                 FundUsage = this.FundUsage,
                 ReasonsToSupport = this.ReasonsToSupport,
-                Status = this.Status
+                Status = this.Status,
+                NumberOfViews = this.NumberOfViews
             };
         }
 

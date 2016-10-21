@@ -1,0 +1,70 @@
+﻿<div id="content">
+    <spnav-bar></spnav-bar>
+    <div id="loadingbarContainer"></div>
+    <md-toolbar ng-init="loadAll()">
+        <div class="md-toolbar-tools">
+            <a ng-href="/#/sponsor/sponsorships/"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
+
+            <h2>
+                <span>Sponsorship Metrics</span>
+            </h2>
+            <span flex></span>
+           <h3>Applicants Overall Average: {{Average.average}}%</h3>
+        </div>
+    </md-toolbar>
+
+    <md-content class="md-padding">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Male vs Female">
+                <md-content class="md-padding">
+                    <div class="col-md-12 md-padding">
+                        <div class="row">
+                            <div class="chart-container">
+                   <div fusioncharts
+                        width="100%"
+                        height="400"
+                        type="pie2d"
+                        dataSource="{{MVFDataSource}}">
+                   </div>
+               </div>
+                         </div>
+
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Provinces">
+                <md-content class="md-padding">
+                    <div class="col-md-12 md-padding">
+                        <div class="row">
+                            <div fusioncharts
+         width="100%"
+         height="400"
+         type="column2d"
+         dataSource="{{ProvinceDataSource}}">
+    </div>
+
+                        </div>
+
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Weekly">
+                <md-content class="md-padding">
+                    <div class="col-md-12 md-padding">
+                        <div class="row">
+                            <div fusioncharts
+         width="100%"
+         height="400"
+         type="line"
+         dataSource="{{WeeklyDataSource}}">
+    </div>
+
+                        </div>
+
+                    </div>
+                </md-content>
+            </md-tab>
+            
+        </md-tabs>
+    </md-content>
+</div>

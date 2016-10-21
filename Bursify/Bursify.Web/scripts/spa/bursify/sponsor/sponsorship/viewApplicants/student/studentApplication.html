@@ -3,12 +3,11 @@
     <spnav-bar></spnav-bar>
     <md-toolbar class="md-table-toolbar" >
         <div class="md-toolbar-tools">
+            <a ng-href="/#/sponsor/sponsorships/view/{{spID}}"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
+
             <span>{{Student.Student.Firstname}} {{Student.Student.Surname}}'s Profile</span>
             <span flex></span>
-       
-            <md-button md-colors="{background: 'blue' }" ng-click="showCompare()">Compare</md-button>
-            <md-button md-colors="{background: 'green' }" ng-click="showAdvanced()">Grant Sponsorship</md-button>
-          
+             <md-button md-colors="{background: 'green' }" ng-click="showAdvanced()">Grant Sponsorship</md-button>
         </div>
     </md-toolbar>
 
@@ -37,7 +36,7 @@
                                     High School student at {{recentReports[0].ReportInstitution}}
                                 </p>
                                 <p class="text-muted" ng-if="Student.Student.CurrentOccupation == 'Tertiary'">
-                                    {Qualification} student at {Insti}
+                                    Student at {{recentReports[0].ReportInstitution}}
                                 </p>
                                 <hr>
 
