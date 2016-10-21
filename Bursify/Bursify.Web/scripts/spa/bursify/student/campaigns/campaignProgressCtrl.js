@@ -24,7 +24,11 @@
 
         
         function provinceLoadCompleted(result) {
-            alert(result.data);
+            $scope.provinceReport = result.data;
+            var EC = 0;
+
+            
+            //Check if they are null 
 
             $scope.provinceDataSource = {
                 chart: {
@@ -65,55 +69,52 @@
                     ],
                     "maxvalue": 0
                 },
-                data: [
-                    {
-                        "data": [
-                            {
-                                label: "Gauteng",
-                                value: "2515"
-                            },
-                            {
-                                "id": "11",
-                                "value": "64406"
-                            },
-                            {
-                                "id": "09",
-                                "value": "60725"
-                            },
-                            {
-                                "id": "07",
-                                "value": "36101"
-                            },
-                            {
-                                "id": "06",
-                                "value": "69620"
-                            },
-                            {
-                                "id": "02",
-                                "value": "60419"
-                            },
-                            {
-                                "id": "03",
-                                "value": "63140"
-                            },
-                            {
-                                "id": "08",
-                                "value": "94861"
-                            },
-                            {
-                                "id": "05",
-                                "value": "94861"
-                            }
-                        ]
-                    }
-                ]
+                data: [{}]
             };
 
-         
+            // notificationService.displaySuccess();
+
+            if($scope.provinceReport[0].Count > 0)
+            {
+                $scope.provinceDataSource.data.push(new dataItem("05", $scope.provinceReport[0].Count));
+            }
+
+            if ($scope.provinceReport[1].Count > 0) {
+                $scope.provinceDataSource.data.push(new dataItem("03", $scope.provinceReport[1].Count));
+            }
+
+            if ($scope.provinceReport[2].Count > 0) {
+                $scope.provinceDataSource.data.push(new dataItem1("06", $scope.provinceReport[2].Count));
+            }
+
+            if ($scope.provinceReport[3].Count > 0) {
+                $scope.provinceDataSource.data.push(new dataItem("02", $scope.provinceReport[3].Count));
+            }
+
+            if ($scope.provinceReport[4].Count > 0) {
+                $scope.provinceDataSource.data.push(new dataItem("09", $scope.provinceReport[4].Count));
+            }
+
+            if ($scope.provinceReport[5].Count > 0) {
+                $scope.provinceDataSource.data.push(new dataItem("07", $scope.provinceReport[5].Count));
+            }
+
+            if ($scope.provinceReport[6].Count > 0) {
+                $scope.provinceDataSource.data.push(new dataItem("10", $scope.provinceReport[6].Count));
+            }
+
+            if ($scope.provinceReport[7].Count > 0) {
+                $scope.provinceDataSource.data.push(new dataItem("08", $scope.provinceReport[7].Count));
+            }
+
+            if ($scope.provinceReport[8].Count > 0) {
+                $scope.provinceDataSource.data.push(new dataItem("11", $scope.provinceReport[8].Count));
+            }
         }
 
-        function dataItem(label, value) {
-            this.label = label;
+        function dataItem1(id, value) {
+
+            this.id = id;
             this.value = value
         }
 
@@ -163,13 +164,6 @@
                 },
                 data: [{}]
             };
-
-        //public int CampaignId { get; set; }
-        //public int SponsorId { get; set; }
-        //public double AmountContributed { get; set; }
-        //public DateTime DateOfContribution { get; set; }
-
-
             var funds = result.data;
             var i = 1;
 
@@ -298,13 +292,9 @@
                 data: [{}]
             };
 
-            var campaigns = result.data;
-            var i = 0;
-
-            campaigns.forEach(function (entry) {
-                i++
-                $scope.upvotesDataSource.data.push(new dataItem("Day " + (i + 1), entry.AmountContributed));
-            });
+            var num = result.data;
+            
+            notificationService.displaySuccess("Number of upvotes = " + num);
         }
 
         function upvotesLoadFailed() {
