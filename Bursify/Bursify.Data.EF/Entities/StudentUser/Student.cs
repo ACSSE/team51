@@ -48,6 +48,5 @@ namespace Bursify.Data.EF.Entities.StudentUser
         public virtual ICollection<Campaign> Campaigns { get; set; }
         public virtual Institution Institution { get; set; }
         public ICollection<StudentSponsorship> StudentSponsorships { get; set; }
-        public virtual ICollection<SponsorStudentNotification> SponsorStudentNotification { get; set; }
     }
 }

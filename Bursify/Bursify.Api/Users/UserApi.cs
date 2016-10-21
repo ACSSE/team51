@@ -16,14 +16,16 @@ namespace Bursify.Api.Users
         protected readonly Repository<UserAddress> userAddressRepository;
         protected readonly CampaignRepository campaignRepository;
         protected readonly CampaignSponsorRepository campaignSponsorRepository;
+        protected readonly NotificationRepository notificationRepository;
 
-        public UserApi(IUnitOfWorkFactory unitOfWorkFactory, BursifyUserRepository userRepository, Repository<UserAddress> userAddressRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository)
+        public UserApi(IUnitOfWorkFactory unitOfWorkFactory, BursifyUserRepository userRepository, Repository<UserAddress> userAddressRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, NotificationRepository notificationRepository)
         {
             this.unitOfWorkFactory = unitOfWorkFactory;
             this.userRepository = userRepository;
             this.userAddressRepository = userAddressRepository;
             this.campaignRepository = campaignRepository;
             this.campaignSponsorRepository = campaignSponsorRepository;
+            this.notificationRepository = notificationRepository;
         }
 
         public List<BursifyUser> ShowAllUsers()
@@ -240,6 +242,57 @@ namespace Bursify.Api.Users
                              && x.AddressType.Equals(type, StringComparison.OrdinalIgnoreCase));
 
                 return address;
+            }
+        }
+
+        public void CreateNotification(Notification n)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                notificationRepository.Save(n);
+                uow.Commit();
+            }
+        }
+
+        public int GetNumberOfUnreadMessages(int id)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return notificationRepository.getNumberOfUnreadMessages(id);
+            }
+        }
+
+        public List<Notification> GetNotifications(int id)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return notificationRepository.GetNotifications(id);
+            }
+        }
+
+        public Notification GetSingleNotification(int id)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return notificationRepository.GetSingleNotification(id);
+            }
+        }
+
+        public void MarkAllRead(int id)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                notificationRepository.MarkAllRead(id);
+                uow.Commit();
+            }
+        }
+
+        public void MarkSingleRead(int id)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                notificationRepository.MarkSingleRead(id);
+                uow.Commit();
             }
         }
     }

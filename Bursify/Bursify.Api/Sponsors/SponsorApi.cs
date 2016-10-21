@@ -20,7 +20,8 @@ namespace Bursify.Api.Sponsors
         private BridgeRepository<CampaignReport> campaignReportBridgeRepository;
         private SponsorRepository sponsorRepository;
 
-        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, BursifyUserRepository userRepository, Repository<UserAddress> userAddressRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, Repository<Student> studentRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository, SponsorRepository sponsorRepository) : base(unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository)
+        public SponsorApi(IUnitOfWorkFactory unitOfWorkFactory, BursifyUserRepository userRepository, Repository<UserAddress> userAddressRepository, CampaignRepository campaignRepository, CampaignSponsorRepository campaignSponsorRepository, SponsorshipRepository sponsorshipRepository, StudentSponsorshipRepository studentSponsorshipRepository, Repository<Student> studentRepository, BridgeRepository<CampaignReport> campaignReportBridgeRepository, SponsorRepository sponsorRepository, NotificationRepository notificationRepository)
+            : base(unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository, notificationRepository)
         {
             this.sponsorshipRepository = sponsorshipRepository;
             this.studentSponsorshipRepository = studentSponsorshipRepository;

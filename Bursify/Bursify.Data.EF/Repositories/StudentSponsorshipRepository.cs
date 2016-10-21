@@ -5,12 +5,12 @@ using System.Linq;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.StudentUser;
-using Bursify.Data.EF.Entities.User;
 using Bursify.Data.EF.Uow;
 using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 using System.Globalization;
 using Microsoft.Ajax.Utilities;
+using Bursify.Data.EF.Entities.User;
 
 namespace Bursify.Data.EF.Repositories
 {
