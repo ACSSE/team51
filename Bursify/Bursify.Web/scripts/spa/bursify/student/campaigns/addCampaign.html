@@ -17,11 +17,12 @@
                                     <div class="box-body">
                                         <label>My Campaign Name</label>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" ng-model="campaign.CampaignName" placeholder="Campaign Name or Title">
+                                            <input type="text" class="form-control" ng-model="campaign.CampaignName" placeholder="Campaign Name or Title" id="name" name="name" required>
+                                            <span ng-show="newCampaignForm.$error.required">required</span>
                                         </div>
                                         <label>Campaign Tagline</label>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" ng-model="campaign.Tagline" placeholder="Campaign Name or Title">
+                                            <input type="text" class="form-control" id="tagline" ng-model="campaign.Tagline" placeholder="Campaign Name or Title">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -208,9 +209,7 @@
                             </div>
                             <div class="col-md-4">
 
-
                                 <div class="thumbnail" style="background-color:white">
-
                                     <img class="img-rounded" ng-src="../../../../../Content/BursifyUploads/default-campaign.jpg" ng-model="PicturePath" alt="campagin picture" style="width:100%;height:200px;">
                                     <div class="caption">
                                         <b>{{campaign.CampaignName}}</b><br>
@@ -242,7 +241,7 @@
                 </md-tab><!--Campaign story Section-->
 
                 <md-tab label="Campaign Preview" id="preview">
-                    <md-content class="md-padding">
+                    <!--<md-content class="md-padding">
                         <div class="row">
                             <div class="panel panel-info col-lg-8 col-lg-offset-2" style="margin-top:20px">
                                 <p class="panel-heading">{{campaign.CampaignName}}</p>
@@ -293,10 +292,69 @@
 
                         </div>
                         <input type="submit" class="btn btn-success pull-right" value="Finish" />
-                    </md-content>
+                    </md-content>-->
+
+                <br />
+                    <md-card-header>
+
+                        <div class="row">
+                            <div class="col-lg-5">
+                                  <md-card-header-text>
+                            <md-card>
+                                <a href="#/student/campaigns">
+                                    <img style="height:300px; width:535px" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
+                                </a>
+                            </md-card>
+                        </md-card-header-text>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <md-card-header-text>
+                                    <span class="md-title">{{campaign.CampaignName}}</span>
+                                    <span class="small">by {{campaign.Name + " "+ campaign.Surname}}</span>
+                                    <br />
+                                    <span class="small-text-medium">{{campaign.Tagline}}</span>
+                                    <br />
+                                    <br />
+                                    <style>
+                                        .upvote:hover {
+                                            color: forestgreen;
+                                        }
+                                    </style>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left"></span>{{campaign.Location}}</div>
+                                        <div class="col-lg-4"><span><i class="fa fa-tags" aria-hidden="true">{{campaign.CampaignType}}</i></span></div>
+                                        <div class="col-lg-4">
+                                            <i class="upvote" type="button" ng-click="upvodeCampaign($event,campaign.CampaignId)" ng-if="!(upvoted == true)">
+                                                <i class="fa fa-thumbs-up" style="color:{{upVoteColor}}" aria-hidden="true">
+                                                    <md-tooltip md-direction="top" style="margin-top:50px">
+                                                        upvote
+                                                    </md-tooltip>
+                                                </i>
+                                            </i>
+                                            <i class="upvote">
+                                                <i class="fa fa-thumbs-up" style="color:green" aria-hidden="true" ng-if="upvoted == true">
+                                                    <md-tooltip md-direction="top" style="margin-top:50px">
+                                                        upvoted
+                                                    </md-tooltip>
+                                                </i>
+                                            </i>
+                                        </div>
+                                    </div>
+                                    <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-lg-4">{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%<br />funded</div>
+                                        <div class="col-lg-4">R{{campaign.AmountContributed}} <br />Raised</div>
+                                        <div class="col-lg-4">full<br /> days to go</div>
+                                    </div>
+                                    <br />
+                                </md-card-header-text>
+                            </div>
+                        </div><md-button type="submit" class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="addStudentCampaign()">Finish</md-button>
+                    </md-card-header>
                 </md-tab><!--Preview Section-->
 
-             <md-button type="submit" class="md-raised md-success" md-colors="{backgroundColor: 'green'}" ng-click="addStudentCampaign()">Finish</md-button>
             </md-tabs>
            </form>
     </div>

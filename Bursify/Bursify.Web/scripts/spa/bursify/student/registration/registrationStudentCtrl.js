@@ -8,9 +8,6 @@
     function registrationStudentCtrl($scope, $rootScope, $timeout, apiService, $location, notificationService, $compile, fileUploadService, membershipService, $interval, $mdDialog) {
         $scope.pageClass = 'page-registration-student';
 
-    
-
-
         $scope.isOpen = false;
         $scope.demo = {
             isOpen: false,
