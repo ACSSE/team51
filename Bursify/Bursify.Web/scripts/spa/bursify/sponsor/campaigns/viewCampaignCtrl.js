@@ -15,10 +15,11 @@
         $scope.funders = [];
         $scope.loadingCampaign = true;
         $scope.vote = "upvote";
-        $scope.upvoted = "black";
+        $scope.upvoted = false;
         $scope.numberOfSupporter = 0;
         $scope.sponsorId = $rootScope.repository.loggedUser.userIden;
         $scope.daysleft = 0;
+        $scope.upVoteColor = "black";
         //For Payments
         $scope.cardNumber = '';
         $scope.CardType = '';
@@ -82,6 +83,12 @@
             $scope.loadingCampaigns = false;
         }
 
+        function upvodeCampaignSucceded(response) {
+            notificationService.displaySuccess('Campaign has been successfully upvoted');
+            $scope.vote = "upvoted";
+            $scope.upvoted = "green";
+            //redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
+        }
         function campaignUpvoted() {
             apiService.post('/api/Campaign/IsEndorsed/?userId=' + $rootScope.repository.loggedUser.userIden + "&campaignId=" + $routeParams.campaignId, null, campaignVoted, campaignUnvoted);
         }
@@ -89,13 +96,13 @@
         function campaignVoted(response) {
 
             if (response.data) {
-                $scope.upvoted = "green";
+                $scope.upvoted = true;
+                $scope.upVoteColor = "green";
             }
         }
         function campaignUnvoted(response) {
             notificationService.displayError(response.data);
         }
-
         function campaignsLoadFailed(response) {
             notificationService.displayError(response.data);
         }
