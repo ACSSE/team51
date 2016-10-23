@@ -53,6 +53,8 @@ namespace Bursify.Api.Security
 
                 var salt = _cryptoService.CreateSalt();
 
+                
+
                 user = new BursifyUser
                 {
                     Email = userEmail,
@@ -103,6 +105,21 @@ namespace Bursify.Api.Security
         {
             using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
             {
+                _userRepository.Save(user);
+                uow.Commit();
+            }
+
+        }
+
+        public void UpdateUserPassword(BursifyUser user, string password)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var salt = _cryptoService.CreateSalt();
+
+                user.PasswordHash = _cryptoService.HashPassword(password, salt);
+                user.PasswordSalt = salt;
+
                 _userRepository.Save(user);
                 uow.Commit();
             }

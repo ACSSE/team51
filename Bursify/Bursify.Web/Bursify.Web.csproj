@@ -631,7 +631,9 @@
     <Content Include="Images\campaigns\campaign.jpeg" />
     <Content Include="Images\campaigns\campaign.jpg" />
     <Content Include="Images\campaigns\default-campaign.jpg" />
+    <Content Include="scripts\spa\account\reset.html" />
     <Content Include="scripts\spa\account\FMP.html" />
+    <Content Include="scripts\spa\account\resetCtrl.js" />
     <Content Include="scripts\spa\account\login.html" />
     <Content Include="scripts\spa\account\fmpCtrl.js" />
     <Content Include="scripts\spa\account\loginCtrl.js" />
@@ -669,6 +671,13 @@
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\editSponsorshipCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\metrics\metric.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\metrics\metricCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\sponsored.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\sponsoredCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\dialog.tmpl.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\Form\Form.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\Form\formCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\studentSponsored.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\studentSponsoredCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndex.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndexCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicants.html" />
@@ -688,6 +697,8 @@
     <Content Include="scripts\spa\bursify\student\campaigns\addCampaignCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignDetails.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignDetailsCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\campaigns\campaignProgress.html" />
+    <Content Include="scripts\spa\bursify\student\campaigns\campaignProgressCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignsCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\confirmDelete.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\confirmDeleteCtrl.js" />
@@ -703,6 +714,8 @@
     <Content Include="scripts\spa\bursify\student\campaigns\viewCampaigns.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\vode.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\dialog.tmpl.html" />
+    <Content Include="scripts\spa\bursify\student\chart\leaderboard.html" />
+    <Content Include="scripts\spa\bursify\student\chart\leaderboardCtrl.js" />
     <Content Include="scripts\spa\bursify\student\home\index.html" />
     <Content Include="scripts\spa\bursify\student\home\studentCtrl.js" />
     <Content Include="scripts\spa\bursify\student\messages\messages.html" />
@@ -760,6 +773,8 @@
     <Content Include="scripts\vendors\file-input.js" />
     <Content Include="scripts\vendors\fusionchart.js" />
     <Content Include="scripts\vendors\fusioncharts.charts.js" />
+    <Content Include="scripts\vendors\fusioncharts.maps.js" />
+    <Content Include="scripts\vendors\fusioncharts.southafrica.js" />
     <Content Include="scripts\vendors\jquery.fancybox-media.js" />
     <Content Include="scripts\vendors\jquery.fancybox.js" />
     <Content Include="scripts\vendors\jquery.js" />
@@ -799,7 +814,6 @@
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\AdminCampaignReport.cs" />
     <Compile Include="Models\AdminUserReport.cs" />
-    <Compile Include="Models\ProvinceCount.cs" />
     <Compile Include="Models\ApplicationViewModel.cs" />
     <Compile Include="Models\ApproveSponsorshipViewModel.cs" />
     <Compile Include="Models\BursifyUserViewModel.cs" />
@@ -808,7 +822,9 @@
     <Compile Include="Models\DailyFunding.cs" />
     <Compile Include="Models\InstitutionViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\NotificationViewModel.cs" />
     <Compile Include="Models\PersonalDetailsViewModel.cs" />
+    <Compile Include="Models\ProvinceCount.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Models\ReportCampaignModel.cs" />
     <Compile Include="Models\RequirementViewModel.cs" />
@@ -906,6 +922,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\BursifyUploads\" />
     <Folder Include="Content\dist\js\pages\" />
     <Folder Include="Content\images\campaign\" />
     <Folder Include="Content\images\company\" />
@@ -968,7 +985,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50808</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50000/</IISUrl>
+          <IISUrl>http://localhost:50008/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

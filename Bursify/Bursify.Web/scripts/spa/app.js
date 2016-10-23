@@ -30,6 +30,10 @@
                  templateUrl: "scripts/spa/account/fmp.html",
                  controller: "fmpCtrl"
              })
+              .when("/reset", {
+                  templateUrl: "scripts/spa/account/reset.html",
+                  controller: "resetCtrl"
+              })
             .when("/student/home", {
                 templateUrl: "scripts/spa/bursify/student/home/index.html",
                 controller: "studentCtrl",
@@ -101,6 +105,12 @@
                 controller: "sponsorProfileCtrl",
                  // resolve: { isAuthenticated: isAuthenticated }
             })
+
+              .when("/sponsor/tracker", {
+                  templateUrl: "scripts/spa/bursify/sponsor/tracker/tracker.html",
+                  controller: "trackCtrl",
+                  // resolve: { isAuthenticated: isAuthenticated }
+              })
              .when("/sponsor/leaderboard", {
                  templateUrl: "scripts/spa/bursify/sponsor/chart/leaderboard.html",
                  controller: "leaderboardCtrl",
@@ -133,6 +143,12 @@
                  // resolve: { isAuthenticated: isAuthenticated }
              })
 
+              .when("/sponsor/sponsorships/sponsored/:sponsorshipId", {
+                  templateUrl: "scripts/spa/bursify/sponsor/sponsorship/sponsored/sponsored.html",
+                  controller: "sponsoredCtrl",
+                  // resolve: { isAuthenticated: isAuthenticated }
+              })
+
              .when("/sponsor/sponsorships/edit/:sponsorshipId", {
                  templateUrl: "scripts/spa/bursify/sponsor/sponsorship/editSponsorship/edit.html",
                  controller: "editSponsorshipCtrl",
@@ -150,6 +166,12 @@
                   controller: "studentApplicationCtrl",
                   // resolve: { isAuthenticated: isAuthenticated }
               })
+
+               .when("/sponsor/sponsorship/sponsored/student/:StudentId/:SponsorshipId", {
+                   templateUrl: "scripts/spa/bursify/sponsor/sponsorship/sponsored/student/studentSponsored.html",
+                   controller: "studentSponsoredCtrl",
+                   // resolve: { isAuthenticated: isAuthenticated }
+               })
 
               .when("/sponsor/sponsorships/view/student/form/:StudentId/:SponsorshipId", {
                   templateUrl: "scripts/spa/bursify/sponsor/sponsorship/ViewApplicants/student/form/form.html",
@@ -172,6 +194,11 @@
                 controller: "leaderboardCtrl",
                  // resolve: { isAuthenticated: isAuthenticated}
             })
+              .when("/student/chart", {
+                  templateUrl: "scripts/spa/bursify/student/chart/leaderboard.html",
+                  controller: "leaderboardCtrl",
+                  // resolve: { isAuthenticated: isAuthenticated}
+              })
             .when("/student/sponsorship/:sponsorshipId", {
                 templateUrl: "scripts/spa/bursify/student/sponsorship/index.html",
                 controller: "sponsorshipCtrl",
@@ -221,11 +248,19 @@
                 // resolve: { isAuthenticated: isAuthenticated }
             })
 
+            .when("/student/campaign-progress/:campaignId", {
+                templateUrl: "scripts/spa/bursify/student/campaigns/campaignProgress.html",
+                controller: "campaignProgressCtrl",
+                // resolve: { isAuthenticated: isAuthenticated }
+            })
+
             .when("/student/addAccount", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/addAccount.html",
                 controller: "addAccountCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
+
+
             //Sponsor
                         .when("/sponsor/campaign-details/:campaignId", {
                             templateUrl: "scripts/spa/bursify/sponsor/campaigns/campaignDetails.html",
@@ -250,7 +285,7 @@
                             // resolve: { isAuthenticated: isAuthenticated }
                         })
 
-            /* Campaigns start **/
+            /* Campaigns end**/
             .otherwise({
                 redirectTo: function () {
                     window.location = "/index.html";

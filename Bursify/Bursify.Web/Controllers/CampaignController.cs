@@ -88,8 +88,8 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
-
-        //get a single campaign
+        
+        //get a campaign with increment number of views
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
         [System.Web.Mvc.Route("GetCampaign")]
@@ -100,6 +100,61 @@ namespace Bursify.Web.Controllers
             campaign.NumberOfViews += 1;
             _studentApi.SaveCampaign(campaign);
 
+            var model = new CampaignViewModel(campaign);
+
+            var student = _studentApi.GetStudent(campaign.StudentId);
+            model.Name = student.Firstname;
+            model.Surname = student.Surname;
+
+            var campaignVm = model.SingleCampaignMap(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
+        //get a single campaign without incrementing number of views
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetSingleCampaign")]
+        public HttpResponseMessage GetSingleCampaign(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId);
+
+            var model = new CampaignViewModel(campaign);
+
+            var student = _studentApi.GetStudent(campaign.StudentId);
+            model.Name = student.Firstname;
+            model.Surname = student.Surname;
+
+            var response = request.CreateResponse(HttpStatusCode.OK, model);
+
+            return response;
+        }
+
+        //increment number of views for a campaign
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("IncrementCampaignViews")]
+        public HttpResponseMessage IncrementCampaignViews(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId);
+
+            campaign.NumberOfViews += 1;
+            _studentApi.SaveCampaign(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetReportCampaign")]
+        public HttpResponseMessage GetReportCampaign(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId);
+      
             var model = new CampaignViewModel(campaign);
 
             var student = _studentApi.GetStudent(campaign.StudentId);
@@ -255,6 +310,25 @@ namespace Bursify.Web.Controllers
             }
 
             var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetCampaignSponsors")]
+        public HttpResponseMessage GetCampaignSponsors(HttpRequestMessage request, int campaignId)
+        {
+            var sponsors = _studentApi.GetCampaignSponsors(campaignId);
+
+            var sponsorsVm = CampaignSponsorViewModel.MapMultiple(sponsors);
+
+            foreach(var sponsor in sponsorsVm)
+            {
+                sponsor.Name = _sponsorApi.GetSponsor(sponsor.SponsorId).CompanyName;
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK, sponsorsVm);
 
             return response;
         }

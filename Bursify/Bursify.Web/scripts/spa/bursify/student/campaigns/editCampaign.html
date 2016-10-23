@@ -2,15 +2,16 @@
 <div id="content">
     <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'teal-300'}">
         <div class="md-toolbar-tools">
-            <span>Add Campaign</span>
+            <a ng-href="#/student/myCampaigns"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
+            <span>Edit Campaign</span>
         </div>
     </md-toolbar>
     <div ng-cloak>
 
         <form name="newCampaignForm" ng-submit="addStudentCampaign()">
-            <md-tabs md-dynamic-height md-border-bottom>
+            <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
 
-                <md-tab label="Details">
+                <md-tab label="Details" id="details">
                     <md-content class="md-padding">
                         <div class="col-lg-12">
                             <div class="col-lg-8" style="background-color:white;">
@@ -28,7 +29,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Campaign Type</label>
-                                                    <select class="form-control" style="width: 100%;" ng-model="campaign.CampaignType" tabindex="-1" aria-hidden="true">
+                                                    <select class="form-control" disabled style="width: 100%;" ng-model="campaign.CampaignType" tabindex="-1" aria-hidden="true">
                                                         <option>Select Account Type</option>
                                                         <option>Art</option>
                                                         <option>Books</option>
@@ -68,7 +69,7 @@
                                                 <div class="form-group">
                                                     <label>Campaign Start Date</label>
                                                     <div flex-gt-xs>
-                                                        <md-datepicker ng-model="campaign.startDate" md-placeholder="Pick a Date"></md-datepicker>
+                                                        <md-datepicker ng-model="campaign.startDate" disabled md-placeholder="Pick a Date"></md-datepicker>
                                                     </div>
                                                 </div>
                                             </div>
@@ -76,7 +77,7 @@
                                                 <div class="form-group">
                                                     <label>Campaign Due Date</label>
                                                     <div flex-gt-xs>
-                                                        <md-datepicker ng-model="campaign.endDate" md-placeholder="Pick a Date"></md-datepicker>
+                                                        <md-datepicker ng-model="campaign.endDate" disabled md-placeholder="Pick a Date"></md-datepicker>
                                                     </div>
                                                 </div>
                                             </div>
@@ -85,24 +86,14 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Campaign Picture</label><br />
-                                                <div class="fileUpload btn btn-primary">
+                                                <button type="button" class="btn btn-primary disabled">Upload</button>
+                                                <!--<div class="fileUpload btn btn-primary">
                                                     <span>Upload</span>
-                                                    <input id="uploadIDBtn" type="file" ng-model="campaign.PicturePath" class="upload" ng-file-select="prepareVideo($files)" />
+                                                    <input id="uploadIDBtn" type="file" ng-model="campaign.PicturePath" class="upload" disabled="disabled"  ng-file-select="prepareVideo($files)" />
                                                 </div>
 
                                                 <input id="uploadIDFile" type="text" ng-model="campaign.PicturePath" placeholder="Campaign Image" disabled="disabled" />
-                                                <label>File uploaded is {{campaign.PicturePath}}</label>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <label>Campaign Video</label><br />
-                                                <div class="fileUpload btn btn-primary">
-                                                    <span>Upload</span>
-                                                    <input id="uploadVideoBtn" type="file" ng-model="campaign.VideoPath" class="upload" ng-file-select="prepareVideo($files)" />
-                                                </div>
-
-                                                <input id="uploadIDVideoFile" type="text" ng-model="campaign.VideoPath" placeholder="Campaign Image" disabled="disabled" />
-                                                <label>File uploaded is {{campaign.VideoPath}}</label>
+                                                <label>File uploaded is {{campaign.PicturePath}}</label>-->
                                             </div>
                                         </div>
                                     </div>
@@ -137,7 +128,7 @@
                                 </div>
                             </div>
 
-                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}">Next</md-button>
+                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
                         </div>
                     </md-content>
                 </md-tab> <!-- Campaign Details Section-->
@@ -194,18 +185,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}">Next</md-button>
+                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
                         </div>
                     </md-content>
                 </md-tab><!--Campaign Target Amount Section-->
 
-                <md-tab label="Campaign Story">
+                <md-tab label="Campaign Story" id="story">
                     <md-content class="md-padding">
                         <div class="row">
                             <div class="col-md-8" style="background-color: white;">
                                 <h4 style="margin-left:20px">Tell us about your campaign</h4>
                                 <div class="col-md-12">
-                                    <textarea class="form-control" rows="16" cols="200" ng-model="campaign.Description" placeholder="Tell the your story..."></textarea>
+                                    <textarea disabled class="form-control" rows="16" cols="200" ng-model="campaign.Description" placeholder="Tell the your story..."></textarea>
                                     <br />
                                 </div>
 
@@ -240,13 +231,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}">Next</md-button>
+                            <md-button class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
                         </div>
                     </md-content>
                 </md-tab><!--Campaign story Section-->
 
                 <md-tab label="Campaign Preview">
-                    <md-content class="md-padding">
+                    <!--<md-content class="md-padding">
                         <div class="row">
                             <div class="panel panel-info col-lg-8 col-lg-offset-2" style="margin-top:20px">
                                 <p class="panel-heading">{{campaign.CampaignName}}</p>
@@ -297,7 +288,65 @@
 
                         </div>
                 <md-button  class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="editStudentCampaign()">Finish</md-button>
-                    </md-content>
+                    </md-content>-->
+                    <md-card-header>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <md-card-header-text>
+                                    <md-card>
+                                        <a href="#/student/campaigns">
+                                            <img style="height:300px; width:485px" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
+                                        </a>
+                                    </md-card>
+                                </md-card-header-text>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <md-card-header-text>
+                                    <span class="md-title">{{campaign.CampaignName}}</span>
+                                    <span class="small">by {{campaign.Name + " "+ campaign.Surname}}</span>
+                                    <br />
+                                    <span class="small-text-medium">{{campaign.Tagline}}</span>
+                                    <br />
+                                    <br />
+                                    <style>
+                                        .upvote:hover {
+                                            color: forestgreen;
+                                        }
+                                    </style>
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left"></span>{{campaign.Location}}</div>
+                                        <div class="col-lg-4"><span><i class="fa fa-tags" aria-hidden="true">{{campaign.CampaignType}}</i></span></div>
+                                        <div class="col-lg-4">
+                                            <i class="upvote" type="button" ng-click="upvodeCampaign($event,campaign.CampaignId)" ng-if="!(upvoted == true)">
+                                                <i class="fa fa-thumbs-up" style="color:{{upVoteColor}}" aria-hidden="true">
+                                                    <md-tooltip md-direction="top" style="margin-top:50px">
+                                                        upvote
+                                                    </md-tooltip>
+                                                </i>
+                                            </i>
+                                            <i class="upvote">
+                                                <i class="fa fa-thumbs-up" style="color:green" aria-hidden="true" ng-if="upvoted == true">
+                                                    <md-tooltip md-direction="top" style="margin-top:50px">
+                                                        upvoted
+                                                    </md-tooltip>
+                                                </i>
+                                            </i>
+                                        </div>
+                                    </div>
+                                    <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-lg-4">{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%<br />funded</div>
+                                        <div class="col-lg-4">R{{campaign.AmountContributed}} <br />Raised</div>
+                                        <div class="col-lg-4">full<br /> days to go</div>
+                                    </div>
+                                    <br />
+                                </md-card-header-text>
+                            </div>
+                        </div><md-button type="submit" class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="addStudentCampaign()">Finish</md-button>
+                    </md-card-header>
                 </md-tab><!--Preview Section-->
 
             </md-tabs>
