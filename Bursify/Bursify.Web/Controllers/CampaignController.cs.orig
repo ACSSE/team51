@@ -113,6 +113,15 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
+<<<<<<< HEAD
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetReportCampaign")]
+        public HttpResponseMessage GetReportCampaign(HttpRequestMessage request, int campaignId)
+        {
+            var campaign = _studentApi.GetSingleCampaign(campaignId);
+      
+=======
         //get a single campaign without incrementing number of views
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
@@ -121,12 +130,18 @@ namespace Bursify.Web.Controllers
         {
             var campaign = _studentApi.GetSingleCampaign(campaignId);
 
+>>>>>>> 2937635e10dc896d3a1ed2728aef6314e437b70a
             var model = new CampaignViewModel(campaign);
 
             var student = _studentApi.GetStudent(campaign.StudentId);
             model.Name = student.Firstname;
             model.Surname = student.Surname;
 
+<<<<<<< HEAD
+            var campaignVm = model.SingleCampaignMap(campaign);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+=======
             var response = request.CreateResponse(HttpStatusCode.OK, model);
 
             return response;
@@ -144,26 +159,7 @@ namespace Bursify.Web.Controllers
             _studentApi.SaveCampaign(campaign);
 
             var response = request.CreateResponse(HttpStatusCode.OK);
-
-            return response;
-        }
-
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.HttpGet]
-        [System.Web.Mvc.Route("GetReportCampaign")]
-        public HttpResponseMessage GetReportCampaign(HttpRequestMessage request, int campaignId)
-        {
-            var campaign = _studentApi.GetSingleCampaign(campaignId);
-      
-            var model = new CampaignViewModel(campaign);
-
-            var student = _studentApi.GetStudent(campaign.StudentId);
-            model.Name = student.Firstname;
-            model.Surname = student.Surname;
-
-            var campaignVm = model.SingleCampaignMap(campaign);
-
-            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+>>>>>>> 2937635e10dc896d3a1ed2728aef6314e437b70a
 
             return response;
         }
@@ -390,9 +386,7 @@ namespace Bursify.Web.Controllers
         {
             var funders = _studentApi.GetFundersPerProvince(campaignId);
 
-            var data = ProvinceCount.MapProvinceCount(funders);
-
-            var response = request.CreateResponse(HttpStatusCode.OK, data);
+            var response = request.CreateResponse(HttpStatusCode.OK, funders);
 
             return response;
         }

@@ -248,11 +248,19 @@
                 // resolve: { isAuthenticated: isAuthenticated }
             })
 
+            .when("/student/campaign-progress/:campaignId", {
+                templateUrl: "scripts/spa/bursify/student/campaigns/campaignProgress.html",
+                controller: "campaignProgressCtrl",
+                // resolve: { isAuthenticated: isAuthenticated }
+            })
+
             .when("/student/addAccount", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/addAccount.html",
                 controller: "addAccountCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
+
+
             //Sponsor
                         .when("/sponsor/campaign-details/:campaignId", {
                             templateUrl: "scripts/spa/bursify/sponsor/campaigns/campaignDetails.html",
@@ -277,7 +285,7 @@
                             // resolve: { isAuthenticated: isAuthenticated }
                         })
 
-            /* Campaigns start **/
+            /* Campaigns end**/
             .otherwise({
                 redirectTo: function () {
                     window.location = "/index.html";

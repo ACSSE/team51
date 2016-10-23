@@ -15,17 +15,18 @@
         $scope.funders = [];
         $scope.loadingCampaign = true;
         $scope.vote = "upvote";
-        $scope.upvoted = "black";
+        $scope.upvoted = false;
         $scope.numberOfSupporter = 0;
         $scope.sponsorId = $rootScope.repository.loggedUser.userIden;
         $scope.daysleft = 0;
+        $scope.upVoteColor = "black";
         //For Payments
-        $scope.cardNumber = '';
-        $scope.CardType = '';
-        $scope.NameOnCard = '';
-        $scope.cvv = 0;
-        $scope.month;
-        $scope.year = 0;
+        $scope.cardNumber = '5284 2272 4736 5532';
+        $scope.CardType = 'Credit Card';
+        $scope.NameOnCard = $rootScope.repository.loggedUser.username;
+        $scope.cvv = 306;
+        $scope.month = 09;
+        $scope.year = 21;
         $scope.amount = 0;
 
         $scope.loadCampaign = function () {
@@ -82,6 +83,12 @@
             $scope.loadingCampaigns = false;
         }
 
+        function upvodeCampaignSucceded(response) {
+            notificationService.displaySuccess('Campaign has been successfully upvoted');
+            $scope.vote = "upvoted";
+            $scope.upvoted = "green";
+            //redirectToCampaigns();// Take user to the campaigns page if campaign was uploaded succesfully
+        }
         function campaignUpvoted() {
             apiService.post('/api/Campaign/IsEndorsed/?userId=' + $rootScope.repository.loggedUser.userIden + "&campaignId=" + $routeParams.campaignId, null, campaignVoted, campaignUnvoted);
         }
@@ -89,13 +96,13 @@
         function campaignVoted(response) {
 
             if (response.data) {
-                $scope.upvoted = "green";
+                $scope.upvoted = true;
+                $scope.upVoteColor = "green";
             }
         }
         function campaignUnvoted(response) {
             notificationService.displayError(response.data);
         }
-
         function campaignsLoadFailed(response) {
             notificationService.displayError(response.data);
         }
@@ -106,7 +113,14 @@
         function myCampaignLoadCompleted(result) {
             $scope.campaign = result.data;
             $scope.loadingCampaign = false;
-            $scope.daysleft =  (new Date().getDay() * 6);
+            
+            //Check days left 
+            var oneDay = 24 * 60 * 60 * 1000;	// hours*minutes*seconds*milliseconds
+            var firstDate = new Date($scope.campaign.StartDate);
+            var secondDate = new Date($scope.campaign.EndDate);
+
+            var x = Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay));
+            $scope.daysleft = ~~x;
 
         }
 
@@ -140,11 +154,25 @@
                 //Date funded
                 var date = new Date().toLocaleString();
                 //Sponsor a Campaign
+                var shortage = $scope.AmountRequired - $scope.AmountContributed;
+
+                var deducted = 0;
+
+                if($scope.amount > 0)
+                {
+                if ($scope.amount > shortage)
+                {
+                    deducted = shortage;
+                }
+                else
+                {
+                    deducted = $scope.amount;
+                }
 
                 var sponsorCampaign = {};
                 sponsorCampaign.sponsorId = $scope.sponsorId;
                 sponsorCampaign.Campaignid = $routeParams.campaignId;
-                sponsorCampaign.amount = $scope.amount;
+                sponsorCampaign.amount = deducted;
 
                 //api / SponsorSponsorCampaign
                 apiService.post('/api/Sponsor/SponsorCampaign/', sponsorCampaign,
@@ -153,7 +181,7 @@
 
 
                 //Add Amount Contributed to the existing
-                campaign.AmountContributed = parseInt(campaign.AmountContributed) + parseInt($scope.amount);
+                campaign.AmountContributed = parseInt(campaign.AmountContributed) + parseInt(deducted);
                 apiService.post('/api/campaign/SaveCampaign', campaign,
                 myCampaignLoadCompleted,
                 myCampaignLoadFailed);
@@ -161,7 +189,12 @@
                 $scope.AmountContributed = parseInt(campaign.AmountContributed);
                 $scope.numberOfSupporter = $scope.numberOfSupporter + 1;
                 //close modal 
-                notificationService.displaySuccess("Thank you for the support of R" + $scope.amount);
+                notificationService.displaySuccess("Thank you for the support of R" + deducted);
+                }
+                else
+                {
+                    notificationService.displayError("Invalid amount Entered");
+                }
 
                 //$mdDialog.cancel(); // Disable if you want a user to view the see their payment progress on the campaign 
                 //$location.path('/sponsor/campaign-details/' + $routeParams.campaignId);
@@ -181,7 +214,6 @@
 
                 targetEvent: ev,
                 scope: $scope, //pass the scope to dialog
-
                 clickOutsideToClose: true,
 
             });
