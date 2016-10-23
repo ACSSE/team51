@@ -186,35 +186,100 @@ namespace Bursify.Web.Controllers
 
 
         //hashed email returns email
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("DecryptEmail")]
+        public HttpResponseMessage DecryptEmail(HttpRequestMessage request, string encryptedEmail)
+        {
+            string email = CryptoService.DecryptStringAES(encryptedEmail, "Bursify");
+            return request.CreateResponse(HttpStatusCode.OK, email);
+        }
 
 
         //update password when passed email and password 
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("UpdatePassword")]
+        public HttpResponseMessage UpdatePassword(HttpRequestMessage request, string email, string password)
+        {
+            BursifyUser user;
+
+            if (_userApi.GetUserType(email).Equals("Student"))
+            {
+                user = _userApi.GetCompletStudentUser(email);
+            }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(email);
+            }
+
+            _membershipApi.UpdateUserPassword(user, password);
+            return request.CreateResponse(HttpStatusCode.OK, true);
+        }
 
 
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.Route("ResetPassword")]
-        public HttpResponseMessage SendEmail(HttpRequestMessage request, string email)
+        public HttpResponseMessage ResetPassword(HttpRequestMessage request, string email)
         {
             //check if user exists
+            bool found = _userApi.ValidateEmail(email);
+            if (found)
+            {
+                return request.CreateResponse(HttpStatusCode.OK, false);
+            }
 
             //hash email send email with link + hash
-            using (var mail = new MailMessage("brandonsibbs@gmail.com", "malcolmcollin@gmail.com"))
+            string encryptedemail = CryptoService.EncryptStringAES(email, "Bursify");
+
+            var fromAddress = new MailAddress("bursifyproject@gmail.com", "Bursify");
+
+            BursifyUser user;
+
+            if (_userApi.GetUserType(email).Equals("Student"))
             {
-
-                var client = new SmtpClient
-                {
-                    Port = 25,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = "smtp.google.com"
-                };
-
-                mail.Subject = "this is a test email.";
-                mail.Body = "this is my test email body";
-                client.Send(mail);
-
-                return request.CreateResponse(HttpStatusCode.OK, new {sent = true});
+                user = _userApi.GetCompletStudentUser(email);
             }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(email);
+            }
+
+            string fullname = "";
+
+            if (user.UserType.Equals("Student"))
+            {
+                var student = _studentApi.GetStudent(user.ID);
+                fullname = student.Firstname + " " + student.Surname;
+            }
+            else
+            {
+                var sponsor = _sponsorApi.GetSponsor(user.ID);
+                fullname = sponsor.CompanyName;
+            }
+
+            var toAddress = new MailAddress(email, fullname);
+            const string fromPassword = "Bursify123!";
+            string subject = "Bursify Reset Password ";
+            string body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} www.bursify.azurewebsites.net/#/reset/ems?={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
+
+            var smtp = new SmtpClient
+            {
+                Host = "bursify.azurewebsites.net",
+                Port = 25,
+                EnableSsl = false,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body,
+
+
+            })
+
+            return request.CreateResponse(HttpStatusCode.OK, true);
         }
 
         //use sender Id = -1 for notification sent from system/bursify
