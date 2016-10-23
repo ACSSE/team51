@@ -40,7 +40,7 @@
             fileuploader.on('click', function () {
                 console.log("File upload triggered programatically");
             })
-            fileuploader.trigger('click')
+            fileuploader.trigger('click');
         }
 
         $scope.prepareImage = function prepareImage($files) {
