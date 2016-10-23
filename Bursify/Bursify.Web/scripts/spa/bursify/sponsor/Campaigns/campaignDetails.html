@@ -2,11 +2,11 @@
 <div id="content">
     <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'teal-300'}">
         <div class="md-toolbar-tools">
+            <a ng-href="#/sponsor/campaigns"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
             <span>View Campaign</span>
         </div>
     </md-toolbar>
     <md-card>
-        <a href="#/sponsor/campaigns"><span style="margin-left:20px"><i class="fa fa-arrow-left btn btn-round"> Back</i></span></a>
         <md-card-header>
             <md-card-header-text>
                 <md-card>
@@ -32,11 +32,28 @@
                 <div class="row" style="margin-bottom:10px">
                     <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left">{{campaign.Location}}</span></div>
                     <div class="col-lg-4"><span><i class="fa fa-tags" aria-hidden="true">{{campaign.CampaignType}}</i></span></div>
-                    <div class="col-lg-4"><i class="upvote" style="color:{{upvoted}}" ng-click="upvodeCampaign($event,campaign.CampaignId)"><i class="fa fa-thumbs-up" aria-hidden="true">
+                    <!--<div class="col-lg-4"><i class="upvote" style="color:{{upvoted}}" ng-click="upvodeCampaign($event,campaign.CampaignId)"><i class="fa fa-thumbs-up" aria-hidden="true">
                         <md-tooltip md-direction="top" style="margin-top:50px;">
                          {{vote}}
                          </md-tooltip>
-                        </i></i></div>
+                        </i></i>
+                    </div>-->
+                    <div class="col-lg-4">
+                        <i class="upvote" type="button" ng-click="upvodeCampaign($event,campaign.CampaignId)" ng-if="!(upvoted == true)">
+                            <i class="fa fa-thumbs-up" style="color:{{upVoteColor}}" aria-hidden="true">
+                                <md-tooltip md-direction="top" style="margin-top:50px">
+                                    upvote
+                                </md-tooltip>
+                            </i>
+                        </i>
+                        <i class="upvote">
+                            <i class="fa fa-thumbs-up" style="color:green" aria-hidden="true" ng-if="upvoted == true">
+                                <md-tooltip md-direction="top" style="margin-top:50px">
+                                    upvoted
+                                </md-tooltip>
+                            </i>
+                        </i>
+                    </div>
                 </div>
                 <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
                 <br />

@@ -45,11 +45,13 @@ namespace Bursify.Data.EF.Repositories
             return sponsorNames;
         }
 
+<<<<<<< HEAD
         public List<CampaignSponsor> GetCampaignSponsors(int campaignId)
         {
             return FindMany(campaign => campaign.CampaignId == campaignId);
         }
 
+=======
         public int GetNumberOfFunders(int campaignId)
         {
             var count = FindMany(x => x.CampaignId == campaignId).DistinctBy(x => x.SponsorId).Count();
@@ -89,17 +91,35 @@ namespace Bursify.Data.EF.Repositories
 
             foreach (var funder in funders)
             {
-                var address = _dataSession.UnitOfWork.Context.Set<Sponsor>()
-                    .FirstOrDefault(x => x.ID == funder.SponsorId).Location.Split(',')[0];
+                var address = _dataSession.UnitOfWork.Context.Set<UserAddress>()
+                    .FirstOrDefault(x => x.BursifyUserId == funder.SponsorId);
 
-
-                if (address == null || !dictionary.ContainsKey(address)) continue;
-                string province = address;
+                if (address == null || !dictionary.ContainsKey(address.Province)) continue;
+                string province = address.Province;
                 dictionary[province] += 1;
             }
 
             return dictionary;
         }
-        
+>>>>>>> 0a0ecd863e3665dc6d0e9b246b074f6ba9310de1
+
+        //saves by adding amount if has an entry already
+        //public void SaveByAdding(CampaignSponsor entity)
+        //{
+        //    var existing = LoadById(entity.ID);
+
+        //    if (existing == null)
+        //    {
+        //        DbContext.Set<CampaignSponsor>().Add(entity);
+        //    }
+        //    else
+        //    {
+        //        string entitySetName = GetEntitySetName<CampaignSponsor>();
+        //        entity.AmountContributed += existing.AmountContributed;
+        //        ObjectContext.ApplyCurrentValues(entitySetName, entity);
+        //    }
+
+        //    ObjectContext.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
+        //}
     }
 }

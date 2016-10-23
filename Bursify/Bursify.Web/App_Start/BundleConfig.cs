@@ -20,6 +20,8 @@ namespace Bursify.Web
 
                 "~/Scripts/Vendors/fusionchart.js",
                  "~/Scripts/Vendors/fusioncharts.charts.js",
+                "~/Scripts/Vendors/fusioncharts.maps.js",
+                "~/Scripts/Vendors/fusioncharts.southafrica.js",
                 "~/Scripts/Vendors/angular.js",
                 "~/Scripts/Vendors/angular-fusionchart.js",
                 "~/Scripts/Vendors/angular-route.js",
@@ -63,9 +65,12 @@ namespace Bursify.Web
             #endregion
 
             #region Campaign
+
+                    //For sponsor
                   "~/Scripts/spa/bursify/sponsor/campaigns/campaignsCtrl.js",
                   "~/Scripts/spa/bursify/sponsor/campaigns/viewCampaignCtrl.js",
 
+                  //For Student
                   "~/Scripts/spa/bursify/student/campaigns/campaignsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/campaignDetailsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/addCampaignCtrl.js",
@@ -73,7 +78,10 @@ namespace Bursify.Web
                   "~/Scripts/spa/bursify/student/campaigns/myCampaignsCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/addAccountCtrl.js",
                   "~/Scripts/spa/bursify/student/campaigns/confirmDeleteCtrl.js",
-                  
+
+                  //Reports
+                  "~/Scripts/spa/bursify/student/campaigns/campaignProgressCtrl.js",
+
             #endregion
 
                 "~/Scripts/spa/account/registerCtrl.js",

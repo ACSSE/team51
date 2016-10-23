@@ -697,6 +697,8 @@
     <Content Include="scripts\spa\bursify\student\campaigns\addCampaignCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignDetails.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignDetailsCtrl.js" />
+    <Content Include="scripts\spa\bursify\student\campaigns\campaignProgress.html" />
+    <Content Include="scripts\spa\bursify\student\campaigns\campaignProgressCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\campaignsCtrl.js" />
     <Content Include="scripts\spa\bursify\student\campaigns\confirmDelete.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\confirmDeleteCtrl.js" />
@@ -771,6 +773,8 @@
     <Content Include="scripts\vendors\file-input.js" />
     <Content Include="scripts\vendors\fusionchart.js" />
     <Content Include="scripts\vendors\fusioncharts.charts.js" />
+    <Content Include="scripts\vendors\fusioncharts.maps.js" />
+    <Content Include="scripts\vendors\fusioncharts.southafrica.js" />
     <Content Include="scripts\vendors\jquery.fancybox-media.js" />
     <Content Include="scripts\vendors\jquery.fancybox.js" />
     <Content Include="scripts\vendors\jquery.js" />
@@ -918,6 +922,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\BursifyUploads\" />
     <Folder Include="Content\dist\js\pages\" />
     <Folder Include="Content\images\campaign\" />
     <Folder Include="Content\images\company\" />
@@ -980,7 +985,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50808</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50000/</IISUrl>
+          <IISUrl>http://localhost:50008/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
