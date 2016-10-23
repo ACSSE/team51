@@ -30,6 +30,10 @@
                  templateUrl: "scripts/spa/account/fmp.html",
                  controller: "fmpCtrl"
              })
+              .when("/reset", {
+                  templateUrl: "scripts/spa/account/reset.html",
+                  controller: "resetCtrl"
+              })
             .when("/student/home", {
                 templateUrl: "scripts/spa/bursify/student/home/index.html",
                 controller: "studentCtrl",

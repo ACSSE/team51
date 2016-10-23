@@ -59,6 +59,7 @@ namespace Bursify.Web
                 "~/Scripts/spa/services/fileUploadService.js",
                 "~/Scripts/spa/account/loginCtrl.js",
                 "~/Scripts/spa/account/fmpCtrl.js",
+                 "~/Scripts/spa/account/resetCtrl.js",
             #endregion
 
             #region Campaign

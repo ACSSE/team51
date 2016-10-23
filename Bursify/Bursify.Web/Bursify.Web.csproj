@@ -631,7 +631,9 @@
     <Content Include="Images\campaigns\campaign.jpeg" />
     <Content Include="Images\campaigns\campaign.jpg" />
     <Content Include="Images\campaigns\default-campaign.jpg" />
+    <Content Include="scripts\spa\account\reset.html" />
     <Content Include="scripts\spa\account\FMP.html" />
+    <Content Include="scripts\spa\account\resetCtrl.js" />
     <Content Include="scripts\spa\account\login.html" />
     <Content Include="scripts\spa\account\fmpCtrl.js" />
     <Content Include="scripts\spa\account\loginCtrl.js" />
