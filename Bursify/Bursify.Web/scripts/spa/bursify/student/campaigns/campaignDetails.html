@@ -8,7 +8,6 @@
     </md-toolbar>
     <md-card>
 
-
         <md-card-header>
             <md-card-header-text>
                 <md-card>
@@ -70,6 +69,7 @@
                 </div>
             </div>
         </md-card-header>
+
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">Campaign Description:</span>
@@ -92,8 +92,11 @@
           width: auto;
         }
             </style>
-            <p><pre>{{campaign.Description}}</pre></p>
-        </md-card-content>
+            <md-content flex layout-padding>
+            <!--<p><pre>{{campaign.Description}}</pre></p>-->
+                {{campaign.Description}}
+                </md-content>
+</md-card-content>
 
         <div id="content">
 
@@ -132,5 +135,3 @@
         </div>
     </md-card>
 </div>
-
-

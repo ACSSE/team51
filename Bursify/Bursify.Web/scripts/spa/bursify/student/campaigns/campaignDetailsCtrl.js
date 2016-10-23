@@ -103,9 +103,6 @@
                 $scope.isMyCampaign = true;
             }
 
-            //Check whether there's a video link or not 
-            isVideo();
-
         }
 
         function myCampaignLoadFailed(response) {
