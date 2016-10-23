@@ -113,7 +113,14 @@
         function myCampaignLoadCompleted(result) {
             $scope.campaign = result.data;
             $scope.loadingCampaign = false;
-            $scope.daysleft =  (new Date().getDay() * 6);
+            
+            //Check days left 
+            var oneDay = 24 * 60 * 60 * 1000;	// hours*minutes*seconds*milliseconds
+            var firstDate = new Date($scope.campaign.StartDate);
+            var secondDate = new Date($scope.campaign.EndDate);
+
+            var x = Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay));
+            $scope.daysleft = ~~x;
 
         }
 

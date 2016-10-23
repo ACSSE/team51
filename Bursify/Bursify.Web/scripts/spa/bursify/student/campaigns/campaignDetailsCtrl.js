@@ -18,14 +18,15 @@
         $scope.upvoted = false;
         $scope.numberOfSupporter = 2;
         $scope.studentId = $rootScope.repository.loggedUser.userIden;
-        $scope.upVoteColor= "black";
+        $scope.upVoteColor = "black";
+        $scope.daysleft = 0;
         //For Payments
-        $scope.cardNumber = '';
-        $scope.CardType = '';
+        $scope.cardNumber = '55 2125 2336 225';
+        $scope.CardType = 'Credit card';
         $scope.NameOnCard = '';
-        $scope.cvv = 0;
-        $scope.month;
-        $scope.year = 0;
+        $scope.cvv = 307;
+        $scope.month = 6;
+        $scope.year = 2014;
         $scope.amount = 0;
         $scope.isMyCampaign = false;
 
@@ -92,6 +93,15 @@
 
         function myCampaignLoadCompleted(result) {
             $scope.campaign = result.data;
+
+            //Check days left 
+            var oneDay = 24 * 60 * 60 * 1000;	// hours*minutes*seconds*milliseconds
+            var firstDate = new Date($scope.campaign.StartDate);
+            var secondDate = new Date($scope.campaign.EndDate);
+
+            var x = Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay));
+            $scope.daysleft = ~~x;
+
             $scope.loadingCampaign = false;
 
             if ($scope.campaign.StudentId == $scope.studentId)

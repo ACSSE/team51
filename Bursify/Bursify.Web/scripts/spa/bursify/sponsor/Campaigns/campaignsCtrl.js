@@ -126,6 +126,8 @@
 
             notificationService.displaySuccess("upvoded");
         };
+
+
     }
 
 })(angular.module('BursifyApp'));
