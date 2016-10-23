@@ -59,6 +59,10 @@ namespace Bursify.Web.Controllers
                     var loggedInUser = _membershipApi.GetUserByEmail(userVm.UserEmail);
                     var user = (new BursifyUserViewModel()).ReverseMapUser(loggedInUser);
                     
+                    if(user.UserType.Equals("Admin"))
+                    {
+                        return request.CreateResponse(HttpStatusCode.OK, new { success = true, user });
+                    }
 
                     SetUserName(user);
 

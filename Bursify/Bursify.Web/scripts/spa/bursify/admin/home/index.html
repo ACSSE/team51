@@ -1,1 +1,102 @@
-﻿<nav-bar></nav-bar>
+﻿<adnav-bar></adnav-bar>
+<div id="loadingbarContainer"></div>
+
+<div id="content" class="md-padding" ng-init="FilterType = 'All'">
+  
+    <div class="col-md-12 md-padding" style="padding:20px;" >
+        <div class="col-md-12 padding-0">
+            <div class="col-md-12 padding-0">
+                <div class="col-md-12 padding-0">
+                    <div class="col-lg-6" ng-click="goToInsight()">
+                        <div class="panel">
+                            <div class="panel-heading border-none" md-colors="{background: 'purple'}">
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                                   
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <h4>
+                                        <span class="fa fa-binoculars icon text-right"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="panel-body text-center">
+                                <h1>Insights</h1>
+
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" ng-click="goToStudent()">
+                        <div class="panel">
+                            <div class="panel-heading border-none" md-colors="{background: 'green'}">
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <h4>
+                                        <span class="fa fa-graduation-cap icon text-right"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="panel-body text-center">
+                                <h1>Students</h1>
+
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6"ng-click="goToSponsor()">
+                        <div class="panel">
+                            <div class="panel-heading border-none" md-colors="{background: 'blue'}">
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <h4>
+                                        <span class="fa fa-group icon text-right"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="panel-body text-center">
+                                <h1>Sponsor</h1>
+
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" ng-click="goToCampaign()">
+                        <div class="panel">
+                            <div class="panel-heading border-none" md-colors="{background: 'orange'}">
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <h4>
+                                        <span class="fa fa-dollar icon text-right"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="panel-body text-center">
+                                <h1>Campaigns</h1>
+
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+             
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+        <div id="Applicants" class="md-padding">
+            <iframe width="100%" height="300px" src="https://app.powerbi.com/view?r=eyJrIjoiMTNmMTlmNmUtZDk4Yy00ODE1LTg5YTYtMDU5YWJmOWMxODg4IiwidCI6Ijg4OTkwMDQ0LTM4OWMtNGE1YS04YjNhLTkwZDk5NjM1ZmY4NSIsImMiOjh9" frameborder="0" allowFullScreen="false"></iframe>
+        </div>
+    </div>
+
+

@@ -220,9 +220,10 @@
                                         <div class="media" ng-repeat="Sponsorship in Similar">
                                             <div class="media-left">
                                                 <a href="#/student/sponsorship/{{Sponsorship.ID}}">
+                                                    <img ng-if="Sponsorship.SponsorPicturePath == 'def'" ng-src="Content/default.png" width="55" height="55" class="media-object search-v1-avatar">
+                                                    <img ng-if="Sponsorship.SponsorPicturePath != 'def'" ng-src="Content/BursifyUploads/{{Sponsorship.SponsorId}}/images/{{Sponsorship.SponsorPicturePath}}" width="55" height="55" class="media-object search-v1-avatar">
 
-                                                    <img  ng-src="Content/BursifyUploads/{{Sponsorship.SponsorId}}/images/{{Sponsorship.SponsorPicturePath}}" class="media-object search-v1-avatar">
-                                                </a>
+  </a>
                                             </div>
 
 
