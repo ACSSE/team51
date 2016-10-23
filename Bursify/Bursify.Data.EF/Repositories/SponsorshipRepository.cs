@@ -52,7 +52,7 @@ namespace Bursify.Data.EF.Repositories
                 .FirstOrDefault();
 
             return sponsorship;
-            return sponsorship;
+            
         }
 
         public Sponsorship GetSponsorship(int id)

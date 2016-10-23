@@ -152,7 +152,7 @@
         ID : "",
         SponsorId : "",
         Name : "Entelect Bursary",
-        Description: "The vehicle that you configured has a unique code with which you can identify yourself with at any desired time. The OnlineCode gives you access to your configuration at any time and you can send it to a Mercedes-Benz dealership or share it with friends and acquaintances on Facebook or Twitter.",
+        Description: "Entelect, through its Foundation programme, is mentoring and financially supporting 45 underprivileged school children this year. Beneficiaries' names were put forward by staff members who know them, thus forming part of the company's extended community. Entelect's commitment is to pay for school fees, books, uniforms and other related education activities until they graduate, taking on new recipients each year as the company grows. Coupled with this a team of 25 Entelect volunteers (and friends) are assisting the children and their parents or guardians on weekends with mentorship support.",
         StartingDate : "",
         ClosingDate : "",
         EssayRequired : "false",
@@ -166,7 +166,7 @@
         RacePreference : "All",
         DisabilityPreference : "All",
         ExpensesCovered : "",
-        TermsAndConditions : "*** Price excludes CO2 tax and includes VAT at a standard rate of 14%, but excludes additional costs necessary to your car. This Car Configurator is designed and provided to give an indication of specifications and pricing available in relation to our range of Mercedes-Benz vehicles. Every effort has been made to ensure that these accurately reflect current customer offerings. However, please note that specifications and pricing can change without notice and we do not make any representations or warranties in relation to the availability of any specifications or the accuracy of the prices included in the Car Configurator or as to the availability of any particular vehicle. In addition, illustrations shown may include accessories which are not provided as standard. All texts, images, logos and graphics, as well as their arrangements, are subject to copyright and other intellectual property laws. Copyright Daimler AG. If not otherwise stated, all brands named are legally protected trademarks of the Daimler Group of Companies. This especially applies to the names of the vehicle models, all logos and the company emblem. Please note that any price received via the Car Configurator does not qualify as a formal quote. Please contact or visit one of our dealers for current pricing and specifications. All vehicle orders are subject to terms and conditions of sale. The recommended retail price as well as all promotions displayed on this website are applicable within South Africa only.",
+        TermsAndConditions : "(a) to commence the course with effect from the ………………… academic year, to take the Course full-time, and to complete the course successfully within the aforementioned period or within such extended period as may be approved in terms of this agreement. (b) to furnish the Company with satisfactory proof of enrolment for the course at the commencement of each year of study: (c) to undergo such practical training as may be prescribed by the aforementioned training institution as part of the course or as may be required for purposes of registration in my particular profession, in the Company, if the Company so desires;",
         SponsorshipType : "Bursary",
         AgeGroup : "All",
         Rating : 5,
@@ -349,6 +349,7 @@
             for (var i = 0; i < $scope.Requirements.length; i++) {
                 $scope.Requirements[i].SponsorshipId = $scope.AddedSP.ID;
             }
+
             apiService.post('/api/sponsorship/addrequirements', $scope.Requirements, finished, requirementsFailed);
          
         }

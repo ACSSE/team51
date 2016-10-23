@@ -1,0 +1,48 @@
+﻿    
+<style>
+    #content , .ng-scope {
+    background-color: #fff;
+}
+</style>
+
+<div id="content" ng-init="preload()">
+    <form role="form" novalidate angular-validator name="userLoginForm" angular-validator-submit="login()">
+     
+        <div class="login-box">
+            <div class="login-logo">
+                <a href="/Home/Index"><b>Bursify</b></a>
+                <div id="loadingbarContainer"></div>
+            </div><!-- /.login-logo -->
+            <div class="login-box-body">
+            <div style="text-align:center;">Please enter new password.</div>
+                <div class="form-group">
+                    <label for="inputUsername" class="sr-only">Password</label>
+                    <input type="password" id="inputUsername" name="inputUsername" class="form-control" ng-model="Password1" placeholder="Password"
+                           validate-on="blur" required required-message="'Email is required'">
+                </div>
+                <div class="form-group">
+                    <label for="inputUsername" class="sr-only">Confirm Password</label>
+                    <input type="password" id="inputUsername" name="inputUsername" class="form-control" ng-model="Password2" placeholder="Confirm Password"
+                           validate-on="blur" required required-message="'Email is required'">
+                </div>
+      
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" ng-click="Reset()" class="btn btn-success btn-block btn-flat">Change Password</button>
+                    </div><!-- /.col -->
+                </div>
+
+
+
+
+         
+
+              
+
+            </div><!-- /.login-box-body -->
+        </div><!-- /.login-box -->
+
+    </form>
+</div>
+
+

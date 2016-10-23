@@ -45,6 +45,11 @@ namespace Bursify.Data.EF.Repositories
             return sponsorNames;
         }
 
+        public List<CampaignSponsor> GetCampaignSponsors(int campaignId)
+        {
+            return FindMany(campaign => campaign.CampaignId == campaignId);
+        }
+
         public int GetNumberOfFunders(int campaignId)
         {
             var count = FindMany(x => x.CampaignId == campaignId).DistinctBy(x => x.SponsorId).Count();
@@ -84,11 +89,12 @@ namespace Bursify.Data.EF.Repositories
 
             foreach (var funder in funders)
             {
-                var address = _dataSession.UnitOfWork.Context.Set<UserAddress>()
-                    .FirstOrDefault(x => x.BursifyUserId == funder.SponsorId);
+                var address = _dataSession.UnitOfWork.Context.Set<Sponsor>()
+                    .FirstOrDefault(x => x.ID == funder.SponsorId).Location.Split(',')[0];
 
-                if (address == null || !dictionary.ContainsKey(address.Province)) continue;
-                string province = address.Province;
+
+                if (address == null || !dictionary.ContainsKey(address)) continue;
+                string province = address;
                 dictionary[province] += 1;
             }
 

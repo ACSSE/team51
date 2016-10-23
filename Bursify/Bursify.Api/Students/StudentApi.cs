@@ -21,9 +21,9 @@ namespace Bursify.Api.Students
             SponsorshipRepository sponsorshipRepository, SponsorRepository sponsorRepository,
             StudentRepository studentRepository, InstitutionRepository institutionRepository,
             SubjectRepository subjectRepository, StudentSponsorshipRepository studentSponsorshipRepository,
-            StudentReportRepository studentReportRepository, RequirementRepository requirementRepository)
+            StudentReportRepository studentReportRepository, RequirementRepository requirementRepository, NotificationRepository notificationRepository)
             : base(
-                unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository)
+                unitOfWorkFactory, userRepository, userAddressRepository, campaignRepository, campaignSponsorRepository, notificationRepository)
         {
             _accountRepository = accountRepository;
             _sponsorshipRepository = sponsorshipRepository;
@@ -231,6 +231,14 @@ namespace Bursify.Api.Students
             using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
                 return campaignRepository.GetUpVotes(campaignId);
+            }
+        }
+
+        public List<CampaignSponsor> GetCampaignSponsors(int campaignId)
+        {
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                return campaignSponsorRepository.GetCampaignSponsors(campaignId);
             }
         }
 

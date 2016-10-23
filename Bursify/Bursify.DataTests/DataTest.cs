@@ -2,6 +2,8 @@
 using Bursify.Data.EF.Repositories;
 using Bursify.Data.EF.Entities.Bridge;
 using Bursify.Data.EF.Uow;
+using Bursify.Api.Security;
+using System.Windows.Forms;
 
 namespace Bursify.DataTests
 {
@@ -30,5 +32,17 @@ namespace Bursify.DataTests
                 //}
 
             }
+
+
+        [TestMethod]
+        public void TestCrpty()
+        {
+            var emailhash = CryptoService.EncryptStringAES("malcolmcollin@gmail.com", "Bursify");
+            MessageBox.Show("Hashed: " + emailhash);
+
+            var email = CryptoService.DecryptStringAES(emailhash, "Bursify");
+
+            MessageBox.Show("email: " + email);
+        }
     }
 }

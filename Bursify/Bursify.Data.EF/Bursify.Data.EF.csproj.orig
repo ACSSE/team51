@@ -88,7 +88,6 @@
   <ItemGroup>
     <Compile Include="Entities\Bridge\CampaignReport.cs" />
     <Compile Include="Entities\Bridge\CampaignSponsor.cs" />
-    <Compile Include="Entities\Bridge\SponsorStudentNotification.cs" />
     <Compile Include="Entities\Bridge\StudentSponsorship.cs" />
     <Compile Include="Entities\Campaigns\CampaignAccount.cs" />
     <Compile Include="Entities\SponsorUser\Account.cs" />
@@ -101,6 +100,7 @@
     <Compile Include="Entities\User\BursifyUser.cs" />
     <Compile Include="Entities\StudentUser\StudentReport.cs" />
     <Compile Include="Entities\StudentUser\Subject.cs" />
+    <Compile Include="Entities\User\Notification.cs" />
     <Compile Include="Entities\User\UserActivity.cs" />
     <Compile Include="Entities\User\UserAddress.cs" />
     <Compile Include="EntityMappings\AccountMapping.cs" />
@@ -110,10 +110,10 @@
     <Compile Include="EntityMappings\CampaignReportMapping.cs" />
     <Compile Include="EntityMappings\CampaignSponsorMapping.cs" />
     <Compile Include="EntityMappings\InstitutionMapping.cs" />
+    <Compile Include="EntityMappings\NotificationMapping.cs" />
     <Compile Include="EntityMappings\RequirementMapping.cs" />
     <Compile Include="EntityMappings\SponsorMapping.cs" />
     <Compile Include="EntityMappings\SponsorshipMapping.cs" />
-    <Compile Include="EntityMappings\SponsorStudentNotificationMapping.cs" />
     <Compile Include="EntityMappings\StudentMapping.cs" />
     <Compile Include="EntityMappings\StudentReportMapping.cs" />
     <Compile Include="EntityMappings\StudentSponsorshipMapping.cs" />
@@ -122,18 +122,14 @@
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
 <<<<<<< HEAD
-    <Compile Include="Migrations\201608261451252_intial.cs" />
-    <Compile Include="Migrations\201608261451252_intial.Designer.cs">
-      <DependentUpon>201608261451252_intial.cs</DependentUpon>
+    <Compile Include="Migrations\201610051526140_addNotification.cs" />
+    <Compile Include="Migrations\201610051526140_addNotification.Designer.cs">
+      <DependentUpon>201610051526140_addNotification.cs</DependentUpon>
 =======
-    <Compile Include="Migrations\201608311433560_init.cs" />
-    <Compile Include="Migrations\201608311433560_init.Designer.cs">
-      <DependentUpon>201608311433560_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609041335310_update.cs" />
-    <Compile Include="Migrations\201609041335310_update.Designer.cs">
-      <DependentUpon>201609041335310_update.cs</DependentUpon>
->>>>>>> 21f8ed14a9659b63d53b494edeea6db36bfa0ed0
+    <Compile Include="Migrations\201610041432095_i.cs" />
+    <Compile Include="Migrations\201610041432095_i.Designer.cs">
+      <DependentUpon>201610041432095_i.cs</DependentUpon>
+>>>>>>> caa7051474becb80e3ac3ab758616f4ef4d4c313
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,6 +140,7 @@
     <Compile Include="Repositories\CampaignRepository.cs" />
     <Compile Include="Repositories\CampaignSponsorRepository.cs" />
     <Compile Include="Repositories\InstitutionRepository.cs" />
+    <Compile Include="Repositories\NotificationRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RequirementRepository.cs" />
     <Compile Include="Repositories\SponsorRepository.cs" />
@@ -172,15 +169,12 @@
   </ItemGroup>
   <ItemGroup>
 <<<<<<< HEAD
-    <EmbeddedResource Include="Migrations\201608261451252_intial.resx">
-      <DependentUpon>201608261451252_intial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610051526140_addNotification.resx">
+      <DependentUpon>201610051526140_addNotification.cs</DependentUpon>
 =======
-    <EmbeddedResource Include="Migrations\201608311433560_init.resx">
-      <DependentUpon>201608311433560_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609041335310_update.resx">
-      <DependentUpon>201609041335310_update.cs</DependentUpon>
->>>>>>> 21f8ed14a9659b63d53b494edeea6db36bfa0ed0
+    <EmbeddedResource Include="Migrations\201610041432095_i.resx">
+      <DependentUpon>201610041432095_i.cs</DependentUpon>
+>>>>>>> caa7051474becb80e3ac3ab758616f4ef4d4c313
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
