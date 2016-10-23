@@ -53,6 +53,8 @@ namespace Bursify.Api.Security
 
                 var salt = _cryptoService.CreateSalt();
 
+                
+
                 user = new BursifyUser
                 {
                     Email = userEmail,

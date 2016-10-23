@@ -178,10 +178,20 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
+
+        //hashed email returns email
+
+
+        //update password when passed email and password 
+
+
         [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.Route("SendEmail")]
+        [System.Web.Mvc.Route("ResetPassword")]
         public HttpResponseMessage SendEmail(HttpRequestMessage request, string email)
         {
+            //check if user exists
+
+            //hash email send email with link + hash
             using (var mail = new MailMessage("brandonsibbs@gmail.com", "malcolmcollin@gmail.com"))
             {
 

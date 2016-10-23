@@ -190,6 +190,11 @@
                 controller: "leaderboardCtrl",
                  // resolve: { isAuthenticated: isAuthenticated}
             })
+              .when("/student/chart", {
+                  templateUrl: "scripts/spa/bursify/student/chart/leaderboard.html",
+                  controller: "leaderboardCtrl",
+                  // resolve: { isAuthenticated: isAuthenticated}
+              })
             .when("/student/sponsorship/:sponsorshipId", {
                 templateUrl: "scripts/spa/bursify/student/sponsorship/index.html",
                 controller: "sponsorshipCtrl",

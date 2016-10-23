@@ -32,6 +32,17 @@ namespace Bursify.Web.Controllers
         {
             _sponsorApi.SaveSponsor(sponsor.ReverseMap());
 
+            int userId = sponsor.ID;
+            string[] location = sponsor.Location.Split(',');
+
+            var address = new UserAddressViewModel();
+            address.BursifyUserId = userId;
+            address.City = location[1];
+            address.Province = location[0];
+            address.AddressType = "Company";
+
+            _studentApi.SaveAddress(address.ReverseMap());
+
             var response = request.CreateResponse(HttpStatusCode.Created);
 
             return response;

@@ -710,6 +710,8 @@
     <Content Include="scripts\spa\bursify\student\campaigns\viewCampaigns.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\vode.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\dialog.tmpl.html" />
+    <Content Include="scripts\spa\bursify\student\chart\leaderboard.html" />
+    <Content Include="scripts\spa\bursify\student\chart\leaderboardCtrl.js" />
     <Content Include="scripts\spa\bursify\student\home\index.html" />
     <Content Include="scripts\spa\bursify\student\home\studentCtrl.js" />
     <Content Include="scripts\spa\bursify\student\messages\messages.html" />

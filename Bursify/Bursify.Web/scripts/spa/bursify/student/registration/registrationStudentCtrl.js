@@ -1479,19 +1479,20 @@
         $scope.saveInsti = function () {
           
             $scope.InstiP = {};
-            $scope.InstiP.ID = 1;
+           
             $scope.InstiP.Name = $scope.Student.InstitutionName.place;
             $scope.InstiP.Type = $scope.Student.InstitutionType.level;
-            $scope.InstiP.Website = 'www.uj.ac.za';
 
 
             apiService.post('/api/student/SaveInstitution', $scope.InstiP, saveInstiDone, saveInstiFailed);
         }
 
-
-        function saveInstiDone() {
+        var instiID = 0
+        function saveInstiDone(result) {
+            instiID = result.data.ID;
+            notificationService.displayInfo(instiID);
            // notificationService.displayInfo('Success');
-            saveStudent();
+           // saveStudent();
         }
 
         function saveInstiFailed() {
@@ -1514,7 +1515,7 @@
             $scope.StudentP.FirstName = $scope.Student.FirstName;
             $scope.StudentP.Surname = $scope.Student.Surname;
             $scope.StudentP.EducationLevel = $scope.Student.StudentLevel.grade;
-            $scope.StudentP.InstitutionID = 1;
+            $scope.StudentP.InstitutionID = instiID;
             $scope.StudentP.AverageMark = null;
             $scope.StudentP.StudentNumber = $scope.Student.StudentNumber;
             $scope.StudentP.IDNumber = $scope.Student.IdNumber;
