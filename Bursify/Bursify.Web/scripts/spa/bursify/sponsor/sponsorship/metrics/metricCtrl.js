@@ -121,7 +121,7 @@
             }
 
             for (var i = 0; i < $scope.ProvinceData.count; i++) {
-                $scope.ProvinceDataSource.data.push(new dataItem($scope.ProvinceData.data[i].Province, $scope.ProvinceData.data[i].ApplicantCount))
+                $scope.ProvinceDataSource.data.push(new dataItem($scope.ProvinceData.data[i].Province, $scope.ProvinceData.data[i].Count))
             }
 
             loadWeekly();

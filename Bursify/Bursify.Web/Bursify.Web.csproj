@@ -669,6 +669,13 @@
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\editSponsorshipCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\metrics\metric.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\metrics\metricCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\sponsored.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\sponsoredCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\dialog.tmpl.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\Form\Form.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\Form\formCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\studentSponsored.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\studentSponsoredCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndex.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndexCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicants.html" />
@@ -703,6 +710,8 @@
     <Content Include="scripts\spa\bursify\student\campaigns\viewCampaigns.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\vode.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\dialog.tmpl.html" />
+    <Content Include="scripts\spa\bursify\student\chart\leaderboard.html" />
+    <Content Include="scripts\spa\bursify\student\chart\leaderboardCtrl.js" />
     <Content Include="scripts\spa\bursify\student\home\index.html" />
     <Content Include="scripts\spa\bursify\student\home\studentCtrl.js" />
     <Content Include="scripts\spa\bursify\student\messages\messages.html" />

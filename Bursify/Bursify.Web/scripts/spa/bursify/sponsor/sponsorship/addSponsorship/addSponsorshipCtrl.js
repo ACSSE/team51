@@ -349,6 +349,7 @@
             for (var i = 0; i < $scope.Requirements.length; i++) {
                 $scope.Requirements[i].SponsorshipId = $scope.AddedSP.ID;
             }
+
             apiService.post('/api/sponsorship/addrequirements', $scope.Requirements, finished, requirementsFailed);
          
         }
