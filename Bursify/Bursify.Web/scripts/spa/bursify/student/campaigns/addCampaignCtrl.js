@@ -5,7 +5,7 @@
 
     addCampaignCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', 'fileUploadService', '$rootScope', 'membershipService', '$timeout'];
 
-                              function addCampaignCtrl($scope, $location,$routeParams, apiService, notificationService,fileUploadService,$rootScope,membershipService,$timeout) {
+    function addCampaignCtrl($scope, $location,$routeParams, apiService, notificationService,fileUploadService,$rootScope,membershipService,$timeout) {
         $scope.pageClass = 'page-campaign-add';
 
         /*form input*/
@@ -18,7 +18,7 @@
         $scope.campaign.Description = 'We would like to make an application for £1000 from the AN Other Fund. We are a group of local people in Anytown, and we have recently set up a community group running free sports activities for children in the area. ';
         $scope.campaign.Tagline = 'Please provide a short description of your campaign';
         $scope.campaign.AmountRequired = 50000;
-        $scope.campaign.CampaignType = 'Sport';
+        $scope.campaign.CampaignType;
         $scope.campaign.VideoPath = 'xxx';
         $scope.campaign.PicturePath = 'default-campaign.jpg';
         $scope.campaign.StartDate = new Date();
@@ -31,6 +31,7 @@
         $scope.addStudentCampaign = addStudentCampaign;
 
         $scope.CampaignId;
+        $scope.daysleft = 0;
 
         var ImageFile = null;
         
@@ -57,7 +58,6 @@
         function ImageUploadDone() {
             
         }
-
 
         $scope.nextTab = function () {
 

@@ -18,17 +18,18 @@
                                         <label>My Campaign Name</label>
                                         <div class="form-group">
                                             <input type="text" class="form-control" ng-model="campaign.CampaignName" placeholder="Campaign Name or Title" id="name" name="name" required>
-                                            <span ng-show="newCampaignForm.$error.required">required</span>
+                                            <span ng-show="newCampaignForm.name.$error.required" style="color:red">*required</span>
                                         </div>
                                         <label>Campaign Tagline</label>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="tagline" ng-model="campaign.Tagline" placeholder="Campaign Name or Title">
+                                            <input type="text" class="form-control" ng-model="campaign.Tagline" placeholder="Campaign Name or Title" id="tagline" name="tagline" required>
+                                            <span ng-show="newCampaignForm.tagline.$error.required" style="color:red">*required</span>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Campaign Type</label>
-                                                    <select class="form-control" style="width: 100%;" ng-model="campaign.CampaignType" tabindex="-1" aria-hidden="true">
+                                                    <select class="form-control" style="width: 100%;" ng-model="campaign.CampaignType" tabindex="-1" aria-hidden="true" id="type" name="type" required>
                                                         <option value="Art">Art</option>
                                                         <option value="Books">Books</option>
                                                         <option value="Excursion">Excursion</option>
@@ -40,6 +41,7 @@
                                                         <option value="Theater">Theater</option>
                                                         <option value="Technology">Technology</option>
                                                     </select>
+                                                    <span ng-show="newCampaignForm.type.$error.required" style="color:red">*required</span>
                                                 </div>
                                             </div>
 
@@ -66,16 +68,18 @@
                                                 <div class="form-group">
                                                     <label>Campaign Start Date</label>
                                                         <div flex-gt-xs>
-                                                            <md-datepicker ng-model="campaign.startDate" md-placeholder="Pick a Date"></md-datepicker>
+                                                            <md-datepicker ng-model="campaign.startDate" md-placeholder="Pick a Date" id="startDate" name="startDate" required></md-datepicker>
                                                         </div>
+                                                    <span ng-show="newCampaignForm.startDate.$error.required" style="color:red">*Start Date required</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Campaign Due Date</label>
                                                     <div flex-gt-xs>
-                                                        <md-datepicker ng-model="campaign.endDate" md-placeholder="Pick a Date"></md-datepicker>
+                                                        <md-datepicker ng-model="campaign.endDate" md-placeholder="Pick a Date" id="endtDate" name="endtDate" required></md-datepicker>
                                                     </div>
+                                                    <span ng-show="newCampaignForm.endtDate.$error.required" style="color:red">*End Date required</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,8 +137,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                                        <md-button   class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
+                          <md-button   class="md-raised md-success pull-right" md-colors="{backgroundColor: 'green'}" ng-click="nextTab()">Next</md-button>
                         </div>
                     </md-content>
                 </md-tab> <!-- Campaign Details Section-->
@@ -202,8 +205,9 @@
                             <div class="col-md-8" style="background-color: white;">
                                 <h4 style="margin-left:20px">Tell us about your campaign</h4>
                                 <div class="col-md-12">
-                                    <textarea class="form-control" rows="16" cols="200" ng-model="campaign.Description" placeholder="Tell the your story..."></textarea>
-                                    <br />
+                                    <textarea class="form-control" rows="16" cols="200" ng-model="campaign.Description" placeholder="Tell us your story..." id="story" name="story" required></textarea>
+                                    <span ng-show="newCampaignForm.story.$error.required" style="color:red">*story required</span>
+                                     <br />
                                 </div>
 
                             </div>
