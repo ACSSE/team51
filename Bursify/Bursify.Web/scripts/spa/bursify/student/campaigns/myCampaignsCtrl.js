@@ -19,7 +19,7 @@
                 $scope.loadData = loadData;
                 $scope.canDelete = false;
                 $scope.userPassword = "";
-                $scope.campaignId = "";
+                $scope.campaignId;
                
                 function loadData() {
                    
@@ -40,18 +40,13 @@
                     notificationService.displayError(response.data);
                 }
 
-                
-
-                function removeCampaign(campaign)
+                function removeCampaign(campaignId)
                 {
-                    $scope.campaignId = campaign.CampaignId;
-                
-                    $scope.showAdvanced();
+                   // alert(campaignId);
+                    $scope.campaignId = campaignId;
 
-                    //Call api
-                    //apiService.post('/api/campaign/RemoveCampaign/?campaignId=' + campaign.CampaignId,
-                    //addCampaignSucceded,
-                    //addCampaignFailed);
+                   $scope.showAdvanced();
+                    
                 }
 
                 function addCampaignSucceded(response) {
@@ -71,15 +66,15 @@
                         templateUrl: '/Scripts/spa/bursify/student/campaigns/dialog.tmpl.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
-
+                        scope: $scope,
                         clickOutsideToClose: true
                     })
                     .then(function (answer) {
-                        $mdDialog.hide();
+                        $mdDialog.hide($scope.campaignId);
+                     
                     }, function () {
                         $scope.status = 'You cancelled the dialog.';
                     });
-
 
                     $scope.$watch(function () {
                         return $mdMedia('xs') || $mdMedia('sm');
@@ -93,11 +88,14 @@
                 }
 
                 function verified(result) {
-                    if (result.data.success) {
+                    if (result.data.success)
+                    {
                         var x = $scope.campaignId;
-                        apiService.post('/api/campaign/DelCampaign/?campaignId=' + $scope.campaignId, null,
-                     approveSuccessful,
-                     approveFailed);
+
+                        apiService.post('/api/campaign/DelCampaign/?campaignId=' + x, null,
+                         approveSuccessful,
+                         approveFailed);
+
                     } else {
                         notificationService.displayError("Incorrect password !");
                         $mdDialog.hide();

@@ -12,10 +12,9 @@
         .
         <div class="row">
             <form id="editform" ng-submit="">
-                <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="campaign in campaigns" class="col-lg-4">
-                    <md-card style="height: 520px;">
-
-                        <a ng-href="#/student/campaign-progress/{{campaign.CampaignId}}"> <img style="height: 250px;" ng-src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg"></a>
+                <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="campaign in campaigns" ng-if="campaign.Status == 'Active'" class="col-lg-4">
+                    <md-card style="height: 535px;" >
+                        <a ng-href="#/student/campaign-progress/{{campaign.CampaignId}}"> <img style="height:250px;width: 370px;" ng-src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg"></a>
                         <md-card-title>
                             <md-card-title-text>
                                 <span class="md-headline">{{campaign.CampaignName}}</span>
@@ -31,18 +30,18 @@
                             <div class="row">
                                 <div class="col-md-7">
                                     <br />
-                                    <small>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</small>
+                                    <small>{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}%</small><br />
                                     <b><small>Funded</small></b>
                                 </div>
                                 <div class="col-md-5 pull-left">
                                     <br />
-                                    <small>R{{campaign.AmountContributed}}</small>
+                                    <small>R{{campaign.AmountContributed}}</small><br />
                                     <b><small>Funded</small></b>
                                 </div>
                             </div>
                             
                             <div class="row">
-                                <md-content class="md-padding" layout-padding style="margin-left: 20px; margin-right: 20px">
+                                <md-content class="md-padding" layout-padding style="margin-left: 20px; margin-right: 20px;">
                                     <div layout="row" layout-align="space-between">
                                         <md-button class="" style="margin-left:-50px" ng-href="#/student/edit-campaign/{{campaign.CampaignId}}">
                                             <md-icon  md-svg-icon="Content/img/icons/../../../../../Content/img/icons/ic_mode_edit_black_24px.svg" style="width: 24px; height: 24px;margin-left:30px"></md-icon>
@@ -51,7 +50,7 @@
                                             </md-tooltip>
                                         </md-button>
 
-                                        <md-button class="" style="margin-right:-40px" type="submit" ng-click="removeCampaign(campaign)" ng-if="campaign.AmountContributed == 0">
+                                        <md-button class="" style="margin-right:-40px" type="submit"  ng-click="removeCampaign(campaign.CampaignId)" ng-if="campaign.AmountContributed == 0">
                                              <md-icon md-svg-icon="Content/img/icons/ic_delete_forever_black_24px.svg" style="width: 24px; height: 24px;margin-left:-25px"></md-icon>
                                             <md-tooltip style="margin-top:80px">
                                                 Delete
@@ -62,7 +61,6 @@
                             </div>
                         </md-card-content>
                     </md-card>
-                    <br />
                 </div>
             </form>
         </div>
