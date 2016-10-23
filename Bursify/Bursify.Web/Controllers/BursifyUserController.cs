@@ -14,21 +14,27 @@ using Bursify.Api.Users;
 using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
+using Bursify.Api.Sponsors;
+using System;
 
 namespace Bursify.Web.Controllers
 {
     [System.Web.Mvc.RoutePrefix("api/BursifyUser")]
     public class BursifyUserController : ApiController
     {
+        public const int NOTIFICATION_SYSTEM = -1;
+
         private readonly MembershipApi _membershipApi;
         private readonly UserApi _userApi;
         private readonly StudentApi _studentApi;
+        private readonly SponsorApi _sponsorApi;
 
-        public BursifyUserController(MembershipApi membershipApi, UserApi userApi, StudentApi studentApi)
+        public BursifyUserController(MembershipApi membershipApi, UserApi userApi, StudentApi studentApi, SponsorApi sponsorApi)
         {
             _membershipApi = membershipApi;
             _userApi = userApi;
             _studentApi = studentApi;
+            _sponsorApi = sponsorApi;
         }
 
         [System.Web.Mvc.AllowAnonymous]
@@ -180,35 +186,181 @@ namespace Bursify.Web.Controllers
 
 
         //hashed email returns email
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("DecryptEmail")]
+        public HttpResponseMessage DecryptEmail(HttpRequestMessage request, string encryptedEmail)
+        {
+            string email = CryptoService.DecryptStringAES(encryptedEmail, "Bursify");
+            return request.CreateResponse(HttpStatusCode.OK, email);
+        }
 
 
         //update password when passed email and password 
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("UpdatePassword")]
+        public HttpResponseMessage UpdatePassword(HttpRequestMessage request, string email, string password)
+        {
+            BursifyUser user;
+
+            if (_userApi.GetUserType(email).Equals("Student"))
+            {
+                user = _userApi.GetCompletStudentUser(email);
+            }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(email);
+            }
+
+            _membershipApi.UpdateUserPassword(user, password);
+            return request.CreateResponse(HttpStatusCode.OK, true);
+        }
 
 
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.Route("ResetPassword")]
-        public HttpResponseMessage SendEmail(HttpRequestMessage request, string email)
+        public HttpResponseMessage ResetPassword(HttpRequestMessage request, string email)
         {
             //check if user exists
+            bool found = _userApi.ValidateEmail(email);
+            if (found)
+            {
+                return request.CreateResponse(HttpStatusCode.OK, false);
+            }
 
             //hash email send email with link + hash
-            using (var mail = new MailMessage("brandonsibbs@gmail.com", "malcolmcollin@gmail.com"))
+            string encryptedemail = CryptoService.EncryptStringAES(email, "Bursify");
+
+            var fromAddress = new MailAddress("bursifyproject@gmail.com", "Bursify");
+
+            BursifyUser user;
+
+            if (_userApi.GetUserType(email).Equals("Student"))
             {
-
-                var client = new SmtpClient
-                {
-                    Port = 25,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = "smtp.google.com"
-                };
-
-                mail.Subject = "this is a test email.";
-                mail.Body = "this is my test email body";
-                client.Send(mail);
-
-                return request.CreateResponse(HttpStatusCode.OK, new {sent = true});
+                user = _userApi.GetCompletStudentUser(email);
             }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(email);
+            }
+
+            string fullname = "";
+
+            if (user.UserType.Equals("Student"))
+            {
+                var student = _studentApi.GetStudent(user.ID);
+                fullname = student.Firstname + " " + student.Surname;
+            }
+            else
+            {
+                var sponsor = _sponsorApi.GetSponsor(user.ID);
+                fullname = sponsor.CompanyName;
+            }
+
+            var toAddress = new MailAddress(email, fullname);
+            const string fromPassword = "Bursify123!";
+            string subject = "Bursify Reset Password ";
+            string body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} www.bursify.azurewebsites.net/#/reset/ems?={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
+
+            var smtp = new SmtpClient
+            {
+                Host = "bursify.azurewebsites.net",
+                Port = 25,
+                EnableSsl = false,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body,
+
+
+            })
+
+            return request.CreateResponse(HttpStatusCode.OK, true);
         }
+
+        //use sender Id = -1 for notification sent from system/bursify
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("CreateNotification")]
+        public HttpResponseMessage GetNumberUnreadMessages(HttpRequestMessage request, int senderId, NotificationViewModel nVm)
+        {
+            if (senderId == NOTIFICATION_SYSTEM)
+            {
+                nVm.Sender = "Bursify";
+            } else {
+                nVm.Sender = _sponsorApi.GetSponsor(senderId).CompanyName;
+            }
+
+            nVm.TimeStamp = DateTime.UtcNow;
+
+            _userApi.CreateNotification(nVm.ReverseMap());
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("GetNumberUnreadMessages")]
+        public HttpResponseMessage GetNumberUnreadMessages(HttpRequestMessage request, int userId)
+        {
+            int number = _userApi.GetNumberOfUnreadMessages(userId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, number);
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("GetNotifications")]
+        public HttpResponseMessage GetNotifications(HttpRequestMessage request, int userId)
+        {
+            var notifications = _userApi.GetNotifications(userId);
+
+            var notificationVMs  = NotificationViewModel.MultipleNotificationsMap(notifications);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, notificationVMs);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("GetSingleNotification")]
+        public HttpResponseMessage GetSingleNotification(HttpRequestMessage request, int Id)
+        {
+            var notification = _userApi.GetSingleNotification(Id);
+
+            NotificationViewModel notificationVM = new NotificationViewModel(notification);
+
+            var response = request.CreateResponse(HttpStatusCode.OK, notificationVM);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("MarkAllRead")]
+        public HttpResponseMessage MarkAllRead(HttpRequestMessage request, int UserId)
+        {
+
+            _userApi.MarkAllRead(UserId);
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("MarkSingleRead")]
+        public HttpResponseMessage MarkSingleRead(HttpRequestMessage request, int Id)
+        {
+
+            _userApi.MarkSingleRead(Id);
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
+
     }
 }

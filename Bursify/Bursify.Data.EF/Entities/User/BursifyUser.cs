@@ -33,7 +33,8 @@ namespace Bursify.Data.EF.Entities.User
         public virtual ICollection<UserAddress> Addresses { get; set; }
         public virtual ICollection<CampaignReport> CampaignReports { get; set; }
         public virtual ICollection<Campaign> Upvotes { get; set; }
-        public virtual ICollection<UserActivity> Activities { get; set; } 
+        public virtual ICollection<UserActivity> Activities { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
         public virtual Sponsor Sponsor { get; set; }
         public virtual Student Student { get; set; }
     }

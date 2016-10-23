@@ -28,7 +28,6 @@ namespace Bursify.Data.EF.Entities.SponsorUser
         public virtual BursifyUser BursifyUser { get; set; }
         public virtual Account Account { get; set; }
         public ICollection<Sponsorship> Sponsorhips { get; set; }
-        public virtual ICollection<CampaignSponsor> CampaignSponsors { get; set; }
-        public virtual ICollection<SponsorStudentNotification> SponsorStudentNotification { get; set; }
+        public virtual ICollection<CampaignSponsor> CampaignSponsors { get; set; } 
     }
 }

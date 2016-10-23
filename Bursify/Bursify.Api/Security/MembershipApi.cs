@@ -110,5 +110,20 @@ namespace Bursify.Api.Security
             }
 
         }
+
+        public void UpdateUserPassword(BursifyUser user, string password)
+        {
+            using (IUnitOfWork uow = _unitOfWorkFactory.CreateUnitOfWork())
+            {
+                var salt = _cryptoService.CreateSalt();
+
+                user.PasswordHash = _cryptoService.HashPassword(password, salt);
+                user.PasswordSalt = salt;
+
+                _userRepository.Save(user);
+                uow.Commit();
+            }
+
+        }
     }
 }
