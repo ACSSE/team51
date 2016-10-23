@@ -799,7 +799,6 @@
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\AdminCampaignReport.cs" />
     <Compile Include="Models\AdminUserReport.cs" />
-    <Compile Include="Models\ApplicantsPerProvince.cs" />
     <Compile Include="Models\ApplicationViewModel.cs" />
     <Compile Include="Models\ApproveSponsorshipViewModel.cs" />
     <Compile Include="Models\BursifyUserViewModel.cs" />
@@ -810,6 +809,7 @@
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\NotificationViewModel.cs" />
     <Compile Include="Models\PersonalDetailsViewModel.cs" />
+    <Compile Include="Models\ProvinceCount.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Models\ReportCampaignModel.cs" />
     <Compile Include="Models\RequirementViewModel.cs" />
