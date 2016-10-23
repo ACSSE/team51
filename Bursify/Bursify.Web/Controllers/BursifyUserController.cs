@@ -187,10 +187,10 @@ namespace Bursify.Web.Controllers
 
                 var client = new SmtpClient
                 {
-                    Port = 25,
+                    Port = 587,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = "smtp.google.com"
+                    UseDefaultCredentials = true,
+                    Host = "smtp.gmail.com"
                 };
 
                 mail.Subject = "this is a test email.";
