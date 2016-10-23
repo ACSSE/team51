@@ -20,12 +20,12 @@
         $scope.Live = 'ACTIVE';
 
         //For Payments
-        $scope.cardNumber = '';
-        $scope.CardType = '';
-        $scope.NameOnCard = '';
-        $scope.cvv = 0;
-        $scope.month;
-        $scope.year = 0;
+        $scope.cardNumber = '5284 2272 4736 5532';
+        $scope.CardType = 'Credit Card';
+        $scope.NameOnCard = "";
+        $scope.cvv = 306;
+        $scope.month = 09;
+        $scope.year = 21;
         $scope.amount = 0;
        
         $scope.loadData = loadData;
