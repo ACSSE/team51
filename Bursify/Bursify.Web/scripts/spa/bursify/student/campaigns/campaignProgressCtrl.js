@@ -9,6 +9,7 @@
         $scope.pageClass = 'page-home-CampaignReport';
 
         $scope.campaign = {};
+        $scope.numberofupvotes = 0;
         $scope.campaignId = $routeParams.campaignId;
         /** Headers **/
         $scope.loadReports = loadReports();
@@ -21,12 +22,10 @@
 
         $scope.provinceDataSource = {};
         $scope.provinceReport = {};
-
         
+
         function provinceLoadCompleted(result) {
             $scope.provinceReport = result.data;
-            var EC = 0;
-
             
             //Check if they are null 
 
@@ -44,7 +43,7 @@
                     "legendbordercolor": "ffffff",
                     "legendallowdrag": "0",
                     "legendshadow": "0",
-                    "caption": "Campaign Contributions Per Province",
+                    "caption": "Number of Contributers Per Province",
                     "connectorcolor": "000000",
                     "fillalpha": "80",
                     "hovercolor": "CCCCCC",
@@ -76,11 +75,11 @@
 
             if($scope.provinceReport[0].Count > 0)
             {
-                $scope.provinceDataSource.data.push(new dataItem("05", $scope.provinceReport[0].Count));
+                $scope.provinceDataSource.data.push(new dataItem1("05", $scope.provinceReport[0].Count));
             }
 
             if ($scope.provinceReport[1].Count > 0) {
-                $scope.provinceDataSource.data.push(new dataItem("03", $scope.provinceReport[1].Count));
+                $scope.provinceDataSource.data.push(new dataItem1("03", $scope.provinceReport[1].Count));
             }
 
             if ($scope.provinceReport[2].Count > 0) {
@@ -88,27 +87,27 @@
             }
 
             if ($scope.provinceReport[3].Count > 0) {
-                $scope.provinceDataSource.data.push(new dataItem("02", $scope.provinceReport[3].Count));
+                $scope.provinceDataSource.data.push(new dataItem1("02", $scope.provinceReport[3].Count));
             }
 
             if ($scope.provinceReport[4].Count > 0) {
-                $scope.provinceDataSource.data.push(new dataItem("09", $scope.provinceReport[4].Count));
+                $scope.provinceDataSource.data.push(new dataItem1("09", $scope.provinceReport[4].Count));
             }
 
             if ($scope.provinceReport[5].Count > 0) {
-                $scope.provinceDataSource.data.push(new dataItem("07", $scope.provinceReport[5].Count));
+                $scope.provinceDataSource.data.push(new dataItem1("07", $scope.provinceReport[5].Count));
             }
 
             if ($scope.provinceReport[6].Count > 0) {
-                $scope.provinceDataSource.data.push(new dataItem("10", $scope.provinceReport[6].Count));
+                $scope.provinceDataSource.data.push(new dataItem1("10", $scope.provinceReport[6].Count));
             }
 
             if ($scope.provinceReport[7].Count > 0) {
-                $scope.provinceDataSource.data.push(new dataItem("08", $scope.provinceReport[7].Count));
+                $scope.provinceDataSource.data.push(new dataItem1("08", $scope.provinceReport[7].Count));
             }
 
             if ($scope.provinceReport[8].Count > 0) {
-                $scope.provinceDataSource.data.push(new dataItem("11", $scope.provinceReport[8].Count));
+                $scope.provinceDataSource.data.push(new dataItem1("11", $scope.provinceReport[8].Count));
             }
         }
 
@@ -133,7 +132,7 @@
             
             $scope.financeDataSource = {
                 chart: {
-                    caption: "This Campaign's money coming in lol :)",
+                    caption: "Total Contributed per Day",
                     subCaption: "",
                     numberPrefix: "R",
                     //numberSuffix: ".00",
@@ -167,14 +166,9 @@
             var funds = result.data;
             var i = 1;
 
-            
-            var currentDate = new Date();//Get todays date
-
-           // alert((currentDate + "\n" + $scope.campaign.StartDate));
-
             funds.forEach(function (entry)
             {
-                $scope.financeDataSource.data.push(new dataItem("Day " + (i), entry.AmountContributed));
+                $scope.financeDataSource.data.push(new dataItem("Day" + entry.Day, entry.Amount));
                 i++
             });
         }
@@ -203,7 +197,7 @@
 
             $scope.fundersDataSource = {
                 chart: {
-                    caption: "This Campaign's money coming in lol :)",
+                    caption: "Amount contributed by each sponsor",
                     subCaption: "",
                     numberPrefix: "R",
                     //numberSuffix: ".00",
@@ -259,42 +253,7 @@
 
         function upvotesLoadCompleted(result) {
 
-            $scope.upvotesDataSource = {
-                chart: {
-                    caption: "This Campaign's money coming in lol :)",
-                    subCaption: "",
-                    numberPrefix: "R",
-                    //numberSuffix: ".00",
-                    //Cosmetics
-                    "lineThickness": "2",
-                    "paletteColors": "#0075c2",
-                    "baseFontColor": "#333333",
-                    "baseFont": "Helvetica Neue,Arial",
-                    "captionFontSize": "14",
-                    "subcaptionFontSize": "14",
-                    "subcaptionFontBold": "0",
-                    "showBorder": "0",
-                    "bgColor": "#ffffff",
-                    "showShadow": "0",
-                    "canvasBgColor": "#ffffff",
-                    "canvasBorderAlpha": "0",
-                    "divlineAlpha": "100",
-                    "divlineColor": "#999999",
-                    "divlineThickness": "1",
-                    "divLineIsDashed": "1",
-                    "divLineDashLen": "1",
-                    "divLineGapLen": "1",
-                    "showXAxisLine": "1",
-                    "xAxisLineThickness": "1",
-                    "xAxisLineColor": "#999999",
-                    "showAlternateHGridColor": "0",
-                },
-                data: [{}]
-            };
-
-            var num = result.data;
-            
-            notificationService.displaySuccess("Number of upvotes = " + num);
+            $scope.numberofupvotes = result.data.upVotes;
         }
 
         function upvotesLoadFailed() {
@@ -311,7 +270,7 @@
             campaignLoadFailed);
 
             /** Get The campaign Details **/
-            apiService.get('/api/Campaign/GetCampaignSponsors/?campaignId= ' + $scope.campaignId, null,
+            apiService.get('/api/Campaign/GetFundingPerDay/?campaignId= ' + $scope.campaignId + "&month=" + 10, null,
             financeLoadCompleted,
             financeLoadFailed);
 

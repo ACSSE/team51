@@ -1,8 +1,8 @@
 ﻿<nav-bar></nav-bar>
 <div id="content">
-    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'purple'}">
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'grey'}">
         <div class="md-toolbar-tools">
-            <a ng-href="#/student/campaigns"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
+            <a ng-href="#/student/myCampaigns"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
             <span>Campaign Report</span>
         </div>
     </md-toolbar>
@@ -24,7 +24,7 @@
                             </md-content>
                             <md-divider></md-divider>
             </md-content>
-        </md-tab>
+        </md-tab> <!-- Finance-->
 
         <md-tab label="People" id="people">
             <md-content class="md-padding">
@@ -41,10 +41,10 @@
                         </md-content>
                         <md-divider></md-divider>
             </md-content>
-        </md-tab>
+        </md-tab> <!-- Funders -->
 
         <md-tab label="Insights" id="Insights">
-            <md-content class="md-padding">
+            <!--<md-content class="md-padding">
                         <md-content class="md-padding">
                             <div class="chart-container">
                                 <div fusioncharts
@@ -56,8 +56,23 @@
                             </div>
                         </md-content>
                         <md-divider></md-divider>
-            </md-content>
-        </md-tab>
+            </md-content>-->
+        <div class="row">
+            <br />
+            <div class="col-lg-3 col-lg-offset-3">
+                <div class="panel box-v1">
+                    <div class="panel-heading border-none" style="background-color:lightgray">
+                            <h4 class="text-left">Number of upvotes </h4>
+                    </div>
+                    <div class="panel-body text-center">
+                        <h1 style="font-size:200px">{{numberofupvotes}}</h1>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        </md-tab> <!-- upvotes-->
         
         <md-tab label="Contributers Per Province" id="contributersPerProvince">
             <md-content class="md-padding">
@@ -73,6 +88,7 @@
                 </md-content>
                 <md-divider></md-divider>
             </md-content>
-        </md-tab>
+        </md-tab> <!-- per province-->
+
     </md-tabs> <!--/Tabs-->
 </div>
