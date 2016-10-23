@@ -112,7 +112,7 @@ namespace Bursify.Api.Security
             {
                 // generate the key from the shared secret and the salt
                 Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(sharedSecret, _salt);
-
+                
                 // Create the streams used for decryption.                
                 byte[] bytes = Convert.FromBase64String(cipherText);
                 using (MemoryStream msDecrypt = new MemoryStream(bytes))

@@ -190,7 +190,7 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("DecryptEmail")]
         public HttpResponseMessage DecryptEmail(HttpRequestMessage request, string encryptedEmail)
         {
-            string email = CryptoService.DecryptStringAES(encryptedEmail, "Bursify");
+            string email = CryptoService.DecryptStringAES(encryptedEmail.Replace(" ", ""), "Bursify");
             return request.CreateResponse(HttpStatusCode.OK, email);
         }
 
@@ -222,9 +222,9 @@ namespace Bursify.Web.Controllers
         {
             //check if user exists
             bool found = _userApi.ValidateEmail(email);
-            if (found)
+            if (!found)
             {
-                return request.CreateResponse(HttpStatusCode.OK, false);
+                return request.CreateResponse(HttpStatusCode.OK,   false );
             }
 
             //hash email send email with link + hash
@@ -256,28 +256,49 @@ namespace Bursify.Web.Controllers
                 fullname = sponsor.CompanyName;
             }
 
-            var toAddress = new MailAddress(email, fullname);
-            const string fromPassword = "Bursify123!";
-            string subject = "Bursify Reset Password ";
-            string body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} www.bursify.azurewebsites.net/#/reset/ems?={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
+            //var toAddress = new MailAddress(email, fullname);
+            //const string fromPassword = "Bursify123!";
+            //string subject = "Bursify Reset Password ";
+            //string body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} www.bursify.azurewebsites.net/#/reset/ems?={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
 
-            var smtp = new SmtpClient
+            //var smtp = new SmtpClient
+            //{
+            //    Host = "smtp.gmail.com",
+            //    Port = 587,
+            //    EnableSsl = false,
+            //    DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    UseDefaultCredentials = false,
+            //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            //};
+
+            //using (var message = new MailMessage(fromAddress, toAddress)
+            //{
+            //    Subject = subject,
+            //    Body = body,
+
+
+            //})
+
+            try
             {
-                Host = "bursify.azurewebsites.net",
-                Port = 25,
-                EnableSsl = false,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-
-            using (var message = new MailMessage(fromAddress, toAddress)
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Timeout = 10000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("bursifyproject@gmail.com", "Bursify123!");
+                MailMessage msg = new MailMessage();
+                msg.To.Add(email);
+                msg.From = new MailAddress("bursifyproject@gmail.com");
+                msg.Subject = "Bursify Reset Password";
+                msg.Body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} http://localhost:50000/#/reset/?ems={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
+                
+                client.Send(msg);
+            }
+            catch (Exception ex)
             {
-                Subject = subject,
-                Body = body,
-
-
-            })
+                string str = ex.Message;
+            }
 
             return request.CreateResponse(HttpStatusCode.OK, true);
         }

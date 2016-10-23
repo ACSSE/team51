@@ -37,7 +37,7 @@ namespace Bursify.DataTests
         [TestMethod]
         public void TestCrpty()
         {
-            var emailhash = CryptoService.EncryptStringAES("w@w.com", "Bursify");
+            var emailhash = CryptoService.EncryptStringAES("malcolmcollin@gmail.com", "Bursify");
             MessageBox.Show("Hashed: " + emailhash);
 
             var email = CryptoService.DecryptStringAES(emailhash, "Bursify");

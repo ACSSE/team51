@@ -3,44 +3,39 @@
 
     app.controller('resetCtrl', resetCtrl);
 
-    resetCtrl.$inject = ['$scope', 'membershipService', 'notificationService', '$rootScope', '$location', 'apiService'];
+    resetCtrl.$inject = ['$scope', 'membershipService', 'notificationService', '$rootScope', '$location', 'apiService', '$routeParams'];
 
-    function resetCtrl($scope, membershipService, notificationService, $rootScope, $location, apiService) {
+    function resetCtrl($scope, membershipService, notificationService, $rootScope, $location, apiService, $routeParams) {
         $scope.pageClass = 'page-login';
+       
 
 
-        function retrievePassword() {
-            membershipService.removeCredentials();
-            membershipService.login($scope.email, loginCompleted);
+        $scope.Reset = function () {
+           notificationService.displayError($routeParams.ems);
+            apiService.post('/api/BursifyUser/DecryptEmail/?encryptedEmail=' + $routeParams.ems, null, Completed, Failed);
+
         }
 
-        function loginCompleted(result) {
-            if (result.data.success) {
-                loginUserCompleted(result);
-            }
-            else {
-                notificationService.displayError('Login failed. Try again.');
+        function Completed(result) {
+            notificationService.displayInfo(result.email);
+            if ($scope.Password1 == $scope.Password2) {
+                var myEmail = result.email;
+                apiService.post('/api/BursifyUser/UpdatePassword/?email=' + $routeParams.ems + "?password=" + $scope.Password1, null, Completed1, Failed);
+               
+            } else {
+                notificationService.displayInfo("Passwords do not match.");
             }
         }
 
-        function loginUserCompleted(result) {
-            $scope.user = result.data.user;
-            membershipService.saveCredentials($scope.user);
-            $scope.userData.displayUserInfo();
+        function Completed1() {
+            notificationService.displaySuccess("Password changed.");
+            $location.path("#/login");
+        }
 
-            if ($scope.user.UserType == "Student") {
-                $location.path('/student/home');
-                notificationService.displaySuccess('Welcome back ' + $scope.user.Name + " !");
-           } else if ($scope.user.UserType == "Sponsor") {
-                $location.path('/sponsor/home');
-              
-                notificationService.displaySuccess('Welcome back ' + $scope.user.Name + ".");
-
-            } else if ($scope.user.UserType == "Admin") {
-                $location.path('/admin/home');
-                notificationService.displaySuccess('Welcome Admin.');
-         }
-       }
+        function Failed() {
+            notificationService.displayError("Failed");
+        }
+     
     }
 
 })(angular.module('common.core'));

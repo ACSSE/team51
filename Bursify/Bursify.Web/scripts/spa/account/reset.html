@@ -17,18 +17,18 @@
             <div style="text-align:center;">Please enter new password.</div>
                 <div class="form-group">
                     <label for="inputUsername" class="sr-only">Password</label>
-                    <input type="text" id="inputUsername" name="inputUsername" class="form-control" ng-model="user.Password1" placeholder="Password"
+                    <input type="password" id="inputUsername" name="inputUsername" class="form-control" ng-model="Password1" placeholder="Password"
                            validate-on="blur" required required-message="'Email is required'">
                 </div>
                 <div class="form-group">
                     <label for="inputUsername" class="sr-only">Confirm Password</label>
-                    <input type="text" id="inputUsername" name="inputUsername" class="form-control" ng-model="user.Password2" placeholder="Confirm Password"
+                    <input type="password" id="inputUsername" name="inputUsername" class="form-control" ng-model="Password2" placeholder="Confirm Password"
                            validate-on="blur" required required-message="'Email is required'">
                 </div>
       
                 <div class="row">
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-success btn-block btn-flat">Change Password</button>
+                        <button type="submit" ng-click="Reset()" class="btn btn-success btn-block btn-flat">Change Password</button>
                     </div><!-- /.col -->
                 </div>
 
