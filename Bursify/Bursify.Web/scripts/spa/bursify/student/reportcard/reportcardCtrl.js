@@ -10,7 +10,6 @@
         $scope.loadReports = function () {
             apiService.get('/api/report/GetAllReports/?studentId=' + $rootScope.repository.loggedUser.userIden, null, reportLoadCompleted, reportLoadFailed);
 
-            
         }
         $scope.myDataSource = {};
 

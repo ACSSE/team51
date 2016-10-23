@@ -1,12 +1,13 @@
 ﻿<nav-bar></nav-bar>
 <div id="content">
-    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'teal-300'}">
+    <md-toolbar class="md-table-toolbar" md-colors="{backgroundColor: 'green'}">
         <div class="md-toolbar-tools">
+            <a ng-href="#/student/campaigns"><span style="margin-right:15px"><i class="fa fa-arrow-left btn-3d backarrow"></i></span></a>
             <span>View Campaign</span>
         </div>
     </md-toolbar>
     <md-card>
-        <a href="#/student/campaigns"><span style="margin-left:20px"><i class="fa fa-arrow-left btn btn-round"> Back</i></span></a>
+
         <md-card-header>
             <md-card-header-text>
                 <md-card>
@@ -33,10 +34,17 @@
                             <div class="col-lg-4"><span class="glyphicon glyphicon-map-marker pull-left"></span>{{campaign.Location}}</div>
                             <div class="col-lg-4"><span><i class="fa fa-tags" aria-hidden="true">{{campaign.CampaignType}}</i></span></div>
                             <div class="col-lg-4">
-                                <i class="upvote" ng-click="upvodeCampaign($event,campaign.CampaignId)" ng-disabled="isMyCampaign == true">
-                                    <i class="fa fa-thumbs-up" style="color:{{upvoted}}" aria-hidden="true">
+                                <i class="upvote" type="button" ng-click="upvodeCampaign($event,campaign.CampaignId)" ng-if="!(upvoted == true)">
+                                    <i class="fa fa-thumbs-up" style="color:{{upVoteColor}}" aria-hidden="true">
                                         <md-tooltip md-direction="top" style="margin-top:50px">
-                                            {{vote}}
+                                            upvote
+                                        </md-tooltip>
+                                    </i>
+                                </i>
+                                <i class="upvote">
+                                    <i class="fa fa-thumbs-up" style="color:green" aria-hidden="true" ng-if="upvoted == true">
+                                        <md-tooltip md-direction="top" style="margin-top:50px">
+                                            upvoted
                                         </md-tooltip>
                                     </i>
                                 </i>
@@ -50,7 +58,7 @@
                             <div class="col-lg-4">{{daysleft}}<br />days to go</div>
                         </div>
                         <br />
-                        <md-button ng-click="fundCampaign($event,campaign)" ng-disabled="true" class="btn btn-success form-control full-opacity-hover" style="margin-top:10px">Fund this Campaign</md-button>
+                        <!--<md-button ng-click="fundCampaign($event,campaign)" ng-disabled="true" class="btn btn-success form-control full-opacity-hover" style="margin-top:10px">Fund this Campaign</md-button>-->
                     </md-card-header-text>
                 </div>
                 <div class="col-lg-4"><!--Start of Funders column-->
@@ -61,6 +69,7 @@
                 </div>
             </div>
         </md-card-header>
+
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">Campaign Description:</span>
@@ -83,8 +92,11 @@
           width: auto;
         }
             </style>
-            <p><pre>{{campaign.Description}}</pre></p>
-        </md-card-content>
+            <md-content flex layout-padding>
+            <!--<p><pre>{{campaign.Description}}</pre></p>-->
+                {{campaign.Description}}
+                </md-content>
+</md-card-content>
 
         <div id="content">
 
@@ -123,5 +135,3 @@
         </div>
     </md-card>
 </div>
-
-

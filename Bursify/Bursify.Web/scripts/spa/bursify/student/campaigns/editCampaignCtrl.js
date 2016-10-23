@@ -45,6 +45,13 @@
            
         }
 
+        $scope.nextTab = function () {
+
+            var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
+            $scope.selectedIndex = index;
+        };
+
+
         function EditCampaignSucceded(response) {
             notificationService.displaySuccess($scope.campaign.CampaignName + ' has been submitted to bursify campaign list');
             $scope.campaign = response.data;
