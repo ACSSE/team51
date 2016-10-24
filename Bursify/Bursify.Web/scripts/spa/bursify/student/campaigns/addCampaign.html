@@ -172,7 +172,7 @@
                                     <div class="caption">
                                         <b>{{campaign.CampaignName}}</b><br>
                                         <small>{{StudentName}}</small><br><br>
-                                        <p style="margin-top:-20px">{{campaign.Tagline | limitTo: 140}}...</p>
+                                        <p style="margin-top:-20px">{{campaign.Tagline }}</p>
                                         <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{campaign.AmountContributed}}" aria-valuemin="0" aria-valuemax="{{campaign.AmountRequired}}" style="width:{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}">
@@ -316,7 +316,7 @@
                                     <span class="md-title">{{campaign.CampaignName}}</span>
                                     <span class="small">by {{campaign.Name + " "+ campaign.Surname}}</span>
                                     <br />
-                                    <span class="small-text-medium">{{campaign.Tagline | limitTo: 140}}...</span>
+                                    <span class="small-text-medium">{{campaign.Tagline}}...</span>
                                     <br />
                                     <br />
                                     <style>

@@ -11,7 +11,7 @@
 
         public IUnitOfWork CreateUnitOfWork()
         {
-            DataContext context = DataContext.Create(@"Server=tcp:bursifyserver.database.windows.net,1433;Initial Catalog=BursifyDB;Persist Security Info=False;User ID=brandon;Password=Bursify123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            DataContext context = DataContext.Create(@"Data Source=DESKTOP-819LTBB\SQLEXPRESS;Initial Catalog=BursifyDB;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             IUnitOfWork unitOfWork = new UnitOfWork(context);
 
             _dataSession.UnitOfWork = unitOfWork;
