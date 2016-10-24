@@ -295,29 +295,9 @@
     <Content Include="Content\assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\assets\fonts\Simple-Line-Icons.svg" />
-    <Content Include="Content\assets\img.jpg" />
-    <Content Include="Content\assets\img\avatar.jpg" />
-    <Content Include="Content\assets\img\avatar2.png" />
-    <Content Include="Content\assets\img\avatar3.png" />
     <Content Include="Content\assets\img\bg.svg" />
     <Content Include="Content\assets\img\bg1.jpg" />
-    <Content Include="Content\assets\img\bg2.jpg" />
-    <Content Include="Content\assets\img\bg3.jpg" />
-    <Content Include="Content\assets\img\bg4.jpg" />
     <Content Include="Content\assets\img\bigplay.svg" />
-    <Content Include="Content\assets\img\controls.png" />
-    <Content Include="Content\assets\img\controls.svg" />
-    <Content Include="Content\assets\img\demo-video.png" />
-    <Content Include="Content\assets\img\g3986.png" />
-    <Content Include="Content\assets\img\left-bg.png" />
-    <Content Include="Content\assets\img\left-bg2.png" />
-    <Content Include="Content\assets\img\logomi.png" />
-    <Content Include="Content\assets\img\mike.jpg" />
-    <Content Include="Content\assets\img\sprite-skin-flat.png" />
-    <Content Include="Content\assets\img\sprite-skin-modern.png" />
-    <Content Include="Content\assets\img\sprite-skin-nice.png" />
-    <Content Include="Content\assets\img\sprite-skin-simple.png" />
-    <Content Include="Content\assets\img\ss.png" />
     <Content Include="Content\assets\js\bootstrap.min.js" />
     <Content Include="Content\assets\js\jquery-1.11.1.min.js" />
     <Content Include="Content\assets\js\jquery.min.js" />
@@ -455,14 +435,10 @@
     <Content Include="Content\assets\js\plugins\select2.full.min.js" />
     <Content Include="Content\assets\js\plugins\silverlightmediaelement.xap" />
     <Content Include="Content\assets\js\plugins\summernote.min.js" />
-    <Content Include="Content\assets\tech-1-mobile.jpg" />
-    <Content Include="Content\assets\tech-1.jpg" />
-    <Content Include="Content\assets\tech-2-mobile.jpg" />
-    <Content Include="Content\assets\tech-2.jpg" />
-    <Content Include="Content\assets\video-replace-mobile.jpg" />
     <Content Include="Content\bootstrap-additions.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BursifyUploads\default-campaign.jpg" />
     <Content Include="Content\chart\1.png" />
     <Content Include="Content\chart\10.png" />
     <Content Include="Content\chart\2.png" />
@@ -505,21 +481,6 @@
     <Content Include="Content\images\campaign.jpeg" />
     <Content Include="Content\images\campaign.jpg" />
     <Content Include="Content\images\p1.jpeg" />
-    <Content Include="Content\images\student\student1.jpg" />
-    <Content Include="Content\images\student\student10.jpg" />
-    <Content Include="Content\images\student\student11.jpg" />
-    <Content Include="Content\images\student\student12.jpg" />
-    <Content Include="Content\images\student\student13.jpg" />
-    <Content Include="Content\images\student\student14.jpg" />
-    <Content Include="Content\images\student\student15.jpg" />
-    <Content Include="Content\images\student\student2.jpg" />
-    <Content Include="Content\images\student\student3.jpg" />
-    <Content Include="Content\images\student\student4.jpg" />
-    <Content Include="Content\images\student\student5.jpg" />
-    <Content Include="Content\images\student\student6.jpg" />
-    <Content Include="Content\images\student\student7.jpg" />
-    <Content Include="Content\images\student\student8.jpg" />
-    <Content Include="Content\images\student\student9.jpg" />
     <Content Include="Content\images\system\Double Down-64.png" />
     <Content Include="Content\images\system\entelect.png" />
     <Content Include="Content\images\ui\report.png" />
@@ -864,7 +825,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\fonts\stamp-icons.ttf" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\fonts\stamp-icons.woff" />
-    <Content Include="Content\landing\wp-content\themes\Parallax-One\images\Thumbs.db" />
     <Content Include="Content\assets\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\assets\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\assets\fonts\fontawesome-webfont.woff" />
@@ -905,14 +865,10 @@
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\systemv" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\yearistype.sh" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\zone.tab" />
-    <Content Include="Content\images\system\Thumbs.db" />
     <Content Include="ApplicationInsights.config" />
-    <Content Include="Content\assets\css\plugins\icheck\skins\square\Thumbs.db" />
     <None Include="Properties\PublishProfiles\bursify - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bursify - Web Deploy.pubxml" />
     <Content Include="scripts\vendors\bower.json" />
-    <None Include="Properties\PublishProfiles\bursifywebapp - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\bursifywebapp - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -922,11 +878,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\BursifyUploads\" />
     <Folder Include="Content\dist\js\pages\" />
     <Folder Include="Content\images\campaign\" />
     <Folder Include="Content\images\company\" />
     <Folder Include="Content\images\raty\" />
+    <Folder Include="Content\images\student\" />
     <Folder Include="Content\landing\wp-content\plugins\contact-form-7\includes\css\" />
     <Folder Include="Content\landing\wp-content\plugins\contact-form-7\includes\js\" />
     <Folder Include="Content\landing\wp-content\plugins\easy-digital-downloads\assets\js\" />
@@ -968,6 +924,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
