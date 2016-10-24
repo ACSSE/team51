@@ -100,7 +100,7 @@
             var secondDate = new Date($scope.campaign.EndDate);
 
             var x = Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay));
-            $scope.daysleft = ~~x;
+            $scope.daysleftz = ~~x;
 
             $scope.loadingCampaign = false;
 
