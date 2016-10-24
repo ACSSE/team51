@@ -121,9 +121,9 @@
     <Compile Include="EntityMappings\UserActivityMapping.cs" />
     <Compile Include="EntityMappings\UserAddressMapping.cs" />
     <Compile Include="IBridgeEntity.cs" />
-    <Compile Include="Migrations\201610051526140_addNotification.cs" />
-    <Compile Include="Migrations\201610051526140_addNotification.Designer.cs">
-      <DependentUpon>201610051526140_addNotification.cs</DependentUpon>
+    <Compile Include="Migrations\201610232232277_initial.cs" />
+    <Compile Include="Migrations\201610232232277_initial.Designer.cs">
+      <DependentUpon>201610232232277_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,8 +162,8 @@
     <Content Include="uk\MockData.resources.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610051526140_addNotification.resx">
-      <DependentUpon>201610051526140_addNotification.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610232232277_initial.resx">
+      <DependentUpon>201610232232277_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

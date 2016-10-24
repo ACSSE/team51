@@ -111,12 +111,11 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="thumbnail" style="background-color:white">
-
-                                    <img class="img-rounded" ng-src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture" style="width:100%;height:200px;">
+                                    <img class="img-rounded" ng-src="Content/BursifyUploads/default-campaign.jpg" alt="campagin picture" style="width:100%;height:200px;">
                                     <div class="caption">
                                         <b>{{campaign.CampaignName}}</b><br>
                                         <small>{{StudentName}}</small><br><br>
-                                        <p style="margin-top:-20px">{{campaign.Tagline}}</p>
+                                        <p style="margin-top:-20px">{{campaign.Tagline | limitTo :140}}...</p>
                                         <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{campaign.AmountContributed}}" aria-valuemin="0" aria-valuemax="{{campaign.AmountRequired}}" style="width:{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}">
@@ -169,11 +168,11 @@
 
                                 <div class="thumbnail" style="background-color:white">
 
-                                    <img class="img-rounded" ng-src="../../../../../Content/BursifyUploads/default-campaign.jpg" ng-model="PicturePath" alt="campagin picture" style="width:100%;height:200px;">
+                                    <img class="img-rounded" ng-src="Content/BursifyUploads/default-campaign.jpg" ng-model="PicturePath" alt="campagin picture" style="width:100%;height:200px;">
                                     <div class="caption">
                                         <b>{{campaign.CampaignName}}</b><br>
                                         <small>{{StudentName}}</small><br><br>
-                                        <p style="margin-top:-20px">{{campaign.Tagline}}</p>
+                                        <p style="margin-top:-20px">{{campaign.Tagline | limitTo: 140}}...</p>
                                         <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{campaign.AmountContributed}}" aria-valuemin="0" aria-valuemax="{{campaign.AmountRequired}}" style="width:{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}">
@@ -214,11 +213,11 @@
                             <div class="col-md-4">
 
                                 <div class="thumbnail" style="background-color:white">
-                                    <img class="img-rounded" ng-src="../../../../../Content/BursifyUploads/default-campaign.jpg" ng-model="PicturePath" alt="campagin picture" style="width:100%;height:200px;">
+                                    <img class="img-rounded" ng-src="Content/BursifyUploads/default-campaign.jpg" ng-model="PicturePath" alt="campagin picture" style="width:100%;height:200px;">
                                     <div class="caption">
                                         <b>{{campaign.CampaignName}}</b><br>
                                         <small>{{StudentName}}</small><br><br>
-                                        <p style="margin-top:-20px">{{campaign.Tagline}}</p>
+                                        <p style="margin-top:-20px">{{campaign.Tagline | limitTo : 140}}...</p>
                                         <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{campaign.AmountContributed}}" aria-valuemin="0" aria-valuemax="{{campaign.AmountRequired}}" style="width:{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}">
@@ -306,7 +305,7 @@
                                   <md-card-header-text>
                             <md-card>
                                 <a href="#/student/campaigns">
-                                    <img style="height:300px; width:485px" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
+                                    <img style="height:300px; width:485px" class="img-rounded"ng-src="Content/BursifyUploads/default-campaign.jpg" alt="campagin picture">
                                 </a>
                             </md-card>
                         </md-card-header-text>
@@ -317,7 +316,7 @@
                                     <span class="md-title">{{campaign.CampaignName}}</span>
                                     <span class="small">by {{campaign.Name + " "+ campaign.Surname}}</span>
                                     <br />
-                                    <span class="small-text-medium">{{campaign.Tagline}}</span>
+                                    <span class="small-text-medium">{{campaign.Tagline | limitTo: 140}}...</span>
                                     <br />
                                     <br />
                                     <style>
