@@ -194,19 +194,11 @@
                     <binding protocol="http" bindingInformation="*:50016:localhost" />
                 </bindings>
             </site>
-                <application path="/" applicationPool="Clr4IntegratedAppPool">
 <<<<<<< HEAD
-                    <virtualDirectory path="/" physicalPath="C:\Users\Brandon\Documents\Informatics\Genesys\team51\Bursify\Bursify.Web" />
+                <application path="/" applicationPool="Clr4IntegratedAppPool">
                     <virtualDirectory path="/" physicalPath="C:\Users\Mack\Documents\ThirdYearProjectRepo\team51\Bursify\Bursify.Web" />
 =======
-                    <virtualDirectory path="/" physicalPath="C:\Users\Mack\Documents\ThirdYearProjectRepo\team51\Bursify\Bursify.Web" />
->>>>>>> f8bc28b8cc31d927a47b5097261cf9084edea8b5
-                </application>
-                <bindings>
-                    <binding protocol="http" bindingInformation="*:50016:localhost" />
-                </bindings>
-            </site>
->>>>>>> 81b4402691e76803411fb258260ed7b866357710
+>>>>>>> 6e0a01bbd5e9825185d490b48b493dfa7ac31a4a
                 </application>
                 <bindings>
                     <binding protocol="http" bindingInformation="*:50008:localhost" />
