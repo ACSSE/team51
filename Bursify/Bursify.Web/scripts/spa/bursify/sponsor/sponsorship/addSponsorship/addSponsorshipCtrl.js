@@ -273,7 +273,17 @@
             $scope.Sponsorship.Province = $scope.selectedProvince;
             $scope.Sponsorship.AgeGroup = $scope.selectedAgeGroup;
             $scope.Sponsorship.SponsorshipType = "High School";
-          
+
+            if ($scope.Sponsorship.SponsorshipValue >= 10000 && $scope.Sponsorship.SponsorshipValue <= 30000) {
+                $scope.Sponsorship.Rating = 3;
+            } else if ($scope.Sponsorship.SponsorshipValue > 30000 && $scope.Sponsorship.SponsorshipValue <= 50000) {
+                $scope.Sponsorship.Rating = 4;
+            } else if ($scope.Sponsorship.SponsorshipValue > 50000) {
+                $scope.Sponsorship.Rating = 5;
+            } else {
+                $scope.Sponsorship.Rating = 2;
+            }
+
             apiService.post('/api/Sponsorship/SaveSponsorship', $scope.Sponsorship, completed1, failed);
         }
 
