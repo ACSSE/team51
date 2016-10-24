@@ -184,7 +184,6 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-<<<<<<< HEAD
 
         //hashed email returns email
         [System.Web.Mvc.AllowAnonymous]
@@ -246,6 +245,15 @@ namespace Bursify.Web.Controllers
 
             string fullname = "";
 
+<<<<<<< HEAD
+                var client = new SmtpClient
+                {
+                    Port = 587,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = true,
+                    Host = "smtp.gmail.com"
+                };
+=======
             if (user.UserType.Equals("Student"))
             {
                 var student = _studentApi.GetStudent(user.ID);
@@ -300,31 +308,9 @@ namespace Bursify.Web.Controllers
             {
                 string str = ex.Message;
             }
+>>>>>>> 540d451cd0e33cc6f745a09ccab8b23602257db0
 
             return request.CreateResponse(HttpStatusCode.OK, true);
-=======
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.Route("SendEmail")]
-        public HttpResponseMessage SendEmail(HttpRequestMessage request, string email)
-        {
-            using (var mail = new MailMessage("brandonsibbs@gmail.com", "malcolmcollin@gmail.com"))
-            {
-
-                var client = new SmtpClient
-                {
-                    Port = 25,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = "smtp.google.com"
-                };
-
-                mail.Subject = "this is a test email.";
-                mail.Body = "this is my test email body";
-                client.Send(mail);
-
-                return request.CreateResponse(HttpStatusCode.OK, new {sent = true});
-            }
->>>>>>> 70439b0fb0716745771397defcaf5e441f216b81
         }
 
         //use sender Id = -1 for notification sent from system/bursify

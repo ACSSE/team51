@@ -1487,9 +1487,9 @@
         var instiID = 0
         function saveInstiDone(result) {
             instiID = result.data.ID;
-            notificationService.displayInfo(instiID);
+           // notificationService.displayInfo(instiID);
            // notificationService.displayInfo('Success');
-           // saveStudent();
+            saveStudent();
         }
 
         function saveInstiFailed() {
