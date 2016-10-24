@@ -291,7 +291,7 @@ namespace Bursify.Web.Controllers
                 msg.To.Add(email);
                 msg.From = new MailAddress("bursifyproject@gmail.com");
                 msg.Subject = "Bursify Reset Password";
-                msg.Body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} http://localhost:50000/#/reset/?ems={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
+                msg.Body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} http://bursify.azurewebsites.net/#/reset/?ems={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
                 
                 client.Send(msg);
             }

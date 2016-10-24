@@ -1,6 +1,8 @@
-﻿using Bursify.Web.Models;
+﻿using System;
+using Bursify.Web.Models;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Web.Http;
 using Bursify.Api.Security;
 using Bursify.Api.Students;
@@ -109,7 +111,28 @@ namespace Bursify.Web.Controllers
 
                 if (user != null)
                 {
-                    response = request.CreateResponse(HttpStatusCode.OK, new { success = true, user});                   
+                    response = request.CreateResponse(HttpStatusCode.OK, new { success = true, user});
+
+                    try
+                    {
+                        SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                        client.EnableSsl = true;
+                        client.Timeout = 10000;
+                        client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        client.UseDefaultCredentials = false;
+                        client.Credentials = new NetworkCredential("bursifyproject@gmail.com", "Bursify123!");
+                        MailMessage msg = new MailMessage();
+                        msg.To.Add(user.Email);
+                        msg.From = new MailAddress("bursifyproject@gmail.com");
+                        msg.Subject = "Bursify Welcome!";
+                        msg.Body = string.Format("Welcome to Bursify,  {0}{0} Thank you for creating an account on our system. {0} Regards,{0} Bursify Team", Environment.NewLine);
+
+                        client.Send(msg);
+                    }
+                    catch (Exception ex)
+                    {
+                        string str = ex.Message;
+                    }
                 }
                 else
                 {

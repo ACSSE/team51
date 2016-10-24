@@ -896,6 +896,8 @@
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\yearistype.sh" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\zone.tab" />
     <Content Include="ApplicationInsights.config" />
+<<<<<<< HEAD
+    <Content Include="Content\assets\css\plugins\icheck\skins\square\Thumbs.db" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -916,6 +918,8 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+=======
+>>>>>>> 81b4402691e76803411fb258260ed7b866357710
     <None Include="Properties\PublishProfiles\bursify - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bursify - Web Deploy.pubxml" />
     <Content Include="scripts\vendors\bower.json" />
