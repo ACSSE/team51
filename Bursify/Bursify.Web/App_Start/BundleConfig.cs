@@ -150,7 +150,7 @@ namespace Bursify.Web
 
                 ));
 
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

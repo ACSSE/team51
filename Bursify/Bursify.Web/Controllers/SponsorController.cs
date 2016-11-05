@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Web.Helpers;
 using System.Web.Http;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
@@ -9,6 +10,7 @@ using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Web.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace Bursify.Web.Controllers
 {
@@ -30,6 +32,10 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("SaveSponsor")]
         public HttpResponseMessage SaveSponsor(HttpRequestMessage request, SponsorViewModel sponsor)
         {
+            if (!ModelState.IsValid)
+            {
+                
+            }
             _sponsorApi.SaveSponsor(sponsor.ReverseMap());
 
             int userId = sponsor.ID;

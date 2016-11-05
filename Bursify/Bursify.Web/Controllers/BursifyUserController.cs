@@ -43,8 +43,11 @@ namespace Bursify.Web.Controllers
         {
             BursifyUser user;
             BursifyUser userVm = null;
+            Guid guid = new Guid();
+            //guid = Guid.NewGuid();
+            
 
-            if (_userApi.GetUserType(email).Equals("Student"))
+            if (_userApi.GetUserType(email).Equals("Student",StringComparison.OrdinalIgnoreCase))
             {
                 user = _userApi.GetCompletStudentUser(email);
                 userVm = new BursifyUserViewModel().MapStudentUser(user);
@@ -101,18 +104,18 @@ namespace Bursify.Web.Controllers
             var user = _membershipApi.GetUserById(userId);
 
             if (user == null) return null;
-         
+
             var imagePath = HttpContext.Current.Server.MapPath("~/Content/BursifyUploads/" + userId + "/images");
 
             var directory = new DirectoryInfo(imagePath);
 
-            if (!directory.Exists) { directory.Create();}
+            if (!directory.Exists) { directory.Create(); }
 
             var multipartFormDataStreamProvider = new UploadMultipartFormProvider(directory.FullName);
 
             // Read the MIME multipart asynchronously 
             await Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
-           
+
             var localFileName = multipartFormDataStreamProvider
                 .FileData.Select(multiPartData => multiPartData.LocalFileName).ToList();
 
@@ -172,7 +175,7 @@ namespace Bursify.Web.Controllers
                 FileLength = new FileInfo(nameOfFile).Length
             };
 
-            
+
 
             camapaign.PicturePath = fileUploadResult.FileName;
 
@@ -224,7 +227,7 @@ namespace Bursify.Web.Controllers
             bool found = _userApi.ValidateEmail(email);
             if (!found)
             {
-                return request.CreateResponse(HttpStatusCode.OK,   false );
+                return request.CreateResponse(HttpStatusCode.OK, false);
             }
 
             //hash email send email with link + hash
@@ -292,7 +295,7 @@ namespace Bursify.Web.Controllers
                 msg.From = new MailAddress("bursifyproject@gmail.com");
                 msg.Subject = "Bursify Reset Password";
                 msg.Body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} http://bursify.azurewebsites.net/#/reset/?ems={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
-                
+
                 client.Send(msg);
             }
             catch (Exception ex)
@@ -311,7 +314,9 @@ namespace Bursify.Web.Controllers
             if (senderId == NOTIFICATION_SYSTEM)
             {
                 nVm.Sender = "Bursify";
-            } else {
+            }
+            else
+            {
                 nVm.Sender = _sponsorApi.GetSponsor(senderId).CompanyName;
             }
 
@@ -339,7 +344,7 @@ namespace Bursify.Web.Controllers
         {
             var notifications = _userApi.GetNotifications(userId);
 
-            var notificationVMs  = NotificationViewModel.MultipleNotificationsMap(notifications);
+            var notificationVMs = NotificationViewModel.MultipleNotificationsMap(notifications);
 
             var response = request.CreateResponse(HttpStatusCode.OK, notificationVMs);
 

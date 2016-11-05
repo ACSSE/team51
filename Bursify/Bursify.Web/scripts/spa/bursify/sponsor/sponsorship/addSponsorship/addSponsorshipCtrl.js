@@ -168,8 +168,8 @@
         ExpensesCovered : "",
         TermsAndConditions : "(a) to commence the course with effect from the ………………… academic year, to take the Course full-time, and to complete the course successfully within the aforementioned period or within such extended period as may be approved in terms of this agreement. (b) to furnish the Company with satisfactory proof of enrolment for the course at the commencement of each year of study: (c) to undergo such practical training as may be prescribed by the aforementioned training institution as part of the course or as may be required for purposes of registration in my particular profession, in the Company, if the Company so desires;",
         SponsorshipType : "Bursary",
-        AgeGroup : "All",
-        Rating : 5,
+        AgeGroup: "All",
+            Rating: 3
         };
 
         $scope.Requirements = [{ "Name": "", "MarkRequired": "", "SponsorshipId": "" }];
@@ -274,15 +274,6 @@
             $scope.Sponsorship.AgeGroup = $scope.selectedAgeGroup;
             $scope.Sponsorship.SponsorshipType = "High School";
 
-            if ($scope.Sponsorship.SponsorshipValue >= 10000 && $scope.Sponsorship.SponsorshipValue <= 30000) {
-                $scope.Sponsorship.Rating = 3;
-            } else if ($scope.Sponsorship.SponsorshipValue > 30000 && $scope.Sponsorship.SponsorshipValue <= 50000) {
-                $scope.Sponsorship.Rating = 4;
-            } else if ($scope.Sponsorship.SponsorshipValue > 50000) {
-                $scope.Sponsorship.Rating = 5;
-            } else {
-                $scope.Sponsorship.Rating = 2;
-            }
 
             apiService.post('/api/Sponsorship/SaveSponsorship', $scope.Sponsorship, completed1, failed);
         }

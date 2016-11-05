@@ -52,28 +52,28 @@ namespace Bursify.Web.Controllers
         {
             HttpResponseMessage response = null;
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return request.CreateResponse(HttpStatusCode.OK, new { success = false });
+
+            var loginSuccess = _membershipApi.Login(userVm.UserEmail, userVm.Password);
+
+            if (loginSuccess)
             {
-                var loginSuccess = _membershipApi.Login(userVm.UserEmail, userVm.Password);
-
-                if (loginSuccess)
-                {
-                    var loggedInUser = _membershipApi.GetUserByEmail(userVm.UserEmail);
-                    var user = (new BursifyUserViewModel()).ReverseMapUser(loggedInUser);
+                var loggedInUser = _membershipApi.GetUserByEmail(userVm.UserEmail);
+                var user = (new BursifyUserViewModel()).ReverseMapUser(loggedInUser);
                     
-                    if(user.UserType.Equals("Admin"))
-                    {
-                        return request.CreateResponse(HttpStatusCode.OK, new { success = true, user });
-                    }
-
-                    SetUserName(user);
-
-                    response = request.CreateResponse(HttpStatusCode.OK, new { success = true, user });
-                }
-                else
+                if(user.UserType.Equals("Admin"))
                 {
-                    response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
+                    return request.CreateResponse(HttpStatusCode.OK, new { success = true, user });
                 }
+
+                SetUserName(user);
+
+                response = request.CreateResponse(HttpStatusCode.OK, new { success = true, user });
+            }
+            else
+            {
+                response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
             }
 
             return response;
