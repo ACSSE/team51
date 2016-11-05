@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Web.Models
@@ -6,7 +7,12 @@ namespace Bursify.Web.Models
     public class SponsorViewModel
     {
         public int ID { get; set; }
+
+        [Required]
+        [StringLength(34, MinimumLength = 3, ErrorMessage = "This string myust be ballin'")]
         public string CompanyName { get; set; }
+
+        
         public int NumberOfStudentsSponsored { get; set; }
         public int NumberOfSponsorships { get; set; }
         public int NumberOfApplicants { get; set; }

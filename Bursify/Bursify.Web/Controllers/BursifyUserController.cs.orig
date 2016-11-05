@@ -184,7 +184,135 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
+
+        //hashed email returns email
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("DecryptEmail")]
+        public HttpResponseMessage DecryptEmail(HttpRequestMessage request, string encryptedEmail)
+        {
+            string email = CryptoService.DecryptStringAES(encryptedEmail.Replace(" ", ""), "Bursify");
+            return request.CreateResponse(HttpStatusCode.OK, email);
+        }
+
+
+        //update password when passed email and password 
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("UpdatePassword")]
+        public HttpResponseMessage UpdatePassword(HttpRequestMessage request, string email, string password)
+        {
+            BursifyUser user;
+
+            if (_userApi.GetUserType(email).Equals("Student"))
+            {
+                user = _userApi.GetCompletStudentUser(email);
+            }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(email);
+            }
+
+            _membershipApi.UpdateUserPassword(user, password);
+            return request.CreateResponse(HttpStatusCode.OK, true);
+        }
+
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("ResetPassword")]
+        public HttpResponseMessage ResetPassword(HttpRequestMessage request, string email)
+        {
+            //check if user exists
+            bool found = _userApi.ValidateEmail(email);
+            if (!found)
+            {
+                return request.CreateResponse(HttpStatusCode.OK,   false );
+            }
+
+            //hash email send email with link + hash
+            string encryptedemail = CryptoService.EncryptStringAES(email, "Bursify");
+
+            var fromAddress = new MailAddress("bursifyproject@gmail.com", "Bursify");
+
+            BursifyUser user;
+
+            if (_userApi.GetUserType(email).Equals("Student"))
+            {
+                user = _userApi.GetCompletStudentUser(email);
+            }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(email);
+            }
+
+            string fullname = "";
+
 <<<<<<< HEAD
+                var client = new SmtpClient
+                {
+                    Port = 587,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = true,
+                    Host = "smtp.gmail.com"
+                };
+=======
+            if (user.UserType.Equals("Student"))
+            {
+                var student = _studentApi.GetStudent(user.ID);
+                fullname = student.Firstname + " " + student.Surname;
+            }
+            else
+            {
+                var sponsor = _sponsorApi.GetSponsor(user.ID);
+                fullname = sponsor.CompanyName;
+            }
+
+            //var toAddress = new MailAddress(email, fullname);
+            //const string fromPassword = "Bursify123!";
+            //string subject = "Bursify Reset Password ";
+            //string body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} www.bursify.azurewebsites.net/#/reset/ems?={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
+
+            //var smtp = new SmtpClient
+            //{
+            //    Host = "smtp.gmail.com",
+            //    Port = 587,
+            //    EnableSsl = false,
+            //    DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    UseDefaultCredentials = false,
+            //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            //};
+
+            //using (var message = new MailMessage(fromAddress, toAddress)
+            //{
+            //    Subject = subject,
+            //    Body = body,
+
+
+            //})
+
+            try
+            {
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Timeout = 10000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("bursifyproject@gmail.com", "Bursify123!");
+                MailMessage msg = new MailMessage();
+                msg.To.Add(email);
+                msg.From = new MailAddress("bursifyproject@gmail.com");
+                msg.Subject = "Bursify Reset Password";
+                msg.Body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} http://localhost:50000/#/reset/?ems={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
+                
+                client.Send(msg);
+            }
+            catch (Exception ex)
+            {
+                string str = ex.Message;
+            }
+>>>>>>> 540d451cd0e33cc6f745a09ccab8b23602257db0
+
+            return request.CreateResponse(HttpStatusCode.OK, true);
+        }
+
         //use sender Id = -1 for notification sent from system/bursify
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.Route("CreateNotification")]
@@ -265,29 +393,5 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
-=======
-        [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.Route("SendEmail")]
-        public HttpResponseMessage SendEmail(HttpRequestMessage request, string email)
-        {
-            using (var mail = new MailMessage("brandonsibbs@gmail.com", "malcolmcollin@gmail.com"))
-            {
-
-                var client = new SmtpClient
-                {
-                    Port = 25,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = "smtp.google.com"
-                };
-
-                mail.Subject = "this is a test email.";
-                mail.Body = "this is my test email body";
-                client.Send(mail);
-
-                return request.CreateResponse(HttpStatusCode.OK, new {sent = true});
-            }
-        }
->>>>>>> caa7051474becb80e3ac3ab758616f4ef4d4c313
     }
 }

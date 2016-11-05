@@ -56,7 +56,15 @@ namespace Bursify.Data.EF.Repositories
         public IEnumerable<Campaign> GetUserCampaigns(int userId)
         {
             var userCampaigns = FindMany(campaign =>
-                                campaign.StudentId == userId);
+                                campaign.StudentId == userId && campaign.Status.Equals("Active", StringComparison.OrdinalIgnoreCase));
+
+            return userCampaigns;
+        }
+
+        public IEnumerable<Campaign> GetInactiveCampaigns(int userId)
+        {
+            var userCampaigns = FindMany(campaign =>
+                                campaign.StudentId == userId && campaign.Status.Equals("InActive", StringComparison.OrdinalIgnoreCase));
 
             return userCampaigns;
         }

@@ -43,8 +43,11 @@ namespace Bursify.Web.Controllers
         {
             BursifyUser user;
             BursifyUser userVm = null;
+            Guid guid = new Guid();
+            //guid = Guid.NewGuid();
+            
 
-            if (_userApi.GetUserType(email).Equals("Student"))
+            if (_userApi.GetUserType(email).Equals("Student",StringComparison.OrdinalIgnoreCase))
             {
                 user = _userApi.GetCompletStudentUser(email);
                 userVm = new BursifyUserViewModel().MapStudentUser(user);
@@ -101,18 +104,18 @@ namespace Bursify.Web.Controllers
             var user = _membershipApi.GetUserById(userId);
 
             if (user == null) return null;
-         
+
             var imagePath = HttpContext.Current.Server.MapPath("~/Content/BursifyUploads/" + userId + "/images");
 
             var directory = new DirectoryInfo(imagePath);
 
-            if (!directory.Exists) { directory.Create();}
+            if (!directory.Exists) { directory.Create(); }
 
             var multipartFormDataStreamProvider = new UploadMultipartFormProvider(directory.FullName);
 
             // Read the MIME multipart asynchronously 
             await Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
-           
+
             var localFileName = multipartFormDataStreamProvider
                 .FileData.Select(multiPartData => multiPartData.LocalFileName).ToList();
 
@@ -172,7 +175,7 @@ namespace Bursify.Web.Controllers
                 FileLength = new FileInfo(nameOfFile).Length
             };
 
-            
+
 
             camapaign.PicturePath = fileUploadResult.FileName;
 
@@ -184,27 +187,123 @@ namespace Bursify.Web.Controllers
             return response;
         }
 
+
+        //hashed email returns email
         [System.Web.Mvc.AllowAnonymous]
-        [System.Web.Mvc.Route("SendEmail")]
-        public HttpResponseMessage SendEmail(HttpRequestMessage request, string email)
+        [System.Web.Mvc.Route("DecryptEmail")]
+        public HttpResponseMessage DecryptEmail(HttpRequestMessage request, string encryptedEmail)
         {
-            using (var mail = new MailMessage("brandonsibbs@gmail.com", "malcolmcollin@gmail.com"))
+            string email = CryptoService.DecryptStringAES(encryptedEmail.Replace(" ", ""), "Bursify");
+            return request.CreateResponse(HttpStatusCode.OK, email);
+        }
+
+
+        //update password when passed email and password 
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("UpdatePassword")]
+        public HttpResponseMessage UpdatePassword(HttpRequestMessage request, string email, string password)
+        {
+            BursifyUser user;
+
+            if (_userApi.GetUserType(email).Equals("Student"))
             {
-
-                var client = new SmtpClient
-                {
-                    Port = 25,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = "smtp.google.com"
-                };
-
-                mail.Subject = "this is a test email.";
-                mail.Body = "this is my test email body";
-                client.Send(mail);
-
-                return request.CreateResponse(HttpStatusCode.OK, new {sent = true});
+                user = _userApi.GetCompletStudentUser(email);
             }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(email);
+            }
+
+            _membershipApi.UpdateUserPassword(user, password);
+            return request.CreateResponse(HttpStatusCode.OK, true);
+        }
+
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.Route("ResetPassword")]
+        public HttpResponseMessage ResetPassword(HttpRequestMessage request, string email)
+        {
+            //check if user exists
+            bool found = _userApi.ValidateEmail(email);
+            if (!found)
+            {
+                return request.CreateResponse(HttpStatusCode.OK, false);
+            }
+
+            //hash email send email with link + hash
+            string encryptedemail = CryptoService.EncryptStringAES(email, "Bursify");
+
+            var fromAddress = new MailAddress("bursifyproject@gmail.com", "Bursify");
+
+            BursifyUser user;
+
+            if (_userApi.GetUserType(email).Equals("Student"))
+            {
+                user = _userApi.GetCompletStudentUser(email);
+            }
+            else
+            {
+                user = _userApi.GetCompletSponsorUser(email);
+            }
+
+            string fullname = "";
+
+            if (user.UserType.Equals("Student"))
+            {
+                var student = _studentApi.GetStudent(user.ID);
+                fullname = student.Firstname + " " + student.Surname;
+            }
+            else
+            {
+                var sponsor = _sponsorApi.GetSponsor(user.ID);
+                fullname = sponsor.CompanyName;
+            }
+
+            //var toAddress = new MailAddress(email, fullname);
+            //const string fromPassword = "Bursify123!";
+            //string subject = "Bursify Reset Password ";
+            //string body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} www.bursify.azurewebsites.net/#/reset/ems?={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
+
+            //var smtp = new SmtpClient
+            //{
+            //    Host = "smtp.gmail.com",
+            //    Port = 587,
+            //    EnableSsl = false,
+            //    DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    UseDefaultCredentials = false,
+            //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            //};
+
+            //using (var message = new MailMessage(fromAddress, toAddress)
+            //{
+            //    Subject = subject,
+            //    Body = body,
+
+
+            //})
+
+            try
+            {
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Timeout = 10000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("bursifyproject@gmail.com", "Bursify123!");
+                MailMessage msg = new MailMessage();
+                msg.To.Add(email);
+                msg.From = new MailAddress("bursifyproject@gmail.com");
+                msg.Subject = "Bursify Reset Password";
+                msg.Body = string.Format("Hi {1}, {0} Please follow this link to reset your password: {0} http://bursify.azurewebsites.net/#/reset/?ems={2} {0}{0} Regards Bursify Team", Environment.NewLine, fullname, encryptedemail);
+
+                client.Send(msg);
+            }
+            catch (Exception ex)
+            {
+                string str = ex.Message;
+            }
+
+            return request.CreateResponse(HttpStatusCode.OK, true);
         }
 
         //use sender Id = -1 for notification sent from system/bursify
@@ -215,7 +314,9 @@ namespace Bursify.Web.Controllers
             if (senderId == NOTIFICATION_SYSTEM)
             {
                 nVm.Sender = "Bursify";
-            } else {
+            }
+            else
+            {
                 nVm.Sender = _sponsorApi.GetSponsor(senderId).CompanyName;
             }
 
@@ -243,7 +344,7 @@ namespace Bursify.Web.Controllers
         {
             var notifications = _userApi.GetNotifications(userId);
 
-            var notificationVMs  = NotificationViewModel.MultipleNotificationsMap(notifications);
+            var notificationVMs = NotificationViewModel.MultipleNotificationsMap(notifications);
 
             var response = request.CreateResponse(HttpStatusCode.OK, notificationVMs);
 

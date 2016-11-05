@@ -52,7 +52,7 @@
             $scope.uploading = true;
             fileUploadService.uploadCampImage(ImageFile, $rootScope.repository.loggedUser.userIden, $scope.CampaignId, ImageUploadDone);
 
-            notificationService.displaySuccess(ImageFile.FileName);
+          //  notificationService.displaySuccess(ImageFile.FileName);
         }
 
         function ImageUploadDone() {

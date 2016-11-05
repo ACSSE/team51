@@ -83,6 +83,7 @@
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -146,6 +147,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\assets\css\bootstrap.min.css" />
     <Content Include="Content\assets\css\jquery.steps.css" />
     <Content Include="Content\assets\css\jquery.ui.min.css" />
@@ -295,29 +297,9 @@
     <Content Include="Content\assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\assets\fonts\Simple-Line-Icons.svg" />
-    <Content Include="Content\assets\img.jpg" />
-    <Content Include="Content\assets\img\avatar.jpg" />
-    <Content Include="Content\assets\img\avatar2.png" />
-    <Content Include="Content\assets\img\avatar3.png" />
     <Content Include="Content\assets\img\bg.svg" />
     <Content Include="Content\assets\img\bg1.jpg" />
-    <Content Include="Content\assets\img\bg2.jpg" />
-    <Content Include="Content\assets\img\bg3.jpg" />
-    <Content Include="Content\assets\img\bg4.jpg" />
     <Content Include="Content\assets\img\bigplay.svg" />
-    <Content Include="Content\assets\img\controls.png" />
-    <Content Include="Content\assets\img\controls.svg" />
-    <Content Include="Content\assets\img\demo-video.png" />
-    <Content Include="Content\assets\img\g3986.png" />
-    <Content Include="Content\assets\img\left-bg.png" />
-    <Content Include="Content\assets\img\left-bg2.png" />
-    <Content Include="Content\assets\img\logomi.png" />
-    <Content Include="Content\assets\img\mike.jpg" />
-    <Content Include="Content\assets\img\sprite-skin-flat.png" />
-    <Content Include="Content\assets\img\sprite-skin-modern.png" />
-    <Content Include="Content\assets\img\sprite-skin-nice.png" />
-    <Content Include="Content\assets\img\sprite-skin-simple.png" />
-    <Content Include="Content\assets\img\ss.png" />
     <Content Include="Content\assets\js\bootstrap.min.js" />
     <Content Include="Content\assets\js\jquery-1.11.1.min.js" />
     <Content Include="Content\assets\js\jquery.min.js" />
@@ -455,14 +437,10 @@
     <Content Include="Content\assets\js\plugins\select2.full.min.js" />
     <Content Include="Content\assets\js\plugins\silverlightmediaelement.xap" />
     <Content Include="Content\assets\js\plugins\summernote.min.js" />
-    <Content Include="Content\assets\tech-1-mobile.jpg" />
-    <Content Include="Content\assets\tech-1.jpg" />
-    <Content Include="Content\assets\tech-2-mobile.jpg" />
-    <Content Include="Content\assets\tech-2.jpg" />
-    <Content Include="Content\assets\video-replace-mobile.jpg" />
     <Content Include="Content\bootstrap-additions.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BursifyUploads\default-campaign.jpg" />
     <Content Include="Content\chart\1.png" />
     <Content Include="Content\chart\10.png" />
     <Content Include="Content\chart\2.png" />
@@ -505,21 +483,6 @@
     <Content Include="Content\images\campaign.jpeg" />
     <Content Include="Content\images\campaign.jpg" />
     <Content Include="Content\images\p1.jpeg" />
-    <Content Include="Content\images\student\student1.jpg" />
-    <Content Include="Content\images\student\student10.jpg" />
-    <Content Include="Content\images\student\student11.jpg" />
-    <Content Include="Content\images\student\student12.jpg" />
-    <Content Include="Content\images\student\student13.jpg" />
-    <Content Include="Content\images\student\student14.jpg" />
-    <Content Include="Content\images\student\student15.jpg" />
-    <Content Include="Content\images\student\student2.jpg" />
-    <Content Include="Content\images\student\student3.jpg" />
-    <Content Include="Content\images\student\student4.jpg" />
-    <Content Include="Content\images\student\student5.jpg" />
-    <Content Include="Content\images\student\student6.jpg" />
-    <Content Include="Content\images\student\student7.jpg" />
-    <Content Include="Content\images\student\student8.jpg" />
-    <Content Include="Content\images\student\student9.jpg" />
     <Content Include="Content\images\system\Double Down-64.png" />
     <Content Include="Content\images\system\entelect.png" />
     <Content Include="Content\images\ui\report.png" />
@@ -631,7 +594,9 @@
     <Content Include="Images\campaigns\campaign.jpeg" />
     <Content Include="Images\campaigns\campaign.jpg" />
     <Content Include="Images\campaigns\default-campaign.jpg" />
+    <Content Include="scripts\spa\account\reset.html" />
     <Content Include="scripts\spa\account\FMP.html" />
+    <Content Include="scripts\spa\account\resetCtrl.js" />
     <Content Include="scripts\spa\account\login.html" />
     <Content Include="scripts\spa\account\fmpCtrl.js" />
     <Content Include="scripts\spa\account\loginCtrl.js" />
@@ -669,6 +634,13 @@
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\editSponsorship\editSponsorshipCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\metrics\metric.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\metrics\metricCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\sponsored.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\sponsoredCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\dialog.tmpl.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\Form\Form.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\Form\formCtrl.js" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\studentSponsored.html" />
+    <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsored\student\studentSponsoredCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndex.html" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\sponsorshipIndexCtrl.js" />
     <Content Include="scripts\spa\bursify\sponsor\sponsorship\viewApplicants\applicants.html" />
@@ -705,6 +677,8 @@
     <Content Include="scripts\spa\bursify\student\campaigns\viewCampaigns.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\vode.html" />
     <Content Include="scripts\spa\bursify\student\campaigns\dialog.tmpl.html" />
+    <Content Include="scripts\spa\bursify\student\chart\leaderboard.html" />
+    <Content Include="scripts\spa\bursify\student\chart\leaderboardCtrl.js" />
     <Content Include="scripts\spa\bursify\student\home\index.html" />
     <Content Include="scripts\spa\bursify\student\home\studentCtrl.js" />
     <Content Include="scripts\spa\bursify\student\messages\messages.html" />
@@ -787,6 +761,34 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BursifyUserController.cs" />
@@ -853,7 +855,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\fonts\stamp-icons.ttf" />
     <Content Include="Content\landing\wp-content\themes\Parallax-One\fonts\stamp-icons.woff" />
-    <Content Include="Content\landing\wp-content\themes\Parallax-One\images\Thumbs.db" />
     <Content Include="Content\assets\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\assets\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\assets\fonts\fontawesome-webfont.woff" />
@@ -894,14 +895,30 @@
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\systemv" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\yearistype.sh" />
     <Content Include="Content\assets\js\plugins\flot\examples\axes-time-zones\tz\zone.tab" />
-    <Content Include="Content\images\system\Thumbs.db" />
     <Content Include="ApplicationInsights.config" />
-    <Content Include="Content\assets\css\plugins\icheck\skins\square\Thumbs.db" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Properties\PublishProfiles\bursify - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bursify - Web Deploy.pubxml" />
     <Content Include="scripts\vendors\bower.json" />
-    <None Include="Properties\PublishProfiles\bursifywebapp - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\bursifywebapp - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -911,11 +928,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\BursifyUploads\" />
     <Folder Include="Content\dist\js\pages\" />
     <Folder Include="Content\images\campaign\" />
     <Folder Include="Content\images\company\" />
     <Folder Include="Content\images\raty\" />
+    <Folder Include="Content\images\student\" />
     <Folder Include="Content\landing\wp-content\plugins\contact-form-7\includes\css\" />
     <Folder Include="Content\landing\wp-content\plugins\contact-form-7\includes\js\" />
     <Folder Include="Content\landing\wp-content\plugins\easy-digital-downloads\assets\js\" />
@@ -957,6 +974,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

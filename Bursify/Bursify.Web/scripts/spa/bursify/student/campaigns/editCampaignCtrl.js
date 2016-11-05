@@ -28,7 +28,8 @@
             $scope.campaign = result.data;
             $scope.loadingCampaign = false;
         }
-       $scope.editStudentCampaign = function()
+        function editStudentCampaign()
+        $scope.editStudentCampaign = function ()
        {
            alert("HGGHHFHFH");
             apiService.post('/api/campaign/SaveCampaign/?campaign=', $scope.campaign,

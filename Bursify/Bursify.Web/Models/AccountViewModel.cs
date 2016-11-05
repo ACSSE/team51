@@ -1,12 +1,11 @@
-﻿using Bursify.Data.EF.Entities.Campaigns;
-using Bursify.Data.EF.Entities.SponsorUser;
-using Bursify.Data.EF.Entities.User;
+﻿using Bursify.Data.EF.Entities.SponsorUser;
 
 namespace Bursify.Web.Models
 {
     public class AccountViewModel
     {
         public int ID { get; set; }
+
         public string AccountName { get; set; }
         public string CardNumber { get; set; }
         public long ExpirationYear { get; set; }

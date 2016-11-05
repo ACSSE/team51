@@ -124,14 +124,17 @@ namespace Bursify.Api.Users
 
         public bool ValidateEmail(string email)
         {
-            var e = userRepository.GetUserByEmail(email);
-
-            if (e == null)
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
             {
-                return true;
-            }
+                var e = userRepository.GetUserByEmail(email);
 
-            return false;
+                if (e != null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
         }
 
         public void UpdateUser(BursifyUser user)

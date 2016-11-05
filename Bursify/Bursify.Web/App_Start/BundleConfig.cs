@@ -61,6 +61,7 @@ namespace Bursify.Web
                 "~/Scripts/spa/services/fileUploadService.js",
                 "~/Scripts/spa/account/loginCtrl.js",
                 "~/Scripts/spa/account/fmpCtrl.js",
+                 "~/Scripts/spa/account/resetCtrl.js",
             #endregion
 
             #region Campaign
@@ -99,7 +100,9 @@ namespace Bursify.Web
                         "~/Scripts/spa/bursify/sponsor/sponsorship/editSponsorship/editSponsorshipCtrl.js",
                           "~/Scripts/spa/bursify/sponsor/sponsorship/metrics/metricCtrl.js",
                        "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/student/studentApplicationCtrl.js",
-                         "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/student/form/formctrl.js",
+                       "~/Scripts/spa/bursify/sponsor/sponsorship/sponsored/sponsoredCtrl.js",
+                        "~/Scripts/spa/bursify/sponsor/sponsorship/sponsored/student/studentSponsoredCtrl.js",
+                        "~/Scripts/spa/bursify/sponsor/sponsorship/viewapplicants/student/form/formctrl.js",
                     "~/Scripts/spa/bursify/admin/home/adminCtrl.js",
                      "~/Scripts/spa/bursify/admin/home/student/adminStudentCtrl.js",
                       "~/Scripts/spa/bursify/admin/home/sponsor/adminSponsorCtrl.js",
@@ -147,7 +150,7 @@ namespace Bursify.Web
 
                 ));
 
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

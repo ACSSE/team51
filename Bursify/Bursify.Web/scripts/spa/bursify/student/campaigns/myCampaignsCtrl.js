@@ -3,9 +3,9 @@
     /** Remove the Http when calling the API**/
     app.controller('myCampaignsCtrl', myCampaignsCtrl);
 
-    myCampaignsCtrl.$inject = ['$scope', 'apiService', '$routeParams', 'notificationService', '$rootScope', '$mdDialog', '$mdMedia'];
+    myCampaignsCtrl.$inject = ['$scope', 'apiService', '$routeParams', 'notificationService', '$rootScope', '$mdDialog', '$mdMedia', '$location'];
 
-    function myCampaignsCtrl($scope, apiService, $routeParams, notificationService, $rootScope,$mdDialog,$mdMedia) {
+    function myCampaignsCtrl($scope, apiService, $routeParams, notificationService, $rootScope,$mdDialog,$mdMedia, $location) {
         $scope.pageClass = 'page-home-my-campaigns';
 
         $scope.demo = {
@@ -71,6 +71,7 @@
                     })
                     .then(function (answer) {
                         $mdDialog.hide($scope.campaignId);
+                        $location.path("/student/myCampaigns/");
                      
                     }, function () {
                         $scope.status = 'You cancelled the dialog.';

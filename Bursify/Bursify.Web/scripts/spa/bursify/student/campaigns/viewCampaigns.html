@@ -64,6 +64,8 @@
 
         <!-- End Of sorting -->
 
+
+
         <div id="content">
             <!-- Main content -->
             <section class="content">
@@ -98,7 +100,7 @@
                         <div ng-repeat="campaign in campaigns" class="col-md-3">
                             <a ng-href="#/student/campaign-details/{{campaign.CampaignId}}">
                                 <md-card class="fade">
-                                    <img style="height: 250px;" src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image img-rounded" alt="campaign.jpg">
+                                    <img style="height: 250px;" ng-src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image img-rounded" alt="campaign.jpg">
                                     <md-card-title>
                                         <md-card-title-text>
                                             <span class="md-headline">{{campaign.CampaignName}}</span>
@@ -106,7 +108,8 @@
                                         </md-card-title-text>
                                     </md-card-title>
                                     <md-card-content>
-                                        <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
+                                        <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline | limitTo: 70}}...</p>
+                                        <br />
                                         <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
 
                                         <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
@@ -134,7 +137,7 @@
                         <div ng-repeat="campaign in campaigns| filter:type | filter:searchA" class="col-md-3">
                             <a ng-href="#/student/campaign-details/{{campaign.CampaignId}}">
                                 <md-card>
-                                    <img style="height: 250px;" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
+                                    <img style="height: 250px;" ng-src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg">
                                     <md-card-title>
                                         <md-card-title-text>
                                             <span class="md-headline">{{campaign.CampaignName}}</span>
@@ -142,7 +145,8 @@
                                         </md-card-title-text>
                                     </md-card-title>
                                     <md-card-content>
-                                        <p style="margin-top: -20px;height: 36px;">{{campaign.Tagline}}</p>
+                                        <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
+                                        <br/>
                                         <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
 
                                         <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>
