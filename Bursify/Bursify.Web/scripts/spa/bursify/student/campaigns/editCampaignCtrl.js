@@ -13,7 +13,6 @@
         $scope.campaign.StudentId = $rootScope.repository.loggedUser.userIden;
         $scope.StudentName = $rootScope.repository.loggedUser.username;
         $scope.loadMyCampaign = loadMyCampaign;
-        $scope.editStudentCampaign = editStudentCampaign;
 
         /* End of Form input */
 
@@ -29,8 +28,9 @@
             $scope.campaign = result.data;
             $scope.loadingCampaign = false;
         }
-        function editStudentCampaign()
-        {
+       $scope.editStudentCampaign = function()
+       {
+           alert("HGGHHFHFH");
             apiService.post('/api/campaign/SaveCampaign/?campaign=', $scope.campaign,
                     EditCampaignSucceded,
                     EditCampaignFailed);
