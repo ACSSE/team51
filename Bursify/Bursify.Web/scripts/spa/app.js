@@ -207,24 +207,24 @@
             })
             .when("/student/campaign-details/:campaignId", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/campaignDetails.html",
-                controller: "campaignDetailsCtrl"
-                // resolve: { isAuthenticated: isAuthenticated }
+                controller: "campaignDetailsCtrl",
+                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/student/fund-campaign", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/fundCampaign.html",
                 controller: "fundCampaignCtrl",
-                // resolve: { isAuthenticated: isAuthenticated }
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/student/test", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/test.html",
                 controller: "testCtrl",
-                // resolve: { isAuthenticated: isAuthenticated }
+                 resolve: { isAuthenticated: isAuthenticated }
             })
 
             .when("/student/campaign-progress/:campaignId", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/campaignProgress.html",
                 controller: "campaignProgressCtrl",
-                // resolve: { isAuthenticated: isAuthenticated }
+                resolve: { isAuthenticated: isAuthenticated }
             })
 
             .when("/student/addAccount", {
@@ -237,10 +237,11 @@
             //Sponsor
                         .when("/sponsor/campaign-details/:campaignId", {
                             templateUrl: "scripts/spa/bursify/sponsor/campaigns/campaignDetails.html",
-                            controller: "viewCampaignCtrl"
-                            // resolve: { isAuthenticated: isAuthenticated }
+                            controller: "viewCampaignCtrl",
+                            resolve: { isAuthenticated: isAuthenticated }
                         })
-                            .when("/sponsor/campaigns", {
+
+                        .when("/sponsor/campaigns", {
                                 templateUrl: "scripts/spa/bursify/sponsor/campaigns/viewCampaigns.html",
                                 controller: "campaignsCtrl",
                                 resolve: { isAuthenticated: isAuthenticated }
@@ -249,13 +250,13 @@
                         .when("/sponsor/chart", {
                             templateUrl: "scripts/spa/bursify/sponsor/chart/leaderboard.html",
                             controller: "leaderboardCtrl",
-                            // resolve: { isAuthenticated: isAuthenticated}
+                             resolve: { isAuthenticated: isAuthenticated}
                         })
 
                         .when("/sponsor/fund", {
                             templateUrl: "scripts/spa/bursify/sponsor/campaigns/fundCampaign.html",
                             controller: "fundCampaignCtrl",
-                            // resolve: { isAuthenticated: isAuthenticated }
+                            resolve: { isAuthenticated: isAuthenticated }
                         })
 
             /* Campaigns end**/
