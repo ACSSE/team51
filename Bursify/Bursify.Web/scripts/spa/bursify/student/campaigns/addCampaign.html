@@ -112,6 +112,8 @@
                             <div class="col-md-4">
                                 <div class="thumbnail" style="background-color:white">
                                     <img class="img-rounded" ng-src="Content/BursifyUploads/default-campaign.jpg" alt="campagin picture" style="width:100%;height:200px;">
+
+                                    <img class="img-rounded" ng-src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture" style="width:100%;height:200px;">
                                     <div class="caption">
                                         <b>{{campaign.CampaignName}}</b><br>
                                         <small>{{StudentName}}</small><br><br>
@@ -305,7 +307,6 @@
                                   <md-card-header-text>
                             <md-card>
                                 <a href="#/student/campaigns">
-                                    <img style="width:100%;height:200px;" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
                                 </a>
                             </md-card>
                         </md-card-header-text>

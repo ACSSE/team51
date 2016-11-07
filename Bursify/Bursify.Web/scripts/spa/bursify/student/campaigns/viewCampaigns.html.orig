@@ -64,6 +64,8 @@
 
         <!-- End Of sorting -->
 
+
+
         <div id="content">
             <!-- Main content -->
             <section class="content">
@@ -146,9 +148,9 @@
 <<<<<<< HEAD
                                         <p style="margin-top: -20px;height: 36px;">{{campaign.Tagline}}</p>
 =======
-                                        <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline | limitTo: 70}}...</p>
+                                        <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
                                         <br/>
->>>>>>> 62a75902834ec24cb0ae7fdab503e8ff6d76c050
                                         <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
 
                                         <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>

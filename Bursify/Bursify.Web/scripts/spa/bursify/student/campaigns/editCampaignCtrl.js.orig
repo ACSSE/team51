@@ -30,13 +30,12 @@
         }
 <<<<<<< HEAD
        $scope.editStudentCampaign = function()
+=======
+        function editStudentCampaign()
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
+        $scope.editStudentCampaign = function ()
        {
            alert("HGGHHFHFH");
-=======
-
-        $scope.editStudentCampaign = function ()
-        {
->>>>>>> 62a75902834ec24cb0ae7fdab503e8ff6d76c050
             apiService.post('/api/campaign/SaveCampaign/?campaign=', $scope.campaign,
                     EditCampaignSucceded,
                     EditCampaignFailed);

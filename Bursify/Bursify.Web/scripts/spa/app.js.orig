@@ -236,38 +236,38 @@
                 templateUrl: "scripts/spa/bursify/student/campaigns/campaignDetails.html",
                 controller: "campaignDetailsCtrl",
 <<<<<<< HEAD
-                 resolve: { isAuthenticated: isAuthenticated }
-=======
                resolve: { isAuthenticated: isAuthenticated }
->>>>>>> 62a75902834ec24cb0ae7fdab503e8ff6d76c050
+=======
+                // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
             })
             .when("/student/fund-campaign", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/fundCampaign.html",
                 controller: "fundCampaignCtrl",
 <<<<<<< HEAD
-                resolve: { isAuthenticated: isAuthenticated }
-=======
                resolve: { isAuthenticated: isAuthenticated }
->>>>>>> 62a75902834ec24cb0ae7fdab503e8ff6d76c050
+=======
+                // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
             })
             .when("/student/test", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/test.html",
                 controller: "testCtrl",
 <<<<<<< HEAD
-                 resolve: { isAuthenticated: isAuthenticated }
-=======
                resolve: { isAuthenticated: isAuthenticated }
->>>>>>> 62a75902834ec24cb0ae7fdab503e8ff6d76c050
+=======
+                // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
             })
 
             .when("/student/campaign-progress/:campaignId", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/campaignProgress.html",
                 controller: "campaignProgressCtrl",
 <<<<<<< HEAD
-                resolve: { isAuthenticated: isAuthenticated }
-=======
                resolve: { isAuthenticated: isAuthenticated }
->>>>>>> 62a75902834ec24cb0ae7fdab503e8ff6d76c050
+=======
+                // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
             })
 
             .when("/student/addAccount", {
@@ -282,10 +282,10 @@
                             templateUrl: "scripts/spa/bursify/sponsor/campaigns/campaignDetails.html",
                             controller: "viewCampaignCtrl",
 <<<<<<< HEAD
-                            resolve: { isAuthenticated: isAuthenticated }
-=======
                            resolve: { isAuthenticated: isAuthenticated }
->>>>>>> 62a75902834ec24cb0ae7fdab503e8ff6d76c050
+=======
+                            // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
                         })
 
                         .when("/sponsor/campaigns", {
@@ -304,10 +304,10 @@
                             templateUrl: "scripts/spa/bursify/sponsor/campaigns/fundCampaign.html",
                             controller: "fundCampaignCtrl",
 <<<<<<< HEAD
-                            resolve: { isAuthenticated: isAuthenticated }
-=======
                            resolve: { isAuthenticated: isAuthenticated }
->>>>>>> 62a75902834ec24cb0ae7fdab503e8ff6d76c050
+=======
+                            // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
                         })
 
             /* Campaigns end**/

@@ -245,7 +245,6 @@
             .when("/student/test", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/test.html",
                 controller: "testCtrl",
-               resolve: { isAuthenticated: isAuthenticated }
             })
 
             .when("/student/campaign-progress/:campaignId", {
@@ -283,7 +282,6 @@
                         .when("/sponsor/fund", {
                             templateUrl: "scripts/spa/bursify/sponsor/campaigns/fundCampaign.html",
                             controller: "fundCampaignCtrl",
-                           resolve: { isAuthenticated: isAuthenticated }
                         })
 
             /* Campaigns end**/
