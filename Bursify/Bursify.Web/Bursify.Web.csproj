@@ -437,6 +437,7 @@
     <Content Include="Content\assets\js\plugins\select2.full.min.js" />
     <Content Include="Content\assets\js\plugins\silverlightmediaelement.xap" />
     <Content Include="Content\assets\js\plugins\summernote.min.js" />
+    <Content Include="Content\b.jpg" />
     <Content Include="Content\bootstrap-additions.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -554,6 +555,7 @@
     <Content Include="Content\img\icons\toggle-arrow.svg" />
     <Content Include="Content\img\icons\twitter.svg" />
     <Content Include="Content\img\icons\upload.svg" />
+    <Content Include="Content\k.jpg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BACKUP_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_BASE_8544.svg" />
     <Content Include="Content\landing\css\font-awesome\fonts\fontawesome-webfont_LOCAL_8544.svg" />
@@ -576,7 +578,9 @@
     <Content Include="Content\landing\wp-includes\js\jquery\jquery-migrate.min1576.js" />
     <Content Include="Content\landing\wp-includes\js\jquery\jqueryc1d8.js" />
     <Content Include="Content\landing\wp-includes\js\wp-embed.min.js" />
+    <Content Include="Content\m.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\t.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\campaigns\1.JPG" />

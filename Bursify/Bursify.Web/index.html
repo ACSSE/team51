@@ -5,16 +5,17 @@
     <!--[if IE]><![endif]-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
     <title>Bursify</title>
 
- 
-    <link href="Content/landing/wp-content/plugins/woocommerce/assets/css/woocommerce-layout4468.css" rel="stylesheet" />
 
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" rel="stylesheet" />
     <link href="Content/landing/wp-includes/css/dashicons.min.css" rel="stylesheet" />
 
+
+
     <link rel='stylesheet' id='parallax-one-fonts-css' href='http://fonts.googleapis.com/css?family=Cabin%3A400%2C600%7COpen+Sans%3A400%2C300%2C600&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
     <link href="Content/landing/wp-content/themes/Parallax-One/css/bootstrap.min3d36.css" rel="stylesheet" />
     <link href="Content/landing/wp-content/themes/Parallax-One/style8a54.css" rel="stylesheet" />
 
@@ -22,11 +23,9 @@
     <script src="Content/landing/wp-includes/js/jquery/jqueryc1d8.js"></script>
 
     <script src="Content/landing/wp-includes/js/jquery/jquery-migrate.min1576.js"></script>
-  
-    <script src="Content/landing/wp-content/plugins/easy-digital-downloads/assets/js/edd-ajax.min2a47.js"></script>
-  
-    <script src="Content/landing/wp-content/plugins/pirate-forms/js/scripts-general.js"></script>
-  
+
+
+
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <style>
         .bounce {
@@ -59,6 +58,7 @@
         }
     </style>
 
+
 </head>
 <body itemscope class="home blog" dir="ltr">
     <div id="mobilebgfix">
@@ -79,10 +79,22 @@
                                 <a href="index.html" class="navbar-brand" title="Bursify"><img src="Content/landing/wp-content/themes/Parallax-One/images/BURSIFYLOGO.png" alt="Parallax One"></a>
 
                                 <div class="header-logo-wrap text-header paralax_one_only_customizer">
-                                    <h1 itemprop="headline" id="site-title" class="site-title"><a href="index.html" title="Parallax One" rel="home">Parallax One</a></h1>
-                                    <p itemprop="description" id="site-description" class="site-description">Just another WordPress site by Themeisle</p>
+                                    <h1 itemprop="headline" id="site-title" class="site-title"><a href="index.html" title="Parallax One" rel="home"></a></h1>
+                                    <p itemprop="description" id="site-description" class="site-description"></p>
                                 </div>
                             </div>
+                            <style>
+                                @media screen and (max-width: 600px) {
+                                    #about {
+                                        visibility: hidden;
+                                        clear: both;
+                                        float: left;
+                                        margin: 10px auto 5px 20px;
+                                        width: 28%;
+                                        display: none;
+                                    }
+                                }
+                            </style>
                             <div itemscope aria-label="Primary Menu" id="menu-primary" class="navbar-collapse collapse">
                                 <div id="site-header-menu" class="site-header-menu">
                                     <nav id="site-navigation" class="main-navigation" role="navigation">
@@ -104,24 +116,24 @@
                         </div>
                     </div>
                     <ul id="parallax_move">
-                     
-                        <li class="layer layer1" data-depth="0.25" style="background-image:  url('Content/landing/wp-content/themes/Parallax-One/images/desk.jpeg')"></li>
+
+                        <li class="layer layer1" data-depth="0.30" style="background-image:  url('Content/landing/wp-content/themes/Parallax-One/images/desk.jpeg')"></li>
                     </ul>
                     <div class="overlay-layer-wrap">
                         <div class="container overlay-layer" id="parallax_header">
                             <div class="row">
                                 <div class="col-md-12 intro-section-text-wrap">
                                     <div id="intro-section" class="intro-section">
-                                        <h2 id="intro_section_text_1" class="intro white-text">Your <span>one</span> stop site for Sponsorships.</h2>
+                                        <h2 id="intro_section_text_1" class="intro white-text wow slideInLeft">Your <span>one</span> stop site for Sponsorships.</h2>
                                         <h5 id="intro_section_text_2" class="white-text">Free, Reliable and Awesome.</h5>
-                                        <button id="inpage_scroll_btn" class="btn btn-primary standard-button inpage-scroll" data-anchor="#"><span class="screen-reader-text">Header button label:Sign Up Now</span>Sign Up Now</button>
+                                        <a href="http://bursify.azurewebsites.net/#/login"><button id="inpage_scroll_btn" class="btn btn-primary standard-button inpage-scroll" data-anchor="#"><span class="screen-reader-text">Header button label:Sign Up Now</span>Sign Up Now</button></a>
                                         <div class="only-logo" style="padding-top: 70px;">
                                             <div id="only-logo-inner" class="navbar">
                                                 <div id="parallax_only_logo" class="navbar-header">
                                                     <br />
                                                     <br />
                                                     <br />
-                                                    <a href="#services" class="page-scroll"><ul class="text-center" style="color:black;"><li><i class="bounce fa fa-angle-double-down fa-2x"><img style="margin-left:-20px" src="Content/images/system/Double Down-64.png" alt="Caret" /></i></li></ul></a>
+                                                    <a href="#services" class="page-scroll"><ul class="text-center" style="color:black;"><li><i class="bounce fa fa-angle-double-down fa-2x"><img style="margin-left:-50%" src="Content/images/system/Double Down-64.png" alt="Caret" /></i></li></ul></a>
                                                     <!--<a id="site-navigation" class="main-navigation" role="navigation" href="#services"><img src="Content/images/system/Double Down-64.png" alt="Caret" /></a>-->
                                                 </div>
                                             </div>
@@ -134,7 +146,7 @@
                 </div>
             </header>
 
-            
+
             <div itemprop id="content" class="content-warp" role="main">
 
                 <section class="services" id="services" role="region" aria-label="Services" style="height: 100vh;">
@@ -148,21 +160,21 @@
                             <div id="our_services_wrap" class="services-wrap our_services_wrap_piterest">
                                 <div class="service-box">
                                     <div class="single-service border-bottom-hover">
-                                        <div class="service-icon colored-text"> <span class="icon-basic-webpage-img-txt"></span></div>
+                                        <div class="wow flip service-icon colored-text"> <span class="icon-basic-webpage-img-txt"></span></div>
                                         <h3 class="colored-text">Apply</h3>
                                         <p>Tired of filling out forms ? Join now to experience 'One-Click-Applications' on Bursify.</p>
                                     </div>
                                 </div>
                                 <div class="service-box">
                                     <div class="single-service border-bottom-hover">
-                                        <div class="service-icon colored-text"> <span class="icon-basic-elaboration-document-graph"></span></div>
+                                        <div class="wow flip service-icon colored-text"> <span class="icon-basic-elaboration-document-graph"></span></div>
                                         <h3 class="colored-text">Campaign</h3>
                                         <p>Share your story with our community and start raising funds for your campaigns today.</p>
                                     </div>
                                 </div>
                                 <div class="service-box">
                                     <div class="single-service border-bottom-hover">
-                                        <div class="service-icon colored-text"> <span class="icon-arrows-expand"></span></div>
+                                        <div class="wow flip service-icon colored-text"> <span class="icon-arrows-expand"></span></div>
                                         <h3 class="colored-text">Connect</h3>
                                         <p>Sponsors and Students connect instantly and directly. No more long waiting periods for responses.</p>
                                     </div>
@@ -171,26 +183,28 @@
                         </div>
                     </div>
                 </section>
-                <section class="brief text-left brief-design-one brief-left" id="story" role="region" aria-label="About" style="height: 100vh;">
+
+                <section class="brief text-left brief-design-one brief-left" id="story" role="region" aria-label="About">
                     <div class="section-overlay-layer">
                         <div class="container">
                             <div class="row">
 
-                                <h2 class="text-left dark-text">About</h2>
+                                <h2 id="about" class="text-left dark-text">About</h2>
                                 <div class="col-md-6 brief-content-two">
                                     <div class="video-play ">
                                         <div class="playing">
-                                            <iframe src="https://player.vimeo.com/video/18787665" width="550" height="333" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                            <iframe width="550" height="333" src="https://www.youtube.com/embed/ja_NqCOKGZI" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 content-section brief-content-one">
                                     <div class="colored-line-left"></div>
                                     <div class="brief-content-text" style="text-align: justify;">
-                                        Bursify was soley created to address one of the biggest problems facing South Africa today.
-                                        <br /> The #FeesMustFall movement of 2016 highlighted the lack of higher education funding problem. Our main goal is to connect students with corporate companies that are seeking to sponsor the countries top students by making the application process
+                                        Bursify was soley created to address one of the biggest problems facing South Africa today - Student Funding.
+                                        <br /> The #FeesMustFall movement of 2016 highlighted the extent to which this lack of higher education funding is widespread in South Africa. Our main goal is to connect students with corporate companies that are seeking to sponsor the countries top students by making the application process
                                         seamless.
-                                        <br /> We also provide students a platform to fund raise for various projects through the community.
+                                        <br /> We also provide students a platform to fund raise for various projects through the community of sponsors.
                                         <br /> Bursify is a South African solution to a South African problem.
                                     </div>
                                 </div>
@@ -199,10 +213,10 @@
                     </div>
                 </section>
 
-                <div id="customers"></div>
 
-                <section class="testimonials" role="region" aria-label="Testimonials" j>
-                    <div class="section-overlay-layer">
+                <div class="row">
+                    <section role="region" aria-label="Testimonials">
+
                         <div class="container">
                             <div class="section-header">
                                 <h2 class="dark-text">Team Genesys</h2>
@@ -210,67 +224,108 @@
                                 <div class="sub-heading">Let's introduce you to the minds behind the Bursify vision.</div>
                             </div>
                             <div id="happy_customers_wrap" class="testimonials-wrap happy_customers_wrap_piterest">
-                                <div class="testimonials-box">
+                                <div class="wow fadeInLeft testimonials-box" data-wow-duration="1s">
                                     <div class="feedback border-bottom-hover">
                                         <div class="pic-container">
-                                            <div class="pic-container-inner"> <img src="wp-content/uploads/sites/38/2015/12/1-1.jpg" alt="Malcolm Kumwenda"></div>
+                                            <div class="pic-container-inner"> <img src="Content/m.jpg" alt="Malcolm Kumwenda"></div>
                                         </div>
                                         <div class="feedback-text-wrap">
                                             <h5 class="colored-text"> Malcolm Kumwenda </h5>
-                                            <div class="small-text"> AngularJS</div>
+                                            <div class="small-text"> AngularJS/C# </div>
+                                            <div><a href="https://www.linkedin.com/in/malcolm-collin-kumwenda-50315b8a?trk=miniprofile-primary-view-button"><button class="btn btn-primary" type="button" data-target="#stamp-modal">View on LinkedIn</button></a></div>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="testimonials-box">
+                                <div class="wow fadeInLeft testimonials-box" data-wow-duration="1s">
                                     <div class="feedback border-bottom-hover">
                                         <div class="pic-container">
-                                            <div class="pic-container-inner"> <img src="wp-content/uploads/sites/38/2015/12/2-1.jpg" alt="Eusebia Bărlâdeanu"></div>
+                                            <div class="pic-container-inner"> <img src="Content/t.jpg" alt="Thabang"></div>
                                         </div>
                                         <div class="feedback-text-wrap">
                                             <h5 class="colored-text"> Thabang Lekwadi </h5>
-                                            <div class="small-text"> AngularJS </div>
+                                            <div class="small-text"> AngularJS/HTML </div>
+                                            <div><a href="https://www.linkedin.com/in/thabang-lekwadi-a6879686?authType=NAME_SEARCH&authToken=6gHP&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A306510704%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1477650999387%2Ctas%3Athaban"><button class="btn btn-primary" type="button" data-target="#stamp-modal">View on LinkedIn</button></a></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="testimonials-box">
+                                <div class="wow fadeInRight testimonials-box" data-wow-duration="1s">
                                     <div class="feedback border-bottom-hover">
                                         <div class="pic-container">
-                                            <div class="pic-container-inner"> <img src="wp-content/uploads/sites/38/2015/12/3-1.jpg" alt="Georgian Hrușcă"></div>
+                                            <div class="pic-container-inner"> <img src="Content/b.jpg" alt="Brandon"></div>
                                         </div>
                                         <div class="feedback-text-wrap">
                                             <h5 class="colored-text"> Brandon Sibanda</h5>
-                                            <div class="small-text"> Andriod </div>
+                                            <div class="small-text"> Andriod/C# </div>
+                                            <div><a href="https://www.linkedin.com/in/brandon-sibanda-704bb67b?authType=name&authToken=YGmv&trk=prof-connections-photo"><button class="btn btn-primary" type="button" data-target="#stamp-modal">View on LinkedIn</button></a></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="testimonials-box">
+                                <div class=" wow fadeInRight testimonials-box" data-wow-duration="1s">
                                     <div class="feedback border-bottom-hover">
                                         <div class="pic-container">
-                                            <div class="pic-container-inner"> <img src="wp-content/uploads/sites/38/2015/12/3-1.jpg" alt="Georgian Hrușcă"></div>
+                                            <div class="pic-container-inner"> <img src="Content/k.jpg" alt="Kieth"></div>
                                         </div>
                                         <div class="feedback-text-wrap">
                                             <h5 class="colored-text"> Kieth Kwan</h5>
-                                            <div class="small-text"> Backend </div>
+                                            <div class="small-text"> Backend/C# </div>
+                                            <div><a href="https://www.linkedin.com/in/keith-kwan-0ab281115?authType=NAME_SEARCH&authToken=w_fB&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A481408835%2CauthType%3ANAME_SEARCH%2Cidx%3A1-2-2%2CtarId%3A1477651054864%2Ctas%3Akei"><button class="btn btn-primary" type="button" data-target="#stamp-modal">View on LinkedIn</button></a></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
 
+                    </section>
+                    <div class="row">
+                        <section class="services" id="tech" role="region">
+                            <div id="customers">
+                                <div class="clients white-bg" id="clients" role="region" aria-label=" Affiliates Logos">
+                                    <div class="container">
+                                        <ul class="client-logos">
+                                            <li>
+                                                <a href="#" title="">
+                                                    <img class="wow rollIn" src="https://angularjs.org/img/AngularJS-large.png" alt="Logo">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" title="">
+                                                    <img class="wow rollIn" src="https://img.itch.io/aW1hZ2UyL2phbS8yNjgxLzMyOTQxOS5wbmc=/original/4Pm03N.png" alt="Logo">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" title="">
+                                                    <img class="wow rollin" src="http://pragmatic.bg/wp-content/uploads/2015/10/logo-c-asp-net_0.jpg">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" title="">
+                                                    <img class="wow rollIn" src="http://www.ryadel.com/wp-content/uploads/2015/03/entity-framework-logo.jpg" alt="Logo">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <img class="wow rollIn" src="http://www.cjprestige.com/wp-content/uploads/2014/11/Screen_Shot_2014-06-26_at_5.13.43_PM-e1415057826355-810x400.png" alt="Logo">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
                 <section class="call-to-action ribbon-wrap" id="ribbon" style="background-image:  url('Content/landing/wp-content/themes/Parallax-One/images/parallax-img1.jpg') ;" role="region" aria-label="Ribbon">
-                <div class="section-overlay-layer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <h3 class="white-text strong">We Are Ready To Help You</h3>
-                                <h2 class="white-text strong">Achieve Your Goals.</h2>
-                                <button onclick="window.location='#'" class="btn btn-primary standard-button" type="button" data-toggle="modal" data-target="#stamp-modal"><span class="screen-reader-text">Ribbon button label:GET STARTED</span>GET STARTED</button>
+                    <div class="section-overlay-layer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <h3 class="white-text strong">We Are Ready To Help You</h3>
+                                    <h2 class="white-text strong">Achieve Your Goals.</h2>
+                                    <button onclick="window.location='#'" class="btn btn-primary standard-button" type="button" data-toggle="modal" data-target="#stamp-modal"><span class="screen-reader-text">Ribbon button label:GET STARTED</span>GET STARTED</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </section>
                 <style>
                     /*-----*/
@@ -371,18 +426,31 @@
                         <div class="contact-form">
                             <form>
                                 <div class="col-md-6 text-box">
-                                    <input type="text" placeholder="Name">
-                                    <input type="text" placeholder="Email">
-                                    <input type="text" placeholder="Subject">
+                                    <input type="text" id="name" placeholder="Name">
+                                    <input type="text" id="emailFrom" placeholder="Email">
+                                    <input type="text" id="subject" placeholder="Subject">
 
                                 </div>
 
                                 <div class="col-md-6 textarea">
-                                    <textarea placeholder="Message"></textarea>
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#stamp-modal"><span class="screen-reader-text">Ribbon button label:SEND</span>SEND</button>
+                                    <textarea placeholder="Message" id="body"></textarea>
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" onclick="sendMessage()" data-target="#stamp-modal"><span class="screen-reader-text">Ribbon button label:SEND</span>SEND</button>
 
 
                                 </div>
+
+                                <script type='text/javascript'>
+										function sendMessage(){
+											var emailTo = "malcolmcollin@gmail.com";
+											var emailCC = "brandonsibbs@gmail.com";
+											var body = document.getElementById("name").value;
+											var mail = document.getElementById("emailFrom").value;
+											var subject = document.getElementById("subject").value;
+
+											location.href = "mailto:"+emailTo+'?cc='+emailCC+'&subject='+subject+'&body='+body;
+										}
+                                </script>
+
 
 
 
@@ -401,137 +469,22 @@
                                     <li>
 
 
-                                        <a href="#" title=""> <img src="Content/images/system/entelect.png" alt="Logo"> </a>
+                                        <a href="Http://entelect.co.za" title=""> <img src="Content/images/system/entelect.png" alt="Logo"> </a>
                                     </li>
                                 </ul>
                             </div>
                             <div itemscope role="navigation" itemtype="http://schema.org/SiteNavigationElement" id="menu-secondary" aria-label="Secondary Menu">
                                 <h2 class="screen-reader-text">Secondary Menu</h2>
                             </div>
-                            <ul class="social-icons">
-                                <li>
-                                    <a target="_blank" href="#"> <span class="parallax-one-footer-icons icon-social-facebook transparent-text-dark"></span> </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#"> <span class="parallax-one-footer-icons icon-social-twitter transparent-text-dark"></span> </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="#"> <span class="parallax-one-footer-icons icon-social-googleplus transparent-text-dark"></span> </a>
-                                </li>
-                            </ul>
+
                         </div>
-                        <div class="powered-by"><a href="https://themeisle.com/themes/parallax-one/" target="_blank" rel="nofollow">Parallax One </a>powered by <a class="" href="http://wordpress.org/" target="_blank" rel="nofollow">WordPress</a></div>
+                        <div class="powered-by"><a href="#" target="_blank" rel="nofollow">Bursify </a>powered by team<a class="" href="#" target="_blank" rel="nofollow"> Genesys</a></div>
                     </div>
                 </footer>
             </div>
         </div>
     </div>
-    <style type="text/css">
-        @media (min-width: 820px) {
-            #review-statistics .review-wrap-up .review-wu-left .rev-wu-image,
-            #review-statistics .review-wrap-up .review-wu-left .review-wu-grade {
-                height: 158.92px;
-            }
 
-                #review-statistics .review-wrap-up .review-wu-left .review-wu-grade .cwp-review-chart .cwp-review-percentage {
-                    margin-top: 14.892%;
-                }
-
-                #review-statistics .review-wrap-up .review-wu-left .review-wu-grade .cwp-review-chart span {
-                    font-size: 32px;
-                }
-        }
-
-        #review-statistics .review-wrap-up div.cwpr-review-top {
-            border-top: 5px solid #3BAEDA;
-        }
-
-        .user-comments-grades .comment-meta-grade-bar,
-        #review-statistics .review-wu-bars ul li {
-            background: #E1E2E0;
-        }
-
-        #review-statistics .rev-option.customBarIcon ul li {
-            color: #E1E2E0;
-        }
-
-        #review-statistics .review-wrap-up .review-wu-right ul li,
-        #review-statistics .review-wu-bars h3,
-        .review-wu-bars span,
-        #review-statistics .review-wrap-up .cwpr-review-top .cwp-item-category a {
-            color: #3D3D3D;
-        }
-
-        #review-statistics .review-wrap-up .review-wu-right .pros h2 {
-            color: #8DC153;
-        }
-
-        #review-statistics .review-wrap-up .review-wu-right .cons h2 {
-            color: #C15353;
-        }
-
-        div.affiliate-button a {
-            border: 2px solid #3BAEDA;
-        }
-
-            div.affiliate-button a:hover {
-                border: 2px solid #3BAEDA;
-            }
-
-        div.affiliate-button a {
-            background: #ffffff;
-        }
-
-            div.affiliate-button a:hover {
-                background: #3BAEDA;
-            }
-
-            div.affiliate-button a span {
-                color: #3BAEDA;
-            }
-
-            div.affiliate-button a:hover span {
-                color: #FFFFFF;
-            }
-
-
-
-        .commentlist .comment-body p {
-            clear: left;
-        }
-    </style>
-    <script type="text/javascript">
-            var c1 = "#FF7F66";
-            var c2 = "#FFCE55";
-            var c3 = "#50C1E9";
-            var c4 = "#8DC153";
-    </script>
-
-
-    
-
-
-    <script type='text/javascript'>
-            /*  */
-            var wc_add_to_cart_params = {
-                "ajax_url": "parallax-onewp-adminadmin-ajax.php",
-                "wc_ajax_url": "parallax-one?wc-ajax=%%endpoint%%",
-                "i18n_view_cart": "View Cart",
-                "cart_url": "http:demo.themeisle.comparallax-onecart",
-                "is_cart": "",
-                "cart_redirect_after_add": "no"
-            };
-            /*  */
-    </script>
-
-    <script type='text/javascript'>
-            /*  */
-            var woocommerce_params = {
-                "ajax_url": "parallax-onewp-adminadmin-ajax.php",
-                "wc_ajax_url": "parallax-one?wc-ajax=%%endpoint%%"
-            };
-            /*  */
-    </script>
 
 
     <script src="Content/landing/wp-content/themes/Parallax-One/js/bootstrap.min46df.js"></script>
@@ -596,11 +549,13 @@
             };
             /*  */
     </script>
-    <script src="Content/landing/wp-content/plugins/megamenu/js/maxmegamenu7406.js"></script>
 
     <script src="Content/landing/wp-includes/js/wp-embed.min.js"></script>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+              new WOW().init();
+    </script>
     <script type='text/javascript'>
             /*  */
             var intergeo_options = {

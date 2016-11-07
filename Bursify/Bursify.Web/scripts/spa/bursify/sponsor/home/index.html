@@ -6,96 +6,21 @@
 
     <div id="Applicants">
 
-        <!--<div class="row">
-            <div class="col-md-4">
-                <label>Filter Students By: </label>
-            </div>
-            <div class="col-md-6" ng-if="StudentFiler.type != 'All' && StudentFiler.type != 'Mark' && StudentFiler.type != 'Disability' && StudentFiler.type != 'FieldOfstudy'">
-                <label>Select filter: </label>
-            </div>
-            <div class="col-md-6" ng-show="StudentFiler.type == 'FieldOfstudy'">
-                <label>Select fields of study: </label>
-            </div>
-        </div>
+        <style>
+            .red {
+                background-color: #D32F2F;
+            }
 
-        <div class="row">
+            .orange {
+                background-color: #FFC107;
+            }
 
-            <div class="col-md-4">
-                <style>
-                    .md-placeholder {
-                        display: none;
-                    }
-                </style>
-                <md-input-container class="md-padding">
-                    <md-select ng-model="StudentFiler.type" ng-init="StudentFiler.type = 'All'" style="min-width: 200px;">
+            .green {
+                background-color: #4CAF50;
+            }
+        </style>
 
-                        <md-optgroup label="Filter By">
-                            <md-option value="All">Show All</md-option>
-                            <md-option value="Gender">Gender</md-option>
-                            <md-option value="Race">Race</md-option>
-                            <md-option value="Age">Age</md-option>
-                          
-                            <md-option value="Disability">Disability</md-option>
-                            <md-option value="FieldOfstudy">Study Fields</md-option>
-                        </md-optgroup>
-                    </md-select>
-                </md-input-container>
-            </div>
-            <div class="col-md-6" ng-if="StudentFiler.type == 'Gender'" style="padding-top: 45px;">
-                <md-radio-group ng-model="FilterType" layout="row" required>
-                    <md-radio-button value="Male" class="md-primary">Male</md-radio-button>
-                    <md-radio-button value="Female" class="md-primary">Female</md-radio-button>
 
-                </md-radio-group>
-            </div>
-            <div class="col-md-6" ng-if="StudentFiler.type == 'Race'" style="padding-top: 45px;">
-                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderF" ng-model="SelectedGenderM" class="md-primary">
-                    African
-                </md-checkbox>
-                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
-                    Asain
-                </md-checkbox>
-                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
-                    Coloured
-                </md-checkbox>
-                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
-                    Indian
-                </md-checkbox>
-                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
-                    White
-                </md-checkbox>
-
-            </div>
-            <div class="col-md-6" ng-if="StudentFiler.type == 'Age'" style="padding-top: 45px;">
-                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderF" ng-model="SelectedGenderM" class="md-primary">
-                    16 - 20
-                </md-checkbox>
-                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
-                    21 - 25
-                </md-checkbox>
-                <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-disabled="SelectedGenderM" ng-model="SelectedGenderF" class="md-primary">
-                    26 - 30
-                </md-checkbox>
-            </div>
-            <div class="col-md-6" ng-if="StudentFiler.type == 'Mark'" style="padding-top: 45px;">
-                <p>Now showing students sorted by overall average marks.</p>
-            </div>
-            <div class="col-md-6" ng-if="StudentFiler.type == 'Disability'" style="padding-top: 45px;">
-                <p>Now showing students who stated they have a disability.</p>
-            </div>
-            <div class="col-md-6" ng-if="StudentFiler.type == 'FieldOfstudy'" style="padding-top: 45px;">
-                <md-input-container class="md-block" style="margin-top: -15px;">
-                    <md-select placeholder="Fields" ng-model="Student.StudyFields" md-on-open="loadFields()" style="min-width: 200px;" required multiple>
-                        <md-option ng-value="field" ng-repeat="field in fields | orderBy:'name'">{{field.name}}</md-option>
-                    </md-select>
-                </md-input-container>
-            </div>
-        </div>
-        <md-list>
-
-            <md-divider></md-divider>
-
-        </md-list>-->
 
         <md-content>
             <md-tabs md-dynamic-height md-border-bottom>
@@ -126,7 +51,7 @@
                                                 <p style="height: 80px;">{{Student.Headline}}</p>
 
                                                 <div class="progress progress-rounded">
-                                                    <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="{{Student.AverageMark}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Student.AverageMark}}% ">
+                                                    <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="{{Student.AverageMark}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Student.AverageMark}}% " ng-class="{green: Student.AverageMark > 60, orange: Student.AverageMark >= 50,  red:Student.AverageMark > 0,}">
                                                         {{Student.AverageMark}} % Average
                                                     </div>
                                                 </div>

@@ -16,6 +16,14 @@
 
         }
 
+        $scope.savePro = function () {
+            apiService.post('/api/sponsor/savesponsor/', $scope.Sponsor, SaveDone, FailedSponsor);
+        }
+
+        function SaveDone() {
+            notificationService.displaySuccess("Succesful");
+        }
+
         $scope.triggerUpload = function () {
             var fileuploader = angular.element("#fileInput");
             fileuploader.on('click', function () {

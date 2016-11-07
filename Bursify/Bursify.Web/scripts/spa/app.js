@@ -65,8 +65,8 @@
                 resolve: { isAuthenticated: isAuthenticated }
              })
              .when("/admin/insight", {
-                 templateUrl: "scripts/spa/bursify/admin/home/sponsor/index.html",
-                 controller: "adminSponsorCtrl",
+                 templateUrl: "scripts/spa/bursify/admin/home/insight/index.html",
+                 controller: "adminInsightCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
              })
             .when("/sponsorship/view", {

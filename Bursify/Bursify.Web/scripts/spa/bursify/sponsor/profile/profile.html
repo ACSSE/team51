@@ -29,7 +29,7 @@
                         <input type="file" ng-file-select="prepareImage($files)" style="display:none" id="fileInput" name="filedata" />
   
                     
-                      <h3 class="profile-username text-center">{{usersa.Name}}</h3>
+                 
                         <p class="text-muted text-center"></p>
 
                         <!-- About Me Box -->
@@ -50,7 +50,7 @@
 
                                 <hr>
 
-                                <strong><i class="fa fa-building margin-r-5"></i> Website</strong>
+                                <strong><i class="fa fa-globe margin-r-5"></i> Website</strong>
                                 <p class="text-muted">{{Sponsor.Website}}</p>
 
                                
@@ -66,50 +66,29 @@
             <div class="col-md-9">
                 <div class="panel">
                     <md-tabs md-dynamic-height md-border-bottom>
-                        <md-tab label="Personal Details">
-                            <md-content class="md-padding">
-                                <form role="form" novalidate angular-validator name="userRegistrationForm" angular-validator-submit="register()">
-                                    <div class="box-body">
-                                        <md-input-container class="md-icon-float md-block">
-                                            <!-- Use floating label instead of placeholder -->
-                                            <label>Name</label>
-                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
-                                            <input value="{{Sponsor.CompanyName}}" type="text"></>
-                                        </md-input-container>
-
-                                      
-                                        <md-input-container class="md-block">
-                                            <label>Description</label>
-                                            <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
-                                            <textarea ng-model="user.Biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-                                        </md-input-container>
-
-
-                                    </div><!-- /.box-body -->
-
-                                    <div>
-
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
-                                </form>
-                            </md-content>
-                        </md-tab>
+                        
                         <md-tab label="Contact Details">
                             <md-content class="md-padding">
 
                                 <div class="box-body">
                                     <md-input-container class="md-icon-float md-block">
                                         <!-- Use floating label instead of placeholder -->
+                                        <label>Name</label>
+                                        <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                        <input ng-model="Sponsor.CompanyName" type="text"></>
+                                    </md-input-container>
+                                    <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
                                         <label>Email</label>
                                         <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
-                                        <input value="{{Sponsor.CompanyEmail}}" type="text"></>
+                                        <input ng-model="Sponsor.CompanyEmail" type="text"></>
                                     </md-input-container>
 
                                     <md-input-container class="md-icon-float md-block">
                                         <!-- Use floating label instead of placeholder -->
                                         <label>Website</label>
                                         <md-icon md-svg-src="/content/img/icons/ic_person_24px.svg" class="name"></md-icon>
-                                        <input value="{{Sponsor.Website}}" type="text"></>
+                                        <input ng-model="Sponsor.Website" type="text"></>
                                     </md-input-container>
                                     
 
@@ -117,7 +96,7 @@
                                 </div><!-- /.box-body -->
                                 <div>
 
-                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <button type="submit" ng-click="savePro()" class="btn btn-success">Save</button>
                                 </div>
                             </md-content>
                         </md-tab>
