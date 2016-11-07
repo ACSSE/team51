@@ -112,8 +112,11 @@
                             <div class="col-md-4">
                                 <div class="thumbnail" style="background-color:white">
                                     <img class="img-rounded" ng-src="Content/BursifyUploads/default-campaign.jpg" alt="campagin picture" style="width:100%;height:200px;">
+<<<<<<< HEAD
+=======
 
                                     <img class="img-rounded" ng-src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture" style="width:100%;height:200px;">
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
                                     <div class="caption">
                                         <b>{{campaign.CampaignName}}</b><br>
                                         <small>{{StudentName}}</small><br><br>
@@ -307,6 +310,19 @@
                                   <md-card-header-text>
                             <md-card>
                                 <a href="#/student/campaigns">
+<<<<<<< HEAD
+<<<<<<< 62a75902834ec24cb0ae7fdab503e8ff6d76c050
+                                    <img style="height:300px; width:485px" class="img-rounded"ng-src="Content/BursifyUploads/default-campaign.jpg" alt="campagin picture">
+=======
+                                    <img style="width:100%;height:200px;" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
+>>>>>>> Updated edit campaign, addCampaign and my campaigns views
+=======
+<<<<<<< HEAD
+                                    <img style="width:100%;height:200px;" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
+=======
+                                    <img style="height:300px; width:485px" class="img-rounded" ng-src="../../../../../Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" alt="campagin picture">
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
                                 </a>
                             </md-card>
                         </md-card-header-text>

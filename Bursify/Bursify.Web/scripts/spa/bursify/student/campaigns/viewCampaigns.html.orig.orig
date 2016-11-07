@@ -64,6 +64,11 @@
 
         <!-- End Of sorting -->
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
         <div id="content">
             <!-- Main content -->
             <section class="content">
@@ -143,7 +148,21 @@
                                         </md-card-title-text>
                                     </md-card-title>
                                     <md-card-content>
+<<<<<<< HEAD
+<<<<<<< 62a75902834ec24cb0ae7fdab503e8ff6d76c050
+                                        <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline | limitTo: 70}}...</p>
                                         <br/>
+=======
+                                        <p style="margin-top: -20px;height: 36px;">{{campaign.Tagline}}</p>
+>>>>>>> Updated edit campaign, addCampaign and my campaigns views
+=======
+<<<<<<< HEAD
+                                        <p style="margin-top: -20px;height: 36px;">{{campaign.Tagline}}</p>
+=======
+                                        <p style="margin-top: -20px;height: 26px;">{{campaign.Tagline}}</p>
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
+                                        <br/>
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
                                         <p><span class="glyphicon glyphicon-map-marker"></span>{{campaign.Location}}</p>
 
                                         <md-progress-linear md-mode="determinate" value="{{(campaign.AmountContributed / campaign.AmountRequired)*100 | number:0}}"></md-progress-linear>

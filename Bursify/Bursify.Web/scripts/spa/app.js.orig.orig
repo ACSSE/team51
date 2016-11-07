@@ -235,22 +235,71 @@
             .when("/student/campaign-details/:campaignId", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/campaignDetails.html",
                 controller: "campaignDetailsCtrl",
+<<<<<<< HEAD
+<<<<<<< 4edbb10eab379fc696f1fc94c337b902c6661195
                resolve: { isAuthenticated: isAuthenticated }
+=======
+                 resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> added secure code for unauthorised users
+=======
+<<<<<<< HEAD
+               resolve: { isAuthenticated: isAuthenticated }
+=======
+                // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
             })
             .when("/student/fund-campaign", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/fundCampaign.html",
                 controller: "fundCampaignCtrl",
+<<<<<<< HEAD
+<<<<<<< 4edbb10eab379fc696f1fc94c337b902c6661195
                resolve: { isAuthenticated: isAuthenticated }
+=======
+                resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> added secure code for unauthorised users
+=======
+<<<<<<< HEAD
+               resolve: { isAuthenticated: isAuthenticated }
+=======
+                // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
             })
             .when("/student/test", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/test.html",
                 controller: "testCtrl",
+<<<<<<< HEAD
+<<<<<<< 4edbb10eab379fc696f1fc94c337b902c6661195
+               resolve: { isAuthenticated: isAuthenticated }
+=======
+                 resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> added secure code for unauthorised users
+=======
+<<<<<<< HEAD
+               resolve: { isAuthenticated: isAuthenticated }
+=======
+                // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
             })
 
             .when("/student/campaign-progress/:campaignId", {
                 templateUrl: "scripts/spa/bursify/student/campaigns/campaignProgress.html",
                 controller: "campaignProgressCtrl",
+<<<<<<< HEAD
+<<<<<<< 4edbb10eab379fc696f1fc94c337b902c6661195
                resolve: { isAuthenticated: isAuthenticated }
+=======
+                resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> added secure code for unauthorised users
+=======
+<<<<<<< HEAD
+               resolve: { isAuthenticated: isAuthenticated }
+=======
+                // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
             })
 
             .when("/student/addAccount", {
@@ -264,7 +313,19 @@
                         .when("/sponsor/campaign-details/:campaignId", {
                             templateUrl: "scripts/spa/bursify/sponsor/campaigns/campaignDetails.html",
                             controller: "viewCampaignCtrl",
+<<<<<<< HEAD
+<<<<<<< 4edbb10eab379fc696f1fc94c337b902c6661195
                            resolve: { isAuthenticated: isAuthenticated }
+=======
+                            resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> added secure code for unauthorised users
+=======
+<<<<<<< HEAD
+                           resolve: { isAuthenticated: isAuthenticated }
+=======
+                            // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
                         })
 
                         .when("/sponsor/campaigns", {
@@ -282,6 +343,19 @@
                         .when("/sponsor/fund", {
                             templateUrl: "scripts/spa/bursify/sponsor/campaigns/fundCampaign.html",
                             controller: "fundCampaignCtrl",
+<<<<<<< HEAD
+<<<<<<< 4edbb10eab379fc696f1fc94c337b902c6661195
+                           resolve: { isAuthenticated: isAuthenticated }
+=======
+                            resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> added secure code for unauthorised users
+=======
+<<<<<<< HEAD
+                           resolve: { isAuthenticated: isAuthenticated }
+=======
+                            // resolve: { isAuthenticated: isAuthenticated }
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
                         })
 
             /* Campaigns end**/

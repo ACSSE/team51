@@ -28,10 +28,26 @@
             $scope.campaign = result.data;
             $scope.loadingCampaign = false;
         }
+<<<<<<< HEAD
+<<<<<<< 62a75902834ec24cb0ae7fdab503e8ff6d76c050
+
+        $scope.editStudentCampaign = function ()
+        {
+=======
        $scope.editStudentCampaign = function()
+       {
+           alert("HGGHHFHFH");
+>>>>>>> Updated edit campaign, addCampaign and my campaigns views
+=======
+<<<<<<< HEAD
+       $scope.editStudentCampaign = function()
+=======
+        function editStudentCampaign()
+>>>>>>> 099726c924dc14c725748e6c40a68eb16d2d9938
         $scope.editStudentCampaign = function ()
        {
            alert("HGGHHFHFH");
+>>>>>>> 4745d6506eb935d47706183615cdfcf0191041e2
             apiService.post('/api/campaign/SaveCampaign/?campaign=', $scope.campaign,
                     EditCampaignSucceded,
                     EditCampaignFailed);
