@@ -101,6 +101,16 @@
             <md-tabs md-dynamic-height md-border-bottom>
                 <md-tab label="Suggested Students">
                     <md-content class="md-padding">
+                        <div class="col-md-12" ng-if="!Recco[0]">
+                            <div class="alert alert-info col-md-12 col-sm-12  alert-icon alert-dismissible fade in" role="alert">
+                                <div class="col-md-2 col-sm-2 icon-wrapper text-center">
+                                    <span class="fa fa-info fa-2x"></span>
+                                </div>
+                                <div class="col-md-10 col-sm-10">
+                                    <p><strong>Info !</strong> Unfortunately the system could not find any students for you at this time. Go to the all tab to find students manualy.</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12 md-padding">
                             <div class="row">
                                 <div class="col-md-3 product-grid" data-ng-repeat="Student in Recco">
@@ -116,7 +126,7 @@
                                                 <p style="height: 80px;">{{Student.Headline}}</p>
 
                                                 <div class="progress progress-rounded">
-                                                    <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="{{Student.AverageMark}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Student.AverageMark}}%">
+                                                    <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="{{Student.AverageMark}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Student.AverageMark}}% ">
                                                         {{Student.AverageMark}} % Average
                                                     </div>
                                                 </div>
@@ -130,7 +140,7 @@
                             </div>
 
                         </div>
-                     </md-content>
+                    </md-content>
                   </md-tab>
                 <md-tab label="All Students">
                     <md-content class="md-padding">

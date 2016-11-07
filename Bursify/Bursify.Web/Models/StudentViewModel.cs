@@ -40,6 +40,10 @@ namespace Bursify.Web.Models
         public bool AgreeTandC { get; set; }
         public string ImagePath { get; set; }
 
+        public int Average { get; set; }
+        public string School { get; set; }
+        public string Province { get; set; }
+
         public StudentViewModel()
         {
             //default

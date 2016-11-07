@@ -122,6 +122,16 @@ namespace Bursify.Api.Students
             return userCampaigns;
         }
 
+        public List<Campaign> GetInactiveCampaigns(int userId) //done
+        {
+            List<Campaign> userCampaigns = null;
+            using (IUnitOfWork uow = unitOfWorkFactory.CreateUnitOfWork())
+            {
+                userCampaigns = campaignRepository.GetUserCampaigns(userId).ToList();
+            }
+            return userCampaigns;
+        }
+
         //for later
         public void ShareCampaign(int id)
         {

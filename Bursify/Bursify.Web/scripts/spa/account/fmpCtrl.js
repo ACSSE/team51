@@ -8,19 +8,21 @@
     function fmpCtrl($scope, membershipService, notificationService, $rootScope, $location, apiService) {
         $scope.pageClass = 'page-login';
 
-
-        function retrievePassword() {
-            membershipService.removeCredentials();
-            membershipService.login($scope.email, loginCompleted);
+        $scope.reset = function () {
+           
+            apiService.post('/api/BursifyUser/ResetPassword/?email=' +  $scope.user.useremail,null, Completed, Failed);
         }
 
-        function loginCompleted(result) {
-            if (result.data.success) {
-                loginUserCompleted(result);
-            }
-            else {
-                notificationService.displayError('Login failed. Try again.');
-            }
+        function Completed(result) {
+            if (result) {
+                notificationService.displaySuccess("Password reset email has been sent.");
+            } else {
+                notificationService.displayInfo("Email does not exist.");
+             }
+        }
+
+        function Failed() {
+            notificationService.displayError("Failed");
         }
 
         function loginUserCompleted(result) {

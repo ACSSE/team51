@@ -13,7 +13,7 @@
         <div class="row">
             <form id="editform" ng-submit="">
                 <div flex-xs flex-gt-xs="50" layout="column" height="100%" ng-repeat="campaign in campaigns" ng-if="campaign.Status == 'Active'" class="col-lg-4">
-                    <md-card style="height: 535px;" >
+                    <md-card style="height: 535px;">
                         <a ng-href="#/student/campaign-progress/{{campaign.CampaignId}}"> <img style="height:250px;width: 100%;" class="img-rounded" ng-src="Content/BursifyUploads/{{campaign.StudentId}}/images/{{campaign.PicturePath}}" class="md-card-image" alt="campaign.jpg"></a>
                         <md-card-title>
                             <md-card-title-text>

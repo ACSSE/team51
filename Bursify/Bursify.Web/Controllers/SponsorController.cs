@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Web.Helpers;
 using System.Web.Http;
 using Bursify.Api.Sponsors;
 using Bursify.Api.Students;
@@ -9,6 +10,7 @@ using Bursify.Data.EF.Entities.SponsorUser;
 using Bursify.Data.EF.Entities.StudentUser;
 using Bursify.Data.EF.Entities.User;
 using Bursify.Web.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace Bursify.Web.Controllers
 {
@@ -30,7 +32,22 @@ namespace Bursify.Web.Controllers
         [System.Web.Mvc.Route("SaveSponsor")]
         public HttpResponseMessage SaveSponsor(HttpRequestMessage request, SponsorViewModel sponsor)
         {
+            if (!ModelState.IsValid)
+            {
+                
+            }
             _sponsorApi.SaveSponsor(sponsor.ReverseMap());
+
+            int userId = sponsor.ID;
+            string[] location = sponsor.Location.Split(',');
+
+            var address = new UserAddressViewModel();
+            address.BursifyUserId = userId;
+            address.City = location[1];
+            address.Province = location[0];
+            address.AddressType = "Company";
+
+            _studentApi.SaveAddress(address.ReverseMap());
 
             var response = request.CreateResponse(HttpStatusCode.Created);
 
@@ -128,6 +145,16 @@ namespace Bursify.Web.Controllers
             var students = _sponsorApi.GetStudentsSponsored(sponsorshipId);
 
             var s = StudentViewModel.MapMultipleStudents(students);
+
+            foreach(var current in s)
+            {
+                var report = _studentApi.GetMostRecentReport(current.ID);
+                var address = _studentApi.GetAddress(current.ID, "Residential");
+
+                current.Average = report.Average;
+                current.School = report.ReportInstitution;
+                current.Province = address.Province;
+            }
             
             var response = request.CreateResponse(HttpStatusCode.OK, s);
 

@@ -9,12 +9,13 @@
         $scope.pageClass = 'page-sponsor-leaderboard';
   
        $scope.loadSponsors= function(){
-           apiService.get('api/Sponsor/GetTopTenSponsors/', null, Done, Failed);
+           apiService.get('api/Sponsor/GetAllSponsors/', null, Done, Failed);
 
        }
        $scope.Sponsors = {};
        function Done(result) {
            $scope.Sponsors = result.data;
+           $scope.Sponsors.sort(function (a, b) { return (a.Rating > b.Rating) ? 1 : ((b.Rating > a.Rating) ? -1 : 0); });
        }
 
        function Failed() {

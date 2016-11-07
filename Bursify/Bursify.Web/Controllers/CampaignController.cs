@@ -88,7 +88,30 @@ namespace Bursify.Web.Controllers
 
             return response;
         }
-        
+
+        [System.Web.Mvc.AllowAnonymous]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("GetInactiveCampaigns")]
+        public HttpResponseMessage GetInactiveCampaigns(HttpRequestMessage request, int userId)
+        {
+            var campaigns = _studentApi.GetInactiveCampaigns(userId);
+
+            var campaignVm = CampaignViewModel.MultipleCampaignsMap(campaigns);
+
+            var student = _studentApi.GetStudent(userId);
+
+            foreach (var model in campaignVm)
+            {
+
+                model.Name = student.Firstname;
+                model.Surname = student.Surname;
+            }
+
+            var response = request.CreateResponse(HttpStatusCode.OK, campaignVm);
+
+            return response;
+        }
+
         //get a campaign with increment number of views
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.HttpGet]
